@@ -21,7 +21,7 @@
         <Pin pinNum="38" group="PA0" displayName="PA0.0">
           <Property class="UIchoice">
             <label>PinFunctions</label>
-            <value>Undefined</value>
+            <value>High_Z</value>
             <Selections>
               <sel>High_Z</sel>
               <sel>GPIO_INPUT</sel>
@@ -3810,7 +3810,7 @@
         <Device deviceId="internal CH0">
           <Comment>ADC内部通道配置必须从0开始,且连续。如果采样数为4,则需要配置internal CH0~3</Comment>
           <GenCodeFuncName>InternalCH0InitFunc</GenCodeFuncName>
-          <UseOrNot>1</UseOrNot>
+          <UseOrNot>0</UseOrNot>
           <label>CH0</label>
           <Property class="UIchoice">
             <label>Source</label>
@@ -5148,16 +5148,6 @@
           <UseOrNot>0</UseOrNot>
           <label>CMP0</label>
           <Property class="UIchoice">
-            <label>Mode</label>
-            <value>Base</value>
-            <Selections>
-              <sel notAvailable="DFCR0,WFCR0">Base</sel>
-              <sel notAvailable="WFCR0">DFCR</sel>
-              <sel notAvailable="DFCR0">WFCR</sel>
-            </Selections>
-            <Comment>Base为比较器基本配置功能&#xD;Dfcr为比较器滤波配置功能&#xD;Wfcr为比较器窗口配置功能</Comment>
-          </Property>
-          <Property class="UIchoice">
             <label>NSEL</label>
             <value>CMP_N_SEL_CP0</value>
             <Selections>
@@ -5247,6 +5237,15 @@
             <label>CMP_INTSRC_RAWDET</label>
             <value>0</value>
           </Property>
+          <Property class="UIchoice">
+            <label>DFCR</label>
+            <value>DISABLE</value>
+            <Selections>
+              <sel notAvailable="DFCR0">DISABLE</sel>
+              <sel>ENABLE</sel>
+            </Selections>
+            <Comment>滤波功能</Comment>
+          </Property>
           <Property class="UIchoice" property_class="DFCR0">
             <label>DEPTH1</label>
             <value>CMP_DFCR_DEPTH1_8</value>
@@ -5296,6 +5295,15 @@
             <label>DIVM2</label>
             <value>119</value>
             <Comment>数字滤波器采样时钟FLT2_CK分频系数M</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>WFCR</label>
+            <value>DISABLE</value>
+            <Selections>
+              <sel notAvailable="WFCR0">DISABLE</sel>
+              <sel>ENABLE</sel>
+            </Selections>
+            <Comment>窗口功能</Comment>
           </Property>
           <Property class="UIchoice" property_class="WFCR0">
             <label>WFALIGN</label>
@@ -5348,16 +5356,6 @@
           <GenCodeFuncName>CMP1InitFunc</GenCodeFuncName>
           <UseOrNot>0</UseOrNot>
           <label>CMP1</label>
-          <Property class="UIchoice">
-            <label>Mode</label>
-            <value>Base</value>
-            <Selections>
-              <sel notAvailable="DFCR1,WFCR1">Base</sel>
-              <sel notAvailable="WFCR1">DFCR</sel>
-              <sel notAvailable="DFCR1">WFCR</sel>
-            </Selections>
-            <Comment>Base为比较器基本配置功能&#xD;Dfcr为比较器滤波配置功能&#xD;Wfcr为比较器窗口配置功能</Comment>
-          </Property>
           <Property class="UIchoice">
             <label>NSEL</label>
             <value>CMP_N_SEL_CP0</value>
@@ -5448,6 +5446,15 @@
             <label>CMP_INTSRC_RAWDET</label>
             <value>0</value>
           </Property>
+          <Property class="UIchoice">
+            <label>DFCR</label>
+            <value>DISABLE</value>
+            <Selections>
+              <sel notAvailable="DFCR1">DISABLE</sel>
+              <sel>ENABLE</sel>
+            </Selections>
+            <Comment>滤波功能</Comment>
+          </Property>
           <Property class="UIchoice" property_class="DFCR1">
             <label>DEPTH1</label>
             <value>CMP_DFCR_DEPTH1_8</value>
@@ -5497,6 +5504,15 @@
             <label>DIVM2</label>
             <value>119</value>
             <Comment>数字滤波器采样时钟FLT2_CK分频系数M</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>WFCR</label>
+            <value>DISABLE</value>
+            <Selections>
+              <sel notAvailable="WFCR1">DISABLE</sel>
+              <sel>ENABLE</sel>
+            </Selections>
+            <Comment>窗口功能</Comment>
           </Property>
           <Property class="UIchoice" property_class="WFCR1">
             <label>WFALIGN</label>
@@ -5832,7 +5848,7 @@
           <Property class="Bool">
             <label>Debug</label>
             <value>1</value>
-            <Comment>调试模式控制位&#xD;0h:禁止调试模式&#xD;1h:使能调试模式</Comment>
+            <Comment>调试模式控制位&#xD;0h:禁止调试模式&#xD;1h:使能调试模式&#xD;在连接ICE Debugger时,通过设置使能调试模式,将WWDT的工作时钟在调试暂停时挂起.调试使能后,通过CDK调试时,一旦CPU被挂起,WWDT的计数器也同时被暂停,以防止计数器溢出造成调试复位</Comment>
           </Property>
           <Property class="Text">
             <label>wTimeOut</label>
@@ -5934,7 +5950,7 @@
         <label>BT</label>
         <Device deviceId="BT0">
           <GenCodeFuncName>BasicTime0InitFunc</GenCodeFuncName>
-          <UseOrNot>1</UseOrNot>
+          <UseOrNot>0</UseOrNot>
           <label>BT0</label>
           <Property class="UIchoice">
             <label>Mode</label>
@@ -5983,7 +5999,7 @@
           </Property>
           <Property class="UIchoice" property_class="BT0PWM">
             <label>Interrupt</label>
-            <value>ENABLE</value>
+            <value>DISABLE</value>
             <Selections>
               <sel notAvailable="BT0Int">DISABLE</sel>
               <sel>ENABLE</sel>
@@ -6011,26 +6027,15 @@
             <Comment>事件触发中断</Comment>
           </Property>
           <Property class="UIchoice">
-            <label>TRGEV</label>
+            <label>SYNC</label>
             <value>DISABLE</value>
             <Selections>
-              <sel>DISABLE</sel>
+              <sel notAvailable="BT0SYNC">DISABLE</sel>
               <sel>ENABLE</sel>
             </Selections>
-            <Comment>可通过软件触发输出:csi_bt_soft_evtrg(BT0);</Comment>
+            <Comment>同步开关&#xD;包括同步输入和触发输出</Comment>
           </Property>
-          <Property class="UIchoice">
-            <label>TRGSRC</label>
-            <value>BT_TRGSRC_DIS</value>
-            <Selections>
-              <sel>BT_TRGSRC_DIS</sel>
-              <sel>BT_TRGSRC_PEND</sel>
-              <sel>BT_TRGSRC_CMP</sel>
-              <sel>BT_TRGSRC_OVF</sel>
-            </Selections>
-            <Comment>TRGEV事件的触发源选择控制位&#xD;BT_TRGSRC_DIS:禁止TRGOUT的触发&#xD;BT_TRGSRC_PEND:指定PEND事件用于产生TRGEV事件&#xD;BT_TRGSRC_CMP:指定CMP事件用于产生TRGEV事件&#xD;BT_TRGSRC_OVF:指定OVF事件用于产生TRGEV事件</Comment>
-          </Property>
-          <Property class="UIchoice">
+          <Property class="UIchoice" property_class="BT0SYNC">
             <label>SYNC0_START</label>
             <UseOrNot/>
             <value>DISABLE</value>
@@ -6040,7 +6045,7 @@
             </Selections>
             <Comment>外部同步触发输入使能控制&#xD;DISABLE:禁止外部触发&#xD;ENABLE:使能外部触发</Comment>
           </Property>
-          <Property class="UIchoice">
+          <Property class="UIchoice" property_class="BT0SYNC">
             <label>SYNC0_TrgMode</label>
             <UseOrNot/>
             <value>Continuous</value>
@@ -6050,7 +6055,7 @@
             </Selections>
             <Comment>一次性同步触发模式选择&#xD;Continuous:连续触发模式&#xD;Once:一次性触发模式&#xD;当该输入通道被设置为一次性触发模式后,在一次触发事件被检测到后,该通道将不允许后续的触发事件通过,直到被软件重置（REARM）后才允许新的触发事件通过。</Comment>
           </Property>
-          <Property class="UIchoice">
+          <Property class="UIchoice" property_class="BT0SYNC">
             <label>SYNC0_AutoRearm</label>
             <UseOrNot/>
             <value>DISABLE</value>
@@ -6060,7 +6065,7 @@
             </Selections>
             <Comment>硬件自动REARM控制位&#xD;DISABLE:禁止硬件自动REARM&#xD;ENABLE:计数器周期结束时,自动REARM</Comment>
           </Property>
-          <Property class="UIchoice">
+          <Property class="UIchoice" property_class="BT0SYNC">
             <label>SYNC1_INC</label>
             <UseOrNot/>
             <value>DISABLE</value>
@@ -6070,7 +6075,7 @@
             </Selections>
             <Comment>外部同步触发输入使能控制&#xD;DISABLE:禁止外部触发&#xD;ENABLE:使能外部触发</Comment>
           </Property>
-          <Property class="UIchoice">
+          <Property class="UIchoice" property_class="BT0SYNC">
             <label>SYNC1_TrgMode</label>
             <UseOrNot/>
             <value>Continuous</value>
@@ -6080,7 +6085,7 @@
             </Selections>
             <Comment>一次性同步触发模式选择&#xD;Continuous:连续触发模式&#xD;Once:一次性触发模式&#xD;当该输入通道被设置为一次性触发模式后,在一次触发事件被检测到后,该通道将不允许后续的触发事件通过,直到被软件重置（REARM）后才允许新的触发事件通过。</Comment>
           </Property>
-          <Property class="UIchoice">
+          <Property class="UIchoice" property_class="BT0SYNC">
             <label>SYNC1_AutoRearm</label>
             <UseOrNot/>
             <value>DISABLE</value>
@@ -6090,7 +6095,7 @@
             </Selections>
             <Comment>硬件自动REARM控制位&#xD;DISABLE:禁止硬件自动REARM&#xD;ENABLE:计数器周期结束时,自动REARM</Comment>
           </Property>
-          <Property class="UIchoice">
+          <Property class="UIchoice" property_class="BT0SYNC">
             <label>SYNC2_STOP</label>
             <UseOrNot/>
             <value>DISABLE</value>
@@ -6100,7 +6105,7 @@
             </Selections>
             <Comment>外部同步触发输入使能控制&#xD;DISABLE:禁止外部触发&#xD;ENABLE:使能外部触发</Comment>
           </Property>
-          <Property class="UIchoice">
+          <Property class="UIchoice" property_class="BT0SYNC">
             <label>SYNC2_TrgMode</label>
             <UseOrNot/>
             <value/>
@@ -6110,7 +6115,7 @@
             </Selections>
             <Comment>一次性同步触发模式选择&#xD;Continuous:连续触发模式&#xD;Once:一次性触发模式&#xD;当该输入通道被设置为一次性触发模式后,在一次触发事件被检测到后,该通道将不允许后续的触发事件通过,直到被软件重置（REARM）后才允许新的触发事件通过。</Comment>
           </Property>
-          <Property class="UIchoice">
+          <Property class="UIchoice" property_class="BT0SYNC">
             <label>SYNC2_AutoRearm</label>
             <UseOrNot/>
             <value>DISABLE</value>
@@ -6119,6 +6124,26 @@
               <sel>ENABLE</sel>
             </Selections>
             <Comment>硬件自动REARM控制位&#xD;DISABLE:禁止硬件自动REARM&#xD;ENABLE:计数器周期结束时,自动REARM</Comment>
+          </Property>
+          <Property class="UIchoice" property_class="BT0SYNC">
+            <label>TRGEV</label>
+            <value>DISABLE</value>
+            <Selections>
+              <sel>DISABLE</sel>
+              <sel>ENABLE</sel>
+            </Selections>
+            <Comment>可通过软件触发输出:csi_bt_soft_evtrg(BT0);</Comment>
+          </Property>
+          <Property class="UIchoice" property_class="BT0SYNC">
+            <label>TRGSRC</label>
+            <value>BT_TRGSRC_DIS</value>
+            <Selections>
+              <sel>BT_TRGSRC_DIS</sel>
+              <sel>BT_TRGSRC_PEND</sel>
+              <sel>BT_TRGSRC_CMP</sel>
+              <sel>BT_TRGSRC_OVF</sel>
+            </Selections>
+            <Comment>TRGEV事件的触发源选择控制位&#xD;BT_TRGSRC_DIS:禁止TRGOUT的触发&#xD;BT_TRGSRC_PEND:指定PEND事件用于产生TRGEV事件&#xD;BT_TRGSRC_CMP:指定CMP事件用于产生TRGEV事件&#xD;BT_TRGSRC_OVF:指定OVF事件用于产生TRGEV事件</Comment>
           </Property>
         </Device>
         <Device deviceId="BT1">
@@ -6200,26 +6225,15 @@
             <Comment>事件触发中断</Comment>
           </Property>
           <Property class="UIchoice">
-            <label>TRGEV</label>
+            <label>SYNC</label>
             <value>DISABLE</value>
             <Selections>
-              <sel>DISABLE</sel>
+              <sel notAvailable="BT1SYNC">DISABLE</sel>
               <sel>ENABLE</sel>
             </Selections>
-            <Comment>可通过软件触发输出:csi_bt_soft_evtrg(BT1);</Comment>
+            <Comment>同步开关&#xD;包括同步输入和触发输出</Comment>
           </Property>
-          <Property class="UIchoice">
-            <label>TRGSRC</label>
-            <value>BT_TRGSRC_DIS</value>
-            <Selections>
-              <sel>BT_TRGSRC_DIS</sel>
-              <sel>BT_TRGSRC_PEND</sel>
-              <sel>BT_TRGSRC_CMP</sel>
-              <sel>BT_TRGSRC_OVF</sel>
-            </Selections>
-            <Comment>TRGEV事件的触发源选择控制位&#xD;BT_TRGSRC_DIS:禁止TRGOUT的触发&#xD;BT_TRGSRC_PEND:指定PEND事件用于产生TRGEV事件&#xD;BT_TRGSRC_CMP:指定CMP事件用于产生TRGEV事件&#xD;BT_TRGSRC_OVF:指定OVF事件用于产生TRGEV事件</Comment>
-          </Property>
-          <Property class="UIchoice">
+          <Property class="UIchoice" property_class="BT1SYNC">
             <label>SYNC0_START</label>
             <UseOrNot/>
             <value>DISABLE</value>
@@ -6229,7 +6243,7 @@
             </Selections>
             <Comment>外部同步触发输入使能控制&#xD;DISABLE:禁止外部触发&#xD;ENABLE:使能外部触发</Comment>
           </Property>
-          <Property class="UIchoice">
+          <Property class="UIchoice" property_class="BT1SYNC">
             <label>SYNC0_TrgMode</label>
             <UseOrNot/>
             <value>Continuous</value>
@@ -6239,7 +6253,7 @@
             </Selections>
             <Comment>一次性同步触发模式选择&#xD;Continuous:连续触发模式&#xD;Once:一次性触发模式&#xD;当该输入通道被设置为一次性触发模式后,在一次触发事件被检测到后,该通道将不允许后续的触发事件通过,直到被软件重置（REARM）后才允许新的触发事件通过。</Comment>
           </Property>
-          <Property class="UIchoice">
+          <Property class="UIchoice" property_class="BT1SYNC">
             <label>SYNC0_AutoRearm</label>
             <UseOrNot/>
             <value>DISABLE</value>
@@ -6249,7 +6263,7 @@
             </Selections>
             <Comment>硬件自动REARM控制位&#xD;DISABLE:禁止硬件自动REARM&#xD;ENABLE:计数器周期结束时,自动REARM</Comment>
           </Property>
-          <Property class="UIchoice">
+          <Property class="UIchoice" property_class="BT1SYNC">
             <label>SYNC1_INC</label>
             <UseOrNot/>
             <value>DISABLE</value>
@@ -6259,7 +6273,7 @@
             </Selections>
             <Comment>外部同步触发输入使能控制&#xD;DISABLE:禁止外部触发&#xD;ENABLE:使能外部触发</Comment>
           </Property>
-          <Property class="UIchoice">
+          <Property class="UIchoice" property_class="BT1SYNC">
             <label>SYNC1_TrgMode</label>
             <UseOrNot/>
             <value>Continuous</value>
@@ -6269,7 +6283,7 @@
             </Selections>
             <Comment>一次性同步触发模式选择&#xD;Continuous:连续触发模式&#xD;Once:一次性触发模式&#xD;当该输入通道被设置为一次性触发模式后,在一次触发事件被检测到后,该通道将不允许后续的触发事件通过,直到被软件重置（REARM）后才允许新的触发事件通过。</Comment>
           </Property>
-          <Property class="UIchoice">
+          <Property class="UIchoice" property_class="BT1SYNC">
             <label>SYNC1_AutoRearm</label>
             <UseOrNot/>
             <value>DISABLE</value>
@@ -6279,7 +6293,7 @@
             </Selections>
             <Comment>硬件自动REARM控制位&#xD;DISABLE:禁止硬件自动REARM&#xD;ENABLE:计数器周期结束时,自动REARM</Comment>
           </Property>
-          <Property class="UIchoice">
+          <Property class="UIchoice" property_class="BT1SYNC">
             <label>SYNC2_STOP</label>
             <UseOrNot/>
             <value>DISABLE</value>
@@ -6289,7 +6303,7 @@
             </Selections>
             <Comment>外部同步触发输入使能控制&#xD;DISABLE:禁止外部触发&#xD;ENABLE:使能外部触发</Comment>
           </Property>
-          <Property class="UIchoice">
+          <Property class="UIchoice" property_class="BT1SYNC">
             <label>SYNC2_TrgMode</label>
             <UseOrNot/>
             <value/>
@@ -6299,7 +6313,7 @@
             </Selections>
             <Comment>一次性同步触发模式选择&#xD;Continuous:连续触发模式&#xD;Once:一次性触发模式&#xD;当该输入通道被设置为一次性触发模式后,在一次触发事件被检测到后,该通道将不允许后续的触发事件通过,直到被软件重置（REARM）后才允许新的触发事件通过。</Comment>
           </Property>
-          <Property class="UIchoice">
+          <Property class="UIchoice" property_class="BT1SYNC">
             <label>SYNC2_AutoRearm</label>
             <UseOrNot/>
             <value>DISABLE</value>
@@ -6308,6 +6322,26 @@
               <sel>ENABLE</sel>
             </Selections>
             <Comment>硬件自动REARM控制位&#xD;DISABLE:禁止硬件自动REARM&#xD;ENABLE:计数器周期结束时,自动REARM</Comment>
+          </Property>
+          <Property class="UIchoice" property_class="BT1SYNC">
+            <label>TRGEV</label>
+            <value>DISABLE</value>
+            <Selections>
+              <sel>DISABLE</sel>
+              <sel>ENABLE</sel>
+            </Selections>
+            <Comment>可通过软件触发输出:csi_bt_soft_evtrg(BT1);</Comment>
+          </Property>
+          <Property class="UIchoice" property_class="BT1SYNC">
+            <label>TRGSRC</label>
+            <value>BT_TRGSRC_DIS</value>
+            <Selections>
+              <sel>BT_TRGSRC_DIS</sel>
+              <sel>BT_TRGSRC_PEND</sel>
+              <sel>BT_TRGSRC_CMP</sel>
+              <sel>BT_TRGSRC_OVF</sel>
+            </Selections>
+            <Comment>TRGEV事件的触发源选择控制位&#xD;BT_TRGSRC_DIS:禁止TRGOUT的触发&#xD;BT_TRGSRC_PEND:指定PEND事件用于产生TRGEV事件&#xD;BT_TRGSRC_CMP:指定CMP事件用于产生TRGEV事件&#xD;BT_TRGSRC_OVF:指定OVF事件用于产生TRGEV事件</Comment>
           </Property>
         </Device>
       </Category>
