@@ -25,32 +25,11 @@
 /* externs variablesr------------------------------------------------------*/
 /* Private variablesr------------------------------------------------------*/
 
-uint32_t wLptPrd = 0;
-uint8_t byStartpolBack;
+uint32_t g_wLptPrd = 0;
+uint8_t g_byStartpolBack;
 
 
-/** \brief lpt interrupt handle function
- * 
- *  \param[in] ptLptBase: pointer of bt register structure
- *  \return none
- */ 
-__attribute__((weak)) void lpt_irqhandler(csp_lpt_t *ptLptBase)
-{
-   volatile uint32_t wMisr = csp_lpt_get_isr(ptLptBase);	
-	
-	if(wMisr & LPT_TRGEV_INT)
-	{
-		csp_lpt_clr_isr(ptLptBase, LPT_TRGEV_INT);
-	}
-	if(wMisr & LPT_MATCH_INT)
-	{
-		csp_lpt_clr_isr(ptLptBase, LPT_MATCH_INT);
-	}
-	if(wMisr & LPT_PEND_INT)
-	{
-		csp_lpt_clr_isr(ptLptBase, LPT_PEND_INT);
-	}
-}
+
 
 /** \brief get lpt clk
  * 
@@ -106,7 +85,7 @@ static uint32_t apt_get_lpt_clk(csi_lpt_clksrc_e eClk)
  */ 
 static uint32_t apt_set_lpt_clk(csp_lpt_t *ptLptBase,csi_lpt_clksrc_e eClk,uint32_t wMult_t)
 {
-	uint32_t hwLptPrd,wDiv = 0;
+	uint32_t hg_wLptPrd,wDiv = 0;
 	lpt_pscdiv_e ePscDiv;
 	
 	if (wMult_t < 0x10000) {
@@ -153,9 +132,9 @@ static uint32_t apt_set_lpt_clk(csp_lpt_t *ptLptBase,csi_lpt_clksrc_e eClk,uint3
 		return LPT_CLK_ERR;	 		
 	}
 	wDiv = 1<<ePscDiv;
-	csp_lpt_set_clk(ptLptBase, eClk, ePscDiv);
-	hwLptPrd = wMult_t/wDiv;
-	return hwLptPrd;	
+	csp_lpt_set_clk(ptLptBase, (lpt_css_e) eClk, ePscDiv);
+	hg_wLptPrd = wMult_t/wDiv;
+	return hg_wLptPrd;	
 }
 
 /** \brief Enable lpt power manage
@@ -167,7 +146,7 @@ static uint32_t apt_set_lpt_clk(csp_lpt_t *ptLptBase,csi_lpt_clksrc_e eClk,uint3
 */
 void csi_lpt_int_enable(csp_lpt_t *ptLptBase, csi_lpt_intsrc_e eLptInt,bool bEnable)
 {
-	csp_lpt_int_enable(ptLptBase, eLptInt, bEnable);
+	csp_lpt_int_enable(ptLptBase, (lpt_int_e)eLptInt, bEnable);
 	
 	if (bEnable) 
 	{
@@ -203,16 +182,16 @@ csi_error_t csi_lpt_timer_init(csp_lpt_t *ptLptBase,csi_lpt_clksrc_e eClk, uint3
 	wLptClk = apt_get_lpt_clk(eClk);	
 	wMult = wLptClk/1000*wTimeOut;
 		
-	wLptPrd = apt_set_lpt_clk(ptLptBase,eClk,wMult);
-	if(wLptPrd == LPT_CLK_ERR)
+	g_wLptPrd = apt_set_lpt_clk(ptLptBase,eClk,wMult);
+	if(g_wLptPrd == LPT_CLK_ERR)
 	{
 		tRet = CSI_UNSUPPORTED;
 	}
 	else
 	{
-		csp_lpt_set_prdr(ptLptBase, (uint16_t)wLptPrd);
+		csp_lpt_set_prdr(ptLptBase, (uint16_t)g_wLptPrd);
 	}
-	csi_lpt_int_enable(ptLptBase,LPT_PEND_INT,ENABLE);	 //enable PEND interrupt
+	csi_lpt_int_enable(ptLptBase,(csi_lpt_intsrc_e)LPT_PEND_INT,ENABLE);	 //enable PEND interrupt
 	return tRet;	
 }
 
@@ -247,7 +226,7 @@ void csi_lpt_stop(csp_lpt_t *ptLptBase)
  */ 
 void csi_lpt_count_mode(csp_lpt_t *ptLptBase, csi_lpt_cntmode_e eCntMode)
 {
-	csp_lpt_set_opmd(ptLptBase, eCntMode);
+	csp_lpt_set_opmd(ptLptBase, (lpt_opm_e)eCntMode);
 }
 
 /** \brief get lpt remaining value
@@ -341,7 +320,7 @@ csi_error_t csi_lpt_set_evtrg(csp_lpt_t *ptLptBase, csi_lpt_trgout_e eTrgOut, cs
 	if(eTrgOut > 0)
 		return CSI_ERROR;
 	
-	csp_lpt_set_evtrg(ptLptBase, eTrgsrc);
+	csp_lpt_set_evtrg(ptLptBase,(lpt_trgsrc_e) eTrgsrc);
 	csp_lpt_set_trgprd(ptLptBase, byTrgprd-1);
 	csp_lpt_trg_enable(ptLptBase, ENABLE);
 	
@@ -379,15 +358,15 @@ csi_error_t csi_lpt_set_fre(csp_lpt_t *ptLptBase, csi_lpt_clksrc_e eClk, uint16_
 	wLptClk = apt_get_lpt_clk(eClk);
 	wMult = wLptClk/hwHz;
 	
-	wLptPrd = apt_set_lpt_clk(ptLptBase,eClk,wMult);	
+	g_wLptPrd = apt_set_lpt_clk(ptLptBase,eClk,wMult);	
 
-	if(wLptPrd == LPT_CLK_ERR)
+	if(g_wLptPrd == LPT_CLK_ERR)
 	{
 		tRet = CSI_UNSUPPORTED;
 	}	
 	else
 	{
-		csp_lpt_set_prdr(ptLptBase, (uint16_t)wLptPrd);	
+		csp_lpt_set_prdr(ptLptBase, (uint16_t)g_wLptPrd);	
 	}
 		
 	return tRet;
@@ -405,7 +384,7 @@ csi_error_t csi_lpt_pwm_init(csp_lpt_t *ptLptBase, csi_lpt_pwm_config_t *ptLptPa
 	csi_error_t tRet = CSI_OK;
 	uint32_t wLptClk = 0,wMult = 0,wCmp = 0;
 	
-	byStartpolBack   = ptLptPara->byStartpol;
+	g_byStartpolBack   = ptLptPara->byStartpol;
 	csi_clk_enable((uint32_t *)ptLptBase);
 	csp_lpt_soft_rst(ptLptBase);
 	csp_lpt_clk_enable(ptLptBase, ENABLE);
@@ -421,22 +400,22 @@ csi_error_t csi_lpt_pwm_init(csp_lpt_t *ptLptBase, csi_lpt_pwm_config_t *ptLptPa
 
 	wMult = wLptClk/ptLptPara->wFreq;
 	
-	wLptPrd = apt_set_lpt_clk(ptLptBase,ptLptPara->byClksrc,wMult);	
+	g_wLptPrd = apt_set_lpt_clk(ptLptBase,ptLptPara->byClksrc,wMult);	
 	
-	if(wLptPrd == LPT_CLK_ERR)
+	if(g_wLptPrd == LPT_CLK_ERR)
 	{
 		return CSI_UNSUPPORTED;
 	}
 	
-	csp_lpt_set_prdr(ptLptBase, (uint16_t)wLptPrd);
+	csp_lpt_set_prdr(ptLptBase, (uint16_t)g_wLptPrd);
 	
 	if(ptLptPara->byCycle >= 100)
 	{
-		wCmp = wLptPrd + 1;
+		wCmp = g_wLptPrd + 1;
 	}
 	else
 	{
-		wCmp = wLptPrd*ptLptPara->byCycle/100;		
+		wCmp = g_wLptPrd*ptLptPara->byCycle/100;		
 	}
 	
 	if(wCmp == 0)
@@ -478,28 +457,28 @@ csi_error_t csi_lpt_pwm_start_sync(csp_lpt_t *ptLptBase, csi_lpt_pwm_config_t *p
 	if(ptLptPara->wFreq == 0 )
 		return CSI_ERROR;
 			
-	byStartpolBack   = ptLptPara->byStartpol;
+	g_byStartpolBack   = ptLptPara->byStartpol;
 	csi_clk_enable((uint32_t *)ptLptBase);
 	csp_lpt_soft_rst(ptLptBase);
 	csp_lpt_clk_enable(ptLptBase, ENABLE);
 	
 	wLptClk = apt_get_lpt_clk(ptLptPara->byClksrc);
 	wMult = wLptClk/ptLptPara->wFreq;
-	wLptPrd = apt_set_lpt_clk(ptLptBase,ptLptPara->byClksrc,wMult);	
-	if(wLptPrd == LPT_CLK_ERR)
+	g_wLptPrd = apt_set_lpt_clk(ptLptBase,ptLptPara->byClksrc,wMult);	
+	if(g_wLptPrd == LPT_CLK_ERR)
 	{
 		return CSI_UNSUPPORTED;
 	}
 
-	csp_lpt_set_prdr(ptLptBase, (uint16_t)wLptPrd);
+	csp_lpt_set_prdr(ptLptBase, (uint16_t)g_wLptPrd);
 	
 	if(ptLptPara->byCycle >= 100)
 	{
-		wCmp = wLptPrd + 1;
+		wCmp = g_wLptPrd + 1;
 	}
 	else
 	{
-		wCmp = wLptPrd*ptLptPara->byCycle/100;		
+		wCmp = g_wLptPrd*ptLptPara->byCycle/100;		
 	}
 	if(wCmp == 0)
 	{
@@ -511,7 +490,7 @@ csi_error_t csi_lpt_pwm_start_sync(csp_lpt_t *ptLptBase, csi_lpt_pwm_config_t *p
 	csp_lpt_set_pol(ptLptBase, ptLptPara->byStartpol);
 	csp_lpt_prdr_ldmode(ptLptBase, LPT_PRDLD_IM);
 	csp_lpt_cmp_ldmode(ptLptBase, LPT_CMPLD_IM);
-	csp_lpt_set_prdr(ptLptBase, (uint16_t)wLptPrd);
+	csp_lpt_set_prdr(ptLptBase, (uint16_t)g_wLptPrd);
 	csp_lpt_set_cmp(ptLptBase, (uint16_t)wCmp);
 	
 	csp_lpt_set_start_im_enable(ptLptBase, ENABLE);
@@ -532,22 +511,22 @@ csi_error_t csi_lpt_change_duty(csp_lpt_t *ptLptBase, uint32_t wDutyCycle)
 	
 	if(wDutyCycle >= 100)
 	{
-		hwCmp = wLptPrd + 1;
+		hwCmp = g_wLptPrd + 1;
 	}
 	else
 	{
-		hwCmp = wLptPrd*wDutyCycle/100;		
+		hwCmp = g_wLptPrd*wDutyCycle/100;		
 	}
 	if(hwCmp == 0)
 	{
-		if(byStartpolBack == LPT_PWM_START_HIGH)
-			csp_lpt_set_pol(ptLptBase, LPT_PWM_START_LOW);	
+		if(g_byStartpolBack == LPT_PWM_START_HIGH)
+			csp_lpt_set_pol(ptLptBase,(lpt_pol_e) LPT_PWM_START_LOW);	
 		else
-			csp_lpt_set_pol(ptLptBase, LPT_PWM_START_HIGH);
+			csp_lpt_set_pol(ptLptBase,(lpt_pol_e) LPT_PWM_START_HIGH);
 	}
 	else
 	{
-		csp_lpt_set_pol(ptLptBase, byStartpolBack);		
+		csp_lpt_set_pol(ptLptBase, g_byStartpolBack);		
 	}
 	csp_lpt_set_cmp(ptLptBase, hwCmp);
 	return CSI_OK;
@@ -585,18 +564,18 @@ csi_error_t csi_lpt_start_sync(csp_lpt_t *ptLptBase, csi_lpt_clksrc_e eClk, uint
 	wLptClk = apt_get_lpt_clk(eClk);
 	wMult = wLptClk/1000*wTimeMs;
 
-	wLptPrd = apt_set_lpt_clk(ptLptBase,eClk,wMult);	
+	g_wLptPrd = apt_set_lpt_clk(ptLptBase,eClk,wMult);	
 
-	if(wLptPrd == LPT_CLK_ERR)
+	if(g_wLptPrd == LPT_CLK_ERR)
 	{
 		tRet = CSI_UNSUPPORTED;
 	}
 	else
 	{	
 		csp_lpt_prdr_ldmode(ptLptBase, LPT_PRDLD_IM);
-		csp_lpt_set_prdr(ptLptBase, (uint16_t)wLptPrd);
+		csp_lpt_set_prdr(ptLptBase, (uint16_t)g_wLptPrd);
 	}
-	csi_lpt_int_enable(ptLptBase,LPT_PEND_INT,ENABLE);	 //enable PEND interrupt
+	csi_lpt_int_enable(ptLptBase,(csi_lpt_intsrc_e )LPT_PEND_INT,ENABLE);	 //enable PEND interrupt
 	return tRet;
 }
 
@@ -612,7 +591,7 @@ csi_error_t csi_lpt_set_sync(csp_lpt_t *ptLptBase, csi_lpt_trgin_e eTrgin, csi_l
 {
 	if(eTrgin > 0)
 		return CSI_ERROR;		
-	csp_lpt_set_sync_mode(ptLptBase, eSyncMode);
+	csp_lpt_set_sync_mode(ptLptBase, (lpt_syncmd_e) eSyncMode);
 	csp_lpt_auto_rearm_enable(ptLptBase, bARearmEnable);
 	csp_lpt_sync_enable(ptLptBase, ENABLE);
 	return CSI_OK;

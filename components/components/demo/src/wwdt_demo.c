@@ -56,3 +56,13 @@ csi_error_t wwdt_demo(void)
 	
 	return CSI_ERROR;
 }
+
+
+/** \brief wwdt interrupt handle function
+ * 
+ *  \return none
+ */ 
+__attribute__((weak)) void wwdt_irqhandler(void)
+{
+	csp_wwdt_clr_isr(WWDT);
+}

@@ -25,11 +25,11 @@
 /* externs variablesr------------------------------------------------------*/
 /* Private variablesr------------------------------------------------------*/
 csi_iic_slave_t g_tSlave;
-volatile uint32_t wIicErrorCont = 0;
-volatile uint16_t hwReceivecnt = 0;
-volatile uint8_t bySendIndex = 0;
-volatile uint8_t byWriteIndex = 0;
-volatile uint32_t wIicSlaveWriteAddress;
+volatile uint32_t g_wIicErrorCont = 0;
+volatile uint16_t g_hwReceivecnt = 0;
+volatile uint8_t g_bySendIndex = 0;
+volatile uint8_t g_byWriteIndex = 0;
+volatile uint32_t g_wIicSlaveWriteAddress;
 
 
 /** \brief deinit iic 
@@ -536,9 +536,9 @@ void csi_iic_slave_receive_send(csp_i2c_t *ptIicBase)
 		csi_iic_disable(ptIicBase);
 		csp_i2c_set_data_cmd(ptIicBase, 0x00);
 		csi_iic_enable(ptIicBase);
-		bySendIndex=0;
+		g_bySendIndex=0;
 		csp_i2c_clr_isr(ptIicBase,I2C_SCL_SLOW_INT|I2C_TX_ABRT_INT);
-		wIicErrorCont=0;
+		g_wIicErrorCont=0;
 		csp_i2c_imcr_disable(ptIicBase,I2C_TX_EMPTY_INT);
 		
 	}else
@@ -546,75 +546,75 @@ void csi_iic_slave_receive_send(csp_i2c_t *ptIicBase)
 		if(csp_i2c_get_isr(ptIicBase)&I2C_RX_FULL_INT)        //有接收到数据
 		{
 			
-			if(hwReceivecnt == 0)
+			if(g_hwReceivecnt == 0)
 			{
-				wIicSlaveWriteAddress = csp_i2c_get_data(ptIicBase);
-				byWriteIndex = wIicSlaveWriteAddress;
+				g_wIicSlaveWriteAddress = csp_i2c_get_data(ptIicBase);
+				g_byWriteIndex = g_wIicSlaveWriteAddress;
 			}
 			else
 			{
-				if(wIicSlaveWriteAddress<g_tSlave.hwRxSize)
+				if(g_wIicSlaveWriteAddress<g_tSlave.hwRxSize)
 				{
-					*(g_tSlave.pbySlaveRxBuf+wIicSlaveWriteAddress)= csp_i2c_get_data(ptIicBase);
-					byWriteIndex = *(g_tSlave.pbySlaveRxBuf+wIicSlaveWriteAddress);
+					*(g_tSlave.pbySlaveRxBuf+g_wIicSlaveWriteAddress)= csp_i2c_get_data(ptIicBase);
+					g_byWriteIndex = *(g_tSlave.pbySlaveRxBuf+g_wIicSlaveWriteAddress);
 				}else
 				{
-					byWriteIndex = csp_i2c_get_data(ptIicBase);
+					g_byWriteIndex = csp_i2c_get_data(ptIicBase);
 				}
-				wIicSlaveWriteAddress++;
+				g_wIicSlaveWriteAddress++;
 			}
 			csp_i2c_clr_isr(ptIicBase,I2C_RX_FULL_INT);
-			wIicErrorCont=0;
-			hwReceivecnt++;
+			g_wIicErrorCont=0;
+			g_hwReceivecnt++;
 		}
 		
 		if(csp_i2c_get_isr(ptIicBase)&I2C_RD_REQ_INT)			//读请求产生
 		{
-			if(bySendIndex==0)
+			if(g_bySendIndex==0)
 			{
-				bySendIndex=1;
+				g_bySendIndex=1;
 				csp_i2c_imcr_enable(ptIicBase,I2C_TX_EMPTY_INT);
-				if(byWriteIndex<g_tSlave.hwTxSize)
+				if(g_byWriteIndex<g_tSlave.hwTxSize)
 				{
-					csp_i2c_set_data_cmd(ptIicBase, *(g_tSlave.pbySlaveTxBuf+byWriteIndex));
+					csp_i2c_set_data_cmd(ptIicBase, *(g_tSlave.pbySlaveTxBuf+g_byWriteIndex));
 					
 				}else{
 					csp_i2c_set_data_cmd(ptIicBase, 0xFF);
 				}
-				byWriteIndex++;
+				g_byWriteIndex++;
 				
 			}
 
 			csp_i2c_clr_isr(ptIicBase,I2C_RD_REQ_INT);
-			wIicErrorCont=0;
+			g_wIicErrorCont=0;
 		} 
 
 		if(csp_i2c_get_isr(ptIicBase)&I2C_TX_EMPTY_INT)				//IIC发送为空
 		{
-			if(bySendIndex==1)
+			if(g_bySendIndex==1)
 			{
-				if(byWriteIndex<g_tSlave.hwTxSize)
+				if(g_byWriteIndex<g_tSlave.hwTxSize)
 				{
-					csp_i2c_set_data_cmd(ptIicBase, *(g_tSlave.pbySlaveTxBuf+byWriteIndex));
+					csp_i2c_set_data_cmd(ptIicBase, *(g_tSlave.pbySlaveTxBuf+g_byWriteIndex));
 				}
 				else{
 					csp_i2c_set_data_cmd(ptIicBase, 0xFF);
 				}
-				byWriteIndex++;
+				g_byWriteIndex++;
 			}
 			else
 			{
 				csp_i2c_imcr_disable(ptIicBase,I2C_TX_EMPTY_INT);
-				if(wIicErrorCont>10000)
+				if(g_wIicErrorCont>10000)
 				{
 					csi_iic_disable(ptIicBase);
 					csp_i2c_set_data_cmd(ptIicBase, 0x00);
 					csi_iic_enable(ptIicBase);
-					wIicErrorCont=0;
+					g_wIicErrorCont=0;
 				}
 				else
 				{
-					wIicErrorCont++;
+					g_wIicErrorCont++;
 				}
 			}
 			csp_i2c_clr_isr(ptIicBase,I2C_TX_EMPTY_INT);
@@ -623,12 +623,12 @@ void csi_iic_slave_receive_send(csp_i2c_t *ptIicBase)
 		{
 			csp_i2c_imcr_disable(ptIicBase,I2C_TX_EMPTY_INT);
 			csp_i2c_clr_isr(ptIicBase,I2C_STOP_DET_INT);
-			if(bySendIndex!=0)
+			if(g_bySendIndex!=0)
 			{
-				bySendIndex=0;
+				g_bySendIndex=0;
 			}
-			wIicErrorCont=0;
-			hwReceivecnt = 0;
+			g_wIicErrorCont=0;
+			g_hwReceivecnt = 0;
 		}
 	
 	
@@ -647,15 +647,5 @@ void csi_iic_spklen_set(csp_i2c_t *ptIicBase, uint8_t bySpklen)
 	csp_i2c_set_spklen(ptIicBase,bySpklen);
 }
 
-/** \brief i2c interrupt handle 
- * 
- *  \param[in] ptSioBase: pointer of i2c register structure
- *  \return none
- */
-__attribute__((weak)) void i2c_irqhandler(csp_i2c_t *ptIicBase)
-{
-	
-	csi_iic_slave_receive_send(ptIicBase);
-	
-}
+
 

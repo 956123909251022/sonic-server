@@ -139,7 +139,7 @@ void wwdt_int_handler(void)
 {
 #if WWDT_INT_HANDLE_EN
 	 // ISR content ...
-	 wwdt_irqhandler();
+	 wwdt_irqhandler();  //this is a weak function defined in wwdt_demo.c, for better efficiency, we recommand user directly implement IRQ handler here without any function call.
 	 
 #endif
 }
@@ -232,7 +232,7 @@ void i2c_int_handler(void)
 {
 #if	I2C_INT_HANDLE_EN
     // ISR content ...
-	i2c_irqhandler(I2C0);
+	i2c_irqhandler(I2C0);   //this is a weak function defined in i2c_demo.c, for better efficiency, we recommand user directly implement IRQ handler here without any function call.
 	
 #endif
 }
@@ -305,7 +305,7 @@ void lpt_int_handler(void)
 {
 #if	LPT_INT_HANDLE_EN
     // ISR content ...
-	lpt_irqhandler(LPT);
+	lpt_irqhandler(LPT);   //this is a weak function defined in lpt_demo.c, for better efficiency, we recommand user directly implement IRQ handler here without any function call.
 #endif
 }
 void led_int_handler(void) 

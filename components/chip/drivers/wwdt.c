@@ -23,15 +23,6 @@
 static uint32_t s_wWwdtTimeout = 0; 
 static uint8_t  s_byWwdtCntMax = 0xff;
 
-/** \brief wwdt interrupt handle function
- * 
- *  \return none
- */ 
-__attribute__((weak)) void wwdt_irqhandler(void)
-{
-	csp_wwdt_clr_isr(WWDT);
-}
-
 /** \brief Initialize WWDT Interface. Initializes the resources needed for the WDT interface
  * 
  *  \param[in] wTimeOut: the timeout value(time length of system reset), unit: ms 
