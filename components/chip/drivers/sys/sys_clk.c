@@ -198,10 +198,10 @@ csi_error_t csi_calc_clk_freq(void)
 		eClkSrc = ((cclk_src_e) csp_get_clksrc(SYSCON));
 		switch(eClkSrc)
 		{ 	case (SRC_ISOSC): 	
-				g_tClkConfig.wSclk = ISOSC_VALUE;
+				g_tClkConfig.wSclk = g_tClkConfig.wFreq;
 				break;
 			case (SRC_EMOSC): 	
-				g_tClkConfig.wSclk = EMOSC_VALUE;
+				g_tClkConfig.wSclk = g_tClkConfig.wFreq;
 				break;
 			case (SRC_IMOSC):	
 				wImoFreq = csp_get_imosc_fre(SYSCON);
@@ -246,7 +246,7 @@ csi_error_t csi_calc_clk_freq(void)
 				}
 				break;
 			case (SRC_ESOSC):
-				g_tClkConfig.wSclk = ESOSC_VALUE;
+				g_tClkConfig.wSclk = g_tClkConfig.wFreq;
 				break;		
 			default:
 				return CSI_ERROR;

@@ -264,7 +264,7 @@ typedef enum {
     PA05_BT1_OUT            =  5U,
     PA05_SIO          		=  6U,
     PA05_CLO           		=  7U,
-    PA05_TKEY_C0            =  10U,
+    PA05_TS_CAP             =  10U,
 	
 	PB00_GPD				=  0U,
 	PB00_INPUT				=  1U,		//input
