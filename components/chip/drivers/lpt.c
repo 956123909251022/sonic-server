@@ -347,6 +347,22 @@ csi_error_t csi_lpt_set_evtrg(csp_lpt_t *ptLptBase, csi_lpt_trgout_e eTrgOut, cs
 	
 	return ret;
 }
+/** \brief lpt evtrg output enable/disable
+ * 
+ *  \param[in] ptLptBase: pointer of lpt register structure
+ *  \param[in] eTrgOut: lpt evtrg out port (0)
+ *  \param[in] bEnable: ENABLE/DISABLE
+ *  \return error code \ref csi_error_t
+ */
+csi_error_t csi_lpt_evtrg_enable(csp_lpt_t *ptLptBase, csi_lpt_trgout_e eTrgOut, bool bEnable)
+{
+	if(eTrgOut == LPT_TRGOUT0)
+		csp_lpt_trg_enable(ptLptBase, bEnable);
+	else
+		return CSI_ERROR;
+		
+	return CSI_OK;
+}
 /** \brief lpt set frequency 
  * 
  *  \param[in] ptLptBase:pointer of lpt register structure
