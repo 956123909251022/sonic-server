@@ -9696,7 +9696,7 @@
           <label>CNTA</label>
           <Property class="UIchoice">
             <label>Mode</label>
-            <value>Timer</value>
+            <value>PWM</value>
             <Selections>
               <sel notAvailable="CNTAPWM">Timer</sel>
               <sel notAvailable="CNTATimer">PWM</sel>
@@ -9756,6 +9756,37 @@
             <label>Freq</label>
             <value>38000</value>
             <Comment>频率 单位Hz</Comment>
+          </Property>
+          <Property class="UIchoice" property_class="CNTAPWM">
+            <label>BTPENDREM</label>
+            <value>CNTA_PEND_CARR_DIS</value>
+            <Selections>
+              <sel>CNTA_PEND_CARR_DIS</sel>
+              <sel>CNTA_PEND_CARR_CLR</sel>
+              <sel>CNTA_PEND_CARR_SET</sel>
+            </Selections>
+            <Comment>当BT周期结束中断发生时,硬件触发控制载波</Comment>
+          </Property>
+          <Property class="UIchoice" property_class="CNTAPWM">
+            <label>BTMATCHREM</label>
+            <value>CNTA_MATCH_CARR_DIS</value>
+            <Selections>
+              <sel>CNTA_MATCH_CARR_DIS</sel>
+              <sel>CNTA_MATCH_CARR_CLR</sel>
+              <sel>CNTA_MATCH_CARR_SET</sel>
+            </Selections>
+            <Comment>当BT脉冲匹配中断发生时,硬件触发控制载波</Comment>
+          </Property>
+          <Property class="UIchoice" property_class="CNTAPWM">
+            <label>HWUpdate</label>
+            <value>CNTA_HW_DIS</value>
+            <Selections>
+              <sel>CNTA_HW_DIS</sel>
+              <sel>CNTA_HW_TCMATCH</sel>
+              <sel>CNTA_HW_TCPEND</sel>
+              <sel>CNTA_HW_TCMATCH_TCPEND</sel>
+            </Selections>
+            <Comment>使能计数值寄存器的硬件自动更新功能</Comment>
           </Property>
         </Device>
       </Category>
