@@ -1,6 +1,6 @@
 /***********************************************************************//** 
- * \file  iwdt_demo.c
- * \brief  IWDT_DEMO description and static inline functions at register level 
+ * \file  etcb_demo.c
+ * \brief  ETCB_DEMO description and static inline functions at register level 
  * \copyright Copyright (C) 2015-2020 @ APTCHIP
  * <table>
  * <tr><th> Date  <th>Version  <th>Author  <th>Description
