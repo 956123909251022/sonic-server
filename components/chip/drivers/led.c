@@ -71,6 +71,19 @@ void csi_led_write_data(csp_led_t *ptLedBase, uint8_t byCom, uint8_t byData)
 	csp_led_set_setdata(ptLedBase, byCom, byData);
 	
 }
+
+/** \brief   set led blink pattern
+ * 
+ * \param[in] ptLedBase: pointer of LED register structure
+ * \param[in] hwOnMsk: on pattern
+ * \return  None
+ */
+void csi_led_set_blink_pattern(csp_led_t *ptLedBase, uint16_t hwOnMsk)
+{
+	csp_led_com_on(ptLedBase, (hwOnMsk&LED_BLK_MSK));
+	csp_led_com_off(ptLedBase, ~(hwOnMsk&LED_BLK_MSK));
+}
+
 /** \brief  led blink control
  * 
  * \param[in] ptLedBase: pointer of LED register structure

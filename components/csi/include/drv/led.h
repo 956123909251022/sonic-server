@@ -57,8 +57,8 @@ typedef struct csi_led_config {
 	uint8_t 	byClk;			//clk configure
 	uint8_t 	byBrt;			//brightness configure
 	uint16_t 	hwComMask;		//COM enable
-	uint16_t 	byOnTime;		//scanning timing: COM on cycles,needs to be a multiple of 8, otherwise the timing will NOT be accurate
-	uint16_t 	byBreakTime;	//scanning timing: cycles between COMs
+	uint16_t 	byOnTime;		//scanning timing: COM on cycles(range:56~2096).Tcom = byOnTime * Tledclk, needs to be a multiple of 8, otherwise the timing will NOT be accurate
+	uint16_t 	byBreakTime;	//scanning timing: cycles between COMs(range:14~524).Tbreak = byBreakTime * Tledclk.
 	uint8_t 	byInt;			//Interrupt Source
 }csi_led_config_t;
 
@@ -90,6 +90,15 @@ void csi_led_int_enable(csp_led_t *ptLedBase, csi_led_intsrc_e eIntSrc, bool bEn
   \return  	   None
 */
 void csi_led_write_data(csp_led_t *ptLedBase, uint8_t byCom, uint8_t byData);
+
+/** \brief   set led blink pattern
+ * 
+ * \param[in] ptLedBase: pointer of LED register structure
+ * \param[in] hwOnMsk: on pattern
+ * \return  None
+ */
+void csi_led_set_blink_pattern(csp_led_t *ptLedBase, uint16_t hwOnMsk);
+
 /** \brief  led blink control
  * 
  * \param[in] ptLedBase: pointer of LED register structure
