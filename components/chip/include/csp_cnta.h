@@ -198,7 +198,7 @@ static inline void csp_cnta_soft_rst(csp_cnta_t *ptCntaBase)
     ptCntaBase->INTMASK = CNTA_RESET_VALUE;
 }
 
-static inline void csp_cnta_set_int(csp_cnta_t *ptCntaBase, cnta_int_e eBtInt,bool bEnable)
+static inline void csp_cnta_int_enable(csp_cnta_t *ptCntaBase, cnta_int_e eBtInt,bool bEnable)
 {
 	if(bEnable)
 		ptCntaBase->INTMASK |= eBtInt; 
