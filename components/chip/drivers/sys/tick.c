@@ -23,15 +23,15 @@
 /* externs variablesr-------------------------------------------------*/
 /* Private variablesr-------------------------------------------------*/
 
-static volatile uint32_t csi_tick = 0U;
-static volatile uint32_t last_time_ms = 0U;
-static volatile uint64_t last_time_us = 0U;
+static volatile uint32_t s_wCsiTick = 0U;
+static volatile uint32_t s_wLastTimeMs = 0U;
+static volatile uint64_t s_dwLastTimeUs = 0U;
 
 csi_tick_t	g_tCoreTick;
 
 void csi_tick_increase(void)
 {
-    csi_tick++;
+    s_wCsiTick++;
 }
 
 /** \brief tick interrupt handle function
@@ -41,11 +41,11 @@ void csi_tick_increase(void)
  */ 
 __attribute__((weak)) void tick_irqhandler(void)
 {
-	csi_tick++;
+	s_wCsiTick++;
 	CORET->CTRL;
 	
 	if(g_tCoreTick.callback)
-		g_tCoreTick.callback((void *)csi_tick);		//User callback function 
+		g_tCoreTick.callback((void *)s_wCsiTick);		//User callback function 
 }
 
 /** \brief initialize tick
@@ -55,7 +55,7 @@ __attribute__((weak)) void tick_irqhandler(void)
  */ 
 csi_error_t csi_tick_init(void)
 {
-    csi_tick = 0U;
+    s_wCsiTick = 0U;
 
     csi_vic_set_prio(CORET_IRQ_NUM, 2U);
     csi_coret_config((soc_get_coret_freq()/ CONFIG_SYSTICK_HZ), CORET_IRQ_NUM);
@@ -90,7 +90,7 @@ void csi_tick_attach_callback(void *callback)
  */ 
 uint32_t csi_tick_get(void)
 {
-    return csi_tick;
+    return s_wCsiTick;
 }
 /** \brief  get tick count time
  * 
@@ -102,14 +102,14 @@ uint32_t csi_tick_get_ms(void)
     uint32_t time;
 
     while (1) {
-        time = (csi_tick * (1000U / CONFIG_SYSTICK_HZ)) + ((csi_coret_get_load() - csi_coret_get_value()) / (soc_get_coret_freq() / 1000U));
+        time = (s_wCsiTick * (1000U / CONFIG_SYSTICK_HZ)) + ((csi_coret_get_load() - csi_coret_get_value()) / (soc_get_coret_freq() / 1000U));
 
-        if (time >= last_time_ms) {
+        if (time >= s_wLastTimeMs) {
             break;
         }
     }
 
-    last_time_ms = time;
+    s_wLastTimeMs = time;
     return time;
 }
 /** \brief  get tick count time
@@ -126,15 +126,15 @@ uint64_t csi_tick_get_us(void)
         /* the time of coretim pass */
         temp = csi_coret_get_load() - csi_coret_get_value();
         time = ((uint64_t)temp * 1000U) / ((uint64_t)soc_get_coret_freq() / 1000U);
-        /* the time of csi_tick */
-        time += ((uint64_t)csi_tick * (1000000U / CONFIG_SYSTICK_HZ));
+        /* the time of s_wCsiTick */
+        time += ((uint64_t)s_wCsiTick * (1000000U / CONFIG_SYSTICK_HZ));
 
-        if (time >= last_time_us) {
+        if (time >= s_dwLastTimeUs) {
             break;
         }
     }
 
-    last_time_us = time;
+    s_dwLastTimeUs = time;
     return time;
 }
 

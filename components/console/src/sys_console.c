@@ -49,10 +49,10 @@ __attribute ((weak))int fputc(int ch, FILE *stream)
     (void)stream;
 
 //    if (ch == '\n') {
-//        csi_uart_putc(console.uart, (uint8_t)'\r');
+//        csi_uart_putc(g_tConsole.uart, (uint8_t)'\r');
 //    }
 
-    csi_uart_putc(console.uart, (uint8_t)ch);
+    csi_uart_putc(g_tConsole.uart, (uint8_t)ch);
 
     return 0;
 }
@@ -62,7 +62,7 @@ __attribute ((weak))int fgetc(FILE *stream)
     uint8_t ch;
     (void)stream;
 
-    ch = csi_uart_getc(console.uart);
+    ch = csi_uart_getc(g_tConsole.uart);
 
     return (int)ch;
 }
