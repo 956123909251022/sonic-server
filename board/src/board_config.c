@@ -1,5 +1,5 @@
 /***********************************************************************//** 
- * \file  baord_config.c
+ * \file  board_config.c
  * \brief  board configuration 
  * \copyright Copyright (C) 2015-2020 @ APTCHIP
  * <table>
