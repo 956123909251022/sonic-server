@@ -396,12 +396,12 @@ int adc_samp_continuous_dma_transfer_demo(void)
 	
 	return 0;
 }
-/** \brief bt interrupt handle function
+/** \brief bt interrupt handle function,使用时把函数的weak属性注释掉，bt的demo中也有weak属性的bt_irqhandler函数
  * 
  *  \param[in] ptBtBase: pointer of bt register structure
  *  \return none
  */ 
-void bt_irqhandler(csp_bt_t *ptBtBase)
+__attribute__((weak)) void bt_irqhandler(csp_bt_t *ptBtBase)
 {
 	// ISR content ...
 	volatile uint32_t wMisr = csp_bt_get_isr(ptBtBase);
