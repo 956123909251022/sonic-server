@@ -20,8 +20,6 @@
 /* externs function--------------------------------------------------------*/
 
 /* private function--------------------------------------------------------*/
-
-
 static void apt_rtc_alm_set_time(csp_rtc_t *ptRtc, csi_rtc_alarm_e eAlm, uint8_t wday, csi_rtc_ampm_e ePm, uint8_t byHor, uint8_t byMin,uint8_t bySec);
 static csp_error_t apt_rtc_set_time(csp_rtc_t *ptRtc, csi_rtc_ampm_e ePm, uint8_t byHor, uint8_t byMin,uint8_t bySec);
 static csp_error_t apt_rtc_set_date(csp_rtc_t *ptRtc, uint8_t byYear, uint8_t byMon, uint8_t byWday, uint8_t byDay);
@@ -30,12 +28,8 @@ csp_error_t apt_rtc_set_trgprd(csp_rtc_t *ptRtc, csi_rtc_trgout_e eTrg, uint8_t 
 
 /* externs variablesr------------------------------------------------------*/
 
-
-static uint8_t s_hwRtcMsg = 0;
-
-
 /* Private variablesr------------------------------------------------------*/
-
+uint8_t s_hwRtcMsg = 0;
 
 /** \brief Initialize RTC Interface. Initializes the resources needed for the RTC interface
  * 
@@ -564,36 +558,3 @@ csp_error_t apt_rtc_set_trgprd(csp_rtc_t *ptRtc, csi_rtc_trgout_e eTrg, uint8_t 
 }
 
 
-/** \brief rtc interrupt handle function
- * 
- *  \param[in][in] ptAdcBase: pointer of rtc register structure
- *  \return none
- */ 
-__attribute__((weak)) void rtc_irqhandler(csp_rtc_t *ptRtcBase)
-{
-	if(((csp_rtc_get_isr(ptRtcBase) & RTC_INTSRC_ALMA))==RTC_INTSRC_ALMA)
-	{
-		s_hwRtcMsg |= RTC_INTSRC_ALMA;
-		csp_rtc_clr_isr(ptRtcBase,RTC_INTSRC_ALMA);	
-	}	
-	if(((csp_rtc_get_isr(ptRtcBase) & RTC_INTSRC_ALMB))==RTC_INTSRC_ALMB)
-	{
-		s_hwRtcMsg |= RTC_INTSRC_ALMB;
-		csp_rtc_clr_isr(ptRtcBase,RTC_INTSRC_ALMB);	
-	}	
-	if(((csp_rtc_get_isr(ptRtcBase) & RTC_INTSRC_CPRD))==RTC_INTSRC_CPRD)
-	{
-		s_hwRtcMsg |= RTC_INTSRC_CPRD;
-		csp_rtc_clr_isr(ptRtcBase,RTC_INTSRC_CPRD);	
-	}	
-	if(((csp_rtc_get_isr(ptRtcBase) & RTC_INTSRC_TRGEV0))==RTC_INTSRC_TRGEV0)
-	{
-		s_hwRtcMsg |= RTC_INTSRC_TRGEV0;
-		csp_rtc_clr_isr(ptRtcBase,RTC_INTSRC_TRGEV0);	
-	}	
-	if(((csp_rtc_get_isr(ptRtcBase) & RTC_INTSRC_TRGEV1))==RTC_INTSRC_TRGEV1)
-	{
-		s_hwRtcMsg |= RTC_INTSRC_TRGEV1;
-		csp_rtc_clr_isr(ptRtcBase,RTC_INTSRC_TRGEV1);	
-	}	
-}

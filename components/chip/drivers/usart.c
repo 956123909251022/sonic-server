@@ -44,69 +44,6 @@ static uint8_t apt_get_usart_idx(csp_usart_t *ptUsartBase)
 	}
 }
 
-/** \brief usart interrupt handle function
- * 
- *  \param[in] ptUsartBase: pointer of usart register structure
- *  \param[in] byIdx: usart id number(0)
- *  \return none
- */ 
-__attribute__((weak)) void usart_irqhandler(csp_usart_t *ptUsartBase,uint8_t byIdx)
-{
-	switch(csp_usart_get_isr(ptUsartBase) & 0x5100)			//rxfifo/txfifo/rxtimeout interrupt	
-	{
-		case US_RXRIS_INT:					//rx fifo interrupt
-			if(g_tUsartTran[byIdx].ptRingBuf->hwDataLen < g_tUsartTran[byIdx].ptRingBuf->hwSize)	
-			{
-				while(csp_usart_get_sr(ptUsartBase) & US_RNE)		//Rxfifo non empty 
-				{
-					g_tUsartTran[byIdx].ptRingBuf->pbyBuf[g_tUsartTran[byIdx].ptRingBuf->hwWrite] = csp_usart_get_data(ptUsartBase);
-					g_tUsartTran[byIdx].ptRingBuf->hwWrite = (g_tUsartTran[byIdx].ptRingBuf->hwWrite + 1) % g_tUsartTran[byIdx].ptRingBuf->hwSize;
-					g_tUsartTran[byIdx].ptRingBuf->hwDataLen ++;
-				}
-			}
-			else
-			{
-				csp_usart_cr_cmd(USART0, US_RSTRX | US_FIFO_EN | US_RXFIFO_1_2);	//reset rx 
-				g_tUsartTran[byIdx].ptRingBuf->hwDataLen = 0;						//clear hwDataLen			
-			}
-			break;
-		case US_TXRIS_INT:			//tx fifo interrupt								
-			csp_usart_set_data(ptUsartBase, *g_tUsartTran[byIdx].pbyTxData);		//send data
-			g_tUsartTran[byIdx].hwTxSize --;
-			g_tUsartTran[byIdx].pbyTxData ++;
-			
-			if(g_tUsartTran[byIdx].hwTxSize == 0)
-			{	
-				//disable usart tx interrupt
-				csp_usart_int_enable(ptUsartBase, US_TXRIS_INT, DISABLE);		
-				g_tUsartTran[byIdx].bySendStat = USART_STATE_DONE;					//send complete
-				
-			}
-			break;
-		case US_TIMEOUT_INT:				//receive timeout interrupt
-		
-			if(g_tUsartTran[byIdx].ptRingBuf->hwDataLen < g_tUsartTran[byIdx].ptRingBuf->hwSize)	
-			{
-				while(csp_usart_get_sr(ptUsartBase) & US_RNE)	
-				{
-					g_tUsartTran[byIdx].ptRingBuf->pbyBuf[g_tUsartTran[byIdx].ptRingBuf->hwWrite] = csp_usart_get_data(ptUsartBase);
-					g_tUsartTran[byIdx].ptRingBuf->hwWrite = (g_tUsartTran[byIdx].ptRingBuf->hwWrite + 1) % g_tUsartTran[byIdx].ptRingBuf->hwSize;
-					g_tUsartTran[byIdx].ptRingBuf->hwDataLen ++;
-				}
-			}
-			else
-				csp_usart_cr_cmd(USART0, US_RSTRX | US_FIFO_EN | US_RXFIFO_1_2);	//reset rx 
-			
-			g_tUsartTran[byIdx].byRecvStat = USART_STATE_FULL;						//receive complete
-			csp_usart_clr_isr(USART0,US_TIMEOUT_INT);								//clear interrupt status
-			csp_usart_cr_cmd(USART0, US_STTTO | US_FIFO_EN | US_RXFIFO_1_2);		//enable receive timeover
-			break;
-			
-		default:
-			csp_usart_clr_isr(USART0, 0x7fff);										//clear all interrupt 
-			break;
-	}
-}
 /** \brief initialize usart parameter structure
  * 
  *  \param[in] ptUsartBase: pointer of usart register structure

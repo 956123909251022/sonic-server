@@ -340,7 +340,7 @@ int usart_recv_demo(void)
  *  \param[in] ptUsartBase: pointer of usart register structure
  *  \param[in] byIdx: usart id number(0)
  */
-void usart_irqhandler(csp_usart_t *ptUsartBase,uint8_t byIdx)
+__attribute__((weak)) void usart_irqhandler(csp_usart_t *ptUsartBase,uint8_t byIdx)
 {
 	//此中断例程支持RXFIFO/RX/TXDONE/RXTO四种中断
 	switch(csp_usart_get_isr(ptUsartBase) & 0x5101)								//获取rxfifo/tx/txfifo/rxtimeout中断状态

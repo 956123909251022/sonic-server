@@ -21,6 +21,7 @@
 
 /* private function--------------------------------------------------------*/
 /* externs variablesr------------------------------------------------------*/
+extern uint8_t s_hwRtcMsg;
 /* Private variablesr------------------------------------------------------*/
 
 //extern uint8_t AlarmA_Flag;
@@ -337,3 +338,38 @@ void rtc_timer_demo(void)
 
 	}
  }
+ 
+ 
+ /** \brief rtc interrupt handle function
+ * 
+ *  \param[in][in] ptAdcBase: pointer of rtc register structure
+ *  \return none
+ */ 
+__attribute__((weak)) void rtc_irqhandler(csp_rtc_t *ptRtcBase)
+{
+	if(((csp_rtc_get_isr(ptRtcBase) & RTC_INTSRC_ALMA))==RTC_INTSRC_ALMA)
+	{
+		s_hwRtcMsg |= RTC_INTSRC_ALMA;
+		csp_rtc_clr_isr(ptRtcBase,RTC_INTSRC_ALMA);	
+	}	
+	if(((csp_rtc_get_isr(ptRtcBase) & RTC_INTSRC_ALMB))==RTC_INTSRC_ALMB)
+	{
+		s_hwRtcMsg |= RTC_INTSRC_ALMB;
+		csp_rtc_clr_isr(ptRtcBase,RTC_INTSRC_ALMB);	
+	}	
+	if(((csp_rtc_get_isr(ptRtcBase) & RTC_INTSRC_CPRD))==RTC_INTSRC_CPRD)
+	{
+		s_hwRtcMsg |= RTC_INTSRC_CPRD;
+		csp_rtc_clr_isr(ptRtcBase,RTC_INTSRC_CPRD);	
+	}	
+	if(((csp_rtc_get_isr(ptRtcBase) & RTC_INTSRC_TRGEV0))==RTC_INTSRC_TRGEV0)
+	{
+		s_hwRtcMsg |= RTC_INTSRC_TRGEV0;
+		csp_rtc_clr_isr(ptRtcBase,RTC_INTSRC_TRGEV0);	
+	}	
+	if(((csp_rtc_get_isr(ptRtcBase) & RTC_INTSRC_TRGEV1))==RTC_INTSRC_TRGEV1)
+	{
+		s_hwRtcMsg |= RTC_INTSRC_TRGEV1;
+		csp_rtc_clr_isr(ptRtcBase,RTC_INTSRC_TRGEV1);	
+	}	
+}
