@@ -11,10 +11,6 @@
 //(9)jump to the main procedure using jsri main
 #include "board_config.h"
 
-//.section .por, "ax"
-//.align 2
-//.long __start  
-
 .text
 .export vector_table
 //.import VecTable
@@ -143,19 +139,15 @@ __start:
 
 //initialize kernel stack
   lrw  r7, __kernel_stack			//__kernel_stack is defined in gcc_xxx.ld; 
-  mov  r14,r7						//r14(sp) = stack address				
-  subi r6,r7,0x4					//(r7 - 4) -> r6				
-
-  //lrw  r3, 0x40
-  lrw  r3, 0x04					
-	
-  subu r4, r7, r3					//(r7 - r3)	-> r4			
-  lrw  r5, 0x0
+  mov  r14,r7						//r14(sp) = stack address(__kernel_stack)				
+  subi r6,r7,0x4					//(r7 - 4) -> r6 = (__kernel_stack - 0x04)			
+  lrw  r3, 0x04						//0x04 -> r3				
+  subu r4, r7, r3					//(r7 - r3)	-> r4 = (__kernel_stack - 0x04)			
+  lrw  r5, 0x0						//0x0 -> r5
 INIT_KERLE_STACK:
-  addi r4, 0x4
-  st.w r5, (r4)
-  //cmphs r7, r4						//r7 = r4; c = 1
-  cmphs r6, r4						//r6 < r4; c = 0
+  addi r4, 0x4						//(r4 + 0x04) -> r4 = (__kernel_stack)
+  st.w r5, (r4)						//r5 -> r4 (addr of __kernel_stack = r5(0x0))
+  cmphs r6, r4						//r6 < r4 ,c = 0; else c = 1
   bt  INIT_KERLE_STACK				//c = 1, jmp		
         
 __to_main:
@@ -221,3 +213,8 @@ DummyHandler:
 //__heap_start:
 //.space HEAPSIZE
 //__heap_end:
+
+/* The code is placed at a non-zero address */
+.section .por, "ax"
+.align 2
+.long __start  
