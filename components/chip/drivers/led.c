@@ -8,9 +8,6 @@
  * </table>
  * *********************************************************************
 */
-#include "csp.h"
-#include "common.h"
-#include "csp_led.h"
 #include "led.h"
 #include "irq.h"
 #include "csp_common.h"
