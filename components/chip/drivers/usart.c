@@ -391,23 +391,24 @@ int32_t csi_usart_receive(csp_usart_t *ptUsartBase, void *pData, uint16_t hwSize
 /** \brief usart dma receive mode init
  * 
  *  \param[in] ptUartBase: pointer of usart register structure
+ *  \param[in] eReload: dma reload mode \ref csi_dma_reload_e 
  *  \param[in] eDmaCh: channel id number of dma, eDmaCh: DMA_CH0_ID ` DMA_CH5_ID
  *  \param[in] eEtbCh: channel id number of etb, eEtbCh >= ETB_CH20_ID
  *  \return  error code \ref csi_error_t
  */
-csi_error_t csi_usart_dma_rx_init(csp_usart_t *ptUsartBase, csi_dma_ch_e eDmaCh, csi_etb_ch_e eEtbCh)
+csi_error_t csi_usart_dma_rx_init(csp_usart_t *ptUsartBase, csi_dma_reload_e eReload, csi_dma_ch_e eDmaCh, csi_etb_ch_e eEtbCh)
 {
 	csi_error_t ret = CSI_OK;
 	csi_dma_ch_config_t tDmaConfig;				
-	csi_etb_config_t 	tEtbConfig;				
-	
+	csi_etb_config_t 	tEtbConfig;		
+		
 	//dma config
 	tDmaConfig.bySrcLinc 	= DMA_ADDR_CONSTANT;		//低位传输原地址固定不变
 	tDmaConfig.bySrcHinc 	= DMA_ADDR_CONSTANT;		//高位传输原地址固定不变
 	tDmaConfig.byDetLinc 	= DMA_ADDR_CONSTANT;		//低位传输目标地址固定不变
 	tDmaConfig.byDetHinc 	= DMA_ADDR_INC;				//高位传输目标地址自增
 	tDmaConfig.byDataWidth 	= DMA_DSIZE_8_BITS;			//传输数据宽度8bit
-	tDmaConfig.byReload 	= DMA_RELOAD_DISABLE;		//禁止自动重载
+	tDmaConfig.byReload 	= eReload;					//自动重载
 	tDmaConfig.byTransMode 	= DMA_TRANS_ONCE;			//DMA服务模式(传输模式)，连续服务
 	tDmaConfig.byTsizeMode  = DMA_TSIZE_ONE_DSIZE;		//传输数据大小，一个 DSIZE , 即DSIZE定义大小
 	tDmaConfig.byReqMode	= DMA_REQ_HARDWARE;			//DMA请求模式，硬件请求

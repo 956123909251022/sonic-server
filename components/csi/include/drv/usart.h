@@ -256,11 +256,12 @@ csi_error_t csi_usart_send_async(csp_usart_t *ptUsartBase, const void *pData, ui
 /** 
   \brief 	   usart dma receive mode init
   \param[in]   ptUsartBase	pointer of usart register structure
+  \param[in]   eReload		dma reload mode  \ref csi_dma_reload_e
   \param[in]   eDmaCh		channel id number of dma, eDmaCh: DMA_CH0_ID ` DMA_CH5_ID
   \param[in]   eEtbCh		channel id number of etb, eEtbCh >= ETB_CH20_ID
   \return      error code \ref csi_error_t
  */
-csi_error_t csi_usart_dma_rx_init(csp_usart_t *ptUsartBase, csi_dma_ch_e eDmaCh, csi_etb_ch_e eEtbCh);
+csi_error_t csi_usart_dma_rx_init(csp_usart_t *ptUsartBase, csi_dma_reload_e eReload, csi_dma_ch_e eDmaCh, csi_etb_ch_e eEtbCh);
 
 /** 
   \brief 	   usart dma send mode init
