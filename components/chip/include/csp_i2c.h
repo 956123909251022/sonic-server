@@ -540,12 +540,12 @@ static inline uint32_t csp_i2c_get_tx_abrt(csp_i2c_t *ptI2cBase)
 {
 	return ptI2cBase->TX_ABRT;
 }
-
+//
 static inline void csp_i2c_clr_isr(csp_i2c_t *ptI2cBase,i2c_int_e eIntNum)
 {
 	ptI2cBase->ICR = eIntNum;
 }
-static inline void csp_i2c_clr_all_int(csp_i2c_t *ptI2cBase)
+static inline void csp_i2c_clr_all_isr(csp_i2c_t *ptI2cBase)
 {
 	ptI2cBase->ICR = 0x7fff;
 }
@@ -560,6 +560,13 @@ static inline void csp_i2c_imcr_enable(csp_i2c_t *ptI2cBase,uint32_t wIntNum)
 static inline void csp_i2c_imcr_disable(csp_i2c_t *ptI2cBase,uint32_t wIntNum)
 {
 	ptI2cBase->IMCR &= (~wIntNum);
+}
+static inline void csp_i2c_int_enable(csp_i2c_t *ptI2cBase,i2c_int_e eI2cInt, bool bEnable)
+{
+	if(bEnable)
+		ptI2cBase->IMCR |= eI2cInt;
+	else
+		ptI2cBase->IMCR &= (~eI2cInt);
 }
 //
 static inline void csp_i2c_restart_en(csp_i2c_t *ptI2cBase)

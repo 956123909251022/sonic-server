@@ -289,11 +289,11 @@ typedef enum{
 #define TRGEV0_INT_POS	(3)
 #define TRGEV1_INT_POS	(4)
 typedef enum{
-	RTC_INT_ALMA = 0x1 << ALRA_INT_POS,
-	RTC_INT_ALMB = 0x1 << ALRB_INT_POS,
-	RTC_INT_CPRD = 0x1 <<CPRD_INT_POS,
-	RTC_INT_TRGEV0 = 0x1 <<TRGEV0_INT_POS,
-	RTC_INT_TRGEV1 = 0x1 <<TRGEV1_INT_POS
+	RTC_INT_ALMA   = 0x1 << ALRA_INT_POS,
+	RTC_INT_ALMB   = 0x1 << ALRB_INT_POS,
+	RTC_INT_CPRD   = 0x1 << CPRD_INT_POS,
+	RTC_INT_TRGEV0 = 0x1 << TRGEV0_INT_POS,
+	RTC_INT_TRGEV1 = 0x1 << TRGEV1_INT_POS
 }rtc_int_e;
 
 
@@ -650,12 +650,12 @@ static inline void csp_rtc_int_enable(csp_rtc_t *ptRtcBase, rtc_int_e eInt, bool
 }
 
 
-static inline void csp_rtc_int_clr(csp_rtc_t *ptRtcBase, rtc_int_e eInt)
+static inline void csp_rtc_clr_isr(csp_rtc_t *ptRtcBase, rtc_int_e eInt)
 {
 	ptRtcBase->ICR = eInt;
 }
 
-static inline uint32_t csp_rtc_get_int_st(csp_rtc_t *ptRtcBase)
+static inline uint32_t csp_rtc_get_isr(csp_rtc_t *ptRtcBase)
 {
 	return (ptRtcBase->MISR);
 }
