@@ -181,13 +181,35 @@ csi_error_t csi_cmp_wfcr_config(csp_cmp_t *ptCmpBase,csi_cmp_wfcr_config_t *ptCm
 /** \brief cmp evtrg output config
  * 
  *  \param[in] ptCmpBase: pointer of cmp register structure
- *  \param[in] eEveSel: evtrg eve sel(0~3) 
+ *  \param[in] eTrgOut: cmp evtrg out port (0)
+ *  \param[in] eTrgSrc: cmp evtrg source(0~3) 
  *  \param[in] bEnable: cmp evtrg enable or disable
- *  \return none
+ *  \return error code \ref csi_error_t
  */
-void csi_cmp_set_evtrg(csp_cmp_t *ptCmpBase,csi_eve_sel_e eEveSel, bool bEnable)
+csi_error_t csi_cmp_set_evtrg(csp_cmp_t *ptCmpBase, csi_cmp_trgout_e eTrgOut, csi_cmp_trgsrc_e eTrgSrc)
 {
-	csp_cmp_evtrg(ptCmpBase , bEnable,eEveSel);
+	if(eTrgOut == CMP_TRGOUT)
+		csp_cmp_evtrg(ptCmpBase, ENABLE ,eTrgSrc);
+	else 
+		return CSI_ERROR;
+		
+	return CSI_OK;
+}
+/** \brief cmp evtrg output enable/disable
+ * 
+ *  \param[in] ptCmpBase: pointer of cmp register structure
+ *  \param[in] eTrgOut: cmp evtrg out port (0)
+ *  \param[in] bEnable: ENABLE/DISABLE
+ *  \return error code \ref csi_error_t
+ */
+csi_error_t csi_cmp_evtrg_enable(csp_cmp_t *ptCmpBase, csi_cmp_trgout_e eTrgOut, bool bEnable)
+{
+	if(eTrgOut == CMP_TRGOUT)
+		ptCmpBase->CR = (ptCmpBase->CR & ~CMP_SYNCOE_MSK) | (bEnable << CMP_SYNCOE_POS);
+	else
+		return CSI_ERROR;
+		
+	return CSI_OK;
 }
 
 /** \brief cmp out status
