@@ -543,7 +543,7 @@ typedef enum {
 	PA17_OUTPUT_MONI		=  3U,		//output with monitor
 	PA17_LCD_SEG19			=  4U,		//PA1.7
     PA17_DBUG_SWDIO     	=  5U,
-    PA17_CNTA_REM       	=  6U,
+    PA17_CNTA_BUZ       	=  6U,
 	PA17_GPTA1_CHA         	=  7U,
 	PA17_LED_COM2           =  8U,
     PA17_TKEY_CH10		  	=  10U,
@@ -644,7 +644,7 @@ typedef enum {
 	PA110_OUTPUT_MONI		=  3U,		//output with monitor
 	PA110_LCD_SEG28			=  4U,		//PA1.10
     PA110_GPTB1_CHAY        =  5U,
-    PA110_CNTA_REM       	=  6U,
+    PA110_CNTA_BUZ       	=  6U,
     PA110_USART0_RX		  	=  7U,
 	PA110_BT1_OUT			=  8U,
 	PA110_I2C0_SDA			=  9U,
@@ -684,7 +684,7 @@ typedef enum {
 	PA113_LCD_SEG31			=  4U,		//PA1.13
 	PA113_VLC1				=  4U,			
     PA113_GPTB1_CHAX        =  5U,
-    PA113_CNTA_REM      	=  6U,
+    PA113_CNTA_BUZ      	=  6U,
     PA113_SPI0_NSS		  	=  7U,
 	PA113_LED_C0M9			=  8U,
 	PA113_I2C0_SDA			=  9U,
