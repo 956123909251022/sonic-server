@@ -13,12 +13,12 @@
       </DLLConfig>
     </CodeGenerateConfig>
     <ChipView>
-      <ChipName>QFN32</ChipName>
+      <ChipName>LQFP44</ChipName>
       <ChipShape>CVS_LOOK_SQUARE</ChipShape>
-      <PinCount>32</PinCount>
-      <GenCodeFuncName>APT32F1104_32PinInitFunc</GenCodeFuncName>
+      <PinCount>44</PinCount>
+      <GenCodeFuncName>APT32F1104_44PinInitFunc</GenCodeFuncName>
       <Pins>
-        <Pin pinNum="31" group="PA0" displayName="PA0.0">
+        <Pin pinNum="35" group="PA0" displayName="PA0.0">
           <Property class="UIchoice">
             <label>GPIO/AF</label>
             <value>GPIO</value>
@@ -84,7 +84,7 @@
             <Comment>GPIO输出模式</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="32" group="PA0" displayName="PA0.1">
+        <Pin pinNum="36" group="PA0" displayName="PA0.1">
           <Property class="UIchoice">
             <label>GPIO/AF</label>
             <value>GPIO</value>
@@ -147,7 +147,7 @@
             <Comment>GPIO输出模式</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="1" group="PA0" displayName="PA0.2">
+        <Pin pinNum="37" group="PA0" displayName="PA0.2">
           <Property class="UIchoice">
             <label>GPIO/AF</label>
             <value>GPIO</value>
@@ -210,7 +210,7 @@
             <Comment>GPIO输出模式</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="2" group="PA0" displayName="PA0.3">
+        <Pin pinNum="38" group="PA0" displayName="PA0.3">
           <Property class="UIchoice">
             <label>GPIO/AF</label>
             <value>GPIO</value>
@@ -274,7 +274,7 @@
             <Comment>GPIO输出模式</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="3" group="PA0" displayName="PA0.4">
+        <Pin pinNum="39" group="PA0" displayName="PA0.4">
           <Property class="UIchoice">
             <label>GPIO/AF</label>
             <value>GPIO</value>
@@ -338,7 +338,7 @@
             <Comment>GPIO输出模式</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="4" group="PA0" displayName="PA0.5">
+        <Pin pinNum="40" group="PA0" displayName="PA0.5">
           <Property class="UIchoice">
             <label>GPIO/AF</label>
             <value>GPIO</value>
@@ -401,7 +401,7 @@
             <Comment>GPIO输出模式</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="7" group="PA0" displayName="PA0.6">
+        <Pin pinNum="2" group="PA0" displayName="PA0.6">
           <Property class="UIchoice">
             <label>GPIO/AF</label>
             <value>GPIO</value>
@@ -465,7 +465,7 @@
             <Comment>GPIO输出模式</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="8" group="PA0" displayName="PA0.7">
+        <Pin pinNum="3" group="PA0" displayName="PA0.7">
           <Property class="UIchoice">
             <label>GPIO/AF</label>
             <value>GPIO</value>
@@ -529,7 +529,7 @@
             <Comment>GPIO输出模式</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="9" group="PA0" displayName="PA0.8">
+        <Pin pinNum="4" group="PA0" displayName="PA0.8">
           <Property class="UIchoice">
             <label>GPIO/AF</label>
             <value>GPIO</value>
@@ -594,7 +594,7 @@
             <Comment>GPIO输出模式</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="10" group="PA0" displayName="PA0.9">
+        <Pin pinNum="5" group="PA0" displayName="PA0.9">
           <Property class="UIchoice">
             <label>GPIO/AF</label>
             <value>GPIO</value>
@@ -659,7 +659,7 @@
             <Comment>GPIO输出模式</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="11" group="PA0" displayName="PA0.10">
+        <Pin pinNum="6" group="PA0" displayName="PA0.10">
           <Property class="UIchoice">
             <label>GPIO/AF</label>
             <value>GPIO</value>
@@ -724,7 +724,7 @@
             <Comment>GPIO输出模式</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="12" group="PA0" displayName="PA0.11">
+        <Pin pinNum="7" group="PA0" displayName="PA0.11">
           <Property class="UIchoice">
             <label>GPIO/AF</label>
             <value>GPIO</value>
@@ -787,7 +787,7 @@
             <Comment>GPIO输出模式</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="13" group="PA0" displayName="PA0.12">
+        <Pin pinNum="8" group="PA0" displayName="PA0.12">
           <Property class="UIchoice">
             <label>GPIO/AF</label>
             <value>GPIO</value>
@@ -851,7 +851,7 @@
             <Comment>GPIO输出模式</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="14" group="PA0" displayName="PA0.13">
+        <Pin pinNum="9" group="PA0" displayName="PA0.13">
           <Property class="UIchoice">
             <label>GPIO/AF</label>
             <value>GPIO</value>
@@ -914,7 +914,7 @@
             <Comment>GPIO输出模式</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="15" group="PA0" displayName="PA0.14">
+        <Pin pinNum="10" group="PA0" displayName="PA0.14">
           <Property class="UIchoice">
             <label>GPIO/AF</label>
             <value>GPIO</value>
@@ -975,7 +975,7 @@
             <Comment>GPIO输出模式</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="16" group="PA0" displayName="PA0.15">
+        <Pin pinNum="11" group="PA0" displayName="PA0.15">
           <Property class="UIchoice">
             <label>GPIO/AF</label>
             <value>GPIO</value>
@@ -1035,7 +1035,761 @@
             <Comment>GPIO输出模式</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="17" group="PA1" displayName="PA1.0">
+        <Pin pinNum="43" group="PB0" displayName="PB0.0">
+          <Property class="UIchoice">
+            <label>GPIO/AF</label>
+            <value>GPIO</value>
+            <Selections>
+              <sel>GPIO</sel>
+              <sel>AF</sel>
+            </Selections>
+            <Comment>GPIO复用</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>AFFunctions</label>
+            <value>UART2_TX</value>
+            <Selections>
+              <sel>UART2_TX</sel>
+              <sel>GPTB0_CHAX</sel>
+              <sel>I2C0_SCL</sel>
+              <sel>CLO</sel>
+              <sel>ADC_AIN3</sel>
+              <sel>CMP_IN4</sel>
+              <sel>ELVI</sel>
+            </Selections>
+            <Comment>管脚功能</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>Driving Ability</label>
+            <value>normal</value>
+            <Selections>
+              <sel>normal</sel>
+              <sel>strong</sel>
+            </Selections>
+            <Comment>驱动能力</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>PullUpDown</label>
+            <value>no pull</value>
+            <Selections>
+              <sel>pull up</sel>
+              <sel>pull down</sel>
+              <sel>no pull</sel>
+            </Selections>
+            <Comment>上下拉</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>GPIO Direction</label>
+            <value>GPD</value>
+            <Selections>
+              <sel>GPD</sel>
+              <sel>input</sel>
+              <sel>output</sel>
+            </Selections>
+            <Comment>GPIO方向</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>GPIO Output Mode</label>
+            <value>push pull</value>
+            <Selections>
+              <sel>push pull</sel>
+              <sel>open drain</sel>
+              <sel>constant current enable</sel>
+              <sel>constant current disable</sel>
+            </Selections>
+            <Comment>GPIO输出模式</Comment>
+          </Property>
+        </Pin>
+        <Pin pinNum="44" group="PB0" displayName="PB0.1">
+          <Property class="UIchoice">
+            <label>GPIO/AF</label>
+            <value>GPIO</value>
+            <Selections>
+              <sel>GPIO</sel>
+              <sel>AF</sel>
+            </Selections>
+            <Comment>GPIO复用</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>AFFunctions</label>
+            <value>UART2_RX</value>
+            <Selections>
+              <sel>UART2_RX</sel>
+              <sel>GPTB0_CHAY</sel>
+              <sel>I2C0_SDA</sel>
+              <sel>SIO</sel>
+              <sel>ADC_AIN4</sel>
+              <sel>CMP_IN5</sel>
+            </Selections>
+            <Comment>管脚功能</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>Driving Ability</label>
+            <value>normal</value>
+            <Selections>
+              <sel>normal</sel>
+              <sel>strong</sel>
+            </Selections>
+            <Comment>驱动能力</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>PullUpDown</label>
+            <value>no pull</value>
+            <Selections>
+              <sel>pull up</sel>
+              <sel>pull down</sel>
+              <sel>no pull</sel>
+            </Selections>
+            <Comment>上下拉</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>GPIO Direction</label>
+            <value>GPD</value>
+            <Selections>
+              <sel>GPD</sel>
+              <sel>input</sel>
+              <sel>output</sel>
+            </Selections>
+            <Comment>GPIO方向</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>GPIO Output Mode</label>
+            <value>push pull</value>
+            <Selections>
+              <sel>push pull</sel>
+              <sel>open drain</sel>
+              <sel>constant current enable</sel>
+              <sel>constant current disable</sel>
+            </Selections>
+            <Comment>GPIO输出模式</Comment>
+          </Property>
+        </Pin>
+        <Pin pinNum="1" group="PB0" displayName="PB0.2">
+          <Property class="UIchoice">
+            <label>GPIO/AF</label>
+            <value>GPIO</value>
+            <Selections>
+              <sel>GPIO</sel>
+              <sel>AF</sel>
+            </Selections>
+            <Comment>GPIO复用</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>AFFunctions</label>
+            <value>GPTA0_CHA</value>
+            <Selections>
+              <sel>GPTA0_CHA</sel>
+              <sel>GPTB0_CHAX</sel>
+              <sel>USART0_TX</sel>
+              <sel>UART1_TX</sel>
+              <sel>ADC_AIN5</sel>
+              <sel>CMP_IN6</sel>
+            </Selections>
+            <Comment>管脚功能</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>Driving Ability</label>
+            <value>normal</value>
+            <Selections>
+              <sel>normal</sel>
+              <sel>strong</sel>
+            </Selections>
+            <Comment>驱动能力</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>PullUpDown</label>
+            <value>no pull</value>
+            <Selections>
+              <sel>pull up</sel>
+              <sel>pull down</sel>
+              <sel>no pull</sel>
+            </Selections>
+            <Comment>上下拉</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>GPIO Direction</label>
+            <value>GPD</value>
+            <Selections>
+              <sel>GPD</sel>
+              <sel>input</sel>
+              <sel>output</sel>
+            </Selections>
+            <Comment>GPIO方向</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>GPIO Output Mode</label>
+            <value>push pull</value>
+            <Selections>
+              <sel>push pull</sel>
+              <sel>open drain</sel>
+              <sel>constant current enable</sel>
+              <sel>constant current disable</sel>
+            </Selections>
+            <Comment>GPIO输出模式</Comment>
+          </Property>
+        </Pin>
+        <Pin pinNum="12" group="PB0" displayName="PB0.3">
+          <Property class="UIchoice">
+            <label>GPIO/AF</label>
+            <value>GPIO</value>
+            <Selections>
+              <sel>GPIO</sel>
+              <sel>AF</sel>
+            </Selections>
+            <Comment>GPIO复用</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>AFFunctions</label>
+            <value>LCD_SEG8</value>
+            <Selections>
+              <sel>LCD_SEG8</sel>
+              <sel>GPTB1_CHAY</sel>
+              <sel>GPTB1_CHB</sel>
+              <sel>ADC_AIN14</sel>
+            </Selections>
+            <Comment>管脚功能</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>Driving Ability</label>
+            <value>normal</value>
+            <Selections>
+              <sel>normal</sel>
+              <sel>strong</sel>
+            </Selections>
+            <Comment>驱动能力</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>PullUpDown</label>
+            <value>no pull</value>
+            <Selections>
+              <sel>pull up</sel>
+              <sel>pull down</sel>
+              <sel>no pull</sel>
+            </Selections>
+            <Comment>上下拉</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>GPIO Direction</label>
+            <value>GPD</value>
+            <Selections>
+              <sel>GPD</sel>
+              <sel>input</sel>
+              <sel>output</sel>
+            </Selections>
+            <Comment>GPIO方向</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>GPIO Output Mode</label>
+            <value>push pull</value>
+            <Selections>
+              <sel>push pull</sel>
+              <sel>open drain</sel>
+              <sel>constant current enable</sel>
+              <sel>constant current disable</sel>
+            </Selections>
+            <Comment>GPIO输出模式</Comment>
+          </Property>
+        </Pin>
+        <Pin pinNum="13" group="PB0" displayName="PB0.4">
+          <Property class="UIchoice">
+            <label>GPIO/AF</label>
+            <value>GPIO</value>
+            <Selections>
+              <sel>GPIO</sel>
+              <sel>AF</sel>
+            </Selections>
+            <Comment>GPIO复用</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>AFFunctions</label>
+            <value>LCD_SEG10</value>
+            <Selections>
+              <sel>LCD_SEG10</sel>
+              <sel>GPTB0_CHB</sel>
+              <sel>GPTA1_CHA</sel>
+              <sel>EBI1</sel>
+              <sel>ADC_AIN16</sel>
+            </Selections>
+            <Comment>管脚功能</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>Driving Ability</label>
+            <value>normal</value>
+            <Selections>
+              <sel>normal</sel>
+              <sel>strong</sel>
+            </Selections>
+            <Comment>驱动能力</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>PullUpDown</label>
+            <value>no pull</value>
+            <Selections>
+              <sel>pull up</sel>
+              <sel>pull down</sel>
+              <sel>no pull</sel>
+            </Selections>
+            <Comment>上下拉</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>GPIO Direction</label>
+            <value>GPD</value>
+            <Selections>
+              <sel>GPD</sel>
+              <sel>input</sel>
+              <sel>output</sel>
+            </Selections>
+            <Comment>GPIO方向</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>GPIO Output Mode</label>
+            <value>push pull</value>
+            <Selections>
+              <sel>push pull</sel>
+              <sel>open drain</sel>
+              <sel>constant current enable</sel>
+              <sel>constant current disable</sel>
+            </Selections>
+            <Comment>GPIO输出模式</Comment>
+          </Property>
+        </Pin>
+        <Pin pinNum="21" group="PB0" displayName="PB0.5">
+          <Property class="UIchoice">
+            <label>GPIO/AF</label>
+            <value>GPIO</value>
+            <Selections>
+              <sel>GPIO</sel>
+              <sel>AF</sel>
+            </Selections>
+            <Comment>GPIO复用</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>AFFunctions</label>
+            <value>LCD_SEG18</value>
+            <Selections>
+              <sel>LCD_SEG18</sel>
+              <sel>SIO</sel>
+              <sel>CMP1_OUT</sel>
+              <sel>UART0_RX</sel>
+            </Selections>
+            <Comment>管脚功能</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>Driving Ability</label>
+            <value>normal</value>
+            <Selections>
+              <sel>normal</sel>
+              <sel>strong</sel>
+            </Selections>
+            <Comment>驱动能力</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>PullUpDown</label>
+            <value>no pull</value>
+            <Selections>
+              <sel>pull up</sel>
+              <sel>pull down</sel>
+              <sel>no pull</sel>
+            </Selections>
+            <Comment>上下拉</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>GPIO Direction</label>
+            <value>GPD</value>
+            <Selections>
+              <sel>GPD</sel>
+              <sel>input</sel>
+              <sel>output</sel>
+            </Selections>
+            <Comment>GPIO方向</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>GPIO Output Mode</label>
+            <value>push pull</value>
+            <Selections>
+              <sel>push pull</sel>
+              <sel>open drain</sel>
+              <sel>constant current enable</sel>
+              <sel>constant current disable</sel>
+            </Selections>
+            <Comment>GPIO输出模式</Comment>
+          </Property>
+        </Pin>
+        <Pin pinNum="23" group="PB0" displayName="PB0.6">
+          <Property class="UIchoice">
+            <label>GPIO/AF</label>
+            <value>GPIO</value>
+            <Selections>
+              <sel>GPIO</sel>
+              <sel>AF</sel>
+            </Selections>
+            <Comment>GPIO复用</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>AFFunctions</label>
+            <value>LCD_SEG20</value>
+            <Selections>
+              <sel>LCD_SEG20</sel>
+              <sel>I2C0_SCL</sel>
+              <sel>GPTA0_CHA</sel>
+              <sel>UART2_TX</sel>
+            </Selections>
+            <Comment>管脚功能</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>Driving Ability</label>
+            <value>normal</value>
+            <Selections>
+              <sel>normal</sel>
+              <sel>strong</sel>
+            </Selections>
+            <Comment>驱动能力</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>PullUpDown</label>
+            <value>no pull</value>
+            <Selections>
+              <sel>pull up</sel>
+              <sel>pull down</sel>
+              <sel>no pull</sel>
+            </Selections>
+            <Comment>上下拉</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>GPIO Direction</label>
+            <value>GPD</value>
+            <Selections>
+              <sel>GPD</sel>
+              <sel>input</sel>
+              <sel>output</sel>
+            </Selections>
+            <Comment>GPIO方向</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>GPIO Output Mode</label>
+            <value>push pull</value>
+            <Selections>
+              <sel>push pull</sel>
+              <sel>open drain</sel>
+              <sel>constant current enable</sel>
+              <sel>constant current disable</sel>
+            </Selections>
+            <Comment>GPIO输出模式</Comment>
+          </Property>
+        </Pin>
+        <Pin pinNum="24" group="PB0" displayName="PB0.7">
+          <Property class="UIchoice">
+            <label>GPIO/AF</label>
+            <value>GPIO</value>
+            <Selections>
+              <sel>GPIO</sel>
+              <sel>AF</sel>
+            </Selections>
+            <Comment>GPIO复用</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>AFFunctions</label>
+            <value>LCD_SEG21</value>
+            <Selections>
+              <sel>LCD_SEG21</sel>
+              <sel>I2C0_SDA</sel>
+              <sel>GPTA1_CHA</sel>
+              <sel>UART2_RX</sel>
+            </Selections>
+            <Comment>管脚功能</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>Driving Ability</label>
+            <value>normal</value>
+            <Selections>
+              <sel>normal</sel>
+              <sel>strong</sel>
+            </Selections>
+            <Comment>驱动能力</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>PullUpDown</label>
+            <value>no pull</value>
+            <Selections>
+              <sel>pull up</sel>
+              <sel>pull down</sel>
+              <sel>no pull</sel>
+            </Selections>
+            <Comment>上下拉</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>GPIO Direction</label>
+            <value>GPD</value>
+            <Selections>
+              <sel>GPD</sel>
+              <sel>input</sel>
+              <sel>output</sel>
+            </Selections>
+            <Comment>GPIO方向</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>GPIO Output Mode</label>
+            <value>push pull</value>
+            <Selections>
+              <sel>push pull</sel>
+              <sel>open drain</sel>
+              <sel>constant current enable</sel>
+              <sel>constant current disable</sel>
+            </Selections>
+            <Comment>GPIO输出模式</Comment>
+          </Property>
+        </Pin>
+        <Pin pinNum="26" group="PB0" displayName="PB0.8">
+          <Property class="UIchoice">
+            <label>GPIO/AF</label>
+            <value>GPIO</value>
+            <Selections>
+              <sel>GPIO</sel>
+              <sel>AF</sel>
+            </Selections>
+            <Comment>GPIO复用</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>AFFunctions</label>
+            <value>LCD_SEG23</value>
+            <Selections>
+              <sel>LCD_SEG23</sel>
+              <sel>UART0_TX</sel>
+              <sel>USART0_RX</sel>
+              <sel>SPI0_NSS</sel>
+            </Selections>
+            <Comment>管脚功能</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>Driving Ability</label>
+            <value>normal</value>
+            <Selections>
+              <sel>normal</sel>
+              <sel>strong</sel>
+            </Selections>
+            <Comment>驱动能力</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>PullUpDown</label>
+            <value>no pull</value>
+            <Selections>
+              <sel>pull up</sel>
+              <sel>pull down</sel>
+              <sel>no pull</sel>
+            </Selections>
+            <Comment>上下拉</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>GPIO Direction</label>
+            <value>GPD</value>
+            <Selections>
+              <sel>GPD</sel>
+              <sel>input</sel>
+              <sel>output</sel>
+            </Selections>
+            <Comment>GPIO方向</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>GPIO Output Mode</label>
+            <value>push pull</value>
+            <Selections>
+              <sel>push pull</sel>
+              <sel>open drain</sel>
+              <sel>constant current enable</sel>
+              <sel>constant current disable</sel>
+            </Selections>
+            <Comment>GPIO输出模式</Comment>
+          </Property>
+        </Pin>
+        <Pin pinNum="27" group="PB0" displayName="PB0.9">
+          <Property class="UIchoice">
+            <label>GPIO/AF</label>
+            <value>GPIO</value>
+            <Selections>
+              <sel>GPIO</sel>
+              <sel>AF</sel>
+            </Selections>
+            <Comment>GPIO复用</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>AFFunctions</label>
+            <value>LCD_SEG24</value>
+            <Selections>
+              <sel>LCD_SEG24</sel>
+              <sel>UART0_RX</sel>
+              <sel>GPTB1_CHB</sel>
+              <sel>SPI0_SCK</sel>
+              <sel>USART0_CK</sel>
+            </Selections>
+            <Comment>管脚功能</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>Driving Ability</label>
+            <value>normal</value>
+            <Selections>
+              <sel>normal</sel>
+              <sel>strong</sel>
+            </Selections>
+            <Comment>驱动能力</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>PullUpDown</label>
+            <value>no pull</value>
+            <Selections>
+              <sel>pull up</sel>
+              <sel>pull down</sel>
+              <sel>no pull</sel>
+            </Selections>
+            <Comment>上下拉</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>GPIO Direction</label>
+            <value>GPD</value>
+            <Selections>
+              <sel>GPD</sel>
+              <sel>input</sel>
+              <sel>output</sel>
+            </Selections>
+            <Comment>GPIO方向</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>GPIO Output Mode</label>
+            <value>push pull</value>
+            <Selections>
+              <sel>push pull</sel>
+              <sel>open drain</sel>
+              <sel>constant current enable</sel>
+              <sel>constant current disable</sel>
+            </Selections>
+            <Comment>GPIO输出模式</Comment>
+          </Property>
+        </Pin>
+        <Pin pinNum="28" group="PB0" displayName="PB0.10">
+          <Property class="UIchoice">
+            <label>GPIO/AF</label>
+            <value>GPIO</value>
+            <Selections>
+              <sel>GPIO</sel>
+              <sel>AF</sel>
+            </Selections>
+            <Comment>GPIO复用</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>AFFunctions</label>
+            <value>LCD_SEG25</value>
+            <Selections>
+              <sel>LCD_SEG25</sel>
+              <sel>GPTA0_CHA</sel>
+              <sel>GPTA1_CHA</sel>
+              <sel>SPI0_MISO</sel>
+            </Selections>
+            <Comment>管脚功能</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>Driving Ability</label>
+            <value>normal</value>
+            <Selections>
+              <sel>normal</sel>
+              <sel>strong</sel>
+            </Selections>
+            <Comment>驱动能力</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>PullUpDown</label>
+            <value>no pull</value>
+            <Selections>
+              <sel>pull up</sel>
+              <sel>pull down</sel>
+              <sel>no pull</sel>
+            </Selections>
+            <Comment>上下拉</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>GPIO Direction</label>
+            <value>GPD</value>
+            <Selections>
+              <sel>GPD</sel>
+              <sel>input</sel>
+              <sel>output</sel>
+            </Selections>
+            <Comment>GPIO方向</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>GPIO Output Mode</label>
+            <value>push pull</value>
+            <Selections>
+              <sel>push pull</sel>
+              <sel>open drain</sel>
+              <sel>constant current enable</sel>
+              <sel>constant current disable</sel>
+            </Selections>
+            <Comment>GPIO输出模式</Comment>
+          </Property>
+        </Pin>
+        <Pin pinNum="29" group="PB0" displayName="PB0.11">
+          <Property class="UIchoice">
+            <label>GPIO/AF</label>
+            <value>GPIO</value>
+            <Selections>
+              <sel>GPIO</sel>
+              <sel>AF</sel>
+            </Selections>
+            <Comment>GPIO复用</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>AFFunctions</label>
+            <value>LCD_SEG26</value>
+            <Selections>
+              <sel>LCD_SEG26</sel>
+              <sel>GPTA0_CHB</sel>
+              <sel>GPTA1_CHB</sel>
+              <sel>SPI0_MOSI</sel>
+              <sel>USART0_CK</sel>
+            </Selections>
+            <Comment>管脚功能</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>Driving Ability</label>
+            <value>normal</value>
+            <Selections>
+              <sel>normal</sel>
+              <sel>strong</sel>
+            </Selections>
+            <Comment>驱动能力</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>PullUpDown</label>
+            <value>no pull</value>
+            <Selections>
+              <sel>pull up</sel>
+              <sel>pull down</sel>
+              <sel>no pull</sel>
+            </Selections>
+            <Comment>上下拉</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>GPIO Direction</label>
+            <value>GPD</value>
+            <Selections>
+              <sel>GPD</sel>
+              <sel>input</sel>
+              <sel>output</sel>
+            </Selections>
+            <Comment>GPIO方向</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>GPIO Output Mode</label>
+            <value>push pull</value>
+            <Selections>
+              <sel>push pull</sel>
+              <sel>open drain</sel>
+              <sel>constant current enable</sel>
+              <sel>constant current disable</sel>
+            </Selections>
+            <Comment>GPIO输出模式</Comment>
+          </Property>
+        </Pin>
+        <Pin pinNum="14" group="PA1" displayName="PA1.0">
           <Property class="UIchoice">
             <label>GPIO/AF</label>
             <value>GPIO</value>
@@ -1096,7 +1850,7 @@
             <Comment>GPIO输出模式</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="18" group="PA1" displayName="PA1.1">
+        <Pin pinNum="15" group="PA1" displayName="PA1.1">
           <Property class="UIchoice">
             <label>GPIO/AF</label>
             <value>GPIO</value>
@@ -1157,7 +1911,7 @@
             <Comment>GPIO输出模式</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="19" group="PA1" displayName="PA1.2">
+        <Pin pinNum="16" group="PA1" displayName="PA1.2">
           <Property class="UIchoice">
             <label>GPIO/AF</label>
             <value>GPIO</value>
@@ -1219,7 +1973,7 @@
             <Comment>GPIO输出模式</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="20" group="PA1" displayName="PA1.3">
+        <Pin pinNum="17" group="PA1" displayName="PA1.3">
           <Property class="UIchoice">
             <label>GPIO/AF</label>
             <value>GPIO</value>
@@ -1281,7 +2035,7 @@
             <Comment>GPIO输出模式</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="21" group="PA1" displayName="PA1.4">
+        <Pin pinNum="18" group="PA1" displayName="PA1.4">
           <Property class="UIchoice">
             <label>GPIO/AF</label>
             <value>GPIO</value>
@@ -1344,7 +2098,7 @@
             <Comment>GPIO输出模式</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="22" group="PA1" displayName="PA1.5">
+        <Pin pinNum="19" group="PA1" displayName="PA1.5">
           <Property class="UIchoice">
             <label>GPIO/AF</label>
             <value>GPIO</value>
@@ -1407,7 +2161,7 @@
             <Comment>GPIO输出模式</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="23" group="PA1" displayName="PA1.6">
+        <Pin pinNum="20" group="PA1" displayName="PA1.6">
           <Property class="UIchoice">
             <label>GPIO/AF</label>
             <value>GPIO</value>
@@ -1469,7 +2223,7 @@
             <Comment>GPIO输出模式</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="24" group="PA1" displayName="PA1.7">
+        <Pin pinNum="22" group="PA1" displayName="PA1.7">
           <Property class="UIchoice">
             <label>GPIO/AF</label>
             <value>GPIO</value>
@@ -1593,7 +2347,7 @@
             <Comment>GPIO输出模式</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="26" group="PA1" displayName="PA1.9">
+        <Pin pinNum="30" group="PA1" displayName="PA1.9">
           <Property class="UIchoice">
             <label>GPIO/AF</label>
             <value>GPIO</value>
@@ -1656,7 +2410,7 @@
             <Comment>GPIO输出模式</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="27" group="PA1" displayName="PA1.11">
+        <Pin pinNum="31" group="PA1" displayName="PA1.11">
           <Property class="UIchoice">
             <label>GPIO/AF</label>
             <value>GPIO</value>
@@ -1720,7 +2474,7 @@
             <Comment>GPIO输出模式</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="28" group="PA1" displayName="PA1.12">
+        <Pin pinNum="32" group="PA1" displayName="PA1.12">
           <Property class="UIchoice">
             <label>GPIO/AF</label>
             <value>GPIO</value>
@@ -1784,7 +2538,7 @@
             <Comment>GPIO输出模式</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="29" group="PA1" displayName="PA1.13">
+        <Pin pinNum="33" group="PA1" displayName="PA1.13">
           <Property class="UIchoice">
             <label>GPIO/AF</label>
             <value>GPIO</value>
@@ -1848,9 +2602,9 @@
             <Comment>GPIO输出模式</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="30" displayName="VLCD"/>
-        <Pin pinNum="5" displayName="VSS"/>
-        <Pin pinNum="6" displayName="VDD"/>
+        <Pin pinNum="34" displayName="VLCD"/>
+        <Pin pinNum="41" displayName="VSS"/>
+        <Pin pinNum="42" displayName="VDD"/>
       </Pins>
     </ChipView>
     <ChipPropertiesView>
