@@ -32,7 +32,6 @@ void csi_tkey_parameter_init(void)
 	byValidKeyNum=4;								//Valid Key number when touched
 	byBaseUpdateSpeed=10;							//baseline update speed
 	byTkeyRebuildTime=16;							//longpress rebuild time = byTkeyRebuildTime*1s  0=disable
-	hwTkeyBaseCnt=59999;							//10ms  byTkeyBaseCnt=10ms*48M/8-1,this register need to modify when mcu's Freq changed
 /****************************************************
 //TK parameter fine-tuning
 *****************************************************/
@@ -46,13 +45,13 @@ void csi_tkey_parameter_init(void)
 *****************************************************/
 	hwTkeyPselMode=TK_PWRSRC_AVDD;					//tk power sel:TK_PWRSRC_FVR/TK_PWRSRC_AVDD   when select TK_PSEL_FVR PA0.0(TCH24) need a 104 cap
 	hwTkeyEcLevel=TK_ECLVL_1V;						//C0 voltage sel:TK_ECLVL_1V/TK_ECLVL_2V/TK_ECLVL_3V/TK_ECLVL_3V6
-	hwTkeyFvrLevel=TK_FVR_4096V;					//FVR level:TK_FVR_2048V/TK_FVR_4096V/TK_FVR_NONE
+	hwTkeyFvrLevel=TK_FVR_NONE;					//FVR level:TK_FVR_2048V/TK_FVR_4096V/TK_FVR_NONE
 /****************************************************
 //TK low power function define
 *****************************************************/
 	byTkeyLowPowerMode=ENABLE;						//touch key can goto sleep when TK lowpower mode enable
 	byTkeyLowPowerLevel=5;							//0=none 1=16ms 2=32ms 3=64ms 4=128ms,>4=186ms Scan interval when sleep
-	dwTkeyWakeupLevel=2;							//0~7;The larger the value the higher the wakeup threshold
+	byTkeyWakeupLevel=2;							//0~7;The larger the value the higher the wakeup threshold
 	dwTkeyWakeupIoEnable=TCH_EN(1);					//Sleep wakeup TCHx configuration, Currently only one channel is supported
 /****************************************************
 //TK Hidden function define

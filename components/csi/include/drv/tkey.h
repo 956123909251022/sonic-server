@@ -1,10 +1,11 @@
 /***********************************************************************//** 
- * \file  tkey.h
- * \brief  csi tkey driver
- * \copyright Copyright (C) 2020-2025 @ APTCHIP
+ * \file  tkey.h V1.04
+ * \brief  csi sio driver
+ * \copyright Copyright (C) 2015-2020 @ APTCHIP
  * <table>
  * <tr><th> Date  <th>Version  <th>Author  <th>Description
- * <tr><td> 2022-9-03 <td>V0.0  <td>APT AE   <td>initial
+ * <tr><td> 2020-9-03 <td>V0.0  <td>XB   <td>initial
+ * <tr><td> 2021-1-03 <td>V0.0  <td>ZJY   <td>modify
  * </table>
  * *********************************************************************
 */
@@ -283,60 +284,56 @@ typedef enum
 #define	TK_FVR_4096V 1
 #define TK_FVR_NONE  2
 /***********************************************************************
- @brief  tkey Variable Definition
+ @brief  tkey Variable Definition extern
 ***********************************************************************/
-unsigned char	byTkeyGlobalSens;
-unsigned char	byTkeyGlobalIcon;	
-unsigned char	byPressDebounce;		
-unsigned char	byReleaseDebounce;	
-unsigned char 	byMultiTimesFilter;			
-unsigned char 	byValidKeyNum;				
-unsigned char 	byKeyMode;					
-unsigned char 	byBaseUpdateSpeed;
-unsigned char 	byTkeyRebuildTime;
-unsigned char 	byTkeyFineTurn;
-unsigned char 	byTkeyIcon[32];
-unsigned char 	byTkeyChxSens[32];		
-unsigned char	byTkeyChxTrigger[32];							
-unsigned char	byTkeyChxIcon[32];
-unsigned char   dwTkeyWakeupLevel;
-unsigned char 	byTkeyLowPowerMode;
-unsigned char 	byTkeyLowPowerLevel;
+extern volatile unsigned char  	byTkeyGlobalSens;
+extern volatile unsigned char		byTkeyGlobalTrigger;
+extern volatile unsigned char 	byTkeyGlobalIcon;	
+extern volatile unsigned char 	byPressDebounce;		
+extern volatile unsigned char 	byReleaseDebounce;	
+extern volatile unsigned char 	byMultiTimesFilter;			
+extern volatile unsigned char 	byValidKeyNum;				
+extern volatile unsigned char 	byKeyMode;					
+extern volatile unsigned char 	byBaseUpdateSpeed;
+extern volatile unsigned char 	byTkeyRebuildTime;
+extern volatile unsigned char 	byTkeyFineTurn;
+extern volatile unsigned char 	byTkeyIcon[32];
+extern volatile unsigned char 	byTkeyChxSens[32];		
+extern volatile unsigned char		byTkeyChxTrigger[32];							
+extern volatile unsigned char		byTkeyChxIcon[32];
+extern volatile unsigned char   byTkeyWakeupLevel;
+extern volatile unsigned char 	byTkeyLowPowerMode;
+extern volatile unsigned char 	byTkeyLowPowerLevel;
 
-unsigned short  hwTkeyGlobalTrigger;
-unsigned short 	hwTkeyBaseCnt;	
-unsigned short 	hwTkeyEcLevel;
-unsigned short 	hwTkeyPselMode;		
-unsigned short 	hwTkeyFvrLevel;
-unsigned short 	hwTkeySenprd[32];
-unsigned short 	hwTkeyTriggerLevel[32];	
+extern volatile unsigned short  hwTkeyGlobalTrigger;
+extern volatile unsigned short 	hwTkeyBaseCnt;	
+extern volatile unsigned short 	hwTkeyEcLevel;
+extern volatile unsigned short 	hwTkeyPselMode;		
+extern volatile unsigned short 	hwTkeyFvrLevel;
+extern volatile unsigned short 	hwTkeySenprd[32];
+extern volatile unsigned short 	hwTkeyTriggerLevel[32];	
 
-unsigned long  	dwTkeyScanFreq;
-unsigned long  	dwTkeyIoEnable;	
-unsigned long  	dwTkeyWakeupIoEnable;
-/*
-unsigned char 	byTkeyLowPowerMode;
-unsigned char 	byTkeyLowPowerLevel;	
-unsigned char 	byAutoAdjustDis;
-*/
+extern volatile unsigned long  	dwTkeyScanFreq;
+extern volatile unsigned long  	dwTkeyIoEnable;	
+extern volatile unsigned long  	dwTkeyWakeupIoEnable;
+
 /***********************************************************************
- @brief  Tkey Hidden Variable Definition
+ @brief  Tkey Hidden Variable Definition extern
 ***********************************************************************/
-unsigned char 	byTkeyDstStatus;		
+extern volatile unsigned char 	byTkeyDstStatus;		
 //Used to modify the default state when TCHx is not enabled;0/3=Z,1=high,2=low(Default)
-unsigned char 	byTkeyIntrStatus;		
+extern volatile unsigned char 	byTkeyIntrStatus;		
 //Used to enable the default internal resistor of TCHx;0=disable(Default),1=enable
-unsigned char   byTkeyImtvtimTime;		
+extern volatile unsigned char   byTkeyImtvtimTime;		
 //Used to modify the scan interval;0=none(Default),1=16ms,2=32ms,3=64ms,4=128ms,>4=186ms
-unsigned char 	byAutoAdjustDis;		
+extern volatile unsigned char 	byAutoAdjustDis;		
 //Used to enable or disable automatic TriggerLevel adjustment on the first pressd of each TCHx;1=disable,0=enable(Default)
-unsigned char 	byTkeyNegBuildBounce;	
+extern volatile unsigned char 	byTkeyNegBuildBounce;	
 //Used to modify the Bounce of the forced negative Rebuild;>=1 (Default=3)
 //The higher the number, the longer it takes to trigger the update mechanism
-unsigned char 	byTkeyPosBuildBounce;
+extern volatile unsigned char 	byTkeyPosBuildBounce;
 //Used to modify the Bounce of the forced postive Rebuild;>=1 (Default=3)
 //The higher the number, the longer it takes to trigger the update mechanism
-
 
 extern volatile unsigned long dwKey_Map;
 extern volatile unsigned char byForceReBuild;
@@ -348,6 +345,8 @@ extern void csi_tkey_main_prog(void);
 extern void csi_tkey_int_process(void);
 extern void csi_tkey_basecnt_process(void);
 extern void csi_tkey_parameter_init(void);
+extern void	csi_tkey_setup_sleep(void);
+extern void	csi_tkey_quit_sleep(void);
 
 #ifdef __cplusplus
 }
