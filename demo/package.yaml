@@ -22,6 +22,7 @@ license: ""
 type: solution
 depends:
   - apt32f110x_demo: V1.2.2
+  - apt32f110x_demo_pro: V1.2.2
   - sdk_110x: V1.2.2
 build_config:
   include:
@@ -38,6 +39,7 @@ source_file:
   - src/*.c
 depends_forward:
   - apt32f110x_demo: V1.2.2
+  - apt32f110x_demo_pro: V1.2.2
   - sdk_110x: V1.2.2
 install: 
 homepage: 
