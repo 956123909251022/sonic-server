@@ -477,7 +477,7 @@ csi_error_t csi_adc_set_evtrg(csp_adc_t *ptAdcBase, csi_adc_trgout_e eTrgOut, cs
 	if(eTrgOut <= ADC_TRGOUT1)
 	{
 		ptAdcBase->EVTRG = (ptAdcBase->EVTRG & (~ADC12_TRGSRC_MSK(eTrgOut))) | (eTrgSrc << ADC12_TRGSRC_POS(eTrgOut)) 
-						| ADC12_TRGOE_MASK(eTrgOut);
+						| ADC12_TRGOE_MSK(eTrgOut);
 	}
 	else
 		return CSI_ERROR;
@@ -494,18 +494,12 @@ csi_error_t csi_adc_set_evtrg(csp_adc_t *ptAdcBase, csi_adc_trgout_e eTrgOut, cs
 csi_error_t csi_adc_evtrg_enable(csp_adc_t *ptAdcBase, csi_adc_trgout_e eTrgOut, bool bEnable)
 {
 	if(eTrgOut <= ADC_TRGOUT1)
-	{
-		if(bEnable)
-			ptAdcBase->EVTRG |= ADC12_TRGOE_MASK(eTrgOut);
-		else
-			ptAdcBase->EVTRG &= ~ADC12_TRGOE_MASK(eTrgOut);
-	}
+		ptAdcBase->EVTRG = (ptAdcBase->EVTRG & ~ADC12_TRGOE_MSK(eTrgOut)) | (bEnable << ADC12_TRGOE_POS(eTrgOut));
 	else
 		return CSI_ERROR;
 		
 	return CSI_OK;
 }
-
 /** \brief enable/disable adc INT status
  * 
  *  \param[in] adc: ADC handle to operate

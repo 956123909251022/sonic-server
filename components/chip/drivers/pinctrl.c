@@ -750,12 +750,7 @@ csi_error_t csi_exi_set_evtrg(csi_exi_trgout_e eTrgOut, csi_exi_trgsrc_e eExiTrg
 csi_error_t csi_exi_evtrg_enable(csi_exi_trgout_e eTrgOut, bool bEnable)
 {
 	if(eTrgOut <= EXI_TRGOUT5)
-	{
-		if(bEnable)
-			SYSCON->EVTRG |= ENDIS_ESYNC_MSK(eTrgOut);
-		else
-			SYSCON->EVTRG &= ~ENDIS_ESYNC_MSK(eTrgOut);
-	}
+		SYSCON->EVTRG = (SYSCON->EVTRG & ~ENDIS_ESYNC_MSK(eTrgOut)) | (bEnable << ENDIS_ESYNC_POS(eTrgOut));
 	else
 		return CSI_ERROR;
 		

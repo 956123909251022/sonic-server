@@ -433,12 +433,7 @@ csi_error_t csi_bt_set_evtrg(csp_bt_t *ptBtBase, csi_bt_trgout_e eTrgOut, csi_bt
 csi_error_t csi_bt_evtrg_enable(csp_bt_t *ptBtBase, csi_bt_trgout_e eTrgOut, bool bEnable)
 {
 	if(eTrgOut == BT_TRGOUT)
-	{
-		if(bEnable)
-			ptBtBase->EVTRG |= (BT_TRGOE_EN << BT_TRGOE_POS);
-		else
-			ptBtBase->EVTRG &= ~BT_TRGOE_MSK;
-	}
+		ptBtBase->EVTRG = (ptBtBase->EVTRG & ~BT_TRGOE_MSK) | (bEnable << BT_TRGOE_POS);
 	else
 		return CSI_ERROR;
 		
