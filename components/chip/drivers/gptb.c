@@ -849,14 +849,16 @@ void csi_gptb_emergency_int_enable(csp_gptb_t *ptGptbBase, csp_gptb_emint_e eEm)
 /** \brief enable/disable gptb out trigger 
  * 
  *  \param[in] ptGptbBase: pointer of gptb register structure
- *  \param[in] eCh: 0/1
+ *  \param[in] eTrgOut: evtrg out port(0~1)
  *  \param[in] bEnable: ENABLE/DISABLE
  *  \return error code \ref csi_error_t
  */
-csi_error_t csi_gptb_evtrg_enable(csp_gptb_t *ptGptbBase, uint8_t byCh, bool bEnable)
+csi_error_t csi_gptb_evtrg_enable(csp_gptb_t *ptGptbBase, csi_gptb_trgout_e eTrgOut, bool bEnable)
 {	
-	if (byCh > 1)return CSI_ERROR;
-    csp_gptb_trg_xoe_enable(ptGptbBase, byCh, bEnable);
+	if (eTrgOut > GPTB_TRGOUT1)
+		return CSI_ERROR;
+		
+    csp_gptb_trg_xoe_enable(ptGptbBase, eTrgOut, bEnable);
 	return CSI_OK;
 }
 
@@ -1004,14 +1006,14 @@ void csi_gptb_rearm_sync(csp_gptb_t *ptGptbBase,csi_gptb_trgin_e eTrgin)
 /** \brief gptb evtrg output config
  * 
  *  \param[in] ptGptbBase: pointer of gptb register structure
- *  \param[in] byTrgOut: evtrg out port(0~1)
+ *  \param[in] eTrgOut: evtrg out port(0~1)
  *  \param[in] eTrgSrc: evtrg source(1~15) 
  *  \return error code \ref csi_error_t
  */
-csi_error_t csi_gptb_set_evtrg(csp_gptb_t *ptGptbBase, csi_gptb_trgout_e byTrgOut, csi_gptb_trgsrc_e eTrgSrc)
+csi_error_t csi_gptb_set_evtrg(csp_gptb_t *ptGptbBase, csi_gptb_trgout_e eTrgOut, csi_gptb_trgsrc_e eTrgSrc)
 {
-	csp_gptb_set_trgsel01(ptGptbBase, byTrgOut, eTrgSrc);			    
-	csp_gptb_trg_xoe_enable(ptGptbBase, byTrgOut, ENABLE);				//evtrg out enable
+	csp_gptb_set_trgsel01(ptGptbBase, eTrgOut, eTrgSrc);			    
+	csp_gptb_trg_xoe_enable(ptGptbBase, eTrgOut, ENABLE);				//evtrg out enable
 	
 	return CSI_OK;//
 }

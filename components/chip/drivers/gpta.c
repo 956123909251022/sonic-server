@@ -605,14 +605,16 @@ void csi_gpta_debug_enable(csp_gpta_t *ptGptaBase, bool bEnable)
 /** \brief enable/disable gpta out trigger 
  * 
  *  \param[in] ptGptaBase: pointer of gpta register structure
- *  \param[in] eCh: 0/1
+ *  \param[in] eTrgOut: evtrg out port(0~1)
  *  \param[in] bEnable: ENABLE/DISABLE
  *  \return error code \ref csi_error_t
  */
-csi_error_t csi_gpta_evtrg_enable(csp_gpta_t *ptGptaBase, csi_gpta_trgout_e byCh, bool bEnable)
+csi_error_t csi_gpta_evtrg_enable(csp_gpta_t *ptGptaBase, csi_gpta_trgout_e eTrgOut, bool bEnable)
 {	
-	if (byCh > 1)return CSI_ERROR;
-    csp_gpta_trg_xoe_enable(ptGptaBase, byCh, bEnable);
+	if (eTrgOut > GPTA_TRGOUT1)
+		return CSI_ERROR;
+		
+    csp_gpta_trg_xoe_enable(ptGptaBase, eTrgOut, bEnable);
 	return CSI_OK;
 }
 
@@ -754,36 +756,36 @@ void csi_gpta_rearm_sync(csp_gpta_t *ptGptaBase,csi_gpta_trgin_e eTrgin)
 /** \brief gpta evtrg output config
  * 
  *  \param[in] ptGptaBase: pointer of gpta register structure
- *  \param[in] byTrgOut: evtrg out port(0~1)
+ *  \param[in] eTrgOut: evtrg out port(0~1)
  *  \param[in] eTrgSrc: evtrg source(1~15) 
  *  \return error code \ref csi_error_t
  */
-csi_error_t csi_gpta_set_evtrg(csp_gpta_t *ptGptaBase, csi_gpta_trgout_e byTrgOut, csp_gpta_trgsrc_e eTrgSrc)
+csi_error_t csi_gpta_set_evtrg(csp_gpta_t *ptGptaBase, csi_gpta_trgout_e eTrgOut, csp_gpta_trgsrc_e eTrgSrc)
 {
-	switch (byTrgOut)
+	switch (eTrgOut)
 	{
 		case GPTA_TRGOUT0:
 		        if(eTrgSrc == GPTA_TRG01_DIS)								
 				{
-					csp_gpta_trg_xoe_enable(ptGptaBase, byTrgOut, DISABLE);	//disable evtrg source out
+					csp_gpta_trg_xoe_enable(ptGptaBase, eTrgOut, DISABLE);	//disable evtrg source out
 					return CSI_OK;
 				}
-				csp_gpta_set_trgsrc01(ptGptaBase, byTrgOut, eTrgSrc);
+				csp_gpta_set_trgsrc01(ptGptaBase, eTrgOut, eTrgSrc);
 			break;
 		
 		case GPTA_TRGOUT1: 
 				if(eTrgSrc == GPTA_TRG01_DIS)								
 				{
-					csp_gpta_trg_xoe_enable(ptGptaBase, byTrgOut, DISABLE);	//disable evtrg source out
+					csp_gpta_trg_xoe_enable(ptGptaBase, eTrgOut, DISABLE);	//disable evtrg source out
 					return CSI_OK;
 				}
-				csp_gpta_set_trgsrc01(ptGptaBase, byTrgOut, eTrgSrc);
+				csp_gpta_set_trgsrc01(ptGptaBase, eTrgOut, eTrgSrc);
 			break;
 		default: 
 			return CSI_ERROR;
 	}
 	
-	csp_gpta_trg_xoe_enable(ptGptaBase, byTrgOut, ENABLE);				//evtrg out enable
+	csp_gpta_trg_xoe_enable(ptGptaBase, eTrgOut, ENABLE);				//evtrg out enable
 	
 	return CSI_OK;
 }

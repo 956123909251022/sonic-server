@@ -870,14 +870,16 @@ void csi_ept_emergency_int_enable(csp_ept_t *ptEptBase, csp_ept_emint_e eEm)
 /** \brief enable/disable ept out trigger 
  * 
  *  \param[in] ptEptBase: pointer of ept register structure
- *  \param[in] eCh: 0/1/2/3
+ *  \param[in] eTrgOut: ept evtrg out port (0~3)
  *  \param[in] bEnable: ENABLE/DISABLE
  *  \return error code \ref csi_error_t
  */
-csi_error_t csi_ept_evtrg_enable(csp_ept_t *ptEptBase, uint8_t byCh, bool bEnable)
+csi_error_t csi_ept_evtrg_enable(csp_ept_t *ptEptBase, csi_ept_trgout_e eTrgOut, bool bEnable)
 {	
-	if (byCh > 3)return CSI_ERROR;
-    csp_ept_trg_xoe_enable(ptEptBase, byCh, bEnable);
+	if (eTrgOut > EPT_TRGOUT3)
+		return CSI_ERROR;
+		
+    csp_ept_trg_xoe_enable(ptEptBase, eTrgOut, bEnable);
 	return CSI_OK;
 }
 
@@ -1066,11 +1068,10 @@ csi_error_t csi_ept_set_evtrg(csp_ept_t *ptEptBase, csi_ept_trgout_e eTrgOut, cs
 			return CSI_ERROR;
 	}
 	
-	csp_ept_trg_xoe_enable(ptEptBase, eTrgOut, ENABLE);				//evtrg out enable
+	csp_ept_trg_xoe_enable(ptEptBase, eTrgOut, ENABLE);					//evtrg out enable
 	
 	return CSI_OK;
 }
-
 /** \brief ept evtrg cntxinit control
  * 
  *  \param[in] ptEptBase: pointer of ept register structure
