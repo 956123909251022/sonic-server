@@ -18,6 +18,12 @@
   </MonitorProgress>
   <VirtualDirectory Name="package"/>
   <PackPathes>$(ProjectPath)/../board|$(ProjectPath)/../components|$(ProjectPath)/../demo|</PackPathes>
+  <ToolsConfig>
+    <Compiler>
+      <Name>CKV2ElfMinilib</Name>
+      <Version>latest</Version>
+    </Compiler>
+  </ToolsConfig>
   <BuildConfigs>
     <BuildConfig Name="BuildSet">
       <Target>
@@ -156,6 +162,7 @@
         <StopAt>yes</StopAt>
         <StopAtText>main</StopAtText>
         <InitFile>$(ProjectPath)/script/gdb.init</InitFile>
+        <PreInit/>
         <AfterLoadFile/>
         <AutoRun>yes</AutoRun>
         <ResetType>Soft Reset</ResetType>
@@ -174,6 +181,7 @@
           <WaitReset>50</WaitReset>
           <DDC>yes</DDC>
           <TRST>no</TRST>
+          <PreReset>no</PreReset>
           <DebugPrint>yes</DebugPrint>
           <Connect>Normal</Connect>
           <ResetType>Soft Reset</ResetType>
@@ -189,6 +197,7 @@
           <RemoteICEEnablePCSampling>yes</RemoteICEEnablePCSampling>
           <RemoteICESamplingPort>1026</RemoteICESamplingPort>
           <Version>latest</Version>
+          <SupportRemoteICEAsyncDebug>no</SupportRemoteICEAsyncDebug>
         </ConfigICE>
         <ConfigSIM>
           <SIMTarget/>
@@ -212,6 +221,7 @@
       </Debug>
       <Flash>
         <InitFile>$(ProjectPath)/script/flash.init</InitFile>
+        <PreInit/>
         <Erase>Erase Full Chip</Erase>
         <Algorithms Path=""/>
         <Program>yes</Program>
@@ -225,16 +235,10 @@
       </Flash>
     </BuildConfig>
   </BuildConfigs>
-  <ToolsConfig>
-    <Compiler>
-      <Name>CKV2ElfMinilib</Name>
-      <Version>latest</Version>
-    </Compiler>
-  </ToolsConfig>
   <DebugSessions>
-    <watchExpressions/>
+    <watchExpressions>tClkConfig:0</watchExpressions>
     <memoryExpressions>;;;</memoryExpressions>
-    <statistics>;;32;;MHZ;</statistics>
+    <statistics>;;32;;MHZ;;up</statistics>
     <peripheralTabs>
       <Tab disFormat="Hex">SYSCON</Tab>
       <Tab disFormat="Hex">GPTA0</Tab>
