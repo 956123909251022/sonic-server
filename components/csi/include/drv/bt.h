@@ -123,9 +123,9 @@ void csi_bt_count_mode(csp_bt_t *ptBtBase, csi_bt_cntmode_e eCntMode);
 /** 
   \brief 	   start bt
   \param[in]   ptBtBase		pointer of bt register structure
-  \return      none
+  \return      error code \ref csi_error_t
  */ 
-void csi_bt_start(csp_bt_t *ptBtBase);
+csi_error_t csi_bt_start(csp_bt_t *ptBtBase);
 
 /** 
   \brief       stop bt
@@ -185,9 +185,9 @@ void csi_bt_prdr_cmp_updata(csp_bt_t *ptBtBase, uint16_t hwPrdr, uint16_t hwCmp)
   \brief  	   updata bt pwm duty cycle
   \param[in]   ptBtBase		pointer of bt register structure
   \param[in]   byDutyCycle	duty cycle(0 -> 100)
-  \return 	   none
+  \return 	   error code \ref csi_error_t
  */
-void csi_bt_pwm_duty_cycle_updata(csp_bt_t *ptBtBase, uint8_t byDutyCycle); 
+csi_error_t csi_bt_pwm_duty_cycle_updata(csp_bt_t *ptBtBase, uint8_t byDutyCycle); 
 
 /** 
   \brief  	   updata bt pwm freq and duty cycle
