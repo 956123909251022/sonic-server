@@ -5795,7 +5795,7 @@
               <sel notAvailable="LPTPWM">Timer</sel>
               <sel notAvailable="LPTTimer">PWM</sel>
             </Selections>
-            <Comment>模式选择&#xD;Timer:使用LPT定时&#xD;PWM:使用LPT产生PWM波&#xD;</Comment>
+            <Comment>模式选择&#xD;Timer:使用LPT定时, 默认采用PEND中断&#xD;PWM:使用LPT产生PWM波&#xD;</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Clock Source</label>
@@ -5883,7 +5883,7 @@
               <sel notAvailable="BT0PWM">Timer</sel>
               <sel notAvailable="BT0Timer">PWM</sel>
             </Selections>
-            <Comment/>
+            <Comment>选择BT做PWM或Timer</Comment>
           </Property>
           <Property class="Text" property_class="BT0Timer">
             <label>Time Interval</label>
@@ -5910,6 +5910,7 @@
               <sel>BT_PWM_START_LOW</sel>
               <sel>BT_PWM_START_HIGH</sel>
             </Selections>
+            <Comment>BT开始计数时，BT_OUT状态设置&#xD;BT_PWM_START_LOW：低电平&#xD;BT_PWM_START_HIGH：高电平</Comment>
           </Property>
           <Property class="UIchoice" property_class="BT0PWM">
             <label>PWM IDLE Level</label>
@@ -5918,38 +5919,43 @@
               <sel>BT_PWM_IDLE_LOW</sel>
               <sel>BT_PWM_IDLE_HIGH</sel>
             </Selections>
+            <Comment>BT停止计数时，BT_OUT状态设置&#xD;BT_PWM_IDLE_LOW：低电平&#xD;BT_PWM_IDLE_HIGH：高电平</Comment>
           </Property>
-          <Property class="Bool" property_class="BT0PWM">
-            <label>BT_INTSRC_NONE</label>
-            <value>1</value>
-            <Comment>BT Interrupt Status</Comment>
+          <Property class="UIchoice" property_class="BT0PWM">
+            <label>Interrupt</label>
+            <value>DISABLE</value>
+            <Selections>
+              <sel notAvailable="BT0Int">DISABLE</sel>
+              <sel>ENABLE</sel>
+            </Selections>
+            <Comment/>
           </Property>
-          <Property class="Bool" property_class="BT0PWM">
+          <Property class="Bool" property_class="BT0Int">
             <label>BT_INTSRC_PEND</label>
             <value>0</value>
-            <Comment>BT Interrupt Status</Comment>
+            <Comment>PEND中断</Comment>
           </Property>
-          <Property class="Bool" property_class="BT0PWM">
+          <Property class="Bool" property_class="BT0Int">
             <label>BT_INTSRC_CMP</label>
             <value>0</value>
-            <Comment>BT Interrupt Status</Comment>
+            <Comment>CMP Match中断</Comment>
           </Property>
-          <Property class="Bool" property_class="BT0PWM">
+          <Property class="Bool" property_class="BT0Int">
             <label>BT_INTSRC_OVF</label>
             <value>0</value>
-            <Comment>BT Interrupt Status</Comment>
+            <Comment>OVF中断</Comment>
           </Property>
-          <Property class="Bool" property_class="BT0PWM">
+          <Property class="Bool" property_class="BT0Int">
             <label>BT_INTSRC_EVTRG</label>
             <value>0</value>
-            <Comment>BT Interrupt Status</Comment>
+            <Comment>事件触发中断</Comment>
           </Property>
           <Property class="UIchoice">
             <label>TRGEV</label>
             <value>DISABLE</value>
             <Selections>
-              <sel>ENABLE</sel>
               <sel>DISABLE</sel>
+              <sel>ENABLE</sel>
             </Selections>
             <Comment>可通过软件触发输出: csi_bt_soft_evtrg(BT0);</Comment>
           </Property>
@@ -5969,10 +5975,10 @@
             <UseOrNot/>
             <value>DISABLE</value>
             <Selections>
-              <sel>ENABLE</sel>
               <sel>DISABLE</sel>
+              <sel>ENABLE</sel>
             </Selections>
-            <Comment/>
+            <Comment>外部同步触发输入使能控制&#xD;DISABLE：禁止外部触发&#xD;ENABLE：使能外部触发</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC0_TrgMode</label>
@@ -5982,27 +5988,27 @@
               <sel>Continuous</sel>
               <sel>Once</sel>
             </Selections>
-            <Comment/>
+            <Comment>一次性同步触发模式选择&#xD;Continuous：连续触发模式&#xD;Once：一次性触发模式&#xD;当该输入通道被设置为一次性触发模式后，在一次触发事件被检测到后，该通道将不允许后续的触发事件通过，直到被软件重置（REARM）后才允许新的触发事件通过。</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC0_AutoRearm</label>
             <UseOrNot/>
             <value>DISABLE</value>
             <Selections>
-              <sel>ENABLE</sel>
               <sel>DISABLE</sel>
+              <sel>ENABLE</sel>
             </Selections>
-            <Comment/>
+            <Comment>硬件自动REARM控制位&#xD;DISABLE：禁止硬件自动REARM&#xD;ENABLE：计数器周期结束时，自动REARM</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC1_INC</label>
             <UseOrNot/>
             <value>DISABLE</value>
             <Selections>
-              <sel>ENABLE</sel>
               <sel>DISABLE</sel>
+              <sel>ENABLE</sel>
             </Selections>
-            <Comment/>
+            <Comment>外部同步触发输入使能控制&#xD;DISABLE：禁止外部触发&#xD;ENABLE：使能外部触发</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC1_TrgMode</label>
@@ -6012,27 +6018,27 @@
               <sel>Continuous</sel>
               <sel>Once</sel>
             </Selections>
-            <Comment/>
+            <Comment>一次性同步触发模式选择&#xD;Continuous：连续触发模式&#xD;Once：一次性触发模式&#xD;当该输入通道被设置为一次性触发模式后，在一次触发事件被检测到后，该通道将不允许后续的触发事件通过，直到被软件重置（REARM）后才允许新的触发事件通过。</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC1_AutoRearm</label>
             <UseOrNot/>
             <value>DISABLE</value>
             <Selections>
-              <sel>ENABLE</sel>
               <sel>DISABLE</sel>
+              <sel>ENABLE</sel>
             </Selections>
-            <Comment/>
+            <Comment>硬件自动REARM控制位&#xD;DISABLE：禁止硬件自动REARM&#xD;ENABLE：计数器周期结束时，自动REARM</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC2_STOP</label>
             <UseOrNot/>
             <value>DISABLE</value>
             <Selections>
-              <sel>ENABLE</sel>
               <sel>DISABLE</sel>
+              <sel>ENABLE</sel>
             </Selections>
-            <Comment/>
+            <Comment>外部同步触发输入使能控制&#xD;DISABLE：禁止外部触发&#xD;ENABLE：使能外部触发</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC2_TrgMode</label>
@@ -6042,17 +6048,17 @@
               <sel>Continuous</sel>
               <sel>Once</sel>
             </Selections>
-            <Comment/>
+            <Comment>一次性同步触发模式选择&#xD;Continuous：连续触发模式&#xD;Once：一次性触发模式&#xD;当该输入通道被设置为一次性触发模式后，在一次触发事件被检测到后，该通道将不允许后续的触发事件通过，直到被软件重置（REARM）后才允许新的触发事件通过。</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC2_AutoRearm</label>
             <UseOrNot/>
             <value>DISABLE</value>
             <Selections>
-              <sel>ENABLE</sel>
               <sel>DISABLE</sel>
+              <sel>ENABLE</sel>
             </Selections>
-            <Comment/>
+            <Comment>硬件自动REARM控制位&#xD;DISABLE：禁止硬件自动REARM&#xD;ENABLE：计数器周期结束时，自动REARM</Comment>
           </Property>
         </Device>
         <Device deviceId="BT1">
@@ -6065,15 +6071,14 @@
             <Selections>
               <sel notAvailable="BT1PWM">Timer</sel>
               <sel notAvailable="BT1Timer">PWM</sel>
-              <Comment>如果选timer，timer interval设置有效，如果选PWM，后面4个PWM设置有效</Comment>
             </Selections>
-            <Comment/>
+            <Comment>选择BT做PWM或Timer</Comment>
           </Property>
           <Property class="Text" property_class="BT1Timer">
             <label>Time Interval</label>
-            <value>1</value>
+            <value>10000</value>
             <validReg>^[0-9]+$</validReg>
-            <Comment>文本输入，单位us。定时中断服务函数需要user_bt1_handler要自定义</Comment>
+            <Comment>文本输入，单位us。定时中断服务函数需要user_bt0_handler要自定义</Comment>
           </Property>
           <Property class="Text" property_class="BT1PWM">
             <label>PWM Fre</label>
@@ -6094,6 +6099,7 @@
               <sel>BT_PWM_START_LOW</sel>
               <sel>BT_PWM_START_HIGH</sel>
             </Selections>
+            <Comment>BT开始计数时，BT_OUT状态设置&#xD;BT_PWM_START_LOW：低电平&#xD;BT_PWM_START_HIGH：高电平</Comment>
           </Property>
           <Property class="UIchoice" property_class="BT1PWM">
             <label>PWM IDLE Level</label>
@@ -6102,38 +6108,43 @@
               <sel>BT_PWM_IDLE_LOW</sel>
               <sel>BT_PWM_IDLE_HIGH</sel>
             </Selections>
+            <Comment>BT停止计数时，BT_OUT状态设置&#xD;BT_PWM_IDLE_LOW：低电平&#xD;BT_PWM_IDLE_HIGH：高电平</Comment>
           </Property>
-          <Property class="Bool" property_class="BT1PWM">
-            <label>BT_INTSRC_NONE</label>
-            <value>1</value>
-            <Comment>BT Interrupt Status</Comment>
+          <Property class="UIchoice" property_class="BT1PWM">
+            <label>Interrupt</label>
+            <value>DISABLE</value>
+            <Selections>
+              <sel notAvailable="BT1Int">DISABLE</sel>
+              <sel>ENABLE</sel>
+            </Selections>
+            <Comment/>
           </Property>
-          <Property class="Bool" property_class="BT1PWM">
+          <Property class="Bool" property_class="BT1Int">
             <label>BT_INTSRC_PEND</label>
             <value>0</value>
-            <Comment>BT Interrupt Status</Comment>
+            <Comment>PEND中断</Comment>
           </Property>
-          <Property class="Bool" property_class="BT1PWM">
+          <Property class="Bool" property_class="BT1Int">
             <label>BT_INTSRC_CMP</label>
             <value>0</value>
-            <Comment>BT Interrupt Status</Comment>
+            <Comment>CMP Match中断</Comment>
           </Property>
-          <Property class="Bool" property_class="BT1PWM">
+          <Property class="Bool" property_class="BT1Int">
             <label>BT_INTSRC_OVF</label>
             <value>0</value>
-            <Comment>BT Interrupt Status</Comment>
+            <Comment>OVF中断</Comment>
           </Property>
-          <Property class="Bool" property_class="BT1PWM">
+          <Property class="Bool" property_class="BT1Int">
             <label>BT_INTSRC_EVTRG</label>
             <value>0</value>
-            <Comment>BT Interrupt Status</Comment>
+            <Comment>事件触发中断</Comment>
           </Property>
           <Property class="UIchoice">
             <label>TRGEV</label>
             <value>DISABLE</value>
             <Selections>
-              <sel>ENABLE</sel>
               <sel>DISABLE</sel>
+              <sel>ENABLE</sel>
             </Selections>
             <Comment>可通过软件触发输出: csi_bt_soft_evtrg(BT1);</Comment>
           </Property>
@@ -6153,70 +6164,70 @@
             <UseOrNot/>
             <value>DISABLE</value>
             <Selections>
-              <sel>ENABLE</sel>
               <sel>DISABLE</sel>
+              <sel>ENABLE</sel>
             </Selections>
-            <Comment/>
+            <Comment>外部同步触发输入使能控制&#xD;DISABLE：禁止外部触发&#xD;ENABLE：使能外部触发</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC0_TrgMode</label>
             <UseOrNot/>
-            <value/>
+            <value>Continuous</value>
             <Selections>
               <sel>Continuous</sel>
               <sel>Once</sel>
             </Selections>
-            <Comment/>
+            <Comment>一次性同步触发模式选择&#xD;Continuous：连续触发模式&#xD;Once：一次性触发模式&#xD;当该输入通道被设置为一次性触发模式后，在一次触发事件被检测到后，该通道将不允许后续的触发事件通过，直到被软件重置（REARM）后才允许新的触发事件通过。</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC0_AutoRearm</label>
             <UseOrNot/>
             <value>DISABLE</value>
             <Selections>
-              <sel>ENABLE</sel>
               <sel>DISABLE</sel>
+              <sel>ENABLE</sel>
             </Selections>
-            <Comment/>
+            <Comment>硬件自动REARM控制位&#xD;DISABLE：禁止硬件自动REARM&#xD;ENABLE：计数器周期结束时，自动REARM</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC1_INC</label>
             <UseOrNot/>
             <value>DISABLE</value>
             <Selections>
-              <sel>ENABLE</sel>
               <sel>DISABLE</sel>
+              <sel>ENABLE</sel>
             </Selections>
-            <Comment/>
+            <Comment>外部同步触发输入使能控制&#xD;DISABLE：禁止外部触发&#xD;ENABLE：使能外部触发</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC1_TrgMode</label>
             <UseOrNot/>
-            <value/>
+            <value>Continuous</value>
             <Selections>
               <sel>Continuous</sel>
               <sel>Once</sel>
             </Selections>
-            <Comment/>
+            <Comment>一次性同步触发模式选择&#xD;Continuous：连续触发模式&#xD;Once：一次性触发模式&#xD;当该输入通道被设置为一次性触发模式后，在一次触发事件被检测到后，该通道将不允许后续的触发事件通过，直到被软件重置（REARM）后才允许新的触发事件通过。</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC1_AutoRearm</label>
             <UseOrNot/>
             <value>DISABLE</value>
             <Selections>
-              <sel>ENABLE</sel>
               <sel>DISABLE</sel>
+              <sel>ENABLE</sel>
             </Selections>
-            <Comment/>
+            <Comment>硬件自动REARM控制位&#xD;DISABLE：禁止硬件自动REARM&#xD;ENABLE：计数器周期结束时，自动REARM</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC2_STOP</label>
             <UseOrNot/>
             <value>DISABLE</value>
             <Selections>
-              <sel>ENABLE</sel>
               <sel>DISABLE</sel>
+              <sel>ENABLE</sel>
             </Selections>
-            <Comment/>
+            <Comment>外部同步触发输入使能控制&#xD;DISABLE：禁止外部触发&#xD;ENABLE：使能外部触发</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC2_TrgMode</label>
@@ -6226,17 +6237,17 @@
               <sel>Continuous</sel>
               <sel>Once</sel>
             </Selections>
-            <Comment/>
+            <Comment>一次性同步触发模式选择&#xD;Continuous：连续触发模式&#xD;Once：一次性触发模式&#xD;当该输入通道被设置为一次性触发模式后，在一次触发事件被检测到后，该通道将不允许后续的触发事件通过，直到被软件重置（REARM）后才允许新的触发事件通过。</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC2_AutoRearm</label>
             <UseOrNot/>
             <value>DISABLE</value>
             <Selections>
-              <sel>ENABLE</sel>
               <sel>DISABLE</sel>
+              <sel>ENABLE</sel>
             </Selections>
-            <Comment/>
+            <Comment>硬件自动REARM控制位&#xD;DISABLE：禁止硬件自动REARM&#xD;ENABLE：计数器周期结束时，自动REARM</Comment>
           </Property>
         </Device>
       </Category>
