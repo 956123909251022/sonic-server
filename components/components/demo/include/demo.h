@@ -29,9 +29,9 @@ extern int pin_irq_demo(void);
 //bt demo
 extern int bt_timer_demo(void);
 extern int bt_pwm_demo(void);
-extern int bt_sync_trg_start_demo(void);
-extern int bt_sync_trg_stop_demo(void);
-extern int bt_sync_trg_count_demo(void);
+extern int bt_sync_start_demo(void);
+extern int bt_sync_stop_demo(void);
+extern int bt_sync_count_demo(void);
 extern int bt_trg_out_demo(void);
 extern int bt_soft_trg_out_demo(void);
 
