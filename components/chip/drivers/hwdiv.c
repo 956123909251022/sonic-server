@@ -10,7 +10,7 @@
  * *********************************************************************
 */
 
-#include "soc.h"
+#include <soc.h>
 #include "csp_hwdiv.h"
 
 #define HWDIV_REG_BASE	(csp_hwdiv_t *)AHB_HWD_BASE

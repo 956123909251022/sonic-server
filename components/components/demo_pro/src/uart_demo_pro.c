@@ -175,3 +175,77 @@ int uart_recv_dynamic_int_demo(void)
 	
 	return iRet;
 }
+/** \brief uart interrupt handle function
+ * 
+ *  \param[in] ptUartBase: pointer of uart register structure
+ *  \param[in] byIdx: uart id number(0~2)
+ *  \return none
+ */ 
+__attribute__((weak)) void uart_irqhandler(csp_uart_t *ptUartBase,uint8_t byIdx)
+{
+	switch(csp_uart_get_isr(ptUartBase) & 0x080242)			//get RXFIFO/TXDONE/RXTO/RX interrupt
+	{
+		case UART_RXFIFO_INT_S:								//rx fifo interrupt; recommended use RXFIFO interrupt
+			
+			if(g_tUartTran[byIdx].byRecvMode == UART_RX_MODE_INT_DYN)
+				csp_uart_rto_en(ptUartBase);					//enable  receive timeout
+			//uint8_t byData = csp_uart_get_data(ptUartBase);
+			//ringbuffer_byte_in(g_tUartTran[byIdx].ptRingBuf, byData);
+			if(g_tUartTran[byIdx].ptRingBuf->hwDataLen < g_tUartTran[byIdx].ptRingBuf->hwSize)	//the same as previous line of code 
+			{
+				while(csp_uart_get_sr(ptUartBase) & UART_RNE)
+				{
+					g_tUartTran[byIdx].ptRingBuf->pbyBuf[g_tUartTran[byIdx].ptRingBuf->hwWrite] = csp_uart_get_data(ptUartBase);
+					g_tUartTran[byIdx].ptRingBuf->hwWrite = (g_tUartTran[byIdx].ptRingBuf->hwWrite + 1) % g_tUartTran[byIdx].ptRingBuf->hwSize;
+					g_tUartTran[byIdx].ptRingBuf->hwDataLen ++;
+				}
+			}
+			else
+				csp_uart_rxfifo_rst(ptUartBase);
+			
+			break;
+		case UART_RX_INT_S:																		//rx interrupt; 
+			if(g_tUartTran[byIdx].byRecvMode == UART_RX_MODE_INT_DYN)
+				csp_uart_rto_en(ptUartBase);													//enable  receive timeout
+				
+			csp_uart_clr_isr(ptUartBase, UART_RX_INT_S);										//clear interrupt
+			if(g_tUartTran[byIdx].ptRingBuf->hwDataLen < g_tUartTran[byIdx].ptRingBuf->hwSize)	
+			{
+				g_tUartTran[byIdx].ptRingBuf->pbyBuf[g_tUartTran[byIdx].ptRingBuf->hwWrite] = csp_uart_get_data(ptUartBase);
+				g_tUartTran[byIdx].ptRingBuf->hwWrite = (g_tUartTran[byIdx].ptRingBuf->hwWrite + 1) % g_tUartTran[byIdx].ptRingBuf->hwSize;
+				g_tUartTran[byIdx].ptRingBuf->hwDataLen ++;
+			}
+			
+			break;
+		case UART_TXDONE_INT_S:													//tx send complete; recommended use TXDONE interrupt
+			csp_uart_clr_isr(ptUartBase,UART_TXDONE_INT_S);						//clear interrupt status
+			g_tUartTran[byIdx].hwTxSize --;
+			g_tUartTran[byIdx].pbyTxData ++;
+			
+			if(g_tUartTran[byIdx].hwTxSize == 0)		
+				g_tUartTran[byIdx].bySendStat = UART_STATE_DONE;				//send complete
+			else
+				csp_uart_set_data(ptUartBase, *g_tUartTran[byIdx].pbyTxData);	//send data
+				
+			break;
+		case UART_RXTO_INT_S:
+			if(g_tUartTran[byIdx].ptRingBuf->hwDataLen < g_tUartTran[byIdx].ptRingBuf->hwSize)	//the same as previous line of code 
+			{
+				while(csp_uart_get_sr(ptUartBase) & UART_RNE)
+				{
+					g_tUartTran[byIdx].ptRingBuf->pbyBuf[g_tUartTran[byIdx].ptRingBuf->hwWrite] = csp_uart_get_data(ptUartBase);
+					g_tUartTran[byIdx].ptRingBuf->hwWrite = (g_tUartTran[byIdx].ptRingBuf->hwWrite + 1) % g_tUartTran[byIdx].ptRingBuf->hwSize;
+					g_tUartTran[byIdx].ptRingBuf->hwDataLen ++;
+				}
+			}
+			else
+				csp_uart_rxfifo_rst(ptUartBase);
+	
+			g_tUartTran[byIdx].byRecvStat = UART_STATE_FULL;
+			csp_uart_clr_isr(ptUartBase, UART_RXTO_INT_S);	
+			//csp_uart_rto_en(ptUartBase);					//enable  receive timeout
+			csp_uart_rto_dis(ptUartBase);					//disable  receive timeout
+		default:
+			break;
+	}
+}

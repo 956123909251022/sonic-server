@@ -12,7 +12,6 @@
 #ifndef _DRV_EFLASH_H_
 #define _DRV_EFLASH_H_
 
-#include "common.h"
 #include "csp.h"
 
 #ifdef __cplusplus

@@ -109,13 +109,9 @@ struct  csi_ept_deadzone_config
 	uint8_t       byChbDedb;
 	uint8_t       byChcDedb;
 	uint16_t      hwDpsc;                 //
-	uint16_t      hwRisingEdgereGister ;  //
-	uint16_t      hwFallingEdgereGister;  //
-	
-	
+	uint16_t      hwRisingEdgeTime ;  //
+	uint16_t      hwFallingEdgeTime;  //
 };
-
-
 
 typedef struct csi_ept_Chopper_config   csi_ept_Chopper_config_t;
 struct csi_ept_Chopper_config
@@ -124,12 +120,12 @@ struct csi_ept_Chopper_config
 	uint8_t       byChopperOutCdiv;
 	uint8_t       byChopperOutCduty;
 	uint8_t       byChopperOutCasel;
-	bool          byChopperOutCHAxEN;
-	bool          byChopperOutCHAyEN;
-	bool          byChopperOutCHBxEN;
-	bool          byChopperOutCHByEN;
-	bool          byChopperOutCHCxEN;
-	bool          byChopperOutCHCyEN;
+	bool          bChopperOutCHAxEN;
+	bool          bChopperOutCHAyEN;
+	bool          bChopperOutCHBxEN;
+	bool          bChopperOutCHByEN;
+	bool          bChopperOutCHCxEN;
+	bool          bChopperOutCHCyEN;
 };
 typedef enum{
 	EPTCHAX = 0x1,
@@ -150,8 +146,8 @@ typedef enum{
 	EMCOCY
 }csi_ept_osrchx_e;
 
-typedef struct csi_ept_emergency_config_   csi_ept_emergency_config_t;
-struct csi_ept_emergency_config_
+typedef struct csi_ept_emergency_config   csi_ept_emergency_config_t;
+struct csi_ept_emergency_config
 {
     uint8_t  byEpxInt ;
 	uint8_t  byPolEbix;
@@ -162,44 +158,43 @@ struct csi_ept_emergency_config_
 	uint8_t  byOrl0;
 	uint8_t  byOrl1;
 	uint8_t  byOsrshdw;
-	
 };
 
 typedef struct  csi_ept_Event_trigger_config   csi_ept_Event_trigger_config_t;
 struct  csi_ept_Event_trigger_config{
-	uint8_t   trg0sel  ;
-	uint8_t   trg1sel  ;
-	uint8_t   trg2sel  ;
-	uint8_t   trg3sel  ;	
-	uint8_t   trg0en   ;
-	uint8_t   trg1en   ;
-	uint8_t   trg2en   ;
-	uint8_t   trg3en   ;	
-	uint8_t   cnt0initfrc;
-	uint8_t   cnt1initfrc;
-	uint8_t   cnt2initfrc;
-	uint8_t   cnt3initfrc;
-	uint8_t   cnt0initen;
-	uint8_t   cnt1initen;
-	uint8_t   cnt2initen;
-	uint8_t   cnt3initen;
-	uint8_t   trg0prd ;
-	uint8_t   trg1prd ;
-	uint8_t   trg2prd ;
-	uint8_t   trg3prd ;
-	uint8_t   cnt0init;
-	uint8_t   cnt1init;
-	uint8_t   cnt2init;
-	uint8_t   cnt3init;
+	uint8_t   byTrg0sel  ;
+	uint8_t   byTrg1sel  ;
+	uint8_t   byTrg2sel  ;
+	uint8_t   byTrg3sel  ;	
+	uint8_t   byTrg0en   ;
+	uint8_t   byTrg1en   ;
+	uint8_t   byTrg2en   ;
+	uint8_t   byTrg3en   ;	
+	uint8_t   byCnt0initfrc;
+	uint8_t   byCnt1initfrc;
+	uint8_t   byCnt2initfrc;
+	uint8_t   byCnt3initfrc;
+	uint8_t   byCnt0initen;
+	uint8_t   byCnt1initen;
+	uint8_t   byCnt2initen;
+	uint8_t   byCnt3initen;
+	uint8_t   byTrg0prd ;
+	uint8_t   byTrg1prd ;
+	uint8_t   byTrg2prd ;
+	uint8_t   byTrg3prd ;
+	uint8_t   byCnt0init;
+	uint8_t   byCnt1init;
+	uint8_t   byCnt2init;
+	uint8_t   byCnt3init;
 	
-	uint8_t fltipscld;
-	uint8_t fltckprs;
-	uint8_t srcsel;
-	uint8_t blkinv;
-	uint8_t alignmd;
-	uint8_t crossmd;
-	uint16_t offset;
-	uint16_t window;
+	uint8_t   byFltipscld;
+	uint8_t   byFltckprs;
+	uint8_t   bySrcsel;
+	uint8_t   byBlkinv;
+	uint8_t   byAlignmd;
+	uint8_t   byCrossmd;
+	uint16_t  hwOffset;
+	uint16_t  hwWindow;
 	
 };
 
@@ -214,21 +209,20 @@ struct csi_ept_Global_load_control_config{
 };
 
 typedef enum {
-	
-	 byprdr=0,	
-     bycmpa,
-	 bycmpb,
-	 bycmpc,
-	 bycmpd,
-	 bydbdtr,
-	 bydbdtf,
-	 bydbcr,
-	 byaqcra,
-	 byaqcrb,
-	 byaqcrc,
-	 byaqcrd,
-	 byaqcsf,
-	 byemosr
+	EPT_GLO_PRDR=0,	
+	EPT_GLO_CMPA,
+	EPT_GLO_CMPB,
+	EPT_GLO_CMPC,
+	EPT_GLO_CMPD,
+	EPT_GLO_DBDTR,
+	EPT_GLO_DBDTF,
+	EPT_GLO_DBCR,
+	EPT_GLO_AQCR1,
+	EPT_GLO_AQCR2,
+	EPT_GLO_AQCR3,
+	EPT_GLO_AQCR4,
+	EPT_GLO_AQCSF,
+	EPT_GLO_EMOSR
 }csi_ept_Global_load_gldcfg_e;
 
 /// \struct csi_ept_filter_config_t
@@ -238,8 +232,8 @@ typedef struct {
 	uint8_t		byWinInv;			//window inversion 
 	uint8_t		byWinAlign;			//window alignment 
 	uint8_t		byWinCross;			//window cross
-	uint16_t	byWinOffset;		//window offset
-	uint16_t 	byWinWidth;			//window width		
+	uint16_t	hwWinOffset;		//window offset
+	uint16_t 	hwWinWidth;			//window width		
 } csi_ept_filter_config_t;
 
 typedef struct {
@@ -254,7 +248,7 @@ typedef struct {
 	uint8_t 	byEmfrcr;
     uint8_t 	byAqosf;
 	uint8_t 	byAqcsf;		
-} csi_ept_feglk_config_t;
+} csi_ept_reglk_config_t;
 
 typedef enum
 {
@@ -282,11 +276,18 @@ typedef enum{
 }csi_ept_channel_e;
 
 typedef enum{
-    EPT_CAMPA=1,
-	EPT_CAMPB,
-	EPT_CAMPC,
-	EPT_CAMPD
-}csi_ept_camp_e;
+    EPT_COMPA=1,
+	EPT_COMPB,
+	EPT_COMPC,
+	EPT_COMPD
+}csi_ept_comp_e;
+
+typedef enum {
+	EPT_CMPA= 0,
+	EPT_CMPB,
+	EPT_CMPC,
+	EPT_CMPD
+}csi_ept_csrc_sel_e;
 
 typedef enum{
     EPT_SYNCIN0 =0,
@@ -303,7 +304,45 @@ typedef enum{
 	EPT_DBDTR,
 	EPT_DBDTF,
 	EPT_DCKPSC,		
-}csi_ept_dbdldr_e;
+}csi_ept_dbldr_e;
+
+typedef enum {
+	EPT_DB_TCLK = 0,
+	EPT_DB_DPSC
+}csi_ept_dbclksrc_e;
+
+typedef enum {
+	EPT_DB_AR_BF = 0,
+	EPT_DB_BR_BF
+}csi_ept_dedb_e;
+
+typedef enum {
+	EPT_DBOUT_DIS = 0,    //OUTA close;       OUTB close
+	EPT_DBOUT_BF,         //OUTA close;       OUTB_Falling_edge
+	EPT_DBOUT_AR,         //OUTA Rising edge  OUTB close
+	EPT_DBOUT_AR_BF       //OUTA Rising edge  OUTB_Falling_edge
+}csi_ept_db_outsel_e;
+
+typedef enum {
+	EPT_DAB_POL_DIS = 0,
+	EPT_DB_POL_A,
+	EPT_DB_POL_B,
+	EPT_DB_POL_AB
+}csi_ept_db_pol_e; 
+
+typedef enum {
+	EPT_DBCHAIN_AR_AF = 0,
+	EPT_DBCHAIN_BR_AF,
+	EPT_DBCHAIN_AR_BF,
+	EPT_DBCHAIN_BR_BF
+}csi_ept_dbcha_insel_e;
+
+typedef enum {
+	EPT_CHOUTX_OUA_OUB = 0,
+	EPT_CHOUTX_OUA_OUA,
+	EPT_CHOUTX_OUB_OUB,
+	EPT_CHOUTX_OUB_OUA
+}csi_ept_dbchx_outsel_e;
 
 typedef enum
 {
@@ -318,14 +357,14 @@ typedef enum {
 	EPT_AQCSF_ZRO,
 	EPT_AQCSF_PRD,
 	EPT_AQCSF_ZRO_PRD
-}csp_ept_aqosf_e;
+}csi_ept_aqosf_e;
 
 typedef enum {
 	EPT_EM_AQCSF_NONE=0,
 	EPT_EM_AQCSF_L,
 	EPT_EM_AQCSF_H,
 	EPT_EM_AQCSF_NONE1
-}csp_ept_aqcsf_e;
+}csi_ept_aqcsf_e;
 
 
 typedef enum {
@@ -341,14 +380,30 @@ typedef enum {
 }csi_ept_stmd_e;
 
 typedef enum{
+	EPT_LDPSCR_ZRO = 0,
+	EPT_LDPSCR_PRD,
+	EPT_LDPSCR_ZROPRD
+}csi_ept_ldpscr_e;
+
+typedef enum{
 	EPT_STP_HZ = 0,
 	EPT_STP_L
 }csi_ept_stopst_e;
 
 typedef enum{
-	EPT_CAP_CONT = 0,
-	EPT_CAP_OT
+	EPT_CAPMD_CONT = 0,
+	EPT_CAPMD_OT,
 }csi_ept_capmd_e;
+
+typedef enum {
+	EPT_LDGLD_ZRO = 0,
+	EPT_LDGLD_PRD,
+	EPT_LDGLD_ZRO_PRD,
+	EPT_LDGLD_ZRO_LD_SYNC,
+	EPT_LDGLD_PRD_LD_SYNC,
+	EPT_LDGLD_ZRO_PRD_LD_SYNC,
+	EPT_LDGLD_SW = 0xf
+}csi_ept_ldgld_e;
 
 #define EPT_EVENT_SLCK_EBI(n)  n
 typedef enum{
@@ -356,12 +411,23 @@ typedef enum{
 	EPT_EVENT_HLCK,
 }csi_ept_event_e;
 
+#define EPT_ORLx_EBI0  1<<0
+#define EPT_ORLx_EBI1  1<<1
+#define	EPT_ORLx_EBI2  1<<2
+#define	EPT_ORLx_EBI3  1<<3
+#define	EPT_ORLx_CMP0  1<<4
+#define	EPT_ORLx_CMP1  1<<5
+
 typedef enum {
-	EPT_EBI0 = 0,
+	EPT_EBI0 = 1,
 	EPT_EBI1,
 	EPT_EBI2,
 	EPT_EBI3,
-	EPT_EBILVD,
+	EPT_CMP0,
+	EPT_CMP1,
+	EPT_LVD,
+	EPT_ORL0 = 0xe,
+	EPT_ORL1,
 }csi_ept_ebi_e;
 
 typedef enum {
@@ -375,22 +441,17 @@ typedef enum{
 	EPT_EP_HLCK
 }csi_ept_ep_lckmd_e;
 
+typedef enum{
+	EPT_OSR_IMMEDIATE=0,
+	EPT_OSR_SHADOW
+}csi_ept_Osrshdw_e;
+
 typedef enum {
 	EPT_EM_OUT_HZ,
 	EPT_EM_OUT_H,
 	EPT_EM_OUT_L,
 	EPT_EM_OUT_NONE
 }csi_ept_emout_e;
-
-typedef struct {
-	csi_ept_emout_e eChaxOut;
-	csi_ept_emout_e eChayOut;
-	csi_ept_emout_e eChbxOut;
-	csi_ept_emout_e eChbyOut;
-	csi_ept_emout_e eChcxOut;
-	csi_ept_emout_e eChcyOut;
-	csi_ept_emout_e eChdOut;
-}csi_ept_em_out_e;
 
 /****** EPT Event *****/
 typedef enum {
@@ -516,6 +577,12 @@ typedef enum{
 	EPT_FILT_SYNCIN5,			//filter input syncin5		
 }csi_ept_filter_insrc_e;
 
+typedef enum{
+	EPT_ALIGN_ZRO = 0,
+	EPT_ALIGN_PRD,
+	EPT_ALIGN_ZRO_PRD,
+	EPT_ALIGN_T1
+}csi_ept_alignmd_e;
 
 /**
  * \enum	csi_ept_cntinit_e
@@ -529,22 +596,84 @@ typedef enum{
 }csi_ept_cntinit_e;
 
 typedef enum{
-	EPT_EVTRG_Disable 	= 0,
-	EPT_EVTRG_Enable
+	EPT_EVTRG_DIS 	= 0,
+	EPT_EVTRG_EN
 }csi_ept_evtrg_e;
 
-typedef enum{
-	EPT_EVTRG_trigger_Disable = 0,
-	EPT_Enable_trigger_start
-}csi_ept_evtrg_trigger_e;
+typedef enum {
+	EPT_SHADOW = 0,
+	EPT_IMMEDIATE
+}csi_ept_ldmd_e;
 
+typedef enum{
+	EPT_LDMD_NEVER=0,
+	EPT_LDMD_ZRO,
+	EPT_LDMD_PRD,
+	EPT_LDMD_LD_SYNC=4,	
+}csi_ept_shdwldmd_e;
+
+typedef enum{
+	EPT_DB_IMMEDIATE =0,
+	EPT_DB_SHADOW      
+}csi_ept_dbldmd_e;
+
+typedef enum{
+	EPT_DBLDMD_NEVER = 0,
+	EPT_DBLDMD_ZRO,
+	EPT_DBLDMD_PRD,
+	EPT_DBLDMD_ZRO_PRD	
+}csi_ept_shdwdbldmd_e;
+
+typedef enum{
+	EPT_STP_ST_HZ = 0,
+	EPT_STP_ST_LOW
+}csi_ept_stpst_e;
+
+typedef enum{
+	EPT_EP0 = 0,
+	EPT_EP1,
+	EPT_EP2,
+	EPT_EP3,
+	EPT_EP4,
+	EPT_EP5,
+	EPT_EP6,
+	EPT_EP7,
+}csi_ept_ep_e;
+
+typedef enum {
+	EPT_NA = 0,
+	EPT_LO,
+	EPT_HI,
+	EPT_TG	
+}csi_ept_action_e;
+
+typedef enum{
+	EPT_EPFLT0_DIS = 0,
+	EPT_EPFLT0_2P,
+	EPT_EPFLT0_4P,
+	EPT_EPFLT0_6P,
+	EPT_EPFLT0_8P,
+	EPT_EPFLT0_16P,
+	EPT_EPFLT0_32P,
+	EPT_EPFLT0_64P
+}csi_ept_epflt0_e;
+typedef enum{
+	EPT_EPFLT1_DIS = 0,
+	EPT_EPFLT1_2P,
+	EPT_EPFLT1_4P,
+	EPT_EPFLT1_6P,
+	EPT_EPFLT1_8P,
+	EPT_EPFLT1_16P,
+	EPT_EPFLT1_32P,
+	EPT_EPFLT1_64P
+}csi_ept_epflt1_e;
 
 /**
  \brief change ept output dutycycle. 
  \param ptEptBase    ept handle to operate
  \param wActiveTime cmpx data
 */
-csi_error_t csi_ept_change_ch_duty(csp_ept_t *ptEptBase, csi_ept_camp_e eCh, uint32_t wActiveTime);
+csi_error_t csi_ept_change_ch_duty(csp_ept_t *ptEptBase, csi_ept_comp_e eCh, uint32_t wActiveTime);
 
 /**
  \brief chopper configuration
@@ -556,13 +685,13 @@ csi_error_t csi_ept_change_ch_duty(csp_ept_t *ptEptBase, csi_ept_camp_e eCh, uin
 */
 void csi_ept_set_cp(csp_ept_t *ptEptBase, uint8_t byCdiv, uint8_t byCduty, uint8_t byFirstWidth);
 
-/** 
-  \brief software force lock
-  \param[in] ptEptBase: pointer of ept register structure
-  \param[in] byEbi: external emergency input: EPT_EPI0~7 （EBI4 = LVD）
-  \return none
+/** \brief software force lock
+ * 
+ *  \param[in] ptEptBase: pointer of ept register structure
+ *  \param[in] eEp: external emergency input: EPT_EPI0~7 （EBI4 = LVD）
+ *  \return none
  */
-void csi_ept_force_em(csp_ept_t *ptEptBase, csp_ept_ep_e byEbi);
+void csi_ept_force_em(csp_ept_t *ptEptBase, csi_ept_ep_e eEp);
 
 /**
  \brief get harklock status
@@ -641,22 +770,22 @@ csi_error_t csi_ept_set_evcntinit(csp_ept_t *ptEptBase, uint8_t byCntChx, uint8_
 */
 csi_error_t csi_ept_evtrg_enable(csp_ept_t *ptEptBase, csi_ept_trgout_e eTrgOut, bool bEnable);
 
-/** 
-  \brief   One time software output 
-  \param[in]   ptEptBase: pointer of ept register structure 
-  \param[in]   byCh: EPT_OSTSFA/EPT_OSTSFB/EPT_OSTSFC/EPT_OSTSFD		
-  \param[in]   bEnable: NA = 0,LO,HI,TG	
-  \return error code \ref csi_error_t
+/** \brief   One time software output 
+ * 
+ *  \param[in]   ptEptBase: pointer of ept register structure 
+ *  \param[in]   hwCh: EPT_OSTSFA/EPT_OSTSFB/EPT_OSTSFC/EPT_OSTSFD		
+ *  \param[in]   eAction: refer to csi_ept_action_e	
+ *  \return error code \ref csi_error_t
  */
-csi_error_t csi_ept_onetime_software_output(csp_ept_t *ptEptBase, uint16_t byCh, csp_ept_action_e bEnable);
+csi_error_t csi_ept_onetime_software_output(csp_ept_t *ptEptBase, uint16_t hwCh, csi_ept_action_e eAction);
 
 /** 
   \brief  Continuous software waveform loading control
   \param[in] ptEptBase: pointer of ept register structure
-  \param[in] bEnable:    refer to csp_ept_aqosf_e
+  \param[in] bEnable:    refer to csi_ept_aqosf_e
   \return  none
  */
-void csi_ept_aqcsfload_config(csp_ept_t *ptEptBase, csp_ept_aqosf_e bEnable);
+void csi_ept_aqcsfload_config(csp_ept_t *ptEptBase, csi_ept_aqosf_e bEnable);
 
 /** 
   \brief start ept
@@ -694,7 +823,7 @@ void csi_ept_set_os_mode(csp_ept_t *ptEptBase, csi_ept_opmd_e eMode);
  \param[in] eSt :	 EPT_STP_HZ/EPT_STP_LOW
  \return none
  */
-void csi_ept_set_stop_st(csp_ept_t *ptEptBase, csp_ept_stpst_e eSt);
+void csi_ept_set_stop_st(csp_ept_t *ptEptBase, csi_ept_stpst_e eSt);
 
 /** 
  \brief get counter period to calculate the duty cycle. 
@@ -750,14 +879,14 @@ void csi_ept_set_sync(csp_ept_t *ptEptBase, csi_ept_trgin_e eTrgIn, csi_ept_trgm
  *  \param[in] bEnable:    refer to  csp_ept_aqosf_e
  *  \return  none
  */
-csi_error_t csi_ept_continuous_software_waveform(csp_ept_t *ptEptBase, csi_ept_channel_e byCh, csp_ept_aqcsf_e bEnable);
+csi_error_t csi_ept_continuous_software_waveform(csp_ept_t *ptEptBase, csi_ept_channel_e byCh, csi_ept_aqcsf_e eAction);
 /**
  \brief  ept configuration Loading
  \param  ptEptBase    	ept handle to operate 
- \param  tCfg           refer to csi_ept_Global_load_control_config_t
+ \param  ptGlobal           refer to csi_ept_Global_load_control_config_t
  \return none
 */
-void csi_ept_gload_config(csp_ept_t *ptEptBase,csi_ept_Global_load_control_config_t *Global);
+void csi_ept_gload_config(csp_ept_t *ptEptBase,csi_ept_Global_load_control_config_t *ptGlobal);
  /**
  \brief  wave configuration
  \param  ptEptBase    	ept handle to operate 
@@ -776,15 +905,15 @@ csi_error_t  csi_ept_wave_init(csp_ept_t *ptEptBase, csi_ept_pwmconfig_t *pteptP
  */
 csi_error_t csi_ept_burst_enable(csp_ept_t *ptEptBase,uint8_t byCgsrc,uint8_t byCgflt, bool bEnable);
 
- /**
- \brief  DeadZoneTime configuration loading 
- \param  ptEptBase    	ept handle to operate 
- \param  byVal         refer to csi_ept_dbdldr_e
- \param  byWod         refer to csp_ept_shdw_e
- \param  byWod2	       refer to csp_ept_lddb_e
- \return CSI_OK /CSI_ERROR
-*/
-csi_error_t csi_ept_dbload_config(csp_ept_t *ptEptBase, csi_ept_dbdldr_e byVal,csp_ept_shdw_e byWod,csp_ept_lddb_e byWod2);
+/** \brief DeadZoneTime configuration loading 
+ *  
+ *  \param[in] ptEptBase: pointer of ept register structure
+ *  \param[in] eDbldr: refer to csi_ept_dbldr_e
+ *  \param[in] eDbldmd: refer to csi_ept_dbldmd_e
+ *  \param[in] eShdwdbldmd: refer to csi_ept_shdwdbldmd_e
+ *  \return error code \ref csi_error_t
+ */
+csi_error_t csi_ept_dbload_config(csp_ept_t *ptEptBase, csi_ept_dbldr_e eDbldr,csi_ept_dbldmd_e eDbldmd,csi_ept_shdwdbldmd_e eShdwdbldmd);
 
 /**
  \brief  CLDCFG loading
@@ -828,7 +957,7 @@ csi_error_t csi_ept_chopper_enable(csp_ept_t *ptEptBase, csi_ept_chx_e byCh, boo
  \param  pteptPwmCfg   	refer to csi_ept_captureconfig_t
  \return CSI_OK /CSI_ERROR
 */
-csi_error_t csi_ept_capture_init(csp_ept_t *ptEptBase, csi_ept_captureconfig_t *pteptPwmCfg);
+csi_error_t csi_ept_capture_init(csp_ept_t *ptEptBase, csi_ept_captureconfig_t *ptEptCapCfg);
 
 /**
   \brief   One time software output 
@@ -836,7 +965,7 @@ csi_error_t csi_ept_capture_init(csp_ept_t *ptEptBase, csi_ept_captureconfig_t *
   \param   byCh	         EPT_OSTSFA/EPT_OSTSFB/EPT_OSTSFC/EPT_OSTSFD		
   \param   bEnable 		NA = 0,LO,HI,TG	
 */
-csi_error_t csi_ept_Onetime_software_output(csp_ept_t *ptEptBase, uint16_t byCh, csp_ept_action_e bEnable);
+csi_error_t csi_ept_onetime_software_output(csp_ept_t *ptEptBase, uint16_t byCh, csi_ept_action_e bEnable);
 
 /** \brief Continuous software waveform control
  *  \param[in] ptEptBase: pointer of ept register structure
@@ -844,7 +973,7 @@ csi_error_t csi_ept_Onetime_software_output(csp_ept_t *ptEptBase, uint16_t byCh,
  *  \param[in] bEnable:    refer to  csp_ept_aqosf_e
  *  \return  none
  */
-csi_error_t csi_ept_continuous_software_output(csp_ept_t *ptEptBase, csi_ept_channel_e byCh, csp_ept_aqcsf_e bEnable);
+csi_error_t csi_ept_continuous_software_output(csp_ept_t *ptEptBase, csi_ept_channel_e byCh, csi_ept_aqcsf_e bEnable);
 
 /**
  \brief  State of emergency configuration 
@@ -854,28 +983,22 @@ csi_error_t csi_ept_continuous_software_output(csp_ept_t *ptEptBase, csi_ept_cha
 */
 csi_error_t csi_ept_emergency_config(csp_ept_t *ptEptBase, csi_ept_emergency_config_t *tCfg);
 
-/**
- \brief  State of emergency configuration 
- \param  ptEptBase    	ept handle to operate 
- \param  tCfg           refer to csi_ept_emergency_config_t
- \return CSI_OK /CSI_ERROR
-*/
-csi_error_t csi_ept_emergency_pinout(csp_ept_t *ptEptBase,csi_ept_osrchx_e  byCh ,csp_ept_emout_e byCh2);
-
-/** 
-  \brief clear harklock status
-  \param[in] ptEptBase: pointer of ept register structure
-  \param[in] eEbi: external emergency input: csp_ept_ep_e  
-  \return none               
+/** \brief State of emergency configuration 
+ * 
+ *  \param[in] ptEptBase: pointer of ept register structure
+ *  \param[in] eOsrCh: refer to csi_ept_osrchx_e
+ *  \param[in] eEmout: refer to csp_ept_emout_e
+ *  \return error code \ref csi_error_t
  */
-void csi_ept_clr_hdlck(csp_ept_t *ptEptBase, csp_ept_ep_e eEbi);
+csi_error_t csi_ept_emergency_pinout(csp_ept_t *ptEptBase,csi_ept_osrchx_e  eOsrCh ,csi_ept_emout_e eEmout);
 
-/** 
-  \brief get softlock status
-  \param[in] ptEptBase: pointer of ept register structure
-  \return uint8_t 0b_ _ _ _ _ _ _ _
+/** \brief clear harklock status
+ * 
+ *  \param[in] ptEptBase: pointer of ept register structure
+ *  \param[in] eEp: external emergency input: csi_ept_ep_e  
+ *  \return none               
  */
-uint8_t csi_ept_get_sftlck_st(csp_ept_t *ptEptBase);
+void csi_ept_clr_hdlck(csp_ept_t *ptEptBase, csi_ept_ep_e eEp);
 
 /** 
   \brief get softlock status
@@ -885,12 +1008,19 @@ uint8_t csi_ept_get_sftlck_st(csp_ept_t *ptEptBase);
 uint8_t csi_ept_get_sftlck_st(csp_ept_t *ptEptBase);
 
 /** 
-  \brief clear softlock status
+  \brief get softlock status
   \param[in] ptEptBase: pointer of ept register structure
-  \param[in] eEpi: external emergency input: csp_ept_ep_e
-  \return none
+  \return uint8_t 0b_ _ _ _ _ _ _ _
  */
-void csp_ept_clr_sftlck(csp_ept_t *ptEptBase, csp_ept_ep_e eEpi);
+uint8_t csi_ept_get_sftlck_st(csp_ept_t *ptEptBase);
+
+/** \brief clear softlock status
+ * 
+ *  \param[in] ptEptBase: pointer of ept register structure
+ *  \param[in] eEp: external emergency input: csi_ept_ep_e
+ *  \return none
+ */
+void csi_ept_clr_sftlck(csp_ept_t *ptEptBase, csi_ept_ep_e eEp);
 
 /**
   \brief enable/disable ept in debug mode
@@ -900,19 +1030,21 @@ void csp_ept_clr_sftlck(csp_ept_t *ptEptBase, csp_ept_ep_e eEpi);
  */
 void csi_ept_debug_enable(csp_ept_t *ptEptBase, bool bEnable);
 
-/**
-  \brief       enable/disable ept emergencyinterruption
-  \param[in]   ptEptBase       EPT handle to operate
-  \param[in]   eEbi		       refer to csp_ept_emint_e
-*/
-void csi_ept_emergency_int_enable(csp_ept_t *ptEptBase, csp_ept_emint_e eEm);
-/** \brief ept  input  config  
+/** \brief enable/disable ept emergencyinterruption
+ * 
  *  \param[in] ptEptBase: pointer of ept register structure
- *  \param[in] eInt:     refer to to csp_ept_int_e
- *  \param[in] bEnable:  ENABLE/DISABLE
+ *  \param[in] eEbi: refer to csi_ept_emint_e
+ *  \return none
+ */
+void csi_ept_emint_en(csp_ept_t *ptEptBase, csi_ept_emint_e eEm);
+/** \brief ept  int  config 
+ *
+ *  \param[in] ptEptBase: pointer of ept register structure
+ *  \param[in] eInt: refer to to csi_ept_intsrc_e
+ *  \param[in] bEnable: ENABLE/DISABLE
  *  \return none;
  */
-void csi_ept_int_enable(csp_ept_t *ptEptBase, csp_ept_int_e eInt, bool bEnable);
+void csi_ept_int_enable(csp_ept_t *ptEptBase, csi_ept_intsrc_e eInt, bool bEnable);
 
 __attribute__((weak)) void ept_initen_irqhandler(csp_ept_t *ptEptBase);
 
@@ -922,27 +1054,27 @@ __attribute__((weak)) void ept_initen_irqhandler(csp_ept_t *ptEptBase);
  \param  tCfg           refer to csi_ept_feglk_config_t
  \return none
 */
-void csi_ept_reglk_config(csp_ept_t *ptEptBase,csi_ept_feglk_config_t *Global);
+void csi_ept_reglk_config(csp_ept_t *ptEptBase,csi_ept_reglk_config_t *ptReglk);
 
  /**
  \brief  Channel AQLDR configuration
  \param  ptEptBase    	pointer of ept register structure
- \param  tld   	        refer to csp_ept_ld_e
- \param  tldamd         refer to csp_ept_ldamd_e
+ \param  eLdmd   	        refer to csi_ept_ldmd_e
+ \param  eShdwldmd         refer to csi_ept_shdwldmd_e
  \param  channel        refer to csi_ept_channel_e
  \return CSI_OK /CSI_ERROR
 */
-csi_error_t csi_ept_channel_aqload_config(csp_ept_t *ptEptBase, csp_ept_ld_e tld, csp_ept_ldamd_e tldamd ,csi_ept_channel_e eChannel);
+csi_error_t csi_ept_channel_aqload_config(csp_ept_t *ptEptBase, csi_ept_ldmd_e eLdmd, csi_ept_shdwldmd_e eShdwldmd ,csi_ept_channel_e eChannel);
 
- /**
- \brief  Channel CMPLDR configuration
- \param  ptEptBase    	pointer of ept register structure
- \param  tld   	        refer to csp_ept_ld_e
- \param  tldamd         refer to csp_ept_ldamd_e
- \param  channel        refer to csi_ept_channel_e
- \return CSI_OK /CSI_ERROR
-*/
-csi_error_t csi_ept_channel_cmpload_config(csp_ept_t *ptEptBase, csp_ept_cmpdata_ldmd_e tld, csp_ept_ldamd_e tldamd ,csi_ept_camp_e eChannel);
+/** \brief Channel CMPLDR configuration
+ * 
+ *  \param[in] ptEptBase: pointer of ept register structure
+ *  \param[in] eLdmd: refer to csi_ept_ldmd_e
+ *  \param[in] eShdwldmd: refer to csi_ept_shdwldmd_e
+ *  \param[in] eChannel: refer to csi_ept_comp_e
+ *  \return error code \ref csi_error_t
+ */
+csi_error_t csi_ept_channel_cmpload_config(csp_ept_t *ptEptBase, csi_ept_ldmd_e eLdmd, csi_ept_shdwldmd_e eShdwldmd ,csi_ept_comp_e eChannel);
 #ifdef __cplusplus
 }
 #endif

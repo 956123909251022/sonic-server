@@ -10,7 +10,7 @@
  * *********************************************************************
 */  
 
-#include "string.h"
+#include <string.h>
 #include "csp.h"
 
 extern char _end_rodata[];

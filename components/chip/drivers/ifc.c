@@ -11,10 +11,9 @@
 */
 
 /* include ----------------------------------------------------------------*/
-#include "csp.h"
-#include "irq.h"
-#include "soc.h"
-#include "ifc.h"
+#include <irq.h>
+#include <soc.h>
+#include <ifc.h>
 
 /* externs function--------------------------------------------------------*/
 /* private function--------------------------------------------------------*/

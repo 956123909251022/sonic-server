@@ -106,16 +106,16 @@ void gptb0_init(void)
 	tPwmCfg.wInt 		 = GPTB_INTSRC_NONE;                    //interrupt
 	csi_gptb_wave_init(GPTB0, &tPwmCfg);
 	csi_gptb_pwmchannel_config_t  channel;
-	channel.byActionZro    =   B_LO;
-	channel.byActionPrd    =   B_NA;
-	channel.byActionC1u    =   B_HI;
-	channel.byActionC1d    =   B_LO;
-	channel.byActionC2u    =   B_HI;
-	channel.byActionC2d    =   B_LO;
-	channel.byActionT1u    =   B_LO;
-	channel.byActionT1d    =   B_LO;
-	channel.byActionT2u    =   B_NA;
-	channel.byActionT2d    =   B_NA;
+	channel.byActionZro    =   GPTB_LO;
+	channel.byActionPrd    =   GPTB_NA;
+	channel.byActionC1u    =   GPTB_HI;
+	channel.byActionC1d    =   GPTB_LO;
+	channel.byActionC2u    =   GPTB_HI;
+	channel.byActionC2d    =   GPTB_LO;
+	channel.byActionT1u    =   GPTB_LO;
+	channel.byActionT1d    =   GPTB_LO;
+	channel.byActionT2u    =   GPTB_NA;
+	channel.byActionT2d    =   GPTB_NA;
 	channel.byChoiceC1sel  =   GPTB_CMPA;
 	channel.byChoiceC2sel  =   GPTB_CMPA;
 	csi_gptb_channel_config(GPTB0, &channel,  GPTB_CHANNEL_1);//channel

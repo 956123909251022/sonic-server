@@ -328,12 +328,12 @@ csi_error_t csi_spi_send_fast(csp_spi_t *ptSpiBase,void *pDataOut,uint8_t bySize
 /** \brief spi send and receive fast
  * 
  *  \param[in] ptSpiBase: pointer of spi register structure
- *  \param[in] pDataOut :send data buffer pointer 
- *  \param[in] pDataIn  :receive data buffer pointer 
+ *  \param[in] pbyDataOut :send data buffer pointer 
+ *  \param[in] pbyDataIn  :receive data buffer pointer 
  *  \param[in] wSize ：length
  *  \return error code \ref csi_error_t
  */ 
-csi_error_t csi_spi_send_receive_fast(csp_spi_t *ptSpiBase, uint8_t *pDataOut,uint8_t *pDataIn, uint32_t wSize);
+csi_error_t csi_spi_send_receive_fast(csp_spi_t *ptSpiBase, uint8_t *pbyDataOut,uint8_t *pbyDataIn, uint32_t wSize);
 //-------------------------------------------------------------------------------------------------------------------------------------
 //DMA
 /** \brief send data of spi by DMA
@@ -354,8 +354,21 @@ csi_error_t csi_spi_send_dma(csp_spi_t *ptSpiBase, const void *pData, uint16_t h
  *  \param[in] byDmaCh: channel of DMA(0 -> 3)
  *  \return  error code \ref csi_error_t
  */
-csi_error_t csi_spi_recv_dma(csp_spi_t *ptSpiBase, void *pbyRecv, uint16_t hwSize,  uint8_t byDmaCh);
+csi_error_t csi_spi_recv_dma(csp_spi_t *ptSpiBase, void *pData, uint16_t hwSize,  uint8_t byDmaCh);
 
+/** \brief spi receive data,interrupt call 
+ * 
+ *  \param[in] ptSpiBase: pointer of SPI reg structure.
+ *  \return none
+ */ 
+void apt_spi_intr_recv_data(csp_spi_t *ptSpiBase);
+
+/** \brief spi send data,interrupt call
+ * 
+ *  \param[in] ptSpiBase: pointer of SPI reg structure.
+ *  \return none
+ */ 
+void apt_spi_intr_send_data(csp_spi_t *ptSpiBase);
 
 #ifdef __cplusplus
 }

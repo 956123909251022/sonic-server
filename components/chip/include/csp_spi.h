@@ -321,10 +321,10 @@ static inline uint8_t csp_spi_get_rxifl(csp_spi_t *ptSpiBase)
 	return ptSpiBase->CR1 & (SPI_RXIFL_MSK) ;
 }
 
-static inline void csp_spi_set_clk_div(csp_spi_t *ptSpiBase,uint8_t wScr,uint8_t wCpsdvsr)
+static inline void csp_spi_set_clk_div(csp_spi_t *ptSpiBase,uint8_t wScr,uint8_t byCpsdvsr)
 {
 	ptSpiBase->CR0 = (ptSpiBase->CR0 & (~SPI_SCR_MSK)) | SPI_SCR(wScr);
-	ptSpiBase->CPSR  = wCpsdvsr;	
+	ptSpiBase->CPSR  = byCpsdvsr;	
 }
 
 static inline uint8_t csp_spi_write_ready(csp_spi_t *ptSpiBase)

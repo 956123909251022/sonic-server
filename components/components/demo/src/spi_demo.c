@@ -14,6 +14,7 @@
  * <tr><th> Date  <th>Version    <th>Author  <th>Description
  * <tr><td> 2020-11-24 <td>V0.0  <td>ZJY     <td>initial
  * <tr><td> 2021-11-29 <td>V0.1  <td>LQ      <td>modify
+ * <tr><td> 2023-5-10  <td>V0.2  <td>wch     <td>modify
  * </table>
  * *********************************************************************
 */
@@ -130,7 +131,7 @@ void spi_slave_receive_int_demo(void)
 	t_SpiConfig.bySpiMode = SPI_SLAVE;						 //作为从机	
 	t_SpiConfig.bySpiPolarityPhase = SPI_FORMAT_CPOL0_CPHA1; //clk空闲电平为0，相位为在第二个边沿采集数据
 	t_SpiConfig.bySpiFrameLen = SPI_FRAME_LEN_8;             //帧数据长度为8bit
-	t_SpiConfig.wSpiBaud = 2000000; 						 //通讯速率2兆,此参数取决于主机			
+	t_SpiConfig.wSpiBaud = 0; 						 		 //作从机时，通讯速率取决于主机			
 	t_SpiConfig.byInt=  SPI_INTSRC_RXIM;					 //初始配置接收中断	
 	t_SpiConfig.byRxMode = SPI_RX_MODE_INT;                  //接收使用中断模式
 	csi_spi_init(SPI0,&t_SpiConfig);				
@@ -262,7 +263,7 @@ void spi_slave_send_receive_int_demo(void)
 	t_SpiConfig.bySpiMode = SPI_SLAVE;						 //作为从机
 	t_SpiConfig.bySpiPolarityPhase = SPI_FORMAT_CPOL0_CPHA1; //clk空闲电平为0，相位为在第二个边沿采集数据
 	t_SpiConfig.bySpiFrameLen = SPI_FRAME_LEN_8;             //帧数据长度为8bit
-	t_SpiConfig.wSpiBaud = 2000000; 						 //通讯速率2兆,此参数取决于主机			
+	t_SpiConfig.wSpiBaud = 0; 						 		 //作从机时，通讯速率取决于主机			
 	t_SpiConfig.byInt= SPI_INTSRC_RXIM | SPI_INTSRC_TXIM;	 //初始配置发送和接收中断
 	t_SpiConfig.byTxRxMode = SPI_TX_RX_MODE_INT;             //收发使用中断模式
 	csi_spi_init(SPI0,&t_SpiConfig);				
@@ -746,4 +747,58 @@ void spi_etcb_dma_send_receive(void)
 		nop;
 	}
 
+}
+
+/** \brief spi interrupt handle weak function
+ * 
+ *  \param[in] ptSpiBase: pointer of spi register structure
+ *  \return none
+ */ 
+__attribute__((weak)) void spi_irqhandler(csp_spi_t *ptSpiBase)
+{	
+	uint32_t wStatus = csp_spi_get_isr(ptSpiBase);
+	//fifo rx 
+	if(wStatus & SPI_RXIM_INT)
+	{
+		//for reference
+		apt_spi_intr_recv_data(ptSpiBase);
+	}
+	//fifo tx 
+	if(wStatus & SPI_TXIM_INT)		
+	{
+		//for reference
+		apt_spi_intr_send_data(ptSpiBase);
+	}
+	
+	//fifo overflow
+	if(wStatus & SPI_ROTIM_INT)
+	{	
+		//for reference
+		csi_spi_clr_rxfifo(ptSpiBase);
+		csp_spi_clr_isr(ptSpiBase, SPI_ROTIM_INT);
+	}
+	
+	//fifo rx timeout
+	if(wStatus & SPI_RTIM_INT)		
+	{	
+		//for reference
+		csp_spi_clr_isr(ptSpiBase, SPI_RTIM_INT);
+		
+		for(uint8_t byIdx = 0; byIdx < g_tSpiTransmit.byRxFifoLength; byIdx++)
+		{
+			if(csp_spi_get_sr(ptSpiBase) & SPI_RNE)
+			{
+				*g_tSpiTransmit.pbyRxData = csp_spi_get_data(ptSpiBase);
+				g_tSpiTransmit.pbyRxData++;
+			}
+			else
+			{
+				break;
+			}			
+		}		
+		g_tSpiTransmit.byRxSize = 0;
+		g_tSpiTransmit.byReadable = SPI_STATE_IDLE;
+		csp_spi_int_enable(ptSpiBase, SPI_RXIM_INT | SPI_RTIM_INT, false);
+
+	}
 }

@@ -8,7 +8,7 @@
  * </table>
  * *********************************************************************
 */
-#include "sys_clk.h"
+#include <sys_clk.h>
 #include <drv/common.h>
 #include <drv/gpta.h>
 #include <drv/irq.h>

@@ -4,9 +4,9 @@
  * \copyright Copyright (C) 2015-2020 @ APTCHIP
  * <table>
  * <tr><th> Date  <th>Version  <th>Author  <th>Description
- * <tr><td> 2020-8-20 <td>V0.0  <td>ZJY   <td>initial
- * <tr><td> 2020-12-3 <td>V0.1  <td>WNN  <td>modiied
- * 
+ * <tr><td> 2020-8-20  <td>V0.0  <td>ZJY   <td>initial
+ * <tr><td> 2020-12-3  <td>V0.1  <td>WNN  <td>modiied
+ * <tr><td> 2023-5-10  <td>V0.2 <td>wch     <td>modify
  * </table>
  * *********************************************************************
 */
@@ -89,10 +89,6 @@ typedef enum {
  
  ///BLKER/BLKDR/BLKST
 #define LED_BLK_MSK						(0x3ff)
-typedef enum {
-	LED_BLK_ON,
-	LED_BLK_OFF
-}csp_led_blk_e;
 
 ///SEGDATA0~9
 #define LED_SEGDATA_POS(n)              n                                              /*!< LED SEGDATn: Position */
@@ -113,9 +109,9 @@ static inline void csp_led_set_clk(csp_led_t *ptLedBase, csp_led_ledclk_e eClk)
 {
 	ptLedBase -> CR = (ptLedBase -> CR &(~LED_LEDCLK_MSK)) | (eClk << LED_LEDCLK_POS);
 }
-static inline void csp_led_set_commask(csp_led_t *ptLedBase, uint16_t byComMsk)
+static inline void csp_led_set_commask(csp_led_t *ptLedBase, uint16_t hwComMsk)
 {
-	ptLedBase -> CR = (ptLedBase -> CR & (~LED_COM_EN_MSK)) | (byComMsk << LED_COM_EN_POS);
+	ptLedBase -> CR = (ptLedBase -> CR & (~LED_COM_EN_MSK)) | (hwComMsk << LED_COM_EN_POS);
 }
 static inline void csp_led_set_brt(csp_led_t *ptLedBase, csp_led_brt_e eBrt)
 {
