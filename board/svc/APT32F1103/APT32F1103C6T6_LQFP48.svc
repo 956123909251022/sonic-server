@@ -21,7 +21,7 @@
         <Pin pinNum="1" group="PA0" displayName="PA0.6">
           <Property class="UIchoice">
             <label>GPIO/AF</label>
-            <value>AF</value>
+            <value>GPIO</value>
             <Selections>
               <sel>GPIO</sel>
               <sel>AF</sel>
@@ -30,7 +30,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value>GPTB0_CHB</value>
+            <value>LCD_COM0</value>
             <Selections>
               <sel>LCD_COM0</sel>
               <sel>GPTB0_CHB</sel>
@@ -2676,7 +2676,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>UART2_TX</value>
             <Selections>
               <sel>UART2_TX</sel>
               <sel>GPTB0_CHAX</sel>
@@ -2742,7 +2742,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>UART2_RX</value>
             <Selections>
               <sel>UART2_RX</sel>
               <sel>GPTB0_CHAY</sel>
@@ -2869,6 +2869,7 @@
           <label>System Clock</label>
           <Device deviceId="SystemClock">
             <GenCodeFuncName>SysClockInitFunc</GenCodeFuncName>
+            <UseOrNot>0</UseOrNot>
             <label>System Clock</label>
             <Property class="UIchoice">
               <label>Clock Source</label>
@@ -5320,7 +5321,7 @@
           </Property>
           <Property class="UIchoice">
             <label>RXMode</label>
-            <value>UART_RX_MODE_INT</value>
+            <value>UART_RX_MODE_POLL</value>
             <Selections>
               <sel>UART_RX_MODE_POLL</sel>
               <sel>UART_RX_MODE_INT</sel>
@@ -5853,11 +5854,11 @@
         <label>LPT</label>
         <Device deviceId="LPT">
           <GenCodeFuncName>LPTInitFunc</GenCodeFuncName>
-          <UseOrNot>1</UseOrNot>
+          <UseOrNot>0</UseOrNot>
           <label>LPT</label>
           <Property class="UIchoice">
             <label>Mode</label>
-            <value>PWM</value>
+            <value>Timer</value>
             <Selections>
               <sel notAvailable="LPTPWM">Timer</sel>
               <sel notAvailable="LPTTimer">PWM</sel>
@@ -5908,6 +5909,26 @@
               <sel>LPT_PWM_IDLE_Z</sel>
               <sel>LPT_PWM_IDLE_LOW</sel>
             </Selections>
+          </Property>
+          <Property class="Bool" property_class="LPTPWM">
+            <label>LPT_INTSRC_NONE</label>
+            <value>1</value>
+            <Comment>NONE Interrupt</Comment>
+          </Property>
+          <Property class="Bool" property_class="LPTPWM">
+            <label>LPT_INTSRC_TRGEV0</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="LPTPWM">
+            <label>LPT_INTSRC_MATCH</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="LPTPWM">
+            <label>LPT_INTSRC_PEND</label>
+            <value>1</value>
+            <Comment/>
           </Property>
         </Device>
       </Category>
@@ -7748,29 +7769,90 @@
             </Selections>
             <Comment>CMPD捕捉载入后，计数器值计数状态控制位(1h：CMPA触发后，计数器值进行重置;0h：CMPA触发后，计数器值不进行重置)</Comment>
           </Property>
-          <Property class="UIchoice">
-            <label>Interrupt Source</label>
-            <value>EPT_INTSRC_NONE</value>
-            <Selections>
-              <sel>EPT_INTSRC_NONE</sel>
-              <sel>EPT_INTSRC_TRGEV0</sel>
-              <sel>EPT_INTSRC_TRGEV1</sel>
-              <sel>EPT_INTSRC_TRGEV2</sel>
-              <sel>EPT_INTSRC_CAPLD0</sel>
-              <sel>EPT_INTSRC_CAPLD1</sel>
-              <sel>EPT_INTSRC_CAPLD2</sel>
-              <sel>EPT_INTSRC_CAPLD3</sel>
-              <sel>EPT_INTSRC_CAU</sel>
-              <sel>EPT_INTSRC_CAD</sel>
-              <sel>EPT_INTSRC_CBU</sel>
-              <sel>EPT_INTSRC_CBD</sel>
-              <sel>EPT_INTSRC_CCU</sel>
-              <sel>EPT_INTSRC_CCD</sel>
-              <sel>EPT_INTSRC_CDU</sel>
-              <sel>EPT_INTSRC_CDD</sel>
-              <sel>EPT_INTSRC_PEND</sel>
-            </Selections>
-            <Comment>中断源</Comment>
+          <Property class="Bool">
+            <label>EPT_INTSRC_NONE</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool">
+            <label>EPT_INTSRC_TRGEV0</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool">
+            <label>EPT_INTSRC_TRGEV1</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool">
+            <label>EPT_INTSRC_TRGEV2</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool">
+            <label>EPT_INTSRC_CAPLD0</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool">
+            <label>EPT_INTSRC_CAPLD1</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool">
+            <label>EPT_INTSRC_CAPLD2</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool">
+            <label>EPT_INTSRC_CAPLD3</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool">
+            <label>EPT_INTSRC_CAU</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool">
+            <label>EPT_INTSRC_CAD</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool">
+            <label>EPT_INTSRC_CBU</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool">
+            <label>EPT_INTSRC_CBD</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool">
+            <label>EPT_INTSRC_CCU</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool">
+            <label>EPT_INTSRC_CCD</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool">
+            <label>EPT_INTSRC_CDU</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool">
+            <label>EPT_INTSRC_CDD</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool">
+            <label>EPT_INTSRC_PEND</label>
+            <value>1</value>
+            <Comment/>
           </Property>
           <Property class="Text" property_class="EPT0WAVE">
             <label>Duty Cycle</label>
@@ -8212,6 +8294,83 @@
               <sel>EPT_EPFLT1_64P</sel>
             </Selections>
             <Comment>EP4、EP5、EP6和EP7的数字去抖滤波检查周期数</Comment>
+          </Property>
+          <Property class="UIchoice" property_class="EPT0EM">
+            <label>EMCOAX</label>
+            <value>EPT_EM_OUT_NONE</value>
+            <Selections>
+              <sel>EPT_EM_OUT_HZ</sel>
+              <sel>EPT_EM_OUT_H</sel>
+              <sel>EPT_EM_OUT_L</sel>
+              <sel>EPT_EM_OUT_NONE</sel>
+            </Selections>
+            <Comment>紧急状态下输出状态设置(注意mos/igbt的驱动电平)</Comment>
+          </Property>
+          <Property class="UIchoice" property_class="EPT0EM">
+            <label>EMCOBX</label>
+            <value>EPT_EM_OUT_NONE</value>
+            <Selections>
+              <sel>EPT_EM_OUT_HZ</sel>
+              <sel>EPT_EM_OUT_H</sel>
+              <sel>EPT_EM_OUT_L</sel>
+              <sel>EPT_EM_OUT_NONE</sel>
+            </Selections>
+            <Comment>紧急状态下输出状态设置(注意mos/igbt的驱动电平)</Comment>
+          </Property>
+          <Property class="UIchoice" property_class="EPT0EM">
+            <label>EMCOCX</label>
+            <value>EPT_EM_OUT_NONE</value>
+            <Selections>
+              <sel>EPT_EM_OUT_HZ</sel>
+              <sel>EPT_EM_OUT_H</sel>
+              <sel>EPT_EM_OUT_L</sel>
+              <sel>EPT_EM_OUT_NONE</sel>
+            </Selections>
+            <Comment>紧急状态下输出状态设置(注意mos/igbt的驱动电平)</Comment>
+          </Property>
+          <Property class="UIchoice" property_class="EPT0EM">
+            <label>EMCOD</label>
+            <value>EPT_EM_OUT_NONE</value>
+            <Selections>
+              <sel>EPT_EM_OUT_HZ</sel>
+              <sel>EPT_EM_OUT_H</sel>
+              <sel>EPT_EM_OUT_L</sel>
+              <sel>EPT_EM_OUT_NONE</sel>
+            </Selections>
+            <Comment>紧急状态下输出状态设置(注意mos/igbt的驱动电平)</Comment>
+          </Property>
+          <Property class="UIchoice" property_class="EPT0EM">
+            <label>EMCOAY</label>
+            <value>EPT_EM_OUT_NONE</value>
+            <Selections>
+              <sel>EPT_EM_OUT_HZ</sel>
+              <sel>EPT_EM_OUT_H</sel>
+              <sel>EPT_EM_OUT_L</sel>
+              <sel>EPT_EM_OUT_NONE</sel>
+            </Selections>
+            <Comment>紧急状态下输出状态设置(注意mos/igbt的驱动电平)</Comment>
+          </Property>
+          <Property class="UIchoice" property_class="EPT0EM">
+            <label>EMCOBY</label>
+            <value>EPT_EM_OUT_NONE</value>
+            <Selections>
+              <sel>EPT_EM_OUT_HZ</sel>
+              <sel>EPT_EM_OUT_H</sel>
+              <sel>EPT_EM_OUT_L</sel>
+              <sel>EPT_EM_OUT_NONE</sel>
+            </Selections>
+            <Comment>紧急状态下输出状态设置(注意mos/igbt的驱动电平)</Comment>
+          </Property>
+          <Property class="UIchoice" property_class="EPT0EM">
+            <label>EMCOCY</label>
+            <value>EPT_EM_OUT_NONE</value>
+            <Selections>
+              <sel>EPT_EM_OUT_HZ</sel>
+              <sel>EPT_EM_OUT_H</sel>
+              <sel>EPT_EM_OUT_L</sel>
+              <sel>EPT_EM_OUT_NONE</sel>
+            </Selections>
+            <Comment>紧急状态下输出状态设置(注意mos/igbt的驱动电平)</Comment>
           </Property>
         </Device>
       </Category>
@@ -9597,6 +9756,122 @@
             <label>Freq</label>
             <value>38000</value>
             <Comment>频率 单位Hz</Comment>
+          </Property>
+        </Device>
+      </Category>
+      <Category>
+        <label>DMA</label>
+        <Device deviceId="DMA">
+          <GenCodeFuncName>DMAInitFunc</GenCodeFuncName>
+          <UseOrNot>0</UseOrNot>
+          <label>DMA</label>
+          <Property class="UIchoice">
+            <label>SrcLinc</label>
+            <value>DMA_ADDR_CONSTANT</value>
+            <Selections>
+              <sel>DMA_ADDR_INC</sel>
+              <sel>DMA_ADDR_CONSTANT</sel>
+            </Selections>
+            <Comment>低位传输源地址自增控制</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>SrcHinc</label>
+            <value>DMA_ADDR_CONSTANT</value>
+            <Selections>
+              <sel>DMA_ADDR_INC</sel>
+              <sel>DMA_ADDR_CONSTANT</sel>
+            </Selections>
+            <Comment>高位传输源地址自增控制</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>DetLinc</label>
+            <value>DMA_ADDR_CONSTANT</value>
+            <Selections>
+              <sel>DMA_ADDR_INC</sel>
+              <sel>DMA_ADDR_CONSTANT</sel>
+            </Selections>
+            <Comment>低位传输目标地址自增控制</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>DetHinc</label>
+            <value>DMA_ADDR_CONSTANT</value>
+            <Selections>
+              <sel>DMA_ADDR_INC</sel>
+              <sel>DMA_ADDR_CONSTANT</sel>
+            </Selections>
+            <Comment>高位传输目标地址自增控制</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>DataWidth</label>
+            <value>DMA_DSIZE_8_BITS</value>
+            <Selections>
+              <sel>DMA_DSIZE_8_BITS</sel>
+              <sel>DMA_DSIZE_16_BITS</sel>
+              <sel>DMA_DSIZE_32_BITS</sel>
+            </Selections>
+            <Comment>传输数据宽度</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>AutoReload</label>
+            <value>DMA_RELOAD_DISABLE</value>
+            <Selections>
+              <sel>DMA_RELOAD_ENABLE</sel>
+              <sel>DMA_RELOAD_DISABLE</sel>
+            </Selections>
+            <Comment>自动重载控制</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>TransMode</label>
+            <value>DMA_TRANS_ONCE</value>
+            <Selections>
+              <sel>DMA_TRANS_ONCE</sel>
+              <sel>DMA_TRANS_CONTINU</sel>
+            </Selections>
+            <Comment>传输模式</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>TsizeMode</label>
+            <value>DMA_TSIZE_ONE_DSIZE</value>
+            <Selections>
+              <sel>DMA_TSIZE_ONE_DSIZE</sel>
+              <sel>DMA_TSIZE_FOUR_DSIZE</sel>
+            </Selections>
+            <Comment>传输数据大小</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>ReqMode</label>
+            <value>DMA_REQ_HARDWARE</value>
+            <Selections>
+              <sel>DMA_REQ_SOFTWARE</sel>
+              <sel>DMA_REQ_HARDWARE</sel>
+            </Selections>
+            <Comment>DMA请求模式</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>DMA_INTSRC_NONE</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool">
+            <label>DMA_INTSRC_LTCIT</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool">
+            <label>DMA_INTSRC_TCIT</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="UIchoice">
+            <label>Channel</label>
+            <value>DMA_CH0</value>
+            <Selections>
+              <sel>DMA_CH0</sel>
+              <sel>DMA_CH1</sel>
+              <sel>DMA_CH2</sel>
+              <sel>DMA_CH3</sel>
+            </Selections>
+            <Comment/>
           </Property>
         </Device>
       </Category>
