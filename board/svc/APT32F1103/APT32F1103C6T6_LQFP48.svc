@@ -8079,17 +8079,17 @@
           </Property>
           <Property class="UIchoice" property_class="EPT0DE">
             <label>EPxInt</label>
-            <value>EPT_EBI0</value>
+            <value>EPT_ORL0</value>
             <Selections>
-              <sel notAvailable="EPT0ORL0,EPT0ORL1">EPT_EBI0</sel>
-              <sel notAvailable="EPT0ORL0,EPT0ORL1">EPT_EBI1</sel>
-              <sel notAvailable="EPT0ORL0,EPT0ORL1">EPT_EBI2</sel>
-              <sel notAvailable="EPT0ORL0,EPT0ORL1">EPT_EBI3</sel>
-              <sel notAvailable="EPT0ORL0,EPT0ORL1">EPT_CMP0</sel>
-              <sel notAvailable="EPT0ORL0,EPT0ORL1">EPT_CMP1</sel>
-              <sel notAvailable="EPT0ORL0,EPT0ORL1">EPT_LVD</sel>
-              <sel notAvailable="EPT0ORL1">EPT_ORL0</sel>
-              <sel notAvailable="EPT0ORL0">EPT_ORL1</sel>
+              <sel notAvailable="EPT0ORL0">EPT_EBI0</sel>
+              <sel notAvailable="EPT0ORL0">EPT_EBI1</sel>
+              <sel notAvailable="EPT0ORL0">EPT_EBI2</sel>
+              <sel notAvailable="EPT0ORL0">EPT_EBI3</sel>
+              <sel notAvailable="EPT0ORL0">EPT_CMP0</sel>
+              <sel notAvailable="EPT0ORL0">EPT_CMP1</sel>
+              <sel notAvailable="EPT0ORL0">EPT_LVD</sel>
+              <sel>EPT_ORL0</sel>
+              <sel>EPT_ORL1</sel>
             </Selections>
             <Comment>EPx选择外部IO端口(EBI0~EBI4)</Comment>
           </Property>
@@ -8119,36 +8119,6 @@
             <Comment/>
           </Property>
           <Property class="Bool" property_class="EPT0ORL0">
-            <label>EPT_ORLx_CMP1</label>
-            <value>1</value>
-            <Comment/>
-          </Property>
-          <Property class="Bool" property_class="EPT0ORL1">
-            <label>EPT_ORLx_EBI0</label>
-            <value>1</value>
-            <Comment/>
-          </Property>
-          <Property class="Bool" property_class="EPT0ORL1">
-            <label>EPT_ORLx_EBI1</label>
-            <value>1</value>
-            <Comment/>
-          </Property>
-          <Property class="Bool" property_class="EPT0ORL1">
-            <label>EPT_ORLx_EBI2</label>
-            <value>1</value>
-            <Comment/>
-          </Property>
-          <Property class="Bool" property_class="EPT0ORL1">
-            <label>EPT_ORLx_EBI3</label>
-            <value>1</value>
-            <Comment/>
-          </Property>
-          <Property class="Bool" property_class="EPT0ORL1">
-            <label>EPT_ORLx_CMP0</label>
-            <value>1</value>
-            <Comment/>
-          </Property>
-          <Property class="Bool" property_class="EPT0ORL1">
             <label>EPT_ORLx_CMP1</label>
             <value>1</value>
             <Comment/>
@@ -9195,6 +9165,152 @@
               <sel>LED_INTSRC_IPEND</sel>
             </Selections>
             <Comment>Interrupt Source</Comment>
+          </Property>
+        </Device>
+      </Category>
+      <Category>
+        <label>I2C</label>
+        <Device deviceId="I2C">
+          <GenCodeFuncName>I2CInitFunc</GenCodeFuncName>
+          <UseOrNot>0</UseOrNot>
+          <label>I2C</label>
+          <Property class="UIchoice">
+            <label>Mode</label>
+            <value>Master</value>
+            <Selections>
+              <sel notAvailable="I2CSlave">Master</sel>
+              <sel notAvailable="I2CMaster">Slave</sel>
+            </Selections>
+            <Comment>主从模式选择</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>AddrMode</label>
+            <value>IIC_ADDRESS_7BIT</value>
+            <Selections>
+              <sel>IIC_ADDRESS_7BIT</sel>
+              <sel>IIC_ADDRESS_10BIT</sel>
+            </Selections>
+            <Comment>设置地址模式</Comment>
+          </Property>
+          <Property class="Bool" property_class="I2CMaster">
+            <label>ReStart</label>
+            <value>1</value>
+            <Comment>使能重复起始位</Comment>
+          </Property>
+          <Property class="Text" property_class="I2CSlave">
+            <label>SlaveAddr</label>
+            <value>0xa0</value>
+            <validReg>^(0[xX])([0-7][0-9a-fA-F][0-9a-fA-E])$</validReg>
+            <Comment>从机地址 设置范围 0x00~0x7fe</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>SpeedMode</label>
+            <value>IIC_BUS_SPEED_STANDARD</value>
+            <Selections>
+              <sel>IIC_BUS_SPEED_STANDARD</sel>
+              <sel>IIC_BUS_SPEED_FAST</sel>
+              <sel>IIC_BUS_SPEED_FAST_PLUS</sel>
+            </Selections>
+            <Comment>设置主机速度模式	IIC_BUS_SPEED_STANDARD &lt;=100kHz   IIC_BUS_SPEED_FAST &lt;=400kHz    IIC_BUS_SPEED_FAST_PLUS &lt;=  1MHz</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>IIC_INTSRC_NONE</label>
+            <value>1</value>
+            <Comment>IIC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>IIC_INTSRC_RX_UNDER</label>
+            <value>1</value>
+            <Comment>IIC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>IIC_INTSRC_RX_OVER</label>
+            <value>1</value>
+            <Comment>IIC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>IIC_INTSRC_RX_FULL</label>
+            <value>1</value>
+            <Comment>IIC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>IIC_INTSRC_TX_OVER/label&gt;</label>
+            <value>1</value>
+            <Comment>IIC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>IIC_INTSRC_TX_EMPTY</label>
+            <value>1</value>
+            <Comment>IIC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>IIC_INTSRC_RD_REQ</label>
+            <value>1</value>
+            <Comment>IIC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>IIC_INTSRC_TX_ABRT</label>
+            <value>1</value>
+            <Comment>IIC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>IIC_INTSRC_RX_DONE</label>
+            <value>1</value>
+            <Comment>IIC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>IIC_INTSRC_BUSY</label>
+            <value>1</value>
+            <Comment>IIC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>IIC_INTSRC_BUSY</label>
+            <value>1</value>
+            <Comment>IIC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>IIC_INTSRC_START_DET</label>
+            <value>1</value>
+            <Comment>IIC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>IIC_INTSRC_GEN_CALL</label>
+            <value>1</value>
+            <Comment>IIC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>IIC_INTSRC_RESTART_DET</label>
+            <value>1</value>
+            <Comment>IIC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>IIC_INTSRC_SCL_SLOW</label>
+            <value>1</value>
+            <Comment>IIC Interrupt Status</Comment>
+          </Property>
+          <Property class="Text" property_class="I2CSlave">
+            <label>RxBufferSize</label>
+            <value>0xffff</value>
+            <validReg>^(0[xX])([0-9a-fA-F]{4})$</validReg>
+            <Comment>接收数组长度设置 范围 0~0xffff 接收数组g_byWriteBuffer需手动定义全局变量</Comment>
+          </Property>
+          <Property class="Text" property_class="I2CSlave">
+            <label>TxBufferSize</label>
+            <value>0xffff</value>
+            <validReg>^(0[xX])([0-9a-fA-F]{4})$</validReg>
+            <Comment>发送数组长度设置 范围 0~0xffff 发送数组g_bySendBuffer需手动定义全局变量</Comment>
+          </Property>
+          <Property class="Text">
+            <label>SDATimeOut</label>
+            <value>0xffffffff</value>
+            <validReg>^(0[xX])([0-9a-fA-F]{8})$</validReg>
+            <Comment>SDA超时时间设置 1/主频 * g_tIicMasterCfg.wSdaTimeout ms 范围 0~0xffffffff</Comment>
+          </Property>
+          <Property class="Text">
+            <label>SCLTimeOut</label>
+            <value>0xffffffff</value>
+            <validReg>^(0[xX])([0-9a-fA-F]{8})$</validReg>
+            <Comment>SCL超时时间设置 1/主频 * g_tIicMasterCfg.wSdaTimeout ms 范围 0~0xffffffff</Comment>
           </Property>
         </Device>
       </Category>
