@@ -34,7 +34,7 @@ const csi_adc_seq_t tSeqCfg[] =
 }; 
 
 //采样序列的通道数
-volatile uint8_t 	byChnlNum = sizeof(tSeqCfg)/sizeof(tSeqCfg[0]);
+static uint8_t 	s_byChnlNum = sizeof(tSeqCfg)/sizeof(tSeqCfg[0]);
 
 static uint16_t hwDmaTranCnt = 0;					//DMA 传输次数
 static uint32_t wDaBuf[3] = {0,0,0};				//ADC DMA 每次传输3通道数据缓存
@@ -82,14 +82,14 @@ int adc_samp_oneshot_demo(void)
 	tAdcConfig.ptSeqCfg = (csi_adc_seq_t *)tSeqCfg;		//ADC 采样序列： 具体参考结构体变量 tSeqCfg
 	
 	csi_adc_init(ADC0, &tAdcConfig);							//初始化ADC参数配置	
-	csi_adc_set_seqx(ADC0, tAdcConfig.ptSeqCfg, byChnlNum);		//配置ADC采样序列
+	csi_adc_set_seqx(ADC0, tAdcConfig.ptSeqCfg, s_byChnlNum);	//配置ADC采样序列
 	csi_adc_start(ADC0);										//启动ADC
 	
 	do
 	{
-		for(i = 0; i < byChnlNum; i++)
+		for(i = 0; i < s_byChnlNum; i++)
 		{
-			nDataBuf[i] = csi_adc_read_channel(ADC0, i);					//分别读ADC采样序列通道：0~byChnlNum
+			nDataBuf[i] = csi_adc_read_channel(ADC0, i);					//分别读ADC采样序列通道：0~s_byChnlNum
 			
 			if(nDataBuf[i]  < 0)
 				my_printf("ADC sample channel timeout: d%\n",i);			//采样超时
@@ -144,14 +144,14 @@ int adc_samp_continuous_demo(void)
 	tAdcConfig.ptSeqCfg = (csi_adc_seq_t *)tSeqCfg;		//ADC 采样序列： 具体参考结构体变量 tSeqCfg
 	
 	csi_adc_init(ADC0, &tAdcConfig);							//初始化ADC参数配置	
-	csi_adc_set_seqx(ADC0, tAdcConfig.ptSeqCfg, byChnlNum);		//配置ADC采样序列
+	csi_adc_set_seqx(ADC0, tAdcConfig.ptSeqCfg, s_byChnlNum);		//配置ADC采样序列
 	csi_adc_start(ADC0);										//启动ADC
 	
 	do
 	{
-		for(i = 0; i < byChnlNum; i++)
+		for(i = 0; i < s_byChnlNum; i++)
 		{
-			nDataBuf[i] = csi_adc_read_channel(ADC0, i);						//分别读ADC采样序列通道：0~byChnlNum
+			nDataBuf[i] = csi_adc_read_channel(ADC0, i);						//分别读ADC采样序列通道：0~s_byChnlNum
 			
 			if(nDataBuf[i]  < 0)
 				my_printf("ADC sample channel timeout: d%\n",i);				//采样超时
@@ -166,9 +166,9 @@ int adc_samp_continuous_demo(void)
 		
 		do
 		{
-			for(i = 0; i < byChnlNum; i++)
+			for(i = 0; i < s_byChnlNum; i++)
 			{
-				nDataBuf[i] = csi_adc_read_channel(ADC0, i);					//分别读ADC采样序列通道：0~byChnlNum
+				nDataBuf[i] = csi_adc_read_channel(ADC0, i);					//分别读ADC采样序列通道：0~s_byChnlNum
 				
 				if(nDataBuf[i]  < 0)
 					my_printf("ADC sample channel timeout: d%\n",i);			//采样超时
@@ -194,7 +194,7 @@ void adc_irqhandler(csp_adc_t *ptAdcBase)
 	
 	uint32_t wIntStat = csp_adc_get_sr(ptAdcBase) & csp_adc_get_imr(ptAdcBase);
 	
-	for(i = 0; i < g_tAdcSamp.byChnlNum; i++)						
+	for(i = 0; i < s_byChnlNum; i++)						
 	{
 		if(wIntStat & ADC12_SEQ(i))								//ADC采样序列状态
 		{
@@ -245,7 +245,7 @@ int adc_samp_oneshot_int_demo(void)
 	tAdcConfig.ptSeqCfg = (csi_adc_seq_t *)tSeqCfg;				//ADC 采样序列： 具体参考结构体变量 tSeqCfg
 	
 	csi_adc_init(ADC0, &tAdcConfig);							//初始化ADC参数配置	
-	csi_adc_set_seqx(ADC0, tAdcConfig.ptSeqCfg, byChnlNum);		//配置ADC采样序列
+	csi_adc_set_seqx(ADC0, tAdcConfig.ptSeqCfg, s_byChnlNum);		//配置ADC采样序列
 	csi_adc_start(ADC0);										//启动ADC
 
 	return iRet;
@@ -291,7 +291,7 @@ int adc_samp_continuous_int_demo(void)
 	tAdcConfig.ptSeqCfg = (csi_adc_seq_t *)tSeqCfg;				//ADC 采样序列： 具体参考结构体变量 tSeqCfg
 	
 	csi_adc_init(ADC0, &tAdcConfig);							//初始化ADC参数配置	
-	csi_adc_set_seqx(ADC0, tAdcConfig.ptSeqCfg, byChnlNum);		//配置ADC采样序列
+	csi_adc_set_seqx(ADC0, tAdcConfig.ptSeqCfg, s_byChnlNum);	//配置ADC采样序列
 	csi_adc_start(ADC0);										//启动ADC
 
 	return iRet;
@@ -330,7 +330,7 @@ int adc_samp_continuous_dma_transfer_demo(void)
 	tAdcConfig.ptSeqCfg = (csi_adc_seq_t *)tSeqCfg;				//ADC 采样序列： 具体参考结构体变量 tSeqCfg
 	
 	csi_adc_init(ADC0, &tAdcConfig);							//初始化ADC参数配置	
-	csi_adc_set_seqx(ADC0, tAdcConfig.ptSeqCfg, byChnlNum);		//配置ADC采样序列
+	csi_adc_set_seqx(ADC0, tAdcConfig.ptSeqCfg, s_byChnlNum);	//配置ADC采样序列
 	
 	csi_adc_set_evtrg(ADC0, ADC_TRGOUT0,ADC_TRGSRC_EOC);		//配置ADC EOC作为触发源在触发端口0输出
 	csi_adc_evtrg_enable(ADC0,ADC_TRGOUT0,DISABLE);				//禁止ADC触发通道0
