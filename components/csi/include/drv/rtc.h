@@ -103,9 +103,9 @@ typedef enum {
 }csi_rtc_osel_e;
 
 typedef enum{
-	RTC_TRGSEL0 = 0,
-	RTC_TRGSEL1
-}csi_rtc_trgsel_e;
+	RTC_TRGOUT0 = 0,
+	RTC_TRGOUT1
+}csi_rtc_trgout_e;
 
 typedef enum{
 	RTC_TRGOUT_DIS = 0,
@@ -290,13 +290,21 @@ void csi_rtc_set_alarm_out(csp_rtc_t *ptRtc, csi_rtc_osel_e eOut);
 /** \brief evtrg source output config  
  * 
  *  \param[in] ptRtc: RTC handle to operate
- *  \param[in] eEvtrg: rtc evtrg channel(1~4) 
+ *  \param[in] eTrgOut: rtc evtrg channel(0~1) 
  *  \param[in] eTrgSrc: rtc evtrg source
  *  \param[in] trg_prd: event count period 
  *  \return error code \ref csi_error_t
  */
-csi_error_t csi_rtc_set_evtrg(csp_rtc_t *ptRtc, csi_rtc_trgsel_e eEvtrg, csi_rtc_trgsrc_e eTrgSrc, uint8_t byTrgPrd);
+csi_error_t csi_rtc_set_evtrg(csp_rtc_t *ptRtc, csi_rtc_trgout_e eTrgOut, csi_rtc_trgsrc_e eTrgSrc, uint8_t byTrgPrd);
 
+/** \brief rtc evtrg output enable/disable
+ * 
+ *  \param[in] ptRtc: pointer of rtc register structure
+ *  \param[in] eTrgOut: rtc evtrg out port (0~1)
+ *  \param[in] bEnable: ENABLE/DISABLE
+ *  \return error code \ref csi_error_t
+ */
+csi_error_t csi_rtc_evtrg_enable(csp_rtc_t *ptRtc, csi_rtc_trgout_e eTrgOut, bool bEnable);
 
 #ifdef __cplusplus
 }
