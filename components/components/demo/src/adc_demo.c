@@ -192,7 +192,7 @@ void adc_irqhandler(csp_adc_t *ptAdcBase)
 	uint8_t i;
  	volatile uint16_t hwDataBuf[3];
 	
-	uint32_t wIntStat = csp_adc_get_sr(ptAdcBase) & csp_adc_get_isr(ptAdcBase);
+	uint32_t wIntStat = csp_adc_get_sr(ptAdcBase) & csp_adc_get_imr(ptAdcBase);
 	
 	for(i = 0; i < g_tAdcSamp.byChnlNum; i++)						
 	{
