@@ -79,3 +79,15 @@ int cnta_pwm_demo(void)
 	return iRet;
 }
 
+/** \brief cnta interrupt handle weak function
+ * 
+ *  \param[in] ptCntaBase: pointer of cnta register structure
+ *  \return none
+ */ 
+__attribute__((weak)) void cnta_irqhandler(csp_cnta_t *ptCntaBase)
+{
+	
+	//The time to enter the interrupt is: set in csi_cnta_timer_init
+	//add you code         
+}
+

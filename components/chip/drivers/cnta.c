@@ -263,14 +263,3 @@ csi_error_t csi_cnta_bt0_sync(csp_cnta_t *ptCntaBase, csi_cnta_tcpend_e eTcPendR
 	return CSI_OK;
 }
 
-/** \brief cnta interrupt handle weak function
- * 
- *  \param[in] ptCntaBase: pointer of cnta register structure
- *  \return none
- */ 
-__attribute__((weak)) void cnta_irqhandler(csp_cnta_t *ptCntaBase)
-{
-	
-	//The time to enter the interrupt is: set in csi_cnta_timer_init
-	//add you code         
-}

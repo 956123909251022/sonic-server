@@ -10,7 +10,6 @@
 */
 
 /* include ----------------------------------------------------------------*/
-#include "csp.h"
 #include "rtc.h"
 #include "rtc_alg.h"
 #include "irq.h"
