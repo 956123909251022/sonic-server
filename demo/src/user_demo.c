@@ -124,6 +124,7 @@ void user_demo(void)
 //	adc_samp_continuous_demo();
 //	adc_samp_oneshot_int_demo();
 //	adc_samp_continuous_int_demo();
+//	adc_samp_continuous_dma_transfer_demo();
 
 /// ***************************************************
 ///  CRC相关的示例代码
@@ -146,9 +147,8 @@ void user_demo(void)
 //	uart_send_demo();
 //	uart_send_int_demo();
 //	uart_receive_demo();
-//	uart_recv_int_demo();
-//	uart_recv_dynamic_demo();
-//	uart_recv_dynamic_int_demo();
+//	uart_recv_rx_int_demo();
+//	uart_recv_rxfifo_int_demo();
 //	uart_send_dma_demo();
 //	uart_recv_dma_demo();
 
@@ -159,8 +159,8 @@ void user_demo(void)
 //	usart_send_demo();
 //	usart_send_int_demo();
 //	usart_recv_demo();
-//	usart_recv_int_demo();
-//	usart_recv_dynamic_demo();
+//	usart_recv_rx_int_demo();
+//	usart_recv_rxfifo_int_demo();
 //	usart_send_dma_demo();
 //	usart_send_dma_demo();
 //	usart_recv_dma_demo();
