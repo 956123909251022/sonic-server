@@ -85,7 +85,7 @@ int usart_send_dma_demo(void)
 	return iRet;
 }
 
-/** \brief usart dma receive data
+/** \brief usart dma receive data and dma send
  *  \brief USART通过DMA接收数据，确保ETCB模块初始化(使能)，etcb初始化函数：csi_etb_init()
  * 
  *  \param[in] none
@@ -124,19 +124,25 @@ int usart_recv_dma_demo(void)
 	
 	csi_etb_init();										//使能ETB模块
 
-	csi_usart_dma_rx_init(USART0, DMA_CH3, ETB_CH11);			//DMA接收初始化，选择DMA通道和ETB触发通道，DMA_CH: 0~3; ETB_CH: 8~11
-	csi_usart_recv_dma(USART0,(void*)s_byRecvBuf, DMA_CH3, 25);	//DMA接收
+	csi_usart_dma_rx_init(USART0, DMA_CH3, ETB_CH11);	//DMA接收初始化，选择DMA通道和ETB触发通道，DMA_CH: 0~3; ETB_CH: 8~11
+	csi_usart_dma_tx_init(USART0, DMA_CH0, ETB_CH10);	//发送DMA初始化，选择DMA通道和ETB触发通道，DMA_CH: 0~3; ETB_CH: 8~11
 	
 	while(1)
 	{
-		if(csi_dma_get_msg(DMA_CH3, ENABLE))						//获取接收完成消息，并清除消息
+		csi_usart_recv_dma(USART0,(void*)s_byRecvBuf, DMA_CH3, 25);		//DMA接收
+		
+		while(1)
 		{
-			//添加用户代码
-			csi_usart_send(USART0, (void*)s_byRecvBuf, 25);
-			nop;
-			break;
+			if(csi_dma_get_msg(DMA_CH3, ENABLE))						//获取接收完成消息，并清除消息
+			{
+				//添加用户代码
+				//csi_usart_send(USART0, (void*)s_byRecvBuf, 25);
+				csi_usart_send_dma(USART0,(void *)s_byRecvBuf, DMA_CH0, 25);	//采用DMA方式发送
+				nop;
+				break;
+			}
 		}
-		mdelay(10);
+		//mdelay(10);
 		nop;
 	}
 	

@@ -574,12 +574,14 @@ static inline void csp_usart_int_enable(csp_usart_t *ptUsartBase,usart_int_e eUs
 //
 static inline void csp_usart_set_rxdma(csp_usart_t *ptUsartBase, usart_rdma_en_e eRxDmaEn, usart_rdma_md_e eRxDmaMode) 
 {
-	ptUsartBase->DMACR = (ptUsartBase->DMACR & ~(US_RDMA_EN_MSK | US_RDMA_MD_MSK)) | (eRxDmaEn << US_RDMA_EN_POS) | (eRxDmaMode << US_RDMA_MD_POS);
+	//ptUsartBase->DMACR = (ptUsartBase->DMACR & ~(US_RDMA_EN_MSK | US_RDMA_MD_MSK)) | (eRxDmaEn << US_RDMA_EN_POS) | (eRxDmaMode << US_RDMA_MD_POS);
+	ptUsartBase->DMACR = 0x0b;		//RX/TX ALL ENABLE
 }
 
 static inline void csp_usart_set_txdma(csp_usart_t *ptUsartBase, usart_tdma_en_e eTxDmaEn, usart_tdma_md_e eTxDmaMode) 
 {
-	ptUsartBase->DMACR = (ptUsartBase->DMACR & ~(US_TDMA_EN_MSK | US_TDMA_MD_MSK)) | (eTxDmaEn << US_TDMA_EN_POS) | (eTxDmaMode << US_TDMA_MD_POS);
+	//ptUsartBase->DMACR = (ptUsartBase->DMACR & ~(US_TDMA_EN_MSK | US_TDMA_MD_MSK)) | (eTxDmaEn << US_TDMA_EN_POS) | (eTxDmaMode << US_TDMA_MD_POS);
+	ptUsartBase->DMACR = 0x0b;		//RX/TX ALL ENABLE
 }
 //
 //static inline uint8_t csp_usart_get_rxfl(csp_usart_t *ptUsartBase)
