@@ -101,7 +101,7 @@ uint32_t wGptb_Cmp_Buff[4] = {0};
 //	return CSI_OK;
 //}
 
-__attribute__((weak)) void gptb0_irqhandler_pro(csp_gptb_t *ptGptbBase)
+__attribute__((weak)) void gptb0_irqhandler(csp_gptb_t *ptGptbBase)
   {  	
 	if(((csp_gptb_get_emisr(ptGptbBase) & B_EM_INT_CPUF))==B_EM_INT_CPUF)
 	{ 
@@ -178,7 +178,7 @@ __attribute__((weak)) void gptb0_irqhandler_pro(csp_gptb_t *ptGptbBase)
 		
   }
 
-__attribute__((weak)) void gptb1_irqhandler_pro(csp_gptb_t *ptGptbBase)
+__attribute__((weak)) void gptb1_irqhandler(csp_gptb_t *ptGptbBase)
   {  	
 	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_CAPLD1))==GPTB_INT_CAPLD1)
 	{		
