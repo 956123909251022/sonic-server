@@ -1311,18 +1311,18 @@ static inline void csp_ept_sync_config(csp_ept_t *ptEptBase, uint32_t wVal)
 	ptEptBase -> SYNCR   =  wVal ;
 }
 
-static inline void csp_ept_set_gldcr(csp_ept_t *ptEptBase, uint32_t byCh)
+static inline void csp_ept_set_gldcr(csp_ept_t *ptEptBase, uint32_t wVal)
 {
-	ptEptBase -> GLDCR   =  byCh ;
+	ptEptBase -> GLDCR   =  wVal ;
 }
-static inline void csp_ept_set_gldcr2(csp_ept_t *ptEptBase, uint32_t byCh)
+static inline void csp_ept_set_gldcr2(csp_ept_t *ptEptBase, uint32_t wVal)
 {   ptEptBase -> REGPROT = EPT_REGPROT;
-	ptEptBase -> GLDCR2   |=  byCh ;
+	ptEptBase -> GLDCR2   |=  wVal ;
 }
 
-static inline void csp_ept_set_gldcfg(csp_ept_t *ptEptBase, uint32_t byCh)
+static inline void csp_ept_set_gldcfg(csp_ept_t *ptEptBase, uint32_t wVal)
 {
-	ptEptBase -> GLDCFG   =  byCh ;
+	ptEptBase -> GLDCFG   =  wVal ;
 }
 
 static inline void csp_ept_evtrg_soft(csp_ept_t *ptEptBase, uint8_t  byCh)

@@ -953,7 +953,7 @@ csi_error_t csi_ept_set_evtrg(csp_ept_t *ptEptBase, csi_ept_trgout_e eTrgOut, cs
 				csp_ept_trg_xoe_enable(ptEptBase, eTrgOut, DISABLE);	//disable evtrg source out
 				return CSI_OK;
 			}
-			csp_ept_set_trgsrc01(ptEptBase, eTrgOut, eTrgSrc);
+			csp_ept_set_trgsrc01(ptEptBase, eTrgOut, (csp_ept_trgsrc01_e)eTrgSrc);
 			break;
 		case EPT_TRGOUT2:
 		case EPT_TRGOUT3: 
@@ -966,7 +966,7 @@ csi_error_t csi_ept_set_evtrg(csp_ept_t *ptEptBase, csi_ept_trgout_e eTrgOut, cs
 			}
 			if (eTrgSrc == EPT_TRGSRC_PEND)
 				eTrgSrc = 12;
-			csp_ept_set_trgsrc23(ptEptBase, eTrgOut, eTrgSrc);
+			csp_ept_set_trgsrc23(ptEptBase, eTrgOut, (csp_ept_trgsrc23_e)eTrgSrc);
 			break;
 		default: 
 			return CSI_ERROR;
