@@ -10,7 +10,7 @@ def_config:
   CONFIG_KERNEL_NONE: 1
   CONFIG_XIP: 1
   DBG_PRINT2PC: 1
-  IS_CHIP_1104: 1
+  IS_CHIP_1103: 1
 name: demo
 version: V1.2.2
 description: 我的第一个方案工程
