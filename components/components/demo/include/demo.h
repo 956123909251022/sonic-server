@@ -83,6 +83,8 @@ int adc_samp_continuous_demo(void);
 //interrupt mode
 int adc_samp_oneshot_int_demo(void);
 int adc_samp_continuous_int_demo(void);
+//DMA传输
+int adc_samp_continuous_dma_transfer_demo(void);
 
 //sio demo
 //sio led
