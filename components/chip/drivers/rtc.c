@@ -98,8 +98,8 @@ void csi_rtc_init(csp_rtc_t *ptRtc, csi_rtc_config_t *tConfig)
 	//csp_rtc_ers_key(ptRtc);
 	csp_rtc_rb_enable(ptRtc, ENABLE);
 	csp_rtc_set_fmt(ptRtc, tConfig->byFmt);
-	csp_rtc_alm_enable(ptRtc, RTC_ALMB, DISABLE);
-	csp_rtc_alm_enable(ptRtc, RTC_ALMA, DISABLE);
+	csp_rtc_alm_enable(ptRtc, RTC_ALMB_POS, DISABLE);
+	csp_rtc_alm_enable(ptRtc, RTC_ALMA_POS, DISABLE);
 	
 	csp_rtc_int_enable(ptRtc, RTC_INTSRC_ALMA|RTC_INTSRC_ALMB|RTC_INTSRC_CPRD|RTC_INTSRC_TRGEV0|RTC_INTSRC_TRGEV1, DISABLE);
 	csp_rtc_clr_isr(ptRtc, RTC_INTSRC_ALMA|RTC_INTSRC_ALMB|RTC_INTSRC_CPRD|RTC_INTSRC_TRGEV0|RTC_INTSRC_TRGEV1);
@@ -182,9 +182,9 @@ csi_error_t csi_rtc_set_time(csp_rtc_t *ptRtc, csi_rtc_time_t *ptRtcTime)
 		
 	
 		if ((ptRtcTime->iHour == 12) && (csp_rtc_get_fmt(ptRtc) == RTC_FMT_24))
-			ret =  apt_rtc_set_time(ptRtc, RTC_PM, ptRtcTime->iHour, ptRtcTime->iMin,ptRtcTime->iSec);
+			ret =  (csi_error_t)apt_rtc_set_time(ptRtc, RTC_PM, ptRtcTime->iHour, ptRtcTime->iMin,ptRtcTime->iSec);
 		else
-			ret =  apt_rtc_set_time(ptRtc, ptRtcTime->iPm, ptRtcTime->iHour, ptRtcTime->iMin,ptRtcTime->iSec);
+			ret =  (csi_error_t)apt_rtc_set_time(ptRtc, ptRtcTime->iPm, ptRtcTime->iHour, ptRtcTime->iMin,ptRtcTime->iSec);
 		
 		
 		if (ret < CSI_OK) {
@@ -240,18 +240,18 @@ csi_error_t csi_rtc_set_alarm(csp_rtc_t *ptRtc, csi_rtc_alarm_e eAlm, csi_rtc_ti
 	}
 	switch (eAlm)
 	{
-		case (RTC_ALMA): 	csp_rtc_clr_isr(ptRtc, RTC_INTSRC_ALMA);
-							csp_rtc_int_enable(ptRtc, RTC_INTSRC_ALMA, ENABLE);
+		case (RTC_ALMA): 	csp_rtc_clr_isr(ptRtc, RTC_INT_ALMA);
+							csp_rtc_int_enable(ptRtc, RTC_INT_ALMA, ENABLE);
 							break;
-		case (RTC_ALMB):	csp_rtc_clr_isr(ptRtc, RTC_INTSRC_ALMB);
-							csp_rtc_int_enable(ptRtc, RTC_INTSRC_ALMB, ENABLE);
+		case (RTC_ALMB):	csp_rtc_clr_isr(ptRtc, RTC_INT_ALMB);
+							csp_rtc_int_enable(ptRtc, RTC_INT_ALMB, ENABLE);
 							break;
 		default:
 			return CSI_ERROR;
 	}
 	
 	csp_rtc_alm_enable(ptRtc, (rtc_alarm_e)eAlm, DISABLE);
-	apt_rtc_alm_set_time(ptRtc, (rtc_alarm_e)eAlm, ptAlmTime->iWday, bFmt,ptAlmTime->iHour, ptAlmTime->iMin,ptAlmTime->iSec);
+	apt_rtc_alm_set_time(ptRtc, eAlm, ptAlmTime->iWday, bFmt,ptAlmTime->iHour, ptAlmTime->iMin,ptAlmTime->iSec);
 	csp_rtc_alm_set_mode(ptRtc, (rtc_alarm_e)eAlm, bHmsk, bMmsk, bSmsk); 
 	csp_rtc_alm_enable(ptRtc, (rtc_alarm_e)eAlm, ENABLE);
 	
@@ -271,10 +271,10 @@ void csi_rtc_cancel_alarm(csp_rtc_t *ptRtc, csi_rtc_alarm_e eAlm)
 	switch (eAlm)
 	{
 		case (RTC_ALMA): 	csi_rtc_int_enable(ptRtc, RTC_INTSRC_ALMA, DISABLE);
-							csp_rtc_clr_isr(ptRtc, RTC_INTSRC_ALMA);
+							csp_rtc_clr_isr(ptRtc, RTC_INT_ALMA);
 							break;
 		case (RTC_ALMB):	csi_rtc_int_enable(ptRtc, RTC_INTSRC_ALMB, DISABLE);
-							csp_rtc_clr_isr(ptRtc, RTC_INTSRC_ALMB);
+							csp_rtc_clr_isr(ptRtc, RTC_INT_ALMB);
 							break;
 		default: break;
 	}
@@ -498,14 +498,14 @@ static csp_error_t apt_rtc_set_time(csp_rtc_t *ptRtc, csi_rtc_ampm_e ePm, uint8_
 //		ret = CSP_FAIL;
 //	else {
 	
-		csp_rtc_wr_key(ptRtc);
-		byVal = apt_dec2bcd(byHor);
-		csp_rtc_set_time_hour(ptRtc,(rtc_ampm_e)ePm, byVal);
-		byVal = apt_dec2bcd(byMin);
-		csp_rtc_set_time_min(ptRtc, byVal);
-		byVal = apt_dec2bcd(bySec);
-		csp_rtc_set_time_sec(ptRtc, byVal);
-		csp_rtc_ers_key(ptRtc);
+	csp_rtc_wr_key(ptRtc);
+	byVal = apt_dec2bcd(byHor);
+	csp_rtc_set_time_hour(ptRtc,(rtc_ampm_e)ePm, byVal);
+	byVal = apt_dec2bcd(byMin);
+	csp_rtc_set_time_min(ptRtc, byVal);
+	byVal = apt_dec2bcd(bySec);
+	csp_rtc_set_time_sec(ptRtc, byVal);
+	csp_rtc_ers_key(ptRtc);
 //	}
 	
 	return ret;

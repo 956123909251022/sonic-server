@@ -189,7 +189,7 @@ csi_error_t csi_sio_break_rst(csp_sio_t *ptSioBase, csi_sio_bklev_e eBkLev, uint
 	if(byBkCnt == 0)
 		return CSI_ERROR;
 		
-	csp_sio_set_break(ptSioBase, bEnable, eBkLev, byBkCnt - 1);
+	csp_sio_set_break(ptSioBase, bEnable, (sio_breaklel_e)eBkLev, byBkCnt - 1);
 
 	return CSI_OK; 
 }
@@ -218,7 +218,7 @@ csi_error_t csi_sio_timeout_rst(csp_sio_t *ptSioBase, uint8_t byToCnt ,bool bEna
  */
 void csi_sio_set_mode(csp_sio_t *ptSioBase, csi_sio_wkmode_e eWorkMd)
 {
-	csp_sio_set_mode(ptSioBase, eWorkMd);
+	csp_sio_set_mode(ptSioBase, (sio_mode_e)eWorkMd);
 }
 /** \brief enable/disable sio interrupt 
  * 
@@ -229,7 +229,7 @@ void csi_sio_set_mode(csp_sio_t *ptSioBase, csi_sio_wkmode_e eWorkMd)
  */
 void csi_sio_int_enable(csp_sio_t *ptSioBase, csi_sio_intsrc_e eIntSrc, bool bEnable)
 {
-	csp_sio_int_enable(ptSioBase, eIntSrc, bEnable);
+	csp_sio_int_enable(ptSioBase, (sio_int_e)eIntSrc, bEnable);
 	
 	if(bEnable)
 		csi_irq_enable((uint32_t *)ptSioBase);
@@ -268,7 +268,7 @@ int32_t csi_sio_send(csp_sio_t *ptSioBase, const uint32_t *pwData, uint16_t hwSi
 			g_tSioTran.hwSize 	 = hwSize;
 			g_tSioTran.hwTranLen = 0;
 			g_tSioTran.byTxStat  = SIO_STATE_SEND;
-			csp_sio_int_enable(SIO0,SIO_INTSRC_TXBUFEMPT, ENABLE);
+			csp_sio_int_enable(SIO0,SIO_TXBUFEMPT, ENABLE);
 			return CSI_OK;	
 		default:
 			return CSI_UNSUPPORTED;
@@ -291,7 +291,7 @@ int32_t csi_sio_send_async(uint32_t *pwData, uint16_t hwSize)
 	g_tSioTran.hwSize 	 = hwSize;
 	g_tSioTran.hwTranLen = 0;
 	g_tSioTran.byTxStat  = SIO_STATE_SEND;
-	csp_sio_int_enable(SIO0,SIO_INTSRC_TXBUFEMPT, ENABLE);
+	csp_sio_int_enable(SIO0,SIO_TXBUFEMPT, ENABLE);
 	return CSI_OK;
 }
 
