@@ -62,12 +62,15 @@ typedef enum
 	CMP_POL_OUT_UNDIRECT 
 }csi_polarity_e;
 
-
 typedef enum
 {
 	CMP_CPOS_OUT_DIRECT			=	0x00,
 	CMP_CPOS_OUT_IN				=	0x01
 }csi_cr_cpos_e;
+
+typedef enum{
+	CMP_TRGOUT					= 0,		
+}csi_cmp_trgout_e;
 
 typedef enum
 {
@@ -75,8 +78,7 @@ typedef enum
 	CMP_EVE_UP,
 	CMP_EVE_DOWN_UP,
 	CMP_EVE_UP1
-			
-}csi_eve_sel_e;
+}csi_cmp_trgsrc_e;
 
 typedef enum
 {
@@ -240,12 +242,22 @@ csi_error_t csi_cmp_wfcr_config(csp_cmp_t *ptCmpBase,csi_cmp_wfcr_config_t *ptCm
 
 /** \brief cmp evtrg output config
  * 
- *  \param[in] ptCmpBase:pointer of cmp register structure
- *  \param[in] eEveSel: evtrg eve sel(0~3) 
+ *  \param[in] ptCmpBase: pointer of cmp register structure
+ *  \param[in] eTrgOut: adc evtrg out port (0)
+ *  \param[in] eTrgSrc: cmp evtrg source(0~3) 
  *  \param[in] bEnable: cmp evtrg enable or disable
- *  \return none
+ *  \return error code \ref csi_error_t
  */
-void csi_cmp_set_evtrg(csp_cmp_t *ptCmpBase, csi_eve_sel_e eEveSel, bool bEnable);
+csi_error_t csi_cmp_set_evtrg(csp_cmp_t *ptCmpBase, csi_cmp_trgout_e eTrgOut, csi_cmp_trgsrc_e eTrgSrc);
+
+/** \brief cmp evtrg output enable/disable
+ * 
+ *  \param[in] ptCmpBase: pointer of cmp register structure
+ *  \param[in] eTrgOut: cmp evtrg out port (0)
+ *  \param[in] bEnable: ENABLE/DISABLE
+ *  \return error code \ref csi_error_t
+ */
+csi_error_t csi_cmp_evtrg_enable(csp_cmp_t *ptCmpBase, csi_cmp_trgout_e eTrgOut, bool bEnable);
 
 /** \brief cmp out status
  * 
