@@ -267,20 +267,20 @@ csi_error_t csi_cmp_evtrg_enable(csp_cmp_t *ptCmpBase, csi_cmp_trgout_e eTrgOut,
  */
 uint8_t csi_cmp_get_out(csp_cmp_t *ptCmpBase,uint8_t byOutCh);
 
-/** \brief clear cmp int
+/** \brief clear cmp interrupt status 
  * 
  *  \param[in] ptCmpBase:pointer of cmp register structure
  *  \param[in] eIntMode:EDGEDET_MODE or RAWDET_MODE
  *  \return none
  */
-void csi_cmp_int_clear(csp_cmp_t *ptCmpBase,csi_cmp_intsrc_e eIntMode);
+void csi_cmp_clr_isr(csp_cmp_t *ptCmpBase,csi_cmp_intsrc_e eIntMode);
 
-/** \brief get cmp status
+/** \brief get cmp interrupt status
  * 
  *  \param[in] ptCmpBase:pointer of cmp register structure
  *  \return cmp int status
  */
-uint32_t csi_cmp_get_misr(csp_cmp_t *ptCmpBase);
+uint32_t csi_cmp_get_isr(csp_cmp_t *ptCmpBase);
 
 /**
  *  \brief       Enable cmp power manage
