@@ -50,27 +50,6 @@ extern "C" {
 #define SXIN_PIN_FUNC					PA01_OSC_SXI
 #define SXOUT_PIN_FUNC					PA02_OSC_SXO
 
-///* spi pin */
-//#define SPI_MOSI_PIN            		PB011            
-//#define SPI_MISO_PIN            		PB010            
-//#define SPI_SCK_PIN             		PB09  
-//#define SPI_NSS_PIN             		PB08            
-//#define SPI_MOSI_PIN_FUNC       		PB011_SPI0_MOSI
-//#define SPI_MISO_PIN_FUNC       		PB010_SPI0_MISO
-//#define SPI_SCK_PIN_FUNC				PB09_SPI0_SCK
-//#define SPI_NSS_PIN_FUNC        		PB08_SPI0_NSS
-//
-///* iic pin */
-//#define IIC_SCL_PIN             		PA19   
-//#define IIC_SDA_PIN             		PA110    
-//#define IIC_SCL_PIN_FUNC        		PA19_I2C0_SCL
-//#define IIC_SDA_PIN_FUNC        		PA110_I2C0_SDA
-//
-///* sio pin */
-//#define SIO_PIN					   	PA013
-//#define SIO_PIN_FUNC					PA013_SIO
-
-
 //csi Interrupt Handling Enable, 1/0(OPEN/CLOSE)
 //系统中断处理配置默认是全部打开，对应的中断处理会调用处理函数，会占用的代码空间
 //用户不需要用到某个中断时，可以将对应中断宏定义值设置为0可节约代码空间
