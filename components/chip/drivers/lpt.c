@@ -356,7 +356,7 @@ csi_error_t csi_lpt_set_evtrg(csp_lpt_t *ptLptBase, csi_lpt_trgout_e eTrgOut, cs
  */
 csi_error_t csi_lpt_evtrg_enable(csp_lpt_t *ptLptBase, csi_lpt_trgout_e eTrgOut, bool bEnable)
 {
-	if(eTrgOut == LPT_TRGOUT0)
+	if(eTrgOut == LPT_TRGOUT)
 		csp_lpt_trg_enable(ptLptBase, bEnable);
 	else
 		return CSI_ERROR;
