@@ -154,7 +154,8 @@ extern void touch_timer_demo(void);
 extern void touch_main_demo(void);
 
 //ept demo
-extern csi_error_t ept_capture_demo();
+extern int ept_capture_sync_demo0();
+extern int ept_capture_sync_demo1();
 extern int ept_pwm_demo();
 extern int ept_pwm_dz_demo();
 extern int ept_pwm_dz_em_demo();
@@ -166,7 +167,8 @@ extern int gpta_capture_sync_demo1();
 extern int gpta_pwm_demo();
 //gptb demo
 extern int gptb_timer_demo(void);
-extern int gptb_capture_demo(void);
+extern int gptb_capture_sync_demo0();
+extern int gptb_capture_sync_demo1();
 extern int gptb_pwm_demo(void);
 extern int gptb_pwm_dz_demo(void);
 extern int gptb_pwm_dz_em_demo(void);

@@ -110,9 +110,20 @@ void user_demo(void)
 //	gpta_pwm_demo();
 
 /// ***************************************************
+///  GPTB相关的示例代码
+/// ***************************************************
+//	gptb_timer_demo();
+//	gptb_capture_sync_demo0();
+//	gptb_capture_sync_demo1();
+//	gptb_pwm_demo();
+//	gptb_pwm_dz_demo();
+//	gptb_pwm_dz_em_demo();
+
+/// ***************************************************
 ///  EPT相关的示例代码
 /// ***************************************************
-//	ept_capture_demo();
+//	ept_capture_sync_demo0();
+//	ept_capture_sync_demo1();
 //	ept_pwm_demo();
 //	ept_pwm_dz_demo();
 //	ept_pwm_dz_em_demo();
