@@ -28,59 +28,59 @@ uint32_t wGpta_Cmp_Buff[4] = {0};
  *  \param[in] none
  *  \return    none
  */
-__attribute__((weak)) void gpta0_initen_irqhandler(csp_gpta_t *ptGptaBase)
+__attribute__((weak)) void gpta0_irqhandler(csp_gpta_t *ptGptaBase)
 {
 
-	if(((csp_gpta_get_misr(ptGptaBase) & GPTA_INT_PEND))==GPTA_INT_PEND)
+	if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_PEND))==GPTA_INT_PEND)
 	{	
 		csi_gpio_port_set_high(GPIOA0, (0x01ul << 0));			
             nop;
 		csi_gpio_port_set_low (GPIOA0, (0x01ul << 0));
-	    csp_gpta_clr_int(ptGptaBase, GPTA_INT_PEND);
+	    csp_gpta_clr_isr(ptGptaBase, GPTA_INT_PEND);
 	}
-	if(((csp_gpta_get_misr(ptGptaBase) & GPTA_INT_TRGEV0))==GPTA_INT_TRGEV0)
+	if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_TRGEV0))==GPTA_INT_TRGEV0)
 	{	
 		//csi_gpio_port_set_high(GPIOA0, (0x01ul << 0));				//输出高
 //		csi_gpta_change_ch_duty(GPTA0,GPTA_CH_A, 25);
 //	    csi_gpta_change_ch_duty(GPTA0,GPTA_CH_B, 25);	
-	    csp_gpta_clr_int(ptGptaBase, GPTA_INT_TRGEV0);
+	    csp_gpta_clr_isr(ptGptaBase, GPTA_INT_TRGEV0);
 	   	//csi_gpio_port_set_low (GPIOA0, (0x01ul << 0));
 	}
-	if(((csp_gpta_get_misr(ptGptaBase) & GPTA_INT_TRGEV1))==GPTA_INT_TRGEV1)
+	if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_TRGEV1))==GPTA_INT_TRGEV1)
 	{	
 //		csi_gpta_change_ch_duty(GPTA0,GPTA_CH_A, 50);
 //	    csi_gpta_change_ch_duty(GPTA0,GPTA_CH_B, 50);		
-	    csp_gpta_clr_int(ptGptaBase, GPTA_INT_TRGEV1);
+	    csp_gpta_clr_isr(ptGptaBase, GPTA_INT_TRGEV1);
 	   	
 	}
-    if(((csp_gpta_get_misr(ptGptaBase) & GPTA_INT_CAPLD0))==GPTA_INT_CAPLD0)
+    if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_CAPLD0))==GPTA_INT_CAPLD0)
 	{		
 	 wGpta_Cmp_Buff[0]=csp_gpta_get_cmpa(ptGptaBase);
-	 csp_gpta_clr_int(ptGptaBase, GPTA_INT_CAPLD0);			
+	 csp_gpta_clr_isr(ptGptaBase, GPTA_INT_CAPLD0);			
 	}
-	if(((csp_gpta_get_misr(ptGptaBase) & GPTA_INT_CAPLD1))==GPTA_INT_CAPLD1)
+	if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_CAPLD1))==GPTA_INT_CAPLD1)
 	{		
      	wGpta_Cmp_Buff[0]=csp_gpta_get_cmpa(ptGptaBase);
 		wGpta_Cmp_Buff[1]=csp_gpta_get_cmpb(ptGptaBase);
-		csp_gpta_clr_int(ptGptaBase, GPTA_INT_CAPLD1);			
+		csp_gpta_clr_isr(ptGptaBase, GPTA_INT_CAPLD1);			
 	}
-    if(((csp_gpta_get_misr(ptGptaBase) & GPTA_INT_CAPLD2))==GPTA_INT_CAPLD2)
+    if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_CAPLD2))==GPTA_INT_CAPLD2)
 	{		
      	wGpta_Cmp_Buff[0]=csp_gpta_get_cmpa(ptGptaBase);
 		wGpta_Cmp_Buff[1]=csp_gpta_get_cmpb(ptGptaBase);
 		wGpta_Cmp_Buff[2]=csp_gpta_get_cmpaa(ptGptaBase);
-		csp_gpta_clr_int(ptGptaBase, GPTA_INT_CAPLD2);			
+		csp_gpta_clr_isr(ptGptaBase, GPTA_INT_CAPLD2);			
 	}
-	if(((csp_gpta_get_misr(ptGptaBase) & GPTA_INT_CAPLD3))==GPTA_INT_CAPLD3)
+	if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_CAPLD3))==GPTA_INT_CAPLD3)
 	{		
      	wGpta_Cmp_Buff[0]=csp_gpta_get_cmpa(ptGptaBase);
 		wGpta_Cmp_Buff[1]=csp_gpta_get_cmpb(ptGptaBase);
 		wGpta_Cmp_Buff[2]=csp_gpta_get_cmpaa(ptGptaBase);
 		wGpta_Cmp_Buff[3]=csp_gpta_get_cmpba(ptGptaBase);
-		csp_gpta_clr_int(ptGptaBase, GPTA_INT_CAPLD3);			
+		csp_gpta_clr_isr(ptGptaBase, GPTA_INT_CAPLD3);			
 	}	
 	
-    if(((csp_gpta_get_misr(ptGptaBase) & GPTA_INT_CBU))==GPTA_INT_CBU)
+    if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_CBU))==GPTA_INT_CBU)
 	{	
 		gTick++;if(gTick>=5){	
 								   //load1();	
@@ -92,36 +92,36 @@ __attribute__((weak)) void gpta0_initen_irqhandler(csp_gpta_t *ptGptaBase)
 	                               csi_gpta_change_ch_duty(GPTA0,GPTA_CAMPB, 25);
 								   csi_gpio_port_set_low (GPIOA0, (0x01ul << 0));
 		                         }
-	    csp_gpta_clr_int(ptGptaBase, GPTA_INT_CBU);
+	    csp_gpta_clr_isr(ptGptaBase, GPTA_INT_CBU);
 	   	
 	}
 
 }
-__attribute__((weak)) void gpta1_initen_irqhandler(csp_gpta_t *ptGptaBase)
+__attribute__((weak)) void gpta1_irqhandler(csp_gpta_t *ptGptaBase)
 {
 
-	if(((csp_gpta_get_misr(ptGptaBase) & GPTA_INT_PEND))==GPTA_INT_PEND)
+	if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_PEND))==GPTA_INT_PEND)
 	{	
 	  
-	    csp_gpta_clr_int(ptGptaBase, GPTA_INT_PEND);
+	    csp_gpta_clr_isr(ptGptaBase, GPTA_INT_PEND);
 	}
-	if(((csp_gpta_get_misr(ptGptaBase) & GPTA_INT_TRGEV0))==GPTA_INT_TRGEV0)
+	if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_TRGEV0))==GPTA_INT_TRGEV0)
 	{	
 			
-	    csp_gpta_clr_int(ptGptaBase, GPTA_INT_TRGEV0);
+	    csp_gpta_clr_isr(ptGptaBase, GPTA_INT_TRGEV0);
 	   	
 	}
 	
-    if(((csp_gpta_get_misr(ptGptaBase) & GPTA_INT_CAPLD0))==GPTA_INT_CAPLD0)
+    if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_CAPLD0))==GPTA_INT_CAPLD0)
 	{		
 	 wGpta_Cmp_Buff[0]=csp_gpta_get_cmpa(ptGptaBase);
-	 csp_gpta_clr_int(ptGptaBase, GPTA_INT_CAPLD0);			
+	 csp_gpta_clr_isr(ptGptaBase, GPTA_INT_CAPLD0);			
 	}
-	if(((csp_gpta_get_misr(ptGptaBase) & GPTA_INT_CAPLD1))==GPTA_INT_CAPLD1)
+	if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_CAPLD1))==GPTA_INT_CAPLD1)
 	{		
      	wGpta_Cmp_Buff[0]=csp_gpta_get_cmpa(ptGptaBase);
 		wGpta_Cmp_Buff[1]=csp_gpta_get_cmpb(ptGptaBase);
-	 csp_gpta_clr_int(ptGptaBase, GPTA_INT_CAPLD1);			
+	 csp_gpta_clr_isr(ptGptaBase, GPTA_INT_CAPLD1);			
 	}
 
 }

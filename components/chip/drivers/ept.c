@@ -27,28 +27,28 @@ uint32_t val_BUFF[4];
  *  \param[in] none
  *  \return    none
  */
-__attribute__((weak)) void ept_initen_irqhandler(csp_ept_t *ptEptBase)
+__attribute__((weak)) void ept_irqhandler(csp_ept_t *ptEptBase)
 {
-	if(((csp_ept_get_emmisr(ptEptBase) & EPT_INT_CPUF))==EPT_INT_CPUF)
+	if(((csp_ept_get_emisr(ptEptBase) & EPT_INT_CPUF))==EPT_INT_CPUF)
 	{
-	 ptEptBase -> EMHLCLR |=  EPT_INT_CPUF;
-	 csp_ept_clr_emint(ptEptBase,EPT_INT_CPUF);	
+		 ptEptBase -> EMHLCLR |=  EPT_INT_CPUF;
+		 csp_ept_clr_emisr(ptEptBase,EPT_INT_CPUF);	
 	}
 	
-	if(((csp_ept_get_emmisr(ptEptBase) & EPT_INT_EP6))==EPT_INT_EP6)
+	if(((csp_ept_get_emisr(ptEptBase) & EPT_INT_EP6))==EPT_INT_EP6)
 	{
-	 csp_ept_clr_emHdlck(EPT0, EP6);
-	 csp_ept_clr_emint(ptEptBase,EPT_INT_EP6);	
+		 csp_ept_clr_emHdlck(EPT0, EP6);
+		 csp_ept_clr_emisr(ptEptBase,EPT_INT_EP6);	
 	}	
 	
-	if(((csp_ept_get_misr(ptEptBase) & EPT_INT_TRGEV0))==EPT_INT_TRGEV0)
+	if(((csp_ept_get_isr(ptEptBase) & EPT_INT_TRGEV0))==EPT_INT_TRGEV0)
 	{	
 	  
-	  csp_ept_clr_int(ptEptBase, EPT_INT_TRGEV0);
-	  nop;
+		  csp_ept_clr_isr(ptEptBase, EPT_INT_TRGEV0);
+		  nop;
 	  
 	}
-	if(((csp_ept_get_misr(ptEptBase) & EPT_INT_CBU))==EPT_INT_CBU)
+	if(((csp_ept_get_isr(ptEptBase) & EPT_INT_CBU))==EPT_INT_CBU)
 	{		
 			//csi_ept_change_ch_duty(EPT0,EPT_CH_1, 50);
 		gEptTick++;if(gEptTick>=5){	
@@ -66,50 +66,50 @@ __attribute__((weak)) void ept_initen_irqhandler(csp_ept_t *ptEptBase)
 								   
 		                         }
 						 
-	  csp_ept_clr_int(ptEptBase, EPT_INT_CBU);
+	  csp_ept_clr_isr(ptEptBase, EPT_INT_CBU);
 	    
 	}
-	if(((csp_ept_get_misr(ptEptBase) & EPT_INT_CBD))==EPT_INT_CBD)
+	if(((csp_ept_get_isr(ptEptBase) & EPT_INT_CBD))==EPT_INT_CBD)
 	{		
 	  //csi_ept_change_ch_duty(EPT0,EPT_CH_1, 20);
 			
 	  //csi_gpio_port_set_low (GPIOA0, (0x01ul << 0));	
-	  csp_ept_clr_int(ptEptBase, EPT_INT_CBD);
+	  csp_ept_clr_isr(ptEptBase, EPT_INT_CBD);
 	    
 	}
 	
-	if(((csp_ept_get_misr(ptEptBase) & EPT_INT_PEND))==EPT_INT_PEND)
+	if(((csp_ept_get_isr(ptEptBase) & EPT_INT_PEND))==EPT_INT_PEND)
 	{		
 	   csi_gpio_port_set_high(GPIOA0, (0x01ul << 0));			
       nop;
        csi_gpio_port_set_low (GPIOA0, (0x01ul << 0));
-	  csp_ept_clr_int(ptEptBase, EPT_INT_PEND);
+	  csp_ept_clr_isr(ptEptBase, EPT_INT_PEND);
 	    
 	}
 	
-    if(((csp_ept_get_misr(ptEptBase) & EPT_INT_CAPLD0))==EPT_INT_CAPLD0)
+    if(((csp_ept_get_isr(ptEptBase) & EPT_INT_CAPLD0))==EPT_INT_CAPLD0)
 	{		
 		
-	 csp_ept_clr_int(ptEptBase, EPT_INT_CAPLD0);			
+	 csp_ept_clr_isr(ptEptBase, EPT_INT_CAPLD0);			
 	}
-	if(((csp_ept_get_misr(ptEptBase) & EPT_INT_CAPLD1))==EPT_INT_CAPLD1)
+	if(((csp_ept_get_isr(ptEptBase) & EPT_INT_CAPLD1))==EPT_INT_CAPLD1)
 	{		
 
-	 csp_ept_clr_int(ptEptBase, EPT_INT_CAPLD1);			
+	 csp_ept_clr_isr(ptEptBase, EPT_INT_CAPLD1);			
 	}
-	if(((csp_ept_get_misr(ptEptBase) & EPT_INT_CAPLD2))==EPT_INT_CAPLD2)
+	if(((csp_ept_get_isr(ptEptBase) & EPT_INT_CAPLD2))==EPT_INT_CAPLD2)
 	{		
 	 
-	 csp_ept_clr_int(ptEptBase, EPT_INT_CAPLD2);			
+	 csp_ept_clr_isr(ptEptBase, EPT_INT_CAPLD2);			
 	}
-	if(((csp_ept_get_misr(ptEptBase) & EPT_INT_CAPLD3))==EPT_INT_CAPLD3)
+	if(((csp_ept_get_isr(ptEptBase) & EPT_INT_CAPLD3))==EPT_INT_CAPLD3)
 	{		
 	   
 		val_BUFF[0]=csp_ept_get_cmpa(ptEptBase);
 		val_BUFF[1]=csp_ept_get_cmpb(ptEptBase);
 		val_BUFF[2]=csp_ept_get_cmpc(ptEptBase);
 		val_BUFF[3]=csp_ept_get_cmpd(ptEptBase);
-	 csp_ept_clr_int(ptEptBase, EPT_INT_CAPLD3);
+	 csp_ept_clr_isr(ptEptBase, EPT_INT_CAPLD3);
      csp_ept_set_crrearm(ptEptBase);//单次模式下 rearm				
 	}
 }

@@ -103,61 +103,61 @@ uint32_t wGptb_Cmp_Buff[4] = {0};
 
 __attribute__((weak)) void gptb0_irqhandler_pro(csp_gptb_t *ptGptbBase)
   {  	
-	if(((csp_gptb_get_emmisr(ptGptbBase) & B_EM_INT_CPUF))==B_EM_INT_CPUF)
+	if(((csp_gptb_get_emisr(ptGptbBase) & B_EM_INT_CPUF))==B_EM_INT_CPUF)
 	{ 
 	  nop;//udelay(10);		  
 	  ptGptbBase -> EMHLCLR |=B_EM_INT_CPUF;
-	  csp_gptb_clr_emint(ptGptbBase,B_EM_INT_CPUF);	
+	  csp_gptb_clr_emisr(ptGptbBase,B_EM_INT_CPUF);	
 	 }
 	  
-	if(((csp_gptb_get_emmisr(ptGptbBase) & B_EM_INT_EP3))==B_EM_INT_EP3)
+	if(((csp_gptb_get_emisr(ptGptbBase) & B_EM_INT_EP3))==B_EM_INT_EP3)
 	{ 
 	  nop;udelay(10);
 	  csp_gptb_clr_emHdlck(ptGptbBase, B_EP3);
-	  csp_gptb_clr_emint(ptGptbBase,B_EM_INT_EP3);	
+	  csp_gptb_clr_emisr(ptGptbBase,B_EM_INT_EP3);	
 	 }
-	if(((csp_gptb_get_misr(ptGptbBase) & GPTB_INT_TRGEV0))==GPTB_INT_TRGEV0)
+	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_TRGEV0))==GPTB_INT_TRGEV0)
 	{
-	   csp_gptb_clr_int(ptGptbBase, GPTB_INT_TRGEV0);
+	   csp_gptb_clr_isr(ptGptbBase, GPTB_INT_TRGEV0);
 	}	
-	if(((csp_gptb_get_misr(ptGptbBase) & GPTB_INT_TRGEV1))==GPTB_INT_TRGEV1)
+	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_TRGEV1))==GPTB_INT_TRGEV1)
 	{
-	   csp_gptb_clr_int(ptGptbBase, GPTB_INT_TRGEV1);
+	   csp_gptb_clr_isr(ptGptbBase, GPTB_INT_TRGEV1);
 	}	
-	if(((csp_gptb_get_misr(ptGptbBase) & GPTB_INT_CAPLD0))==GPTB_INT_CAPLD0)
+	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_CAPLD0))==GPTB_INT_CAPLD0)
 	{
 	  wGptb_Cmp_Buff[0]=csp_gptb_get_cmpa(ptGptbBase);
-	  csp_gptb_clr_int(ptGptbBase, GPTB_INT_CAPLD0);	
+	  csp_gptb_clr_isr(ptGptbBase, GPTB_INT_CAPLD0);	
 	}
-	if(((csp_gptb_get_misr(ptGptbBase) & GPTB_INT_CAPLD1))==GPTB_INT_CAPLD1)
+	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_CAPLD1))==GPTB_INT_CAPLD1)
 	{
 	  wGptb_Cmp_Buff[0]=csp_gptb_get_cmpa(ptGptbBase);
 	  wGptb_Cmp_Buff[1]=csp_gptb_get_cmpb(ptGptbBase);
-	  csp_gptb_clr_int(ptGptbBase, GPTB_INT_CAPLD1);	
+	  csp_gptb_clr_isr(ptGptbBase, GPTB_INT_CAPLD1);	
 	}
-	if(((csp_gptb_get_misr(ptGptbBase) & GPTB_INT_CAPLD2))==GPTB_INT_CAPLD2)
+	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_CAPLD2))==GPTB_INT_CAPLD2)
 	{
 	  wGptb_Cmp_Buff[0]=csp_gptb_get_cmpa(ptGptbBase);
 	  wGptb_Cmp_Buff[1]=csp_gptb_get_cmpb(ptGptbBase);	
 	  wGptb_Cmp_Buff[2]=csp_gptb_get_cmpaa(ptGptbBase);
-	  csp_gptb_clr_int(ptGptbBase, GPTB_INT_CAPLD2);	
+	  csp_gptb_clr_isr(ptGptbBase, GPTB_INT_CAPLD2);	
 	}
-	if(((csp_gptb_get_misr(ptGptbBase) & GPTB_INT_CAPLD3))==GPTB_INT_CAPLD3)
+	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_CAPLD3))==GPTB_INT_CAPLD3)
 	{
 	  wGptb_Cmp_Buff[0]=csp_gptb_get_cmpa(ptGptbBase);
 	  wGptb_Cmp_Buff[1]=csp_gptb_get_cmpb(ptGptbBase);	
 	  wGptb_Cmp_Buff[2]=csp_gptb_get_cmpaa(ptGptbBase);
 	  wGptb_Cmp_Buff[3]=csp_gptb_get_cmpba(ptGptbBase);	
-	  csp_gptb_clr_int(ptGptbBase, GPTB_INT_CAPLD3);	
+	  csp_gptb_clr_isr(ptGptbBase, GPTB_INT_CAPLD3);	
 	}
-	if(((csp_gptb_get_misr(ptGptbBase) & GPTB_INT_PEND))==GPTB_INT_PEND)
+	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_PEND))==GPTB_INT_PEND)
 	{
 	   csi_gpio_port_set_high(GPIOA0, (0x01ul << 0));			
 		nop;
 	   csi_gpio_port_set_low (GPIOA0, (0x01ul << 0));
-	   csp_gptb_clr_int(ptGptbBase, GPTB_INT_PEND);
+	   csp_gptb_clr_isr(ptGptbBase, GPTB_INT_PEND);
 	}
-	if(((csp_gptb_get_misr(ptGptbBase) & GPTB_INT_CBU))==GPTB_INT_CBU)
+	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_CBU))==GPTB_INT_CBU)
 	{	
 		gTick2++;if(gTick2>=5){	
 								   //load2();	
@@ -171,7 +171,7 @@ __attribute__((weak)) void gptb0_irqhandler_pro(csp_gptb_t *ptGptbBase)
 								   
 								   
 		                         }
-	    csp_gptb_clr_int(ptGptbBase, GPTB_INT_CBU);
+	    csp_gptb_clr_isr(ptGptbBase, GPTB_INT_CBU);
 	   	
 	}	
 
@@ -180,10 +180,10 @@ __attribute__((weak)) void gptb0_irqhandler_pro(csp_gptb_t *ptGptbBase)
 
 __attribute__((weak)) void gptb1_irqhandler_pro(csp_gptb_t *ptGptbBase)
   {  	
-	if(((csp_gptb_get_misr(ptGptbBase) & GPTB_INT_CAPLD1))==GPTB_INT_CAPLD1)
+	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_CAPLD1))==GPTB_INT_CAPLD1)
 	{		
 //		  csi_pin_set_high(PA0);
-	  csp_gptb_clr_int(ptGptbBase, GPTB_INT_CAPLD1);
+	  csp_gptb_clr_isr(ptGptbBase, GPTB_INT_CAPLD1);
 //		  csi_pin_set_low(PA0); 		
 	} 
   }
