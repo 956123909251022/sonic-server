@@ -230,9 +230,9 @@
     <memoryExpressions>;;;</memoryExpressions>
     <statistics>;;32;;MHZ;</statistics>
     <peripheralTabs>
-      <Tab disFormat="Hex">DMA</Tab>
       <Tab disFormat="Hex">SYSCON</Tab>
       <Tab disFormat="Hex">GPTA0</Tab>
+      <Tab disFormat="Hex">DMA</Tab>
     </peripheralTabs>
     <WatchDisplayFormat>1</WatchDisplayFormat>
     <LocalDisplayFormat>1</LocalDisplayFormat>
