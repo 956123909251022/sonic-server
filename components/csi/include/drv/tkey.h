@@ -334,9 +334,25 @@ extern volatile unsigned char 	byTkeyNegBuildBounce;
 extern volatile unsigned char 	byTkeyPosBuildBounce;
 //Used to modify the Bounce of the forced postive Rebuild;>=1 (Default=3)
 //The higher the number, the longer it takes to trigger the update mechanism
-
+extern volatile unsigned char 	byTkeyTrim0;
+extern volatile unsigned char 	byTkeyTrim1;
+extern volatile unsigned char 	byTkeyTrim2;
+//Used to modify the Trim Value of Tkey
+//default:byTkeyTrim0=10;byTkeyTrim1=13;byTkeyTrim2=15;
+/*********************************************************************** 
+ @brief  Tkey extern variable                  
+***********************************************************************/
 extern volatile unsigned long dwKey_Map;
 extern volatile unsigned char byForceReBuild;
+extern volatile unsigned short hwSampling_data0[32];
+extern volatile unsigned short hwBaseline_data0[32];
+extern volatile unsigned short hwSampling_data1[32];
+extern volatile unsigned short hwBaseline_data1[32];
+extern volatile unsigned short hwSampling_data2[32];
+extern volatile unsigned short hwBaseline_data2[32];
+extern volatile unsigned short hwOffset_data0_abs[32];
+extern volatile unsigned short hwOffset_data1_abs[32];
+extern volatile unsigned short hwOffset_data2_abs[32];
 /*********************************************************************** 
  @brief  Tkey extern functions                  
 ***********************************************************************/ 
