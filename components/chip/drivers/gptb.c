@@ -8,15 +8,14 @@
  * </table>
  * *********************************************************************
 */
-#include "sys_clk.h"
-#include "drv/common.h"
-#include "drv/gptb.h"
-#include "csp_gptb.h"
+#include <sys_clk.h>
+//#include drv/common.h"
+#include <drv/gptb.h>
+#include <csp_gptb.h>
 //#include "drv/pin.h"
-#include "drv/irq.h"
+#include <drv/irq.h>
 //#include "drv/etb.h"
-
-#include "drv/pin.h"
+#include <drv/pin.h>
 
 extern void load2(void);
 uint32_t gTick2;

@@ -8,8 +8,8 @@
  * </table>
  * *********************************************************************
 */
-#include "led.h"
-#include "irq.h"
+#include <drv/led.h>
+#include <drv/irq.h>
 #include "csp_common.h"
 #include "sys_clk.h"
 

@@ -10,10 +10,9 @@
 */
 
 /* include ----------------------------------------------------------------*/
-#include "rtc.h"
+#include <drv/rtc.h>
+#include <drv/irq.h>
 #include "rtc_alg.h"
-#include "irq.h"
-#include "soc.h"
 #include "board_config.h"
 
 /* externs function--------------------------------------------------------*/

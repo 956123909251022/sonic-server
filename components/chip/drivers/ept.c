@@ -8,13 +8,13 @@
  * </table>
  * *********************************************************************
 */
-#include "sys_clk.h"
-#include "drv/common.h"
-#include "drv/ept.h"
-#include "csp_ept.h"
-#include "drv/pin.h"
+#include <sys_clk.h>
+#include <drv/common.h>
+#include <drv/ept.h>
+#include <drv/pin.h>
 #include <drv/irq.h>
 #include <sys_clk.h>
+#include "csp_ept.h"
 extern void load(void);
 uint32_t gEptTick;
 uint32_t gEptPrd;
