@@ -13,15 +13,7 @@
 #include "csp_common.h"
 #include "sys_clk.h"
 
-/** \brief led interrupt handle function
- * 
- *  \param[in] args: dev of led
- *  \return none
- */ 
-__attribute ((weak))void led_irqhandler(csp_led_t *ptLedBase)
-{
-	csp_led_clr_isr(ptLedBase, LED_INTSRC_ICEND|LED_INTSRC_IPEND);
-}
+
 /** \brief   led init & configuration: clk, brightness, COM mask
  * 
  *  \param[in] ptLedBase: pointer of LED register structure

@@ -21,24 +21,6 @@
 /* Private variablesr-------------------------------------------------*/
 static uint16_t g_hwFckDiv = 0;
 
-
-/** \brief lcd interrupt handle function
- * 
- *  \param[in] ptLcdBase: pointer of bt register structure
- *  \return none
- */ 
-__attribute__((weak)) void lcd_irqhandler(csp_lcd_t *ptLcdBase)
-{
-   	if(csp_lcd_get_isr(ptLcdBase) & LCD_SOF_INT)
-	{
-		csp_lcd_clr_isr(ptLcdBase, LCD_SOF_INT);
-	}
-	
-	if(csp_lcd_get_isr(ptLcdBase) & LCD_UDD_INT)
-	{
-		csp_lcd_clr_isr(ptLcdBase, LCD_UDD_INT);
-	}
-}
 /** \brief initialize lcd data structure
  * 
  *  \param[in] ptLcdBase: pointer of lcd register structure

@@ -34,61 +34,61 @@ csi_sio_trans_t g_tSioTran;
  *  \param[in] ptSioBase: pointer of sio register structure
  *  \return none
  */
-__attribute__((weak)) void sio_irqhandler(csp_sio_t *ptSioBase)
-{
-	volatile uint32_t wStatus = csp_sio_get_isr(ptSioBase) & 0x3f;
-	
-	switch(wStatus)
-	{
-		case SIO_RXBUFFULL:										
-		case SIO_RXDNE:
-		
-			csp_sio_clr_isr(ptSioBase, SIO_RXDNE | SIO_RXBUFFULL);
-			if(NULL == g_tSioTran.pwData || 0 == g_tSioTran.hwSize)
-			{
-				csp_sio_get_rxbuf(ptSioBase);
-				g_tSioTran.byRxStat = SIO_STATE_ERROR;				//receive error
-			}
-			else
-			{
-				*(g_tSioTran.pwData + g_tSioTran.hwTranLen) = csp_sio_get_rxbuf(ptSioBase);	//receive data
-				g_tSioTran.hwTranLen ++;
-				if(g_tSioTran.hwTranLen >= g_tSioTran.hwSize)
-				{
-					g_tSioTran.byRxStat = SIO_STATE_FULL;			//receive buf full, g_tSioTran.hwTranLen = receive data len = receive buf len
-				}
-//				if(g_tSioTran.hwTranLen < g_tSioTran.hwSize)
-//					g_tSioTran.hwTranLen ++;
-//				else
+//__attribute__((weak)) void sio_irqhandler(csp_sio_t *ptSioBase)
+//{
+//	volatile uint32_t wStatus = csp_sio_get_isr(ptSioBase) & 0x3f;
+//	
+//	switch(wStatus)
+//	{
+//		case SIO_RXBUFFULL:										
+//		case SIO_RXDNE:
+//		
+//			csp_sio_clr_isr(ptSioBase, SIO_RXDNE | SIO_RXBUFFULL);
+//			if(NULL == g_tSioTran.pwData || 0 == g_tSioTran.hwSize)
+//			{
+//				csp_sio_get_rxbuf(ptSioBase);
+//				g_tSioTran.byRxStat = SIO_STATE_ERROR;				//receive error
+//			}
+//			else
+//			{
+//				*(g_tSioTran.pwData + g_tSioTran.hwTranLen) = csp_sio_get_rxbuf(ptSioBase);	//receive data
+//				g_tSioTran.hwTranLen ++;
+//				if(g_tSioTran.hwTranLen >= g_tSioTran.hwSize)
+//				{
 //					g_tSioTran.byRxStat = SIO_STATE_FULL;			//receive buf full, g_tSioTran.hwTranLen = receive data len = receive buf len
-			}
-			break;
-		case SIO_TIMEOUT:
-			csp_sio_clr_isr(ptSioBase, SIO_TIMEOUT);
-			break;
-		case SIO_BREAK:												//receive break interrupt ,reset receive module
-			csp_sio_clr_isr(ptSioBase, SIO_BREAK);
-			break;
-		case SIO_TXBUFEMPT:
-			csp_sio_clr_isr(ptSioBase, SIO_TXBUFEMPT);
-		 	SIO0->TXBUF = *(g_tSioTran.pwData);
-			g_tSioTran.pwData++;
-			g_tSioTran.hwTranLen++;
-			if(g_tSioTran.hwTranLen >= g_tSioTran.hwSize)
-			{
-				csp_sio_int_enable(ptSioBase,SIO_INTSRC_TXBUFEMPT, DISABLE);
-				g_tSioTran.hwTranLen = 0;
-				g_tSioTran.byTxStat = SIO_STATE_IDLE;
-			}
-			break;
-		case SIO_TXDNE:
-			csp_sio_clr_isr(ptSioBase, SIO_TXDNE);
-			break;
-		default:
-			csp_sio_clr_isr(ptSioBase, SIO_BREAK | SIO_RXDNE | SIO_RXBUFFULL | SIO_TIMEOUT);
-			break;
-	}
-}
+//				}
+////				if(g_tSioTran.hwTranLen < g_tSioTran.hwSize)
+////					g_tSioTran.hwTranLen ++;
+////				else
+////					g_tSioTran.byRxStat = SIO_STATE_FULL;			//receive buf full, g_tSioTran.hwTranLen = receive data len = receive buf len
+//			}
+//			break;
+//		case SIO_TIMEOUT:
+//			csp_sio_clr_isr(ptSioBase, SIO_TIMEOUT);
+//			break;
+//		case SIO_BREAK:												//receive break interrupt ,reset receive module
+//			csp_sio_clr_isr(ptSioBase, SIO_BREAK);
+//			break;
+//		case SIO_TXBUFEMPT:
+//			csp_sio_clr_isr(ptSioBase, SIO_TXBUFEMPT);
+//		 	SIO0->TXBUF = *(g_tSioTran.pwData);
+//			g_tSioTran.pwData++;
+//			g_tSioTran.hwTranLen++;
+//			if(g_tSioTran.hwTranLen >= g_tSioTran.hwSize)
+//			{
+//				csp_sio_int_enable(ptSioBase,SIO_INTSRC_TXBUFEMPT, DISABLE);
+//				g_tSioTran.hwTranLen = 0;
+//				g_tSioTran.byTxStat = SIO_STATE_IDLE;
+//			}
+//			break;
+//		case SIO_TXDNE:
+//			csp_sio_clr_isr(ptSioBase, SIO_TXDNE);
+//			break;
+//		default:
+//			csp_sio_clr_isr(ptSioBase, SIO_BREAK | SIO_RXDNE | SIO_RXBUFFULL | SIO_TIMEOUT);
+//			break;
+//	}
+//}
 
 /** \brief Init sio tx, Initializes the resources needed for the sio instance 
  * 

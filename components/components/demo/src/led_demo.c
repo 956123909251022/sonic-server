@@ -200,4 +200,13 @@ csi_error_t led_demo(void)
 			csi_led_write_data(LED, i, 0x00);
 	}
 }
+/** \brief led interrupt handle function
+ * 
+ *  \param[in] args: dev of led
+ *  \return none
+ */ 
+__attribute ((weak))void led_irqhandler(csp_led_t *ptLedBase)
+{
+	csp_led_clr_isr(ptLedBase, LED_INTSRC_ICEND|LED_INTSRC_IPEND);
+}
 
