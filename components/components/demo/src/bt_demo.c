@@ -72,12 +72,12 @@ int bt_pwm_demo(void)
 	return iRet;
 }
 
-/** \brief bt sync trg start：EXI通过BT同步输入端口0触发BT启动 
+/** \brief bt sync start：EXI通过BT同步输入端口0触发BT启动 
  *  
  *  \param[in] none
  *  \return error code
  */
-int bt_sync_trg_start_demo(void)
+int bt_sync_start_demo(void)
 {
 	int iRet = 0;
 	volatile uint8_t ch;
@@ -109,12 +109,12 @@ int bt_sync_trg_start_demo(void)
 	return iRet;
 }
 
-/** \brief bt sync trg count: EXI通过BT同步输入端口1触发BT计数值加1
+/** \brief bt sync count: EXI通过BT同步输入端口1触发BT计数值加1
  *  
  *  \param[in] none
  *  \return error code
  */
-int bt_sync_trg_count_demo(void)
+int bt_sync_count_demo(void)
 {
 	int iRet = 0;
 	volatile uint8_t ch;
@@ -145,12 +145,12 @@ int bt_sync_trg_count_demo(void)
 	return iRet;
 }
 
-/** \brief bt sync trg count：EXI通过BT同步输入端口2触发BT停止
+/** \brief bt sync stop：EXI通过BT同步输入端口2触发BT停止
  *  
  *  \param[in] none
  *  \return error code
  */
-int bt_sync_trg_stop_demo(void)
+int bt_sync_stop_demo(void)
 {
 	int iRet = 0;
 	volatile uint8_t ch;

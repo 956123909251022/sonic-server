@@ -15,6 +15,17 @@
 #include <soc.h>
 #include <csi_core.h>
 
+/**
+ * \enum     csi_irq_prio_e
+ * \brief    Irq Priority
+ */
+typedef enum{
+	IRQ_PRIO_0	= 0x00ul,	//Highest Priority
+	IRQ_PRIO_1	= 0x01ul,
+	IRQ_PRIO_2	= 0x02ul,
+	IRQ_PRIO_3	= 0x03ul    //Lowest Priority
+}csi_irq_prio_e;
+
 //typedef struct {
 //	uint32_t wRegBase;
 //    uint32_t wIrqNum;
@@ -45,6 +56,13 @@ void csi_irq_disable(void *pIpBase);
 ////    soc_irq_disable(irq_num);
 //	csi_vic_disable_irq(irq_num);
 //}
+
+/** 
+  \brief the all irq priority set
+  \param[in] ePrio:  irq priority ,\ref csi_uart_func_e
+  \return none.
+ */
+void csi_irq_set_all_prio(csi_irq_prio_e ePrio);
 
 /**
   \brief       attach irq handler.

@@ -57,7 +57,7 @@ csi_error_t csi_tick_init(void)
 {
     csi_tick = 0U;
 
-    csi_vic_set_prio(CORET_IRQ_NUM, 0U);
+    csi_vic_set_prio(CORET_IRQ_NUM, 2U);
     csi_coret_config((soc_get_coret_freq()/ CONFIG_SYSTICK_HZ), CORET_IRQ_NUM);
     csi_vic_enable_irq((uint32_t)CORET_IRQ_NUM);
 	

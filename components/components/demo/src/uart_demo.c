@@ -224,7 +224,7 @@ int uart_send_int_demo(void)
 	while(1)
 	{
 		byRecv = csi_uart_getc(UART1);
-		if(byRecv == 0x06)
+		if(byRecv)
 			csi_uart_send(UART1,(void *)bySendData,28);		//采用中断方式。调用改函数时，UART发送中断使能
 		
 		while(1)			

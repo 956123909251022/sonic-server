@@ -29,9 +29,9 @@ extern int pin_irq_demo(void);
 //bt demo
 extern int bt_timer_demo(void);
 extern int bt_pwm_demo(void);
-extern int bt_sync_trg_start_demo(void);
-extern int bt_sync_trg_stop_demo(void);
-extern int bt_sync_trg_count_demo(void);
+extern int bt_sync_start_demo(void);
+extern int bt_sync_stop_demo(void);
+extern int bt_sync_count_demo(void);
 extern int bt_trg_out_demo(void);
 extern int bt_soft_trg_out_demo(void);
 
@@ -70,8 +70,8 @@ int usart_recv_rxfifo_int_demo(void);
 int usart_send_dma_demo(void);
 int usart_recv_dma_demo(void);
 //lin
-int lin_send_test(void);
-int lin_send_recv_test(void);
+int lin_send_demo(void);
+int lin_send_recv_demo(void);
 
 //adc demo
 //normal mode(no interrupt)
