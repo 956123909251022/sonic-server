@@ -174,7 +174,7 @@ void tk_led(void)
 
 	需要在coret_int_handler中断里调用csi_tkey_basecnt_process()函数，在tkey_int_handler中断里调用csi_tkey_int_process()函数
 	（调用csi_tkey_int_process()函数，占用时间时间如果影响到coret_int_handler的运行的话，也可以配置别的定时器中断去调用该函数，
-	建议进中断的时间控制在20ms以下，调用见隔越小，TKEY反应越灵敏），在coret_int_handler的示例如下：
+	建议进中断的时间控制在10ms左右，调用见隔越小，TKEY反应越灵敏），在coret_int_handler的示例如下：
 	void coret_int_handler(void) 
 	{
 	#if	CORET_INT_HANDLE_EN
