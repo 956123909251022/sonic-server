@@ -912,23 +912,23 @@ typedef enum{
 /// Interrupt Related
 ******************************************************************************/
 typedef enum{
-	EPT_INT_TRGEV0 = 0x1,
-	EPT_INT_TRGEV1 = 0x2,
-	EPT_INT_TRGEV2 = 0x4,
-	EPT_INT_TRGEV3 = 0x8,
-	EPT_INT_CAPLD0 = 0x1 << 4,
-	EPT_INT_CAPLD1 = 0x1 << 5,
-	EPT_INT_CAPLD2 = 0x1 << 6,
-	EPT_INT_CAPLD3 = 0x1 << 7,
-	EPT_INT_CAU = 0x1 << 8,
-	EPT_INT_CAD = 0x1 << 9,
-	EPT_INT_CBU = 0x1 << 10,
-	EPT_INT_CBD = 0x1 << 11,
-	EPT_INT_CCU = 0x1 << 12,	
-	EPT_INT_CCD = 0x1 << 13,
-	EPT_INT_CDU = 0x1 << 14,
-	EPT_INT_CDD = 0x1 << 15,
-	EPT_INT_PEND = 0x1 << 16	
+	EPT_INT_TRGEV0 	= 0x1,
+	EPT_INT_TRGEV1 	= 0x2,
+	EPT_INT_TRGEV2 	= 0x4,
+	EPT_INT_TRGEV3 	= 0x8,
+	EPT_INT_CAPLD0 	= 0x1 << 4,
+	EPT_INT_CAPLD1 	= 0x1 << 5,
+	EPT_INT_CAPLD2 	= 0x1 << 6,
+	EPT_INT_CAPLD3 	= 0x1 << 7,
+	EPT_INT_CAU 	= 0x1 << 8,
+	EPT_INT_CAD 	= 0x1 << 9,
+	EPT_INT_CBU 	= 0x1 << 10,
+	EPT_INT_CBD 	= 0x1 << 11,
+	EPT_INT_CCU 	= 0x1 << 12,	
+	EPT_INT_CCD 	= 0x1 << 13,
+	EPT_INT_CDU 	= 0x1 << 14,
+	EPT_INT_CDD 	= 0x1 << 15,
+	EPT_INT_PEND 	= 0x1 << 16	
 }csp_ept_int_e;
 
 #define EPT_INT_EV(n)		(0x1 << n)
@@ -1272,12 +1272,12 @@ static inline uint32_t csp_ept_get_emrisr(csp_ept_t *ptEptBase)
 	return (ptEptBase -> EMRISR);
 }
 
-static inline uint32_t csp_ept_get_emmisr(csp_ept_t *ptEptBase)
+static inline uint32_t csp_ept_get_emisr(csp_ept_t *ptEptBase)
 {
 	return (ptEptBase -> EMMISR);
 }
 
-static inline void csp_ept_clr_emint(csp_ept_t *ptEptBase, csp_ept_emint_e eInt)
+static inline void csp_ept_clr_emisr(csp_ept_t *ptEptBase, csp_ept_emint_e eInt)
 {
 	ptEptBase -> EMICR = eInt;
 }
@@ -1332,11 +1332,11 @@ static inline uint32_t csp_ept_get_risr(csp_ept_t *ptEptBase)
 	return (ptEptBase -> RISR);
 }
 
-static inline uint32_t csp_ept_get_misr(csp_ept_t *ptEptBase)
+static inline uint32_t csp_ept_get_isr(csp_ept_t *ptEptBase)
 {
 	return (ptEptBase -> MISR);
 }
-static inline void csp_ept_clr_int(csp_ept_t *ptEptBase, csp_ept_int_e eInt)
+static inline void csp_ept_clr_isr(csp_ept_t *ptEptBase, csp_ept_int_e eInt)
 {
 	ptEptBase -> ICR = eInt;
 }

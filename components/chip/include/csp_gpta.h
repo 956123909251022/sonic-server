@@ -552,19 +552,19 @@ typedef enum{
 /// Interrupt Related
 ******************************************************************************/
 typedef enum{
-	GPTA_INT_TRGEV0 = 0x1,
-	GPTA_INT_TRGEV1 = 0x2,
-//	GPTA_INT_TRGEV2 = 0x4,
-//	GPTA_INT_TRGEV3 = 0x8,
-	GPTA_INT_CAPLD0 = 0x1 << 4,
-	GPTA_INT_CAPLD1 = 0x1 << 5,
-	GPTA_INT_CAPLD2 = 0x1 << 6,
-	GPTA_INT_CAPLD3 = 0x1 << 7,
-	GPTA_INT_CAU = 0x1 << 8,
-	GPTA_INT_CAD = 0x1 << 9,
-	GPTA_INT_CBU = 0x1 << 10,
-	GPTA_INT_CBD = 0x1 << 11,
-	GPTA_INT_PEND = 0x1 << 16	
+	GPTA_INT_TRGEV0 = (0x1 << 0),
+	GPTA_INT_TRGEV1 = (0x1 << 1),
+//	GPTA_INT_TRGEV2 = (0x1 << 2),
+//	GPTA_INT_TRGEV3 = (0x1 << 3),
+	GPTA_INT_CAPLD0 = (0x1 << 4),
+	GPTA_INT_CAPLD1 = (0x1 << 5),
+	GPTA_INT_CAPLD2 = (0x1 << 6),
+	GPTA_INT_CAPLD3 = (0x1 << 7),
+	GPTA_INT_CAU 	= (0x1 << 8),
+	GPTA_INT_CAD 	= (0x1 << 9),
+	GPTA_INT_CBU 	= (0x1 << 10),
+	GPTA_INT_CBD 	= (0x1 << 11),
+	GPTA_INT_PEND 	= (0x1 << 16)	
 }csp_gpta_int_e;
 
 #define GPTA_INT_EV(n)		(0x1 << n)
@@ -832,11 +832,11 @@ static inline uint32_t csp_gpta_get_risr(csp_gpta_t *ptGptaBase)
 	return (ptGptaBase -> RISR);
 }
 
-static inline uint32_t csp_gpta_get_misr(csp_gpta_t *ptGptaBase)
+static inline uint32_t csp_gpta_get_isr(csp_gpta_t *ptGptaBase)
 {
 	return (ptGptaBase -> MISR);
 }
-static inline void csp_gpta_clr_int(csp_gpta_t *ptGptaBase, csp_gpta_int_e eInt)
+static inline void csp_gpta_clr_isr(csp_gpta_t *ptGptaBase, csp_gpta_int_e eInt)
 {
 	ptGptaBase -> ICR = eInt;
 }

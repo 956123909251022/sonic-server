@@ -972,19 +972,19 @@ typedef enum{
 /// Interrupt Related
 ******************************************************************************/
 typedef enum{
-	GPTB_INT_TRGEV0 = 1,
-	GPTB_INT_TRGEV1 = 2,
-//	GPTB_INT_TRGEV2 = 4,
-//	GPTB_INT_TRGEV3 = 8,
-	GPTB_INT_CAPLD0 = 1 << 4,
-	GPTB_INT_CAPLD1 = 1 << 5,
-	GPTB_INT_CAPLD2 = 1 << 6,
-	GPTB_INT_CAPLD3 = 1 << 7,
-	GPTB_INT_CAU = 1 << 8,
-	GPTB_INT_CAD = 1 << 9,
-	GPTB_INT_CBU = 1 << 10,
-	GPTB_INT_CBD = 1 << 11,
-	GPTB_INT_PEND = 1 << 16	
+	GPTB_INT_TRGEV0 = (0x1 << 0),
+	GPTB_INT_TRGEV1 = (0x1 << 1),
+//	GPTB_INT_TRGEV2 = (0x1 << 2),
+//	GPTB_INT_TRGEV3 = (0x1 << 3),
+	GPTB_INT_CAPLD0 = (0x1 << 4),
+	GPTB_INT_CAPLD1 = (0x1 << 5),
+	GPTB_INT_CAPLD2 = (0x1 << 6),
+	GPTB_INT_CAPLD3 = (0x1 << 7),
+	GPTB_INT_CAU 	= (0x1 << 8),
+	GPTB_INT_CAD 	= (0x1 << 9),
+	GPTB_INT_CBU 	= (0x1 << 10),
+	GPTB_INT_CBD 	= (0x1 << 11),
+	GPTB_INT_PEND 	= (0x1 << 16)	
 }csp_gptb_int_e;
 
 #define GPTB_INT_EV(n)		(0x1 << n)
@@ -1099,12 +1099,12 @@ static inline void csp_gptb_Emergency_emimcr(csp_gptb_t *ptGptbBase, csp_gptb_em
 	ptGptbBase -> EMIMCR  |=  eInt;
 }
 
-static inline uint32_t csp_gptb_get_emmisr(csp_gptb_t *ptGptbBase)
+static inline uint32_t csp_gptb_get_emisr(csp_gptb_t *ptGptbBase)
 {
 	return (ptGptbBase -> EMMISR);
 }
 
-static inline void csp_gptb_clr_emint(csp_gptb_t *ptGptbBase, csp_gptb_emint_e eInt)
+static inline void csp_gptb_clr_emisr(csp_gptb_t *ptGptbBase, csp_gptb_emint_e eInt)
 {
 	ptGptbBase -> EMICR = eInt;
 }
@@ -1395,11 +1395,11 @@ static inline uint32_t csp_gptb_get_risr(csp_gptb_t *ptGptbBase)
 	return (ptGptbBase -> RISR);
 }
 
-static inline uint32_t csp_gptb_get_misr(csp_gptb_t *ptGptbBase)
+static inline uint32_t csp_gptb_get_isr(csp_gptb_t *ptGptbBase)
 {
 	return (ptGptbBase -> MISR);
 }
-static inline void csp_gptb_clr_int(csp_gptb_t *ptGptbBase, csp_gptb_int_e byInt)
+static inline void csp_gptb_clr_isr(csp_gptb_t *ptGptbBase, csp_gptb_int_e byInt)
 {
 	ptGptbBase -> ICR = byInt;
 }
