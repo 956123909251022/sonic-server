@@ -470,11 +470,11 @@ void csi_gpta_debug_enable(csp_gpta_t *ptGptaBase, bool bEnable);
 /** \brief enable/disable gpta out trigger 
  * 
  *  \param[in] ptGptaBase: pointer of gpta register structure
- *  \param[in] eCh: 0/1
+ *  \param[in] eTrgOut: evtrg out port(0~1)
  *  \param[in] bEnable: ENABLE/DISABLE
  *  \return error code \ref csi_error_t
  */
-csi_error_t csi_gpta_evtrg_enable(csp_gpta_t *ptGptaBase, csi_gpta_trgout_e byCh, bool bEnable);
+csi_error_t csi_gpta_evtrg_enable(csp_gpta_t *ptGptaBase, csi_gpta_trgout_e eTrgOut, bool bEnable);
 
 /** \brief   One time software output 
  * 

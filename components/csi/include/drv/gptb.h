@@ -715,11 +715,11 @@ void csi_gptb_emergency_int_enable(csp_gptb_t *ptGptbBase, csp_gptb_emint_e eEm)
 /** \brief enable/disable gptb out trigger 
  * 
  *  \param[in] ptGptbBase: pointer of gptb register structure
- *  \param[in] eCh: 0/1
+ *  \param[in] eTrgOut: evtrg out port(0~1)
  *  \param[in] bEnable: ENABLE/DISABLE
  *  \return error code \ref csi_error_t
  */
-csi_error_t csi_gptb_evtrg_enable(csp_gptb_t *ptGptbBase, uint8_t byCh, bool bEnable);
+csi_error_t csi_gptb_evtrg_enable(csp_gptb_t *ptGptbBase, csi_gptb_trgout_e eTrgOut, bool bEnable);
 
 /** \brief   One time software output 
  * 

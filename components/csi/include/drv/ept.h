@@ -635,11 +635,11 @@ csi_error_t csi_ept_set_evcntinit(csp_ept_t *ptEptBase, uint8_t byCntChx, uint8_
 
 /**
   \brief   enable/disable ept out trigger 
-  \param   ptEptBase       EPT handle to operate
-  \param 	eCh			0/1/2/3
-  \param   bEnable		ENABLE/DISABLE
+  \param   ptEptBase      	EPT handle to operate
+  \param   eTrgOut			ept evtrg out port (0~3)
+  \param   bEnable			ENABLE/DISABLE
 */
-csi_error_t csi_ept_evtrg_enable(csp_ept_t *ptEptBase, uint8_t byCh, bool bEnable);
+csi_error_t csi_ept_evtrg_enable(csp_ept_t *ptEptBase, csi_ept_trgout_e eTrgOut, bool bEnable);
 
 /** 
   \brief   One time software output 
