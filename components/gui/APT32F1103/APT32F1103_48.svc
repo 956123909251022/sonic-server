@@ -2868,7 +2868,7 @@
                 <sel notAvailable="SystemClockFreqIMOSC,SystemClockFreqText,SystemClockISOSCFreqText">HFOSC</sel>
                 <sel notAvailable="SystemClockFreqHFOSC,SystemClockFreqIMOSC,SystemClockFreqText">ISOSC</sel>
               </Selections>
-              <Comment/>
+              <Comment>系统时钟源</Comment>
             </Property>
             <Property class="UIchoice" property_class="SystemClockFreqIMOSC">
               <label>Freq(IMOSC)</label>
@@ -2879,7 +2879,7 @@
                 <sel>IMOSC_2M</sel>
                 <sel>IMOSC_131K</sel>
               </Selections>
-              <Comment/>
+              <Comment>时钟源频率</Comment>
             </Property>
             <Property class="UIchoice" property_class="SystemClockFreqHFOSC">
               <label>Freq(HFOSC)</label>
@@ -2890,13 +2890,13 @@
                 <sel>HFOSC_12M</sel>
                 <sel>HFOSC_6M</sel>
               </Selections>
-              <Comment/>
+              <Comment>时钟源频率</Comment>
             </Property>
             <Property class="Text" property_class="SystemClockFreqText">
               <label>Freq</label>
               <value>36000000</value>
               <!-- <validReg>^([1-9]|[1-3][0-9]|[4][0-8])$</validReg> -->
-              <Comment>频率范围:1~48M</Comment>
+              <Comment>时钟源频率 频率范围:1~48M</Comment>
             </Property>
             <Property class="Text" property_class="SystemClockISOSCFreqText">
               <label>Freq</label>
@@ -2924,7 +2924,7 @@
                 <sel>SCLK_DIV128</sel>
                 <sel>SCLK_DIV256</sel>
               </Selections>
-              <Comment/>
+              <Comment>系统时钟分频系数，SCLK = Freq/SCLK_DIV</Comment>
             </Property>
             <Property class="UIchoice">
               <label>PCLK DIV</label>
@@ -2936,7 +2936,7 @@
                 <sel>PCLK_DIV8</sel>
                 <sel>PCLK_DIV16</sel>
               </Selections>
-              <Comment/>
+              <Comment>外设时钟分频系数，PCLK = SCLK/PCLK_DIV</Comment>
             </Property>
           </Device>
         </Category>
@@ -2959,7 +2959,7 @@
                 <sel>LVR_37</sel>
                 <sel>LVR_40</sel>
               </Selections>
-              <Comment>Rst level 应小于Int Level</Comment>
+              <Comment>低压复位触发电压,应低于低压检测中断触发电压</Comment>
             </Property>
             <Property class="UIchoice">
               <label>Int Level</label>
@@ -2990,7 +2990,7 @@
                 <sel>LVDIN_10(falling)</sel>
                 <sel>LVDIN_10(both)</sel>
               </Selections>
-              <Comment>定时中断服务函数需要lvd_irq_handler要自定义。如：void lvd_irq_handler(void){ bLvdIrqHappened = 1; }</Comment>
+              <Comment>低压检测中断触发电压，应高于低压复位触发电压</Comment>
             </Property>
           </Device>
         </Category>
@@ -3005,7 +3005,7 @@
               <label>Fail Time</label>
               <value>0xffff</value>
               <validReg>^(0[xX])(0{3}[1-9a-fA-F]|0{2}[1-9a-fA-F][0-9a-fA-F]|0{1}[1-9a-fA-F][0-9a-fA-F]{2}|[1-9a-fA-F][0-9a-fA-F]{3})$</validReg>
-              <Comment>文本输入，范围:0x0001~0xffff之间的整数</Comment>
+              <Comment>SRAM校验重试次数，范围:0x0001~0xffff之间的整数</Comment>
             </Property>
             <Property class="UIchoice">
               <label>Fail Action</label>
@@ -3014,6 +3014,7 @@
                 <sel>reset</sel>
                 <sel>interrupt</sel>
               </Selections>
+              <Comment>SRAM校验失败后动作，复位/只产生中断</Comment>
             </Property>
           </Device>
         </Category>
@@ -3028,7 +3029,7 @@
               <label>Fail Time</label>
               <value>0xffffff</value>
               <validReg>^(0[xX])(0{5}[1-9a-fA-F]|0{4}[1-9a-fA-F][0-9a-fA-F]|0{3}[1-9a-fA-F][0-9a-fA-F]{2}|0{2}[1-9a-fA-F][0-9a-fA-F]{3}|0[1-9a-fA-F][0-9a-fA-F]{4}|[1-9a-fA-F][0-9a-fA-F]{5})$</validReg>
-              <Comment>文本输入，范围:0x000001~0xFFFFFF之间的整数</Comment>
+              <Comment>FLASH校验重试次数，校验失败会产生复位，范围:0x000001~0xFFFFFF之间的整数</Comment>
             </Property>
           </Device>
         </Category>
@@ -3046,6 +3047,7 @@
                 <sel>switch to IMOSC &amp; interrupt</sel>
                 <sel>reset</sel>
               </Selections>
+              <Comment>EM Clock监控失败动作，复位/切换到IMOSC并产生中断</Comment>
             </Property>
           </Device>
         </Category>
@@ -3099,10 +3101,10 @@
         <Category>
           <label>CoreTick</label>
           <Device deviceId="CoreTick">
-            <Comment>systick(coret)</Comment>
             <GenCodeFuncName>SysTickInitFunc</GenCodeFuncName>
             <UseOrNot>0</UseOrNot>
             <label>CoreTick</label>
+            <Comment>使能CORET定时器，CORET提供mdelay等函数，10ms进一次中断</Comment>
           </Device>
         </Category>
       </Category>
@@ -3125,6 +3127,7 @@
               <sel>PB00</sel>
               <sel>PC00</sel>
             </Selections>
+            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3134,6 +3137,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
+            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP1">
@@ -3149,6 +3153,7 @@
               <sel>PB01</sel>
               <sel>PC01</sel>
             </Selections>
+            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3158,6 +3163,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
+            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP2">
@@ -3172,6 +3178,7 @@
               <sel>PA12</sel>
               <sel>PB02</sel>
             </Selections>
+            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3181,6 +3188,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
+            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP3">
@@ -3195,6 +3203,7 @@
               <sel>PA13</sel>
               <sel>PB03</sel>
             </Selections>
+            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3204,6 +3213,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
+            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP4">
@@ -3218,6 +3228,7 @@
               <sel>PA14</sel>
               <sel>PB04</sel>
             </Selections>
+            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3227,6 +3238,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
+            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP5">
@@ -3241,6 +3253,7 @@
               <sel>PA15</sel>
               <sel>PB05</sel>
             </Selections>
+            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3250,6 +3263,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
+            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP6">
@@ -3264,6 +3278,7 @@
               <sel>PA16</sel>
               <sel>PB06</sel>
             </Selections>
+            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3273,6 +3288,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
+            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP7">
@@ -3287,6 +3303,7 @@
               <sel>PA17</sel>
               <sel>PB07</sel>
             </Selections>
+            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3296,6 +3313,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
+            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP8">
@@ -3310,6 +3328,7 @@
               <sel>PA18</sel>
               <sel>PB08</sel>
             </Selections>
+            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3319,6 +3338,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
+            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP9">
@@ -3333,6 +3353,7 @@
               <sel>PA19</sel>
               <sel>PB09</sel>
             </Selections>
+            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3342,6 +3363,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
+            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP10">
@@ -3356,6 +3378,7 @@
               <sel>PA110</sel>
               <sel>PB010</sel>
             </Selections>
+            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3365,6 +3388,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
+            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP11">
@@ -3379,6 +3403,7 @@
               <sel>PA111</sel>
               <sel>PB011</sel>
             </Selections>
+            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3388,6 +3413,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
+            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP12">
@@ -3401,6 +3427,7 @@
               <sel>PA012</sel>
               <sel>PA112</sel>
             </Selections>
+            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3410,6 +3437,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
+            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP13">
@@ -3423,6 +3451,7 @@
               <sel>PA013</sel>
               <sel>PA113</sel>
             </Selections>
+            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3432,6 +3461,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
+            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP14">
@@ -3444,6 +3474,7 @@
             <Selections>
               <sel>PA014</sel>
             </Selections>
+            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3453,6 +3484,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
+            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP15">
@@ -3465,6 +3497,7 @@
             <Selections>
               <sel>PA015</sel>
             </Selections>
+            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3474,6 +3507,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
+            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP16">
@@ -3499,6 +3533,7 @@
               <sel>PC00</sel>
               <sel>PC01</sel>
             </Selections>
+            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3508,6 +3543,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
+            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP17">
@@ -3533,6 +3569,7 @@
               <sel>PC00</sel>
               <sel>PC01</sel>
             </Selections>
+            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3542,6 +3579,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
+            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP18">
@@ -3559,6 +3597,7 @@
               <sel>PC00</sel>
               <sel>PC01</sel>
             </Selections>
+            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3568,6 +3607,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
+            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP19">
@@ -3585,6 +3625,7 @@
               <sel>PC00</sel>
               <sel>PC01</sel>
             </Selections>
+            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3594,6 +3635,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
+            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
       </Category>
@@ -8286,40 +8328,40 @@
           <UseOrNot>0</UseOrNot>
           <label>DMA</label>
           <Property class="UIchoice">
-            <label>SrcLinc</label>
+            <label>SrcAddrLinc</label>
             <value>DMA_ADDR_CONSTANT</value>
             <Selections>
               <sel>DMA_ADDR_INC</sel>
               <sel>DMA_ADDR_CONSTANT</sel>
             </Selections>
-            <Comment>低位传输源地址自增控制</Comment>
+            <Comment>低位传输计数的源地址自增控制</Comment>
           </Property>
           <Property class="UIchoice">
-            <label>SrcHinc</label>
+            <label>SrcAddrHinc</label>
             <value>DMA_ADDR_CONSTANT</value>
             <Selections>
               <sel>DMA_ADDR_INC</sel>
               <sel>DMA_ADDR_CONSTANT</sel>
             </Selections>
-            <Comment>高位传输源地址自增控制</Comment>
+            <Comment>高位传输计数的源地址自增控制</Comment>
           </Property>
           <Property class="UIchoice">
-            <label>DetLinc</label>
+            <label>DetAddrLinc</label>
             <value>DMA_ADDR_CONSTANT</value>
             <Selections>
               <sel>DMA_ADDR_INC</sel>
               <sel>DMA_ADDR_CONSTANT</sel>
             </Selections>
-            <Comment>低位传输目标地址自增控制</Comment>
+            <Comment>低位传输计数的目标地址自增控制</Comment>
           </Property>
           <Property class="UIchoice">
-            <label>DetHinc</label>
+            <label>DetAddrHinc</label>
             <value>DMA_ADDR_CONSTANT</value>
             <Selections>
               <sel>DMA_ADDR_INC</sel>
               <sel>DMA_ADDR_CONSTANT</sel>
             </Selections>
-            <Comment>高位传输目标地址自增控制</Comment>
+            <Comment>高位传输计数的目地标址自增控制</Comment>
           </Property>
           <Property class="UIchoice">
             <label>DataWidth</label>
@@ -8356,7 +8398,7 @@
               <sel>DMA_TSIZE_ONE_DSIZE</sel>
               <sel>DMA_TSIZE_FOUR_DSIZE</sel>
             </Selections>
-            <Comment>传输数据大小</Comment>
+            <Comment>传输数据大小,一个/四个DataSize(DataWidth的选择)</Comment>
           </Property>
           <Property class="UIchoice">
             <label>ReqMode</label>
@@ -8379,12 +8421,12 @@
           <Property class="Bool" property_class="DMAInt">
             <label>DMA_INTSRC_LTCIT</label>
             <value>0</value>
-            <Comment/>
+            <Comment>低位传输计数完成中断</Comment>
           </Property>
           <Property class="Bool" property_class="DMAInt">
             <label>DMA_INTSRC_TCIT</label>
             <value>0</value>
-            <Comment/>
+            <Comment>传输计数完成中断</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Channel</label>
@@ -8486,13 +8528,13 @@
               <sel>LCD_CLKSRC_RTC</sel>
               <sel>LCD_CLKSRC_ISOSC</sel>
             </Selections>
-            <Comment>LCD时钟源选择</Comment>
+            <Comment>LCD时钟源</Comment>
           </Property>
           <Property class="Text">
             <label>Freq</label>
             <value>40</value>
             <validReg>^(100|[3-9][0-9])$</validReg>
-            <Comment>LCD刷新频率 选择范围：30~100 单位Hz</Comment>
+            <Comment>LCD刷新频率 范围：30~100 单位Hz</Comment>
           </Property>
           <Property class="UIchoice">
             <label>VLCD</label>
@@ -8508,7 +8550,7 @@
               <sel>LCD_VLCD_IN_4V0</sel>
               <sel>LCD_VLCD_EX_VDD</sel>
             </Selections>
-            <Comment>LCD VOLTAGE 选择</Comment>
+            <Comment>LCD供电电压,选择LCD_VLCD_EX_VDD时，为外部供电，芯片的VLCD脚需要接入对应的电压</Comment>
           </Property>
           <Property class="UIchoice">
             <label>DutyBias</label>
@@ -8522,7 +8564,7 @@
               <sel>LCD_DUTY1_3_BIAS1_2</sel>
               <sel>LCD_DUTY1_2_BIAS1_2</sel>
             </Selections>
-            <Comment/>
+            <Comment>LCD的Duty(COM数)和Bias(偏压比)</Comment>
           </Property>
           <Property class="UIchoice">
             <label>DeadZone</label>
@@ -8537,7 +8579,7 @@
               <sel>LCD_DEAD_6PHASE</sel>
               <sel>LCD_DEAD_7PHASE</sel>
             </Selections>
-            <Comment>LCD帧死区控制，选择3个相位周期，死区可以控制对比度</Comment>
+            <Comment>LCD帧死区控制选择，死区可以控制对比度</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Drive Network</label>
@@ -8571,12 +8613,12 @@
           <Property class="Bool" property_class="LCDInt">
             <label>LCD_INTSRC_SOF</label>
             <value>0</value>
-            <Comment/>
+            <Comment>帧开始标识中断</Comment>
           </Property>
           <Property class="Bool" property_class="LCDInt">
             <label>LCD_INTSRC_UDD</label>
             <value>0</value>
-            <Comment/>
+            <Comment>更新显示完成中断</Comment>
           </Property>
         </Device>
       </Category>
