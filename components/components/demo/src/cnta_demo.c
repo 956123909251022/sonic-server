@@ -31,7 +31,7 @@ int cnta_timer_demo(void)
 {	
 	int iRet = 0;
 	
-	csi_pin_set_mux(PA110,PA110_CNTA_REM);//set counter output pin	该管脚的周期即为设置的时间
+	csi_pin_set_mux(PA110,PA110_CNTA_BUZ);//set counter output pin	该管脚的周期即为设置的时间
 	//csi_pin_set_mux(PA113,PA113_CNTA_REM);//set counter output pin
 	//csi_pin_set_mux(PA17,PA17_CNTA_REM);//set counter output pin,这个脚是烧录管脚的数据线，调试PA17_CNTA_REM功能，记得在测之前加个2-3秒的延时，除非是最终版本
 	
@@ -64,7 +64,7 @@ int cnta_pwm_demo(void)
 	tPwmCfg.byInt = CNTA_INTSRC_NONE;   		//无中断源
 	tPwmCfg.wFreq = 38000;              		//频率 hz
 	
-	csi_pin_set_mux(PA110,PA110_CNTA_REM);//set counter output pin	
+	csi_pin_set_mux(PA110,PA110_CNTA_BUZ);//set counter output pin	
 	//csi_pin_set_mux(PA113,PA113_CNTA_REM);//set counter output pin
 	//csi_pin_set_mux(PA17,PA17_CNTA_REM);//set counter output pin,这个脚是烧录管脚的数据线，调试PA17_CNTA_REM功能，记得在测之前加个2-3秒的延时，除非是最终版本
 	
