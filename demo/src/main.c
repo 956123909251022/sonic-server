@@ -20,8 +20,9 @@
 /* externs function--------------------------------------------------------*/
 extern void system_init(void);
 extern void board_init(void);
-extern void PinConfigInit(void);
-extern void user_demo(void);
+
+extern void __ChipInitHandler(void);		//gui
+extern void user_demo(void);				//demo
 
 
 /* externs variablesr------------------------------------------------------*/
