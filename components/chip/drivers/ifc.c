@@ -376,10 +376,10 @@ static void apt_ifc_step_sync(csp_ifc_t * ptIfcBase, ifc_cmd_e eStepn, uint32_t 
 	{
 		switch (eStepn)
 		{
-			case (PROGRAM): while(ptIfcBase->RISR != IFCINT_PEP_END); /*// Wait for operation done*/
+			case (PROGRAM): while(ptIfcBase->RISR != IFCINT_PEP_END){}; /*// Wait for operation done*/
 							csp_ifc_clr_int(ptIfcBase, IFCINT_PEP_END);
 							break;
-			case (PAGE_ERASE): while(ptIfcBase->RISR != IFCINT_ERS_END); /*// Wait for operation done*/
+			case (PAGE_ERASE): while(ptIfcBase->RISR != IFCINT_ERS_END){}; /*// Wait for operation done*/
 							csp_ifc_clr_int(ptIfcBase, IFCINT_ERS_END);
 							break;
 			default: break;
