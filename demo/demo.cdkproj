@@ -14,7 +14,7 @@
   </VendorInfo>
   <MonitorProgress>
     <DebugLaunch>96</DebugLaunch>
-    <FlashOperate>84</FlashOperate>
+    <FlashOperate>86</FlashOperate>
   </MonitorProgress>
   <VirtualDirectory Name="package"/>
   <PackPathes>$(ProjectPath)/../board|$(ProjectPath)/../components|$(ProjectPath)/../demo|</PackPathes>
