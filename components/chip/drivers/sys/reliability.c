@@ -27,8 +27,8 @@
 void csi_lvd_int_enable(csi_lvd_pol_e ePol, csi_lvd_level_e eLvl)
 {
 	
-	csp_set_lvd_level(SYSCON, eLvl);	
-	csp_set_lvd_int_pol(SYSCON, ePol);
+	csp_set_lvd_level(SYSCON, (lvd_level_e)eLvl);	
+	csp_set_lvd_int_pol(SYSCON, (lvdint_pol_e)ePol);
 	
 	csp_syscon_int_enable(SYSCON, LVD_INT, ENABLE);			
 	csp_lvd_lvr_enable(SYSCON, ENABLE);						
@@ -61,7 +61,7 @@ uint32_t csi_lvd_flag(void)
 void csi_lvr_enable(csi_lvr_level_e eLvl)
 {
 	
-	csp_set_lvr_level(SYSCON, eLvl);
+	csp_set_lvr_level(SYSCON, (lvr_level_e)eLvl);
 	csp_lvr_rst_enable(SYSCON, ENABLE);	
 	csp_lvd_lvr_enable(SYSCON, ENABLE);
 }

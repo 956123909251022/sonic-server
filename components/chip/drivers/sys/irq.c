@@ -14,7 +14,7 @@
 #include <irq.h>
 
 //extern csi_irqmap_t irq_map[];
-extern csi_devmap_t dev_map[];
+extern csi_devmap_t g_tDevMap[];
 
 /** \brief irq enable
  * 
@@ -38,7 +38,7 @@ void csi_irq_enable(void *pIpBase)
 //        ptMap++;
 //    }
 	
-	csi_devmap_t *ptMap = dev_map;
+	csi_devmap_t *ptMap = g_tDevMap;
 	uint32_t wIpBase = (uint32_t)pIpBase;
 	
 	while(ptMap->hwRegBase) 
@@ -139,7 +139,7 @@ void csi_irq_disable(void *pIpBase)
 //        ptMap++;
 //    }
 	
-	csi_devmap_t *ptMap = dev_map;
+	csi_devmap_t *ptMap = g_tDevMap;
 	uint32_t wIpBase = (uint32_t)pIpBase;
 	
 	while(ptMap->hwRegBase) 

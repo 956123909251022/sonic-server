@@ -19,7 +19,7 @@
 //extern system_clk_config_t g_tSystemClkConfig[];
 
 
-static uint32_t wTmLoad = 0,wClkDivn = 0;
+static uint32_t s_wTmLoad = 0,s_wClkDivn = 0;
 
 ///to match the real div to reg setting
 const uint32_t g_wHclkDiv[] = {
@@ -406,38 +406,38 @@ void apt_timer_set_load_value(uint32_t wTimesOut,uint8_t byBitMode)
 	}
 	if((csi_get_pclk_freq() % 1000000) == 0)
 	{
-		wClkDivn = csi_get_pclk_freq() / 1000000 * wTimesOut / wDivisor;		//timer clk div value
-		if(wClkDivn == 0)
-			wClkDivn  = 1;
-		wTmLoad = csi_get_pclk_freq() / 1000000 * wTimesOut / wClkDivn;	//timer prdr load value
-		if(wTmLoad > wPrdrLoadMax)
+		s_wClkDivn = csi_get_pclk_freq() / 1000000 * wTimesOut / wDivisor;		//timer clk div value
+		if(s_wClkDivn == 0)
+			s_wClkDivn  = 1;
+		s_wTmLoad = csi_get_pclk_freq() / 1000000 * wTimesOut / s_wClkDivn;	//timer prdr load value
+		if(s_wTmLoad > wPrdrLoadMax)
 		{
-			wClkDivn += 1;
-			wTmLoad = csi_get_pclk_freq() / 1000000 * wTimesOut / wClkDivn ;	//timer prdr load value
+			s_wClkDivn += 1;
+			s_wTmLoad = csi_get_pclk_freq() / 1000000 * wTimesOut / s_wClkDivn ;	//timer prdr load value
 		}			
 	}
 	else if((csi_get_pclk_freq() % 4000) <= 2000)                               //最大5556000 
 	{
-		wClkDivn = csi_get_pclk_freq() / 4000 * wTimesOut / 250 / wDivisor;		//timer clk div value
-		if(wClkDivn == 0)
-			wClkDivn  = 1;
-		wTmLoad = csi_get_pclk_freq() / 4000 * wTimesOut / 250 / wClkDivn;	//timer prdr load value
-		if(wTmLoad > wPrdrLoadMax)
+		s_wClkDivn = csi_get_pclk_freq() / 4000 * wTimesOut / 250 / wDivisor;		//timer clk div value
+		if(s_wClkDivn == 0)
+			s_wClkDivn  = 1;
+		s_wTmLoad = csi_get_pclk_freq() / 4000 * wTimesOut / 250 / s_wClkDivn;	//timer prdr load value
+		if(s_wTmLoad > wPrdrLoadMax)
 		{
-			wClkDivn += 1;
-			wTmLoad = csi_get_pclk_freq() / 4000 * wTimesOut / 250 / wClkDivn ;	//timer prdr load value
+			s_wClkDivn += 1;
+			s_wTmLoad = csi_get_pclk_freq() / 4000 * wTimesOut / 250 / s_wClkDivn ;	//timer prdr load value
 		}				
 	}
 	else
 	{
-		wClkDivn = csi_get_pclk_freq() / 1000 * wTimesOut / 1000 / wDivisor;		//timer clk div value
-		if(wClkDivn == 0)
-			wClkDivn  = 1;
-		wTmLoad = csi_get_pclk_freq() / 1000 * wTimesOut / 1000 / wClkDivn;	//timer prdr load value
-		if(wTmLoad > wPrdrLoadMax)
+		s_wClkDivn = csi_get_pclk_freq() / 1000 * wTimesOut / 1000 / wDivisor;		//timer clk div value
+		if(s_wClkDivn == 0)
+			s_wClkDivn  = 1;
+		s_wTmLoad = csi_get_pclk_freq() / 1000 * wTimesOut / 1000 / s_wClkDivn;	//timer prdr load value
+		if(s_wTmLoad > wPrdrLoadMax)
 		{
-			wClkDivn += 1;
-			wTmLoad = csi_get_pclk_freq() / 1000 * wTimesOut / 1000 / wClkDivn ;	//timer prdr load value
+			s_wClkDivn += 1;
+			s_wTmLoad = csi_get_pclk_freq() / 1000 * wTimesOut / 1000 / s_wClkDivn ;	//timer prdr load value
 		}
 	}
 }
@@ -447,7 +447,7 @@ void apt_timer_set_load_value(uint32_t wTimesOut,uint8_t byBitMode)
 */
 uint32_t apt_timer_get_prdrload_value(void)
 {
-	return wTmLoad;
+	return s_wTmLoad;
 }
 
 /** \brief       get timer clk div
@@ -455,5 +455,5 @@ uint32_t apt_timer_get_prdrload_value(void)
 */
 uint32_t apt_timer_get_clkdiv_value(void)
 {
-	return wClkDivn;
+	return s_wClkDivn;
 }
