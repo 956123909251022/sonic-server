@@ -23,7 +23,8 @@
 
 ringbuffer_t g_tRingbuf1;							//循环buffer
 uint8_t 	 g_byRxBuf1[USART_RECV_MAX_LEN];		//接收缓存
-volatile uint8_t byRvUsart[30]={0};
+
+//volatile uint8_t byRvUsart[30]={0};
 
 /** \brief usart receive a bunch of data; interrupt(async) mode
  *  \brief USART接收到一串字符串，RX使用中断模式，TX不使用中断

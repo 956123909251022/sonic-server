@@ -23,7 +23,7 @@
 ringbuffer_t g_tRingbuf;						//循环buffer
 uint8_t 	 g_byRxBuf[UART_RECV_MAX_LEN];		//接收缓存
 
-volatile uint8_t byRvUart[30]={0};
+//volatile uint8_t byRvUart[30]={0};
 
 
 /** \brief uart receive assign(fixed) length data; interrupt(async) mode
