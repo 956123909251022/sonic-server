@@ -4,188 +4,18 @@
  * \copyright Copyright (C) 2015-2020 @ APTCHIP
  * <table>
  * <tr><th> Date  <th>Version  <th>Author  <th>Description
- * <tr><td> 2022-1-17 <td>V0.0 <td>ljy     <td>initial
+ * <tr><td> 2022-1-17  <td>V0.0  <td>ljy     <td>initial
+ * <tr><td> 2023-5-10  <td>V0.1 <td>wch     <td>modify
  * </table>
  * *********************************************************************
 */
 #include <sys_clk.h>
-//#include drv/common.h"
 #include <drv/gptb.h>
 #include <csp_gptb.h>
-//#include "drv/pin.h"
 #include <drv/irq.h>
-//#include "drv/etb.h"
-#include <drv/pin.h>
 
-extern void load2(void);
-uint32_t gTick2;
-//to maximize the  speed
- uint32_t gGptb0Prd;
- uint32_t gGptb1Prd;
-uint32_t wGptb_Cmp_Buff[4] = {0};
-// uint32_t gGptb2Prd;
-// uint32_t gGptb3Prd;
-// uint32_t gGptb4Prd;
-// uint32_t gGptb5Prd;
+uint32_t g_wGptb0Prd;
 
-
-// /**
-// \brief  Basic configuration
-// \param  ptGptbBase    	pointer of gptb register structure
-// \param  ptgptbPwmCfg   	refer to csi_gptb_config_t
-// \return CSI_OK/CSI_ERROR
-//*/
-//csi_error_t csi_gptb_config_init(csp_gptb_t *ptGptbBase, csi_gptb_config_t *ptgptbPwmCfg)
-//{
-//	uint32_t wClkDiv;
-//	uint32_t wCrVal;
-//	uint32_t wCmpLoad; 
-//	uint32_t wPrdrLoad; 
-//	
-//	if(ptgptbPwmCfg->wFreq == 0 ){ptgptbPwmCfg->wFreq =100;}
-//	
-//	
-//	csi_clk_enable((uint32_t *)ptGptbBase);								// clk enable   ??????????????
-//	
-//	csp_gptb_clken(ptGptbBase);
-//	csp_gptb_wr_key(ptGptbBase);                                           //Unlocking
-//	csp_gptb_reset(ptGptbBase);											// reset 
-//	
-//	wClkDiv = (csi_get_pclk_freq() / ptgptbPwmCfg->wFreq / 30000);		// clk div value
-//	if(wClkDiv == 0)wClkDiv = 1;
-//	
-//	wPrdrLoad  = (csi_get_pclk_freq()/ptgptbPwmCfg->wFreq/wClkDiv);	    //prdr load value
-//			
-//	wCrVal =ptgptbPwmCfg->byCountingMode | (ptgptbPwmCfg->byStartSrc<<GPTB_STARTSRC_POS) |
-//	        ptgptbPwmCfg->byOneshotMode<<GPTB_OPMD_POS | (ptgptbPwmCfg->byWorkmod<<GPTB_MODE_POS);
-//    
-//	wCrVal=(wCrVal & ~(GPTB_PSCLD_MSK))   |((ptgptbPwmCfg->byPscld&0x03)   <<GPTB_PSCLD_POS);
-//	
-//	if(ptgptbPwmCfg->byWorkmod==GPTB_CAPTURE)
-//	{
-//	 	wCrVal=(wCrVal & ~(GPTB_CAPMD_MSK))   |((ptgptbPwmCfg->byCaptureCapmd&0x01)   <<GPTB_CAPMD_POS);
-//		wCrVal=(wCrVal & ~(GPTB_STOPWRAP_MSK))|((ptgptbPwmCfg->byCaptureStopWrap&0x03)<<GPTB_STOPWRAP_POS);
-//		
-//		if(ptgptbPwmCfg->byCaptureCapLden)wCrVal|=GPTB_CAPLD_EN;
-//		if(ptgptbPwmCfg->byCaptureRearm)  wCrVal|=GPTB_CAPREARM;
-//		
-//		wPrdrLoad=0xFFFF;
-//	}
-//	
-//	if(ptgptbPwmCfg->byBurst)
-//	{
-//		wCrVal=(wCrVal & ~(GPTB_CGSRC_MSK))|((ptgptbPwmCfg->byCgsrc&0x03)<<GPTB_CGSRC_POS);
-//		wCrVal=(wCrVal & ~(GPTB_CGFLT_MSK))|((ptgptbPwmCfg->byCgflt&0x07)<<GPTB_CGFLT_POS);
-//	}
-//	
-//    csp_gptb_clken(ptGptbBase);                                             // clkEN
-//	csp_gptb_set_cr(ptGptbBase, wCrVal);									// set bt work mode
-//	csp_gptb_set_pscr(ptGptbBase, (uint16_t)wClkDiv );					// clk div
-//	csp_gptb_set_prdr(ptGptbBase, (uint16_t)wPrdrLoad);				        // prdr load value
-//		
-//	if(ptgptbPwmCfg->byDutyCycle){
-//	wCmpLoad =wPrdrLoad-(wPrdrLoad * ptgptbPwmCfg->byDutyCycle /100);	    // cmp load value
-//	csp_gptb_set_cmpa(ptGptbBase, (uint16_t)wCmpLoad);					    // cmp load value
-//	csp_gptb_set_cmpb(ptGptbBase, (uint16_t)wCmpLoad);
-//	}
-//	
-//	if(ptgptbPwmCfg->wInt)
-//	{
-//		csp_gptb_int_enable(ptGptbBase, ptgptbPwmCfg->wInt, true);		//enable interrupt
-//		csi_irq_enable((uint32_t *)ptGptbBase);							//enable  irq
-//	}
-//	
-//	gGptb0Prd=wPrdrLoad;
-//	
-//	return CSI_OK;
-//}
-
-__attribute__((weak)) void gptb0_irqhandler(csp_gptb_t *ptGptbBase)
-  {  	
-	if(((csp_gptb_get_emisr(ptGptbBase) & B_EM_INT_CPUF))==B_EM_INT_CPUF)
-	{ 
-	  nop;//udelay(10);		  
-	  ptGptbBase -> EMHLCLR |=B_EM_INT_CPUF;
-	  csp_gptb_clr_emisr(ptGptbBase,B_EM_INT_CPUF);	
-	 }
-	  
-	if(((csp_gptb_get_emisr(ptGptbBase) & B_EM_INT_EP3))==B_EM_INT_EP3)
-	{ 
-	  nop;udelay(10);
-	  csp_gptb_clr_emHdlck(ptGptbBase, B_EP3);
-	  csp_gptb_clr_emisr(ptGptbBase,B_EM_INT_EP3);	
-	 }
-	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_TRGEV0))==GPTB_INT_TRGEV0)
-	{
-	   csp_gptb_clr_isr(ptGptbBase, GPTB_INT_TRGEV0);
-	}	
-	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_TRGEV1))==GPTB_INT_TRGEV1)
-	{
-	   csp_gptb_clr_isr(ptGptbBase, GPTB_INT_TRGEV1);
-	}	
-	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_CAPLD0))==GPTB_INT_CAPLD0)
-	{
-	  wGptb_Cmp_Buff[0]=csp_gptb_get_cmpa(ptGptbBase);
-	  csp_gptb_clr_isr(ptGptbBase, GPTB_INT_CAPLD0);	
-	}
-	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_CAPLD1))==GPTB_INT_CAPLD1)
-	{
-	  wGptb_Cmp_Buff[0]=csp_gptb_get_cmpa(ptGptbBase);
-	  wGptb_Cmp_Buff[1]=csp_gptb_get_cmpb(ptGptbBase);
-	  csp_gptb_clr_isr(ptGptbBase, GPTB_INT_CAPLD1);	
-	}
-	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_CAPLD2))==GPTB_INT_CAPLD2)
-	{
-	  wGptb_Cmp_Buff[0]=csp_gptb_get_cmpa(ptGptbBase);
-	  wGptb_Cmp_Buff[1]=csp_gptb_get_cmpb(ptGptbBase);	
-	  wGptb_Cmp_Buff[2]=csp_gptb_get_cmpaa(ptGptbBase);
-	  csp_gptb_clr_isr(ptGptbBase, GPTB_INT_CAPLD2);	
-	}
-	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_CAPLD3))==GPTB_INT_CAPLD3)
-	{
-	  wGptb_Cmp_Buff[0]=csp_gptb_get_cmpa(ptGptbBase);
-	  wGptb_Cmp_Buff[1]=csp_gptb_get_cmpb(ptGptbBase);	
-	  wGptb_Cmp_Buff[2]=csp_gptb_get_cmpaa(ptGptbBase);
-	  wGptb_Cmp_Buff[3]=csp_gptb_get_cmpba(ptGptbBase);	
-	  csp_gptb_clr_isr(ptGptbBase, GPTB_INT_CAPLD3);	
-	}
-	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_PEND))==GPTB_INT_PEND)
-	{
-	   csi_gpio_port_set_high(GPIOA0, (0x01ul << 0));			
-		nop;
-	   csi_gpio_port_set_low (GPIOA0, (0x01ul << 0));
-	   csp_gptb_clr_isr(ptGptbBase, GPTB_INT_PEND);
-	}
-	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_CBU))==GPTB_INT_CBU)
-	{	
-		gTick2++;if(gTick2>=5){	
-								   //load2();	
-	                               gTick2=0;
-								   csi_gpio_port_set_high(GPIOA0, (0x01ul << 0));
-								   csi_gptb_channel_cmpload_config(GPTB0, GPTB_CMPLD_IMM, GPTB_LDCMP_ZRO ,GPTB_CAMPA);
-	                               csi_gptb_channel_cmpload_config(GPTB0, GPTB_CMPLD_IMM, GPTB_LDCMP_ZRO ,GPTB_CAMPB);
-								   csi_gptb_change_ch_duty(GPTB0,GPTB_CAMPA, 25);
-								   csi_gptb_change_ch_duty(GPTB0,GPTB_CAMPB, 25);
-								   csi_gpio_port_set_low (GPIOA0, (0x01ul << 0));
-								   
-								   
-		                         }
-	    csp_gptb_clr_isr(ptGptbBase, GPTB_INT_CBU);
-	   	
-	}	
-
-		
-  }
-
-__attribute__((weak)) void gptb1_irqhandler(csp_gptb_t *ptGptbBase)
-  {  	
-	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_CAPLD1))==GPTB_INT_CAPLD1)
-	{		
-//		  csi_pin_set_high(PA0);
-	  csp_gptb_clr_isr(ptGptbBase, GPTB_INT_CAPLD1);
-//		  csi_pin_set_low(PA0); 		
-	} 
-  }
 /** \brief capture configuration
  * 
  *  \param[in] ptGptbBase: pointer of gptb register structure
@@ -233,7 +63,7 @@ csi_error_t csi_gptb_capture_init(csp_gptb_t *ptGptbBase, csi_gptb_captureconfig
 		csi_irq_enable((uint32_t *)ptGptbBase);							//enable  irq
 	}
 	
-	gGptb0Prd=wPrdrLoad;
+	g_wGptb0Prd=wPrdrLoad;
 	
 	return CSI_OK;
 }
@@ -293,7 +123,7 @@ csi_error_t  csi_gptb_wave_init(csp_gptb_t *ptGptbBase, csi_gptb_pwmconfig_t *pt
 		csi_irq_enable((uint32_t *)ptGptbBase);							//enable  irq
 	}
 	
-	gGptb0Prd=wPrdrLoad;
+	g_wGptb0Prd=wPrdrLoad;
 	
 	return CSI_OK;	
 }

@@ -4,7 +4,8 @@
  * \copyright Copyright (C) 2015-2020 @ APTCHIP
  * <table>
  * <tr><th> Date  <th>Version  <th>Author  <th>Description
- * <tr><td> 2021-5-11 <td>V0.0 <td>ljy     <td>initial
+ * <tr><td> 2021-5-11  <td>V0.0 <td>ljy     <td>initial
+ * <tr><td> 2023-5-10  <td>V0.1 <td>wch     <td>modify
  * </table>
  * *********************************************************************
 */
@@ -20,6 +21,8 @@
 /* externs variablesr------------------------------------------------------*/
 /* Private macro-----------------------------------------------------------*/
 /* Private variablesr------------------------------------------------------*/
+static uint32_t s_wGptbCapBuff[4] = {0};
+static uint8_t  s_byTick;
 
 /** \brief GPTB基本定时功能
  * 
@@ -89,8 +92,8 @@ int gptb_capture_demo(void)
 //	tpFiltercfg.byWinInv         =1;                              //0h：窗口不反转，窗口有效区间禁止滤波输入;  1h：窗口反转，  窗口有效区间使能滤波输入
 //	tpFiltercfg.byWinAlign       =GPTB_ALIGN_ZRO;                  //窗口对齐模式选择															  
 //	tpFiltercfg.byWinCross       =1;                              //滤波窗跨越窗口对齐点:  0h：禁止跨窗口对齐点;  1h：允许跨窗口对齐点
-//	tpFiltercfg.byWinOffset      =gGptb0Prd/2;
-//	tpFiltercfg.byWinWidth       =gGptb0Prd/2;
+//	tpFiltercfg.byWinOffset      =g_wGptb0Prd/2;
+//	tpFiltercfg.byWinWidth       =g_wGptb0Prd/2;
 //    csi_gptb_set_sync_filter(GPTB0, &tpFiltercfg);
 //------------------------------------------------------------------------------------------------------------------------
 	csi_gptb_start(GPTB0);//start  timer
@@ -409,5 +412,81 @@ int gptb_pwm_dz_em_demo(void)
 		    mdelay(100);
 	}			
 	return iRet;
-};
+}
 
+/** \brief gptb interrupt handle weak function
+ *  \param[in] none
+ *  \return    none
+ */
+__attribute__((weak)) void gptb_irqhandler(csp_gptb_t *ptGptbBase)
+  {  	
+	if(((csp_gptb_get_emisr(ptGptbBase) & B_EM_INT_CPUF))==B_EM_INT_CPUF)
+	{ 
+	  nop;//udelay(10);		  
+	  ptGptbBase -> EMHLCLR |=B_EM_INT_CPUF;
+	  csp_gptb_clr_emisr(ptGptbBase,B_EM_INT_CPUF);	
+	 }
+	  
+	if(((csp_gptb_get_emisr(ptGptbBase) & B_EM_INT_EP3))==B_EM_INT_EP3)
+	{ 
+	  nop;udelay(10);
+	  csp_gptb_clr_emHdlck(ptGptbBase, B_EP3);
+	  csp_gptb_clr_emisr(ptGptbBase,B_EM_INT_EP3);	
+	 }
+	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_TRGEV0))==GPTB_INT_TRGEV0)
+	{
+	   csp_gptb_clr_isr(ptGptbBase, GPTB_INT_TRGEV0);
+	}	
+	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_TRGEV1))==GPTB_INT_TRGEV1)
+	{
+	   csp_gptb_clr_isr(ptGptbBase, GPTB_INT_TRGEV1);
+	}	
+	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_CAPLD0))==GPTB_INT_CAPLD0)
+	{
+	  s_wGptbCapBuff[0]=csp_gptb_get_cmpa(ptGptbBase);
+	  csp_gptb_clr_isr(ptGptbBase, GPTB_INT_CAPLD0);	
+	}
+	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_CAPLD1))==GPTB_INT_CAPLD1)
+	{
+	  s_wGptbCapBuff[0]=csp_gptb_get_cmpa(ptGptbBase);
+	  s_wGptbCapBuff[1]=csp_gptb_get_cmpb(ptGptbBase);
+	  csp_gptb_clr_isr(ptGptbBase, GPTB_INT_CAPLD1);	
+	}
+	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_CAPLD2))==GPTB_INT_CAPLD2)
+	{
+	  s_wGptbCapBuff[0]=csp_gptb_get_cmpa(ptGptbBase);
+	  s_wGptbCapBuff[1]=csp_gptb_get_cmpb(ptGptbBase);	
+	  s_wGptbCapBuff[2]=csp_gptb_get_cmpaa(ptGptbBase);
+	  csp_gptb_clr_isr(ptGptbBase, GPTB_INT_CAPLD2);	
+	}
+	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_CAPLD3))==GPTB_INT_CAPLD3)
+	{
+	  s_wGptbCapBuff[0]=csp_gptb_get_cmpa(ptGptbBase);
+	  s_wGptbCapBuff[1]=csp_gptb_get_cmpb(ptGptbBase);	
+	  s_wGptbCapBuff[2]=csp_gptb_get_cmpaa(ptGptbBase);
+	  s_wGptbCapBuff[3]=csp_gptb_get_cmpba(ptGptbBase);	
+	  csp_gptb_clr_isr(ptGptbBase, GPTB_INT_CAPLD3);	
+	}
+	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_PEND))==GPTB_INT_PEND)
+	{
+	   csi_gpio_port_set_high(GPIOA0, (0x01ul << 0));			
+	   nop;
+	   csi_gpio_port_set_low (GPIOA0, (0x01ul << 0));
+	   csp_gptb_clr_isr(ptGptbBase, GPTB_INT_PEND);
+	}
+	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_CBU))==GPTB_INT_CBU)
+	{	
+		s_byTick++;
+		if(s_byTick>=5)
+		{		
+			s_byTick=0;
+			csi_gpio_port_set_high(GPIOA0, (0x01ul << 0));
+			csi_gptb_channel_cmpload_config(GPTB0, GPTB_CMPLD_IMM, GPTB_LDCMP_ZRO ,GPTB_CAMPA);
+	        csi_gptb_channel_cmpload_config(GPTB0, GPTB_CMPLD_IMM, GPTB_LDCMP_ZRO ,GPTB_CAMPB);
+			csi_gptb_change_ch_duty(GPTB0,GPTB_CAMPA, 25);
+			csi_gptb_change_ch_duty(GPTB0,GPTB_CAMPB, 25);
+			csi_gpio_port_set_low (GPIOA0, (0x01ul << 0));  
+		}
+	    csp_gptb_clr_isr(ptGptbBase, GPTB_INT_CBU);
+	}	
+}

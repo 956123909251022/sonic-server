@@ -356,6 +356,19 @@ csi_error_t csi_spi_send_dma(csp_spi_t *ptSpiBase, const void *pData, uint16_t h
  */
 csi_error_t csi_spi_recv_dma(csp_spi_t *ptSpiBase, void *pbyRecv, uint16_t hwSize,  uint8_t byDmaCh);
 
+/** \brief spi receive data,interrupt call 
+ * 
+ *  \param[in] ptSpiBase: pointer of SPI reg structure.
+ *  \return none
+ */ 
+void apt_spi_intr_recv_data(csp_spi_t *ptSpiBase);
+
+/** \brief spi send data,interrupt call
+ * 
+ *  \param[in] ptSpiBase: pointer of SPI reg structure.
+ *  \return none
+ */ 
+void apt_spi_intr_send_data(csp_spi_t *ptSpiBase);
 
 #ifdef __cplusplus
 }

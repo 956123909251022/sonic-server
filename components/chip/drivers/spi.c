@@ -602,7 +602,7 @@ void csi_spi_clr_rxfifo(csp_spi_t *ptSpiBase)
  *  \param[in] ptSpiBase: pointer of SPI reg structure.
  *  \return none
  */ 
-static void apt_spi_intr_recv_data(csp_spi_t *ptSpiBase)
+void apt_spi_intr_recv_data(csp_spi_t *ptSpiBase)
 {
 	if((g_tSpiTransmit.pbyRxData == NULL) || (g_tSpiTransmit.byRxSize == 0U))//use interrupt transceiver, but does not care about receiving
 	{
@@ -637,7 +637,7 @@ static void apt_spi_intr_recv_data(csp_spi_t *ptSpiBase)
  *  \param[in] ptSpiBase: pointer of SPI reg structure.
  *  \return none
  */ 
-static void apt_spi_intr_send_data(csp_spi_t *ptSpiBase)
+void apt_spi_intr_send_data(csp_spi_t *ptSpiBase)
 {	
 	uint8_t byCount = 0;
 	uint32_t wTimeStart = SPI_SEND_TIMEOUT;
@@ -689,60 +689,6 @@ static void apt_spi_intr_send_data(csp_spi_t *ptSpiBase)
 		while((csp_spi_get_sr(ptSpiBase) & SPI_BSY) && (wTimeStart --) );
 		g_tSpiTransmit.byWriteable =  SPI_STATE_IDLE;
 		csp_spi_int_enable(ptSpiBase, SPI_TXIM_INT, false);	
-	}
-}
-
-/** \brief spi interrupt handle weak function
- * 
- *  \param[in] ptSpiBase: pointer of spi register structure
- *  \return none
- */ 
-__attribute__((weak)) void spi_irqhandler(csp_spi_t *ptSpiBase)
-{	
-	uint32_t wStatus = csp_spi_get_isr(ptSpiBase);
-	//fifo rx 
-	if(wStatus & SPI_RXIM_INT)
-	{
-		//for reference
-		apt_spi_intr_recv_data(ptSpiBase);
-	}
-	//fifo tx 
-	if(wStatus & SPI_TXIM_INT)		
-	{
-		//for reference
-		apt_spi_intr_send_data(ptSpiBase);
-	}
-	
-	//fifo overflow
-	if(wStatus & SPI_ROTIM_INT)
-	{	
-		//for reference
-		csi_spi_clr_rxfifo(ptSpiBase);
-		csp_spi_clr_isr(ptSpiBase, SPI_ROTIM_INT);
-	}
-	
-	//fifo rx timeout
-	if(wStatus & SPI_RTIM_INT)		
-	{	
-		//for reference
-		csp_spi_clr_isr(ptSpiBase, SPI_RTIM_INT);
-		
-		for(uint8_t byIdx = 0; byIdx < g_tSpiTransmit.byRxFifoLength; byIdx++)
-		{
-			if(csp_spi_get_sr(ptSpiBase) & SPI_RNE)
-			{
-				*g_tSpiTransmit.pbyRxData = csp_spi_get_data(ptSpiBase);
-				g_tSpiTransmit.pbyRxData++;
-			}
-			else
-			{
-				break;
-			}			
-		}		
-		g_tSpiTransmit.byRxSize = 0;
-		g_tSpiTransmit.byReadable = SPI_STATE_IDLE;
-		csp_spi_int_enable(ptSpiBase, SPI_RXIM_INT | SPI_RTIM_INT, false);
-
 	}
 }
 

@@ -5,114 +5,18 @@
  * <table>
  * <tr><th> Date  <th>Version  <th>Author  <th>Description
  * <tr><td> 2021-6-17 <td>V0.0  <td>ljy   <td>initial
+ * <tr><td> 2023-5-10  <td>V0.1 <td>wch   <td>modify
  * </table>
  * *********************************************************************
 */
 #include <sys_clk.h>
 #include <drv/common.h>
 #include <drv/ept.h>
-#include <drv/pin.h>
 #include <drv/irq.h>
 #include <sys_clk.h>
 #include "csp_ept.h"
-extern void load(void);
-uint32_t gEptTick;
-uint32_t gEptPrd;
-uint32_t val_BUFF[4];
 
-/** \brief ept interrupt handle weak function
- *   		- 
- *     		- 
- * 			- 
- *  \param[in] none
- *  \return    none
- */
-__attribute__((weak)) void ept_irqhandler(csp_ept_t *ptEptBase)
-{
-	if(((csp_ept_get_emisr(ptEptBase) & EPT_INT_CPUF))==EPT_INT_CPUF)
-	{
-		 ptEptBase -> EMHLCLR |=  EPT_INT_CPUF;
-		 csp_ept_clr_emisr(ptEptBase,EPT_INT_CPUF);	
-	}
-	
-	if(((csp_ept_get_emisr(ptEptBase) & EPT_INT_EP6))==EPT_INT_EP6)
-	{
-		 csp_ept_clr_emHdlck(EPT0, EP6);
-		 csp_ept_clr_emisr(ptEptBase,EPT_INT_EP6);	
-	}	
-	
-	if(((csp_ept_get_isr(ptEptBase) & EPT_INT_TRGEV0))==EPT_INT_TRGEV0)
-	{	
-	  
-		  csp_ept_clr_isr(ptEptBase, EPT_INT_TRGEV0);
-		  nop;
-	  
-	}
-	if(((csp_ept_get_isr(ptEptBase) & EPT_INT_CBU))==EPT_INT_CBU)
-	{		
-			//csi_ept_change_ch_duty(EPT0,EPT_CH_1, 50);
-		gEptTick++;if(gEptTick>=5){	
-								   //load();	
-	                               gEptTick=0;
-								    csi_gpio_port_set_high(GPIOA0, (0x01ul << 0));						 
-									csi_ept_channel_cmpload_config(EPT0, EPT_CMPLD_IMM, EPT_LDCMP_ZRO ,EPT_CAMPA);
-									csi_ept_channel_cmpload_config(EPT0, EPT_CMPLD_IMM, EPT_LDCMP_ZRO ,EPT_CAMPB);
-									csi_ept_channel_cmpload_config(EPT0, EPT_CMPLD_IMM, EPT_LDCMP_ZRO ,EPT_CAMPC);
-									csi_ept_channel_cmpload_config(EPT0, EPT_CMPLD_IMM, EPT_LDCMP_ZRO ,EPT_CAMPD);
-									csi_ept_change_ch_duty(EPT0,EPT_CAMPA, 20);
-									csi_ept_change_ch_duty(EPT0,EPT_CAMPB, 20);
-									csi_ept_change_ch_duty(EPT0,EPT_CAMPC, 20);							 
-									csi_gpio_port_set_low (GPIOA0, (0x01ul << 0));
-								   
-		                         }
-						 
-	  csp_ept_clr_isr(ptEptBase, EPT_INT_CBU);
-	    
-	}
-	if(((csp_ept_get_isr(ptEptBase) & EPT_INT_CBD))==EPT_INT_CBD)
-	{		
-	  //csi_ept_change_ch_duty(EPT0,EPT_CH_1, 20);
-			
-	  //csi_gpio_port_set_low (GPIOA0, (0x01ul << 0));	
-	  csp_ept_clr_isr(ptEptBase, EPT_INT_CBD);
-	    
-	}
-	
-	if(((csp_ept_get_isr(ptEptBase) & EPT_INT_PEND))==EPT_INT_PEND)
-	{		
-	   csi_gpio_port_set_high(GPIOA0, (0x01ul << 0));			
-      nop;
-       csi_gpio_port_set_low (GPIOA0, (0x01ul << 0));
-	  csp_ept_clr_isr(ptEptBase, EPT_INT_PEND);
-	    
-	}
-	
-    if(((csp_ept_get_isr(ptEptBase) & EPT_INT_CAPLD0))==EPT_INT_CAPLD0)
-	{		
-		
-	 csp_ept_clr_isr(ptEptBase, EPT_INT_CAPLD0);			
-	}
-	if(((csp_ept_get_isr(ptEptBase) & EPT_INT_CAPLD1))==EPT_INT_CAPLD1)
-	{		
-
-	 csp_ept_clr_isr(ptEptBase, EPT_INT_CAPLD1);			
-	}
-	if(((csp_ept_get_isr(ptEptBase) & EPT_INT_CAPLD2))==EPT_INT_CAPLD2)
-	{		
-	 
-	 csp_ept_clr_isr(ptEptBase, EPT_INT_CAPLD2);			
-	}
-	if(((csp_ept_get_isr(ptEptBase) & EPT_INT_CAPLD3))==EPT_INT_CAPLD3)
-	{		
-	   
-		val_BUFF[0]=csp_ept_get_cmpa(ptEptBase);
-		val_BUFF[1]=csp_ept_get_cmpb(ptEptBase);
-		val_BUFF[2]=csp_ept_get_cmpc(ptEptBase);
-		val_BUFF[3]=csp_ept_get_cmpd(ptEptBase);
-	 csp_ept_clr_isr(ptEptBase, EPT_INT_CAPLD3);
-     csp_ept_set_crrearm(ptEptBase);//单次模式下 rearm				
-	}
-}
+uint32_t g_wEptPrd;
 
 /** \brief Basic configuration
  * 
@@ -187,7 +91,7 @@ csi_error_t csi_ept_config_init(csp_ept_t *ptEptBase, csi_ept_config_t *pteptPwm
 		csi_irq_enable((uint32_t *)ptEptBase);							//enable  irq
 	}
 	
-	gEptPrd=wPrdrLoad;
+	g_wEptPrd=wPrdrLoad;
 	
 	return CSI_OK;
 }
@@ -239,7 +143,7 @@ csi_error_t csi_ept_capture_init(csp_ept_t *ptEptBase, csi_ept_captureconfig_t *
 		csi_irq_enable((uint32_t *)ptEptBase);							//enable  irq
 	}
 	
-	gEptPrd=wPrdrLoad;
+	g_wEptPrd=wPrdrLoad;
 	
 	return CSI_OK;
 }
@@ -302,7 +206,7 @@ csi_error_t  csi_ept_wave_init(csp_ept_t *ptEptBase, csi_ept_pwmconfig_t *pteptP
 		csi_irq_enable((uint32_t *)ptEptBase);							//enable  irq
 	}
 	
-	gEptPrd=wPrdrLoad;
+	g_wEptPrd=wPrdrLoad;
 	
 	return CSI_OK;	
 }
@@ -773,8 +677,8 @@ csi_error_t csi_ept_change_ch_duty(csp_ept_t *ptEptBase, csi_ept_camp_e eCh, uin
 	uint16_t  wCmpLoad;
 
 	if(wActiveTime>=100){wCmpLoad=0;}
-	else if(wActiveTime==0){wCmpLoad=gEptPrd+1;}
-	else{wCmpLoad =gEptPrd-(gEptPrd * wActiveTime /100);}
+	else if(wActiveTime==0){wCmpLoad=g_wEptPrd+1;}
+	else{wCmpLoad =g_wEptPrd-(g_wEptPrd * wActiveTime /100);}
 
 	switch (eCh)
 	{	
