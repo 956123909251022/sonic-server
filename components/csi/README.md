@@ -4,6 +4,16 @@ cpu core头文件，csi api接口头文件。
 # Release Notes
 
 ======================================================
+Version: V1.2.6
+Release Date: 2023.06.25
+
+Release Notes
+1.更新UART和USART的DMA接收初始化函数，加入reload参数
+2.增加csi_spi_start接口
+3.从新加回csi_led_set_blink_pattren接口，保持驱动版本统一
+======================================================
+
+======================================================
 Version: V1.2.5
 Release Date: 2023.05.12
 

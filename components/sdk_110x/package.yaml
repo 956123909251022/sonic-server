@@ -1,5 +1,5 @@
 name: sdk_110x
-version: V1.2.5
+version: V1.2.6
 description: sdk for apt32f110x
 tag: ""
 keywords: 
@@ -9,7 +9,7 @@ license: ""
 homepage: 
 type: sdk
 depends:
-  - apt32f110x_evb: V1.2.5
+  - apt32f110x_evb: V1.2.6
   - apt32f110x_gui: v1.0.0
   - apt_console: v1.0.4
 hw_info:
@@ -33,6 +33,6 @@ source_file:
 def_config: 
 install: 
 depends_forward:
-  - apt32f110x_evb: V1.2.5
+  - apt32f110x_evb: V1.2.6
   - apt32f110x_gui: v1.0.0
   - apt_console: v1.0.4
