@@ -44,7 +44,14 @@ int gpta_timer_demo(void)
  *          - CMPA捕获的是第一次周期值，CMPB捕获的是第二次周期值，CMPAA捕获的是第三次周期值,CMPBA捕获的是第四次周期值
  *  \param[in] none
  *  \return error code
- */
+ 
+ ——          —————          —————           —————          —————
+    |          |        |          |        |           |         |         |        |
+	|          |        |          |        |           |         |         |        |
+    ——————        ——————         ——————          —————        ————
+   CMPA                CMPB                 CMPAA                CMPBA               CMPA   
+
+*/
 
 int gpta_capture_sync_demo0(void)
 {
@@ -114,11 +121,18 @@ int gpta_capture_sync_demo0(void)
  *   		- 捕获1次产生一次捕获中断，ldarst捕获后，计数器进行重置
  *     		- 由PA01下降沿产生外部事件1，经过ETCB  触发sync0，重置和启动计数器
  *          - 由PA01外部扩展口，上升沿产生外部事件5，经过ETCB  触发sync2 捕获，上升沿捕获值存放在CMPA中
- * 			- 信号由PA1的高低电平切换产生（一直高或低电平意味着没有触发）
+ * 			- 信号由PA01的高低电平切换产生（一直高或低电平意味着没有触发）
  *          - CMPA捕获的是下降沿时间
  *  \param[in] none
  *  \return error code
- */
+ * 
+ ——          —————          —————           ———
+    |          |        |          |        |           |        
+	|          |        |          |        |           |        
+    ——————        ——————         ——————          
+   RESET       CMPA     RESET     CMPA      RESET       CMPA               
+
+*/
 int gpta_capture_sync_demo1(void)
 {
 	int iRet = 0;	
@@ -161,7 +175,7 @@ int gpta_capture_sync_demo1(void)
 	tPwmCfg.byWorkmod       = GPTA_CAPTURE;                     //WAVE or CAPTURE    //计数或捕获	
 	tPwmCfg.byCountingMode  = GPTA_UPCNT;                       //CNYMD  //计数方向
 	tPwmCfg.byOneshotMode    = GPTA_OP_CONT; 
-	tPwmCfg.byStartSrc      = GPTA_SYNC;				    //软件使能同步触发使能控制（RSSR中START控制位）//启动方式
+	tPwmCfg.byStartSrc      = GPTA_SYNC;				        //软件使能同步触发使能控制（RSSR中START控制位）//启动方式
 	tPwmCfg.byPscld         = GPTA_LDPSCR_ZRO;                  //PSCR(分频)活动寄存器载入控制。活动寄存器在配置条件满足时，从影子寄存器载入更新值	
 	tPwmCfg.byCaptureCapmd   = 0;                               //0:连续捕捉模式    1h：一次性捕捉模式
 	tPwmCfg.byCaptureStopWrap=1-1;                              //Capture模式下，捕获事件计数器周期设置值
