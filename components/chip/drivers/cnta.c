@@ -88,19 +88,19 @@ csi_error_t csi_cnta_timer_init(csp_cnta_t *ptCntaBase,uint32_t wTimeOut)
 	
 	csi_clk_enable((uint32_t *)ptCntaBase);
     csp_cnta_soft_rst(ptCntaBase);
-	csp_cnta_set_ckdiv(ptCntaBase, byClkDiv);
-	csp_cnta_count_mode(ptCntaBase, CNTA_REPEAT_MODE);
+	csp_cnta_set_ckdiv(ptCntaBase,(cnta_ckdiv_e)byClkDiv);
+	csp_cnta_count_mode(ptCntaBase,(cnta_mode_e)CNTA_REPEAT_MODE);
 	
 	csp_cnta_set_datal(ptCntaBase, wTempLoad);
 	csp_cnta_set_datah(ptCntaBase, wTempLoad);
 	csp_cnta_soft_updata(ptCntaBase);	
-	csp_cnta_int_enable(ptCntaBase, CNTA_PENDL_INT, true);
+	csp_cnta_int_enable(ptCntaBase,(cnta_int_e)CNTA_PENDL_INT, true);
 	csi_irq_enable((uint32_t *)ptCntaBase);
 
-	csp_cnta_set_carrier(ptCntaBase, CNTA_CARRIER_EN);
-	csp_cnta_set_envelope(ptCntaBase,CNTA_CARRIER_OUT);
-	csp_cnta_set_carrier_start_level(ptCntaBase,CNTA_OSP_LOW);
-	csp_cnta_set_carrier_stop_level(ptCntaBase,CNTA_REMSTAT_LOW);
+	csp_cnta_set_carrier(ptCntaBase,(cnta_carrier_e)CNTA_CARRIER_EN);
+	csp_cnta_set_envelope(ptCntaBase,(cnta_envelope_e)CNTA_CARRIER_OUT);
+	csp_cnta_set_carrier_start_level(ptCntaBase,(cnta_osp_e)CNTA_OSP_LOW);
+	csp_cnta_set_carrier_stop_level(ptCntaBase,(cnta_remstat_e)CNTA_REMSTAT_LOW);
 	
 	
 	return CSI_OK;
@@ -154,7 +154,7 @@ uint32_t csi_cnta_get_datal_value(csp_cnta_t *ptCntaBase)
  */ 
 void csi_cnta_count_mode(csp_cnta_t *ptCntaBase, csi_cnta_cntmode_e eCntMode)
 {
-	csp_cnta_count_mode(ptCntaBase, eCntMode);
+	csp_cnta_count_mode(ptCntaBase, (cnta_mode_e)eCntMode);
 }
 
 /** \brief cnta pwm init 
@@ -211,18 +211,18 @@ csi_error_t csi_cnta_pwm_init(csp_cnta_t *ptCntaBase,csi_cnta_pwm_config_t *ptCn
 		wDatalLoad = 0xfffd;
 	}
 		
-	csp_cnta_set_ckdiv(ptCntaBase, CNTA_CK_DIV1);		//cnta clk = pclk/eClkDiv
-	csp_cnta_count_mode(ptCntaBase, CNTA_REPEAT_MODE);
+	csp_cnta_set_ckdiv(ptCntaBase, (cnta_ckdiv_e)CNTA_CK_DIV1);		//cnta clk = pclk/eClkDiv
+	csp_cnta_count_mode(ptCntaBase, (cnta_mode_e)CNTA_REPEAT_MODE);
 	
-	csp_cnta_set_carrier(ptCntaBase, CNTA_CARRIER_EN);
-	csp_cnta_set_envelope(ptCntaBase,CNTA_CARRIER_OUT);
-	csp_cnta_set_carrier_start_level(ptCntaBase,eOsp);
-	csp_cnta_set_carrier_stop_level(ptCntaBase,eRemStat);
+	csp_cnta_set_carrier(ptCntaBase, (cnta_carrier_e)CNTA_CARRIER_EN);
+	csp_cnta_set_envelope(ptCntaBase,(cnta_envelope_e)CNTA_CARRIER_OUT);
+	csp_cnta_set_carrier_start_level(ptCntaBase,(cnta_osp_e)eOsp);
+	csp_cnta_set_carrier_stop_level(ptCntaBase,(cnta_remstat_e)eRemStat);
 
 	csp_cnta_set_datah(ptCntaBase, wDatahLoad);
 	csp_cnta_set_datal(ptCntaBase, wDatalLoad);
 	csp_cnta_soft_updata(ptCntaBase);
-	csp_cnta_int_enable(ptCntaBase, ptCntaPwmCfg->byInt, true);
+	csp_cnta_int_enable(ptCntaBase, (cnta_int_e)ptCntaPwmCfg->byInt, true);
 
 	return ret;
 }
@@ -256,9 +256,9 @@ void csi_cnta_pwm_para_updata(csp_cnta_t *ptCntaBase, uint16_t hwDatah, uint16_t
  */
 csi_error_t csi_cnta_bt0_sync(csp_cnta_t *ptCntaBase, csi_cnta_tcpend_e eTcPendRem, csi_cnta_tcmatch_e eTcMatchRem,csi_cnta_hw_updata_e eHwUpdata)
 {
-	csp_cnta_set_btpend_rem_con(ptCntaBase, eTcPendRem);
-	csp_cnta_set_btmatch_rem_con(ptCntaBase,eTcMatchRem);
-	csp_cnta_set_hw_strobe_data(ptCntaBase,eHwUpdata);
+	csp_cnta_set_btpend_rem_con(ptCntaBase, (cnta_pendrem_e)eTcPendRem);
+	csp_cnta_set_btmatch_rem_con(ptCntaBase,(cnta_matchrem_e)eTcMatchRem);
+	csp_cnta_set_hw_strobe_data(ptCntaBase,(cnta_hwstrobe_e)eHwUpdata);
 	
 	return CSI_OK;
 }
