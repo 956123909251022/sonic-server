@@ -194,6 +194,14 @@ void csi_pin_set_low(pin_name_e ePinName);
 csi_error_t csi_exi_set_evtrg(csi_exi_trgout_e eTrgOut, csi_exi_trgsrc_e eExiTrgSrc, uint8_t byTrgPrd);
 
 /** 
+  \brief exi evtrg output enable/disable
+  \param[in] eTrgOut: exi evtrg out port (0~5)
+  \param[in] bEnable: ENABLE/DISABLE
+  \return error code \ref csi_error_t
+ */
+csi_error_t csi_exi_evtrg_enable(csi_exi_trgout_e eTrgOut, bool bEnable);
+
+/** 
   \brief  exi software trigger event 
   \param[in] eTrgOut: output Event select(EXI_TRGOUT0~5)
   \return none
