@@ -322,6 +322,13 @@ typedef enum {
 #define RTC_TRG0OE		(0x1 << 20)
 #define RTC_TRG1OE		(0x1 << 21)
 
+#define RTC_TRGSRC_POS(n)	(4 * (n))
+#define RTC_TRGSRC_MSK(n)	(0x0ful << RTC_TRGSRC_POS(n))
+
+#define RTC_TRGOE_POS(n)	(20 + (n))
+#define RTC_TRGOE_MSK(n)	(0x01ul << + RTC_TRGOE_POS(n))
+
+
 ///EVPS
 #define RTC_TRGEV0PRD_POS	(0)
 #define RTC_TRGEV0PRD_MSK	(0xf)
