@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CDK_Workspace Name="demo" Database="LanguageSever">
+<CDK_Workspace Name="demo" Database="LanguageSever" DoubleClick="Yes">
   <DefaultPackPath>$(CDKWS)\__workspace_pack__</DefaultPackPath>
   <Project Name="demo" Path="demo.cdkproj" RootPath="" Active="Yes"/>
   <BuildMatrix>
