@@ -12,6 +12,8 @@
 #ifndef _CSI_DRV_H_
 #define _CSI_DRV_H_
 
+ 
+
 //drv
 #include <drv/clk.h>
 #include <drv/irq.h>
@@ -58,5 +60,13 @@
 #include <drv/tkey.h>
 #endif
 
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* _CSI_DRV_H_ */

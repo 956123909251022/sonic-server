@@ -15,6 +15,10 @@
 #include "common.h"
 #include "csp.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  \brief  Data Flash information
 */
@@ -135,5 +139,9 @@ extern volatile bool g_bFlashPgmDne;
 extern volatile uint32_t wBuffForCheck[DFLASH_PAGE_SZ];
 extern void apt_ifc_step_async(csp_ifc_t * ptIfcBase, ifc_cmd_e eStepn, uint32_t wPageStAddr);
 
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* _CSI_EFLASH_H_ */

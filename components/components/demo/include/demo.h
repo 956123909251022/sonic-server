@@ -114,8 +114,12 @@ extern void emcm_demo(void);
 extern csi_error_t wwdt_demo(void);
 
 //ifc demo
-void ifc_read(void);
-void ifc_program(void);
+extern void ifc_read_demo(void);
+extern void ifc_page_erase_demo(void);
+extern void ifc_dflash_page_program_demo(void);
+extern void ifc_dflash_page_parallel_program_demo(void);
+extern void ifc_pflash_page_program_demo(void);
+extern void ifc_program_demo(void);
 
 //rtc_demo
 void rtc_set_time_demo(void);

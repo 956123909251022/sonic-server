@@ -31,7 +31,7 @@ extern void user_demo(void);
 int main()
 {
     system_init();							//系统时钟、TICK等配置							
-	board_init();							
+	board_init();							//PA111 为UART_TXD等
 	PinConfigInit();						//GPIO可视化配置的IO初始化代码
 	
 	my_printf("Hello World~~~~~~~\n");		//print message

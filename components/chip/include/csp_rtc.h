@@ -368,7 +368,7 @@ static inline void csp_rtc_set_fmt(csp_rtc_t *ptRtcBase, rtc_fmt_e bFmt)
 }
 static inline rtc_fmt_e csp_rtc_get_fmt(csp_rtc_t *ptRtcBase)
 {
-	return (((ptRtcBase->CR) & RTC_FMT_MSK) >> RTC_FMT_POS);
+	return (rtc_fmt_e)(((ptRtcBase->CR) & RTC_FMT_MSK) >> RTC_FMT_POS);
 }
 
 static inline void csp_rtc_debug_enable(csp_rtc_t *ptRtcBase, bool bEnable)
