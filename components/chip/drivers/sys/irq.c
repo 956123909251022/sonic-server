@@ -218,6 +218,20 @@ void csi_irq_disable(void *pIpBase)
 //	}
 }
 
+/** \brief the all irq priority set
+ * 
+ *  \param[in] ePrio:  irq priority ,\ref csi_uart_func_e
+ *  \return none.
+ */
+void csi_irq_all_set_prio(csi_irq_prio_e ePrio)
+{
+	uint8_t i;
+	for(i = 0; i < 8; i++)
+	{
+		VIC->IPR[i] = (ePrio << 6) | (ePrio << 14) | (ePrio << 22) | (ePrio << 30);
+	}
+}
+
 //void soc_irq_enable(uint32_t irq_num)
 //{
 //#ifdef CONFIG_SYSTEM_SECURE
