@@ -584,8 +584,8 @@ csi_error_t csi_pin_irq_mode(pin_name_e ePinName, csi_exi_grp_e eExiGrp, csi_gpi
 	else
 		exi_trg_edge_set(SYSCON, eExiGrp, eTrgEdge);				//interrupt edge
 	
-	csp_exi_set_port_irq(SYSCON,(0x01ul << eExiGrp), ENABLE);		//EXI INT enable
-	csp_exi_clr_port_irq(SYSCON,(0x01ul << eExiGrp));				//clear interrput status before enable irq 
+	csp_exi_port_int_enable(SYSCON,(0x01ul << eExiGrp), ENABLE);	//EXI INT enable
+	csp_exi_port_clr_isr(SYSCON,(0x01ul << eExiGrp));				//clear exi interrput status before enable irq 
 	
 	return CSI_OK;
 }
@@ -648,10 +648,7 @@ void csi_pin_irq_enable(pin_name_e ePinName, bool bEnable)
 	ptGpioBase = (csp_gpio_t *)ptPinInfo[0];	
 	ePinName = (pin_name_e)ptPinInfo[1];
 	
-	if(bEnable)
-		csp_gpio_irq_en(ptGpioBase, ePinName);						//enable gpio interrupt 
-	else
-		csp_gpio_irq_dis(ptGpioBase, ePinName);
+	csp_gpio_int_enable(ptGpioBase, ePinName, bEnable);
 }
 /** \brief  gpio pin toggle
  * 
