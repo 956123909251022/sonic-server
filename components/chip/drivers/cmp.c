@@ -13,10 +13,8 @@
 #include <drv/irq.h>
 #include <drv/gpio.h>
 #include <drv/pin.h>
-#include <drv/tick.h>
 #include "csp_syscon.h"
 #include "csp_cmp.h"
-#include "board_config.h"
 
 /* Private macro-----------------------------------------------------------*/
 /* externs function--------------------------------------------------------*/
@@ -35,21 +33,21 @@ __attribute__((weak)) void cmp_irqhandler(csp_cmp_t *ptCmpBase)
 	ptCmp0Base = (csp_cmp_t *)(APB_CMP0_BASE);
 	ptCmp1Base = (csp_cmp_t *)(APB_CMP1_BASE);
 	
-	if(csi_cmp_get_misr(ptCmpBase) & CMP0_EDGEDET0_INT)
+	if(csp_cmp_get_isr(ptCmpBase) & CMP0_EDGEDET0_INT)
 	{
-		csi_cmp_int_clear(ptCmp0Base,CMP_INTSRC_EDGEDET);
+		csp_cmp_clr_isr(ptCmp0Base,CMP_INTSRC_EDGEDET);
 	}
-	else if(csi_cmp_get_misr(ptCmpBase) & CMP1_EDGEDET1_INT)
+	else if(csp_cmp_get_isr(ptCmpBase) & CMP1_EDGEDET1_INT)
 	{
-		csi_cmp_int_clear(ptCmp1Base,CMP_INTSRC_EDGEDET);	
+		csp_cmp_clr_isr(ptCmp1Base,CMP_INTSRC_EDGEDET);	
 	}
-	else if(csi_cmp_get_misr(ptCmpBase) & CMP0_RAWDET0_INT)
+	else if(csp_cmp_get_isr(ptCmpBase) & CMP0_RAWDET0_INT)
 	{
-		csi_cmp_int_clear(ptCmp0Base,CMP_INSRCT_RAWDET);	
+		csp_cmp_clr_isr(ptCmp0Base,CMP_INSRCT_RAWDET);	
 	}
-	else if(csi_cmp_get_misr(ptCmpBase) & CMP1_RAWDET1_INT)
+	else if(csp_cmp_get_isr(ptCmpBase) & CMP1_RAWDET1_INT)
 	{
-		csi_cmp_int_clear(ptCmp1Base,CMP_INSRCT_RAWDET);	
+		csp_cmp_clr_isr(ptCmp1Base,CMP_INSRCT_RAWDET);	
 	}
 }
 /** \brief Enable cmp power manage
@@ -226,25 +224,25 @@ uint8_t csi_cmp_get_out(csp_cmp_t *ptCmpBase,uint8_t byOutCh)
 		return csp_cmp_get_out1(ptCmpBase);
 }
 
-/** \brief clear cmp int
+/** \brief clear cmp interrupt status
  * 
  *  \param[in] ptCmpBase: pointer of cmp register structure
  *  \param[in] eIntMode: EDGEDET_MODE or RAWDET_MODE
  *  \return none
  */
-void csi_cmp_int_clear(csp_cmp_t *ptCmpBase,csi_cmp_intsrc_e eIntMode)
+void csi_cmp_clr_isr(csp_cmp_t *ptCmpBase,csi_cmp_intsrc_e eIntMode)
 {
-	csp_cmp_int_clear(ptCmpBase,eIntMode);
+	csp_cmp_clr_isr(ptCmpBase,eIntMode);
 }
 
-/** \brief get cmp status
+/** \brief get cmp interrupt status
  * 
  *  \param[in] ptCmpBase: pointer of cmp register structure
  *  \return cmp int status
  */
-uint32_t csi_cmp_get_misr(csp_cmp_t *ptCmpBase)
+uint32_t csi_cmp_get_isr(csp_cmp_t *ptCmpBase)
 {
-	return csp_cmp_get_misr(ptCmpBase);
+	return csp_cmp_get_isr(ptCmpBase);
 }
 
 /** \brief Enable cmp power manage
