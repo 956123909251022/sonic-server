@@ -148,12 +148,13 @@ typedef enum
  */
 typedef enum{
 	//send mode
-	USART_TX_MODE_POLL		=	0,			//polling mode, no interrupt
-	USART_TX_MODE_INT		=	1,			//tx use interrupt mode(TXDONE)
+	USART_TX_MODE_POLL		= 0,			//polling mode, no interrupt
+	USART_TX_MODE_INT		= 1,			//tx use interrupt mode(TXDONE)
 	//receive
-	USART_RX_MODE_POLL		=	0,			//polling mode, no interrupt
-	USART_RX_MODE_INT_FIX	=	1,			//rx use interrupt mode(RXFIFO), receive assign(fixed) length data		
-	USART_RX_MODE_INT_DYN	=	2			//rx use interrupt mode(RXFIFO), receive a bunch of data(dynamic length data)
+	USART_RX_MODE_POLL		= 0,			//polling mode, no interrupt
+	USART_RX_MODE_INT_FIX	= 1,			//rx use interrupt mode(RXFIFO), receive assign(fixed) length data		
+	USART_RX_MODE_INT_DYN	= 2,			//rx use interrupt mode(RXFIFO), receive a bunch of data(dynamic length data)
+	USART_RX_MODE_INT		= 3				//rx use interrupt mode
 }csi_usart_work_e;
 
 /// \struct csi_usart_config_t
@@ -170,6 +171,8 @@ typedef struct {
 	uint8_t				byTxMode;			//send mode: polling/interrupt
 	uint8_t				byRxMode;			//recv mode: polling/interrupt0/interrupt1
 	bool				bClkOutEn;			//enable usartclk out
+	bool				bRecvToEn;			//enable receive timeout
+	
 } csi_usart_config_t;
 
 
