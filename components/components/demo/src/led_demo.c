@@ -14,6 +14,7 @@
 #include "led.h"
 #include "csp.h"
 #include "pin.h"
+#include "reliability.h"
 
 /* externs function--------------------------------------------------------*/
 /* private function--------------------------------------------------------*/
