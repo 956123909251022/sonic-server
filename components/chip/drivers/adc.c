@@ -474,19 +474,14 @@ void csi_adc_rearm_sync(csp_adc_t *ptAdcBase, csi_adc_trgin_e eTrgIn)
  */
 csi_error_t csi_adc_set_evtrg(csp_adc_t *ptAdcBase, csi_adc_trgout_e eTrgOut, csi_adc_trgsrc_e eTrgSrc)
 {
-	switch(eTrgOut)
+	if(eTrgOut <= ADC_TRGOUT1)
 	{
-		case ADC_TRGOUT0:		//event trigger out0
-			ptAdcBase->EVTRG = (ptAdcBase->EVTRG & (~ADC12_TRGSRC0_MSK)) | (eTrgSrc << ADC12_TRGSRC0_POS);
-			ptAdcBase->EVTRG |= ADC12_TRG0OE;
-			break;
-		case ADC_TRGOUT1:		//event trigger out1
-			ptAdcBase->EVTRG = (ptAdcBase->EVTRG & (~ADC12_TRGSRC1_MSK)) | (eTrgSrc << ADC12_TRGSRC1_POS);
-			ptAdcBase->EVTRG |= ADC12_TRG1OE;
-			break;
-		default:
-			return CSI_ERROR;
+		ptAdcBase->EVTRG = (ptAdcBase->EVTRG & (~ADC12_TRGSRC_MSK(eTrgOut))) | (eTrgSrc << ADC12_TRGSRC_POS(eTrgOut)) 
+						| ADC12_TRGOE_MASK(eTrgOut);
 	}
+	else
+		return CSI_ERROR;
+		
 	return CSI_OK;
 }
 /** \brief adc evtrg output enable/disable
@@ -498,23 +493,16 @@ csi_error_t csi_adc_set_evtrg(csp_adc_t *ptAdcBase, csi_adc_trgout_e eTrgOut, cs
  */
 csi_error_t csi_adc_evtrg_enable(csp_adc_t *ptAdcBase, csi_adc_trgout_e eTrgOut, bool bEnable)
 {
-	switch(eTrgOut)
+	if(eTrgOut <= ADC_TRGOUT1)
 	{
-		case ADC_TRGOUT0:		//event trigger out0 
-			if(bEnable)
-				ptAdcBase->EVTRG |= ADC12_TRG0OE;
-			else
-				ptAdcBase->EVTRG &= ~ADC12_TRG0OE;
-			break;
-		case ADC_TRGOUT1:		//event trigger out1
-			if(bEnable)
-				ptAdcBase->EVTRG |= ADC12_TRG1OE;
-			else
-				ptAdcBase->EVTRG &= ~ADC12_TRG1OE;
-			break;
-		default:
-			return CSI_ERROR;
+		if(bEnable)
+			ptAdcBase->EVTRG |= ADC12_TRGOE_MASK(eTrgOut);
+		else
+			ptAdcBase->EVTRG &= ~ADC12_TRGOE_MASK(eTrgOut);
 	}
+	else
+		return CSI_ERROR;
+		
 	return CSI_OK;
 }
 
