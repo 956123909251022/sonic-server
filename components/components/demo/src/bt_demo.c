@@ -20,7 +20,7 @@
 /* Private macro-----------------------------------------------------------*/
 /* Private variablesr------------------------------------------------------*/
 
-/** \brief bt timer
+/** \brief bt timer：BT定时中断demo
  * 
  *  \param[in] none
  *  \return error code
@@ -36,7 +36,7 @@ int bt_timer_demo(void)
 	return iRet;
 }
 
-/** \brief bt pwm ouput
+/** \brief bt pwm ouput：BT PWM输出demo
  *  
  *  \param[in] none
  *  \return error code
@@ -72,7 +72,7 @@ int bt_pwm_demo(void)
 	return iRet;
 }
 
-/** \brief bt sync trg start 
+/** \brief bt sync trg start：EXI通过BT同步输入端口0触发BT启动 
  *  
  *  \param[in] none
  *  \return error code
@@ -109,7 +109,7 @@ int bt_sync_trg_start_demo(void)
 	return iRet;
 }
 
-/** \brief bt sync trg count
+/** \brief bt sync trg count: EXI通过BT同步输入端口1触发BT计数值加1
  *  
  *  \param[in] none
  *  \return error code
@@ -145,7 +145,7 @@ int bt_sync_trg_count_demo(void)
 	return iRet;
 }
 
-/** \brief bt sync trg count
+/** \brief bt sync trg count：EXI通过BT同步输入端口2触发BT停止
  *  
  *  \param[in] none
  *  \return error code
@@ -182,7 +182,7 @@ int bt_sync_trg_stop_demo(void)
 	
 }
 
-/** \brief bt event trg count
+/** \brief bt event trg count：BT0通过PEND事件产生触发输出到ETCB,通过BT1同步输入0触发BT1启动
  *  
  *  \param[in] none
  *  \return error code
@@ -216,7 +216,7 @@ int bt_trg_out_demo(void)
 	return iRet;
 }
 
-/** \brief bt soft trg out
+/** \brief bt soft trg out：BT0软件产生一次触发输出，触发BT1启动
  *  
  *  \param[in] none
  *  \return error code
