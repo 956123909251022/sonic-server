@@ -3018,9 +3018,9 @@
             <label>SRAM Check</label>
             <Property class="Text">
               <label>Fail Time</label>
-              <value>65535</value>
-              <validReg>^([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-9][0-9][0-9][0-9]|[1-5][0-9][0-9][0-9][0-9]|6[0-4][0-9][0-9][0-9]|65[0-4][0-9][0-9]|655[0-2][0-9]|6553[0-5])$</validReg>
-              <Comment>文本输入，范围:1~65535之间的整数</Comment>
+              <value>0xffff</value>
+              <validReg>^(0[xX])(0{3}[1-9a-fA-F]|0{2}[1-9a-fA-F][0-9a-fA-F]|0{1}[1-9a-fA-F][0-9a-fA-F]{2}|[1-9a-fA-F][0-9a-fA-F]{3})$</validReg>
+              <Comment>文本输入，范围:0x0001~0xffff之间的整数</Comment>
             </Property>
             <Property class="UIchoice">
               <label>Fail Action</label>
@@ -3041,7 +3041,7 @@
             <label>Flash Check</label>
             <Property class="Text">
               <label>Fail Time</label>
-              <value>0xFFFFFF</value>
+              <value>0xffffff</value>
               <validReg>^(0[xX])(0{5}[1-9a-fA-F]|0{4}[1-9a-fA-F][0-9a-fA-F]|0{3}[1-9a-fA-F][0-9a-fA-F]{2}|0{2}[1-9a-fA-F][0-9a-fA-F]{3}|0[1-9a-fA-F][0-9a-fA-F]{4}|[1-9a-fA-F][0-9a-fA-F]{5})$</validReg>
               <Comment>文本输入，范围:0x000001~0xFFFFFF之间的整数</Comment>
             </Property>
@@ -3111,30 +3111,39 @@
           </Device>
         </Category>
         <Category>
-          <label>WWDT</label>
-          <Device deviceId="WWDT">
-            <Comment>Window WatchDog Timer</Comment>
-            <GenCodeFuncName>SysWWDTInitFunc</GenCodeFuncName>
+          <label>CoreTick</label>
+          <Device deviceId="CoreTick">
+            <Comment>systick(coret)</Comment>
+            <GenCodeFuncName>SysTickInitFunc</GenCodeFuncName>
             <UseOrNot>0</UseOrNot>
-            <label>WWDT</label>
-            <Property class="Text">
-              <label>eTimeOut</label>
-              <value>80</value>
-              <validReg>^([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-9][0-9][0-9][0-9]|[1-5][0-9][0-9][0-9][0-9]|6[0-4][0-9][0-9][0-9]|65[0-4][0-9][0-9]|655[0-2][0-9]|6553[0-5])$</validReg>
-              <Comment>time length of window, unit: ms</Comment>
-            </Property>
-            <Property class="Text">
-              <label>wTimeOut</label>
-              <value>40</value>
-              <validReg>^([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-9][0-9][0-9][0-9]|[1-5][0-9][0-9][0-9][0-9]|6[0-4][0-9][0-9][0-9]|65[0-4][0-9][0-9]|655[0-2][0-9]|6553[0-5])$</validReg>
-              <Comment>the timeout value of window time</Comment>
-            </Property>
+            <label>CoreTick</label>
           </Device>
         </Category>
       </Category>
       <ChipPins>
         <label>I/O ports</label>
       </ChipPins>
+      <Category>
+        <label>WWDT</label>
+        <Device deviceId="WWDT">
+          <Comment>Window WatchDog Timer</Comment>
+          <GenCodeFuncName>WWDTInitFunc</GenCodeFuncName>
+          <UseOrNot>0</UseOrNot>
+          <label>WWDT</label>
+          <Property class="Text">
+            <label>eTimeOut</label>
+            <value>80</value>
+            <validReg>^([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-9][0-9][0-9][0-9]|[1-5][0-9][0-9][0-9][0-9]|6[0-4][0-9][0-9][0-9]|65[0-4][0-9][0-9]|655[0-2][0-9]|6553[0-5])$</validReg>
+            <Comment>time length of window, unit: ms</Comment>
+          </Property>
+          <Property class="Text">
+            <label>wTimeOut</label>
+            <value>40</value>
+            <validReg>^([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-9][0-9][0-9][0-9]|[1-5][0-9][0-9][0-9][0-9]|6[0-4][0-9][0-9][0-9]|65[0-4][0-9][0-9]|655[0-2][0-9]|6553[0-5])$</validReg>
+            <Comment>the timeout value of window time</Comment>
+          </Property>
+        </Device>
+      </Category>
       <Category>
         <label>ETCB</label>
         <Comment>事件触发模块（硬件联动）配置。这里只配置通道，通道两端的模块触发和同步事件需要额外设置。</Comment>
@@ -9121,6 +9130,71 @@
               <sel>LCD_INTSRC_UDD</sel>
             </Selections>
             <Comment>是否使用中断</Comment>
+          </Property>
+        </Device>
+      </Category>
+      <Category>
+        <label>LED</label>
+        <Device deviceId="LED">
+          <GenCodeFuncName>LEDInitFunc</GenCodeFuncName>
+          <UseOrNot>0</UseOrNot>
+          <label>LED</label>
+          <Property class="UIchoice">
+            <label>Clk</label>
+            <value>LED_PCLK_DIV8</value>
+            <Selections>
+              <sel>LED_PCLK_DIV4</sel>
+              <sel>LED_PCLK_DIV8</sel>
+              <sel>LED_PCLK_DIV16</sel>
+              <sel>LED_PCLK_DIV32</sel>
+              <sel>LED_PCLK_DIV64</sel>
+              <sel>LED_PCLK_DIV128</sel>
+              <sel>LED_PCLK_DIV256</sel>
+            </Selections>
+            <Comment>Clk Configure</Comment>
+          </Property>
+          <Property class="Text">
+            <label>ComMask</label>
+            <value>0x3ff</value>
+            <validReg>^(0[xX])([0-3][0-9a-fA-F]{2})$</validReg>
+            <Comment>COM Enable 范围 0~0x3ff</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>BRT</label>
+            <value>LED_50</value>
+            <Selections>
+              <sel>LED_100</sel>
+              <sel>LED_87</sel>
+              <sel>LED_75</sel>
+              <sel>LED_62</sel>
+              <sel>LED_50</sel>
+              <sel>LED_37</sel>
+              <sel>LED_25</sel>
+              <sel>LED_12</sel>
+            </Selections>
+            <Comment>Brightness</Comment>
+          </Property>
+          <Property class="Text">
+            <label>OnTime</label>
+            <value>0x78</value>
+            <validReg>^(0[xX])([0-9a-fA-F]{2})$</validReg>
+            <Comment>显示周期时间 范围0~0xff</Comment>
+          </Property>
+          <Property class="Text">
+            <label>BreakTime</label>
+            <value>0x32</value>
+            <validReg>^(0[xX])([0-9a-fA-F]{2})$</validReg>
+            <Comment>Non-Overlap时间 范围0~0xff</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>IntSrc</label>
+            <value>LED_INTSRC_NONE</value>
+            <Selections>
+              <sel>LED_INTSRC_NONE</sel>
+              <sel>LED_INTSRC_ICEND</sel>
+              <sel>LED_INTSRC_IPEND</sel>
+            </Selections>
+            <Comment>Interrupt Source</Comment>
           </Property>
         </Device>
       </Category>
