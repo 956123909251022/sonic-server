@@ -274,8 +274,8 @@ void rtc_timer_demo(void)
 	csi_rtc_set_alarm(RTC,RTC_ALMB,&tBlmTime);	 //设置闹钟B	
 	
 	/*** RTC触发输出配置 ***/	
-	csi_rtc_set_evtrg(RTC, RTC_TRGSEL0, RTC_TRGOUT_ALRMA, 0);  //RTC TRGEV0 闹铃A到时产生trigger event
-	csi_rtc_set_evtrg(RTC, RTC_TRGSEL1, RTC_TRGOUT_ALRMB, 0);  //RTC TRGEV1 闹铃B到时产生trigger event
+	csi_rtc_set_evtrg(RTC, RTC_TRGOUT0, RTC_TRGOUT_ALRMA, 0);  //RTC TRGEV0 闹铃A到时产生trigger event
+	csi_rtc_set_evtrg(RTC, RTC_TRGOUT1, RTC_TRGOUT_ALRMB, 0);  //RTC TRGEV1 闹铃B到时产生trigger event
 	
 	/*** 触发目标事件BT0配置 ***/
 	csi_pin_set_mux(PA19, PA19_BT0_OUT);					//PB02 作为BT0 PWM输出引脚
