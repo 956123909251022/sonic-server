@@ -21,7 +21,7 @@
         <Pin pinNum="38" group="PA0" displayName="PA0.0">
           <Property class="UIchoice">
             <label>PinFunctions</label>
-            <value>High_Z</value>
+            <value>Undefined</value>
             <Selections>
               <sel>High_Z</sel>
               <sel>GPIO_INPUT</sel>
@@ -2924,7 +2924,7 @@
                 <sel>SCLK_DIV128</sel>
                 <sel>SCLK_DIV256</sel>
               </Selections>
-              <Comment>系统时钟分频系数，SCLK = Freq/SCLK_DIV</Comment>
+              <Comment>系统时钟分频系数,SCLK = Freq/SCLK_DIV</Comment>
             </Property>
             <Property class="UIchoice">
               <label>PCLK DIV</label>
@@ -2936,7 +2936,7 @@
                 <sel>PCLK_DIV8</sel>
                 <sel>PCLK_DIV16</sel>
               </Selections>
-              <Comment>外设时钟分频系数，PCLK = SCLK/PCLK_DIV</Comment>
+              <Comment>外设时钟分频系数,PCLK = SCLK/PCLK_DIV</Comment>
             </Property>
           </Device>
         </Category>
@@ -2990,7 +2990,7 @@
                 <sel>LVDIN_10(falling)</sel>
                 <sel>LVDIN_10(both)</sel>
               </Selections>
-              <Comment>低压检测中断触发电压，应高于低压复位触发电压</Comment>
+              <Comment>低压检测中断触发电压,应高于低压复位触发电压</Comment>
             </Property>
           </Device>
         </Category>
@@ -3005,7 +3005,7 @@
               <label>Fail Time</label>
               <value>0xffff</value>
               <validReg>^(0[xX])(0{3}[1-9a-fA-F]|0{2}[1-9a-fA-F][0-9a-fA-F]|0{1}[1-9a-fA-F][0-9a-fA-F]{2}|[1-9a-fA-F][0-9a-fA-F]{3})$</validReg>
-              <Comment>SRAM校验重试次数，范围:0x0001~0xffff之间的整数</Comment>
+              <Comment>SRAM校验重试次数,范围:0x0001~0xffff之间的整数</Comment>
             </Property>
             <Property class="UIchoice">
               <label>Fail Action</label>
@@ -3014,7 +3014,7 @@
                 <sel>reset</sel>
                 <sel>interrupt</sel>
               </Selections>
-              <Comment>SRAM校验失败后动作，复位/只产生中断</Comment>
+              <Comment>SRAM校验失败后动作,复位/只产生中断</Comment>
             </Property>
           </Device>
         </Category>
@@ -3028,7 +3028,7 @@
               <label>Fail Time</label>
               <value>0xffffff</value>
               <validReg>^(0[xX])(0{5}[1-9a-fA-F]|0{4}[1-9a-fA-F][0-9a-fA-F]|0{3}[1-9a-fA-F][0-9a-fA-F]{2}|0{2}[1-9a-fA-F][0-9a-fA-F]{3}|0[1-9a-fA-F][0-9a-fA-F]{4}|[1-9a-fA-F][0-9a-fA-F]{5})$</validReg>
-              <Comment>FLASH校验重试次数，校验失败会产生复位，范围:0x000001~0xFFFFFF之间的整数</Comment>
+              <Comment>FLASH校验重试次数,校验失败会产生复位,范围:0x000001~0xFFFFFF之间的整数</Comment>
             </Property>
           </Device>
         </Category>
@@ -3046,7 +3046,7 @@
                 <sel>switch to IMOSC &amp; interrupt</sel>
                 <sel>reset</sel>
               </Selections>
-              <Comment>EM Clock监控失败动作，复位/切换到IMOSC并产生中断</Comment>
+              <Comment>EM Clock监控失败动作,复位/切换到IMOSC并产生中断</Comment>
             </Property>
           </Device>
         </Category>
@@ -3064,7 +3064,7 @@
                 <sel notAvailable="SystemIWDTIrq">Normal</sel>
                 <sel>Irq</sel>
               </Selections>
-              <Comment>Normal:正常模式&#xD;Irq：中断模式</Comment>
+              <Comment>Normal:正常模式&#xD;Irq:中断模式</Comment>
             </Property>
             <Property class="UIchoice" property_class="SystemIWDTNormal">
               <label>Time Out</label>
@@ -3079,7 +3079,7 @@
                 <sel>IWDT_TO_4096</sel>
                 <sel>IWDT_TO_8192</sel>
               </Selections>
-              <Comment>总溢出时间设置。当看门狗计数器计数溢出时，产生复位&#xD;IWDT_TO_128：128ms&#xD;IWDT_TO_256：256ms&#xD;IWDT_TO_512：512ms&#xD;IWDT_TO_1024：1.024s&#xD;IWDT_TO_2048：2.048s&#xD;IWDT_TO_3072：3.096s&#xD;IWDT_TO_4096：4.12s&#xD;IWDT_TO_8192：8.196s</Comment>
+              <Comment>总溢出时间设置。当看门狗计数器计数溢出时,产生复位&#xD;IWDT_TO_128:128ms&#xD;IWDT_TO_256:256ms&#xD;IWDT_TO_512:512ms&#xD;IWDT_TO_1024:1.024s&#xD;IWDT_TO_2048:2.048s&#xD;IWDT_TO_3072:3.096s&#xD;IWDT_TO_4096:4.12s&#xD;IWDT_TO_8192:8.196s</Comment>
             </Property>
             <Property class="UIchoice" property_class="SystemIWDTIrq">
               <label>Alarm Timer</label>
@@ -3093,7 +3093,7 @@
                 <sel>IWDT_ALARMTO_6_8</sel>
                 <sel>IWDT_ALARMTO_7_8</sel>
               </Selections>
-              <Comment>看门狗报警中断的时间设置。当看门狗计数器计数到总溢出时间的一定比例时，产生报警中断&#xD;0h：1/8总溢出时间&#xD;1h：2/8总溢出时间&#xD;2h：3/8总溢出时间&#xD; 3h：4/8总溢出时间&#xD; 4h：5/8总溢出时间&#xD; 5h：6/8总溢出时间&#xD; 6h：7/8总溢出时间&#xD; 7h：7/8总溢出时间</Comment>
+              <Comment>看门狗报警中断的时间设置。当看门狗计数器计数到总溢出时间的一定比例时,产生报警中断&#xD;0h:1/8总溢出时间&#xD;1h:2/8总溢出时间&#xD;2h:3/8总溢出时间&#xD; 3h:4/8总溢出时间&#xD; 4h:5/8总溢出时间&#xD; 5h:6/8总溢出时间&#xD; 6h:7/8总溢出时间&#xD; 7h:7/8总溢出时间</Comment>
             </Property>
           </Device>
         </Category>
@@ -3103,7 +3103,7 @@
             <GenCodeFuncName>SysTickInitFunc</GenCodeFuncName>
             <UseOrNot>0</UseOrNot>
             <label>CoreTick</label>
-            <Comment>使能CORET定时器，CORET提供mdelay等函数，10ms进一次中断</Comment>
+            <Comment>使能CORET定时器,CORET提供mdelay等函数,10ms进一次中断</Comment>
           </Device>
         </Category>
       </Category>
@@ -3126,7 +3126,7 @@
               <sel>PB00</sel>
               <sel>PC00</sel>
             </Selections>
-            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
+            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3136,7 +3136,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP1">
@@ -3152,7 +3152,7 @@
               <sel>PB01</sel>
               <sel>PC01</sel>
             </Selections>
-            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
+            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3162,7 +3162,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP2">
@@ -3177,7 +3177,7 @@
               <sel>PA12</sel>
               <sel>PB02</sel>
             </Selections>
-            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
+            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3187,7 +3187,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP3">
@@ -3202,7 +3202,7 @@
               <sel>PA13</sel>
               <sel>PB03</sel>
             </Selections>
-            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
+            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3212,7 +3212,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP4">
@@ -3227,7 +3227,7 @@
               <sel>PA14</sel>
               <sel>PB04</sel>
             </Selections>
-            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
+            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3237,7 +3237,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP5">
@@ -3252,7 +3252,7 @@
               <sel>PA15</sel>
               <sel>PB05</sel>
             </Selections>
-            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
+            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3262,7 +3262,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP6">
@@ -3277,7 +3277,7 @@
               <sel>PA16</sel>
               <sel>PB06</sel>
             </Selections>
-            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
+            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3287,7 +3287,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP7">
@@ -3302,7 +3302,7 @@
               <sel>PA17</sel>
               <sel>PB07</sel>
             </Selections>
-            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
+            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3312,7 +3312,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP8">
@@ -3327,7 +3327,7 @@
               <sel>PA18</sel>
               <sel>PB08</sel>
             </Selections>
-            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
+            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3337,7 +3337,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP9">
@@ -3352,7 +3352,7 @@
               <sel>PA19</sel>
               <sel>PB09</sel>
             </Selections>
-            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
+            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3362,7 +3362,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP10">
@@ -3377,7 +3377,7 @@
               <sel>PA110</sel>
               <sel>PB010</sel>
             </Selections>
-            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
+            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3387,7 +3387,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP11">
@@ -3402,7 +3402,7 @@
               <sel>PA111</sel>
               <sel>PB011</sel>
             </Selections>
-            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
+            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3412,7 +3412,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP12">
@@ -3426,7 +3426,7 @@
               <sel>PA012</sel>
               <sel>PA112</sel>
             </Selections>
-            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
+            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3436,7 +3436,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP13">
@@ -3450,7 +3450,7 @@
               <sel>PA013</sel>
               <sel>PA113</sel>
             </Selections>
-            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
+            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3460,7 +3460,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP14">
@@ -3473,7 +3473,7 @@
             <Selections>
               <sel>PA014</sel>
             </Selections>
-            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
+            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3483,7 +3483,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP15">
@@ -3496,7 +3496,7 @@
             <Selections>
               <sel>PA015</sel>
             </Selections>
-            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
+            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3506,7 +3506,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP16">
@@ -3532,7 +3532,7 @@
               <sel>PC00</sel>
               <sel>PC01</sel>
             </Selections>
-            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
+            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3542,7 +3542,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP17">
@@ -3568,7 +3568,7 @@
               <sel>PC00</sel>
               <sel>PC01</sel>
             </Selections>
-            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
+            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3578,7 +3578,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP18">
@@ -3596,7 +3596,7 @@
               <sel>PC00</sel>
               <sel>PC01</sel>
             </Selections>
-            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
+            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3606,7 +3606,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP19">
@@ -3624,7 +3624,7 @@
               <sel>PC00</sel>
               <sel>PC01</sel>
             </Selections>
-            <Comment>管脚名称，需在I/O Ports中配置该管脚为输入模式，以及需要的Pull Mode</Comment>
+            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
           </Property>
           <Property class="UIchoice">
             <label>IrqMode</label>
@@ -3634,7 +3634,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
           </Property>
         </Device>
       </Category>
@@ -3808,7 +3808,7 @@
           </Property>
         </Device>
         <Device deviceId="internal CH0">
-          <Comment>ADC内部通道配置必须从0开始，且连续。如果采样数为4，则需要配置internal CH0~3</Comment>
+          <Comment>ADC内部通道配置必须从0开始,且连续。如果采样数为4,则需要配置internal CH0~3</Comment>
           <GenCodeFuncName>InternalCH0InitFunc</GenCodeFuncName>
           <UseOrNot>1</UseOrNot>
           <label>CH0</label>
@@ -5210,7 +5210,7 @@
               <sel>CMP_PHYST_POL_N</sel>
               <sel>CMP_PHYST_POL_NP</sel>
             </Selections>
-            <Comment>比较器输入迟滞特性极性选择&#xD;0h：禁止输入迟滞&#xD;1h：正向输入迟滞使能&#xD;2h：负向输入迟滞使能&#xD;3h：正负向输入迟滞都使能</Comment>
+            <Comment>比较器输入迟滞特性极性选择&#xD;CMP_PHYST_POL_DIS:禁止输入迟滞&#xD;CMP_PHYST_POL_P:正向输入迟滞使能&#xD;CMP_PHYST_POL_N:负向输入迟滞使能&#xD;CMP_PHYST_POL_NP:正负向输入迟滞都使能</Comment>
           </Property>
           <Property class="UIchoice">
             <label>POLARITY</label>
@@ -5219,7 +5219,7 @@
               <sel>CMP_POL_OUT_DIRECT</sel>
               <sel>CMP_POL_OUT_UNDIRECT</sel>
             </Selections>
-            <Comment>比较器输出极性选择&#xD;0：输出不反向&#xD;1：输出反向</Comment>
+            <Comment>比较器输出极性选择&#xD;CMP_POL_OUT_DIRECT:输出不反向&#xD;CMP_POL_OUT_UNDIRECT:输出反向</Comment>
           </Property>
           <Property class="UIchoice">
             <label>CPOSEL</label>
@@ -5228,17 +5228,24 @@
               <sel>CMP_CPOS_OUT_DIRECT</sel>
               <sel>CMP_CPOS_OUT_IN</sel>
             </Selections>
-            <Comment>CMP_OUT管脚上输出信号选择&#xD;0h：滤波前信号直接输出&#xD;1h：滤波后信号输出</Comment>
+            <Comment>CMP_OUT管脚上输出信号选择&#xD;CMP_CPOS_OUT_DIRECT:滤波前信号直接输出&#xD;CMP_CPOS_OUT_IN:滤波后信号输出</Comment>
           </Property>
           <Property class="UIchoice">
-            <label>Interrupt Mode</label>
-            <value>CMP_INTSRC_NONE</value>
+            <label>Interrupt</label>
+            <value>DISABLE</value>
             <Selections>
-              <sel>CMP_INTSRC_NONE</sel>
-              <sel>CMP_INTSRC_EDGEDET</sel>
-              <sel>CMP_INSRCT_RAWDET</sel>
+              <sel notAvailable="CMP0Int">DISABLE</sel>
+              <sel>ENABLE</sel>
             </Selections>
-            <Comment>比较器中断模式选择</Comment>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="CMP0Int">
+            <label>CMP_INTSRC_EDGEDET</label>
+            <value>0</value>
+          </Property>
+          <Property class="Bool" property_class="CMP0Int">
+            <label>CMP_INTSRC_RAWDET</label>
+            <value>0</value>
           </Property>
           <Property class="UIchoice" property_class="DFCR0">
             <label>DEPTH1</label>
@@ -5253,7 +5260,7 @@
               <sel>CMP_DFCR_DEPTH1_512</sel>
               <sel>CMP_DFCR_DEPTH1_1024</sel>
             </Selections>
-            <Comment>数字滤波器1积分深度设置&#xD;000b：N = 8&#xD;001b：N = 16&#xD;010b：N = 32&#xD;011b：N = 64&#xD;100b：N = 128&#xD;101b：N = 256&#xD;110b：N = 512&#xD;111b：N = 1024</Comment>
+            <Comment>数字滤波器1积分深度设置&#xD;CMP_DFCR_DEPTH1_8:N = 8&#xD;CMP_DFCR_DEPTH1_16:N = 16&#xD;CMP_DFCR_DEPTH1_32:N = 32&#xD;CMP_DFCR_DEPTH1_64:N = 64&#xD;CMP_DFCR_DEPTH1_128:N = 128&#xD;CMP_DFCR_DEPTH1_256:N = 256&#xD;CMP_DFCR_DEPTH1_512:N = 512&#xD;CMP_DFCR_DEPTH1_1024:N = 1024</Comment>
           </Property>
           <Property class="Text" property_class="DFCR0">
             <label>DIVN1</label>
@@ -5278,7 +5285,7 @@
               <sel>CMP_DFCR_DEPTH2_1024</sel>
               <sel>CMP_DFCR_DEPTH2_2048</sel>
             </Selections>
-            <Comment>数字滤波器2去抖深度设置&#xD;000b：N = 16&#xD;001b：N = 32&#xD;010b：N = 64&#xD;011b：N = 128&#xD;100b：N = 256&#xD;101b：N = 512&#xD;110b：N = 1024&#xD;111b：N = 2048</Comment>
+            <Comment>数字滤波器2去抖深度设置&#xD;CMP_DFCR_DEPTH2_16:N = 16&#xD;CMP_DFCR_DEPTH2_32:N = 32&#xD;CMP_DFCR_DEPTH2_64:N = 64&#xD;CMP_DFCR_DEPTH2_128:N = 128&#xD;CMP_DFCR_DEPTH2_256:N = 256&#xD;CMP_DFCR_DEPTH2_512:N = 512&#xD;CMP_DFCR_DEPTH2_1024:N = 1024&#xD;CMP_DFCR_DEPTH2_2048:N = 2048</Comment>
           </Property>
           <Property class="Text" property_class="DFCR0">
             <label>DIVN2</label>
@@ -5297,7 +5304,7 @@
               <sel>CMP_WFCR_ALIGN_DISALLOW</sel>
               <sel>CMP_WFCR_ALIGN_ALLOW</sel>
             </Selections>
-            <Comment>窗口滤波触发事件对齐设置&#xD;0h：新触发发生时，开始新的窗口计数，不允许前一个窗口周期跨越当前周期，若前一个窗口仍有效则截断窗口&#xD;1h：新触发发生时，开始新的窗口计数，允许窗口跨越周期</Comment>
+            <Comment>窗口滤波触发事件对齐设置&#xD;CMP_WFCR_ALIGN_DISALLOW:新触发发生时,开始新的窗口计数,不允许前一个窗口周期跨越当前周期,若前一个窗口仍有效则截断窗口&#xD;CMP_WFCR_ALIGN_ALLOW:新触发发生时,开始新的窗口计数,允许窗口跨越周期</Comment>
           </Property>
           <Property class="UIchoice" property_class="WFCR0">
             <label>WFOSET</label>
@@ -5308,7 +5315,7 @@
               <sel>CMP_WFCR_OSET_LOW</sel>
               <sel>CMP_WFCR_OSET_DIS1</sel>
             </Selections>
-            <Comment>窗口滤波设置输出初始化&#xD;0h：无效&#xD;1h：设置滤波器输出为高电平&#xD;2h：设置滤波器输出为低电平&#xD;3h：无效</Comment>
+            <Comment>窗口滤波设置输出初始化&#xD;CMP_WFCR_OSET_DIS:无效&#xD;CMP_WFCR_OSET_HIGH:设置滤波器输出为高电平&#xD;CMP_WFCR_OSET_LOW:设置滤波器输出为低电平&#xD;CMP_WFCR_OSET_DIS1:无效</Comment>
           </Property>
           <Property class="Text" property_class="WFCR0">
             <label>CLKDIV</label>
@@ -5318,12 +5325,12 @@
           <Property class="Text" property_class="WFCR0">
             <label>DCNT</label>
             <value>0</value>
-            <Comment>设置捕捉窗口延时计数器。在触发后，内部8位递减计数器根据CLKDIV的设置频率计数。延时的时间为(DCNT+1) x Twcnt。&#xD;注意：当DCNT为零时，延时窗口被关闭，而不是1个Twcnt。</Comment>
+            <Comment>设置捕捉窗口延时计数器。在触发后,内部8位递减计数器根据CLKDIV的设置频率计数。延时的时间为(DCNT+1) x Twcnt。&#xD;注意:当DCNT为零时,延时窗口被关闭,而不是1个Twcnt。</Comment>
           </Property>
           <Property class="Text" property_class="WFCR0">
             <label>WCNT</label>
             <value>200</value>
-            <Comment>设置捕捉窗口宽度计数器。在触发后，当延时计数器计数完成后，内部10位计数器根据CLKDIV的设置频率计数。窗口的宽度为：(WCNT+1)x Twcnt</Comment>
+            <Comment>设置捕捉窗口宽度计数器。在触发后,当延时计数器计数完成后,内部10位计数器根据CLKDIV的设置频率计数。窗口的宽度为:(WCNT+1)x Twcnt</Comment>
           </Property>
           <Property class="UIchoice" property_class="WFCR0">
             <label>EVE_SEL</label>
@@ -5334,7 +5341,7 @@
               <sel>CMP_EVE_DOWN_UP</sel>
               <sel>CMP_EVE_UP1</sel>
             </Selections>
-            <Comment>事件触发边沿选择&#xD;0：下降沿&#xD;1：上升沿&#xD;2：下降沿和上升沿(该选项用于DEEPSLEEP唤醒时，只有上升沿有效）&#xD;3：上升沿</Comment>
+            <Comment>事件触发边沿选择&#xD;CMP_EVE_DOWN:下降沿&#xD;CMP_EVE_UP:上升沿&#xD;CMP_EVE_DOWN_UP:下降沿和上升沿(该选项用于DEEPSLEEP唤醒时,只有上升沿有效）&#xD;CMP_EVE_UP1:上升沿</Comment>
           </Property>
         </Device>
         <Device deviceId="CMP1">
@@ -5404,7 +5411,7 @@
               <sel>CMP_PHYST_POL_N</sel>
               <sel>CMP_PHYST_POL_NP</sel>
             </Selections>
-            <Comment>比较器输入迟滞特性极性选择&#xD;0h：禁止输入迟滞&#xD;1h：正向输入迟滞使能&#xD;2h：负向输入迟滞使能&#xD;3h：正负向输入迟滞都使能</Comment>
+            <Comment>比较器输入迟滞特性极性选择&#xD;CMP_PHYST_POL_DIS:禁止输入迟滞&#xD;CMP_PHYST_POL_P:正向输入迟滞使能&#xD;CMP_PHYST_POL_N:负向输入迟滞使能&#xD;CMP_PHYST_POL_NP:正负向输入迟滞都使能</Comment>
           </Property>
           <Property class="UIchoice">
             <label>POLARITY</label>
@@ -5413,7 +5420,7 @@
               <sel>CMP_POL_OUT_DIRECT</sel>
               <sel>CMP_POL_OUT_UNDIRECT</sel>
             </Selections>
-            <Comment>比较器输出极性选择&#xD;0：输出不反向&#xD;1：输出反向</Comment>
+            <Comment>比较器输出极性选择&#xD;CMP_POL_OUT_DIRECT:输出不反向&#xD;CMP_POL_OUT_UNDIRECT:输出反向</Comment>
           </Property>
           <Property class="UIchoice">
             <label>CPOSEL</label>
@@ -5422,17 +5429,24 @@
               <sel>CMP_CPOS_OUT_DIRECT</sel>
               <sel>CMP_CPOS_OUT_IN</sel>
             </Selections>
-            <Comment>CMP_OUT管脚上输出信号选择&#xD;0h：滤波前信号直接输出&#xD;1h：滤波后信号输出</Comment>
+            <Comment>CMP_OUT管脚上输出信号选择&#xD;CMP_CPOS_OUT_DIRECT:滤波前信号直接输出&#xD;CMP_CPOS_OUT_IN:滤波后信号输出</Comment>
           </Property>
           <Property class="UIchoice">
-            <label>Interrupt Mode</label>
-            <value>CMP_INTSRC_NONE</value>
+            <label>Interrupt</label>
+            <value>DISABLE</value>
             <Selections>
-              <sel>CMP_INTSRC_NONE</sel>
-              <sel>CMP_INTSRC_EDGEDET</sel>
-              <sel>CMP_INSRCT_RAWDET</sel>
+              <sel notAvailable="CMP1Int">DISABLE</sel>
+              <sel>ENABLE</sel>
             </Selections>
-            <Comment>比较器中断模式选择</Comment>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="CMP1Int">
+            <label>CMP_INTSRC_EDGEDET</label>
+            <value>0</value>
+          </Property>
+          <Property class="Bool" property_class="CMP1Int">
+            <label>CMP_INTSRC_RAWDET</label>
+            <value>0</value>
           </Property>
           <Property class="UIchoice" property_class="DFCR1">
             <label>DEPTH1</label>
@@ -5447,7 +5461,7 @@
               <sel>CMP_DFCR_DEPTH1_512</sel>
               <sel>CMP_DFCR_DEPTH1_1024</sel>
             </Selections>
-            <Comment>数字滤波器1积分深度设置&#xD;000b：N = 8&#xD;001b：N = 16&#xD;010b：N = 32&#xD;011b：N = 64&#xD;100b：N = 128&#xD;101b：N = 256&#xD;110b：N = 512&#xD;111b：N = 1024</Comment>
+            <Comment>数字滤波器1积分深度设置&#xD;CMP_DFCR_DEPTH1_8:N = 8&#xD;CMP_DFCR_DEPTH1_16:N = 16&#xD;CMP_DFCR_DEPTH1_32:N = 32&#xD;CMP_DFCR_DEPTH1_64:N = 64&#xD;CMP_DFCR_DEPTH1_128:N = 128&#xD;CMP_DFCR_DEPTH1_256:N = 256&#xD;CMP_DFCR_DEPTH1_512:N = 512&#xD;CMP_DFCR_DEPTH1_1024:N = 1024</Comment>
           </Property>
           <Property class="Text" property_class="DFCR1">
             <label>DIVN1</label>
@@ -5472,7 +5486,7 @@
               <sel>CMP_DFCR_DEPTH2_1024</sel>
               <sel>CMP_DFCR_DEPTH2_2048</sel>
             </Selections>
-            <Comment>数字滤波器2去抖深度设置&#xD;000b：N = 16&#xD;001b：N = 32&#xD;010b：N = 64&#xD;011b：N = 128&#xD;100b：N = 256&#xD;101b：N = 512&#xD;110b：N = 1024&#xD;111b：N = 2048</Comment>
+            <Comment>数字滤波器2去抖深度设置&#xD;CMP_DFCR_DEPTH2_16:N = 16&#xD;CMP_DFCR_DEPTH2_32:N = 32&#xD;CMP_DFCR_DEPTH2_64:N = 64&#xD;CMP_DFCR_DEPTH2_128:N = 128&#xD;CMP_DFCR_DEPTH2_256:N = 256&#xD;CMP_DFCR_DEPTH2_512:N = 512&#xD;CMP_DFCR_DEPTH2_1024:N = 1024&#xD;CMP_DFCR_DEPTH2_2048:N = 2048</Comment>
           </Property>
           <Property class="Text" property_class="DFCR1">
             <label>DIVN2</label>
@@ -5491,7 +5505,7 @@
               <sel>CMP_WFCR_ALIGN_DISALLOW</sel>
               <sel>CMP_WFCR_ALIGN_ALLOW</sel>
             </Selections>
-            <Comment>窗口滤波触发事件对齐设置&#xD;0h：新触发发生时，开始新的窗口计数，不允许前一个窗口周期跨越当前周期，若前一个窗口仍有效则截断窗口&#xD;1h：新触发发生时，开始新的窗口计数，允许窗口跨越周期</Comment>
+            <Comment>窗口滤波触发事件对齐设置&#xD;CMP_WFCR_ALIGN_DISALLOW:新触发发生时,开始新的窗口计数,不允许前一个窗口周期跨越当前周期,若前一个窗口仍有效则截断窗口&#xD;CMP_WFCR_ALIGN_ALLOW:新触发发生时,开始新的窗口计数,允许窗口跨越周期</Comment>
           </Property>
           <Property class="UIchoice" property_class="WFCR1">
             <label>WFOSET</label>
@@ -5502,7 +5516,7 @@
               <sel>CMP_WFCR_OSET_LOW</sel>
               <sel>CMP_WFCR_OSET_DIS1</sel>
             </Selections>
-            <Comment>窗口滤波设置输出初始化&#xD;0h：无效&#xD;1h：设置滤波器输出为高电平&#xD;2h：设置滤波器输出为低电平&#xD;3h：无效</Comment>
+            <Comment>窗口滤波设置输出初始化&#xD;CMP_WFCR_OSET_DIS:无效&#xD;CMP_WFCR_OSET_HIGH:设置滤波器输出为高电平&#xD;CMP_WFCR_OSET_LOW:设置滤波器输出为低电平&#xD;CMP_WFCR_OSET_DIS1:无效</Comment>
           </Property>
           <Property class="Text" property_class="WFCR1">
             <label>CLKDIV</label>
@@ -5512,12 +5526,12 @@
           <Property class="Text" property_class="WFCR1">
             <label>DCNT</label>
             <value>0</value>
-            <Comment>设置捕捉窗口延时计数器。在触发后，内部8位递减计数器根据CLKDIV的设置频率计数。延时的时间为(DCNT+1) x Twcnt。&#xD;注意：当DCNT为零时，延时窗口被关闭，而不是1个Twcnt。</Comment>
+            <Comment>设置捕捉窗口延时计数器。在触发后,内部8位递减计数器根据CLKDIV的设置频率计数。延时的时间为(DCNT+1) x Twcnt。&#xD;注意:当DCNT为零时,延时窗口被关闭,而不是1个Twcnt。</Comment>
           </Property>
           <Property class="Text" property_class="WFCR1">
             <label>WCNT</label>
             <value>200</value>
-            <Comment>设置捕捉窗口宽度计数器。在触发后，当延时计数器计数完成后，内部10位计数器根据CLKDIV的设置频率计数。窗口的宽度为：(WCNT+1)x Twcnt</Comment>
+            <Comment>设置捕捉窗口宽度计数器。在触发后,当延时计数器计数完成后,内部10位计数器根据CLKDIV的设置频率计数。窗口的宽度为:(WCNT+1)x Twcnt</Comment>
           </Property>
           <Property class="UIchoice" property_class="WFCR1">
             <label>EVE_SEL</label>
@@ -5528,7 +5542,7 @@
               <sel>CMP_EVE_DOWN_UP</sel>
               <sel>CMP_EVE_UP1</sel>
             </Selections>
-            <Comment>事件触发边沿选择&#xD;0：下降沿&#xD;1：上升沿&#xD;2：下降沿和上升沿(该选项用于DEEPSLEEP唤醒时，只有上升沿有效）&#xD;3：上升沿</Comment>
+            <Comment>事件触发边沿选择&#xD;CMP_EVE_DOWN:下降沿&#xD;CMP_EVE_UP:上升沿&#xD;CMP_EVE_DOWN_UP:下降沿和上升沿(该选项用于DEEPSLEEP唤醒时,只有上升沿有效）&#xD;CMP_EVE_UP1:上升沿</Comment>
           </Property>
         </Device>
       </Category>
@@ -5541,12 +5555,12 @@
           <Property class="Text">
             <label>Baudrate</label>
             <value>115200</value>
-            <Comment>文本输入,最大值为3000000,单位Hz</Comment>
+            <Comment>文本输入,最大值为3000000,单位Bit/s</Comment>
           </Property>
           <Property class="Text">
             <label>Receive Timeout</label>
             <value>88</value>
-            <Comment>UART接收超时时间，单位：bit位周期，8个bytes(11bit*8=88, 115200波特率时=764us)</Comment>
+            <Comment>UART接收超时时间,单位:bit位周期,8个bytes(11bit*8=88,115200波特率时=764us)</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Parity</label>
@@ -5556,7 +5570,7 @@
               <sel>UART_PARITY_EVEN</sel>
               <sel>UART_PARITY_ODD</sel>
             </Selections>
-            <Comment>校验位类型:(默认：无校验位)&#xD;UART_PARITY_NONE：无校验位&#xD;UART_PARITY_EVEN：偶校验&#xD;UART_PARITY_ODD：奇校验</Comment>
+            <Comment>校验位类型:(默认:无校验位)&#xD;UART_PARITY_NONE:无校验位&#xD;UART_PARITY_EVEN:偶校验&#xD;UART_PARITY_ODD:奇校验</Comment>
           </Property>
           <Property class="UIchoice">
             <label>TXMode</label>
@@ -5565,7 +5579,7 @@
               <sel>UART_TX_MODE_POLL</sel>
               <sel>UART_TX_MODE_INT</sel>
             </Selections>
-            <Comment>发送模式&#xD;注释：开启UART_TX_MOD_INT时，默认推荐INT配置为UART_INRSRC_TXDONE</Comment>
+            <Comment>发送模式&#xD;注释:开启UART_TX_MOD_INT时,默认推荐INT配置为UART_INRSRC_TXDONE</Comment>
           </Property>
           <Property class="UIchoice">
             <label>RXMode</label>
@@ -5574,7 +5588,7 @@
               <sel>UART_RX_MODE_POLL</sel>
               <sel>UART_RX_MODE_INT</sel>
             </Selections>
-            <Comment>接收模式&#xD;注释：开启UART_RX_MOD_INT时，默认推荐INT配置为UART_INRSRC_RXFIFO和UART_INRSRC_RXTO</Comment>
+            <Comment>接收模式&#xD;注释:开启UART_RX_MOD_INT时,默认推荐INT配置为UART_INRSRC_RXFIFO和UART_INRSRC_RXTO</Comment>
           </Property>
           <Property class="UIchoice">
             <label>UART FUNC</label>
@@ -5594,12 +5608,12 @@
           <Property class="Text">
             <label>Baudrate</label>
             <value>115200</value>
-            <Comment>文本输入,最大值为3000000,单位Hz</Comment>
+            <Comment>文本输入,最大值为3000000,单位Bit/s</Comment>
           </Property>
           <Property class="Text">
             <label>Receive Timeout</label>
             <value>88</value>
-            <Comment>UART接收超时时间，单位：bit位周期，8个bytes(11bit*8=88, 115200波特率时=764us)</Comment>
+            <Comment>UART接收超时时间,单位:bit位周期,8个bytes(11bit*8=88,115200波特率时=764us)</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Parity</label>
@@ -5609,7 +5623,7 @@
               <sel>UART_PARITY_EVEN</sel>
               <sel>UART_PARITY_ODD</sel>
             </Selections>
-            <Comment>校验位类型:(默认：无校验位)&#xD;UART_PARITY_NONE：无校验位&#xD;UART_PARITY_EVEN：偶校验&#xD;UART_PARITY_ODD：奇校验</Comment>
+            <Comment>校验位类型:(默认:无校验位)&#xD;UART_PARITY_NONE:无校验位&#xD;UART_PARITY_EVEN:偶校验&#xD;UART_PARITY_ODD:奇校验</Comment>
           </Property>
           <Property class="UIchoice">
             <label>TXMode</label>
@@ -5618,7 +5632,7 @@
               <sel>UART_TX_MODE_POLL</sel>
               <sel>UART_TX_MODE_INT</sel>
             </Selections>
-            <Comment>发送模式&#xD;注释：开启UART_TX_MOD_INT时，默认推荐INT配置为UART_INRSRC_TXDONE</Comment>
+            <Comment>发送模式&#xD;注释:开启UART_TX_MOD_INT时,默认推荐INT配置为UART_INRSRC_TXDONE</Comment>
           </Property>
           <Property class="UIchoice">
             <label>RXMode</label>
@@ -5627,7 +5641,7 @@
               <sel>UART_RX_MODE_POLL</sel>
               <sel>UART_RX_MODE_INT</sel>
             </Selections>
-            <Comment>接收模式&#xD;注释：开启UART_RX_MOD_INT时，默认推荐INT配置为UART_INRSRC_RXFIFO和UART_INRSRC_RXTO</Comment>
+            <Comment>接收模式&#xD;注释:开启UART_RX_MOD_INT时,默认推荐INT配置为UART_INRSRC_RXFIFO和UART_INRSRC_RXTO</Comment>
           </Property>
           <Property class="UIchoice">
             <label>UART FUNC</label>
@@ -5647,12 +5661,12 @@
           <Property class="Text">
             <label>Baudrate</label>
             <value>115200</value>
-            <Comment>文本输入,最大值为3000000,单位Hz</Comment>
+            <Comment>文本输入,最大值为3000000,单位Bit/s</Comment>
           </Property>
           <Property class="Text">
             <label>Receive Timeout</label>
             <value>88</value>
-            <Comment>UART接收超时时间，单位：bit位周期，8个bytes(11bit*8=88, 115200波特率时=764us)</Comment>
+            <Comment>UART接收超时时间,单位:bit位周期,8个bytes(11bit*8=88,115200波特率时=764us)</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Parity</label>
@@ -5662,7 +5676,7 @@
               <sel>UART_PARITY_EVEN</sel>
               <sel>UART_PARITY_ODD</sel>
             </Selections>
-            <Comment>校验位类型:(默认：无校验位)&#xD;UART_PARITY_NONE：无校验位&#xD;UART_PARITY_EVEN：偶校验&#xD;UART_PARITY_ODD：奇校验</Comment>
+            <Comment>校验位类型:(默认:无校验位)&#xD;UART_PARITY_NONE:无校验位&#xD;UART_PARITY_EVEN:偶校验&#xD;UART_PARITY_ODD:奇校验</Comment>
           </Property>
           <Property class="UIchoice">
             <label>TXMode</label>
@@ -5671,7 +5685,7 @@
               <sel>UART_TX_MODE_POLL</sel>
               <sel>UART_TX_MODE_INT</sel>
             </Selections>
-            <Comment>发送模式&#xD;注释：开启UART_TX_MOD_INT时，默认推荐INT配置为UART_INRSRC_TXDONE</Comment>
+            <Comment>发送模式&#xD;注释:开启UART_TX_MOD_INT时,默认推荐INT配置为UART_INRSRC_TXDONE</Comment>
           </Property>
           <Property class="UIchoice">
             <label>RXMode</label>
@@ -5680,7 +5694,7 @@
               <sel>UART_RX_MODE_POLL</sel>
               <sel>UART_RX_MODE_INT</sel>
             </Selections>
-            <Comment>接收模式&#xD;注释：开启UART_RX_MOD_INT时，默认推荐INT配置为UART_INRSRC_RXFIFO和UART_INRSRC_RXTO</Comment>
+            <Comment>接收模式&#xD;注释:开启UART_RX_MOD_INT时,默认推荐INT配置为UART_INRSRC_RXFIFO和UART_INRSRC_RXTO</Comment>
           </Property>
           <Property class="UIchoice">
             <label>UART FUNC</label>
@@ -5698,7 +5712,7 @@
         <label>USART</label>
         <Device deviceId="USART0">
           <GenCodeFuncName>USART0InitFunc</GenCodeFuncName>
-          <UseOrNot>1</UseOrNot>
+          <UseOrNot>0</UseOrNot>
           <label>USART0</label>
           <Property class="UIchoice">
             <label>CLK Source</label>
@@ -5729,7 +5743,7 @@
               <sel>USART_DATA_BITS_8</sel>
               <sel>USART_DATA_BITS_9</sel>
             </Selections>
-            <Comment>字节长度 (除开始位，停止位和校验位外的字节长度)</Comment>
+            <Comment>字节长度 (除开始位,停止位和校验位外的字节长度)</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Stop Bits</label>
@@ -5751,7 +5765,7 @@
               <sel>USART_PARITY_NONE</sel>
               <sel>USART_PARITY_MD</sel>
             </Selections>
-            <Comment>校验类型位(默认:无校验位)&#xD;PAR[2:0] 校验类型&#xD;0 0 0:     偶校验&#xD;0 0 1:     奇校验&#xD;0 1 0:     0校验 (Space)&#xD;0 1 1:     1校验 (Mark)&#xD;1 0 X:     无校验&#xD;1 1 X:     Multi-drop模式&#xD;注意：如果使用LIN，PAR[2:0]必须设置为'10X'</Comment>
+            <Comment>校验类型位(默认:无校验位)&#xD;PAR[2:0] 校验类型&#xD;0 0 0:     偶校验&#xD;0 0 1:     奇校验&#xD;0 1 0:     0校验 (Space)&#xD;0 1 1:     1校验 (Mark)&#xD;1 0 X:     无校验&#xD;1 1 X:     Multi-drop模式&#xD;注意:如果使用LIN,PAR[2:0]必须设置为'10X'</Comment>
           </Property>
           <Property class="UIchoice">
             <label>ClkOutEn</label>
@@ -5765,12 +5779,12 @@
           <Property class="Text">
             <label>Baudrate</label>
             <value>115200</value>
-            <Comment>文本输入,最大值为3000000,单位Hz</Comment>
+            <Comment>文本输入,最大值为3000000,单位Bit/s</Comment>
           </Property>
           <Property class="Text">
             <label>Receive Timeout</label>
             <value>88</value>
-            <Comment>USART接收超时时间，单位：bit位周期，8个bytes(11bit*8=88, 115200波特率时=764us)</Comment>
+            <Comment>USART接收超时时间,单位:bit位周期,8个bytes(11bit*8=88,115200波特率时=764us)</Comment>
           </Property>
           <Property class="UIchoice">
             <label>TXMode</label>
@@ -5779,7 +5793,7 @@
               <sel>USART_TX_MODE_POLL</sel>
               <sel>USART_TX_MODE_INT</sel>
             </Selections>
-            <Comment>发送模式&#xD;注释：开启USART_TX_MOD_INT时，默认推荐INT配置为UART_INRSRC_TXDONE  </Comment>
+            <Comment>发送模式&#xD;注释:开启USART_TX_MOD_INT时,默认推荐INT配置为UART_INRSRC_TXDONE  </Comment>
           </Property>
           <Property class="UIchoice">
             <label>RXMode</label>
@@ -5788,7 +5802,7 @@
               <sel>USART_RX_MODE_POLL</sel>
               <sel>USART_RX_MODE_INT</sel>
             </Selections>
-            <Comment>接收模式&#xD;注释：开启USART_RX_MOD_INT时，默认推荐INT配置为USART_INRSRC_RXFIFO和USART_INRSRC_RXTO </Comment>
+            <Comment>接收模式&#xD;注释:开启USART_RX_MOD_INT时,默认推荐INT配置为USART_INRSRC_RXFIFO和USART_INRSRC_RXTO </Comment>
           </Property>
           <Property class="UIchoice">
             <label>USART FUNC</label>
@@ -5818,7 +5832,7 @@
           <Property class="Bool">
             <label>Debug</label>
             <value>1</value>
-            <Comment>调试模式控制位&#xD;0h：禁止调试模式&#xD;1h：使能调试模式</Comment>
+            <Comment>调试模式控制位&#xD;0h:禁止调试模式&#xD;1h:使能调试模式</Comment>
           </Property>
           <Property class="Text">
             <label>wTimeOut</label>
@@ -5841,7 +5855,7 @@
               <sel notAvailable="LPTPWM">Timer</sel>
               <sel notAvailable="LPTTimer">PWM</sel>
             </Selections>
-            <Comment>模式选择&#xD;Timer:使用LPT定时, 默认采用PEND中断&#xD;PWM:使用LPT产生PWM波&#xD;</Comment>
+            <Comment>模式选择&#xD;Timer:使用LPT定时,默认采用PEND中断&#xD;PWM:使用LPT产生PWM波&#xD;</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Clock Source</label>
@@ -5859,18 +5873,18 @@
           <Property class="Text" property_class="LPTTimer">
             <label>Time Interval</label>
             <value>500</value>
-            <Comment>LPT定时长度，单位ms</Comment>
+            <Comment>LPT定时长度,单位ms</Comment>
           </Property>
           <Property class="Text" property_class="LPTPWM">
             <label>PWM Fre</label>
             <value>1000</value>
-            <Comment>PWM输出频率，单位Hz</Comment>
+            <Comment>PWM输出频率,单位Hz</Comment>
           </Property>
           <Property class="Text" property_class="LPTPWM">
             <label>PWM DutyCycle</label>
             <value>50</value>
             <validReg>^([0-9]|[1-9][0-9]|100)$</validReg>
-            <Comment>PWM输出占空比，范围0~100之间的整数</Comment>
+            <Comment>PWM输出占空比,范围0~100之间的整数</Comment>
           </Property>
           <Property class="UIchoice" property_class="LPTPWM">
             <label>PWM Start Level</label>
@@ -5879,7 +5893,7 @@
               <sel>LPT_PWM_START_LOW</sel>
               <sel>LPT_PWM_START_HIGH</sel>
             </Selections>
-            <Comment>PWM初始电平&#xD;LPT_PWM_START_HIGH：初始高电平&#xD;LPT_PWM_START_LOW：初始低电平</Comment>
+            <Comment>PWM初始电平&#xD;LPT_PWM_START_HIGH:初始高电平&#xD;LPT_PWM_START_LOW:初始低电平</Comment>
           </Property>
           <Property class="UIchoice" property_class="LPTPWM">
             <label>PWM IDLE Level</label>
@@ -5888,7 +5902,7 @@
               <sel>LPT_PWM_IDLE_Z</sel>
               <sel>LPT_PWM_IDLE_LOW</sel>
             </Selections>
-            <Comment>PWM波形输出被停止时，输出端口的缺省状态&#xD;LPT_PWM_IDLE_Z：高阻输出&#xD;LPT_PWM_IDLE_LOW：低电平输出</Comment>
+            <Comment>PWM波形输出被停止时,输出端口的缺省状态&#xD;LPT_PWM_IDLE_Z:高阻输出&#xD;LPT_PWM_IDLE_LOW:低电平输出</Comment>
           </Property>
           <Property class="UIchoice" property_class="LPTPWM">
             <label>Interrupt</label>
@@ -5935,19 +5949,19 @@
             <label>Time Interval</label>
             <value>10000</value>
             <validReg>^[0-9]+$</validReg>
-            <Comment>文本输入，单位us。定时中断服务函数需要user_bt0_handler要自定义</Comment>
+            <Comment>文本输入,单位us。定时中断服务函数需要user_bt0_handler要自定义</Comment>
           </Property>
           <Property class="Text" property_class="BT0PWM">
             <label>PWM Fre</label>
             <value>1</value>
             <validReg>^[0-9]+$</validReg>
-            <Comment>文本输入，单位Hz</Comment>
+            <Comment>文本输入,单位Hz</Comment>
           </Property>
           <Property class="Text" property_class="BT0PWM">
             <label>PWM DutyCycle</label>
             <value>50</value>
             <validReg>^([0-9]|[1-9][0-9]|100)$</validReg>
-            <Comment>文本输入，范围0~100之间的整数</Comment>
+            <Comment>文本输入,范围0~100之间的整数</Comment>
           </Property>
           <Property class="UIchoice" property_class="BT0PWM">
             <label>PWM Start Level</label>
@@ -5956,7 +5970,7 @@
               <sel>BT_PWM_START_LOW</sel>
               <sel>BT_PWM_START_HIGH</sel>
             </Selections>
-            <Comment>BT开始计数时，BT_OUT状态设置&#xD;BT_PWM_START_LOW：低电平&#xD;BT_PWM_START_HIGH：高电平</Comment>
+            <Comment>BT开始计数时,BT_OUT状态设置&#xD;BT_PWM_START_LOW:低电平&#xD;BT_PWM_START_HIGH:高电平</Comment>
           </Property>
           <Property class="UIchoice" property_class="BT0PWM">
             <label>PWM IDLE Level</label>
@@ -5965,7 +5979,7 @@
               <sel>BT_PWM_IDLE_LOW</sel>
               <sel>BT_PWM_IDLE_HIGH</sel>
             </Selections>
-            <Comment>BT停止计数时，BT_OUT状态设置&#xD;BT_PWM_IDLE_LOW：低电平&#xD;BT_PWM_IDLE_HIGH：高电平</Comment>
+            <Comment>BT停止计数时,BT_OUT状态设置&#xD;BT_PWM_IDLE_LOW:低电平&#xD;BT_PWM_IDLE_HIGH:高电平</Comment>
           </Property>
           <Property class="UIchoice" property_class="BT0PWM">
             <label>Interrupt</label>
@@ -6003,7 +6017,7 @@
               <sel>DISABLE</sel>
               <sel>ENABLE</sel>
             </Selections>
-            <Comment>可通过软件触发输出: csi_bt_soft_evtrg(BT0);</Comment>
+            <Comment>可通过软件触发输出:csi_bt_soft_evtrg(BT0);</Comment>
           </Property>
           <Property class="UIchoice">
             <label>TRGSRC</label>
@@ -6024,7 +6038,7 @@
               <sel>DISABLE</sel>
               <sel>ENABLE</sel>
             </Selections>
-            <Comment>外部同步触发输入使能控制&#xD;DISABLE：禁止外部触发&#xD;ENABLE：使能外部触发</Comment>
+            <Comment>外部同步触发输入使能控制&#xD;DISABLE:禁止外部触发&#xD;ENABLE:使能外部触发</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC0_TrgMode</label>
@@ -6034,7 +6048,7 @@
               <sel>Continuous</sel>
               <sel>Once</sel>
             </Selections>
-            <Comment>一次性同步触发模式选择&#xD;Continuous：连续触发模式&#xD;Once：一次性触发模式&#xD;当该输入通道被设置为一次性触发模式后，在一次触发事件被检测到后，该通道将不允许后续的触发事件通过，直到被软件重置（REARM）后才允许新的触发事件通过。</Comment>
+            <Comment>一次性同步触发模式选择&#xD;Continuous:连续触发模式&#xD;Once:一次性触发模式&#xD;当该输入通道被设置为一次性触发模式后,在一次触发事件被检测到后,该通道将不允许后续的触发事件通过,直到被软件重置（REARM）后才允许新的触发事件通过。</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC0_AutoRearm</label>
@@ -6044,7 +6058,7 @@
               <sel>DISABLE</sel>
               <sel>ENABLE</sel>
             </Selections>
-            <Comment>硬件自动REARM控制位&#xD;DISABLE：禁止硬件自动REARM&#xD;ENABLE：计数器周期结束时，自动REARM</Comment>
+            <Comment>硬件自动REARM控制位&#xD;DISABLE:禁止硬件自动REARM&#xD;ENABLE:计数器周期结束时,自动REARM</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC1_INC</label>
@@ -6054,7 +6068,7 @@
               <sel>DISABLE</sel>
               <sel>ENABLE</sel>
             </Selections>
-            <Comment>外部同步触发输入使能控制&#xD;DISABLE：禁止外部触发&#xD;ENABLE：使能外部触发</Comment>
+            <Comment>外部同步触发输入使能控制&#xD;DISABLE:禁止外部触发&#xD;ENABLE:使能外部触发</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC1_TrgMode</label>
@@ -6064,7 +6078,7 @@
               <sel>Continuous</sel>
               <sel>Once</sel>
             </Selections>
-            <Comment>一次性同步触发模式选择&#xD;Continuous：连续触发模式&#xD;Once：一次性触发模式&#xD;当该输入通道被设置为一次性触发模式后，在一次触发事件被检测到后，该通道将不允许后续的触发事件通过，直到被软件重置（REARM）后才允许新的触发事件通过。</Comment>
+            <Comment>一次性同步触发模式选择&#xD;Continuous:连续触发模式&#xD;Once:一次性触发模式&#xD;当该输入通道被设置为一次性触发模式后,在一次触发事件被检测到后,该通道将不允许后续的触发事件通过,直到被软件重置（REARM）后才允许新的触发事件通过。</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC1_AutoRearm</label>
@@ -6074,7 +6088,7 @@
               <sel>DISABLE</sel>
               <sel>ENABLE</sel>
             </Selections>
-            <Comment>硬件自动REARM控制位&#xD;DISABLE：禁止硬件自动REARM&#xD;ENABLE：计数器周期结束时，自动REARM</Comment>
+            <Comment>硬件自动REARM控制位&#xD;DISABLE:禁止硬件自动REARM&#xD;ENABLE:计数器周期结束时,自动REARM</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC2_STOP</label>
@@ -6084,7 +6098,7 @@
               <sel>DISABLE</sel>
               <sel>ENABLE</sel>
             </Selections>
-            <Comment>外部同步触发输入使能控制&#xD;DISABLE：禁止外部触发&#xD;ENABLE：使能外部触发</Comment>
+            <Comment>外部同步触发输入使能控制&#xD;DISABLE:禁止外部触发&#xD;ENABLE:使能外部触发</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC2_TrgMode</label>
@@ -6094,7 +6108,7 @@
               <sel>Continuous</sel>
               <sel>Once</sel>
             </Selections>
-            <Comment>一次性同步触发模式选择&#xD;Continuous：连续触发模式&#xD;Once：一次性触发模式&#xD;当该输入通道被设置为一次性触发模式后，在一次触发事件被检测到后，该通道将不允许后续的触发事件通过，直到被软件重置（REARM）后才允许新的触发事件通过。</Comment>
+            <Comment>一次性同步触发模式选择&#xD;Continuous:连续触发模式&#xD;Once:一次性触发模式&#xD;当该输入通道被设置为一次性触发模式后,在一次触发事件被检测到后,该通道将不允许后续的触发事件通过,直到被软件重置（REARM）后才允许新的触发事件通过。</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC2_AutoRearm</label>
@@ -6104,7 +6118,7 @@
               <sel>DISABLE</sel>
               <sel>ENABLE</sel>
             </Selections>
-            <Comment>硬件自动REARM控制位&#xD;DISABLE：禁止硬件自动REARM&#xD;ENABLE：计数器周期结束时，自动REARM</Comment>
+            <Comment>硬件自动REARM控制位&#xD;DISABLE:禁止硬件自动REARM&#xD;ENABLE:计数器周期结束时,自动REARM</Comment>
           </Property>
         </Device>
         <Device deviceId="BT1">
@@ -6124,19 +6138,19 @@
             <label>Time Interval</label>
             <value>10000</value>
             <validReg>^[0-9]+$</validReg>
-            <Comment>文本输入，单位us。定时中断服务函数需要user_bt0_handler要自定义</Comment>
+            <Comment>文本输入,单位us。定时中断服务函数需要user_bt0_handler要自定义</Comment>
           </Property>
           <Property class="Text" property_class="BT1PWM">
             <label>PWM Fre</label>
             <value>1</value>
             <validReg>^[0-9]+$</validReg>
-            <Comment>文本输入，单位Hz</Comment>
+            <Comment>文本输入,单位Hz</Comment>
           </Property>
           <Property class="Text" property_class="BT1PWM">
             <label>PWM DutyCycle</label>
             <value>50</value>
             <validReg>^([0-9]|[1-9][0-9]|100)$</validReg>
-            <Comment>文本输入，范围0~100之间的整数</Comment>
+            <Comment>文本输入,范围0~100之间的整数</Comment>
           </Property>
           <Property class="UIchoice" property_class="BT1PWM">
             <label>PWM Start Level</label>
@@ -6145,7 +6159,7 @@
               <sel>BT_PWM_START_LOW</sel>
               <sel>BT_PWM_START_HIGH</sel>
             </Selections>
-            <Comment>BT开始计数时，BT_OUT状态设置&#xD;BT_PWM_START_LOW：低电平&#xD;BT_PWM_START_HIGH：高电平</Comment>
+            <Comment>BT开始计数时,BT_OUT状态设置&#xD;BT_PWM_START_LOW:低电平&#xD;BT_PWM_START_HIGH:高电平</Comment>
           </Property>
           <Property class="UIchoice" property_class="BT1PWM">
             <label>PWM IDLE Level</label>
@@ -6154,7 +6168,7 @@
               <sel>BT_PWM_IDLE_LOW</sel>
               <sel>BT_PWM_IDLE_HIGH</sel>
             </Selections>
-            <Comment>BT停止计数时，BT_OUT状态设置&#xD;BT_PWM_IDLE_LOW：低电平&#xD;BT_PWM_IDLE_HIGH：高电平</Comment>
+            <Comment>BT停止计数时,BT_OUT状态设置&#xD;BT_PWM_IDLE_LOW:低电平&#xD;BT_PWM_IDLE_HIGH:高电平</Comment>
           </Property>
           <Property class="UIchoice" property_class="BT1PWM">
             <label>Interrupt</label>
@@ -6192,7 +6206,7 @@
               <sel>DISABLE</sel>
               <sel>ENABLE</sel>
             </Selections>
-            <Comment>可通过软件触发输出: csi_bt_soft_evtrg(BT1);</Comment>
+            <Comment>可通过软件触发输出:csi_bt_soft_evtrg(BT1);</Comment>
           </Property>
           <Property class="UIchoice">
             <label>TRGSRC</label>
@@ -6213,7 +6227,7 @@
               <sel>DISABLE</sel>
               <sel>ENABLE</sel>
             </Selections>
-            <Comment>外部同步触发输入使能控制&#xD;DISABLE：禁止外部触发&#xD;ENABLE：使能外部触发</Comment>
+            <Comment>外部同步触发输入使能控制&#xD;DISABLE:禁止外部触发&#xD;ENABLE:使能外部触发</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC0_TrgMode</label>
@@ -6223,7 +6237,7 @@
               <sel>Continuous</sel>
               <sel>Once</sel>
             </Selections>
-            <Comment>一次性同步触发模式选择&#xD;Continuous：连续触发模式&#xD;Once：一次性触发模式&#xD;当该输入通道被设置为一次性触发模式后，在一次触发事件被检测到后，该通道将不允许后续的触发事件通过，直到被软件重置（REARM）后才允许新的触发事件通过。</Comment>
+            <Comment>一次性同步触发模式选择&#xD;Continuous:连续触发模式&#xD;Once:一次性触发模式&#xD;当该输入通道被设置为一次性触发模式后,在一次触发事件被检测到后,该通道将不允许后续的触发事件通过,直到被软件重置（REARM）后才允许新的触发事件通过。</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC0_AutoRearm</label>
@@ -6233,7 +6247,7 @@
               <sel>DISABLE</sel>
               <sel>ENABLE</sel>
             </Selections>
-            <Comment>硬件自动REARM控制位&#xD;DISABLE：禁止硬件自动REARM&#xD;ENABLE：计数器周期结束时，自动REARM</Comment>
+            <Comment>硬件自动REARM控制位&#xD;DISABLE:禁止硬件自动REARM&#xD;ENABLE:计数器周期结束时,自动REARM</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC1_INC</label>
@@ -6243,7 +6257,7 @@
               <sel>DISABLE</sel>
               <sel>ENABLE</sel>
             </Selections>
-            <Comment>外部同步触发输入使能控制&#xD;DISABLE：禁止外部触发&#xD;ENABLE：使能外部触发</Comment>
+            <Comment>外部同步触发输入使能控制&#xD;DISABLE:禁止外部触发&#xD;ENABLE:使能外部触发</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC1_TrgMode</label>
@@ -6253,7 +6267,7 @@
               <sel>Continuous</sel>
               <sel>Once</sel>
             </Selections>
-            <Comment>一次性同步触发模式选择&#xD;Continuous：连续触发模式&#xD;Once：一次性触发模式&#xD;当该输入通道被设置为一次性触发模式后，在一次触发事件被检测到后，该通道将不允许后续的触发事件通过，直到被软件重置（REARM）后才允许新的触发事件通过。</Comment>
+            <Comment>一次性同步触发模式选择&#xD;Continuous:连续触发模式&#xD;Once:一次性触发模式&#xD;当该输入通道被设置为一次性触发模式后,在一次触发事件被检测到后,该通道将不允许后续的触发事件通过,直到被软件重置（REARM）后才允许新的触发事件通过。</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC1_AutoRearm</label>
@@ -6263,7 +6277,7 @@
               <sel>DISABLE</sel>
               <sel>ENABLE</sel>
             </Selections>
-            <Comment>硬件自动REARM控制位&#xD;DISABLE：禁止硬件自动REARM&#xD;ENABLE：计数器周期结束时，自动REARM</Comment>
+            <Comment>硬件自动REARM控制位&#xD;DISABLE:禁止硬件自动REARM&#xD;ENABLE:计数器周期结束时,自动REARM</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC2_STOP</label>
@@ -6273,7 +6287,7 @@
               <sel>DISABLE</sel>
               <sel>ENABLE</sel>
             </Selections>
-            <Comment>外部同步触发输入使能控制&#xD;DISABLE：禁止外部触发&#xD;ENABLE：使能外部触发</Comment>
+            <Comment>外部同步触发输入使能控制&#xD;DISABLE:禁止外部触发&#xD;ENABLE:使能外部触发</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC2_TrgMode</label>
@@ -6283,7 +6297,7 @@
               <sel>Continuous</sel>
               <sel>Once</sel>
             </Selections>
-            <Comment>一次性同步触发模式选择&#xD;Continuous：连续触发模式&#xD;Once：一次性触发模式&#xD;当该输入通道被设置为一次性触发模式后，在一次触发事件被检测到后，该通道将不允许后续的触发事件通过，直到被软件重置（REARM）后才允许新的触发事件通过。</Comment>
+            <Comment>一次性同步触发模式选择&#xD;Continuous:连续触发模式&#xD;Once:一次性触发模式&#xD;当该输入通道被设置为一次性触发模式后,在一次触发事件被检测到后,该通道将不允许后续的触发事件通过,直到被软件重置（REARM）后才允许新的触发事件通过。</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC2_AutoRearm</label>
@@ -6293,7 +6307,7 @@
               <sel>DISABLE</sel>
               <sel>ENABLE</sel>
             </Selections>
-            <Comment>硬件自动REARM控制位&#xD;DISABLE：禁止硬件自动REARM&#xD;ENABLE：计数器周期结束时，自动REARM</Comment>
+            <Comment>硬件自动REARM控制位&#xD;DISABLE:禁止硬件自动REARM&#xD;ENABLE:计数器周期结束时,自动REARM</Comment>
           </Property>
         </Device>
       </Category>
@@ -6305,7 +6319,7 @@
           <label>CNTA</label>
           <Property class="UIchoice">
             <label>Mode</label>
-            <value>Timer</value>
+            <value>PWM</value>
             <Selections>
               <sel notAvailable="CNTAPWM">Timer</sel>
               <sel notAvailable="CNTATimer">PWM</sel>
@@ -6346,25 +6360,24 @@
             <validReg>^([0-9]{1,2}|100)$</validReg>
             <Comment>占空比 范围 0~100</Comment>
           </Property>
-          <Property class="Bool" property_class="CNTAPWM">
-            <label>CNTA_INTSRC_NONE</label>
-            <value>1</value>
-            <Comment>高/低电平结束中断的禁止</Comment>
+          <Property class="UIchoice" property_class="CNTAPWM">
+            <label>Interrupt</label>
+            <value>DISABLE</value>
+            <Selections>
+              <sel notAvailable="CNTAInt">DISABLE</sel>
+              <sel>ENABLE</sel>
+            </Selections>
+            <Comment>高/低电平结束中断</Comment>
           </Property>
-          <Property class="Bool" property_class="CNTAPWM">
+          <Property class="Bool" property_class="CNTAInt">
             <label>CNTA_INTSRC_PENDL</label>
-            <value>1</value>
+            <value>0</value>
             <Comment>低电平结束中断的使能</Comment>
           </Property>
-          <Property class="Bool" property_class="CNTAPWM">
+          <Property class="Bool" property_class="CNTAInt">
             <label>CNTA_INTSRC_PENDH</label>
-            <value>1</value>
+            <value>0</value>
             <Comment>高电平结束中断的使能</Comment>
-          </Property>
-          <Property class="Bool" property_class="CNTAPWM">
-            <label>CNTA_INTSRC_PENDHL</label>
-            <value>1</value>
-            <Comment>高/低电平结束中断的使能</Comment>
           </Property>
           <Property class="UIchoice" property_class="CNTAPWM">
             <label>BTPENDREM</label>
@@ -6374,7 +6387,7 @@
               <sel>CNTA_PEND_CARR_CLR</sel>
               <sel>CNTA_PEND_CARR_SET</sel>
             </Selections>
-            <Comment>当BT周期结束中断发生时，硬件触发控制载波的打开和关闭&#xD;CNTA_PEND_CARR_DIS: 禁止CARRIERON的硬件自动触发&#xD;CNTA_PEND_CARR_CLR: BT周期结束中断发生时，CARRIERON位会被硬件自动清零&#xD;CNTA_PEND_CARR_SET: BT周期结束中断发生时，CARRIERON位会被硬件自动置位</Comment>
+            <Comment>当BT周期结束中断发生时,硬件触发控制载波的打开和关闭&#xD;CNTA_PEND_CARR_DIS:禁止CARRIERON的硬件自动触发&#xD;CNTA_PEND_CARR_CLR:BT周期结束中断发生时,CARRIERON位会被硬件自动清零&#xD;CNTA_PEND_CARR_SET::T周期结束中断发生时,CARRIERON位会被硬件自动置位</Comment>
           </Property>
           <Property class="UIchoice" property_class="CNTAPWM">
             <label>BTMATCHREM</label>
@@ -6384,7 +6397,7 @@
               <sel>CNTA_MATCH_CARR_CLR</sel>
               <sel>CNTA_MATCH_CARR_SET</sel>
             </Selections>
-            <Comment>当BT脉冲匹配中断发生时，硬件触发控制载波的打开和关闭&#xD;CNTA_MATCH_CARR_DIS: 禁止CARRIERON的硬件自动触发&#xD;CNTA_MATCH_CARR_CLR: BT脉冲匹配中断发生时，CARRIERON位会被硬件自动清零&#xD;CNTA_MATCH_CARR_SET: BT脉冲匹配中断发生时，CARRIERON位会被硬件自动置位</Comment>
+            <Comment>当BT脉冲匹配中断发生时,硬件触发控制载波的打开和关闭&#xD;CNTA_MATCH_CARR_DIS:禁止CARRIERON的硬件自动触发&#xD;CNTA_MATCH_CARR_CLR::T脉冲匹配中断发生时,CARRIERON位会被硬件自动清零&#xD;CNTA_MATCH_CARR_SET:脉冲匹配中断发生时,CARRIERON位会被硬件自动置位</Comment>
           </Property>
           <Property class="UIchoice" property_class="CNTAPWM">
             <label>HWUpdate</label>
@@ -6395,7 +6408,7 @@
               <sel>CNTA_HW_TCPEND</sel>
               <sel>CNTA_HW_TCMATCH_TCPEND</sel>
             </Selections>
-            <Comment>使能计数值寄存器的硬件自动更新功能&#xD;CNTA_HW_DIS：禁止BT脉冲匹配/周期结束的计数值自动载入&#xD;CNTA_HW_TCMATCH：当BT脉冲匹配中断发生时，计数值会自动载入计数器&#xD;CNTA_HW_TCPEND：当BT周期结束中断发生时，计数值会自动载入计数器&#xD;CNTA_HW_TCMATCH_TCPEND：当BT脉冲匹配/周期结束中断发生时，计数值会自动载入计数器</Comment>
+            <Comment>使能计数值寄存器的硬件自动更新功能&#xD;CNTA_HW_DIS:禁止BT脉冲匹配/周期结束的计数值自动载入&#xD;CNTA_HW_TCMATCH:当BT脉冲匹配中断发生时,计数值会自动载入计数器&#xD;CNTA_HW_TCPEND:当BT周期结束中断发生时,计数值会自动载入计数器&#xD;CNTA_HW_TCMATCH_TCPEND:当BT脉冲匹配/周期结束中断发生时,计数值会自动载入计数器</Comment>
           </Property>
         </Device>
       </Category>
@@ -6414,7 +6427,7 @@
               <sel>RTC_CLKSRC_ESOSC</sel>
               <sel>RTC_CLKSRC_EMOSC_DIV4</sel>
             </Selections>
-            <Comment>RTC时钟源选择RTC_CLKSRC_ISOSC：ISOSC&#xD;RTC_CLKSRC_IMOSC_DIV4：IMOSC/4&#xD;RTC_CLKSRC_ESOSC：ESOSC&#xD;RTC_CLKSRC_EMOSC_DIV4：EMOSC/4</Comment>
+            <Comment>RTC时钟源选择RTC_CLKSRC_ISOSC:ISOSC&#xD;RTC_CLKSRC_IMOSC_DIV4:IMOSC/4&#xD;RTC_CLKSRC_ESOSC:ESOSC&#xD;RTC_CLKSRC_EMOSC_DIV4:EMOSC/4</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Timer Format</label>
@@ -6423,7 +6436,7 @@
               <sel notAvailable="RTC12Hour">RTC_24FMT</sel>
               <sel notAvailable="RTC24Hour">RTC_12FMT</sel>
             </Selections>
-            <Comment>计时模式设置&#xD;RTC_24FMT：24小时制&#xD;：12小时制(AM/PM)</Comment>
+            <Comment>计时模式设置&#xD;RTC_24FMT:24小时制&#xD;:12小时制(AM/PM)</Comment>
           </Property>
           <Property class="Text">
             <label>Year</label>
@@ -6450,7 +6463,7 @@
               <sel>RTC_AM</sel>
               <sel>RTC_PM</sel>
             </Selections>
-            <Comment>AM或PM标志&#xD;RTC_AM：AM 或 24小时格式&#xD;RTC_PM：PM</Comment>
+            <Comment>AM或PM标志&#xD;RTC_AM:AM 或 24小时格式&#xD;RTC_PM:PM</Comment>
           </Property>
           <Property class="Text" property_class="RTC12Hour">
             <label>Hour</label>
@@ -6546,7 +6559,7 @@
               <sel>RTC_AM</sel>
               <sel>RTC_PM</sel>
             </Selections>
-            <Comment>AM或PM标志&#xD;RTC_AM：AM 或 24小时格式&#xD;RTC_PM：PMM</Comment>
+            <Comment>AM或PM标志&#xD;RTC_AM:AM 或 24小时格式&#xD;RTC_PM:PMM</Comment>
           </Property>
         </Device>
         <Device deviceId="RTCAlarmB">
@@ -6618,13 +6631,13 @@
               <sel>RTC_AM</sel>
               <sel>RTC_PM</sel>
             </Selections>
-            <Comment>AM或PM标志&#xD;RTC_AM：AM 或 24小时格式&#xD;RTC_PM：PMM</Comment>
+            <Comment>AM或PM标志&#xD;RTC_AM:AM 或 24小时格式&#xD;RTC_PM:PMM</Comment>
           </Property>
         </Device>
       </Category>
       <Category>
         <label>ETCB</label>
-        <Comment>事件触发模块（硬件联动）配置。这里只配置通道，通道两端的模块触发和同步事件需要额外设置。</Comment>
+        <Comment>事件触发模块（硬件联动）配置。这里只配置通道,通道两端的模块触发和同步事件需要额外设置。</Comment>
         <Device deviceId="ETCB_CH0">
           <GenCodeFuncName>SysETCBCH0InitFunc</GenCodeFuncName>
           <UseOrNot>0</UseOrNot>
@@ -6833,7 +6846,7 @@
               <sel>ETB_HARDWARE_TRG</sel>
               <sel>ETB_SOFTWARE_TRG</sel>
             </Selections>
-            <Comment>触发类型选择，包含ETB_HARDWARE_TRG和ETB_SOFTWARE_TRG</Comment>
+            <Comment>触发类型选择,包含ETB_HARDWARE_TRG和ETB_SOFTWARE_TRG</Comment>
           </Property>
         </Device>
         <Device deviceId="ETCB_CH1">
@@ -7056,7 +7069,7 @@
               <sel>ETB_HARDWARE_TRG</sel>
               <sel>ETB_SOFTWARE_TRG</sel>
             </Selections>
-            <Comment>触发类型选择，包含ETB_HARDWARE_TRG和ETB_SOFTWARE_TRG</Comment>
+            <Comment>触发类型选择,包含ETB_HARDWARE_TRG和ETB_SOFTWARE_TRG</Comment>
           </Property>
         </Device>
         <Device deviceId="ETCB_CH2">
@@ -7279,7 +7292,7 @@
               <sel>ETB_HARDWARE_TRG</sel>
               <sel>ETB_SOFTWARE_TRG</sel>
             </Selections>
-            <Comment>触发类型选择，包含ETB_HARDWARE_TRG和ETB_SOFTWARE_TRG</Comment>
+            <Comment>触发类型选择,包含ETB_HARDWARE_TRG和ETB_SOFTWARE_TRG</Comment>
           </Property>
         </Device>
         <Device deviceId="ETCB_CH3">
@@ -7393,7 +7406,7 @@
               <sel>ETB_HARDWARE_TRG</sel>
               <sel>ETB_SOFTWARE_TRG</sel>
             </Selections>
-            <Comment>触发类型选择，包含ETB_HARDWARE_TRG和ETB_SOFTWARE_TRG</Comment>
+            <Comment>触发类型选择,包含ETB_HARDWARE_TRG和ETB_SOFTWARE_TRG</Comment>
           </Property>
         </Device>
         <Device deviceId="ETCB_CH4">
@@ -7507,7 +7520,7 @@
               <sel>ETB_HARDWARE_TRG</sel>
               <sel>ETB_SOFTWARE_TRG</sel>
             </Selections>
-            <Comment>触发类型选择，包含ETB_HARDWARE_TRG和ETB_SOFTWARE_TRG</Comment>
+            <Comment>触发类型选择,包含ETB_HARDWARE_TRG和ETB_SOFTWARE_TRG</Comment>
           </Property>
         </Device>
         <Device deviceId="ETCB_CH5">
@@ -7621,7 +7634,7 @@
               <sel>ETB_HARDWARE_TRG</sel>
               <sel>ETB_SOFTWARE_TRG</sel>
             </Selections>
-            <Comment>触发类型选择，包含ETB_HARDWARE_TRG和ETB_SOFTWARE_TRG</Comment>
+            <Comment>触发类型选择,包含ETB_HARDWARE_TRG和ETB_SOFTWARE_TRG</Comment>
           </Property>
         </Device>
         <Device deviceId="ETCB_CH6">
@@ -7735,7 +7748,7 @@
               <sel>ETB_HARDWARE_TRG</sel>
               <sel>ETB_SOFTWARE_TRG</sel>
             </Selections>
-            <Comment>触发类型选择，包含ETB_HARDWARE_TRG和ETB_SOFTWARE_TRG</Comment>
+            <Comment>触发类型选择,包含ETB_HARDWARE_TRG和ETB_SOFTWARE_TRG</Comment>
           </Property>
         </Device>
         <Device deviceId="ETCB_CH7">
@@ -7849,7 +7862,7 @@
               <sel>ETB_HARDWARE_TRG</sel>
               <sel>ETB_SOFTWARE_TRG</sel>
             </Selections>
-            <Comment>触发类型选择，包含ETB_HARDWARE_TRG和ETB_SOFTWARE_TRG</Comment>
+            <Comment>触发类型选择,包含ETB_HARDWARE_TRG和ETB_SOFTWARE_TRG</Comment>
           </Property>
         </Device>
         <Device deviceId="ETCB_CH8">
@@ -7967,7 +7980,7 @@
               <sel>ETB_HARDWARE_TRG</sel>
               <sel>ETB_SOFTWARE_TRG</sel>
             </Selections>
-            <Comment>触发类型选择，包含ETB_HARDWARE_TRG和ETB_SOFTWARE_TRG</Comment>
+            <Comment>触发类型选择,包含ETB_HARDWARE_TRG和ETB_SOFTWARE_TRG</Comment>
           </Property>
         </Device>
         <Device deviceId="ETCB_CH9">
@@ -8085,7 +8098,7 @@
               <sel>ETB_HARDWARE_TRG</sel>
               <sel>ETB_SOFTWARE_TRG</sel>
             </Selections>
-            <Comment>触发类型选择，包含ETB_HARDWARE_TRG和ETB_SOFTWARE_TRG</Comment>
+            <Comment>触发类型选择,包含ETB_HARDWARE_TRG和ETB_SOFTWARE_TRG</Comment>
           </Property>
         </Device>
         <Device deviceId="ETCB_CH10">
@@ -8203,7 +8216,7 @@
               <sel>ETB_HARDWARE_TRG</sel>
               <sel>ETB_SOFTWARE_TRG</sel>
             </Selections>
-            <Comment>触发类型选择，包含ETB_HARDWARE_TRG和ETB_SOFTWARE_TRG</Comment>
+            <Comment>触发类型选择,包含ETB_HARDWARE_TRG和ETB_SOFTWARE_TRG</Comment>
           </Property>
         </Device>
         <Device deviceId="ETCB_CH11">
@@ -8321,7 +8334,7 @@
               <sel>ETB_HARDWARE_TRG</sel>
               <sel>ETB_SOFTWARE_TRG</sel>
             </Selections>
-            <Comment>触发类型选择，包含ETB_HARDWARE_TRG和ETB_SOFTWARE_TRG</Comment>
+            <Comment>触发类型选择,包含ETB_HARDWARE_TRG和ETB_SOFTWARE_TRG</Comment>
           </Property>
         </Device>
       </Category>
@@ -8441,7 +8454,7 @@
               <sel>DMA_CH2</sel>
               <sel>DMA_CH3</sel>
             </Selections>
-            <Comment>DMA通道，范围：CH0~CH3</Comment>
+            <Comment>DMA通道,范围:CH0~CH3</Comment>
           </Property>
         </Device>
       </Category>
@@ -8469,7 +8482,7 @@
             <label>ComMask</label>
             <value>0x3ff</value>
             <validReg>^(0[xX])([0-3][0-9a-fA-F]{2})$</validReg>
-            <Comment>COM0~COM9的扫描使能选择，范围：0x0~0x3ff。每一位对应一个COM扫描信号，当该位为‘1’时，所对应的COM扫描即被打开&#xD;如ComMask为1时，COM0打开；ComMask为0x3ff时，COM0-COM9都打开</Comment>
+            <Comment>COM0~COM9的扫描使能选择,范围:0x0~0x3ff。每一位对应一个COM扫描信号,当该位为‘1’时,所对应的COM扫描即被打开&#xD;如ComMask为1时,COM0打开；ComMask为0x3ff时,COM0-COM9都打开</Comment>
           </Property>
           <Property class="UIchoice">
             <label>BRT</label>
@@ -8490,13 +8503,13 @@
             <label>OnTime</label>
             <value>0x78</value>
             <validReg>^(0[xX])([0-9a-fA-F]{2})$</validReg>
-            <Comment>该值决定了在显示期间内一个COM显示周期的长度，长度=OnTime * Tledclk，OnTime范围：56-2096</Comment>
+            <Comment>该值决定了在显示期间内一个COM显示周期的长度,长度=OnTime * Tledclk,OnTime范围:56-2096</Comment>
           </Property>
           <Property class="Text">
             <label>BreakTime</label>
             <value>0x32</value>
             <validReg>^(0[xX])([0-9a-fA-F]{2})$</validReg>
-            <Comment>该值决定了相邻两个COM间隔（non-overlap）的长度，长度=BreakTime * Tledclk，BreakTime范围：14-524</Comment>
+            <Comment>该值决定了相邻两个COM间隔（non-overlap）的长度,长度=BreakTime * Tledclk,BreakTime范围:14-524</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Interrupt</label>
@@ -8538,7 +8551,7 @@
             <label>Freq</label>
             <value>40</value>
             <validReg>^(100|[3-9][0-9])$</validReg>
-            <Comment>LCD刷新频率 范围：30~100 单位Hz</Comment>
+            <Comment>LCD刷新频率 范围:30~100 单位Hz</Comment>
           </Property>
           <Property class="UIchoice">
             <label>VLCD</label>
@@ -8554,7 +8567,7 @@
               <sel>LCD_VLCD_IN_4V0</sel>
               <sel>LCD_VLCD_EX_VDD</sel>
             </Selections>
-            <Comment>LCD供电电压,选择LCD_VLCD_EX_VDD时，为外部供电，芯片的VLCD脚需要接入对应的电压</Comment>
+            <Comment>LCD供电电压,选择LCD_VLCD_EX_VDD时,为外部供电,芯片的VLCD脚需要接入对应的电压</Comment>
           </Property>
           <Property class="UIchoice">
             <label>DutyBias</label>
@@ -8583,7 +8596,7 @@
               <sel>LCD_DEAD_6PHASE</sel>
               <sel>LCD_DEAD_7PHASE</sel>
             </Selections>
-            <Comment>LCD帧死区控制选择，死区可以控制对比度</Comment>
+            <Comment>LCD帧死区控制选择,死区可以控制对比度</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Drive Network</label>
@@ -8594,7 +8607,7 @@
               <sel>LCD_DRVNET_PWLEV2</sel>
               <sel>LCD_DRVNET_PWLEV3</sel>
             </Selections>
-            <Comment>LCD驱动网络(电阻网络), 共有4档，功耗PWLEV0 &gt; PWLEV1 &gt; PWLEV2 &gt; PWLEV3</Comment>
+            <Comment>LCD驱动网络(电阻网络),共有4档,功耗PWLEV0 &gt; PWLEV1 &gt; PWLEV2 &gt; PWLEV3</Comment>
           </Property>
           <Property class="UIchoice">
             <label>DpEn</label>
@@ -8630,7 +8643,7 @@
         <label>I2C</label>
         <Device deviceId="I2C">
           <GenCodeFuncName>I2CInitFunc</GenCodeFuncName>
-          <UseOrNot>1</UseOrNot>
+          <UseOrNot>0</UseOrNot>
           <label>I2C</label>
           <Property class="UIchoice">
             <label>Mode</label>
@@ -8639,7 +8652,7 @@
               <sel notAvailable="I2CSlave">Master</sel>
               <sel notAvailable="I2CMaster">Slave</sel>
             </Selections>
-            <Comment>模式选择&#xD;Master：主机模式&#xD;Slave：从机模式</Comment>
+            <Comment>模式选择&#xD;Master:主机模式&#xD;Slave:从机模式</Comment>
           </Property>
           <Property class="UIchoice">
             <label>AddrMode</label>
@@ -8648,18 +8661,18 @@
               <sel>IIC_ADDRESS_7BIT</sel>
               <sel>IIC_ADDRESS_10BIT</sel>
             </Selections>
-            <Comment>寻址控制模式&#xD;IIC_ADDRESS_7BIT：7位寻址&#xD;IIC_ADDRESS_10BIT：10位寻址</Comment>
+            <Comment>寻址控制模式&#xD;IIC_ADDRESS_7BIT:7位寻址&#xD;IIC_ADDRESS_10BIT:10位寻址</Comment>
           </Property>
           <Property class="Bool" property_class="I2CMaster">
             <label>ReStart</label>
             <value>1</value>
-            <Comment>重复起始位控制&#xD;0: 禁止&#xD;1: 使能</Comment>
+            <Comment>重复起始位控制&#xD;0:禁止&#xD;1::</Comment>
           </Property>
           <Property class="Text" property_class="I2CSlave">
             <label>SlaveAddr</label>
             <value>0xa0</value>
             <validReg>^(0[xX])([0-9a-fA-F]|[1-9a-fA-F][0-9a-fA-F]|[0-7][0-9a-fA-F][0-9a-eA-E])$</validReg>
-            <Comment>从机地址，设置范围0x00~0x7fe</Comment>
+            <Comment>从机地址,设置范围0x00~0x7fe</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SpeedMode</label>
@@ -8669,7 +8682,7 @@
               <sel>IIC_BUS_SPEED_FAST</sel>
               <sel>IIC_BUS_SPEED_FAST_PLUS</sel>
             </Selections>
-            <Comment>工作速度&#xD;IIC_BUS_SPEED_STANDARD：标准模式&#xD;IIC_BUS_SPEED_FAST：高速模式&#xD;IIC_BUS_SPEED_FAST_PLUS：超高速模式&#xD;</Comment>
+            <Comment>工作速度&#xD;IIC_BUS_SPEED_STANDARD:标准模式&#xD;IIC_BUS_SPEED_FAST:高速模式&#xD;IIC_BUS_SPEED_FAST_PLUS:超高速模式&#xD;</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Interrupt</label>
@@ -8683,7 +8696,7 @@
           <Property class="Bool" property_class="IICInt">
             <label>IIC_INTSRC_RX_UNDER</label>
             <value>0</value>
-            <Comment>RX FIFO空时，继续读I2C_DATA_CMD中断</Comment>
+            <Comment>RX FIFO空时,继续读I2C_DATA_CMD中断</Comment>
           </Property>
           <Property class="Bool" property_class="IICInt">
             <label>IIC_INTSRC_RX_OVER</label>
@@ -8904,7 +8917,7 @@
               <sel notAvailable="EPT0WAVE,EPT0DZ,EPT0EM,EPT0DZDPSC">EPT_CAPTURE</sel>
               <sel notAvailable="EPT0CAPTURE,EPT0DZ,EPT0EM,EPT0DZDPSC">EPT_WAVE</sel>
             </Selections>
-            <Comment>EPT工作模式选择 &#xD;EPT_CAPTURE捕捉模式 &#xD;EPT_WAVE波形发生模式</Comment>
+            <Comment>EPT工作模式选择 &#xD;EPT_CAPTURE:捕捉模式 &#xD;EPT_WAVE:波形发生模式</Comment>
           </Property>
           <Property class="UIchoice">
             <label>CountingMode</label>
@@ -8914,7 +8927,7 @@
               <sel>EPT_DNCNT</sel>
               <sel>EPT_UPDNCNT</sel>
             </Selections>
-            <Comment>计数模式设置&#xD;EPT_UPCNT递增模式 &#xD;EPT_DNCNT递减模式 &#xD;EPT_UPDNCNT递增递减模式</Comment>
+            <Comment>计数模式设置&#xD;EPT_UPCNT:递增模式 &#xD;EPT_DNCNT:递减模式 &#xD;EPT_UPDNCNT:递增递减模式</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>OneshotMode</label>
@@ -8923,7 +8936,7 @@
               <sel>EPT_OP_CONT</sel>
               <sel>EPT_OP_OT</sel>
             </Selections>
-            <Comment>计数器单次触发工作模式选择&#xD;&#xD;EPT_OP_CONT连续计数工作模式&#xD;EPT_OP_OT单次触发工作模式</Comment>
+            <Comment>计数器单次触发工作模式选择&#xD;EPT_OP_CONT:连续计数工作模式&#xD;EPT_OP_OT:单次触发工作模式</Comment>
           </Property>
           <Property class="Text" property_class="EPT0WAVE">
             <label>Freq</label>
@@ -8942,7 +8955,7 @@
               <sel>EPT_CAPMD_CONT</sel>
               <sel>EPT_CAPMD_OT</sel>
             </Selections>
-            <Comment>捕捉模式设置&#xD;EPT_CAPMD_CONT连续捕捉模式&#xD;EPT_CAPMD_OT一次性捕捉模式</Comment>
+            <Comment>捕捉模式设置&#xD;EPT_CAPMD_CONT:连续捕捉模式&#xD;EPT_CAPMD_OT:一次性捕捉模式</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0CAPTURE">
             <label>STOP_WRAP</label>
@@ -8953,7 +8966,7 @@
               <sel>3</sel>
               <sel>4</sel>
             </Selections>
-            <Comment>Capture模式下,捕获事件计数器周期设置值</Comment>
+            <Comment>捕获事件计数器周期设置值,范围1~4,分别对应CAPLD0~CAPLD3中断</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0CAPTURE">
             <label>LDARST</label>
@@ -8962,7 +8975,7 @@
               <sel>0</sel>
               <sel>1</sel>
             </Selections>
-            <Comment>CMPA捕捉载入后，计数器值计数状态控制位&#xD;1h：CMPA触发后，计数器值进行重置&#xD;0h：CMPA触发后，计数器值不进行重置</Comment>
+            <Comment>CMPA捕捉载入后,计数器值计数状态控制位&#xD;1h:CMPA触发后,计数器值进行重置&#xD;0h:CMPA触发后,计数器值不进行重置</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0CAPTURE">
             <label>LDBRST</label>
@@ -8971,7 +8984,7 @@
               <sel>0</sel>
               <sel>1</sel>
             </Selections>
-            <Comment>CMPB捕捉载入后，计数器值计数状态控制位&#xD;1h：CMPB触发后，计数器值进行重置&#xD;0h：CMPB触发后，计数器值不进行重置</Comment>
+            <Comment>CMPB捕捉载入后,计数器值计数状态控制位&#xD;1h:CMPB触发后,计数器值进行重置&#xD;0h:CMPB触发后,计数器值不进行重置</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0CAPTURE">
             <label>LDCRST</label>
@@ -8980,7 +8993,7 @@
               <sel>0</sel>
               <sel>1</sel>
             </Selections>
-            <Comment>CMPC捕捉载入后，计数器值计数状态控制位&#xD;1h：CMPC触发后，计数器值进行重置&#xD;0h：CMPC触发后，计数器值不进行重置</Comment>
+            <Comment>CMPC捕捉载入后,计数器值计数状态控制位&#xD;1h:CMPC触发后,计数器值进行重置&#xD;0h:CMPC触发后,计数器值不进行重置</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0CAPTURE">
             <label>LDDRST</label>
@@ -8989,7 +9002,7 @@
               <sel>0</sel>
               <sel>1</sel>
             </Selections>
-            <Comment>CMPD捕捉载入后，计数器值计数状态控制位&#xD;1h：CMPD触发后，计数器值进行重置&#xD;0h：CMPD触发后，计数器值不进行重置</Comment>
+            <Comment>CMPD捕捉载入后,计数器值计数状态控制位&#xD;1h:CMPD触发后,计数器值进行重置&#xD;0h:CMPD触发后,计数器值不进行重置</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Interrupt</label>
@@ -9094,7 +9107,7 @@
               <sel>EPT_HI</sel>
               <sel>EPT_TG</sel>
             </Selections>
-            <Comment>当CNT值等于零时，在通道pwm1上做出的波形输出动作定义&#xD;在递增递减模式时，当计数器值等于零时，计数方向为递增模式&#xD;EPT_NA不动作&#xD;EPT_LO低电平&#xD;EPT_HI高电平&#xD;EPT_TG反向</Comment>
+            <Comment>当CNT值等于零时,在通道上做出的波形输出动作定义&#xD;在递增递减模式时,当计数器值等于零时,计数方向为递增模式&#xD;EPT_NA:不动作&#xD;EPT_LO:低电平&#xD;EPT_HI:高电平&#xD;EPT_TG:反向</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>PRD</label>
@@ -9105,7 +9118,7 @@
               <sel>EPT_HI</sel>
               <sel>EPT_TG</sel>
             </Selections>
-            <Comment>当CNT值等于PRDR时，在通道pwm1上做出的波形输出动作定义&#xD;在递增递减模式时，当计数器值等于PRDR时，计数方向为递减模式&#xD;EPT_NA不动作&#xD;EPT_LO低电平&#xD;EPT_HI高电平&#xD;EPT_TG反向</Comment>
+            <Comment>当CNT值等于PRDR时,在通道上做出的波形输出动作定义&#xD;在递增递减模式时,当计数器值等于PRDR时,计数方向为递减模式&#xD;EPT_NA:不动作&#xD;EPT_LO:低电平&#xD;EPT_HI:高电平&#xD;EPT_TG:反向</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>C1U</label>
@@ -9116,7 +9129,7 @@
               <sel>EPT_HI</sel>
               <sel>EPT_TG</sel>
             </Selections>
-            <Comment>当CNT值等于C1，且此时计数方向为递增时,在通道pwm1上做出的波形输出动作定义&#xD;EPT_NA不动作&#xD;EPT_LO低电平&#xD;EPT_HI高电平&#xD;EPT_TG反向</Comment>
+            <Comment>当CNT值等于C1,且此时计数方向为递增时,在通道上做出的波形输出动作定义&#xD;EPT_NA:不动作&#xD;EPT_LO:低电平&#xD;EPT_HI:高电平&#xD;EPT_TG:反向</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>C1D</label>
@@ -9127,7 +9140,7 @@
               <sel>EPT_HI</sel>
               <sel>EPT_TG</sel>
             </Selections>
-            <Comment>当CNT值等于C1，且此时计数方向为递减时,在通道pwm1上做出的波形输出动作定义&#xD;EPT_NA不动作&#xD;EPT_LO低电平&#xD;EPT_HI高电平&#xD;EPT_TG反向</Comment>
+            <Comment>当CNT值等于C1,且此时计数方向为递减时,在通道上做出的波形输出动作定义&#xD;EPT_NA:不动作&#xD;EPT_LO:低电平&#xD;EPT_HI:高电平&#xD;EPT_TG:反向</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>C2U</label>
@@ -9138,7 +9151,7 @@
               <sel>EPT_HI</sel>
               <sel>EPT_TG</sel>
             </Selections>
-            <Comment>当CNT值等于C2，且此时计数方向为递增时,在通道pwm1上做出的波形输出动作定义&#xD;EPT_NA不动作&#xD;EPT_LO低电平&#xD;EPT_HI高电平&#xD;EPT_TG反向</Comment>
+            <Comment>当CNT值等于C2,且此时计数方向为递增时,在通道上做出的波形输出动作定义&#xD;EPT_NA:不动作&#xD;EPT_LO:低电平&#xD;EPT_HI:高电平&#xD;EPT_TG:反向</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>C2D</label>
@@ -9149,7 +9162,7 @@
               <sel>EPT_HI</sel>
               <sel>EPT_TG</sel>
             </Selections>
-            <Comment>当CNT值等于C2，且此时计数方向为递减时,在通道pwm1上做出的波形输出动作定义&#xD;EPT_NA不动作&#xD;EPT_LO低电平&#xD;EPT_HI高电平&#xD;EPT_TG反向</Comment>
+            <Comment>当CNT值等于C2,且此时计数方向为递减时,在通道上做出的波形输出动作定义&#xD;EPT_NA:不动作&#xD;EPT_LO:低电平&#xD;EPT_HI:高电平&#xD;EPT_TG:反向</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>T1U</label>
@@ -9160,7 +9173,7 @@
               <sel>EPT_HI</sel>
               <sel>EPT_TG</sel>
             </Selections>
-            <Comment>当T1事件发生，且此时计数方向为递增时,在通道pwm1上做出的波形输出动作定义&#xD;EPT_NA不动作&#xD;EPT_LO低电平&#xD;EPT_HI高电平&#xD;EPT_TG反向</Comment>
+            <Comment>当T1事件发生,且此时计数方向为递增时,在通道上做出的波形输出动作定义&#xD;EPT_NA:不动作&#xD;EPT_LO:低电平&#xD;EPT_HI:高电平&#xD;EPT_TG:反向</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>T1D</label>
@@ -9171,7 +9184,7 @@
               <sel>EPT_HI</sel>
               <sel>EPT_TG</sel>
             </Selections>
-            <Comment>当T1事件发生，且此时计数方向为递减时,在通道pwm1上做出的波形输出动作定义&#xD;EPT_NA不动作&#xD;EPT_LO低电平&#xD;EPT_HI高电平&#xD;EPT_TG反向</Comment>
+            <Comment>当T1事件发生,且此时计数方向为递减时,在通道上做出的波形输出动作定义&#xD;EPT_NA:不动作&#xD;EPT_LO:低电平&#xD;EPT_HI:高电平&#xD;EPT_TG:反向</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>T2U</label>
@@ -9182,7 +9195,7 @@
               <sel>EPT_HI</sel>
               <sel>EPT_TG</sel>
             </Selections>
-            <Comment>当T2事件发生，且此时计数方向为递增时,在通道pwm1上做出的波形输出动作定义&#xD;EPT_NA不动作&#xD;EPT_LO低电平&#xD;EPT_HI高电平&#xD;EPT_TG反向</Comment>
+            <Comment>当T2事件发生,且此时计数方向为递增时,在通道上做出的波形输出动作定义&#xD;EPT_NA:不动作&#xD;EPT_LO:低电平&#xD;EPT_HI:高电平&#xD;EPT_TG:反向</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>T2D</label>
@@ -9193,7 +9206,7 @@
               <sel>EPT_HI</sel>
               <sel>EPT_TG</sel>
             </Selections>
-            <Comment>当T2事件发生，且此时计数方向为递减时,在通道pwm1上做出的波形输出动作定义&#xD;EPT_NA不动作&#xD;EPT_LO低电平&#xD;EPT_HI高电平&#xD;EPT_TG反向</Comment>
+            <Comment>当T2事件发生,且此时计数方向为递减时,在通道上做出的波形输出动作定义&#xD;EPT_NA:不动作&#xD;EPT_LO:低电平&#xD;EPT_HI:高电平&#xD;EPT_TG:反向</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>CH1C1SEL</label>
@@ -9204,7 +9217,7 @@
               <sel>EPT_CMPC</sel>
               <sel>EPT_CMPD</sel>
             </Selections>
-            <Comment>通道1的C1比较值的数据源选择&#xD;EPT_CMPA：CMPA寄存器作为数据源&#xD;EPT_CMPB：CMPB寄存器作为数据源&#xD;EPT_CMPC：CMPC寄存器作为数据源&#xD;EPT_CMPD：CMPD寄存器作为数据源</Comment>
+            <Comment>通道1的C1比较值的数据源选择&#xD;EPT_CMPA:CMPA寄存器作为数据源&#xD;EPT_CMPB:CMPB寄存器作为数据源&#xD;EPT_CMPC:CMPC寄存器作为数据源&#xD;EPT_CMPD:CMPD寄存器作为数据源</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>CH1C2SEL</label>
@@ -9215,7 +9228,7 @@
               <sel>EPT_CMPC</sel>
               <sel>EPT_CMPD</sel>
             </Selections>
-            <Comment>通道1的C2比较值的数据源选择&#xD;EPT_CMPA：CMPA寄存器作为数据源&#xD;EPT_CMPB：CMPB寄存器作为数据源&#xD;EPT_CMPC：CMPC寄存器作为数据源&#xD;EPT_CMPD：CMPD寄存器作为数据源</Comment>
+            <Comment>通道1的C2比较值的数据源选择&#xD;EPT_CMPA:CMPA寄存器作为数据源&#xD;EPT_CMPB:CMPB寄存器作为数据源&#xD;EPT_CMPC:CMPC寄存器作为数据源&#xD;EPT_CMPD:CMPD寄存器作为数据源</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>CH2C1SEL</label>
@@ -9226,7 +9239,7 @@
               <sel>EPT_CMPC</sel>
               <sel>EPT_CMPD</sel>
             </Selections>
-            <Comment>通道2的C1比较值的数据源选择&#xD;EPT_CMPA：CMPA寄存器作为数据源&#xD;EPT_CMPB：CMPB寄存器作为数据源&#xD;EPT_CMPC：CMPC寄存器作为数据源&#xD;EPT_CMPD：CMPD寄存器作为数据源</Comment>
+            <Comment>通道2的C1比较值的数据源选择&#xD;EPT_CMPA:CMPA寄存器作为数据源&#xD;EPT_CMPB:CMPB寄存器作为数据源&#xD;EPT_CMPC:CMPC寄存器作为数据源&#xD;EPT_CMPD:CMPD寄存器作为数据源</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>CH2C2SEL</label>
@@ -9237,7 +9250,7 @@
               <sel>EPT_CMPC</sel>
               <sel>EPT_CMPD</sel>
             </Selections>
-            <Comment>通道2的C2比较值的数据源选择&#xD;EPT_CMPA：CMPA寄存器作为数据源&#xD;EPT_CMPB：CMPB寄存器作为数据源&#xD;EPT_CMPC：CMPC寄存器作为数据源&#xD;EPT_CMPD：CMPD寄存器作为数据源</Comment>
+            <Comment>通道2的C2比较值的数据源选择&#xD;EPT_CMPA:CMPA寄存器作为数据源&#xD;EPT_CMPB:CMPB寄存器作为数据源&#xD;EPT_CMPC:CMPC寄存器作为数据源&#xD;EPT_CMPD:CMPD寄存器作为数据源</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>CH3C1SEL</label>
@@ -9248,7 +9261,7 @@
               <sel>EPT_CMPC</sel>
               <sel>EPT_CMPD</sel>
             </Selections>
-            <Comment>通道3的C1比较值的数据源选择&#xD;EPT_CMPA：CMPA寄存器作为数据源&#xD;EPT_CMPB：CMPB寄存器作为数据源&#xD;EPT_CMPC：CMPC寄存器作为数据源&#xD;EPT_CMPD：CMPD寄存器作为数据源</Comment>
+            <Comment>通道3的C1比较值的数据源选择&#xD;EPT_CMPA:CMPA寄存器作为数据源&#xD;EPT_CMPB:CMPB寄存器作为数据源&#xD;EPT_CMPC:CMPC寄存器作为数据源&#xD;EPT_CMPD:CMPD寄存器作为数据源</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>CH3C2SEL</label>
@@ -9259,7 +9272,7 @@
               <sel>EPT_CMPC</sel>
               <sel>EPT_CMPD</sel>
             </Selections>
-            <Comment>通道3的C2比较值的数据源选择&#xD;EPT_CMPA：CMPA寄存器作为数据源&#xD;EPT_CMPB：CMPB寄存器作为数据源&#xD;EPT_CMPC：CMPC寄存器作为数据源&#xD;EPT_CMPD：CMPD寄存器作为数据源</Comment>
+            <Comment>通道3的C2比较值的数据源选择&#xD;EPT_CMPA:CMPA寄存器作为数据源&#xD;EPT_CMPB:CMPB寄存器作为数据源&#xD;EPT_CMPC:CMPC寄存器作为数据源&#xD;EPT_CMPD:CMPD寄存器作为数据源</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>CH4C1SEL</label>
@@ -9270,7 +9283,7 @@
               <sel>EPT_CMPC</sel>
               <sel>EPT_CMPD</sel>
             </Selections>
-            <Comment>通道4的C1比较值的数据源选择&#xD;EPT_CMPA：CMPA寄存器作为数据源&#xD;EPT_CMPB：CMPB寄存器作为数据源&#xD;EPT_CMPC：CMPC寄存器作为数据源&#xD;EPT_CMPD：CMPD寄存器作为数据源</Comment>
+            <Comment>通道4的C1比较值的数据源选择&#xD;EPT_CMPA:CMPA寄存器作为数据源&#xD;EPT_CMPB:CMPB寄存器作为数据源&#xD;EPT_CMPC:CMPC寄存器作为数据源&#xD;EPT_CMPD:CMPD寄存器作为数据源</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>CH4C2SEL</label>
@@ -9281,7 +9294,7 @@
               <sel>EPT_CMPC</sel>
               <sel>EPT_CMPD</sel>
             </Selections>
-            <Comment>通道4的C2比较值的数据源选择&#xD;EPT_CMPA：CMPA寄存器作为数据源&#xD;EPT_CMPB：CMPB寄存器作为数据源&#xD;EPT_CMPC：CMPC寄存器作为数据源&#xD;EPT_CMPD：CMPD寄存器作为数据源</Comment>
+            <Comment>通道4的C2比较值的数据源选择&#xD;EPT_CMPA:CMPA寄存器作为数据源&#xD;EPT_CMPB:CMPB寄存器作为数据源&#xD;EPT_CMPC:CMPC寄存器作为数据源&#xD;EPT_CMPD:CMPD寄存器作为数据源</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>DeadZone</label>
@@ -9310,12 +9323,12 @@
           <Property class="Text" property_class="EPT0DZ">
             <label>RisingEdgeTime</label>
             <value>500</value>
-            <Comment>上升沿延时时间t = RisingEdgeTime x TDBCLK 单位ns</Comment>
+            <Comment>上升沿延时时间 单位ns</Comment>
           </Property>
           <Property class="Text" property_class="EPT0DZ">
             <label>FallingEdgeTime</label>
             <value>200</value>
-            <Comment>下降沿延时时间t = FallingEdgeTime x TDBCLK 单位ns</Comment>
+            <Comment>下降沿延时时间 单位ns</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0DZ">
             <label>ChaDeadB</label>
@@ -9324,7 +9337,7 @@
               <sel>EPT_DB_AR_BF</sel>
               <sel>EPT_DB_BR_BF</sel>
             </Selections>
-            <Comment>在PWM1 DBCOUTY 上选择死区双沿模式(S6)&#xD;EPT_DB_AR_BF不使用死区双沿&#xD;EPT_DB_BR_BF使用死区双沿</Comment>
+            <Comment>在PWM1 DBCOUTY 上选择死区双沿模式(S6)&#xD;EPT_DB_AR_BF:不使用死区双沿&#xD;EPT_DB_BR_BF:使用死区双沿</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0DZ">
             <label>ChbDeadB</label>
@@ -9333,7 +9346,7 @@
               <sel>EPT_DB_AR_BF</sel>
               <sel>EPT_DB_BR_BF</sel>
             </Selections>
-            <Comment>在PWM2 DBCOUTY 上选择死区双沿模式(S6)&#xD;EPT_DB_AR_BF不使用死区双沿&#xD;EPT_DB_BR_BF使用死区双沿</Comment>
+            <Comment>在PWM2 DBCOUTY 上选择死区双沿模式(S6)&#xD;EPT_DB_AR_BF:不使用死区双沿&#xD;EPT_DB_BR_BF:使用死区双沿</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0DZ">
             <label>ChcDeadB</label>
@@ -9342,7 +9355,7 @@
               <sel>EPT_DB_AR_BF</sel>
               <sel>EPT_DB_BR_BF</sel>
             </Selections>
-            <Comment>在PWM3 DBCOUTY 上选择死区双沿模式(S6)&#xD;EPT_DB_AR_BF不使用死区双沿&#xD;EPT_DB_BR_BF使用死区双沿</Comment>
+            <Comment>在PWM3 DBCOUTY 上选择死区双沿模式(S6)&#xD;EPT_DB_AR_BF:不使用死区双沿&#xD;EPT_DB_BR_BF:使用死区双沿</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0DZ">
             <label>ChxOuselS1S0</label>
@@ -9353,7 +9366,7 @@
               <sel>EPT_DBOUT_AR</sel>
               <sel>EPT_DBOUT_AR_BF</sel>
             </Selections>
-            <Comment>死区输出配置(S1、S0开关)&#xD;EPT_DBOUT_DIS:bypass死区控制，X通道输出PWM1，Y通道输出PWM2&#xD;EPT_DBOUT_BF:X通道输出PWM1，使能Y通道的下降沿延时&#xD;EPT_DBOUT_AR:使能X通道的上升沿延时，Y通道输出PWM2&#xD;EPT_DBOUT_AR_BF:使能X通道的上升沿延时，使能Y通道的下降沿延时</Comment>
+            <Comment>死区输出配置(S1、S0开关)&#xD;EPT_DBOUT_DIS:bypass死区控制,X通道输出PWM1,Y通道输出PWM2&#xD;EPT_DBOUT_BF:X通道输出PWM1,使能Y通道的下降沿延时&#xD;EPT_DBOUT_AR:使能X通道的上升沿延时,Y通道输出PWM2&#xD;EPT_DBOUT_AR_BF:使能X通道的上升沿延时,使能Y通道的下降沿延时</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0DZ">
             <label>ChxPolarityS3S2</label>
@@ -9375,7 +9388,7 @@
               <sel>EPT_DBCHAIN_AR_BF</sel>
               <sel>EPT_DBCHAIN_BR_BF</sel>
             </Selections>
-            <Comment>延时模块输入选择(S5、S4开关)&#xD;在经典死区控制模式下，上升沿延时和下降沿延时都选择同一个输入信号进行处理&#xD;EPT_DBCHAIN_AR_AF:PWM1作为上升沿和下降沿延时处理的输入信号&#xD;EPT_DBCHAIN_BR_AF:PWM2作为上升沿延时输入，PWM1作为下降沿延时输入&#xD;EPT_DBCHAIN_AR_BF:PWM1作为上升沿延时输入，PWM2作为下降沿延时输入&#xD;EPT_DBCHAIN_BR_BF:PWM2作为上升沿和下降沿延时处理的输入信号</Comment>
+            <Comment>延时模块输入选择(S5、S4开关)&#xD;在经典死区控制模式下,上升沿延时和下降沿延时都选择同一个输入信号进行处理&#xD;EPT_DBCHAIN_AR_AF:PWM1作为上升沿和下降沿延时处理的输入信号&#xD;EPT_DBCHAIN_BR_AF:PWM2作为上升沿延时输入,PWM1作为下降沿延时输入&#xD;EPT_DBCHAIN_AR_BF:PWM1作为上升沿延时输入,PWM2作为下降沿延时输入&#xD;EPT_DBCHAIN_BR_BF:PWM2作为上升沿和下降沿延时处理的输入信号</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0DZ">
             <label>ChxOutSwapS8S7</label>
@@ -9386,7 +9399,7 @@
               <sel>EPT_CHOUTX_OUB_OUB</sel>
               <sel>EPT_CHOUTX_OUB_OUA</sel>
             </Selections>
-            <Comment>死区输出交换控制(S8、S7开关)&#xD;EPT_CHOUTX_OUA_OUB:OUTX=X通道输出，OUTY=Y通道输出&#xD;EPT_CHOUTX_OUA_OUA:OUTX=Y通道输出，OUTY=Y通道输出&#xD;EPT_CHOUTX_OUB_OUB:OUTX=X通道输出，OUTY=X通道输出&#xD;EPT_CHOUTX_OUB_OUA:OUTX=Y通道输出，OUTY=X通道输出</Comment>
+            <Comment>死区输出交换控制(S8、S7开关)&#xD;EPT_CHOUTX_OUA_OUB:OUTX=X通道输出,OUTY=Y通道输出&#xD;EPT_CHOUTX_OUA_OUA:OUTX=Y通道输出,OUTY=Y通道输出&#xD;EPT_CHOUTX_OUB_OUB:OUTX=X通道输出,OUTY=X通道输出&#xD;EPT_CHOUTX_OUB_OUA:OUTX=Y通道输出,OUTY=X通道输出</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>Emergency</label>
@@ -9431,32 +9444,32 @@
           <Property class="Bool" property_class="EPT0ORL0">
             <label>EPT_ORLx_EBI0</label>
             <value>1</value>
-            <Comment>多路通道的逻辑OR作为EPx中的输入信号(ORL1)&#xD;0h：屏蔽当前通道作为OR输入&#xD;1h：使能当前通道作为OR输入</Comment>
+            <Comment>多路通道的逻辑OR作为EPx中的输入信号(ORL1)&#xD;0h:屏蔽当前通道作为OR输入&#xD;1h:使能当前通道作为OR输入</Comment>
           </Property>
           <Property class="Bool" property_class="EPT0ORL0">
             <label>EPT_ORLx_EBI1</label>
             <value>0</value>
-            <Comment>多路通道的逻辑OR作为EPx中的输入信号(ORL1)&#xD;0h：屏蔽当前通道作为OR输入&#xD;1h：使能当前通道作为OR输入</Comment>
+            <Comment>多路通道的逻辑OR作为EPx中的输入信号(ORL1)&#xD;0h:屏蔽当前通道作为OR输入&#xD;1h:使能当前通道作为OR输入</Comment>
           </Property>
           <Property class="Bool" property_class="EPT0ORL0">
             <label>EPT_ORLx_EBI2</label>
             <value>0</value>
-            <Comment>多路通道的逻辑OR作为EPx中的输入信号(ORL1)&#xD;0h：屏蔽当前通道作为OR输入&#xD;1h：使能当前通道作为OR输入</Comment>
+            <Comment>多路通道的逻辑OR作为EPx中的输入信号(ORL1)&#xD;0h:屏蔽当前通道作为OR输入&#xD;1h:使能当前通道作为OR输入</Comment>
           </Property>
           <Property class="Bool" property_class="EPT0ORL0">
             <label>EPT_ORLx_EBI3</label>
             <value>0</value>
-            <Comment>多路通道的逻辑OR作为EPx中的输入信号(ORL1)&#xD;0h：屏蔽当前通道作为OR输入&#xD;1h：使能当前通道作为OR输入</Comment>
+            <Comment>多路通道的逻辑OR作为EPx中的输入信号(ORL1)&#xD;0h:屏蔽当前通道作为OR输入&#xD;1h:使能当前通道作为OR输入</Comment>
           </Property>
           <Property class="Bool" property_class="EPT0ORL0">
             <label>EPT_ORLx_CMP0</label>
             <value>0</value>
-            <Comment>多路通道的逻辑OR作为EPx中的输入信号(ORL1)&#xD;0h：屏蔽当前通道作为OR输入&#xD;1h：使能当前通道作为OR输入</Comment>
+            <Comment>多路通道的逻辑OR作为EPx中的输入信号(ORL1)&#xD;0h:屏蔽当前通道作为OR输入&#xD;1h:使能当前通道作为OR输入</Comment>
           </Property>
           <Property class="Bool" property_class="EPT0ORL0">
             <label>EPT_ORLx_CMP1</label>
             <value>0</value>
-            <Comment>多路通道的逻辑OR作为EPx中的输入信号(ORL1)&#xD;0h：屏蔽当前通道作为OR输入&#xD;1h：使能当前通道作为OR输入</Comment>
+            <Comment>多路通道的逻辑OR作为EPx中的输入信号(ORL1)&#xD;0h:屏蔽当前通道作为OR输入&#xD;1h:使能当前通道作为OR输入</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0EM">
             <label>PolEBIx</label>
@@ -9486,7 +9499,7 @@
               <sel>EPT_EM_OUT_L</sel>
               <sel>EPT_EM_OUT_NONE</sel>
             </Selections>
-            <Comment>当发生EP触发的软锁止或者硬锁止时，在CHAX通道上的输出状态设置&#xD;EPT_EM_OUT_HZ:高阻态&#xD;EPT_EM_OUT_H:高电平&#xD;EPT_EM_OUT_L:低电平&#xD;EPT_EM_OUT_NONE:不做处理</Comment>
+            <Comment>当发生EP触发的软锁止或者硬锁止时,在CHAX通道上的输出状态设置&#xD;EPT_EM_OUT_HZ:高阻态&#xD;EPT_EM_OUT_H:高电平&#xD;EPT_EM_OUT_L:低电平&#xD;EPT_EM_OUT_NONE:不做处理</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0EM">
             <label>EMCOBX</label>
@@ -9497,7 +9510,7 @@
               <sel>EPT_EM_OUT_L</sel>
               <sel>EPT_EM_OUT_NONE</sel>
             </Selections>
-            <Comment>当发生EP触发的软锁止或者硬锁止时，在CHBX通道上的输出状态设置&#xD;EPT_EM_OUT_HZ:高阻态&#xD;EPT_EM_OUT_H:高电平&#xD;EPT_EM_OUT_L:低电平&#xD;EPT_EM_OUT_NONE:不做处理</Comment>
+            <Comment>当发生EP触发的软锁止或者硬锁止时,在CHBX通道上的输出状态设置&#xD;EPT_EM_OUT_HZ:高阻态&#xD;EPT_EM_OUT_H:高电平&#xD;EPT_EM_OUT_L:低电平&#xD;EPT_EM_OUT_NONE:不做处理</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0EM">
             <label>EMCOCX</label>
@@ -9508,7 +9521,7 @@
               <sel>EPT_EM_OUT_L</sel>
               <sel>EPT_EM_OUT_NONE</sel>
             </Selections>
-            <Comment>当发生EP触发的软锁止或者硬锁止时，在CHCX通道上的输出状态设置&#xD;EPT_EM_OUT_HZ:高阻态&#xD;EPT_EM_OUT_H:高电平&#xD;EPT_EM_OUT_L:低电平&#xD;EPT_EM_OUT_NONE:不做处理</Comment>
+            <Comment>当发生EP触发的软锁止或者硬锁止时,在CHCX通道上的输出状态设置&#xD;EPT_EM_OUT_HZ:高阻态&#xD;EPT_EM_OUT_H:高电平&#xD;EPT_EM_OUT_L:低电平&#xD;EPT_EM_OUT_NONE:不做处理</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0EM">
             <label>EMCOD</label>
@@ -9519,7 +9532,7 @@
               <sel>EPT_EM_OUT_L</sel>
               <sel>EPT_EM_OUT_NONE</sel>
             </Selections>
-            <Comment>当发生EP触发的软锁止或者硬锁止时，在CHD通道上的输出状态设置&#xD;EPT_EM_OUT_HZ:高阻态&#xD;EPT_EM_OUT_H:高电平&#xD;EPT_EM_OUT_L:低电平&#xD;EPT_EM_OUT_NONE:不做处理</Comment>
+            <Comment>当发生EP触发的软锁止或者硬锁止时,在CHD通道上的输出状态设置&#xD;EPT_EM_OUT_HZ:高阻态&#xD;EPT_EM_OUT_H:高电平&#xD;EPT_EM_OUT_L:低电平&#xD;EPT_EM_OUT_NONE:不做处理</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0EM">
             <label>EMCOAY</label>
@@ -9530,7 +9543,7 @@
               <sel>EPT_EM_OUT_L</sel>
               <sel>EPT_EM_OUT_NONE</sel>
             </Selections>
-            <Comment>当发生EP触发的软锁止或者硬锁止时，在CHAY通道上的输出状态设置&#xD;EPT_EM_OUT_HZ:高阻态&#xD;EPT_EM_OUT_H:高电平&#xD;EPT_EM_OUT_L:低电平&#xD;EPT_EM_OUT_NONE:不做处理</Comment>
+            <Comment>当发生EP触发的软锁止或者硬锁止时,在CHAY通道上的输出状态设置&#xD;EPT_EM_OUT_HZ:高阻态&#xD;EPT_EM_OUT_H:高电平&#xD;EPT_EM_OUT_L:低电平&#xD;EPT_EM_OUT_NONE:不做处理</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0EM">
             <label>EMCOBY</label>
@@ -9541,7 +9554,7 @@
               <sel>EPT_EM_OUT_L</sel>
               <sel>EPT_EM_OUT_NONE</sel>
             </Selections>
-            <Comment>当发生EP触发的软锁止或者硬锁止时，在CHBY通道上的输出状态设置&#xD;EPT_EM_OUT_HZ:高阻态&#xD;EPT_EM_OUT_H:高电平&#xD;EPT_EM_OUT_L:低电平&#xD;EPT_EM_OUT_NONE:不做处理</Comment>
+            <Comment>当发生EP触发的软锁止或者硬锁止时,在CHBY通道上的输出状态设置&#xD;EPT_EM_OUT_HZ:高阻态&#xD;EPT_EM_OUT_H:高电平&#xD;EPT_EM_OUT_L:低电平&#xD;EPT_EM_OUT_NONE:不做处理</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0EM">
             <label>EMCOCY</label>
@@ -9552,7 +9565,7 @@
               <sel>EPT_EM_OUT_L</sel>
               <sel>EPT_EM_OUT_NONE</sel>
             </Selections>
-            <Comment>当发生EP触发的软锁止或者硬锁止时，在CHCY通道上的输出状态设置&#xD;EPT_EM_OUT_HZ:高阻态&#xD;EPT_EM_OUT_H:高电平&#xD;EPT_EM_OUT_L:低电平&#xD;EPT_EM_OUT_NONE:不做处理</Comment>
+            <Comment>当发生EP触发的软锁止或者硬锁止时,在CHCY通道上的输出状态设置&#xD;EPT_EM_OUT_HZ:高阻态&#xD;EPT_EM_OUT_H:高电平&#xD;EPT_EM_OUT_L:低电平&#xD;EPT_EM_OUT_NONE:不做处理</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0EM">
             <label>EM_Interrupt</label>
@@ -9634,12 +9647,12 @@
               <sel notAvailable="GPTAWAVE,GPTATimer">GPTA_CAPTURE</sel>
               <sel notAvailable="GPTACAPTURE,GPTATimer">GPTA_WAVE</sel>
             </Selections>
-            <Comment>Timer:基本定时功能配置，默认产生PEND中断&#xD;GPTA_CAPTURE:GPTA捕获功能配置&#xD;GPTA_WAVE:GPTA PWM波形输出功能配置</Comment>
+            <Comment>Timer:基本定时功能配置,默认产生PEND中断&#xD;GPTA_CAPTURE:GPTA捕获模式&#xD;GPTA_WAVE:GPTA波形发生模式</Comment>
           </Property>
           <Property class="Text" property_class="GPTATimer">
             <label>TimeSet</label>
             <value>10000</value>
-            <Comment>GPTA定时，默认采用向上计数，PEND中断,时间单位为us</Comment>
+            <Comment>GPTA定时,默认采用向上计数,PEND中断,时间单位为us</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTACommon">
             <label>CountingMode</label>
@@ -9649,7 +9662,7 @@
               <sel>GPTA_DNCNT</sel>
               <sel>GPTA_UPDNCNT</sel>
             </Selections>
-            <Comment>计数模式设置&#xD; 计数模式一般只设置一次，并且在计数过程中不做改变。如果计数模式被改变，变化将发生在下一个TCLK的边沿，并且基于上一个计数器值进行递增或者递减&#xD;GPTA_UPCNT：递增模式&#xD;GPTA_DNCNT：递减模式&#xD;GPTA_UPDNCNT：递增递减模式</Comment>
+            <Comment>计数模式设置&#xD; 计数模式一般只设置一次,并且在计数过程中不做改变。如果计数模式被改变,变化将发生在下一个TCLK的边沿,并且基于上一个计数器值进行递增或者递减&#xD;GPTA_UPCNT:递增模式&#xD;GPTA_DNCNT:递减模式&#xD;GPTA_UPDNCNT:递增递减模式</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTAWAVE">
             <label>OneshotMode</label>
@@ -9658,12 +9671,12 @@
               <sel>GPTA_OP_CONT</sel>
               <sel>GPTA_OP_OT</sel>
             </Selections>
-            <Comment>计数器单次触发工作模式选&#xD;GPTA_OP_CONT：连续计数工作模式&#xD;GPTA_OP_OT：单次触发工作模式</Comment>
+            <Comment>计数器单次触发工作模式选&#xD;GPTA_OP_CONT:连续计数工作模式&#xD;GPTA_OP_OT:单次触发工作模式</Comment>
           </Property>
           <Property class="Text" property_class="GPTAWAVE">
             <label>Freq</label>
             <value>10000</value>
-            <Comment>输出波形频率配置，单位Hz</Comment>
+            <Comment>输出波形频率配置,单位Hz</Comment>
           </Property>
           <Property class="Text" property_class="GPTAWAVE">
             <label>Duty Cycle</label>
@@ -9677,7 +9690,7 @@
               <sel>GPTA_CAPMD_CONT</sel>
               <sel>GPTA_CAPMD_OT</sel>
             </Selections>
-            <Comment>捕捉模式设置&#xD;GPTA_CAPMD_CONT：连续捕捉模式&#xD;GPTA_CAPMD_OT：一次性捕捉模式</Comment>
+            <Comment>捕捉模式设置&#xD;GPTA_CAPMD_CONT:连续捕捉模式&#xD;GPTA_CAPMD_OT:一次性捕捉模式</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTACAPTURE">
             <label>STOP_WRAP</label>
@@ -9688,7 +9701,7 @@
               <sel>3</sel>
               <sel>4</sel>
             </Selections>
-            <Comment>Capture模式下，捕获事件计数器周期设置值 范围:1~4</Comment>
+            <Comment>捕获事件计数器周期设置值,范围1~4,分别对应CAPLD0~CAPLD3中断</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTACAPTURE">
             <label>LDARST</label>
@@ -9697,7 +9710,7 @@
               <sel>0</sel>
               <sel>1</sel>
             </Selections>
-            <Comment>CMPA(Shadow)捕捉载入后，计数器值计数状态控制位&#xD;0h：当前捕获触发后，计数器值不进行重置&#xD;1h：当前捕获触发后，计数器值进行重置</Comment>
+            <Comment>CMPA(Shadow)捕捉载入后,计数器值计数状态控制位&#xD;0h:当前捕获触发后,计数器值不进行重置&#xD;1h:当前捕获触发后,计数器值进行重置</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTACAPTURE">
             <label>LDBRST</label>
@@ -9706,7 +9719,7 @@
               <sel>0</sel>
               <sel>1</sel>
             </Selections>
-            <Comment>CMPB(Shadow)捕捉载入后，计数器值计数状态控制位&#xD;0h：当前捕获触发后，计数器值不进行重置&#xD;1h：当前捕获触发后，计数器值进行重置</Comment>
+            <Comment>CMPB(Shadow)捕捉载入后,计数器值计数状态控制位&#xD;0h:当前捕获触发后,计数器值不进行重置&#xD;1h:当前捕获触发后,计数器值进行重置</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTACAPTURE">
             <label>LDAARST</label>
@@ -9715,7 +9728,7 @@
               <sel>0</sel>
               <sel>1</sel>
             </Selections>
-            <Comment>CMPAA(Shadow)捕捉载入后，计数器值计数状态控制位&#xD;0h：当前捕获触发后，计数器值不进行重置&#xD;1h：当前捕获触发后，计数器值进行重置</Comment>
+            <Comment>CMPAA(Shadow)捕捉载入后,计数器值计数状态控制位&#xD;0h:当前捕获触发后,计数器值不进行重置&#xD;1h:当前捕获触发后,计数器值进行重置</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTACAPTURE">
             <label>LDBARST</label>
@@ -9724,7 +9737,7 @@
               <sel>0</sel>
               <sel>1</sel>
             </Selections>
-            <Comment>CMPBA(Shadow)捕捉载入后，计数器值计数状态控制位&#xD;0h：当前捕获触发后，计数器值不进行重置&#xD;1h：当前捕获触发后，计数器值进行重置</Comment>
+            <Comment>CMPBA(Shadow)捕捉载入后,计数器值计数状态控制位&#xD;0h:当前捕获触发后,计数器值不进行重置&#xD;1h:当前捕获触发后,计数器值进行重置</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTACommon">
             <label>Interrupt</label>
@@ -9809,7 +9822,7 @@
               <sel>GPTA_HI</sel>
               <sel>GPTA_TG</sel>
             </Selections>
-            <Comment>当CNT值等于零时，在通道pwn1上做出的波形输出动作定义&#xD;在递增递减模式时，当计数器值等于零时，计数方向为递增模式&#xD;GPTA_NA：不动作（过滤该处理事件）&#xD;GPTA_LO：清除输出（低电平）&#xD;GPTA_HI：置位输出（高电平）&#xD;GPTA_TG：反向（翻转）</Comment>
+            <Comment>当CNT值等于零时,在通道上做出的波形输出动作定义&#xD;在递增递减模式时,当计数器值等于零时,计数方向为递增模式&#xD;GPTA_NA:不动作（过滤该处理事件）&#xD;GPTA_LO:清除输出（低电平）&#xD;GPTA_HI:置位输出（高电平）&#xD;GPTA_TG:反向（翻转）</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTAWAVE">
             <label>PRD</label>
@@ -9820,7 +9833,7 @@
               <sel>GPTA_HI</sel>
               <sel>GPTA_TG</sel>
             </Selections>
-            <Comment>当CNT值等于PRDR时，在通道pwn1上做出的波形输出动作定义&#xD;在递增递减模式时，当计数器值等于零时，计数方向为递增模式&#xD;GPTA_NA：不动作（过滤该处理事件）&#xD;GPTA_LO：清除输出（低电平）&#xD;GPTA_HI：置位输出（高电平）&#xD;GPTA_TG：反向（翻转）</Comment>
+            <Comment>当CNT值等于PRDR时,在通道上做出的波形输出动作定义&#xD;在递增递减模式时,当计数器值等于零时,计数方向为递增模式&#xD;GPTA_NA:不动作（过滤该处理事件）&#xD;GPTA_LO:清除输出（低电平）&#xD;GPTA_HI:置位输出（高电平）&#xD;GPTA_TG:反向（翻转）</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTAWAVE">
             <label>C1U</label>
@@ -9831,7 +9844,7 @@
               <sel>GPTA_HI</sel>
               <sel>GPTA_TG</sel>
             </Selections>
-            <Comment>当CNT值等于C1，且此时计数方向为递增时，在通道pwn1上做出的波形输出动作定义&#xD;GPTA_NA：不动作（过滤该处理事件）&#xD;GPTA_LO：清除输出（低电平）&#xD;GPTA_HI：置位输出（高电平）&#xD;GPTA_TG：反向（翻转）</Comment>
+            <Comment>当CNT值等于C1,且此时计数方向为递增时,在通道上做出的波形输出动作定义&#xD;GPTA_NA:不动作（过滤该处理事件）&#xD;GPTA_LO:清除输出（低电平）&#xD;GPTA_HI:置位输出（高电平）&#xD;GPTA_TG:反向（翻转）</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTAWAVE">
             <label>C1D</label>
@@ -9842,7 +9855,7 @@
               <sel>GPTA_HI</sel>
               <sel>GPTA_TG</sel>
             </Selections>
-            <Comment>当CNT值等于C1，且此时计数方向为递减时，在通道pwn1上做出的波形输出动作定义&#xD;GPTA_NA：不动作（过滤该处理事件）&#xD;GPTA_LO：清除输出（低电平）&#xD;GPTA_HI：置位输出（高电平）&#xD;GPTA_TG：反向（翻转）</Comment>
+            <Comment>当CNT值等于C1,且此时计数方向为递减时,在通道上做出的波形输出动作定义&#xD;GPTA_NA:不动作（过滤该处理事件）&#xD;GPTA_LO:清除输出（低电平）&#xD;GPTA_HI:置位输出（高电平）&#xD;GPTA_TG:反向（翻转）</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTAWAVE">
             <label>C2U</label>
@@ -9853,7 +9866,7 @@
               <sel>GPTA_HI</sel>
               <sel>GPTA_TG</sel>
             </Selections>
-            <Comment>当CNT值等于C2，且此时计数方向为递增时，在通道pwn1上做出的波形输出动作定义&#xD;GPTA_NA：不动作（过滤该处理事件）&#xD;GPTA_LO：清除输出（低电平）&#xD;GPTA_HI：置位输出（高电平）&#xD;GPTA_TG：反向（翻转）</Comment>
+            <Comment>当CNT值等于C2,且此时计数方向为递增时,在通道上做出的波形输出动作定义&#xD;GPTA_NA:不动作（过滤该处理事件）&#xD;GPTA_LO:清除输出（低电平）&#xD;GPTA_HI:置位输出（高电平）&#xD;GPTA_TG:反向（翻转）</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTAWAVE">
             <label>C2D</label>
@@ -9864,7 +9877,7 @@
               <sel>GPTA_HI</sel>
               <sel>GPTA_TG</sel>
             </Selections>
-            <Comment>当CNT值等于C2，且此时计数方向为递减时，在通道pwn1上做出的波形输出动作定义&#xD;GPTA_NA：不动作（过滤该处理事件）&#xD;GPTA_LO：清除输出（低电平）&#xD;GPTA_HI：置位输出（高电平）&#xD;GPTA_TG：反向（翻转）</Comment>
+            <Comment>当CNT值等于C2,且此时计数方向为递减时,在通道上做出的波形输出动作定义&#xD;GPTA_NA:不动作（过滤该处理事件）&#xD;GPTA_LO:清除输出（低电平）&#xD;GPTA_HI:置位输出（高电平）&#xD;GPTA_TG:反向（翻转）</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTAWAVE">
             <label>T1U</label>
@@ -9875,7 +9888,7 @@
               <sel>GPTA_HI</sel>
               <sel>GPTA_TG</sel>
             </Selections>
-            <Comment>当T1事件发生，且此时计数方向为递增时，在通道pwn1上做出的波形输出动作定义&#xD;GPTA_NA：不动作（过滤该处理事件）&#xD;GPTA_LO：清除输出（低电平）&#xD;GPTA_HI：置位输出（高电平）&#xD;GPTA_TG：反向（翻转）</Comment>
+            <Comment>当T1事件发生,且此时计数方向为递增时,在通道上做出的波形输出动作定义&#xD;GPTA_NA:不动作（过滤该处理事件）&#xD;GPTA_LO:清除输出（低电平）&#xD;GPTA_HI:置位输出（高电平）&#xD;GPTA_TG:反向（翻转）</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTAWAVE">
             <label>T1D</label>
@@ -9886,7 +9899,7 @@
               <sel>GPTA_HI</sel>
               <sel>GPTA_TG</sel>
             </Selections>
-            <Comment>当T1事件发生，且此时计数方向为递减时，在通道pwn1上做出的波形输出动作定义&#xD;GPTA_NA：不动作（过滤该处理事件）&#xD;GPTA_LO：清除输出（低电平）&#xD;GPTA_HI：置位输出（高电平）&#xD;GPTA_TG：反向（翻转）</Comment>
+            <Comment>当T1事件发生,且此时计数方向为递减时,在通道上做出的波形输出动作定义&#xD;GPTA_NA:不动作（过滤该处理事件）&#xD;GPTA_LO:清除输出（低电平）&#xD;GPTA_HI:置位输出（高电平）&#xD;GPTA_TG:反向（翻转）</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTAWAVE">
             <label>T2U</label>
@@ -9897,7 +9910,7 @@
               <sel>GPTA_HI</sel>
               <sel>GPTA_TG</sel>
             </Selections>
-            <Comment>当T2事件发生，且此时计数方向为递增时，在通道pwn1上做出的波形输出动作定义&#xD;GPTA_NA：不动作（过滤该处理事件）&#xD;GPTA_LO：清除输出（低电平）&#xD;GPTA_HI：置位输出（高电平）&#xD;GPTA_TG：反向（翻转）</Comment>
+            <Comment>当T2事件发生,且此时计数方向为递增时,在通道上做出的波形输出动作定义&#xD;GPTA_NA:不动作（过滤该处理事件）&#xD;GPTA_LO:清除输出（低电平）&#xD;GPTA_HI:置位输出（高电平）&#xD;GPTA_TG:反向（翻转）</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTAWAVE">
             <label>T2D</label>
@@ -9908,7 +9921,7 @@
               <sel>GPTA_HI</sel>
               <sel>GPTA_TG</sel>
             </Selections>
-            <Comment>当T2事件发生，且此时计数方向为递减时，在通道pwn1上做出的波形输出动作定义&#xD;GPTA_NA：不动作（过滤该处理事件）&#xD;GPTA_LO：清除输出（低电平）&#xD;GPTA_HI：置位输出（高电平）&#xD;GPTA_TG：反向（翻转）</Comment>
+            <Comment>当T2事件发生,且此时计数方向为递减时,在通道上做出的波形输出动作定义&#xD;GPTA_NA:不动作（过滤该处理事件）&#xD;GPTA_LO:清除输出（低电平）&#xD;GPTA_HI:置位输出（高电平）&#xD;GPTA_TG:反向（翻转）</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTAWAVE">
             <label>CH1C1SEL</label>
@@ -9917,7 +9930,7 @@
               <sel>GPTA_CMPA</sel>
               <sel>GPTA_CMPB</sel>
             </Selections>
-            <Comment>通道1的C1比较值数据源选择&#xD;GPTA_CMPA：CMPA寄存器作为C1的数据源&#xD;GPTA_CMPB：CMPB寄存器作为C1的数据源</Comment>
+            <Comment>通道1的C1比较值数据源选择&#xD;GPTA_CMPA:CMPA寄存器作为C1的数据源&#xD;GPTA_CMPB:CMPB寄存器作为C1的数据源</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTAWAVE">
             <label>CH1C2SEL</label>
@@ -9926,7 +9939,7 @@
               <sel>GPTA_CMPA</sel>
               <sel>GPTA_CMPB</sel>
             </Selections>
-            <Comment>通道1的C2比较值数据源选择&#xD;GPTA_CMPA：CMPA寄存器作为C1的数据源&#xD;GPTA_CMPB：CMPB寄存器作为C1的数据源</Comment>
+            <Comment>通道1的C2比较值数据源选择&#xD;GPTA_CMPA:CMPA寄存器作为C1的数据源&#xD;GPTA_CMPB:CMPB寄存器作为C1的数据源</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTAWAVE">
             <label>CH2C1SEL</label>
@@ -9935,7 +9948,7 @@
               <sel>GPTA_CMPA</sel>
               <sel>GPTA_CMPB</sel>
             </Selections>
-            <Comment>通道2的C1比较值数据源选择&#xD;GPTA_CMPA：CMPA寄存器作为C1的数据源&#xD;GPTA_CMPB：CMPB寄存器作为C1的数据源</Comment>
+            <Comment>通道2的C1比较值数据源选择&#xD;GPTA_CMPA:CMPA寄存器作为C1的数据源&#xD;GPTA_CMPB:CMPB寄存器作为C1的数据源</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTAWAVE">
             <label>CH2C2SEL</label>
@@ -9944,7 +9957,7 @@
               <sel>GPTA_CMPA</sel>
               <sel>GPTA_CMPB</sel>
             </Selections>
-            <Comment>通道2的C2比较值数据源选择&#xD;GPTA_CMPA：CMPA寄存器作为C1的数据源&#xD;GPTA_CMPB：CMPB寄存器作为C1的数据源</Comment>
+            <Comment>通道2的C2比较值数据源选择&#xD;GPTA_CMPA:CMPA寄存器作为C1的数据源&#xD;GPTA_CMPB:CMPB寄存器作为C1的数据源</Comment>
           </Property>
         </Device>
         <Device deviceId="GPTB">
@@ -9959,12 +9972,12 @@
               <sel notAvailable="GPTBWAVE,GPTBTimer,GPTBDZ,GPTBEM">GPTB_CAPTURE</sel>
               <sel notAvailable="GPTBCAPTURE,GPTBTimer,GPTBDZ,GPTBEM">GPTB_WAVE</sel>
             </Selections>
-            <Comment>Timer:基本定时功能配置，默认产生PEND中断&#xD;GPTB_CAPTURE:GPTB捕获功能配置&#xD;GPTB_WAVE:GPTB PWM波形输出功能配置</Comment>
+            <Comment>Timer:基本定时功能配置,默认产生PEND中断&#xD;GPTB_CAPTURE:GPTB捕获模式&#xD;GPTB_WAVE:GPTB功能发生模式</Comment>
           </Property>
           <Property class="Text" property_class="GPTBTimer">
             <label>TimeSet</label>
             <value>10000</value>
-            <Comment>GPTB定时，默认采用向上计数，PEND中断,时间单位为us</Comment>
+            <Comment>GPTB定时,默认采用向上计数,PEND中断,时间单位为us</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTBCommon">
             <label>CountingMode</label>
@@ -9974,7 +9987,7 @@
               <sel>GPTB_DNCNT</sel>
               <sel>GPTB_UPDNCNT</sel>
             </Selections>
-            <Comment>计数模式设置&#xD; 计数模式一般只设置一次，并且在计数过程中不做改变。如果计数模式被改变，变化将发生在下一个TCLK的边沿，并且基于上一个计数器值进行递增或者递减&#xD;GPTB_UPCNT：递增模式&#xD;GPTB_DNCNT：递减模式&#xD;GPTB_UPDNCNT：递增递减模式</Comment>
+            <Comment>计数模式设置&#xD; 计数模式一般只设置一次,并且在计数过程中不做改变。如果计数模式被改变,变化将发生在下一个TCLK的边沿,并且基于上一个计数器值进行递增或者递减&#xD;GPTB_UPCNT:递增模式&#xD;GPTB_DNCNT:递减模式&#xD;GPTB_UPDNCNT:递增递减模式</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTBWAVE">
             <label>OneshotMode</label>
@@ -9983,12 +9996,12 @@
               <sel>GPTB_OP_CONT</sel>
               <sel>GPTB_OP_OT</sel>
             </Selections>
-            <Comment>计数器单次触发工作模式选&#xD;GPTB_OP_CONT：连续计数工作模式&#xD;GPTB_OP_OT：单次触发工作模式</Comment>
+            <Comment>计数器单次触发工作模式选&#xD;GPTB_OP_CONT:连续计数工作模式&#xD;GPTB_OP_OT:单次触发工作模式</Comment>
           </Property>
           <Property class="Text" property_class="GPTBWAVE">
             <label>Freq</label>
             <value>10000</value>
-            <Comment>输出波形频率配置，单位Hz</Comment>
+            <Comment>输出波形频率配置,单位Hz</Comment>
           </Property>
           <Property class="Text" property_class="GPTBWAVE">
             <label>Duty Cycle</label>
@@ -10002,7 +10015,7 @@
               <sel>GPTB_CAPMD_CONT</sel>
               <sel>GPTB_CAPMD_OT</sel>
             </Selections>
-            <Comment>捕捉模式设置&#xD;GPTB_CAPMD_CONT：连续捕捉模式&#xD;GPTB_CAPMD_OT：一次性捕捉模式</Comment>
+            <Comment>捕捉模式设置&#xD;GPTB_CAPMD_CONT:连续捕捉模式&#xD;GPTB_CAPMD_OT:一次性捕捉模式</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTBCAPTURE">
             <label>STOP_WRAP</label>
@@ -10013,7 +10026,7 @@
               <sel>3</sel>
               <sel>4</sel>
             </Selections>
-            <Comment>Capture模式下，捕获事件计数器周期设置值 范围:1~4</Comment>
+            <Comment>捕获事件计数器周期设置值,范围1~4,分别对应CAPLD0~CAPLD3中断</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTBCAPTURE">
             <label>LDARST</label>
@@ -10022,7 +10035,7 @@
               <sel>0</sel>
               <sel>1</sel>
             </Selections>
-            <Comment>CMPA(Shadow)捕捉载入后，计数器值计数状态控制位&#xD;0h：当前捕获触发后，计数器值不进行重置&#xD;1h：当前捕获触发后，计数器值进行重置</Comment>
+            <Comment>CMPA(Shadow)捕捉载入后,计数器值计数状态控制位&#xD;0h:当前捕获触发后,计数器值不进行重置&#xD;1h:当前捕获触发后,计数器值进行重置</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTBCAPTURE">
             <label>LDBRST</label>
@@ -10031,7 +10044,7 @@
               <sel>0</sel>
               <sel>1</sel>
             </Selections>
-            <Comment>CMPB(Shadow)捕捉载入后，计数器值计数状态控制位&#xD;0h：当前捕获触发后，计数器值不进行重置&#xD;1h：当前捕获触发后，计数器值进行重置</Comment>
+            <Comment>CMPB(Shadow)捕捉载入后,计数器值计数状态控制位&#xD;0h:当前捕获触发后,计数器值不进行重置&#xD;1h:当前捕获触发后,计数器值进行重置</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTBCAPTURE">
             <label>LDAARST</label>
@@ -10040,7 +10053,7 @@
               <sel>0</sel>
               <sel>1</sel>
             </Selections>
-            <Comment>CMPAA(Shadow)捕捉载入后，计数器值计数状态控制位&#xD;0h：当前捕获触发后，计数器值不进行重置&#xD;1h：当前捕获触发后，计数器值进行重置</Comment>
+            <Comment>CMPAA(Shadow)捕捉载入后,计数器值计数状态控制位&#xD;0h:当前捕获触发后,计数器值不进行重置&#xD;1h:当前捕获触发后,计数器值进行重置</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTBCAPTURE">
             <label>LDBARST</label>
@@ -10049,7 +10062,7 @@
               <sel>0</sel>
               <sel>1</sel>
             </Selections>
-            <Comment>CMPBA(Shadow)捕捉载入后，计数器值计数状态控制位&#xD;0h：当前捕获触发后，计数器值不进行重置&#xD;1h：当前捕获触发后，计数器值进行重置</Comment>
+            <Comment>CMPBA(Shadow)捕捉载入后,计数器值计数状态控制位&#xD;0h:当前捕获触发后,计数器值不进行重置&#xD;1h:当前捕获触发后,计数器值进行重置</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTBCommon">
             <label>Interrupt</label>
@@ -10124,7 +10137,7 @@
               <sel>GPTB_HI</sel>
               <sel>GPTB_TG</sel>
             </Selections>
-            <Comment>当CNT值等于零时，在通道pwn1上做出的波形输出动作定义&#xD;在递增递减模式时，当计数器值等于零时，计数方向为递增模式&#xD;GPTB_NA：不动作（过滤该处理事件）&#xD;GPTB_LO：清除输出（低电平）&#xD;GPTB_HI：置位输出（高电平）&#xD;GPTB_TG：反向（翻转）</Comment>
+            <Comment>当CNT值等于零时,在通道上做出的波形输出动作定义&#xD;在递增递减模式时,当计数器值等于零时,计数方向为递增模式&#xD;GPTB_NA:不动作（过滤该处理事件）&#xD;GPTB_LO:清除输出（低电平）&#xD;GPTB_HI:置位输出（高电平）&#xD;GPTB_TG:反向（翻转）</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTBWAVE">
             <label>PRD</label>
@@ -10135,7 +10148,7 @@
               <sel>GPTB_HI</sel>
               <sel>GPTB_TG</sel>
             </Selections>
-            <Comment>当CNT值等于PRDR时，在通道pwn1上做出的波形输出动作定义&#xD;在递增递减模式时，当计数器值等于零时，计数方向为递增模式&#xD;GPTB_NA：不动作（过滤该处理事件）&#xD;GPTB_LO：清除输出（低电平）&#xD;GPTB_HI：置位输出（高电平）&#xD;GPTB_TG：反向（翻转）</Comment>
+            <Comment>当CNT值等于PRDR时,在通道上做出的波形输出动作定义&#xD;在递增递减模式时,当计数器值等于零时,计数方向为递增模式&#xD;GPTB_NA:不动作（过滤该处理事件）&#xD;GPTB_LO:清除输出（低电平）&#xD;GPTB_HI:置位输出（高电平）&#xD;GPTB_TG:反向（翻转）</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTBWAVE">
             <label>C1U</label>
@@ -10146,7 +10159,7 @@
               <sel>GPTB_HI</sel>
               <sel>GPTB_TG</sel>
             </Selections>
-            <Comment>当CNT值等于C1，且此时计数方向为递增时，在通道pwn1上做出的波形输出动作定义&#xD;在递增递减模式时，当计数器值等于零时，计数方向为递增模式&#xD;GPTB_NA：不动作（过滤该处理事件）&#xD;GPTB_LO：清除输出（低电平）&#xD;GPTB_HI：置位输出（高电平）&#xD;GPTB_TG：反向（翻转）</Comment>
+            <Comment>当CNT值等于C1,且此时计数方向为递增时,在通道上做出的波形输出动作定义&#xD;在递增递减模式时,当计数器值等于零时,计数方向为递增模式&#xD;GPTB_NA:不动作（过滤该处理事件）&#xD;GPTB_LO:清除输出（低电平）&#xD;GPTB_HI:置位输出（高电平）&#xD;GPTB_TG:反向（翻转）</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTBWAVE">
             <label>C1D</label>
@@ -10157,7 +10170,7 @@
               <sel>GPTB_HI</sel>
               <sel>GPTB_TG</sel>
             </Selections>
-            <Comment>当CNT值等于C1，且此时计数方向为递减时，在通道pwn1上做出的波形输出动作定义&#xD;在递增递减模式时，当计数器值等于零时，计数方向为递增模式&#xD;GPTB_NA：不动作（过滤该处理事件）&#xD;GPTB_LO：清除输出（低电平）&#xD;GPTB_HI：置位输出（高电平）&#xD;GPTB_TG：反向（翻转）</Comment>
+            <Comment>当CNT值等于C1,且此时计数方向为递减时,在通道上做出的波形输出动作定义&#xD;在递增递减模式时,当计数器值等于零时,计数方向为递增模式&#xD;GPTB_NA:不动作（过滤该处理事件）&#xD;GPTB_LO:清除输出（低电平）&#xD;GPTB_HI:置位输出（高电平）&#xD;GPTB_TG:反向（翻转）</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTBWAVE">
             <label>C2U</label>
@@ -10168,7 +10181,7 @@
               <sel>GPTB_HI</sel>
               <sel>GPTB_TG</sel>
             </Selections>
-            <Comment>当CNT值等于C2，且此时计数方向为递增时，在通道pwn1上做出的波形输出动作定义&#xD;在递增递减模式时，当计数器值等于零时，计数方向为递增模式&#xD;GPTB_NA：不动作（过滤该处理事件）&#xD;GPTB_LO：清除输出（低电平）&#xD;GPTB_HI：置位输出（高电平）&#xD;GPTB_TG：反向（翻转）</Comment>
+            <Comment>当CNT值等于C2,且此时计数方向为递增时,在通道上做出的波形输出动作定义&#xD;在递增递减模式时,当计数器值等于零时,计数方向为递增模式&#xD;GPTB_NA:不动作（过滤该处理事件）&#xD;GPTB_LO:清除输出（低电平）&#xD;GPTB_HI:置位输出（高电平）&#xD;GPTB_TG:反向（翻转）</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTBWAVE">
             <label>C2D</label>
@@ -10179,7 +10192,7 @@
               <sel>GPTB_HI</sel>
               <sel>GPTB_TG</sel>
             </Selections>
-            <Comment>当CNT值等于C2，且此时计数方向为递减时，在通道pwn1上做出的波形输出动作定义&#xD;在递增递减模式时，当计数器值等于零时，计数方向为递增模式&#xD;GPTB_NA：不动作（过滤该处理事件）&#xD;GPTB_LO：清除输出（低电平）&#xD;GPTB_HI：置位输出（高电平）&#xD;GPTB_TG：反向（翻转）</Comment>
+            <Comment>当CNT值等于C2,且此时计数方向为递减时,在通道上做出的波形输出动作定义&#xD;在递增递减模式时,当计数器值等于零时,计数方向为递增模式&#xD;GPTB_NA:不动作（过滤该处理事件）&#xD;GPTB_LO:清除输出（低电平）&#xD;GPTB_HI:置位输出（高电平）&#xD;GPTB_TG:反向（翻转）</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTBWAVE">
             <label>T1U</label>
@@ -10190,7 +10203,7 @@
               <sel>GPTB_HI</sel>
               <sel>GPTB_TG</sel>
             </Selections>
-            <Comment>当T1事件发生，且此时计数方向为递增时，在通道pwn1上做出的波形输出动作定义&#xD;在递增递减模式时，当计数器值等于零时，计数方向为递增模式&#xD;GPTB_NA：不动作（过滤该处理事件）&#xD;GPTB_LO：清除输出（低电平）&#xD;GPTB_HI：置位输出（高电平）&#xD;GPTB_TG：反向（翻转）</Comment>
+            <Comment>当T1事件发生,且此时计数方向为递增时,在通道上做出的波形输出动作定义&#xD;在递增递减模式时,当计数器值等于零时,计数方向为递增模式&#xD;GPTB_NA:不动作（过滤该处理事件）&#xD;GPTB_LO:清除输出（低电平）&#xD;GPTB_HI:置位输出（高电平）&#xD;GPTB_TG:反向（翻转）</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTBWAVE">
             <label>T1D</label>
@@ -10201,7 +10214,7 @@
               <sel>GPTB_HI</sel>
               <sel>GPTB_TG</sel>
             </Selections>
-            <Comment>当T1事件发生，且此时计数方向为递减时，在通道pwn1上做出的波形输出动作定义&#xD;在递增递减模式时，当计数器值等于零时，计数方向为递增模式&#xD;GPTB_NA：不动作（过滤该处理事件）&#xD;GPTB_LO：清除输出（低电平）&#xD;GPTB_HI：置位输出（高电平）&#xD;GPTB_TG：反向（翻转）</Comment>
+            <Comment>当T1事件发生,且此时计数方向为递减时,在通道上做出的波形输出动作定义&#xD;在递增递减模式时,当计数器值等于零时,计数方向为递增模式&#xD;GPTB_NA:不动作（过滤该处理事件）&#xD;GPTB_LO:清除输出（低电平）&#xD;GPTB_HI:置位输出（高电平）&#xD;GPTB_TG:反向（翻转）</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTBWAVE">
             <label>T2U</label>
@@ -10212,7 +10225,7 @@
               <sel>GPTB_HI</sel>
               <sel>GPTB_TG</sel>
             </Selections>
-            <Comment>当T2事件发生，且此时计数方向为递增时，在通道pwn1上做出的波形输出动作定义&#xD;在递增递减模式时，当计数器值等于零时，计数方向为递增模式&#xD;GPTB_NA：不动作（过滤该处理事件）&#xD;GPTB_LO：清除输出（低电平）&#xD;GPTB_HI：置位输出（高电平）&#xD;GPTB_TG：反向（翻转）</Comment>
+            <Comment>当T2事件发生,且此时计数方向为递增时,在通道上做出的波形输出动作定义&#xD;在递增递减模式时,当计数器值等于零时,计数方向为递增模式&#xD;GPTB_NA:不动作（过滤该处理事件）&#xD;GPTB_LO:清除输出（低电平）&#xD;GPTB_HI:置位输出（高电平）&#xD;GPTB_TG:反向（翻转）</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTBWAVE">
             <label>T2D</label>
@@ -10223,7 +10236,7 @@
               <sel>GPTB_HI</sel>
               <sel>GPTB_TG</sel>
             </Selections>
-            <Comment>当T2事件发生，且此时计数方向为递减时，在通道pwn1上做出的波形输出动作定义&#xD;在递增递减模式时，当计数器值等于零时，计数方向为递增模式&#xD;GPTB_NA：不动作（过滤该处理事件）&#xD;GPTB_LO：清除输出（低电平）&#xD;GPTB_HI：置位输出（高电平）&#xD;GPTB_TG：反向（翻转）</Comment>
+            <Comment>当T2事件发生,且此时计数方向为递减时,在通道上做出的波形输出动作定义&#xD;在递增递减模式时,当计数器值等于零时,计数方向为递增模式&#xD;GPTB_NA:不动作（过滤该处理事件）&#xD;GPTB_LO:清除输出（低电平）&#xD;GPTB_HI:置位输出（高电平）&#xD;GPTB_TG:反向（翻转）</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTBWAVE">
             <label>CH1C1SEL</label>
@@ -10232,7 +10245,7 @@
               <sel>GPTB_CMPA</sel>
               <sel>GPTB_CMPB</sel>
             </Selections>
-            <Comment>通道1的C1比较值数据源选择&#xD;GPTB_CMPA：CMPA寄存器作为C1的数据源&#xD;GPTB_CMPB：CMPB寄存器作为C1的数据源</Comment>
+            <Comment>通道1的C1比较值数据源选择&#xD;GPTB_CMPA:CMPA寄存器作为C1的数据源&#xD;GPTB_CMPB:CMPB寄存器作为C1的数据源</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTBWAVE">
             <label>CH1C2SEL</label>
@@ -10241,7 +10254,7 @@
               <sel>GPTB_CMPA</sel>
               <sel>GPTB_CMPB</sel>
             </Selections>
-            <Comment>通道1的C2比较值数据源选择&#xD;GPTB_CMPA：CMPA寄存器作为C1的数据源&#xD;GPTB_CMPB：CMPB寄存器作为C1的数据源</Comment>
+            <Comment>通道1的C2比较值数据源选择&#xD;GPTB_CMPA:CMPA寄存器作为C1的数据源&#xD;GPTB_CMPB:CMPB寄存器作为C1的数据源</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTBWAVE">
             <label>CH2C1SEL</label>
@@ -10250,7 +10263,7 @@
               <sel>GPTB_CMPA</sel>
               <sel>GPTB_CMPB</sel>
             </Selections>
-            <Comment>通道2的C1比较值数据源选择&#xD;GPTB_CMPA：CMPA寄存器作为C1的数据源&#xD;GPTB_CMPB：CMPB寄存器作为C1的数据源</Comment>
+            <Comment>通道2的C1比较值数据源选择&#xD;GPTB_CMPA:CMPA寄存器作为C1的数据源&#xD;GPTB_CMPB:CMPB寄存器作为C1的数据源</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTBWAVE">
             <label>CH2C2SEL</label>
@@ -10259,7 +10272,7 @@
               <sel>GPTB_CMPA</sel>
               <sel>GPTB_CMPB</sel>
             </Selections>
-            <Comment>通道2的C2比较值数据源选择&#xD;GPTB_CMPA：CMPA寄存器作为C1的数据源&#xD;GPTB_CMPB：CMPB寄存器作为C1的数据源</Comment>
+            <Comment>通道2的C2比较值数据源选择&#xD;GPTB_CMPA:CMPA寄存器作为C1的数据源&#xD;GPTB_CMPB:CMPB寄存器作为C1的数据源</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTBWAVE">
             <label>DeadZone</label>
@@ -10288,12 +10301,12 @@
           <Property class="Text" property_class="GPTBDZ">
             <label>RisingEdgereGister</label>
             <value>500</value>
-            <Comment>上升沿延时时间t = RisingEdgereGister x TDBCLK 单位ns</Comment>
+            <Comment>上升沿延时时间 单位ns</Comment>
           </Property>
           <Property class="Text" property_class="GPTBDZ">
             <label>FallingEdgereGister</label>
             <value>200</value>
-            <Comment>下降沿延时时间t = FallingEdgereGister x TDBCLK 单位ns</Comment>
+            <Comment>下降沿延时时间 单位ns</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTBDZ">
             <label>ChaDeadB</label>
@@ -10302,7 +10315,7 @@
               <sel>GPTB_DB_AR_BF</sel>
               <sel>GPTB_DB_BR_BF</sel>
             </Selections>
-            <Comment>在PWM1 DBCOUTY 上选择死区双沿模式(S6)&#xD;GPTB_DB_AR_BF不使用死区双沿&#xD;GPTB_DB_BR_BF使用死区双沿</Comment>
+            <Comment>在PWM1 DBCOUTY 上选择死区双沿模式(S6)&#xD;GPTB_DB_AR_BF:不使用死区双沿&#xD;GPTB_DB_BR_BF:使用死区双沿</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTBDZ">
             <label>ChxOuselS1S0</label>
@@ -10313,7 +10326,7 @@
               <sel>GPTB_DBOUT_AR</sel>
               <sel>GPTB_DBOUT_AR_BF</sel>
             </Selections>
-            <Comment>死区输出配置(S1、S0开关)&#xD;GPTB_DBOUT_DIS:bypass死区控制，X通道输出PWM1，Y通道输出PWM2&#xD;GPTB_DBOUT_BF:X通道输出PWM1，使能Y通道的下降沿延时&#xD;GPTB_DBOUT_AR:使能X通道的上升沿延时，Y通道输出PWM2&#xD;GPTB_DBOUT_AR_BF:使能X通道的上升沿延时，使能Y通道的下降沿延时</Comment>
+            <Comment>死区输出配置(S1、S0开关)&#xD;GPTB_DBOUT_DIS:bypass死区控制,X通道输出PWM1,Y通道输出PWM2&#xD;GPTB_DBOUT_BF:X通道输出PWM1,使能Y通道的下降沿延时&#xD;GPTB_DBOUT_AR:使能X通道的上升沿延时,Y通道输出PWM2&#xD;GPTB_DBOUT_AR_BF:使能X通道的上升沿延时,使能Y通道的下降沿延时</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTBDZ">
             <label>ChxPolarityS3S2</label>
@@ -10335,7 +10348,7 @@
               <sel>GPTB_DBCHAIN_AR_BF</sel>
               <sel>GPTB_DBCHAIN_BR_BF</sel>
             </Selections>
-            <Comment>延时模块输入选择(S5、S4开关)&#xD;在经典死区控制模式下，上升沿延时和下降沿延时都选择同一个输入信号进行处理&#xD;GPTB_DBCHAIN_AR_AF:PWM1作为上升沿和下降沿延时处理的输入信号&#xD;GPTB_DBCHAIN_BR_AF:PWM2作为上升沿延时输入，PWM1作为下降沿延时输入&#xD;GPTB_DBCHAIN_AR_BF:PWM1作为上升沿延时输入，PWM2作为下降沿延时输入&#xD;GPTB_DBCHAIN_BR_BF:PWM2作为上升沿和下降沿延时处理的输入信号</Comment>
+            <Comment>延时模块输入选择(S5、S4开关)&#xD;在经典死区控制模式下,上升沿延时和下降沿延时都选择同一个输入信号进行处理&#xD;GPTB_DBCHAIN_AR_AF:PWM1作为上升沿和下降沿延时处理的输入信号&#xD;GPTB_DBCHAIN_BR_AF:PWM2作为上升沿延时输入,PWM1作为下降沿延时输入&#xD;GPTB_DBCHAIN_AR_BF:PWM1作为上升沿延时输入,PWM2作为下降沿延时输入&#xD;GPTB_DBCHAIN_BR_BF:PWM2作为上升沿和下降沿延时处理的输入信号</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTBDZ">
             <label>ChxOutSwapS8S7</label>
@@ -10346,7 +10359,7 @@
               <sel>GPTB_DBCHAOUT_OUTA_A_OUTB_A</sel>
               <sel>GPTB_DBCHAOUT_OUTA_B_OUTB_A</sel>
             </Selections>
-            <Comment>死区输出交换控制(S8、S7开关)&#xD;GPTB_CHOUTX_OUA_OUB:OUTX=X通道输出，OUTY=Y通道输出&#xD;GPTB_CHOUTX_OUA_OUA:OUTX=Y通道输出，OUTY=Y通道输出&#xD;GPTB_CHOUTX_OUB_OUB:OUTX=X通道输出，OUTY=X通道输出&#xD;GPTB_CHOUTX_OUB_OUA:OUTX=Y通道输出，OUTY=X通道输出</Comment>
+            <Comment>死区输出交换控制(S8、S7开关)&#xD;GPTB_CHOUTX_OUA_OUB:OUTX=X通道输出,OUTY=Y通道输出&#xD;GPTB_CHOUTX_OUA_OUA:OUTX=Y通道输出,OUTY=Y通道输出&#xD;GPTB_CHOUTX_OUB_OUB:OUTX=X通道输出,OUTY=X通道输出&#xD;GPTB_CHOUTX_OUB_OUA:OUTX=Y通道输出,OUTY=X通道输出</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTBWAVE">
             <label>Emergency</label>
@@ -10374,22 +10387,22 @@
           <Property class="Bool" property_class="GPTBORL0">
             <label>GPTB_ORLx_EBI0</label>
             <value>1</value>
-            <Comment>多路通道的逻辑OR作为EPx中的输入信号(ORL1)&#xD;0h：屏蔽当前通道作为OR输入&#xD;1h：使能当前通道作为OR输入</Comment>
+            <Comment>多路通道的逻辑OR作为EPx中的输入信号(ORL1)&#xD;0h:屏蔽当前通道作为OR输入&#xD;1h:使能当前通道作为OR输入</Comment>
           </Property>
           <Property class="Bool" property_class="GPTBORL0">
             <label>GPTB_ORLx_EBI1</label>
             <value>0</value>
-            <Comment>多路通道的逻辑OR作为EPx中的输入信号(ORL1)&#xD;0h：屏蔽当前通道作为OR输入&#xD;1h：使能当前通道作为OR输入</Comment>
+            <Comment>多路通道的逻辑OR作为EPx中的输入信号(ORL1)&#xD;0h:屏蔽当前通道作为OR输入&#xD;1h:使能当前通道作为OR输入</Comment>
           </Property>
           <Property class="Bool" property_class="GPTBORL0">
             <label>GPTB_ORLx_EBI2</label>
             <value>0</value>
-            <Comment>多路通道的逻辑OR作为EPx中的输入信号(ORL1)&#xD;0h：屏蔽当前通道作为OR输入&#xD;1h：使能当前通道作为OR输入</Comment>
+            <Comment>多路通道的逻辑OR作为EPx中的输入信号(ORL1)&#xD;0h:屏蔽当前通道作为OR输入&#xD;1h:使能当前通道作为OR输入</Comment>
           </Property>
           <Property class="Bool" property_class="GPTBORL0">
             <label>GPTB_ORLx_EBI3</label>
             <value>0</value>
-            <Comment>多路通道的逻辑OR作为EPx中的输入信号(ORL1)&#xD;0h：屏蔽当前通道作为OR输入&#xD;1h：使能当前通道作为OR输入</Comment>
+            <Comment>多路通道的逻辑OR作为EPx中的输入信号(ORL1)&#xD;0h:屏蔽当前通道作为OR输入&#xD;1h:使能当前通道作为OR输入</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTBEM">
             <label>PolEBIx</label>
@@ -10430,7 +10443,7 @@
               <sel>GPTB_EMOUT_L</sel>
               <sel>GPTB_EMOUT_NONE</sel>
             </Selections>
-            <Comment>当发生EP触发的软锁止或者硬锁止时，在CHAX通道上的输出状态设置&#xD;GPTB_EM_OUT_HZ:高阻态&#xD;GPTB_EM_OUT_H:高电平&#xD;GPTB_EM_OUT_L:低电平&#xD;GPTB_EM_OUT_NONE:不做处理</Comment>
+            <Comment>当发生EP触发的软锁止或者硬锁止时,在CHAX通道上的输出状态设置&#xD;GPTB_EM_OUT_HZ:高阻态&#xD;GPTB_EM_OUT_H:高电平&#xD;GPTB_EM_OUT_L:低电平&#xD;GPTB_EM_OUT_NONE:不做处理</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTBEM">
             <label>GPTB_EMCOBX</label>
@@ -10441,7 +10454,7 @@
               <sel>GPTB_EMOUT_L</sel>
               <sel>GPTB_EMOUT_NONE</sel>
             </Selections>
-            <Comment>当发生EP触发的软锁止或者硬锁止时，在CHBX通道上的输出状态设置&#xD;GPTB_EM_OUT_HZ:高阻态&#xD;GPTB_EM_OUT_H:高电平&#xD;GPTB_EM_OUT_L:低电平&#xD;GPTB_EM_OUT_NONE:不做处理</Comment>
+            <Comment>当发生EP触发的软锁止或者硬锁止时,在CHBX通道上的输出状态设置&#xD;GPTB_EM_OUT_HZ:高阻态&#xD;GPTB_EM_OUT_H:高电平&#xD;GPTB_EM_OUT_L:低电平&#xD;GPTB_EM_OUT_NONE:不做处理</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTBEM">
             <label>GPTB_EMCOAY</label>
@@ -10452,7 +10465,7 @@
               <sel>GPTB_EMOUT_L</sel>
               <sel>GPTB_EMOUT_NONE</sel>
             </Selections>
-            <Comment>当发生EP触发的软锁止或者硬锁止时，在CHAY通道上的输出状态设置&#xD;GPTB_EM_OUT_HZ:高阻态&#xD;GPTB_EM_OUT_H:高电平&#xD;GPTB_EM_OUT_L:低电平&#xD;GPTB_EM_OUT_NONE:不做处理</Comment>
+            <Comment>当发生EP触发的软锁止或者硬锁止时,在CHAY通道上的输出状态设置&#xD;GPTB_EM_OUT_HZ:高阻态&#xD;GPTB_EM_OUT_H:高电平&#xD;GPTB_EM_OUT_L:低电平&#xD;GPTB_EM_OUT_NONE:不做处理</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTBEM">
             <label>EM_Interrupt</label>
