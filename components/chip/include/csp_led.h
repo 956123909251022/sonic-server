@@ -89,6 +89,10 @@ typedef enum {
  
  ///BLKER/BLKDR/BLKST
 #define LED_BLK_MSK						(0x3ff)
+typedef enum {
+	LED_BLK_ON,
+	LED_BLK_OFF
+}csp_led_blk_e;
 
 ///SEGDATA0~9
 #define LED_SEGDATA_POS(n)              n                                              /*!< LED SEGDATn: Position */
