@@ -8448,7 +8448,7 @@
           <Property class="Text" property_class="I2CSlave">
             <label>SlaveAddr</label>
             <value>0xa0</value>
-            <validReg>^(0[xX])([0-7][0-9a-fA-F][0-9a-fA-E])$</validReg>
+            <validReg>^(0[xX])([0-9a-fA-F]|[1-9a-fA-F][0-9a-fA-F]|[0-7][0-9a-fA-F][0-9a-eA-E])$</validReg>
             <Comment>从机地址 设置范围 0x00~0x7fe</Comment>
           </Property>
           <Property class="UIchoice">
@@ -9409,7 +9409,7 @@
           <label>GPTA</label>
           <Property class="UIchoice">
             <label>WorkMode</label>
-            <value>Timer</value>
+            <value>GPTA_CAPTURE</value>
             <Selections>
               <sel notAvailable="GPTACommon,GPTACAPTURE,GPTAWAVE">Timer</sel>
               <sel notAvailable="GPTAWAVE,GPTATimer">GPTA_CAPTURE</sel>
@@ -9507,72 +9507,76 @@
             </Selections>
             <Comment>CMPBA捕捉载入后，计数器值计数状态控制位(1h：CMPBA触发后，计数器值进行重置;0h：CMPBA触发后，计数器值不进行重置)</Comment>
           </Property>
-          <Property class="Bool" property_class="GPTACommon">
-            <label>GPTA_INTSRC_NONE</label>
-            <value>1</value>
+          <Property class="UIchoice" property_class="GPTACommon">
+            <label>Interrupt</label>
+            <value>DISABLE</value>
+            <Selections>
+              <sel notAvailable="GPTAInt">DISABLE</sel>
+              <sel>ENABLE</sel>
+            </Selections>
             <Comment/>
           </Property>
-          <Property class="Bool" property_class="GPTACommon">
+          <Property class="Bool" property_class="GPTAInt">
             <label>GPTA_INTSRC_TRGEV0</label>
             <value>0</value>
             <Comment/>
           </Property>
-          <Property class="Bool" property_class="GPTACommon">
+          <Property class="Bool" property_class="GPTAInt">
             <label>GPTA_INTSRC_TRGEV1</label>
             <value>0</value>
             <Comment/>
           </Property>
-          <Property class="Bool" property_class="GPTACommon">
+          <Property class="Bool" property_class="GPTAInt">
             <label>GPTA_INTSRC_TRGEV2</label>
             <value>0</value>
             <Comment/>
           </Property>
-          <Property class="Bool" property_class="GPTACommon">
+          <Property class="Bool" property_class="GPTAInt">
             <label>GPTA_INTSRC_TRGEV3</label>
             <value>0</value>
             <Comment/>
           </Property>
-          <Property class="Bool" property_class="GPTACommon">
+          <Property class="Bool" property_class="GPTAInt">
             <label>GPTA_INTSRC_CAPLD0</label>
             <value>0</value>
             <Comment/>
           </Property>
-          <Property class="Bool" property_class="GPTACommon">
+          <Property class="Bool" property_class="GPTAInt">
             <label>GPTA_INTSRC_CAPLD1</label>
             <value>0</value>
             <Comment/>
           </Property>
-          <Property class="Bool" property_class="GPTACommon">
+          <Property class="Bool" property_class="GPTAInt">
             <label>GPTA_INTSRC_CAPLD2</label>
             <value>0</value>
             <Comment/>
           </Property>
-          <Property class="Bool" property_class="GPTACommon">
+          <Property class="Bool" property_class="GPTAInt">
             <label>GPTA_INTSRC_CAPLD3</label>
             <value>0</value>
             <Comment/>
           </Property>
-          <Property class="Bool" property_class="GPTACommon">
+          <Property class="Bool" property_class="GPTAInt">
             <label>GPTA_INTSRC_CAU</label>
             <value>0</value>
             <Comment/>
           </Property>
-          <Property class="Bool" property_class="GPTACommon">
+          <Property class="Bool" property_class="GPTAInt">
             <label>GPTA_INTSRC_CAD</label>
             <value>0</value>
             <Comment/>
           </Property>
-          <Property class="Bool" property_class="GPTACommon">
+          <Property class="Bool" property_class="GPTAInt">
             <label>GPTA_INTSRC_CBU</label>
             <value>0</value>
             <Comment/>
           </Property>
-          <Property class="Bool" property_class="GPTACommon">
+          <Property class="Bool" property_class="GPTAInt">
             <label>GPTA_INTSRC_CBD</label>
             <value>0</value>
             <Comment/>
           </Property>
-          <Property class="Bool" property_class="GPTACommon">
+          <Property class="Bool" property_class="GPTAInt">
             <label>GPTA_INTSRC_PEND</label>
             <value>0</value>
             <Comment/>
@@ -9730,7 +9734,7 @@
           <label>GPTB</label>
           <Property class="UIchoice">
             <label>WorkMode</label>
-            <value>Timer</value>
+            <value>GPTB_CAPTURE</value>
             <Selections>
               <sel notAvailable="GPTBCommon,GPTBCAPTURE,GPTBWAVE,GPTBDZ,GPTBEM">Timer</sel>
               <sel notAvailable="GPTBWAVE,GPTBTimer,GPTBDZ,GPTBEM">GPTB_CAPTURE</sel>
@@ -9828,62 +9832,66 @@
             </Selections>
             <Comment>CMPBA捕捉载入后，计数器值计数状态控制位(1h：CMPBA触发后，计数器值进行重置;0h：CMPBA触发后，计数器值不进行重置)</Comment>
           </Property>
-          <Property class="Bool" property_class="GPTBCommon">
-            <label>GPTB_INTSRC_NONE</label>
-            <value>1</value>
+          <Property class="UIchoice" property_class="GPTBCommon">
+            <label>Interrupt</label>
+            <value>DISABLE</value>
+            <Selections>
+              <sel notAvailable="GPTBInt">DISABLE</sel>
+              <sel>ENABLE</sel>
+            </Selections>
             <Comment/>
           </Property>
-          <Property class="Bool" property_class="GPTBCommon">
+          <Property class="Bool" property_class="GPTBInt">
             <label>GPTB_INTSRC_TRGEV0</label>
             <value>0</value>
             <Comment/>
           </Property>
-          <Property class="Bool" property_class="GPTBCommon">
+          <Property class="Bool" property_class="GPTBInt">
             <label>GPTB_INTSRC_TRGEV1</label>
             <value>0</value>
             <Comment/>
           </Property>
-          <Property class="Bool" property_class="GPTBCommon">
+          <Property class="Bool" property_class="GPTBInt">
             <label>GPTB_INTSRC_CAPLD0</label>
             <value>0</value>
             <Comment/>
           </Property>
-          <Property class="Bool" property_class="GPTBCommon">
+          <Property class="Bool" property_class="GPTBInt">
             <label>GPTB_INTSRC_CAPLD1</label>
             <value>0</value>
             <Comment/>
           </Property>
-          <Property class="Bool" property_class="GPTBCommon">
+          <Property class="Bool" property_class="GPTBInt">
             <label>GPTB_INTSRC_CAPLD2</label>
             <value>0</value>
             <Comment/>
           </Property>
-          <Property class="Bool" property_class="GPTBCommon">
+          <Property class="Bool" property_class="GPTBInt">
             <label>GPTB_INTSRC_CAPLD3</label>
             <value>0</value>
             <Comment/>
           </Property>
-          <Property class="Bool" property_class="GPTBCommon">
+          <Property class="Bool" property_class="GPTBInt">
             <label>GPTB_INTSRC_CAU</label>
             <value>0</value>
             <Comment/>
           </Property>
-          <Property class="Bool" property_class="GPTBCommon">
+          <Property class="Bool" property_class="GPTBInt">
             <label>GPTB_INTSRC_CAD</label>
             <value>0</value>
             <Comment/>
           </Property>
-          <Property class="Bool" property_class="GPTBCommon">
+          <Property class="Bool" property_class="GPTBInt">
             <label>GPTB_INTSRC_CBU</label>
             <value>0</value>
             <Comment/>
           </Property>
-          <Property class="Bool" property_class="GPTBCommon">
+          <Property class="Bool" property_class="GPTBInt">
             <label>GPTB_INTSRC_CBD</label>
             <value>0</value>
             <Comment/>
           </Property>
-          <Property class="Bool" property_class="GPTBCommon">
+          <Property class="Bool" property_class="GPTBInt">
             <label>GPTB_INTSRC_PEND</label>
             <value>0</value>
             <Comment/>
