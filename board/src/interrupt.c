@@ -79,18 +79,18 @@ void syscon_int_handler(void)
 {
     // ISR content ...
 
-	if(csp_syscon_get_int_st(SYSCON) & LVD_INT)
-	{
-		nop;
-		csp_syscon_int_clr(SYSCON, LVD_INT);
-	}
-	
-	if(csp_syscon_get_int_st(SYSCON) & IWDT_INT)
+	if(csp_syscon_get_isr(SYSCON) & LVD_INT)
 	{
 		nop;
 		//csi_pin_toggle(PA05);
-		csp_syscon_int_clr(SYSCON, IWDT_INT);
-		//csi_iwdt_feed();
+		csp_syscon_clr_clr(SYSCON, LVD_INT);
+	}
+	
+	if(csp_syscon_get_isr(SYSCON) & IWDT_INT)
+	{
+		nop;
+		//csi_pin_toggle(PA05);
+		csp_syscon_clr_clr(SYSCON, IWDT_INT);
 	}
 }
 

@@ -685,13 +685,13 @@ static inline void csp_syscon_int_enable(csp_syscon_t *ptSysconBase, syscon_int_
 		ptSysconBase->IMDR |= eInt;
 }
 
-static inline void csp_syscon_int_clr(csp_syscon_t *ptSysconBase, syscon_int_e eInt)
+static inline void csp_syscon_clr_clr(csp_syscon_t *ptSysconBase, syscon_int_e eInt)
 {
 	ptSysconBase->ICR = eInt; 
 	
 }
 
-static inline uint32_t csp_syscon_get_int_st(csp_syscon_t *ptSysconBase)
+static inline uint32_t csp_syscon_get_isr(csp_syscon_t *ptSysconBase)
 {
 	return (ptSysconBase->MISR);
 }
