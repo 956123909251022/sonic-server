@@ -2487,7 +2487,7 @@
               <sel>OSC_XI</sel>
               <sel>I2C0_SDA</sel>
               <sel>SIO</sel>
-              <sel>I2C_SCL</sel>
+              <sel>I2C0_SCL</sel>
               <sel>ADC_AIN2</sel>
               <sel>CMP_IN2</sel>
               <sel>TKEY_CH27</sel>
@@ -8534,8 +8534,8 @@
             <label>WorkMode</label>
             <value>EPT_CAPTURE</value>
             <Selections>
-              <sel notAvailable="EPT0WAVE,EPT0DE">EPT_CAPTURE</sel>
-              <sel notAvailable="EPT0CAPTURE">EPT_WAVE</sel>
+              <sel notAvailable="EPT0WAVE,EPT0DE,EPT0EM">EPT_CAPTURE</sel>
+              <sel notAvailable="EPT0CAPTURE,EPT0DE,EPT0EM">EPT_WAVE</sel>
             </Selections>
             <Comment>工作模式选择,计数或捕获</Comment>
           </Property>
@@ -8549,7 +8549,7 @@
             </Selections>
             <Comment>计数方向</Comment>
           </Property>
-          <Property class="UIchoice" property_class="EPT0CAPTURE">
+          <Property class="UIchoice" property_class="EPT0WAVE">
             <label>OneshotMode</label>
             <value>EPT_OP_CONT</value>
             <Selections>
@@ -8586,10 +8586,16 @@
             </Selections>
             <Comment>0:连续捕捉模式    1h：一次性捕捉模式</Comment>
           </Property>
-          <Property class="Text" property_class="EPT0CAPTURE">
+          <Property class="UIchoice" property_class="EPT0CAPTURE">
             <label>STOP_WRAP</label>
-            <value>3</value>
-            <Comment>范围:0~3,Capture模式下,捕获事件计数器周期设置值.</Comment>
+            <value>4</value>
+            <Selections>
+              <sel>1</sel>
+              <sel>2</sel>
+              <sel>3</sel>
+              <sel>4</sel>
+            </Selections>
+            <Comment>范围:1~4,Capture模式下,捕获事件计数器周期设置值.</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0CAPTURE">
             <label>LDARST</label>
@@ -9295,7 +9301,7 @@
           <label>GPTA</label>
           <Property class="UIchoice">
             <label>WorkMode</label>
-            <value>GPTA_CAPTURE</value>
+            <value>Timer</value>
             <Selections>
               <sel notAvailable="GPTACommon,GPTACAPTURE,GPTAWAVE">Timer</sel>
               <sel notAvailable="GPTAWAVE,GPTATimer">GPTA_CAPTURE</sel>
@@ -9318,7 +9324,7 @@
             </Selections>
             <Comment>计数方向</Comment>
           </Property>
-          <Property class="UIchoice" property_class="GPTACommon">
+          <Property class="UIchoice" property_class="GPTAWAVE">
             <label>OneshotMode</label>
             <value>GPTA_OP_CONT</value>
             <Selections>
@@ -9355,10 +9361,16 @@
             </Selections>
             <Comment>0:连续捕捉模式    1h：一次性捕捉模式</Comment>
           </Property>
-          <Property class="Text" property_class="GPTACAPTURE">
+          <Property class="UIchoice" property_class="GPTACAPTURE">
             <label>STOP_WRAP</label>
-            <value>3</value>
-            <Comment>范围:0~3,Capture模式下,捕获事件计数器周期设置值.</Comment>
+            <value>4</value>
+            <Selections>
+              <sel>1</sel>
+              <sel>2</sel>
+              <sel>3</sel>
+              <sel>4</sel>
+            </Selections>
+            <Comment>范围:1~4,Capture模式下,捕获事件计数器周期设置值.</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTACAPTURE">
             <label>LDARST</label>
@@ -9629,11 +9641,11 @@
           <label>GPTB</label>
           <Property class="UIchoice">
             <label>WorkMode</label>
-            <value>GPTB_WAVE</value>
+            <value>Timer</value>
             <Selections>
               <sel notAvailable="GPTBCommon,GPTBCAPTURE,GPTBWAVE,GPTBDZ,GPTBEM">Timer</sel>
               <sel notAvailable="GPTBWAVE,GPTBTimer,GPTBDZ,GPTBEM">GPTB_CAPTURE</sel>
-              <sel notAvailable="GPTBCAPTURE,GPTBTimer">GPTB_WAVE</sel>
+              <sel notAvailable="GPTBCAPTURE,GPTBTimer,GPTBDZ,GPTBEM">GPTB_WAVE</sel>
             </Selections>
             <Comment>工作模式选择,定时 计数或捕获</Comment>
           </Property>
@@ -9652,7 +9664,7 @@
             </Selections>
             <Comment>计数方向</Comment>
           </Property>
-          <Property class="UIchoice" property_class="GPTBCommon">
+          <Property class="UIchoice" property_class="GPTBWAVE">
             <label>OneshotMode</label>
             <value>GPTB_OP_CONT</value>
             <Selections>
@@ -9689,10 +9701,16 @@
             </Selections>
             <Comment>0:连续捕捉模式    1h：一次性捕捉模式</Comment>
           </Property>
-          <Property class="Text" property_class="GPTBCAPTURE">
+          <Property class="UIchoice" property_class="GPTBCAPTURE">
             <label>STOP_WRAP</label>
-            <value>3</value>
-            <Comment>范围:0~3,Capture模式下,捕获事件计数器周期设置值.</Comment>
+            <value>4</value>
+            <Selections>
+              <sel>1</sel>
+              <sel>2</sel>
+              <sel>3</sel>
+              <sel>4</sel>
+            </Selections>
+            <Comment>范围:1~4,Capture模式下,捕获事件计数器周期设置值.</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTBCAPTURE">
             <label>LDARST</label>
