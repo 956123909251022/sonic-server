@@ -110,7 +110,7 @@ void csi_rtc_init(csp_rtc_t *ptRtc, csi_rtc_config_t *tConfig)
 	csp_rtc_alm_enable(ptRtc, RTC_ALMA, DISABLE);
 	
 	csp_rtc_int_enable(ptRtc, RTC_INTSRC_ALMA|RTC_INTSRC_ALMB|RTC_INTSRC_CPRD|RTC_INTSRC_TRGEV0|RTC_INTSRC_TRGEV1, DISABLE);
-	csp_rtc_int_clr(ptRtc, RTC_INTSRC_ALMA|RTC_INTSRC_ALMB|RTC_INTSRC_CPRD|RTC_INTSRC_TRGEV0|RTC_INTSRC_TRGEV1);
+	csp_rtc_clr_isr(ptRtc, RTC_INTSRC_ALMA|RTC_INTSRC_ALMB|RTC_INTSRC_CPRD|RTC_INTSRC_TRGEV0|RTC_INTSRC_TRGEV1);
 	
 	csi_irq_enable((uint32_t *)ptRtc);	
 }
@@ -248,10 +248,10 @@ csi_error_t csi_rtc_set_alarm(csp_rtc_t *ptRtc, csi_rtc_alarm_e eAlm, csi_rtc_ti
 	}
 	switch (eAlm)
 	{
-		case (RTC_ALMA): 	csp_rtc_int_clr(ptRtc, RTC_INTSRC_ALMA);
+		case (RTC_ALMA): 	csp_rtc_clr_isr(ptRtc, RTC_INTSRC_ALMA);
 							csp_rtc_int_enable(ptRtc, RTC_INTSRC_ALMA, ENABLE);
 							break;
-		case (RTC_ALMB):	csp_rtc_int_clr(ptRtc, RTC_INTSRC_ALMB);
+		case (RTC_ALMB):	csp_rtc_clr_isr(ptRtc, RTC_INTSRC_ALMB);
 							csp_rtc_int_enable(ptRtc, RTC_INTSRC_ALMB, ENABLE);
 							break;
 		default:
@@ -279,10 +279,10 @@ void csi_rtc_cancel_alarm(csp_rtc_t *ptRtc, csi_rtc_alarm_e eAlm)
 	switch (eAlm)
 	{
 		case (RTC_ALMA): 	csi_rtc_int_enable(ptRtc, RTC_INTSRC_ALMA, DISABLE);
-							csp_rtc_int_clr(ptRtc, RTC_INTSRC_ALMA);
+							csp_rtc_clr_isr(ptRtc, RTC_INTSRC_ALMA);
 							break;
 		case (RTC_ALMB):	csi_rtc_int_enable(ptRtc, RTC_INTSRC_ALMB, DISABLE);
-							csp_rtc_int_clr(ptRtc, RTC_INTSRC_ALMB);
+							csp_rtc_clr_isr(ptRtc, RTC_INTSRC_ALMB);
 							break;
 		default: break;
 	}
@@ -571,29 +571,29 @@ csp_error_t apt_rtc_set_trgprd(csp_rtc_t *ptRtc, csi_rtc_trgout_e eTrg, uint8_t 
  */ 
 __attribute__((weak)) void rtc_irqhandler(csp_rtc_t *ptRtcBase)
 {
-	if(((csp_rtc_get_int_st(ptRtcBase) & RTC_INTSRC_ALMA))==RTC_INTSRC_ALMA)
+	if(((csp_rtc_get_isr(ptRtcBase) & RTC_INTSRC_ALMA))==RTC_INTSRC_ALMA)
 	{
 		s_hwRtcMsg |= RTC_INTSRC_ALMA;
-		csp_rtc_int_clr(ptRtcBase,RTC_INTSRC_ALMA);	
+		csp_rtc_clr_isr(ptRtcBase,RTC_INTSRC_ALMA);	
 	}	
-	if(((csp_rtc_get_int_st(ptRtcBase) & RTC_INTSRC_ALMB))==RTC_INTSRC_ALMB)
+	if(((csp_rtc_get_isr(ptRtcBase) & RTC_INTSRC_ALMB))==RTC_INTSRC_ALMB)
 	{
 		s_hwRtcMsg |= RTC_INTSRC_ALMB;
-		csp_rtc_int_clr(ptRtcBase,RTC_INTSRC_ALMB);	
+		csp_rtc_clr_isr(ptRtcBase,RTC_INTSRC_ALMB);	
 	}	
-	if(((csp_rtc_get_int_st(ptRtcBase) & RTC_INTSRC_CPRD))==RTC_INTSRC_CPRD)
+	if(((csp_rtc_get_isr(ptRtcBase) & RTC_INTSRC_CPRD))==RTC_INTSRC_CPRD)
 	{
 		s_hwRtcMsg |= RTC_INTSRC_CPRD;
-		csp_rtc_int_clr(ptRtcBase,RTC_INTSRC_CPRD);	
+		csp_rtc_clr_isr(ptRtcBase,RTC_INTSRC_CPRD);	
 	}	
-	if(((csp_rtc_get_int_st(ptRtcBase) & RTC_INTSRC_TRGEV0))==RTC_INTSRC_TRGEV0)
+	if(((csp_rtc_get_isr(ptRtcBase) & RTC_INTSRC_TRGEV0))==RTC_INTSRC_TRGEV0)
 	{
 		s_hwRtcMsg |= RTC_INTSRC_TRGEV0;
-		csp_rtc_int_clr(ptRtcBase,RTC_INTSRC_TRGEV0);	
+		csp_rtc_clr_isr(ptRtcBase,RTC_INTSRC_TRGEV0);	
 	}	
-	if(((csp_rtc_get_int_st(ptRtcBase) & RTC_INTSRC_TRGEV1))==RTC_INTSRC_TRGEV1)
+	if(((csp_rtc_get_isr(ptRtcBase) & RTC_INTSRC_TRGEV1))==RTC_INTSRC_TRGEV1)
 	{
 		s_hwRtcMsg |= RTC_INTSRC_TRGEV1;
-		csp_rtc_int_clr(ptRtcBase,RTC_INTSRC_TRGEV1);	
+		csp_rtc_clr_isr(ptRtcBase,RTC_INTSRC_TRGEV1);	
 	}	
 }

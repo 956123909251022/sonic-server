@@ -23,7 +23,7 @@
  */ 
 __attribute ((weak))void led_irqhandler(csp_led_t *ptLedBase)
 {
-	csp_led_clr_int(ptLedBase, LED_INTSRC_ICEND|LED_INTSRC_IPEND);
+	csp_led_clr_isr(ptLedBase, LED_INTSRC_ICEND|LED_INTSRC_IPEND);
 }
 /** \brief   led init & configuration: clk, brightness, COM mask
  * 
@@ -64,7 +64,7 @@ void csi_led_int_enable(csp_led_t *ptLedBase, csi_led_intsrc_e eIntSrc, bool bEn
 		csi_irq_enable((uint32_t *)ptLedBase);
 	}
 	else {
-		if (eIntSrc == csp_led_get_misr(ptLedBase)) {
+		if (eIntSrc == csp_led_get_isr(ptLedBase)) {
 			csi_irq_disable((uint32_t *)ptLedBase);
 		}
 	}

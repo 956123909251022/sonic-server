@@ -41,7 +41,7 @@ void apt_iic_deinit(csp_i2c_t *ptIicBase)
 {
 	csp_i2c_disable(ptIicBase);
 	csp_i2c_set_imcr(ptIicBase,0);
-    csp_i2c_clr_all_int(ptIicBase);
+    csp_i2c_clr_all_isr(ptIicBase);
 }
 
 /** \brief enable iic 

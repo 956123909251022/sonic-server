@@ -36,19 +36,19 @@ uint8_t byStartpolBack;
  */ 
 __attribute__((weak)) void lpt_irqhandler(csp_lpt_t *ptLptBase)
 {
-   volatile uint32_t wMisr = csp_lpt_get_misr(ptLptBase);	
+   volatile uint32_t wMisr = csp_lpt_get_isr(ptLptBase);	
 	
 	if(wMisr & LPT_TRGEV_INT)
 	{
-		csp_lpt_clr_misr(ptLptBase, LPT_TRGEV_INT);
+		csp_lpt_clr_isr(ptLptBase, LPT_TRGEV_INT);
 	}
 	if(wMisr & LPT_MATCH_INT)
 	{
-		csp_lpt_clr_misr(ptLptBase, LPT_MATCH_INT);
+		csp_lpt_clr_isr(ptLptBase, LPT_MATCH_INT);
 	}
 	if(wMisr & LPT_PEND_INT)
 	{
-		csp_lpt_clr_misr(ptLptBase, LPT_PEND_INT);
+		csp_lpt_clr_isr(ptLptBase, LPT_PEND_INT);
 	}
 }
 
