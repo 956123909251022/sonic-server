@@ -9,11 +9,11 @@
  * *********************************************************************
 */
 
-#include "csp_syscon.h"
+#include <soc.h>
 #include "csp.h"
 #include "reliability.h"
 #include "irq.h"
-#include "soc.h"
+#include "csp_syscon.h"
 
 /// ************************************************************************
 ///						for LVD module
