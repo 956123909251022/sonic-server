@@ -142,7 +142,7 @@ typedef struct {
 typedef enum {
 	RTC_FMT_24 = 0,
 	RTC_FMT_12
-}rtc_fmt_e;
+}csp_rtc_fmt_e;
 
 typedef enum {
 	RTC_SET_AM = 0,
@@ -366,16 +366,16 @@ static inline void csp_rtc_ers_key(csp_rtc_t *ptRtcBase)
 }
 
 
-static inline void csp_rtc_set_fmt(csp_rtc_t *ptRtcBase, rtc_fmt_e bFmt)
+static inline void csp_rtc_set_fmt(csp_rtc_t *ptRtcBase, csp_rtc_fmt_e bFmt)
 {
 	ptRtcBase->KEY = 0xCA53;
 	ptRtcBase->CR = (ptRtcBase->CR & (~RTC_FMT_MSK)) | (bFmt << RTC_FMT_POS);
 	ptRtcBase->KEY = 0x0;
 	while(ptRtcBase->CR & RTC_BSY);
 }
-static inline rtc_fmt_e csp_rtc_get_fmt(csp_rtc_t *ptRtcBase)
+static inline csp_rtc_fmt_e csp_rtc_get_fmt(csp_rtc_t *ptRtcBase)
 {
-	return (rtc_fmt_e)(((ptRtcBase->CR) & RTC_FMT_MSK) >> RTC_FMT_POS);
+	return (csp_rtc_fmt_e)(((ptRtcBase->CR) & RTC_FMT_MSK) >> RTC_FMT_POS);
 }
 
 static inline void csp_rtc_debug_enable(csp_rtc_t *ptRtcBase, bool bEnable)

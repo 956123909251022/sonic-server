@@ -152,7 +152,7 @@ csi_error_t csi_usart_init(csp_usart_t *ptUsartBase, csi_usart_config_t *ptUsart
  */
 void csi_usart_int_enable(csp_usart_t *ptUsartBase, csi_usart_intsrc_e eIntSrc, bool bEnable)
 {
-	csp_usart_int_enable(ptUsartBase, eIntSrc, bEnable);
+	csp_usart_int_enable(ptUsartBase, (usart_int_e)eIntSrc, bEnable);
 	
 	if(bEnable)
 		csi_irq_enable((uint32_t *)ptUsartBase);

@@ -158,7 +158,7 @@ void csi_uart_recv_timeout(csp_uart_t *ptUartBase, uint16_t hwTimeOut, bool bEna
  */
 void csi_uart_int_enable(csp_uart_t *ptUartBase, csi_uart_intsrc_e eIntSrc, bool bEnable)
 {
-	csp_uart_int_enable(ptUartBase, eIntSrc, bEnable);
+	csp_uart_int_enable(ptUartBase, (uart_int_e)eIntSrc, bEnable);
 	
 	if(bEnable)
 		csi_irq_enable((uint32_t *)ptUartBase);
@@ -298,6 +298,7 @@ int16_t csi_uart_send(csp_uart_t *ptUartBase, const void *pData, uint16_t hwSize
 			return CSI_ERROR;
 	}
 }
+
 
 /** \brief send data from uart, this function is interrupt mode(async mode)
  * 

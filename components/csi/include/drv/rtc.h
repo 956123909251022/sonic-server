@@ -197,7 +197,7 @@ void csi_rtc_stop(csp_rtc_t *ptRtc);
   \param       eFmt \ref rtc_fmt_e    
   \return      none
 */
-void csi_rtc_change_fmt(csp_rtc_t *ptRtc,  rtc_fmt_e eFmt);
+void csi_rtc_change_fmt(csp_rtc_t *ptRtc,  csi_rtc_fmt_e eFmt);
 
 /**
   \brief   RTC interrupt enable/disable
