@@ -19,6 +19,11 @@
       <GenCodeFuncName>APT32F1103_48PinInitFunc</GenCodeFuncName>
       <Pins>
         <Pin pinNum="38" group="PA0" displayName="PA0.0">
+          <Property class="Bool">
+            <label>Use</label>
+            <value>1</value>
+            <Comment>是否启用管脚配置</Comment>
+          </Property>
           <Property class="UIchoice">
             <label>GPIO/AF</label>
             <value>GPIO</value>
@@ -30,8 +35,9 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value>RTC_ALM</value>
+            <value>AF_DIS</value>
             <Selections>
+              <sel>AF_DIS</sel>
               <sel>RTC_ALM</sel>
               <sel>CMP1_OUT</sel>
               <sel>GPTB0_CHAY</sel>
@@ -2954,11 +2960,11 @@
           </Device>
         </Category>
         <Category>
-          <label>LVR</label>
+          <label>LVD_R</label>
           <Device deviceId="LVR">
             <GenCodeFuncName>SysLVRInitFunc</GenCodeFuncName>
             <UseOrNot>0</UseOrNot>
-            <label>LVR</label>
+            <label>LVD_R</label>
             <Property class="UIchoice">
               <label>Rst Level</label>
               <value>LVR_19</value>
@@ -2972,6 +2978,7 @@
                 <sel>LVR_37</sel>
                 <sel>LVR_40</sel>
               </Selections>
+              <Comment>Rst level 应小于Int Level</Comment>
             </Property>
             <Property class="UIchoice">
               <label>Int Level</label>
@@ -5445,7 +5452,7 @@
           </Property>
           <Property class="UIchoice">
             <label>Parity</label>
-            <value>UART_PARITY_ODD</value>
+            <value>UART_PARITY_NONE</value>
             <Selections>
               <sel>UART_PARITY_NONE</sel>
               <sel>UART_PARITY_EVEN</sel>
@@ -5492,7 +5499,7 @@
           </Property>
           <Property class="UIchoice">
             <label>Parity</label>
-            <value>UART_PARITY_ODD</value>
+            <value>UART_PARITY_NONE</value>
             <Selections>
               <sel>UART_PARITY_NONE</sel>
               <sel>UART_PARITY_EVEN</sel>
@@ -5539,7 +5546,7 @@
           </Property>
           <Property class="UIchoice">
             <label>Parity</label>
-            <value>UART_PARITY_ODD</value>
+            <value>UART_PARITY_NONE</value>
             <Selections>
               <sel>UART_PARITY_NONE</sel>
               <sel>UART_PARITY_EVEN</sel>
@@ -5624,14 +5631,14 @@
           <Property class="UIchoice">
             <label>Parity</label>
             <Comment>USART Mode Parameters</Comment>
-            <value>USART_PARITY_EVEN</value>
+            <value>USART_PARITY_NONE</value>
             <Selections>
               <sel>USART_PARITY_EVEN</sel>
               <sel>USART_PARITY_ODD</sel>
               <sel>USART_PARITY_ZERO</sel>
               <sel>USART_PARITY_ONE</sel>
               <sel>USART_PARITY_NONE</sel>
-              <sel>USART_PARITY_NONE</sel>
+              <sel>USART_PARITY_MD</sel>
             </Selections>
           </Property>
           <Property class="UIchoice">
@@ -8692,10 +8699,10 @@
             <label>WorkMode</label>
             <value>EPT_CAPTURE</value>
             <Selections>
-              <sel notAvailable="EPT0WAVE,EPT0DE,EPT0EM">EPT_CAPTURE</sel>
-              <sel notAvailable="EPT0CAPTURE,EPT0DE,EPT0EM">EPT_WAVE</sel>
+              <sel notAvailable="EPT0WAVE,EPT0DE,EPT0EM,EPT0DZDPSC">EPT_CAPTURE</sel>
+              <sel notAvailable="EPT0CAPTURE,EPT0DE,EPT0EM,EPT0DZDPSC">EPT_WAVE</sel>
             </Selections>
-            <Comment>工作模式选择,计数或捕获</Comment>
+            <Comment>EPT工作模式选择 &#xD;EPT_CAPTURE捕捉模式 &#xD;EPT_WAVE波形发生模式</Comment>
           </Property>
           <Property class="UIchoice">
             <label>CountingMode</label>
@@ -8705,7 +8712,7 @@
               <sel>EPT_DNCNT</sel>
               <sel>EPT_UPDNCNT</sel>
             </Selections>
-            <Comment>计数方向</Comment>
+            <Comment>计数模式设置&#xD;EPT_UPCNT递增模式 &#xD;EPT_DNCNT递减模式 &#xD;EPT_UPDNCNT递增递减模式</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>OneshotMode</label>
@@ -8714,17 +8721,17 @@
               <sel>EPT_OP_CONT</sel>
               <sel>EPT_OP_OT</sel>
             </Selections>
-            <Comment>计数器单次触发工作模式选择</Comment>
+            <Comment>计数器单次触发工作模式选择&#xD;&#xD;EPT_OP_CONT连续计数工作模式&#xD;EPT_OP_OT单次触发工作模式</Comment>
           </Property>
           <Property class="Text" property_class="EPT0WAVE">
             <label>Freq</label>
             <value>10000</value>
-            <Comment/>
+            <Comment>输出波形频率 单位Hz</Comment>
           </Property>
           <Property class="Text" property_class="EPT0WAVE">
             <label>Duty Cycle</label>
             <value>50</value>
-            <Comment>范围:0~100.PWM占空比</Comment>
+            <Comment>输出波形占空比 范围:0~100</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0CAPTURE">
             <label>CaptureMode</label>
@@ -8733,7 +8740,7 @@
               <sel>EPT_CAPMD_CONT</sel>
               <sel>EPT_CAPMD_OT</sel>
             </Selections>
-            <Comment>0:连续捕捉模式    1h：一次性捕捉模式</Comment>
+            <Comment>捕捉模式设置&#xD;EPT_CAPMD_CONT连续捕捉模式&#xD;EPT_CAPMD_OT一次性捕捉模式</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0CAPTURE">
             <label>STOP_WRAP</label>
@@ -8744,7 +8751,7 @@
               <sel>3</sel>
               <sel>4</sel>
             </Selections>
-            <Comment>范围:1~4,Capture模式下,捕获事件计数器周期设置值.</Comment>
+            <Comment>Capture模式下,捕获事件计数器周期设置值</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0CAPTURE">
             <label>LDARST</label>
@@ -8753,7 +8760,7 @@
               <sel>0</sel>
               <sel>1</sel>
             </Selections>
-            <Comment>CMPA捕捉载入后，计数器值计数状态控制位(1h：CMPA触发后，计数器值进行重置;0h：CMPA触发后，计数器值不进行重置)</Comment>
+            <Comment>CMPA捕捉载入后，计数器值计数状态控制位&#xD;1h：CMPA触发后，计数器值进行重置&#xD;0h：CMPA触发后，计数器值不进行重置</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0CAPTURE">
             <label>LDBRST</label>
@@ -8762,7 +8769,7 @@
               <sel>0</sel>
               <sel>1</sel>
             </Selections>
-            <Comment>CMPB捕捉载入后，计数器值计数状态控制位(1h：CMPA触发后，计数器值进行重置;0h：CMPB触发后，计数器值不进行重置)</Comment>
+            <Comment>CMPB捕捉载入后，计数器值计数状态控制位&#xD;1h：CMPB触发后，计数器值进行重置&#xD;0h：CMPB触发后，计数器值不进行重置</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0CAPTURE">
             <label>LDCRST</label>
@@ -8771,7 +8778,7 @@
               <sel>0</sel>
               <sel>1</sel>
             </Selections>
-            <Comment>CMPC捕捉载入后，计数器值计数状态控制位(1h：CMPC触发后，计数器值进行重置;0h：CMPC触发后，计数器值不进行重置)</Comment>
+            <Comment>CMPC捕捉载入后，计数器值计数状态控制位&#xD;1h：CMPC触发后，计数器值进行重置&#xD;0h：CMPC触发后，计数器值不进行重置</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0CAPTURE">
             <label>LDDRST</label>
@@ -8780,97 +8787,97 @@
               <sel>0</sel>
               <sel>1</sel>
             </Selections>
-            <Comment>CMPD捕捉载入后，计数器值计数状态控制位(1h：CMPD触发后，计数器值进行重置;0h：CMPD触发后，计数器值不进行重置)</Comment>
+            <Comment>CMPD捕捉载入后，计数器值计数状态控制位&#xD;1h：CMPD触发后，计数器值进行重置&#xD;0h：CMPD触发后，计数器值不进行重置</Comment>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_NONE</label>
             <value>1</value>
-            <Comment/>
+            <Comment>不使能中断</Comment>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_TRGEV0</label>
             <value>0</value>
-            <Comment/>
+            <Comment>事件0中断</Comment>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_TRGEV1</label>
             <value>0</value>
-            <Comment/>
+            <Comment>事件1中断</Comment>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_TRGEV2</label>
             <value>0</value>
-            <Comment/>
+            <Comment>事件2中断</Comment>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_TRGEV3</label>
             <value>0</value>
-            <Comment/>
+            <Comment>事件3中断</Comment>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_CAPLD0</label>
             <value>0</value>
-            <Comment/>
+            <Comment>捕获值载入CMPA中断</Comment>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_CAPLD1</label>
             <value>0</value>
-            <Comment/>
+            <Comment>捕获值载入CMPB中断</Comment>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_CAPLD2</label>
             <value>0</value>
-            <Comment/>
+            <Comment>捕获值载入CMPC中断</Comment>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_CAPLD3</label>
             <value>0</value>
-            <Comment/>
+            <Comment>捕获值载入CMPD中断</Comment>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_CAU</label>
             <value>0</value>
-            <Comment/>
+            <Comment>递增阶段CNT = CMPA中断</Comment>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_CAD</label>
             <value>0</value>
-            <Comment/>
+            <Comment>递减阶段CNT = CMPA中断</Comment>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_CBU</label>
             <value>0</value>
-            <Comment/>
+            <Comment>递增阶段CNT = CMPB中断</Comment>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_CBD</label>
             <value>0</value>
-            <Comment/>
+            <Comment>递减阶段CNT = CMPB中断</Comment>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_CCU</label>
             <value>0</value>
-            <Comment/>
+            <Comment>递增阶段CNT = CMPC中断</Comment>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_CCD</label>
             <value>0</value>
-            <Comment/>
+            <Comment>递减阶段CNT = CMPC中断</Comment>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_CDU</label>
             <value>0</value>
-            <Comment/>
+            <Comment>递增阶段CNT = CMPD中断</Comment>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_CDD</label>
             <value>0</value>
-            <Comment/>
+            <Comment>递减阶段CNT = CMPD中断</Comment>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_PEND</label>
             <value>0</value>
-            <Comment/>
+            <Comment>周期结束中断</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>ZRO</label>
@@ -8881,7 +8888,7 @@
               <sel>EPT_HI</sel>
               <sel>EPT_TG</sel>
             </Selections>
-            <Comment/>
+            <Comment>当CNT值等于零时，在通道pwm1上做出的波形输出动作定义&#xD;在递增递减模式时，当计数器值等于零时，计数方向为递增模式&#xD;EPT_NA不动作&#xD;EPT_LO低电平&#xD;EPT_HI高电平&#xD;EPT_TG反向</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>PRD</label>
@@ -8892,7 +8899,7 @@
               <sel>EPT_HI</sel>
               <sel>EPT_TG</sel>
             </Selections>
-            <Comment/>
+            <Comment>当CNT值等于PRDR时，在通道pwm1上做出的波形输出动作定义&#xD;在递增递减模式时，当计数器值等于PRDR时，计数方向为递减模式&#xD;EPT_NA不动作&#xD;EPT_LO低电平&#xD;EPT_HI高电平&#xD;EPT_TG反向</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>C1U</label>
@@ -8903,7 +8910,7 @@
               <sel>EPT_HI</sel>
               <sel>EPT_TG</sel>
             </Selections>
-            <Comment/>
+            <Comment>当CNT值等于C1，且此时计数方向为递增时,在通道pwm1上做出的波形输出动作定义&#xD;EPT_NA不动作&#xD;EPT_LO低电平&#xD;EPT_HI高电平&#xD;EPT_TG反向</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>C1D</label>
@@ -8914,7 +8921,7 @@
               <sel>EPT_HI</sel>
               <sel>EPT_TG</sel>
             </Selections>
-            <Comment/>
+            <Comment>当CNT值等于C1，且此时计数方向为递减时,在通道pwm1上做出的波形输出动作定义&#xD;EPT_NA不动作&#xD;EPT_LO低电平&#xD;EPT_HI高电平&#xD;EPT_TG反向</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>C2U</label>
@@ -8925,7 +8932,7 @@
               <sel>EPT_HI</sel>
               <sel>EPT_TG</sel>
             </Selections>
-            <Comment/>
+            <Comment>当CNT值等于C2，且此时计数方向为递增时,在通道pwm1上做出的波形输出动作定义&#xD;EPT_NA不动作&#xD;EPT_LO低电平&#xD;EPT_HI高电平&#xD;EPT_TG反向</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>C2D</label>
@@ -8936,7 +8943,7 @@
               <sel>EPT_HI</sel>
               <sel>EPT_TG</sel>
             </Selections>
-            <Comment/>
+            <Comment>当CNT值等于C2，且此时计数方向为递减时,在通道pwm1上做出的波形输出动作定义&#xD;EPT_NA不动作&#xD;EPT_LO低电平&#xD;EPT_HI高电平&#xD;EPT_TG反向</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>T1U</label>
@@ -8947,7 +8954,7 @@
               <sel>EPT_HI</sel>
               <sel>EPT_TG</sel>
             </Selections>
-            <Comment/>
+            <Comment>当T1事件发生，且此时计数方向为递增时,在通道pwm1上做出的波形输出动作定义&#xD;EPT_NA不动作&#xD;EPT_LO低电平&#xD;EPT_HI高电平&#xD;EPT_TG反向</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>T1D</label>
@@ -8958,7 +8965,7 @@
               <sel>EPT_HI</sel>
               <sel>EPT_TG</sel>
             </Selections>
-            <Comment/>
+            <Comment>当T1事件发生，且此时计数方向为递减时,在通道pwm1上做出的波形输出动作定义&#xD;EPT_NA不动作&#xD;EPT_LO低电平&#xD;EPT_HI高电平&#xD;EPT_TG反向</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>T2U</label>
@@ -8969,7 +8976,7 @@
               <sel>EPT_HI</sel>
               <sel>EPT_TG</sel>
             </Selections>
-            <Comment/>
+            <Comment>当T2事件发生，且此时计数方向为递增时,在通道pwm1上做出的波形输出动作定义&#xD;EPT_NA不动作&#xD;EPT_LO低电平&#xD;EPT_HI高电平&#xD;EPT_TG反向</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>T2D</label>
@@ -8980,7 +8987,7 @@
               <sel>EPT_HI</sel>
               <sel>EPT_TG</sel>
             </Selections>
-            <Comment/>
+            <Comment>当T2事件发生，且此时计数方向为递减时,在通道pwm1上做出的波形输出动作定义&#xD;EPT_NA不动作&#xD;EPT_LO低电平&#xD;EPT_HI高电平&#xD;EPT_TG反向</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>CH1C1SEL</label>
@@ -8991,7 +8998,7 @@
               <sel>EPT_CMPC</sel>
               <sel>EPT_CMPD</sel>
             </Selections>
-            <Comment/>
+            <Comment>通道1的C1比较值的数据源选择&#xD;EPT_CMPA：CMPA寄存器作为数据源&#xD;EPT_CMPB：CMPB寄存器作为数据源&#xD;EPT_CMPC：CMPC寄存器作为数据源&#xD;EPT_CMPD：CMPD寄存器作为数据源</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>CH1C2SEL</label>
@@ -9002,7 +9009,7 @@
               <sel>EPT_CMPC</sel>
               <sel>EPT_CMPD</sel>
             </Selections>
-            <Comment/>
+            <Comment>通道1的C2比较值的数据源选择&#xD;EPT_CMPA：CMPA寄存器作为数据源&#xD;EPT_CMPB：CMPB寄存器作为数据源&#xD;EPT_CMPC：CMPC寄存器作为数据源&#xD;EPT_CMPD：CMPD寄存器作为数据源</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>CH2C1SEL</label>
@@ -9013,7 +9020,7 @@
               <sel>EPT_CMPC</sel>
               <sel>EPT_CMPD</sel>
             </Selections>
-            <Comment/>
+            <Comment>通道2的C1比较值的数据源选择&#xD;EPT_CMPA：CMPA寄存器作为数据源&#xD;EPT_CMPB：CMPB寄存器作为数据源&#xD;EPT_CMPC：CMPC寄存器作为数据源&#xD;EPT_CMPD：CMPD寄存器作为数据源</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>CH2C2SEL</label>
@@ -9024,7 +9031,7 @@
               <sel>EPT_CMPC</sel>
               <sel>EPT_CMPD</sel>
             </Selections>
-            <Comment/>
+            <Comment>通道2的C2比较值的数据源选择&#xD;EPT_CMPA：CMPA寄存器作为数据源&#xD;EPT_CMPB：CMPB寄存器作为数据源&#xD;EPT_CMPC：CMPC寄存器作为数据源&#xD;EPT_CMPD：CMPD寄存器作为数据源</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>CH3C1SEL</label>
@@ -9035,7 +9042,7 @@
               <sel>EPT_CMPC</sel>
               <sel>EPT_CMPD</sel>
             </Selections>
-            <Comment/>
+            <Comment>通道3的C1比较值的数据源选择&#xD;EPT_CMPA：CMPA寄存器作为数据源&#xD;EPT_CMPB：CMPB寄存器作为数据源&#xD;EPT_CMPC：CMPC寄存器作为数据源&#xD;EPT_CMPD：CMPD寄存器作为数据源</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>CH3C2SEL</label>
@@ -9046,7 +9053,7 @@
               <sel>EPT_CMPC</sel>
               <sel>EPT_CMPD</sel>
             </Selections>
-            <Comment/>
+            <Comment>通道3的C2比较值的数据源选择&#xD;EPT_CMPA：CMPA寄存器作为数据源&#xD;EPT_CMPB：CMPB寄存器作为数据源&#xD;EPT_CMPC：CMPC寄存器作为数据源&#xD;EPT_CMPD：CMPD寄存器作为数据源</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>CH4C1SEL</label>
@@ -9057,7 +9064,7 @@
               <sel>EPT_CMPC</sel>
               <sel>EPT_CMPD</sel>
             </Selections>
-            <Comment/>
+            <Comment>通道4的C1比较值的数据源选择&#xD;EPT_CMPA：CMPA寄存器作为数据源&#xD;EPT_CMPB：CMPB寄存器作为数据源&#xD;EPT_CMPC：CMPC寄存器作为数据源&#xD;EPT_CMPD：CMPD寄存器作为数据源</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>CH4C2SEL</label>
@@ -9068,7 +9075,7 @@
               <sel>EPT_CMPC</sel>
               <sel>EPT_CMPD</sel>
             </Selections>
-            <Comment/>
+            <Comment>通道4的C2比较值的数据源选择&#xD;EPT_CMPA：CMPA寄存器作为数据源&#xD;EPT_CMPB：CMPB寄存器作为数据源&#xD;EPT_CMPC：CMPC寄存器作为数据源&#xD;EPT_CMPD：CMPD寄存器作为数据源</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>DeadZone</label>
@@ -9077,32 +9084,32 @@
               <sel notAvailable="EPT0DZ">DISABLE</sel>
               <sel>ENABLE</sel>
             </Selections>
-            <Comment/>
+            <Comment>死区控制延时计数器的时钟源选择</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0DZ">
             <label>DeadZoneClkSrc</label>
-            <value>EPT_DB_DPSC</value>
+            <value>EPT_DB_TCLK</value>
             <Selections>
-              <sel>EPT_DB_TCLK</sel>
+              <sel notAvailable="EPT0DZDPSC">EPT_DB_TCLK</sel>
               <sel>EPT_DB_DPSC</sel>
             </Selections>
-            <Comment/>
+            <Comment>死区控制延时计数器的时钟源选择&#xD;EPT_DB_TCLK:死区控制延时计数器以TCLK频率工作&#xD;EPT_DB_DPSC:死区控制延时计数器以HCLK/(DPSC+1)工作</Comment>
           </Property>
-          <Property class="Text" property_class="EPT0DZ">
+          <Property class="Text" property_class="EPT0DZDPSC">
             <label>DPSC</label>
             <value>0</value>
             <validReg>^([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-9][0-9][0-9][0-9]|[1-5][0-9][0-9][0-9][0-9]|6[0-4][0-9][0-9][0-9]|65[0-4][0-9][0-9]|655[0-2][0-9]|6553[0-5])$</validReg>
-            <Comment>时钟分频控制 范围:0~65535之间的整数 FDBCLK = FHCLK / (DPSC+1)</Comment>
+            <Comment>时钟分频控制 FDBCLK = FHCLK / (DPSC+1) 范围:0~65535之间的整数</Comment>
           </Property>
           <Property class="Text" property_class="EPT0DZ">
             <label>RisingEdgeTime</label>
             <value>500</value>
-            <Comment>上升沿 单位 ns</Comment>
+            <Comment>上升沿延时时间t = RisingEdgeTime x TDBCLK 单位ns</Comment>
           </Property>
           <Property class="Text" property_class="EPT0DZ">
             <label>FallingEdgeTime</label>
             <value>200</value>
-            <Comment>下降沿 单位 ns</Comment>
+            <Comment>下降沿延时时间t = FallingEdgeTime x TDBCLK 单位ns</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0DZ">
             <label>ChaDeadB</label>
@@ -9111,7 +9118,7 @@
               <sel>EPT_DB_AR_BF</sel>
               <sel>EPT_DB_BR_BF</sel>
             </Selections>
-            <Comment/>
+            <Comment>在PWM1 DBCOUTY 上选择死区双沿模式(S6)&#xD;EPT_DB_AR_BF不使用死区双沿&#xD;EPT_DB_BR_BF使用死区双沿</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0DZ">
             <label>ChbDeadB</label>
@@ -9120,7 +9127,7 @@
               <sel>EPT_DB_AR_BF</sel>
               <sel>EPT_DB_BR_BF</sel>
             </Selections>
-            <Comment/>
+            <Comment>在PWM2 DBCOUTY 上选择死区双沿模式(S6)&#xD;EPT_DB_AR_BF不使用死区双沿&#xD;EPT_DB_BR_BF使用死区双沿</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0DZ">
             <label>ChcDeadB</label>
@@ -9129,7 +9136,7 @@
               <sel>EPT_DB_AR_BF</sel>
               <sel>EPT_DB_BR_BF</sel>
             </Selections>
-            <Comment/>
+            <Comment>在PWM3 DBCOUTY 上选择死区双沿模式(S6)&#xD;EPT_DB_AR_BF不使用死区双沿&#xD;EPT_DB_BR_BF使用死区双沿</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0DZ">
             <label>ChxOuselS1S0</label>
@@ -9140,7 +9147,7 @@
               <sel>EPT_DBOUT_AR</sel>
               <sel>EPT_DBOUT_AR_BF</sel>
             </Selections>
-            <Comment>通道A上升沿和通道B下降沿使能控制</Comment>
+            <Comment>死区输出配置(S1、S0开关)&#xD;EPT_DBOUT_DIS:bypass死区控制，X通道输出PWM1，Y通道输出PWM2&#xD;EPT_DBOUT_BF:X通道输出PWM1，使能Y通道的下降沿延时&#xD;EPT_DBOUT_AR:使能X通道的上升沿延时，Y通道输出PWM2&#xD;EPT_DBOUT_AR_BF:使能X通道的上升沿延时，使能Y通道的下降沿延时</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0DZ">
             <label>ChxPolarityS3S2</label>
@@ -9151,7 +9158,7 @@
               <sel>EPT_DB_POL_B</sel>
               <sel>EPT_DB_POL_AB</sel>
             </Selections>
-            <Comment>通道A和通道B延时输出电平反向控制</Comment>
+            <Comment>输出极性控制(S3、S2开关)&#xD;EPT_DBOUT_AR_BF:X通道和Y通道延时输出不反向&#xD;EPT_DB_POL_A:X通道的延时输出反向&#xD;EPT_DB_POL_B:Y通道的延时输出反向&#xD;EPT_DB_POL_AB:X通道和Y通道延时输出全部反向</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0DZ">
             <label>ChxInselS5S4</label>
@@ -9162,7 +9169,7 @@
               <sel>EPT_DBCHAIN_AR_BF</sel>
               <sel>EPT_DBCHAIN_BR_BF</sel>
             </Selections>
-            <Comment>上升沿和下降沿延时处理的输入信号选择</Comment>
+            <Comment>延时模块输入选择(S5、S4开关)&#xD;在经典死区控制模式下，上升沿延时和下降沿延时都选择同一个输入信号进行处理&#xD;EPT_DBCHAIN_AR_AF:PWM1作为上升沿和下降沿延时处理的输入信号&#xD;EPT_DBCHAIN_BR_AF:PWM2作为上升沿延时输入，PWM1作为下降沿延时输入&#xD;EPT_DBCHAIN_AR_BF:PWM1作为上升沿延时输入，PWM2作为下降沿延时输入&#xD;EPT_DBCHAIN_BR_BF:PWM2作为上升沿和下降沿延时处理的输入信号</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0DZ">
             <label>ChxOutSwapS8S7</label>
@@ -9173,7 +9180,7 @@
               <sel>EPT_CHOUTX_OUB_OUB</sel>
               <sel>EPT_CHOUTX_OUB_OUA</sel>
             </Selections>
-            <Comment>OUTA=通道A输出，OUTB=通道B输出</Comment>
+            <Comment>死区输出交换控制(S8、S7开关)&#xD;EPT_CHOUTX_OUA_OUB:OUTX=X通道输出，OUTY=Y通道输出&#xD;EPT_CHOUTX_OUA_OUA:OUTX=Y通道输出，OUTY=Y通道输出&#xD;EPT_CHOUTX_OUB_OUB:OUTX=X通道输出，OUTY=X通道输出&#xD;EPT_CHOUTX_OUB_OUA:OUTX=Y通道输出，OUTY=X通道输出</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>Emergency</label>
