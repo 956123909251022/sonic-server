@@ -145,16 +145,16 @@ int gptb_pwm_demo(void)
 //	csi_gptb_channel_aqload_config(GPTB0, GPTB_LD_SHDW, GPTB_LDCMP_PRD ,GPTB_CHANNEL_2);
 //	
 	csi_gptb_pwmchannel_config_t  channel;
-	channel.byActionZro    =   B_LO;
-	channel.byActionPrd    =   B_NA;
-	channel.byActionC1u    =   B_HI;
-	channel.byActionC1d    =   B_LO;
-	channel.byActionC2u    =   B_HI;
-	channel.byActionC2d    =   B_LO;
-	channel.byActionT1u    =   B_LO;
-	channel.byActionT1d    =   B_LO;
-	channel.byActionT2u    =   B_NA;
-	channel.byActionT2d    =   B_NA;
+	channel.byActionZro    =   GPTB_LO;
+	channel.byActionPrd    =   GPTB_NA;
+	channel.byActionC1u    =   GPTB_HI;
+	channel.byActionC1d    =   GPTB_LO;
+	channel.byActionC2u    =   GPTB_HI;
+	channel.byActionC2d    =   GPTB_LO;
+	channel.byActionT1u    =   GPTB_LO;
+	channel.byActionT1d    =   GPTB_LO;
+	channel.byActionT2u    =   GPTB_NA;
+	channel.byActionT2d    =   GPTB_NA;
 	channel.byChoiceC1sel  =   GPTB_CMPA;
 	channel.byChoiceC2sel  =   GPTB_CMPA;
 	csi_gptb_channel_config(GPTB0, &channel,  GPTB_CHANNEL_1);//channel
@@ -187,15 +187,15 @@ int gptb_pwm_demo(void)
 
 //            csi_gptb_global_sw(GPTB0) ;                            //软件产生一次GLD触发
 //            csi_gpio_port_set_high(GPIOA0, (0x01ul << 0));
-			csi_gptb_change_ch_duty(GPTB0,GPTB_CAMPA,50);
-            csi_gptb_change_ch_duty(GPTB0,GPTB_CAMPB,50);
+			csi_gptb_change_ch_duty(GPTB0,GPTB_COMPA,50);
+            csi_gptb_change_ch_duty(GPTB0,GPTB_COMPB,50);
 		    mdelay(100); 
                        
 
 //			csi_gptb_global_sw(GPTB0) ; 
 //			csi_gpio_port_set_low (GPIOA0, (0x01ul << 0));
-            csi_gptb_change_ch_duty(GPTB0,GPTB_CAMPA, 20);
-            csi_gptb_change_ch_duty(GPTB0,GPTB_CAMPB, 20);
+            csi_gptb_change_ch_duty(GPTB0,GPTB_COMPA, 20);
+            csi_gptb_change_ch_duty(GPTB0,GPTB_COMPB, 20);
 		    mdelay(100);	
 	}
 	return iRet;
@@ -234,16 +234,16 @@ int gptb_pwm_dz_demo(void)
 //	csi_gptb_int_enable(GPTB0, GPTB_INT_TRGEV0,true);
 //------------------------------------------------------------------------------------------------------------------------
 	csi_gptb_pwmchannel_config_t  tGptbchannelCfg;
-	tGptbchannelCfg.byActionZro    =   B_LO;
-	tGptbchannelCfg.byActionPrd    =   B_NA;
-	tGptbchannelCfg.byActionC1u    =   B_HI;
-	tGptbchannelCfg.byActionC1d    =   B_LO;
-	tGptbchannelCfg.byActionC2u    =   B_NA;
-	tGptbchannelCfg.byActionC2d    =   B_NA;
-	tGptbchannelCfg.byActionT1u    =   B_LO;
-	tGptbchannelCfg.byActionT1d    =   B_LO;
-	tGptbchannelCfg.byActionT2u    =   B_NA;
-	tGptbchannelCfg.byActionT2d    =   B_NA;
+	tGptbchannelCfg.byActionZro    =   GPTB_LO;
+	tGptbchannelCfg.byActionPrd    =   GPTB_NA;
+	tGptbchannelCfg.byActionC1u    =   GPTB_HI;
+	tGptbchannelCfg.byActionC1d    =   GPTB_LO;
+	tGptbchannelCfg.byActionC2u    =   GPTB_NA;
+	tGptbchannelCfg.byActionC2d    =   GPTB_NA;
+	tGptbchannelCfg.byActionT1u    =   GPTB_LO;
+	tGptbchannelCfg.byActionT1d    =   GPTB_LO;
+	tGptbchannelCfg.byActionT2u    =   GPTB_NA;
+	tGptbchannelCfg.byActionT2d    =   GPTB_NA;
 	tGptbchannelCfg.byChoiceC1sel  =   GPTB_CMPA;
 	tGptbchannelCfg.byChoiceC2sel  =   GPTB_CMPA;	
 	csi_gptb_channel_config(GPTB0, &tGptbchannelCfg,  GPTB_CHANNEL_1);//channel
@@ -270,11 +270,11 @@ int gptb_pwm_dz_demo(void)
 //------------------------------------------------------------------------------------------------------------------------	
 	csi_gptb_start(GPTB0);//start  timer
     while(1){			
-		    csi_gptb_change_ch_duty(GPTB0,GPTB_CAMPA, 80);
-            csi_gptb_change_ch_duty(GPTB0,GPTB_CAMPB, 80);		  
+		    csi_gptb_change_ch_duty(GPTB0,GPTB_COMPA, 80);
+            csi_gptb_change_ch_duty(GPTB0,GPTB_COMPB, 80);		  
 		    mdelay(200);                        
-		    csi_gptb_change_ch_duty(GPTB0,GPTB_CAMPA, 40);
-            csi_gptb_change_ch_duty(GPTB0,GPTB_CAMPB, 40);
+		    csi_gptb_change_ch_duty(GPTB0,GPTB_COMPA, 40);
+            csi_gptb_change_ch_duty(GPTB0,GPTB_COMPB, 40);
 		    mdelay(200);
 	}			
 	return iRet;
@@ -313,16 +313,16 @@ int gptb_pwm_dz_em_demo(void)
 
 //------------------------------------------------------------------------------------------------------------------------
 	csi_gptb_pwmchannel_config_t  tGptbchannelCfg;
-	tGptbchannelCfg.byActionZro    =   B_LO;
-	tGptbchannelCfg.byActionPrd    =   B_NA;
-	tGptbchannelCfg.byActionC1u    =   B_HI;
-	tGptbchannelCfg.byActionC1d    =   B_LO;
-	tGptbchannelCfg.byActionC2u    =   B_NA;
-	tGptbchannelCfg.byActionC2d    =   B_NA;
-	tGptbchannelCfg.byActionT1u    =   B_LO;
-	tGptbchannelCfg.byActionT1d    =   B_LO;
-	tGptbchannelCfg.byActionT2u    =   B_NA;
-	tGptbchannelCfg.byActionT2d    =   B_NA;
+	tGptbchannelCfg.byActionZro    =   GPTB_LO;
+	tGptbchannelCfg.byActionPrd    =   GPTB_NA;
+	tGptbchannelCfg.byActionC1u    =   GPTB_HI;
+	tGptbchannelCfg.byActionC1d    =   GPTB_LO;
+	tGptbchannelCfg.byActionC2u    =   GPTB_NA;
+	tGptbchannelCfg.byActionC2d    =   GPTB_NA;
+	tGptbchannelCfg.byActionT1u    =   GPTB_LO;
+	tGptbchannelCfg.byActionT1d    =   GPTB_LO;
+	tGptbchannelCfg.byActionT2u    =   GPTB_NA;
+	tGptbchannelCfg.byActionT2d    =   GPTB_NA;
 	tGptbchannelCfg.byChoiceC1sel  =   GPTB_CMPA;
 	tGptbchannelCfg.byChoiceC2sel  =   GPTB_CMPA;	
 	csi_gptb_channel_config(GPTB0, &tGptbchannelCfg,  GPTB_CHANNEL_1);//channel	
@@ -350,7 +350,7 @@ int gptb_pwm_dz_em_demo(void)
     csi_gptb_emergency_config_t   tGptbEmergencyCfg;             //紧急状态输入
     tGptbEmergencyCfg.byEpxInt    = B_EBI0 ;                     //EPx选择外部IO端口（EBI0~EBI4）
     tGptbEmergencyCfg.byPolEbix   = B_EBI_POL_L;                 //EBIx的输入有效极性选择控制
-	tGptbEmergencyCfg.byEpx       = B_EP3;                       //使能EPx
+	tGptbEmergencyCfg.byEpx       = GPTB_EP3;                       //使能EPx
 	tGptbEmergencyCfg.byEpxLckmd  = B_EP_HLCK;                   //使能 软/硬 锁
 	tGptbEmergencyCfg.byOsrshdw   = B_IMMEDIATE;                 //锁止端口状态载入方式
     tGptbEmergencyCfg.byFltpace0  = B_EPFLT0_2P;                 //EP0、EP1、EP2和EP3的数字去抖滤波检查周期数
@@ -358,10 +358,10 @@ int gptb_pwm_dz_em_demo(void)
 	if(tGptbEmergencyCfg.byEpxInt ==B_ORL1){tGptbEmergencyCfg.byOrl1 = B_ORLx_EBI0 |B_ORLx_EBI1|B_ORLx_EBI2;}
 	csi_gptb_emergency_cfg(GPTB0,&tGptbEmergencyCfg);
 	
-    csi_gptb_emergency_pinxout(GPTB0,GPTB_EMCOAX,B_EM_OUT_L);    //紧急状态下输出状态设置（注意mos/igbt的驱动电平）
-	csi_gptb_emergency_pinxout(GPTB0,GPTB_EMCOAY,B_EM_OUT_L);
+    csi_gptb_emergency_pinxout(GPTB0,GPTB_EMCOAX,GPTB_EMOUT_L);    //紧急状态下输出状态设置（注意mos/igbt的驱动电平）
+	csi_gptb_emergency_pinxout(GPTB0,GPTB_EMCOAY,GPTB_EMOUT_L);
 	
-    csi_gptb_emergency_int_enable(GPTB0,B_EM_INT_EP3);             //紧急状态输入中断使能
+    csi_gptb_emint_en(GPTB0,B_EM_INT_EP3);             //紧急状态输入中断使能
 //------------------------------------------------------------------------------------------------------------------------	
 
 //	csi_gptb_set_sync (GPTB0, GPTB_TRG_SYNCEN3, GPTB_TRG_CONTINU,GPTB_AUTO_REARM_ZRO);	
@@ -396,8 +396,8 @@ int gptb_pwm_dz_em_demo(void)
 ////            csi_gptb_Onetime_software_output(GPTB0, GPTB_OSTSF1, LO);
 ////            csi_gptb_Onetime_software_output(GPTB0, GPTB_OSTSF2, LO);
 ////            csi_gptb_Onetime_software_output(GPTB0, GPTB_OSTSF3, LO);
-			csi_gptb_change_ch_duty(GPTB0,GPTB_CAMPA, 80);
-            csi_gptb_change_ch_duty(GPTB0,GPTB_CAMPB, 80);
+			csi_gptb_change_ch_duty(GPTB0,GPTB_COMPA, 80);
+            csi_gptb_change_ch_duty(GPTB0,GPTB_COMPB, 80);
             mdelay(100);		
 ////			csi_gptb_continuous_software_output(GPTB0, GPTB_CHANNEL_1,GPTB_EM_AQCSF_L);
 ////			csi_gptb_continuous_software_output(GPTB0, GPTB_CHANNEL_2,GPTB_EM_AQCSF_L);
@@ -407,8 +407,8 @@ int gptb_pwm_dz_em_demo(void)
 ////			csi_gptb_continuous_software_output(GPTB0, GPTB_CHANNEL_2,GPTB_EM_AQCSF_NONE);
 ////			csi_gptb_continuous_software_output(GPTB0, GPTB_CHANNEL_3,GPTB_EM_AQCSF_NONE);
 		
-            csi_gptb_change_ch_duty(GPTB0,GPTB_CAMPA, 40);
-            csi_gptb_change_ch_duty(GPTB0,GPTB_CAMPB, 40);
+            csi_gptb_change_ch_duty(GPTB0,GPTB_COMPA, 40);
+            csi_gptb_change_ch_duty(GPTB0,GPTB_COMPB, 40);
 		    mdelay(100);
 	}			
 	return iRet;
@@ -430,7 +430,7 @@ __attribute__((weak)) void gptb_irqhandler(csp_gptb_t *ptGptbBase)
 	if(((csp_gptb_get_emisr(ptGptbBase) & B_EM_INT_EP3))==B_EM_INT_EP3)
 	{ 
 	  nop;udelay(10);
-	  csp_gptb_clr_emHdlck(ptGptbBase, B_EP3);
+	  csp_gptb_clr_emHdlck(ptGptbBase, GPTB_EP3);
 	  csp_gptb_clr_emisr(ptGptbBase,B_EM_INT_EP3);	
 	 }
 	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_TRGEV0))==GPTB_INT_TRGEV0)
@@ -481,10 +481,10 @@ __attribute__((weak)) void gptb_irqhandler(csp_gptb_t *ptGptbBase)
 		{		
 			s_byTick=0;
 			csi_gpio_port_set_high(GPIOA0, (0x01ul << 0));
-			csi_gptb_channel_cmpload_config(GPTB0, GPTB_CMPLD_IMM, GPTB_LDCMP_ZRO ,GPTB_CAMPA);
-	        csi_gptb_channel_cmpload_config(GPTB0, GPTB_CMPLD_IMM, GPTB_LDCMP_ZRO ,GPTB_CAMPB);
-			csi_gptb_change_ch_duty(GPTB0,GPTB_CAMPA, 25);
-			csi_gptb_change_ch_duty(GPTB0,GPTB_CAMPB, 25);
+			csi_gptb_channel_cmpload_config(GPTB0, GPTB_IMMEDIATE, GPTB_LDMD_ZRO ,GPTB_COMPA);
+	        csi_gptb_channel_cmpload_config(GPTB0, GPTB_IMMEDIATE, GPTB_LDMD_ZRO ,GPTB_COMPB);
+			csi_gptb_change_ch_duty(GPTB0,GPTB_COMPA, 25);
+			csi_gptb_change_ch_duty(GPTB0,GPTB_COMPB, 25);
 			csi_gpio_port_set_low (GPIOA0, (0x01ul << 0));  
 		}
 	    csp_gptb_clr_isr(ptGptbBase, GPTB_INT_CBU);
