@@ -567,7 +567,7 @@ int adc_samp_oneshot_demo2(void)
  *  \param[in] none
  *  \return error code
  */
-int adc_samp_continuous_dma_transfer(void)
+int adc_samp_continuous_dma_transfer_demo(void)
 {
 	int ret = 0;
 	uint8_t i;
