@@ -518,21 +518,21 @@ csi_error_t csi_clk_calib(void)
 		csp_lpt_set_cnt(LPT, 0);
 		csp_bt_set_cnt(BT0, 0);	
 		
-		while(!(csp_lpt_get_misr(LPT)&0x04));
+		while(!(csp_lpt_get_isr(LPT)&0x04));
 		tClkCalib.hwBtCntValue[0] = csp_bt_get_cnt(BT0);
-		csp_lpt_clr_misr(LPT, LPT_PEND_INT);
+		csp_lpt_clr_isr(LPT, LPT_PEND_INT);
 		
 		csp_lpt_set_cnt(LPT, 0);
 		csp_bt_set_cnt(BT0, 0);	
-		while(!(csp_lpt_get_misr(LPT)&0x04));
+		while(!(csp_lpt_get_isr(LPT)&0x04));
 		tClkCalib.hwBtCntValue[1] = csp_bt_get_cnt(BT0);
-		csp_lpt_clr_misr(LPT, LPT_PEND_INT);
+		csp_lpt_clr_isr(LPT, LPT_PEND_INT);
 			
 		csp_lpt_set_cnt(LPT, 0);
 		csp_bt_set_cnt(BT0, 0);	
-		while(!(csp_lpt_get_misr(LPT)&0x04));
+		while(!(csp_lpt_get_isr(LPT)&0x04));
 		tClkCalib.hwBtCntValue[2] = csp_bt_get_cnt(BT0);
-		csp_lpt_clr_misr(LPT, LPT_PEND_INT);		
+		csp_lpt_clr_isr(LPT, LPT_PEND_INT);		
 		
 		tClkCalib.wBtSumValue = tClkCalib.hwBtCntValue[1]+tClkCalib.hwBtCntValue[2];
 		tClkCalib.wBtSumValue = tClkCalib.wBtSumValue/2;
