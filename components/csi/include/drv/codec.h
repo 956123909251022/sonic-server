@@ -18,6 +18,10 @@
 #include <drv/dma.h>
 #include "drv/ringbuffer.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef enum {
     CODEC_EVENT_PERIOD_READ_COMPLETE        = 0U,  ///< A peroid data read complete
     CODEC_EVENT_PERIOD_WRITE_COMPLETE       = 1U,  ///< A peroid data write complete
