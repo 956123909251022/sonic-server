@@ -57,10 +57,21 @@ void csi_tkey_parameter_init(void)
 /****************************************************
 //TK Hidden function define
 *****************************************************/
-	//byTkeyDstStatus=1;							
-	//byTkeyIntrStatus=1;							
+	//Used to modify the default state when TCHx is not enabled;0/3=Z,1=high,2=low(Default)
+	//byTkeyDstStatus=1;
+
+	//Used to enable the default internal resistor of TCHx;0=disable(Default),1=enable
+	//byTkeyIntrStatus=1;	
+
+	//Used to modify the scan interval;0=none(Default),1=16ms,2=32ms,3=64ms,4=128ms,>4=186ms
 	//byTkeyImtvtimTime=1;
-	//byTkeyNegBuildBounce=10;						
+	
+	//Used to modify the Bounce of the forced negative Rebuild;>=1 (Default=3)
+	//The higher the number, the longer it takes to trigger the update mechanism
+	//byTkeyNegBuildBounce=10;
+
+	//Used to modify the Bounce of the forced postive Rebuild;>=1 (Default=3)
+	//The higher the number, the longer it takes to trigger the update mechanism
 	//byTkeyPosBuildBounce=10;		
 }
 
