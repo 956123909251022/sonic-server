@@ -598,8 +598,8 @@ csi_error_t csi_pin_irq_mode(pin_name_e ePinName, csi_exi_grp_e eExiGrp, csi_gpi
 	else
 		exi_trg_edge_set(SYSCON, (gpio_igrp_e)eExiGrp, (exi_trigger_e)eTrgEdge);	//interrupt edge
 	
-	csp_exi_port_int_enable(SYSCON,(0x01ul << eExiGrp), ENABLE);	//EXI INT enable
-	csp_exi_port_clr_isr(SYSCON,(0x01ul << eExiGrp));				//clear exi interrput status before enable irq 
+	csp_exi_port_int_enable(SYSCON,(0x01ul << eExiGrp), ENABLE);		//EXI INT enable
+	//csp_exi_port_clr_isr(SYSCON,(0x01ul << eExiGrp));					//clear exi interrput status before enable irq 
 	
 	return CSI_OK;
 }
@@ -639,6 +639,9 @@ csi_error_t csi_pin_vic_irq_enable(csi_exi_grp_e eExiGrp, bool bEnable)
 				
 			break;
 	}
+	
+	csp_exi_port_clr_isr(SYSCON,(0x01ul << eExiGrp));		//clear exi interrput status before enable irq 
+	
 	if(bEnable)
 		csi_vic_enable_irq(byIrqNum);
 	else
