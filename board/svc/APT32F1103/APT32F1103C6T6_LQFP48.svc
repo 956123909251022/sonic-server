@@ -21,7 +21,7 @@
         <Pin pinNum="1" group="PA0" displayName="PA0.6">
           <Property class="UIchoice">
             <label>GPIO/AF</label>
-            <value>GPIO</value>
+            <value>AF</value>
             <Selections>
               <sel>GPIO</sel>
               <sel>AF</sel>
@@ -30,7 +30,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>GPTB0_CHB</value>
             <Selections>
               <sel>LCD_COM0</sel>
               <sel>GPTB0_CHB</sel>
@@ -95,7 +95,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value></value>
+            <value/>
             <Selections>
               <sel>LCD_COM1</sel>
               <sel>LPT_INOUT</sel>
@@ -5183,6 +5183,12 @@
               <sel>PA05</sel>
               <sel>PA06</sel>
               <sel>PA07</sel>
+              <sel>PB00</sel>
+              <sel>PB01</sel>
+              <sel>PB02</sel>
+              <sel>PB03</sel>
+              <sel>PC00</sel>
+              <sel>PC01</sel>
             </Selections>
           </Property>
           <Property class="UIchoice">
@@ -5211,6 +5217,12 @@
               <sel>PA05</sel>
               <sel>PA06</sel>
               <sel>PA07</sel>
+              <sel>PB00</sel>
+              <sel>PB01</sel>
+              <sel>PB02</sel>
+              <sel>PB03</sel>
+              <sel>PC00</sel>
+              <sel>PC01</sel>
             </Selections>
           </Property>
           <Property class="UIchoice">
@@ -5235,6 +5247,8 @@
               <sel>PB01</sel>
               <sel>PB02</sel>
               <sel>PB03</sel>
+              <sel>PC00</sel>
+              <sel>PC01</sel>
             </Selections>
           </Property>
           <Property class="UIchoice">
@@ -5259,6 +5273,8 @@
               <sel>PB01</sel>
               <sel>PB02</sel>
               <sel>PB03</sel>
+              <sel>PC00</sel>
+              <sel>PC01</sel>
             </Selections>
           </Property>
           <Property class="UIchoice">
@@ -5837,11 +5853,11 @@
         <label>LPT</label>
         <Device deviceId="LPT">
           <GenCodeFuncName>LPTInitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
+          <UseOrNot>1</UseOrNot>
           <label>LPT</label>
           <Property class="UIchoice">
             <label>Mode</label>
-            <value>Timer</value>
+            <value>PWM</value>
             <Selections>
               <sel notAvailable="LPTPWM">Timer</sel>
               <sel notAvailable="LPTTimer">PWM</sel>
@@ -5887,10 +5903,10 @@
           </Property>
           <Property class="UIchoice" property_class="LPTPWM">
             <label>PWM IDLE Level</label>
-            <value>LPT_IDLE_LOW</value>
+            <value>LPT_PWM_IDLE_Z</value>
             <Selections>
-              <sel>LPT_IDLE_LOW</sel>
-              <sel>LPT_IDLE_Z</sel>
+              <sel>LPT_PWM_IDLE_Z</sel>
+              <sel>LPT_PWM_IDLE_LOW</sel>
             </Selections>
           </Property>
         </Device>
@@ -7637,7 +7653,7 @@
           <label>EPT0</label>
           <Property class="UIchoice">
             <label>WorkMode</label>
-            <value>EPT_WAVE</value>
+            <value>EPT_CAPTURE</value>
             <Selections>
               <sel notAvailable="EPT0WAVE,EPT0DE">EPT_CAPTURE</sel>
               <sel notAvailable="EPT0CAPTURE">EPT_WAVE</sel>
@@ -7654,7 +7670,7 @@
             </Selections>
             <Comment>计数方向</Comment>
           </Property>
-          <Property class="UIchoice">
+          <Property class="UIchoice" property_class="EPT0CAPTURE">
             <label>OneshotMode</label>
             <value>EPT_OP_CONT</value>
             <Selections>
@@ -7965,15 +7981,15 @@
             <Comment/>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
-            <label>Mode</label>
-            <value>None</value>
+            <label>DeadZone</label>
+            <value>DISABLE</value>
             <Selections>
-              <sel notAvailable="EPT0DE,EPT0ORL0,EPT0ORL1">None</sel>
-              <sel>DeadZone &amp; Emergency</sel>
+              <sel notAvailable="EPT0DZ">DISABLE</sel>
+              <sel>ENABLE</sel>
             </Selections>
             <Comment/>
           </Property>
-          <Property class="UIchoice" property_class="EPT0DE">
+          <Property class="UIchoice" property_class="EPT0DZ">
             <label>DeadZoneClkSrc</label>
             <value>EPT_DB_DPSC</value>
             <Selections>
@@ -7982,23 +7998,23 @@
             </Selections>
             <Comment/>
           </Property>
-          <Property class="Text" property_class="EPT0DE">
+          <Property class="Text" property_class="EPT0DZ">
             <label>DPSC</label>
             <value>0</value>
             <validReg>^([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-9][0-9][0-9][0-9]|[1-5][0-9][0-9][0-9][0-9]|6[0-4][0-9][0-9][0-9]|65[0-4][0-9][0-9]|655[0-2][0-9]|6553[0-5])$</validReg>
             <Comment>时钟分频控制 范围:0~65535之间的整数 FDBCLK = FHCLK / (DPSC+1)</Comment>
           </Property>
-          <Property class="Text" property_class="EPT0DE">
+          <Property class="Text" property_class="EPT0DZ">
             <label>RisingEdgeTime</label>
             <value>500</value>
             <Comment>上升沿 单位 ns</Comment>
           </Property>
-          <Property class="Text" property_class="EPT0DE">
+          <Property class="Text" property_class="EPT0DZ">
             <label>FallingEdgeTime</label>
             <value>200</value>
             <Comment>下降沿 单位 ns</Comment>
           </Property>
-          <Property class="UIchoice" property_class="EPT0DE">
+          <Property class="UIchoice" property_class="EPT0DZ">
             <label>ChaDeadB</label>
             <value>EPT_DB_AR_BF</value>
             <Selections>
@@ -8007,7 +8023,7 @@
             </Selections>
             <Comment/>
           </Property>
-          <Property class="UIchoice" property_class="EPT0DE">
+          <Property class="UIchoice" property_class="EPT0DZ">
             <label>ChbDeadB</label>
             <value>EPT_DB_AR_BF</value>
             <Selections>
@@ -8016,7 +8032,7 @@
             </Selections>
             <Comment/>
           </Property>
-          <Property class="UIchoice" property_class="EPT0DE">
+          <Property class="UIchoice" property_class="EPT0DZ">
             <label>ChcDeadB</label>
             <value>EPT_DB_AR_BF</value>
             <Selections>
@@ -8025,7 +8041,7 @@
             </Selections>
             <Comment/>
           </Property>
-          <Property class="UIchoice" property_class="EPT0DE">
+          <Property class="UIchoice" property_class="EPT0DZ">
             <label>ChxOuselS1S0</label>
             <value>EPT_DBOUT_AR_BF</value>
             <Selections>
@@ -8036,7 +8052,7 @@
             </Selections>
             <Comment>通道A上升沿和通道B下降沿使能控制</Comment>
           </Property>
-          <Property class="UIchoice" property_class="EPT0DE">
+          <Property class="UIchoice" property_class="EPT0DZ">
             <label>ChxPolarityS3S2</label>
             <value>EPT_DB_POL_B</value>
             <Selections>
@@ -8047,7 +8063,7 @@
             </Selections>
             <Comment>通道A和通道B延时输出电平反向控制</Comment>
           </Property>
-          <Property class="UIchoice" property_class="EPT0DE">
+          <Property class="UIchoice" property_class="EPT0DZ">
             <label>ChxInselS5S4</label>
             <value>EPT_DBCHAIN_AR_AF</value>
             <Selections>
@@ -8058,7 +8074,7 @@
             </Selections>
             <Comment>上升沿和下降沿延时处理的输入信号选择</Comment>
           </Property>
-          <Property class="UIchoice" property_class="EPT0DE">
+          <Property class="UIchoice" property_class="EPT0DZ">
             <label>ChxOutSwapS8S7</label>
             <value>EPT_CHOUTX_OUA_OUB</value>
             <Selections>
@@ -8069,7 +8085,16 @@
             </Selections>
             <Comment>OUTA=通道A输出，OUTB=通道B输出</Comment>
           </Property>
-          <Property class="UIchoice" property_class="EPT0DE">
+          <Property class="UIchoice" property_class="EPT0WAVE">
+            <label>Emergency</label>
+            <value>DISABLE</value>
+            <Selections>
+              <sel notAvailable="EPT0EM,EPT0ORL0,EPT0ORL1">DISABLE</sel>
+              <sel>ENABLE</sel>
+            </Selections>
+            <Comment/>
+          </Property>
+          <Property class="UIchoice" property_class="EPT0EM">
             <label>EPxInt</label>
             <value>EPT_ORL0</value>
             <Selections>
@@ -8115,7 +8140,7 @@
             <value>1</value>
             <Comment/>
           </Property>
-          <Property class="UIchoice" property_class="EPT0DE">
+          <Property class="UIchoice" property_class="EPT0EM">
             <label>PolEBIx</label>
             <value>EPT_EBI_POL_H</value>
             <Selections>
@@ -8124,7 +8149,7 @@
             </Selections>
             <Comment>EBIx的输入有效极性选择控制</Comment>
           </Property>
-          <Property class="UIchoice" property_class="EPT0DE">
+          <Property class="UIchoice" property_class="EPT0EM">
             <label>EPx</label>
             <value>EPT_EP0</value>
             <Selections>
@@ -8139,7 +8164,7 @@
             </Selections>
             <Comment>使能EPx</Comment>
           </Property>
-          <Property class="UIchoice" property_class="EPT0DE">
+          <Property class="UIchoice" property_class="EPT0EM">
             <label>EPxLckmd</label>
             <value>EPT_EP_DIS</value>
             <Selections>
@@ -8149,7 +8174,7 @@
             </Selections>
             <Comment>使能锁</Comment>
           </Property>
-          <Property class="UIchoice" property_class="EPT0DE">
+          <Property class="UIchoice" property_class="EPT0EM">
             <label>Osrshdw</label>
             <value>EPT_OSR_IMMEDIATE</value>
             <Selections>
@@ -8158,7 +8183,7 @@
             </Selections>
             <Comment>锁止端口状态载入方式</Comment>
           </Property>
-          <Property class="UIchoice" property_class="EPT0DE">
+          <Property class="UIchoice" property_class="EPT0EM">
             <label>Fltpace0</label>
             <value>EPT_EPFLT0_2P</value>
             <Selections>
@@ -8173,7 +8198,7 @@
             </Selections>
             <Comment>EP0、EP1、EP2和EP3的数字去抖滤波检查周期数</Comment>
           </Property>
-          <Property class="UIchoice" property_class="EPT0DE">
+          <Property class="UIchoice" property_class="EPT0EM">
             <label>Fltpace1</label>
             <value>EPT_EPFLT1_2P</value>
             <Selections>
@@ -8187,17 +8212,6 @@
               <sel>EPT_EPFLT1_64P</sel>
             </Selections>
             <Comment>EP4、EP5、EP6和EP7的数字去抖滤波检查周期数</Comment>
-          </Property>
-          <Property class="UIchoice" property_class="EPT0DE">
-            <label/>
-            <value/>
-            <Selections>
-              <sel/>
-              <sel/>
-              <sel/>
-              <sel/>
-            </Selections>
-            <Comment/>
           </Property>
         </Device>
       </Category>
@@ -8310,26 +8324,75 @@
             </Selections>
             <Comment>CMPD捕捉载入后，计数器值计数状态控制位(1h：CMPA触发后，计数器值进行重置;0h：CMPA触发后，计数器值不进行重置)</Comment>
           </Property>
-          <Property class="UIchoice" property_class="GPTACommon">
-            <label>Interrupt Source</label>
-            <value>GPTA_INTSRC_NONE</value>
-            <Selections>
-              <sel>GPTA_INTSRC_NONE</sel>
-              <sel>GPTA_INTSRC_TRGEV0</sel>
-              <sel>GPTA_INTSRC_TRGEV1</sel>
-              <sel>GPTA_INTSRC_TRGEV2</sel>
-              <sel>GPTA_INTSRC_TRGEV3</sel>
-              <sel>GPTA_INTSRC_CAPLD0</sel>
-              <sel>GPTA_INTSRC_CAPLD1</sel>
-              <sel>GPTA_INTSRC_CAPLD2</sel>
-              <sel>GPTA_INTSRC_CAPLD3</sel>
-              <sel>GPTA_INTSRC_CAU</sel>
-              <sel>GPTA_INTSRC_CAD</sel>
-              <sel>GPTA_INTSRC_CBU</sel>
-              <sel>GPTA_INTSRC_CBD</sel>
-              <sel>GPTA_INTSRC_PEND</sel>
-            </Selections>
-            <Comment>中断源</Comment>
+          <Property class="Bool" property_class="GPTACommon">
+            <label>GPTA_INTSRC_NONE</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="GPTACommon">
+            <label>GPTA_INTSRC_TRGEV0</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="GPTACommon">
+            <label>GPTA_INTSRC_TRGEV1</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="GPTACommon">
+            <label>GPTA_INTSRC_TRGEV2</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="GPTACommon">
+            <label>GPTA_INTSRC_TRGEV3</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="GPTACommon">
+            <label>GPTA_INTSRC_CAPLD0</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="GPTACommon">
+            <label>GPTA_INTSRC_CAPLD1</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="GPTACommon">
+            <label>GPTA_INTSRC_CAPLD2</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="GPTACommon">
+            <label>GPTA_INTSRC_CAPLD3</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="GPTACommon">
+            <label>GPTA_INTSRC_CAU</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="GPTACommon">
+            <label>GPTA_INTSRC_CAD</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="GPTACommon">
+            <label>GPTA_INTSRC_CBU</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="GPTACommon">
+            <label>GPTA_INTSRC_CBD</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="GPTACommon">
+            <label>GPTA_INTSRC_PEND</label>
+            <value>1</value>
+            <Comment/>
           </Property>
           <Property class="Text" property_class="GPTAWAVE">
             <label>Duty Cycle</label>
@@ -8595,26 +8658,75 @@
             </Selections>
             <Comment>CMPD捕捉载入后，计数器值计数状态控制位(1h：CMPA触发后，计数器值进行重置;0h：CMPA触发后，计数器值不进行重置)</Comment>
           </Property>
-          <Property class="UIchoice" property_class="GPTBCommon">
-            <label>Interrupt Source</label>
-            <value>GPTB_INTSRC_NONE</value>
-            <Selections>
-              <sel>GPTB_INTSRC_NONE</sel>
-              <sel>GPTB_INTSRC_TRGEV0</sel>
-              <sel>GPTB_INTSRC_TRGEV1</sel>
-              <sel>GPTB_INTSRC_TRGEV2</sel>
-              <sel>GPTB_INTSRC_TRGEV3</sel>
-              <sel>GPTB_INTSRC_CAPLD0</sel>
-              <sel>GPTB_INTSRC_CAPLD1</sel>
-              <sel>GPTB_INTSRC_CAPLD2</sel>
-              <sel>GPTB_INTSRC_CAPLD3</sel>
-              <sel>GPTB_INTSRC_CAU</sel>
-              <sel>GPTB_INTSRC_CAD</sel>
-              <sel>GPTB_INTSRC_CBU</sel>
-              <sel>GPTB_INTSRC_CBD</sel>
-              <sel>GPTB_INTSRC_PEND</sel>
-            </Selections>
-            <Comment>中断源</Comment>
+          <Property class="Bool" property_class="GPTBCommon">
+            <label>GPTB_INTSRC_NONE</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="GPTBCommon">
+            <label>GPTB_INTSRC_TRGEV0</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="GPTBCommon">
+            <label>GPTB_INTSRC_TRGEV1</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="GPTBCommon">
+            <label>GPTB_INTSRC_TRGEV2</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="GPTBCommon">
+            <label>GPTB_INTSRC_TRGEV3</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="GPTBCommon">
+            <label>GPTB_INTSRC_CAPLD0</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="GPTBCommon">
+            <label>GPTB_INTSRC_CAPLD1</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="GPTBCommon">
+            <label>GPTB_INTSRC_CAPLD2</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="GPTBCommon">
+            <label>GPTB_INTSRC_CAPLD3</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="GPTBCommon">
+            <label>GPTB_INTSRC_CAU</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="GPTBCommon">
+            <label>GPTB_INTSRC_CAD</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="GPTBCommon">
+            <label>GPTB_INTSRC_CBU</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="GPTBCommon">
+            <label>GPTB_INTSRC_CBD</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="GPTBCommon">
+            <label>GPTB_INTSRC_PEND</label>
+            <value>1</value>
+            <Comment/>
           </Property>
           <Property class="Text" property_class="GPTBWAVE">
             <label>Duty Cycle</label>
@@ -9168,7 +9280,7 @@
           <label>I2C</label>
           <Property class="UIchoice">
             <label>Mode</label>
-            <value>Master</value>
+            <value>Slave</value>
             <Selections>
               <sel notAvailable="I2CSlave">Master</sel>
               <sel notAvailable="I2CMaster">Slave</sel>
@@ -9226,7 +9338,7 @@
             <Comment>IIC Interrupt Status</Comment>
           </Property>
           <Property class="Bool">
-            <label>IIC_INTSRC_TX_OVER/label&gt;</label>
+            <label>IIC_INTSRC_TX_OVER</label>
             <value>1</value>
             <Comment>IIC Interrupt Status</Comment>
           </Property>
@@ -9280,25 +9392,25 @@
             <value>1</value>
             <Comment>IIC Interrupt Status</Comment>
           </Property>
-          <Property class="Text" property_class="I2CSlave">
+          <Property class="Text">
             <label>RxBufferSize</label>
             <value>0xffff</value>
             <validReg>^(0[xX])([0-9a-fA-F]{4})$</validReg>
             <Comment>接收数组长度设置 范围 0~0xffff 接收数组g_byWriteBuffer需手动定义全局变量</Comment>
           </Property>
-          <Property class="Text" property_class="I2CSlave">
+          <Property class="Text">
             <label>TxBufferSize</label>
             <value>0xffff</value>
             <validReg>^(0[xX])([0-9a-fA-F]{4})$</validReg>
             <Comment>发送数组长度设置 范围 0~0xffff 发送数组g_bySendBuffer需手动定义全局变量</Comment>
           </Property>
-          <Property class="Text">
+          <Property class="Text" property_class="I2CMaster">
             <label>SDATimeOut</label>
             <value>0xffffffff</value>
             <validReg>^(0[xX])([0-9a-fA-F]{8})$</validReg>
             <Comment>SDA超时时间设置 1/主频 * g_tIicMasterCfg.wSdaTimeout ms 范围 0~0xffffffff</Comment>
           </Property>
-          <Property class="Text">
+          <Property class="Text" property_class="I2CMaster">
             <label>SCLTimeOut</label>
             <value>0xffffffff</value>
             <validReg>^(0[xX])([0-9a-fA-F]{8})$</validReg>
@@ -9414,6 +9526,77 @@
               <sel>SPI_TX_RX_MODE_INT</sel>
             </Selections>
             <Comment>收发模式</Comment>
+          </Property>
+        </Device>
+      </Category>
+      <Category>
+        <label>CNTA</label>
+        <Device deviceId="CNTA">
+          <GenCodeFuncName>CNTAInitFunc</GenCodeFuncName>
+          <UseOrNot>0</UseOrNot>
+          <label>CNTA</label>
+          <Property class="UIchoice">
+            <label>Mode</label>
+            <value>Timer</value>
+            <Selections>
+              <sel notAvailable="CNTAPWM">Timer</sel>
+              <sel notAvailable="CNTATimer">PWM</sel>
+            </Selections>
+            <Comment>模式选择</Comment>
+          </Property>
+          <Property class="Text" property_class="CNTATimer">
+            <label>TimeOut</label>
+            <value>10000</value>
+            <Comment>超时时间 单位us</Comment>
+          </Property>
+          <Property class="UIchoice" property_class="CNTAPWM">
+            <label>StartLevel</label>
+            <value>CNTA_POLAR_LOW</value>
+            <Selections>
+              <sel>CNTA_POLAR_LOW</sel>
+              <sel>CNTA_POLAR_HIGH</sel>
+            </Selections>
+            <Comment>开始极性</Comment>
+          </Property>
+          <Property class="UIchoice" property_class="CNTAPWM">
+            <label>StopLevel</label>
+            <value>CNTA_STOP_LOW</value>
+            <Selections>
+              <sel>CNTA_STOP_LOW</sel>
+              <sel>CNTA_STOP_HIGH</sel>
+            </Selections>
+            <Comment>结束极性</Comment>
+          </Property>
+          <Property class="Text" property_class="CNTAPWM">
+            <label>DutyCycle</label>
+            <value>33</value>
+            <validReg>^([0-9]{1,2}|100)$</validReg>
+            <Comment>占空比 范围 0~100</Comment>
+          </Property>
+          <Property class="Bool" property_class="CNTAPWM">
+            <label>CNTA_INTSRC_NONE</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="CNTAPWM">
+            <label>CNTA_INTSRC_PENDL</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="CNTAPWM">
+            <label>CNTA_INTSRC_PENDH</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="CNTAPWM">
+            <label>CNTA_INTSRC_PENDHL</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Text" property_class="CNTAPWM">
+            <label>Freq</label>
+            <value>38000</value>
+            <Comment>频率 单位Hz</Comment>
           </Property>
         </Device>
       </Category>
