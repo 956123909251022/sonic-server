@@ -53,19 +53,19 @@ static uint8_t apt_get_uart_idx(csp_uart_t *ptUartBase)
  *  \param[in] byIdx: uart id number(0~2)
  *  \return none
  */ 
-void csi_uart_recv_dynamic_scan(uint8_t byIdx)
-{
-	if(g_tUartTran[byIdx].ptRingBuf->hwDataLen > 0)
-	{
-		if(g_tUartTran[byIdx].hwRxSize == g_tUartTran[byIdx].ptRingBuf->hwDataLen)
-		{
-			g_tUartTran[byIdx].hwRxSize = 0;
-			g_tUartTran[byIdx].byRecvStat = UART_STATE_FULL;
-		}
-		else 
-			g_tUartTran[byIdx].hwRxSize = g_tUartTran[byIdx].ptRingBuf->hwDataLen;
-	}
-}
+//void csi_uart_recv_dynamic_scan(uint8_t byIdx)
+//{
+//	if(g_tUartTran[byIdx].ptRingBuf->hwDataLen > 0)
+//	{
+//		if(g_tUartTran[byIdx].hwRxSize == g_tUartTran[byIdx].ptRingBuf->hwDataLen)
+//		{
+//			g_tUartTran[byIdx].hwRxSize = 0;
+//			g_tUartTran[byIdx].byRecvStat = UART_STATE_FULL;
+//		}
+//		else 
+//			g_tUartTran[byIdx].hwRxSize = g_tUartTran[byIdx].ptRingBuf->hwDataLen;
+//	}
+//}
 /** \brief initialize uart parameter structure
  * 
  *  \param[in] ptUartBase: pointer of uart register structure
