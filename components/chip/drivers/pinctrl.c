@@ -437,7 +437,21 @@ void csi_pin_drive(pin_name_e ePinName, csi_gpio_drive_e eDrive)
 	ptGpioBase = (csp_gpio_t *)ptPinInfo[0];	
 	ePinName = (pin_name_e)ptPinInfo[1];	
 	
-	csp_gpio_drv_set(ptGpioBase, ePinName, (uint8_t)eDrive);
+	switch(eDrive)
+	{
+		case GPIO_DRIVE_NORMAL:
+		case GPIO_DRIVE_STRONG:
+			csp_gpio_drv_set(ptGpioBase, ePinName, (uint8_t)eDrive);	//Normal/Strong
+			break;
+		case GPIO_DRIVE_CONSTA:
+			csp_gpio_constcurr_en(ptGpioBase, ePinName);				//constant current;
+			break;
+		case GPIO_DRIVE_CONSTA_DIS:
+			csp_gpio_constcurr_dis(ptGpioBase, ePinName);				//constant current;
+			break;
+		default:
+			break;
+	}
 }
 
 /** \brief set gpio pin input mode
@@ -496,12 +510,12 @@ csi_error_t csi_pin_output_mode(pin_name_e ePinName, csi_gpio_output_mode_e eOut
 		case GPIO_OPEN_DRAIN:
 			csp_gpio_opendrain_en(ptGpioBase, ePinName);	//open drain mode 
 			break;
-		case GPIO_CONST_CURR_EN:
-			csp_gpio_constcurr_en(ptGpioBase, ePinName);	//constant current
-			break;
-		case GPIO_CONST_CURR_DIS:
-			csp_gpio_constcurr_dis(ptGpioBase, ePinName);
-			break;
+//		case GPIO_CONST_CURR_EN:
+//			csp_gpio_constcurr_en(ptGpioBase, ePinName);	//constant current
+//			break;
+//		case GPIO_CONST_CURR_DIS:
+//			csp_gpio_constcurr_dis(ptGpioBase, ePinName);
+//			break;
 		default:
 			ret = CSI_ERROR;
 			break;

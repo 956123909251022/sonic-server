@@ -72,9 +72,9 @@ void led_init(void)
 	csi_pin_set_mux(PA07, PA07_LED_S1);
 	csi_pin_set_mux(PA06, PA06_LED_S0);
 	csi_pin_set_mux(PA16, PA16_LED_COM0);
-	csi_pin_drive(PA16, GPIO_DRIVE_LV1);
+	csi_pin_drive(PA16, GPIO_DRIVE_STRONG);
 	csi_pin_set_mux(PB05, PB05_LED_COM1);
-	csi_pin_drive(PB05, GPIO_DRIVE_LV1);
+	csi_pin_drive(PB05, GPIO_DRIVE_STRONG);
 	
 	ptLedCfg.byClk = LED_PCLK_DIV8;
 	ptLedCfg.hwComMask = 0x3;

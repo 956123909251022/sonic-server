@@ -155,12 +155,6 @@ csi_error_t csi_gpio_port_output_mode(csp_gpio_t *ptGpioBase, uint32_t wPinMask,
 		case GPIO_OPEN_DRAIN:						//open drain output
 			ptGpioBase->OMCR = (ptGpioBase->OMCR & ~hwOpdVal) | hwOpdVal;
 			break;
-		case GPIO_CONST_CURR_EN:
-			ptGpioBase->OMCR = (ptGpioBase->OMCR & ~(hwOpdVal << 16)) | (hwOpdVal << 16);
-			break;
-		case GPIO_CONST_CURR_DIS:
-			ptGpioBase->OMCR &= ~(hwOpdVal << 16);
-			break;
 		default:
 			ret = CSI_ERROR;
 			break;

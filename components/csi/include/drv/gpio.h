@@ -29,8 +29,8 @@ extern "C" {
  * \brief    GPIO speed define
  */
 typedef enum {
-    GPIO_SPEED_LV0 	= 0U,		//normal
-    GPIO_SPEED_LV1,				//fast
+    GPIO_SPEED_NORMAL 	= 0U,		//normal
+    GPIO_SPEED_FAST,				//fast
 } csi_gpio_speed_e;
 
 /**
@@ -38,8 +38,10 @@ typedef enum {
  * \brief    GPIO speed define
  */
 typedef enum {
-    GPIO_DRIVE_LV0 	= 0U,		//normal
-    GPIO_DRIVE_LV1,				//strong
+    GPIO_DRIVE_NORMAL 	= 0U,		//normal
+    GPIO_DRIVE_STRONG,				//strong
+	GPIO_DRIVE_CONSTA,				//constant current
+	GPIO_DRIVE_CONSTA_DIS			//constant current disable
 } csi_gpio_drive_e;
 
 /**
@@ -68,7 +70,7 @@ typedef enum {
 typedef enum {
     GPIO_PULLNONE		= 0,    //Pull none 
     GPIO_PULLUP,                //Pull up 
-    GPIO_PULLDOWN,              //Pull down 
+    GPIO_PULLDOWN              //Pull down 
 } csi_gpio_pull_mode_e;	
 
 /**
@@ -78,8 +80,8 @@ typedef enum {
 typedef enum {
 	GPIO_PUSH_PULL 		= 0,	//push-pull 
 	GPIO_OPEN_DRAIN,			//open drain 
-	GPIO_CONST_CURR_EN,			//constant current enable
-	GPIO_CONST_CURR_DIS,		//constant current disable
+//	GPIO_CONST_CURR_EN,			//constant current enable
+//	GPIO_CONST_CURR_DIS,		//constant current disable
 } csi_gpio_output_mode_e;
 
 /**

@@ -19,25 +19,17 @@
       <GenCodeFuncName>APT32F1103_48PinInitFunc</GenCodeFuncName>
       <Pins>
         <Pin pinNum="38" group="PA0" displayName="PA0.0">
-          <Property class="Bool">
-            <label>Use</label>
-            <value>1</value>
-            <Comment>是否启用管脚配置</Comment>
-          </Property>
           <Property class="UIchoice">
-            <label>GPIO/AF</label>
-            <value>AF</value>
+            <label>IOFunctions</label>
+            <value>High_Z</value>
             <Selections>
-              <sel>GPIO</sel>
-              <sel>AF</sel>
-            </Selections>
-            <Comment>GPIO复用</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>AFFunctions</label>
-            <value>CMP1_OUT</value>
-            <Selections>
-              <sel>AF_DIS</sel>
+              <sel>High_Z</sel>
+              <sel>GPIO_INPUT</sel>
+              <sel>GPIO_INPUT with Filter</sel>
+              <sel>GPIO_OUTPUT_Push-pull</sel>
+              <sel>GPIO_OUTPUT_Open-Drain</sel>
+              <sel>GPIO_OUTPUT_Push-pull with Monitor</sel>
+              <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
               <sel>RTC_ALM</sel>
               <sel>CMP1_OUT</sel>
               <sel>GPTB0_CHAY</sel>
@@ -52,43 +44,23 @@
           </Property>
           <Property class="UIchoice">
             <label>Driving Ability</label>
-            <value>normal</value>
+            <value>Normal</value>
             <Selections>
-              <sel>normal</sel>
-              <sel>strong</sel>
+              <sel>Normal</sel>
+              <sel>Strong</sel>
+              <sel>Constant</sel>
             </Selections>
-            <Comment>驱动能力</Comment>
+            <Comment>驱动能力 仅输出有效</Comment>
           </Property>
           <Property class="UIchoice">
-            <label>PullUpDown</label>
-            <value>no pull</value>
+            <label>Pull Mode</label>
+            <value>Pull_None</value>
             <Selections>
-              <sel>pull up</sel>
-              <sel>pull down</sel>
-              <sel>no pull</sel>
+              <sel>Pull_None</sel>
+              <sel>Pull_Up</sel>
+              <sel>Pull_Down</sel>
             </Selections>
             <Comment>上下拉</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>GPIO Direction</label>
-            <value>GPD</value>
-            <Selections>
-              <sel>GPD</sel>
-              <sel>input</sel>
-              <sel>output</sel>
-            </Selections>
-            <Comment>GPIO方向</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>GPIO Output Mode</label>
-            <value>push pull</value>
-            <Selections>
-              <sel>push pull</sel>
-              <sel>open drain</sel>
-              <sel>constant current enable</sel>
-              <sel>constant current disable</sel>
-            </Selections>
-            <Comment>GPIO输出模式</Comment>
           </Property>
         </Pin>
         <Pin pinNum="39" group="PA0" displayName="PA0.1">
@@ -3657,122 +3629,135 @@
               <sel>continue</sel>
             </Selections>
           </Property>
-          <Property class="Bool">
+        </Device>
+        <Device deviceId="ADCInterrupt">
+          <GenCodeFuncName>ADCIntInitFunc</GenCodeFuncName>
+          <UseOrNot>0</UseOrNot>
+          <label>Interrupt</label>
+          <Property class="UIchoice">
+            <label>Interrupt</label>
+            <value>ENABLE</value>
+            <Selections>
+              <sel notAvailable="ADCInt">DISABLE</sel>
+              <sel>ENABLE</sel>
+            </Selections>
+          </Property>
+          <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_NONE</label>
             <value>1</value>
             <Comment>ADC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_EOC</label>
             <value>0</value>
             <Comment>ADC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_READY</label>
             <value>0</value>
             <Comment>ADC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_OVR</label>
             <value>0</value>
             <Comment>ADC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_CMP0H</label>
             <value>0</value>
             <Comment>ADC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_CMP0L</label>
             <value>0</value>
             <Comment>ADC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_CMP1H</label>
             <value>0</value>
             <Comment>ADC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_CMP1L</label>
             <value>0</value>
             <Comment>ADC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_SEQ0</label>
             <value>0</value>
             <Comment>ADC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_SEQ1</label>
             <value>0</value>
             <Comment>ADC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_SEQ2</label>
             <value>0</value>
             <Comment>ADC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_SEQ3</label>
             <value>0</value>
             <Comment>ADC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_SEQ4</label>
             <value>0</value>
             <Comment>ADC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_SEQ5</label>
             <value>0</value>
             <Comment>ADC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_SEQ6</label>
             <value>0</value>
             <Comment>ADC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_SEQ7</label>
             <value>0</value>
             <Comment>ADC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_SEQ8</label>
             <value>0</value>
             <Comment>ADC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_SEQ9</label>
             <value>0</value>
             <Comment>ADC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_SEQ10</label>
             <value>0</value>
             <Comment>ADC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_SEQ11</label>
             <value>0</value>
             <Comment>ADC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_SEQ12</label>
             <value>0</value>
             <Comment>ADC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_SEQ13</label>
             <value>0</value>
             <Comment>ADC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_SEQ14</label>
             <value>0</value>
             <Comment>ADC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_SEQ15</label>
             <value>0</value>
             <Comment>ADC Interrupt Status</Comment>
@@ -5700,18 +5685,18 @@
             <label>eTimeOut</label>
             <value>80</value>
             <validReg>^([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-9][0-9][0-9][0-9]|[1-5][0-9][0-9][0-9][0-9]|6[0-4][0-9][0-9][0-9]|65[0-4][0-9][0-9]|655[0-2][0-9]|6553[0-5])$</validReg>
-            <Comment>time length of window, unit: ms</Comment>
+            <Comment>系统复位时长 单位ms</Comment>
           </Property>
           <Property class="Bool">
             <label>Debug</label>
             <value>1</value>
-            <Comment>可以配置在Debug模式下 WWDT是否继续计时</Comment>
+            <Comment>调试模式控制位&#xD;0h：禁止调试模式&#xD;1h：使能调试模式</Comment>
           </Property>
           <Property class="Text">
             <label>wTimeOut</label>
             <value>40</value>
             <validReg>^([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-9][0-9][0-9][0-9]|[1-5][0-9][0-9][0-9][0-9]|6[0-4][0-9][0-9][0-9]|65[0-4][0-9][0-9]|655[0-2][0-9]|6553[0-5])$</validReg>
-            <Comment>设置窗口值</Comment>
+            <Comment>设置窗口值 单位ms</Comment>
           </Property>
         </Device>
       </Category>
@@ -8697,7 +8682,7 @@
           <label>EPT0</label>
           <Property class="UIchoice">
             <label>WorkMode</label>
-            <value>EPT_WAVE</value>
+            <value>EPT_CAPTURE</value>
             <Selections>
               <sel notAvailable="EPT0WAVE,EPT0DE,EPT0EM,EPT0DZDPSC">EPT_CAPTURE</sel>
               <sel notAvailable="EPT0CAPTURE,EPT0DE,EPT0EM,EPT0DZDPSC">EPT_WAVE</sel>
@@ -9079,7 +9064,7 @@
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>DeadZone</label>
-            <value>ENABLE</value>
+            <value>DISABLE</value>
             <Selections>
               <sel notAvailable="EPT0DZ">DISABLE</sel>
               <sel>ENABLE</sel>
