@@ -40,7 +40,7 @@
               <sel>CMP_IN0</sel>
               <sel>TKEY_CH24</sel>
             </Selections>
-            <Comment>管脚功能</Comment>
+            <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Driving Ability</label>
@@ -50,7 +50,7 @@
               <sel>Strong</sel>
               <sel>Constant</sel>
             </Selections>
-            <Comment>驱动能力:仅输出有效&#xD;Normal标准&#xD;Strong强驱&#xD;恒流</Comment>
+            <Comment>驱动能力:仅输出有效&#xD;Normal:标准&#xD;Stronge:强驱&#xD;Constant:恒流</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Driving Slew-Rate</label>
@@ -59,7 +59,7 @@
               <sel>Normal</sel>
               <sel>Fast</sel>
             </Selections>
-            <Comment>斜率:仅输出有效&#xD;Normal标准&#xD;Fast快速</Comment>
+            <Comment>斜率:仅输出有效&#xD;Normal:标准&#xD;Fast:快速</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Pull Mode</label>
@@ -69,7 +69,7 @@
               <sel>Pull_Up</sel>
               <sel>Pull_Down</sel>
             </Selections>
-            <Comment>上下拉</Comment>
+            <Comment>上下拉&#xD;Pull_None:上下拉禁止&#xD;Pull_Up:上拉&#xD;Pull_Down:下拉</Comment>
           </Property>
         </Pin>
         <Pin pinNum="39" group="PA0" displayName="PA0.1">
@@ -3606,13 +3606,13 @@
             <label>Freq Div</label>
             <value>0x01</value>
             <validReg>^(0[xX])(0[1-9a-fA-F]|1[0-9a-fA-F])$</validReg>
-            <Comment>文本输入,范围0x01~0x1f之间的整数,PCLK分频值</Comment>
+            <Comment>PCLK时钟分频数设置&#xD;输入范围0X01~0X1F&#xD;FADC = PCLK / 输入值</Comment>
           </Property>
           <Property class="Text">
             <label>Sample Hold</label>
             <value>0x03</value>
             <validReg>^(0[xX])(0[3-9a-fA-F]|[1-9a-fA-F][0-9a-fA-F])$</validReg>
-            <Comment>文本输入，范围0x03~0xff之间的整数,sample time = sample hold + 6 ADC CLK </Comment>
+            <Comment>ADC采样保持时间设置&#xD;输入范围0X03~0XFF&#xD;采样时间=输入值*ADC CLK&#xD;输入值小于3时强制设置为3</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Refenrence</label>
@@ -3629,6 +3629,7 @@
               <sel>ADCVREF_FVR4096_VREFN</sel>
               <sel>ADCVREF_INTVREF_VREFN</sel>
             </Selections>
+            <Comment>参考电平选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Mode</label>
@@ -3637,6 +3638,7 @@
               <sel>oneshot</sel>
               <sel>continue</sel>
             </Selections>
+            <Comment>转换模式选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Interrupt</label>
@@ -3645,121 +3647,122 @@
               <sel notAvailable="ADCInt">DISABLE</sel>
               <sel>ENABLE</sel>
             </Selections>
+            <Comment>中断</Comment>
           </Property>
           <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_EOC</label>
             <value>0</value>
-            <Comment>ADC Interrupt Status</Comment>
+            <Comment>转换结束中断</Comment>
           </Property>
           <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_READY</label>
             <value>0</value>
-            <Comment>ADC Interrupt Status</Comment>
+            <Comment>ADC准备就绪中断</Comment>
           </Property>
           <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_OVR</label>
             <value>0</value>
-            <Comment>ADC Interrupt Status</Comment>
+            <Comment>转换溢出中断</Comment>
           </Property>
           <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_CMP0H</label>
             <value>0</value>
-            <Comment>ADC Interrupt Status</Comment>
+            <Comment>转换结果高于ADC_CMP0中断</Comment>
           </Property>
           <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_CMP0L</label>
             <value>0</value>
-            <Comment>ADC Interrupt Status</Comment>
+            <Comment>转换结果低于ADC_CMP0中断</Comment>
           </Property>
           <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_CMP1H</label>
             <value>0</value>
-            <Comment>ADC Interrupt Status</Comment>
+            <Comment>转换结果高于ADC_CMP1中断</Comment>
           </Property>
           <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_CMP1L</label>
             <value>0</value>
-            <Comment>ADC Interrupt Status</Comment>
+            <Comment>转换结果低于ADC_CMP1中断</Comment>
           </Property>
           <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_SEQ0</label>
             <value>0</value>
-            <Comment>ADC Interrupt Status</Comment>
+            <Comment>SEQ0序列转换完成中断</Comment>
           </Property>
           <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_SEQ1</label>
             <value>0</value>
-            <Comment>ADC Interrupt Status</Comment>
+            <Comment>SEQ1序列转换完成中断</Comment>
           </Property>
           <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_SEQ2</label>
             <value>0</value>
-            <Comment>ADC Interrupt Status</Comment>
+            <Comment>SEQ2序列转换完成中断</Comment>
           </Property>
           <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_SEQ3</label>
             <value>0</value>
-            <Comment>ADC Interrupt Status</Comment>
+            <Comment>SEQ3序列转换完成中断</Comment>
           </Property>
           <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_SEQ4</label>
             <value>0</value>
-            <Comment>ADC Interrupt Status</Comment>
+            <Comment>SEQ4序列转换完成中断</Comment>
           </Property>
           <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_SEQ5</label>
             <value>0</value>
-            <Comment>ADC Interrupt Status</Comment>
+            <Comment>SEQ5序列转换完成中断</Comment>
           </Property>
           <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_SEQ6</label>
             <value>0</value>
-            <Comment>ADC Interrupt Status</Comment>
+            <Comment>SEQ6序列转换完成中断</Comment>
           </Property>
           <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_SEQ7</label>
             <value>0</value>
-            <Comment>ADC Interrupt Status</Comment>
+            <Comment>SEQ7序列转换完成中断</Comment>
           </Property>
           <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_SEQ8</label>
             <value>0</value>
-            <Comment>ADC Interrupt Status</Comment>
+            <Comment>SEQ8序列转换完成中断</Comment>
           </Property>
           <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_SEQ9</label>
             <value>0</value>
-            <Comment>ADC Interrupt Status</Comment>
+            <Comment>SEQ9序列转换完成中断</Comment>
           </Property>
           <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_SEQ10</label>
             <value>0</value>
-            <Comment>ADC Interrupt Status</Comment>
+            <Comment>SEQ10序列转换完成中断</Comment>
           </Property>
           <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_SEQ11</label>
             <value>0</value>
-            <Comment>ADC Interrupt Status</Comment>
+            <Comment>SEQ11序列转换完成中断</Comment>
           </Property>
           <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_SEQ12</label>
             <value>0</value>
-            <Comment>ADC Interrupt Status</Comment>
+            <Comment>SEQ12序列转换完成中断</Comment>
           </Property>
           <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_SEQ13</label>
             <value>0</value>
-            <Comment>ADC Interrupt Status</Comment>
+            <Comment>SEQ13序列转换完成中断</Comment>
           </Property>
           <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_SEQ14</label>
             <value>0</value>
-            <Comment>ADC Interrupt Status</Comment>
+            <Comment>SEQ14序列转换完成中断</Comment>
           </Property>
           <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_SEQ15</label>
             <value>0</value>
-            <Comment>ADC Interrupt Status</Comment>
+            <Comment>SEQ15序列转换完成中断</Comment>
           </Property>
         </Device>
         <Device deviceId="internal CH0">
@@ -3794,6 +3797,7 @@
               <sel>ADCIN_1_5VDD</sel>
               <sel>ADCIN_VSS</sel>
             </Selections>
+            <Comment>模拟信号输入通道源选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Trigger Source</label>
@@ -3808,6 +3812,7 @@
               <sel>ADCSYNC_IN4</sel>
               <sel>ADCSYNC_IN5</sel>
             </Selections>
+            <Comment>触发模式触发源选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>CV Count</label>
@@ -3824,6 +3829,7 @@
               <sel>ADC_CV_COUNT_256</sel>
               <sel>ADC_CV_COUNT_512</sel>
             </Selections>
+            <Comment>连续重复采样次数选择&#xD;所有采样次数的值会累加并存储在通道对应的数据寄存器中</Comment>
           </Property>
           <Property class="UIchoice">
             <label>AVG COF</label>
@@ -3840,6 +3846,7 @@
               <sel>ADC_AVG_COF_256</sel>
               <sel>ADC_AVG_COF_512</sel>
             </Selections>
+            <Comment>采样平均系数选择&#xD;通道对应的数据寄存器的值所除以的平均系数</Comment>
           </Property>
         </Device>
         <Device deviceId="internal CH1">
@@ -3873,6 +3880,7 @@
               <sel>ADCIN_1_5VDD</sel>
               <sel>ADCIN_VSS</sel>
             </Selections>
+            <Comment>模拟信号输入通道源选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Trigger Source</label>
@@ -3887,6 +3895,7 @@
               <sel>ADCSYNC_IN4</sel>
               <sel>ADCSYNC_IN5</sel>
             </Selections>
+            <Comment>触发模式触发源选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>CV Count</label>
@@ -3903,6 +3912,7 @@
               <sel>ADC_CV_COUNT_256</sel>
               <sel>ADC_CV_COUNT_512</sel>
             </Selections>
+            <Comment>连续重复采样次数选择&#xD;所有采样次数的值会累加并存储在通道对应的数据寄存器中</Comment>
           </Property>
           <Property class="UIchoice">
             <label>AVG COF</label>
@@ -3919,6 +3929,7 @@
               <sel>ADC_AVG_COF_256</sel>
               <sel>ADC_AVG_COF_512</sel>
             </Selections>
+            <Comment>采样平均系数选择&#xD;通道对应的数据寄存器的值所除以的平均系数</Comment>
           </Property>
         </Device>
         <Device deviceId="internal CH2">
@@ -3952,6 +3963,7 @@
               <sel>ADCIN_1_5VDD</sel>
               <sel>ADCIN_VSS</sel>
             </Selections>
+            <Comment>模拟信号输入通道源选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Trigger Source</label>
@@ -3966,6 +3978,7 @@
               <sel>ADCSYNC_IN4</sel>
               <sel>ADCSYNC_IN5</sel>
             </Selections>
+            <Comment>触发模式触发源选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>CV Count</label>
@@ -3982,6 +3995,7 @@
               <sel>ADC_CV_COUNT_256</sel>
               <sel>ADC_CV_COUNT_512</sel>
             </Selections>
+            <Comment>连续重复采样次数选择&#xD;所有采样次数的值会累加并存储在通道对应的数据寄存器中</Comment>
           </Property>
           <Property class="UIchoice">
             <label>AVG COF</label>
@@ -3998,6 +4012,7 @@
               <sel>ADC_AVG_COF_256</sel>
               <sel>ADC_AVG_COF_512</sel>
             </Selections>
+            <Comment>采样平均系数选择&#xD;通道对应的数据寄存器的值所除以的平均系数</Comment>
           </Property>
         </Device>
         <Device deviceId="internal CH3">
@@ -4031,6 +4046,7 @@
               <sel>ADCIN_1_5VDD</sel>
               <sel>ADCIN_VSS</sel>
             </Selections>
+            <Comment>模拟信号输入通道源选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Trigger Source</label>
@@ -4045,6 +4061,7 @@
               <sel>ADCSYNC_IN4</sel>
               <sel>ADCSYNC_IN5</sel>
             </Selections>
+            <Comment>触发模式触发源选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>CV Count</label>
@@ -4061,6 +4078,7 @@
               <sel>ADC_CV_COUNT_256</sel>
               <sel>ADC_CV_COUNT_512</sel>
             </Selections>
+            <Comment>连续重复采样次数选择&#xD;所有采样次数的值会累加并存储在通道对应的数据寄存器中</Comment>
           </Property>
           <Property class="UIchoice">
             <label>AVG COF</label>
@@ -4077,6 +4095,7 @@
               <sel>ADC_AVG_COF_256</sel>
               <sel>ADC_AVG_COF_512</sel>
             </Selections>
+            <Comment>采样平均系数选择&#xD;通道对应的数据寄存器的值所除以的平均系数</Comment>
           </Property>
         </Device>
         <Device deviceId="internal CH4">
@@ -4110,6 +4129,7 @@
               <sel>ADCIN_1_5VDD</sel>
               <sel>ADCIN_VSS</sel>
             </Selections>
+            <Comment>模拟信号输入通道源选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Trigger Source</label>
@@ -4124,6 +4144,7 @@
               <sel>ADCSYNC_IN4</sel>
               <sel>ADCSYNC_IN5</sel>
             </Selections>
+            <Comment>触发模式触发源选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>CV Count</label>
@@ -4140,6 +4161,7 @@
               <sel>ADC_CV_COUNT_256</sel>
               <sel>ADC_CV_COUNT_512</sel>
             </Selections>
+            <Comment>连续重复采样次数选择&#xD;所有采样次数的值会累加并存储在通道对应的数据寄存器中</Comment>
           </Property>
           <Property class="UIchoice">
             <label>AVG COF</label>
@@ -4156,6 +4178,7 @@
               <sel>ADC_AVG_COF_256</sel>
               <sel>ADC_AVG_COF_512</sel>
             </Selections>
+            <Comment>采样平均系数选择&#xD;通道对应的数据寄存器的值所除以的平均系数</Comment>
           </Property>
         </Device>
         <Device deviceId="internal CH5">
@@ -4189,6 +4212,7 @@
               <sel>ADCIN_1_5VDD</sel>
               <sel>ADCIN_VSS</sel>
             </Selections>
+            <Comment>模拟信号输入通道源选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Trigger Source</label>
@@ -4203,6 +4227,7 @@
               <sel>ADCSYNC_IN4</sel>
               <sel>ADCSYNC_IN5</sel>
             </Selections>
+            <Comment>触发模式触发源选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>CV Count</label>
@@ -4219,6 +4244,7 @@
               <sel>ADC_CV_COUNT_256</sel>
               <sel>ADC_CV_COUNT_512</sel>
             </Selections>
+            <Comment>连续重复采样次数选择&#xD;所有采样次数的值会累加并存储在通道对应的数据寄存器中</Comment>
           </Property>
           <Property class="UIchoice">
             <label>AVG COF</label>
@@ -4235,6 +4261,7 @@
               <sel>ADC_AVG_COF_256</sel>
               <sel>ADC_AVG_COF_512</sel>
             </Selections>
+            <Comment>采样平均系数选择&#xD;通道对应的数据寄存器的值所除以的平均系数</Comment>
           </Property>
         </Device>
         <Device deviceId="internal CH6">
@@ -4268,6 +4295,7 @@
               <sel>ADCIN_1_5VDD</sel>
               <sel>ADCIN_VSS</sel>
             </Selections>
+            <Comment>模拟信号输入通道源选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Trigger Source</label>
@@ -4282,6 +4310,7 @@
               <sel>ADCSYNC_IN4</sel>
               <sel>ADCSYNC_IN5</sel>
             </Selections>
+            <Comment>触发模式触发源选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>CV Count</label>
@@ -4298,6 +4327,7 @@
               <sel>ADC_CV_COUNT_256</sel>
               <sel>ADC_CV_COUNT_512</sel>
             </Selections>
+            <Comment>连续重复采样次数选择&#xD;所有采样次数的值会累加并存储在通道对应的数据寄存器中</Comment>
           </Property>
           <Property class="UIchoice">
             <label>AVG COF</label>
@@ -4314,6 +4344,7 @@
               <sel>ADC_AVG_COF_256</sel>
               <sel>ADC_AVG_COF_512</sel>
             </Selections>
+            <Comment>采样平均系数选择&#xD;通道对应的数据寄存器的值所除以的平均系数</Comment>
           </Property>
         </Device>
         <Device deviceId="internal CH7">
@@ -4347,6 +4378,7 @@
               <sel>ADCIN_1_5VDD</sel>
               <sel>ADCIN_VSS</sel>
             </Selections>
+            <Comment>模拟信号输入通道源选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Trigger Source</label>
@@ -4361,6 +4393,7 @@
               <sel>ADCSYNC_IN4</sel>
               <sel>ADCSYNC_IN5</sel>
             </Selections>
+            <Comment>触发模式触发源选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>CV Count</label>
@@ -4377,6 +4410,7 @@
               <sel>ADC_CV_COUNT_256</sel>
               <sel>ADC_CV_COUNT_512</sel>
             </Selections>
+            <Comment>连续重复采样次数选择&#xD;所有采样次数的值会累加并存储在通道对应的数据寄存器中</Comment>
           </Property>
           <Property class="UIchoice">
             <label>AVG COF</label>
@@ -4393,6 +4427,7 @@
               <sel>ADC_AVG_COF_256</sel>
               <sel>ADC_AVG_COF_512</sel>
             </Selections>
+            <Comment>采样平均系数选择&#xD;通道对应的数据寄存器的值所除以的平均系数</Comment>
           </Property>
         </Device>
         <Device deviceId="internal CH8">
@@ -4426,6 +4461,7 @@
               <sel>ADCIN_1_5VDD</sel>
               <sel>ADCIN_VSS</sel>
             </Selections>
+            <Comment>模拟信号输入通道源选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Trigger Source</label>
@@ -4440,6 +4476,7 @@
               <sel>ADCSYNC_IN4</sel>
               <sel>ADCSYNC_IN5</sel>
             </Selections>
+            <Comment>触发模式触发源选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>CV Count</label>
@@ -4456,6 +4493,7 @@
               <sel>ADC_CV_COUNT_256</sel>
               <sel>ADC_CV_COUNT_512</sel>
             </Selections>
+            <Comment>连续重复采样次数选择&#xD;所有采样次数的值会累加并存储在通道对应的数据寄存器中</Comment>
           </Property>
           <Property class="UIchoice">
             <label>AVG COF</label>
@@ -4472,6 +4510,7 @@
               <sel>ADC_AVG_COF_256</sel>
               <sel>ADC_AVG_COF_512</sel>
             </Selections>
+            <Comment>采样平均系数选择&#xD;通道对应的数据寄存器的值所除以的平均系数</Comment>
           </Property>
         </Device>
         <Device deviceId="internal CH9">
@@ -4505,6 +4544,7 @@
               <sel>ADCIN_1_5VDD</sel>
               <sel>ADCIN_VSS</sel>
             </Selections>
+            <Comment>模拟信号输入通道源选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Trigger Source</label>
@@ -4519,6 +4559,7 @@
               <sel>ADCSYNC_IN4</sel>
               <sel>ADCSYNC_IN5</sel>
             </Selections>
+            <Comment>触发模式触发源选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>CV Count</label>
@@ -4535,6 +4576,7 @@
               <sel>ADC_CV_COUNT_256</sel>
               <sel>ADC_CV_COUNT_512</sel>
             </Selections>
+            <Comment>连续重复采样次数选择&#xD;所有采样次数的值会累加并存储在通道对应的数据寄存器中</Comment>
           </Property>
           <Property class="UIchoice">
             <label>AVG COF</label>
@@ -4551,6 +4593,7 @@
               <sel>ADC_AVG_COF_256</sel>
               <sel>ADC_AVG_COF_512</sel>
             </Selections>
+            <Comment>采样平均系数选择&#xD;通道对应的数据寄存器的值所除以的平均系数</Comment>
           </Property>
         </Device>
         <Device deviceId="internal CH10">
@@ -4584,6 +4627,7 @@
               <sel>ADCIN_1_5VDD</sel>
               <sel>ADCIN_VSS</sel>
             </Selections>
+            <Comment>模拟信号输入通道源选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Trigger Source</label>
@@ -4598,6 +4642,7 @@
               <sel>ADCSYNC_IN4</sel>
               <sel>ADCSYNC_IN5</sel>
             </Selections>
+            <Comment>触发模式触发源选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>CV Count</label>
@@ -4614,6 +4659,7 @@
               <sel>ADC_CV_COUNT_256</sel>
               <sel>ADC_CV_COUNT_512</sel>
             </Selections>
+            <Comment>连续重复采样次数选择&#xD;所有采样次数的值会累加并存储在通道对应的数据寄存器中</Comment>
           </Property>
           <Property class="UIchoice">
             <label>AVG COF</label>
@@ -4630,6 +4676,7 @@
               <sel>ADC_AVG_COF_256</sel>
               <sel>ADC_AVG_COF_512</sel>
             </Selections>
+            <Comment>采样平均系数选择&#xD;通道对应的数据寄存器的值所除以的平均系数</Comment>
           </Property>
         </Device>
         <Device deviceId="internal CH11">
@@ -4663,6 +4710,7 @@
               <sel>ADCIN_1_5VDD</sel>
               <sel>ADCIN_VSS</sel>
             </Selections>
+            <Comment>模拟信号输入通道源选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Trigger Source</label>
@@ -4677,6 +4725,7 @@
               <sel>ADCSYNC_IN4</sel>
               <sel>ADCSYNC_IN5</sel>
             </Selections>
+            <Comment>触发模式触发源选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>CV Count</label>
@@ -4693,6 +4742,7 @@
               <sel>ADC_CV_COUNT_256</sel>
               <sel>ADC_CV_COUNT_512</sel>
             </Selections>
+            <Comment>连续重复采样次数选择&#xD;所有采样次数的值会累加并存储在通道对应的数据寄存器中</Comment>
           </Property>
           <Property class="UIchoice">
             <label>AVG COF</label>
@@ -4709,6 +4759,7 @@
               <sel>ADC_AVG_COF_256</sel>
               <sel>ADC_AVG_COF_512</sel>
             </Selections>
+            <Comment>采样平均系数选择&#xD;通道对应的数据寄存器的值所除以的平均系数</Comment>
           </Property>
         </Device>
         <Device deviceId="internal CH12">
@@ -4742,6 +4793,7 @@
               <sel>ADCIN_1_5VDD</sel>
               <sel>ADCIN_VSS</sel>
             </Selections>
+            <Comment>模拟信号输入通道源选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Trigger Source</label>
@@ -4756,6 +4808,7 @@
               <sel>ADCSYNC_IN4</sel>
               <sel>ADCSYNC_IN5</sel>
             </Selections>
+            <Comment>触发模式触发源选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>CV Count</label>
@@ -4772,6 +4825,7 @@
               <sel>ADC_CV_COUNT_256</sel>
               <sel>ADC_CV_COUNT_512</sel>
             </Selections>
+            <Comment>连续重复采样次数选择&#xD;所有采样次数的值会累加并存储在通道对应的数据寄存器中</Comment>
           </Property>
           <Property class="UIchoice">
             <label>AVG COF</label>
@@ -4788,6 +4842,7 @@
               <sel>ADC_AVG_COF_256</sel>
               <sel>ADC_AVG_COF_512</sel>
             </Selections>
+            <Comment>采样平均系数选择&#xD;通道对应的数据寄存器的值所除以的平均系数</Comment>
           </Property>
         </Device>
         <Device deviceId="internal CH13">
@@ -4821,6 +4876,7 @@
               <sel>ADCIN_1_5VDD</sel>
               <sel>ADCIN_VSS</sel>
             </Selections>
+            <Comment>模拟信号输入通道源选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Trigger Source</label>
@@ -4835,6 +4891,7 @@
               <sel>ADCSYNC_IN4</sel>
               <sel>ADCSYNC_IN5</sel>
             </Selections>
+            <Comment>触发模式触发源选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>CV Count</label>
@@ -4851,6 +4908,7 @@
               <sel>ADC_CV_COUNT_256</sel>
               <sel>ADC_CV_COUNT_512</sel>
             </Selections>
+            <Comment>连续重复采样次数选择&#xD;所有采样次数的值会累加并存储在通道对应的数据寄存器中</Comment>
           </Property>
           <Property class="UIchoice">
             <label>AVG COF</label>
@@ -4867,6 +4925,7 @@
               <sel>ADC_AVG_COF_256</sel>
               <sel>ADC_AVG_COF_512</sel>
             </Selections>
+            <Comment>采样平均系数选择&#xD;通道对应的数据寄存器的值所除以的平均系数</Comment>
           </Property>
         </Device>
         <Device deviceId="internal CH14">
@@ -4900,6 +4959,7 @@
               <sel>ADCIN_1_5VDD</sel>
               <sel>ADCIN_VSS</sel>
             </Selections>
+            <Comment>模拟信号输入通道源选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Trigger Source</label>
@@ -4914,6 +4974,7 @@
               <sel>ADCSYNC_IN4</sel>
               <sel>ADCSYNC_IN5</sel>
             </Selections>
+            <Comment>触发模式触发源选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>CV Count</label>
@@ -4930,6 +4991,7 @@
               <sel>ADC_CV_COUNT_256</sel>
               <sel>ADC_CV_COUNT_512</sel>
             </Selections>
+            <Comment>连续重复采样次数选择&#xD;所有采样次数的值会累加并存储在通道对应的数据寄存器中</Comment>
           </Property>
           <Property class="UIchoice">
             <label>AVG COF</label>
@@ -4946,6 +5008,7 @@
               <sel>ADC_AVG_COF_256</sel>
               <sel>ADC_AVG_COF_512</sel>
             </Selections>
+            <Comment>采样平均系数选择&#xD;通道对应的数据寄存器的值所除以的平均系数</Comment>
           </Property>
         </Device>
         <Device deviceId="internal CH15">
@@ -4979,6 +5042,7 @@
               <sel>ADCIN_1_5VDD</sel>
               <sel>ADCIN_VSS</sel>
             </Selections>
+            <Comment>模拟信号输入通道源选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Trigger Source</label>
@@ -4993,6 +5057,7 @@
               <sel>ADCSYNC_IN4</sel>
               <sel>ADCSYNC_IN5</sel>
             </Selections>
+            <Comment>触发模式触发源选择</Comment>
           </Property>
           <Property class="UIchoice">
             <label>CV Count</label>
@@ -5009,6 +5074,7 @@
               <sel>ADC_CV_COUNT_256</sel>
               <sel>ADC_CV_COUNT_512</sel>
             </Selections>
+            <Comment>连续重复采样次数选择&#xD;所有采样次数的值会累加并存储在通道对应的数据寄存器中</Comment>
           </Property>
           <Property class="UIchoice">
             <label>AVG COF</label>
@@ -5025,6 +5091,7 @@
               <sel>ADC_AVG_COF_256</sel>
               <sel>ADC_AVG_COF_512</sel>
             </Selections>
+            <Comment>采样平均系数选择&#xD;通道对应的数据寄存器的值所除以的平均系数</Comment>
           </Property>
         </Device>
         <Device deviceId="internal CHEnd">
