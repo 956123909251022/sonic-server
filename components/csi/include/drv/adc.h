@@ -412,6 +412,15 @@ csi_error_t csi_adc_set_sync(csp_adc_t *ptAdcBase, csi_adc_trgin_e eTrgIn, csi_a
  */
 csi_error_t csi_adc_set_evtrg(csp_adc_t *ptAdcBase, csi_adc_trgout_e eTrgOut, csi_adc_trgsrc_e eTrgSrc);
 
+/**
+  \brief adc evtrg output enable/disable
+  \param[in] ptAdcBase: pointer of adc register structure
+  \param[in] eTrgOut: adc evtrg out port (0~1)
+  \param[in] bEnable: ENABLE/DISABLE
+  \return error code \ref csi_error_t
+ */
+csi_error_t csi_adc_evtrg_enable(csp_adc_t *ptAdcBase, csi_adc_trgout_e eTrgOut, bool bEnable);
+
 /** 
   \brief 	   clear adc converison status
   \param[in]   ptAdcBase	pointer of adc register structure
