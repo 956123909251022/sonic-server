@@ -34,7 +34,7 @@ typedef enum {
     SRC_HFOSC,
 	SRC_ISOSC = 4,
 	SRC_ESOSC
-} cclk_src_e;
+} csi_clk_src_e;
 
 typedef enum{
 	PCLK_PM = 8,
@@ -42,21 +42,21 @@ typedef enum{
 	ISOSC_PM = 12, 
 	IMOSC_PM,
 	EMOSC_PM = 15
-}cclk_pm_e;
+}csi_clk_pm_e;
 
 typedef enum {
 	IM_5M = IMOSC_5M_VALUE,
 	IM_4M = IMOSC_4M_VALUE,
 	IM_2M = IMOSC_2M_VALUE, 
 	IM_131K = IMOSC_131K_VALUE
-}imo_freq_e;
+}csi_imo_freq_e;
 
 typedef enum{
 	HF_48M 	= HFOSC_48M_VALUE,
 	HF_24M  = HFOSC_24M_VALUE,
 	HF_12M  = HFOSC_12M_VALUE,
 	HF_6M   = HFOSC_6M_VALUE
-}hfo_freq_e;
+}csi_hfo_freq_e;
 
 typedef enum{
 	PCLK_DIV1	= 0,
@@ -64,7 +64,7 @@ typedef enum{
 	PCLK_DIV4,
 	PCLK_DIV8 	= 4,
 	PCLK_DIV16 	= 8
-}pclk_div_e;
+}csi_pclk_div_e;
 
 typedef enum{
 	SCLK_DIV1	= 1,
@@ -82,31 +82,31 @@ typedef enum{
 	SCLK_DIV64,
 	SCLK_DIV128,
 	SCLK_DIV256
-}hclk_div_e;
+}csi_hclk_div_e;
 
 /// \struct system_clk_config_t
 /// members to be used in system clock management, including osc src, osc freq(if seletable), HCLK and PCLK divider
 typedef struct {
-	cclk_src_e		eClkSrc;	//clock source
-	uint32_t		wFreq;		//clock frequency
-	hclk_div_e		eSdiv;		//SDIV
-	pclk_div_e		ePdiv;		//PDIV
-	uint32_t		wSclk;		//SCLK
-	uint32_t		wPclk;
+	csi_clk_src_e		eClkSrc;	//clock source
+	uint32_t		    wFreq;		//clock frequency
+	csi_hclk_div_e		eSdiv;		//SDIV
+	csi_pclk_div_e		ePdiv;		//PDIV
+	uint32_t		    wSclk;		//SCLK
+	uint32_t		    wPclk;
 }csi_clk_config_t;
 
 extern csi_clk_config_t g_tClkConfig;
 
 //typedef struct {
-//    cclk_src_e	eSysClkSrc;      /* select sysclk source clock */
-//	uint32_t 	wOscFreq;        /* select frequence */
-//    hclk_div_e 	eHclkDivider;    /* ratio between fs_mclk clock and mclk clock */
-//    pclk_div_e 	ePclkDivider;    /* ratio between mclk clock and apb0 clock */
+//    csi_clk_src_e	eSysClkSrc;      /* select sysclk source clock */
+//	  uint32_t 	wOscFreq;        /* select frequence */
+//    csi_hclk_div_e 	eHclkDivider;    /* ratio between fs_mclk clock and mclk clock */
+//    csi_pclk_div_e 	ePclkDivider;    /* ratio between mclk clock and apb0 clock */
 //} system_clk_config_t;
 
 /// \enum clk_module_t
 /// \brief all the peri clock enable bits in SYSCON level
-/// \todo  clk_module_t or clk_module_e
+/// \todo  clk_module_t or csi_clk_module_e
 typedef enum {
      //PCER0/PCDR0
 	IFC_SYS_CLK		= 0U,
@@ -139,7 +139,7 @@ typedef enum {
 	
 	//CORET CLK
 	CORET_SYS_CLK	= 11U
-} clk_module_e;
+} csi_clk_module_e;
 
 
 //global variable: sysclkclk 
@@ -216,17 +216,17 @@ uint32_t soc_get_rtc_freq(void);
 
 /*
   \brief       Soc enable device clock
-  \param[in]   module   clock module, defined in sys_clk.h, \ref clk_module_t
+  \param[in]   eModule   clock module, defined in sys_clk.h, \ref clk_module_t
   \return      none
 */
-void soc_clk_enable(int32_t module);
+void soc_clk_enable(csi_clk_module_e eModule);
 
 /*
   \brief       Soc disable device clock
-  \param[in]   module   clock module, defined in sys_clk.h, \ref clk_module_t
+  \param[in]   eModule   clock module, defined in sys_clk.h, \ref clk_module_t
   \return      none
 */
-void soc_clk_disable(int32_t module);
+void soc_clk_disable(csi_clk_module_e eModule);
 
 /** \brief       timer set load times out
  *  \param[in]   wTimeOut: the timeout, unit: us, 20us < wTimeOut < 3S

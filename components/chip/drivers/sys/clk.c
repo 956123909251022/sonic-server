@@ -38,7 +38,7 @@ void csi_clk_enable(void *pIpBase)
 //        if((uint32_t)pIpBase == ptMap->wRegBase) 
 //		{
 //			if((uint32_t)pIpBase != CORET_ADDR_BASE)
-//				soc_clk_enable((clk_module_e)ptMap->wModule);
+//				soc_clk_enable((csi_clk_module_e)ptMap->wModule);
 //			else
 //				SYSCON->GCER = (0x01ul << ptMap->wModule);
 //            break;
@@ -54,7 +54,7 @@ void csi_clk_enable(void *pIpBase)
         if((uint16_t)((wIpBase >> 16) | ((wIpBase &0xffff) >> 4)) == ptMap->hwRegBase) 
 		{
 			if(wIpBase != CORET_ADDR_BASE)
-				soc_clk_enable((clk_module_e)ptMap->byModule);
+				soc_clk_enable((csi_clk_module_e)ptMap->byModule);
 			else
 			{
 				if(ptMap->byModule != 0xff)
@@ -142,7 +142,7 @@ void csi_clk_disable(void *pIpBase)
 //        if((uint32_t)pIpBase == ptMap->wRegBase) 
 //		{
 //			if((uint32_t)pIpBase != CORET_ADDR_BASE)
-//				soc_clk_disable((clk_module_e)ptMap->wModule);
+//				soc_clk_disable((csi_clk_module_e)ptMap->wModule);
 //			else
 //				SYSCON->GCDR = (0x01ul << ptMap->wModule);
 //            break;
@@ -158,7 +158,7 @@ void csi_clk_disable(void *pIpBase)
         if((uint16_t)((wIpBase >> 16) | ((wIpBase &0xffff) >> 4)) == ptMap->hwRegBase) 
 		{
 			if(wIpBase != CORET_ADDR_BASE)
-				soc_clk_disable((clk_module_e)ptMap->byModule);
+				soc_clk_disable((csi_clk_module_e)ptMap->byModule);
 			else
 			{
 				if(ptMap->byModule != 0xff)
@@ -448,12 +448,12 @@ void csi_esosc_set_gain(uint8_t byEsGain)
  */
 csi_error_t csi_clk_calib(void)
 {
-	cclk_src_e    eClkSrc;
+	csi_clk_src_e    eClkSrc;
 	volatile csi_clk_calib_t tClkCalib;
 	volatile unsigned int  wPclkValue,wCheckData;
 	volatile unsigned char byFlag = 1,byDiv; 
 	
-	eClkSrc = ((cclk_src_e) csp_get_clksrc(SYSCON));	
+	eClkSrc = ((csi_clk_src_e) csp_get_clksrc(SYSCON));	
 	if((eClkSrc != SRC_IMOSC)&&(eClkSrc != SRC_HFOSC))
 		return CSI_ERROR;
 	

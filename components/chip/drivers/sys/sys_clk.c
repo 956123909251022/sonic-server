@@ -44,7 +44,7 @@ csi_error_t csi_sysclk_config(csi_clk_config_t tClkCfg)
 {	csi_error_t ret = CSI_OK;
 	uint8_t byFreqIdx = 0;
 	uint32_t wFreq,wTargetSclk;
-	cclk_src_e eSrc;
+	csi_clk_src_e eSrc;
 	uint8_t byFlashLp = 0;
 	wFreq = tClkCfg.wFreq;
 	
@@ -159,13 +159,13 @@ csi_error_t csi_clo_config(clo_src_e eCloSrc, clo_div_e eCloDiv)
  *  \param[in] wModule: module name
  *  \return none
  */
-void soc_clk_enable(int32_t wModule)
+void soc_clk_enable(csi_clk_module_e eModule)
 {
     //TODO
-	if(wModule < 32U)
-		csp_pcer0_clk_en(SYSCON, (uint32_t)wModule);
+	if(eModule < 32U)
+		csp_pcer0_clk_en(SYSCON, (uint32_t)eModule);
 	else
-		csp_pcer1_clk_en(SYSCON, (uint32_t)wModule - 32U);
+		csp_pcer1_clk_en(SYSCON, (uint32_t)eModule - 32U);
 }
 
 /** \brief prei clk disable in SYSCON level
@@ -173,13 +173,13 @@ void soc_clk_enable(int32_t wModule)
  *  \param[in] wModule: module name
  *  \return none
  */
-void soc_clk_disable(int32_t wModule)
+void soc_clk_disable(csi_clk_module_e eModule)
 {
     //TODO
-	if(wModule < 32U)
-		csp_pder0_clk_dis(SYSCON, (uint32_t)wModule);
+	if(eModule < 32U)
+		csp_pder0_clk_dis(SYSCON, (uint32_t)eModule);
 	else
-		csp_pder1_clk_dis(SYSCON, (uint32_t)wModule - 32U);
+		csp_pder1_clk_dis(SYSCON, (uint32_t)eModule - 32U);
 }
 /** \brief to calculate SCLK and PCLK frequence according to the current reg content
  *  g_tClkConfig.wSclk and g_tClkConfig.wPclk will be updated after excuting this function
@@ -188,14 +188,14 @@ void soc_clk_disable(int32_t wModule)
  */
 csi_error_t csi_calc_clk_freq(void)
 {
-	cclk_src_e eClkSrc;
+	csi_clk_src_e eClkSrc;
 	uint8_t  byHclkDiv;
 	uint32_t wHfoFreq;
 	uint32_t wImoFreq;
 	
 	//calculate sclk
 	{
-		eClkSrc = ((cclk_src_e) csp_get_clksrc(SYSCON));
+		eClkSrc = ((csi_clk_src_e) csp_get_clksrc(SYSCON));
 		switch(eClkSrc)
 		{ 	case (SRC_ISOSC): 	
 				g_tClkConfig.wSclk = g_tClkConfig.wFreq;
