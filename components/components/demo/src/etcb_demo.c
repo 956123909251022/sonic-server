@@ -459,7 +459,7 @@ int etcb_mix_demo(void)
 	iRet = csi_etb_ch_config(ch, &tEtbConfig);	
 	
 	tEtbConfig.byChType = ETB_ONE_TRG_ONE;  		//单个源触发单个目标
-	tEtbConfig.bySrcIp  = ETB_LPT_TRGOUT0 ;  	    //LPT 触发输出0作为触发源
+	tEtbConfig.bySrcIp  = ETB_LPT_TRGOUT ;  	    //LPT 触发输出0作为触发源
 	tEtbConfig.byDstIp =  ETB_ADC_SYNCIN0;   	    //ADC0 同步输入作为目标事件
 	tEtbConfig.byTrgMode = ETB_HARDWARE_TRG;
    
