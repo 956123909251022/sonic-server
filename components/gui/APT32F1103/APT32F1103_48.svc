@@ -20,15 +20,15 @@
       <Pins>
         <Pin pinNum="38" group="PA0" displayName="PA0.0">
           <Property class="UIchoice">
-            <label>IOFunction</label>
-            <value>GPTB0_CHB</value>
+            <label>PinFunctions</label>
+            <value>High_Z</value>
             <Selections>
               <sel>High_Z</sel>
               <sel>GPIO_INPUT</sel>
               <sel>GPIO_INPUT with Filter</sel>
-              <sel>GPIO_OUTPUT_Push-pull</sel>
+              <sel>GPIO_OUTPUT_Push-Pull</sel>
               <sel>GPIO_OUTPUT_Open-Drain</sel>
-              <sel>GPIO_OUTPUT_Push-pull with Monitor</sel>
+              <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
               <sel>RTC_ALM</sel>
               <sel>CMP1_OUT</sel>
@@ -44,7 +44,7 @@
           </Property>
           <Property class="UIchoice">
             <label>Driving Ability</label>
-            <value>Constant</value>
+            <value>Normal</value>
             <Selections>
               <sel>Normal</sel>
               <sel>Strong</sel>
@@ -54,7 +54,7 @@
           </Property>
           <Property class="UIchoice">
             <label>Driving Slew-Rate</label>
-            <value>Fast</value>
+            <value>Normal</value>
             <Selections>
               <sel>Normal</sel>
               <sel>Fast</sel>
@@ -63,7 +63,7 @@
           </Property>
           <Property class="UIchoice">
             <label>Pull Mode</label>
-            <value>Pull_Down</value>
+            <value>Pull_None</value>
             <Selections>
               <sel>Pull_None</sel>
               <sel>Pull_Up</sel>
@@ -8322,7 +8322,7 @@
         <label>LCD</label>
         <Device deviceId="LCD">
           <GenCodeFuncName>LCDInitFunc</GenCodeFuncName>
-          <UseOrNot>1</UseOrNot>
+          <UseOrNot>0</UseOrNot>
           <label>LCD</label>
           <Property class="UIchoice">
             <label>ClkSrc</label>
@@ -8461,77 +8461,81 @@
             </Selections>
             <Comment>设置主机速度模式	IIC_BUS_SPEED_STANDARD &lt;=100kHz   IIC_BUS_SPEED_FAST &lt;=400kHz    IIC_BUS_SPEED_FAST_PLUS &lt;=  1MHz</Comment>
           </Property>
-          <Property class="Bool">
-            <label>IIC_INTSRC_NONE</label>
-            <value>1</value>
-            <Comment>IIC Interrupt Status</Comment>
+          <Property class="UIchoice">
+            <label>Interrupt</label>
+            <value>DISABLE</value>
+            <Selections>
+              <sel notAvailable="IICInt">DISABLE</sel>
+              <sel>ENABLE</sel>
+            </Selections>
+            <Comment/>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="IICInt">
             <label>IIC_INTSRC_RX_UNDER</label>
             <value>0</value>
             <Comment>IIC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="IICInt">
             <label>IIC_INTSRC_RX_OVER</label>
             <value>0</value>
             <Comment>IIC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="IICInt">
             <label>IIC_INTSRC_RX_FULL</label>
             <value>0</value>
             <Comment>IIC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="IICInt">
             <label>IIC_INTSRC_TX_OVER</label>
             <value>0</value>
             <Comment>IIC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="IICInt">
             <label>IIC_INTSRC_TX_EMPTY</label>
             <value>0</value>
             <Comment>IIC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="IICInt">
             <label>IIC_INTSRC_RD_REQ</label>
             <value>0</value>
             <Comment>IIC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="IICInt">
             <label>IIC_INTSRC_TX_ABRT</label>
             <value>0</value>
             <Comment>IIC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="IICInt">
             <label>IIC_INTSRC_RX_DONE</label>
             <value>0</value>
             <Comment>IIC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="IICInt">
             <label>IIC_INTSRC_BUSY</label>
             <value>0</value>
             <Comment>IIC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
-            <label>IIC_INTSRC_BUSY</label>
+          <Property class="Bool" property_class="IICInt">
+            <label>IIC_INTSRC_STOP_DET</label>
             <value>0</value>
             <Comment>IIC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="IICInt">
             <label>IIC_INTSRC_START_DET</label>
             <value>0</value>
             <Comment>IIC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="IICInt">
             <label>IIC_INTSRC_GEN_CALL</label>
             <value>0</value>
             <Comment>IIC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="IICInt">
             <label>IIC_INTSRC_RESTART_DET</label>
             <value>0</value>
             <Comment>IIC Interrupt Status</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="IICInt">
             <label>IIC_INTSRC_SCL_SLOW</label>
             <value>0</value>
             <Comment>IIC Interrupt Status</Comment>
@@ -8619,27 +8623,31 @@
             <validReg>^(0)$</validReg>
             <Comment>默认值0 作从机时 通讯速率取决于主机</Comment>
           </Property>
-          <Property class="Bool">
-            <label>SPI_INTSRC_NONE</label>
-            <value>1</value>
-            <Comment>none interrupt</Comment>
+          <Property class="UIchoice">
+            <label>Interrupt</label>
+            <value>DISABLE</value>
+            <Selections>
+              <sel notAvailable="SPIInt">DISABLE</sel>
+              <sel>ENABLE</sel>
+            </Selections>
+            <Comment/>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="SPIInt">
             <label>SPI_INTSRC_ROTIM</label>
             <value>0</value>
             <Comment>Receive Overrun Interrupt</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="SPIInt">
             <label>SPI_INTSRC_RTIM</label>
             <value>0</value>
             <Comment>Receive Timeout Interrupt</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="SPIInt">
             <label>SPI_INTSRC_RXIM</label>
             <value>0</value>
             <Comment>Receive FIFO Interrupt</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="SPIInt">
             <label>SPI_INTSRC_TXIM</label>
             <value>0</value>
             <Comment>Transmit FIFO interrupt</Comment>
@@ -8773,92 +8781,96 @@
             </Selections>
             <Comment>CMPD捕捉载入后，计数器值计数状态控制位&#xD;1h：CMPD触发后，计数器值进行重置&#xD;0h：CMPD触发后，计数器值不进行重置</Comment>
           </Property>
-          <Property class="Bool">
-            <label>EPT_INTSRC_NONE</label>
-            <value>1</value>
-            <Comment>不使能中断</Comment>
+          <Property class="UIchoice">
+            <label>Interrupt</label>
+            <value>DISABLE</value>
+            <Selections>
+              <sel notAvailable="EPT0Int">DISABLE</sel>
+              <sel>ENABLE</sel>
+            </Selections>
+            <Comment/>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="EPT0Int">
             <label>EPT_INTSRC_TRGEV0</label>
             <value>0</value>
             <Comment>事件0中断</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="EPT0Int">
             <label>EPT_INTSRC_TRGEV1</label>
             <value>0</value>
             <Comment>事件1中断</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="EPT0Int">
             <label>EPT_INTSRC_TRGEV2</label>
             <value>0</value>
             <Comment>事件2中断</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="EPT0Int">
             <label>EPT_INTSRC_TRGEV3</label>
             <value>0</value>
             <Comment>事件3中断</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="EPT0Int">
             <label>EPT_INTSRC_CAPLD0</label>
             <value>0</value>
             <Comment>捕获值载入CMPA中断</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="EPT0Int">
             <label>EPT_INTSRC_CAPLD1</label>
             <value>0</value>
             <Comment>捕获值载入CMPB中断</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="EPT0Int">
             <label>EPT_INTSRC_CAPLD2</label>
             <value>0</value>
             <Comment>捕获值载入CMPC中断</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="EPT0Int">
             <label>EPT_INTSRC_CAPLD3</label>
             <value>0</value>
             <Comment>捕获值载入CMPD中断</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="EPT0Int">
             <label>EPT_INTSRC_CAU</label>
             <value>0</value>
             <Comment>递增阶段CNT = CMPA中断</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="EPT0Int">
             <label>EPT_INTSRC_CAD</label>
             <value>0</value>
             <Comment>递减阶段CNT = CMPA中断</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="EPT0Int">
             <label>EPT_INTSRC_CBU</label>
             <value>0</value>
             <Comment>递增阶段CNT = CMPB中断</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="EPT0Int">
             <label>EPT_INTSRC_CBD</label>
             <value>0</value>
             <Comment>递减阶段CNT = CMPB中断</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="EPT0Int">
             <label>EPT_INTSRC_CCU</label>
             <value>0</value>
             <Comment>递增阶段CNT = CMPC中断</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="EPT0Int">
             <label>EPT_INTSRC_CCD</label>
             <value>0</value>
             <Comment>递减阶段CNT = CMPC中断</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="EPT0Int">
             <label>EPT_INTSRC_CDU</label>
             <value>0</value>
             <Comment>递增阶段CNT = CMPD中断</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="EPT0Int">
             <label>EPT_INTSRC_CDD</label>
             <value>0</value>
             <Comment>递减阶段CNT = CMPD中断</Comment>
           </Property>
-          <Property class="Bool">
+          <Property class="Bool" property_class="EPT0Int">
             <label>EPT_INTSRC_PEND</label>
             <value>0</value>
             <Comment>周期结束中断</Comment>
