@@ -351,8 +351,8 @@ int gptb_pwm_dz_em_demo(void)
 	tGptbEmergencyCfg.byEpxLckmd  = B_EP_HLCK;                   //使能 软/硬 锁
 	tGptbEmergencyCfg.byOsrshdw   = B_IMMEDIATE;                 //锁止端口状态载入方式
     tGptbEmergencyCfg.byFltpace0  = B_EPFLT0_2P;                 //EP0、EP1、EP2和EP3的数字去抖滤波检查周期数
-	if(tGptbEmergencyCfg.byEpxInt ==B_ORL0){tGptbEmergencyCfg.byOrl0 = B_ORLx_EP0 |B_ORLx_EP1|B_ORLx_EP2;}
-	if(tGptbEmergencyCfg.byEpxInt ==B_ORL1){tGptbEmergencyCfg.byOrl1 = B_ORLx_EP0 |B_ORLx_EP1|B_ORLx_EP2;}
+	if(tGptbEmergencyCfg.byEpxInt ==B_ORL0){tGptbEmergencyCfg.byOrl0 = B_ORLx_EBI0 |B_ORLx_EBI1|B_ORLx_EBI2;}
+	if(tGptbEmergencyCfg.byEpxInt ==B_ORL1){tGptbEmergencyCfg.byOrl1 = B_ORLx_EBI0 |B_ORLx_EBI1|B_ORLx_EBI2;}
 	csi_gptb_emergency_cfg(GPTB0,&tGptbEmergencyCfg);
 	
     csi_gptb_emergency_pinxout(GPTB0,GPTB_EMCOAX,B_EM_OUT_L);    //紧急状态下输出状态设置（注意mos/igbt的驱动电平）

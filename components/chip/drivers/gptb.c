@@ -562,8 +562,7 @@ csi_error_t csi_gptb_emergency_cfg(csp_gptb_t *ptGptbBase, csi_gptb_emergency_co
 		  case (B_EBI1): wEmpol=( wEmpol  &~ POL_MSK_EBI(1)) | (tCfg -> byPolEbix <<POL_POS_EBI(1) );break;
 		  case (B_EBI2): wEmpol=( wEmpol  &~ POL_MSK_EBI(2)) | (tCfg -> byPolEbix <<POL_POS_EBI(2) );break;
 		  case (B_EBI3): wEmpol=( wEmpol  &~ POL_MSK_EBI(3)) | (tCfg -> byPolEbix <<POL_POS_EBI(3) );break;
-		  case (B_EBI4): wEmpol=( wEmpol  &~ POL_MSK_EBI(4)) | (tCfg -> byPolEbix <<POL_POS_EBI(4) );break;
-		  default:return CSI_ERROR;break;
+		  default:break;
 	 }
 	csp_gptb_set_empol(ptGptbBase,wEmpol);
 

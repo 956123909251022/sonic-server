@@ -622,15 +622,15 @@ typedef enum {
 	B_EBI1,
 	B_EBI2,
 	B_EBI3,
-	B_EBI4,
+	B_LVD,
 	B_ORL0 = 0xe,
 	B_ORL1,
 }csp_gptb_ebi_e;
 
-#define B_ORLx_EP0  1
-#define B_ORLx_EP1  1<<1
-#define	B_ORLx_EP2  1<<2
-#define	B_ORLx_EP3  1<<3
+#define B_ORLx_EBI0  1<<0
+#define B_ORLx_EBI1  1<<1
+#define	B_ORLx_EBI2  1<<2
+#define	B_ORLx_EBI3  1<<3
 
 //EMSRC2
 #define GPTB_EMSRC2_ORL1_EP3_POS          19                                             /*!< GPTB EMSRC2: ORL1_EP3 Position */

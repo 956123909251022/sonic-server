@@ -388,8 +388,8 @@ int ept_pwm_dz_em_demo(void)
 	tEptEmergencyCfg.byOsrshdw   = IMMEDIATE; //SHADOW;       //锁止端口状态载入方式
     tEptEmergencyCfg.byFltpace0  = EPFLT0_2P;                 //EP0、EP1、EP2和EP3的数字去抖滤波检查周期数
 	tEptEmergencyCfg.byFltpace1  = EPFLT1_2P;                 //EP4、EP5、EP6和EP7的数字去抖滤波检查周期数
-	if(tEptEmergencyCfg.byEpxInt ==ORL0){tEptEmergencyCfg.byOrl0 = ORLx_EP0 |ORLx_EP1|ORLx_EP2;}
-	if(tEptEmergencyCfg.byEpxInt ==ORL1){tEptEmergencyCfg.byOrl1 = ORLx_EP4 |ORLx_EP5|ORLx_EP6;}
+	if(tEptEmergencyCfg.byEpxInt ==ORL0){tEptEmergencyCfg.byOrl0 = ORLx_EBI0 |ORLx_EBI1|ORLx_EBI2;}
+	if(tEptEmergencyCfg.byEpxInt ==ORL1){tEptEmergencyCfg.byOrl1 = ORLx_EBI1 |ORLx_EBI2|ORLx_EBI3;}
 	csi_ept_emergency_config(EPT0,&tEptEmergencyCfg);
 	
 	csi_ept_emergency_pinout(EPT0,EMCOAX,EM_OUT_L);           //紧急状态下输出状态设置（注意mos/igbt的驱动电平）
