@@ -388,17 +388,21 @@ typedef enum{
 	ADC12_TRG1_SEL		
 }adc_evtrg_out_e;
 
-#define ADC12_TRGSRC0_POS	(0)
-#define ADC12_TRGSRC0_MSK	(0x1Ful << ADC12_TRGSRC0_POS)
-#define ADC12_TRGSRC1_POS	(8)
-#define ADC12_TRGSRC1_MSK	(0x1Ful << ADC12_TRGSRC1_POS)
+#define ADC12_TRGSRC0_POS		(0)
+#define ADC12_TRGSRC0_MSK		(0x1Ful << ADC12_TRGSRC0_POS)
+#define ADC12_TRGSRC1_POS		(8)
+#define ADC12_TRGSRC1_MSK		(0x1Ful << ADC12_TRGSRC1_POS)
+#define ADC12_TRGSRC_POS(n)		(8 * (n))
+#define ADC12_TRGSRC_MSK(n)		(0x1Ful << ADC12_TRGSRC_POS(n))
 
-#define ADC12_EV_SEQ_END(val)  (0x8 + val)
-#define ADC12_TRGSRC0(val)	(((val) & 0x1Ful) << 0) /**< ADC Out TRG Src Sel */
-#define ADC12_TRGSRC1(val)  (((val) & 0x1Ful) << 8) /**< ADC Out TRG Src Sel */
+#define ADC12_EV_SEQ_END(val)  	(0x8 + val)
+#define ADC12_TRGSRC0(val)		(((val) & 0x1Ful) << 0) /**< ADC Out TRG Src Sel */
+#define ADC12_TRGSRC1(val) 	 	(((val) & 0x1Ful) << 8) /**< ADC Out TRG Src Sel */
 
-#define ADC12_TRG0OE       (0x01ul <<20)       /**< ADC out TRG En          */
-#define ADC12_TRG1OE       (0x01ul <<21)       /**< ADC out TRG En          */
+#define ADC12_TRG0OE       		(0x01ul <<20)       /**< ADC out TRG En          */
+#define ADC12_TRG1OE       		(0x01ul <<21)       /**< ADC out TRG En          */
+#define ADC12_TRGOE_POS(n)      (20 + (n))       	/**< ADC out TRG En          */
+#define ADC12_TRGOE_MASK(n) 	(0x01ul << ADC12_TRGOE_POS(n) ) 
 
 /******************************************************************************
 * EVPS  
