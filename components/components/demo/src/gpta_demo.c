@@ -5,6 +5,7 @@
  * <table>
  * <tr><th> Date  <th>Version  <th>Author  <th>Description
  * <tr><td> 2021-5-11 <td>V0.0 <td>ljy     <td>initial
+ * <tr><td> 2023-5-22 <td>V0.1 <td>YYM     <td>initial
  * </table>
  * *********************************************************************
 */
@@ -73,7 +74,7 @@ int gpta_capture_demo(void)
 	tPwmCfg.byWorkmod       = GPTA_CAPTURE;                     //WAVE or CAPTURE    //计数或捕获	
 	tPwmCfg.byCountingMode  = GPTA_UPCNT;                       //CNYMD  //计数方向
 	tPwmCfg.byOneshotMode    = GPTA_OP_CONT; 
-	tPwmCfg.byStartSrc      = GPTA_SYNC_START;				    //软件使能同步触发使能控制（RSSR中START控制位）//启动方式
+	tPwmCfg.byStartSrc      = GPTA_SYNC;				    //软件使能同步触发使能控制（RSSR中START控制位）//启动方式
 	tPwmCfg.byPscld         = GPTA_LDPSCR_ZRO;                  //PSCR(分频)活动寄存器载入控制。活动寄存器在配置条件满足时，从影子寄存器载入更新值	
 	tPwmCfg.byCaptureCapmd   = 0;                               //0:连续捕捉模式    1h：一次性捕捉模式
 	tPwmCfg.byCaptureStopWrap=4-1;                              //Capture模式下，捕获事件计数器周期设置值
@@ -132,7 +133,7 @@ int gpta_pwm_demo(void)
 	tPwmCfg.byWorkmod        = GPTA_WAVE;                        //WAVE  波形模式
 	tPwmCfg.byCountingMode   = GPTA_UPDNCNT;                     //CNYMD  //计数方向
 	tPwmCfg.byOneshotMode    = GPTA_OP_CONT;                     //OPM    //单次或连续(工作方式)
-	tPwmCfg.byStartSrc       = GPTA_SYNC_START;					 //软件使能同步触发使能控制（RSSR中START控制位）//启动方式
+	tPwmCfg.byStartSrc       = GPTA_SYNC;					 //软件使能同步触发使能控制（RSSR中START控制位）//启动方式
 	tPwmCfg.byPscld          = GPTA_LDPSCR_ZRO;                  //PSCR(分频)活动寄存器载入控制。活动寄存器在配置条件满足时，从影子寄存器载入更新值		
 	tPwmCfg.byDutyCycle 	 = 50;								 //pwm ouput duty cycle//PWM初始值(X%)			
 	tPwmCfg.wFreq 			 = 10000;							 //pwm ouput frequency	
@@ -142,23 +143,23 @@ int gpta_pwm_demo(void)
 //    csi_gpta_channel_aqload_config(GPTA0, GPTA_LD_SHDW, GPTA_LDCMP_PRD ,GPTA_CHANNEL_1);//配置波形控制寄存器的载入模式：Immediate/Shadow  注意：在改变AQLDR寄存器时 会清除相应的AQCRx
 //	csi_gpta_channel_aqload_config(GPTA0, GPTA_LD_SHDW, GPTA_LDCMP_PRD ,GPTA_CHANNEL_2);
 	
-	csi_gpta_pwmchannel_config_t  tEptchannelCfg;
-	tEptchannelCfg.byActionZro    =   GPTA_LO;
-	tEptchannelCfg.byActionPrd    =   GPTA_NA;
-	tEptchannelCfg.byActionC1u    =   GPTA_HI;
-	tEptchannelCfg.byActionC1d    =   GPTA_LO;
-	tEptchannelCfg.byActionC2u    =   GPTA_HI;
-	tEptchannelCfg.byActionC2d    =   GPTA_LO;
-	tEptchannelCfg.byActionT1u    =   GPTA_LO;
-	tEptchannelCfg.byActionT1d    =   GPTA_LO;
-	tEptchannelCfg.byActionT2u    =   GPTA_NA;
-	tEptchannelCfg.byActionT2d    =   GPTA_NA;
-	tEptchannelCfg.byChoiceC1sel  =   GPTA_CMPA;
-	tEptchannelCfg.byChoiceC2sel  =   GPTA_CMPA;	
-	csi_gpta_channel_config(GPTA0, &tEptchannelCfg,  GPTA_CHANNEL_1);//channel
-	tEptchannelCfg.byChoiceC1sel  =   GPTA_CMPB;
-	tEptchannelCfg.byChoiceC2sel  =   GPTA_CMPB;
-	csi_gpta_channel_config(GPTA0, &tEptchannelCfg,  GPTA_CHANNEL_2);
+	csi_gpta_pwmchannel_config_t  tGptachannelCfg;
+	tGptachannelCfg.byActionZro    =   GPTA_LO;
+	tGptachannelCfg.byActionPrd    =   GPTA_NA;
+	tGptachannelCfg.byActionC1u    =   GPTA_HI;
+	tGptachannelCfg.byActionC1d    =   GPTA_LO;
+	tGptachannelCfg.byActionC2u    =   GPTA_HI;
+	tGptachannelCfg.byActionC2d    =   GPTA_LO;
+	tGptachannelCfg.byActionT1u    =   GPTA_LO;
+	tGptachannelCfg.byActionT1d    =   GPTA_LO;
+	tGptachannelCfg.byActionT2u    =   GPTA_NA;
+	tGptachannelCfg.byActionT2d    =   GPTA_NA;
+	tGptachannelCfg.byChoiceC1sel  =   GPTA_CMPA;
+	tGptachannelCfg.byChoiceC2sel  =   GPTA_CMPA;	
+	csi_gpta_channel_config(GPTA0, &tGptachannelCfg,  GPTA_CHANNEL_1);//channel
+	tGptachannelCfg.byChoiceC1sel  =   GPTA_CMPB;
+	tGptachannelCfg.byChoiceC2sel  =   GPTA_CMPB;
+	csi_gpta_channel_config(GPTA0, &tGptachannelCfg,  GPTA_CHANNEL_2);
 //------------------------------------------------------------------------------------------------------------------------
 
 //    csi_gpta_Global_load_control_config_t  Globaldemo;
@@ -223,7 +224,6 @@ int gpta_pwm_demo(void)
     return iRet;
 }
 
-//static uint32_t sTick;
 static uint32_t s_wGpta_Cmp_Buff[4] = {0};
 
 /** \brief gpta interrupt handle weak function
@@ -238,25 +238,15 @@ __attribute__((weak)) void gpta0_irqhandler(csp_gpta_t *ptGptaBase)
 
 	if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_PEND))==GPTA_INT_PEND)
 	{	
-		csi_gpio_port_set_high(GPIOA0, (0x01ul << 0));			
-		nop;
-		csi_gpio_port_set_low (GPIOA0, (0x01ul << 0));
 	    csp_gpta_clr_isr(ptGptaBase, GPTA_INT_PEND);
 	}
 	if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_TRGEV0))==GPTA_INT_TRGEV0)
 	{	
-		//csi_gpio_port_set_high(GPIOA0, (0x01ul << 0));				//输出高
-//		csi_gpta_change_ch_duty(GPTA0,GPTA_CH_A, 25);
-//	    csi_gpta_change_ch_duty(GPTA0,GPTA_CH_B, 25);	
 	    csp_gpta_clr_isr(ptGptaBase, GPTA_INT_TRGEV0);
-	   	//csi_gpio_port_set_low (GPIOA0, (0x01ul << 0));
 	}
 	if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_TRGEV1))==GPTA_INT_TRGEV1)
-	{	
-//		csi_gpta_change_ch_duty(GPTA0,GPTA_CH_A, 50);
-//	    csi_gpta_change_ch_duty(GPTA0,GPTA_CH_B, 50);		
+	{			
 	    csp_gpta_clr_isr(ptGptaBase, GPTA_INT_TRGEV1);
-	   	
 	}
     if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_CAPLD0))==GPTA_INT_CAPLD0)
 	{		
@@ -287,18 +277,6 @@ __attribute__((weak)) void gpta0_irqhandler(csp_gpta_t *ptGptaBase)
 	
     if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_CBU))==GPTA_INT_CBU)
 	{
-/*	
-		sTick++;if(sTick>=5)
-		{	
-		   sTick=0;
-		   csi_gpio_port_set_high(GPIOA0, (0x01ul << 0));
-		   csi_gpta_channel_cmpload_config(GPTA0, GPTA_CMPLD_IMM, GPTA_LDCMP_ZRO ,GPTA_CAMPA);
-		   csi_gpta_channel_cmpload_config(GPTA0, GPTA_CMPLD_IMM, GPTA_LDCMP_ZRO ,GPTA_CAMPB);
-		   csi_gpta_change_ch_duty(GPTA0,GPTA_CAMPA, 25);
-		   csi_gpta_change_ch_duty(GPTA0,GPTA_CAMPB, 25);
-		   csi_gpio_port_set_low (GPIOA0, (0x01ul << 0));
-		 }
-*/
 	    csp_gpta_clr_isr(ptGptaBase, GPTA_INT_CBU);
 	   	
 	}
@@ -309,16 +287,16 @@ __attribute__((weak)) void gpta1_irqhandler(csp_gpta_t *ptGptaBase)
 
 	if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_PEND))==GPTA_INT_PEND)
 	{	
-	  
 	    csp_gpta_clr_isr(ptGptaBase, GPTA_INT_PEND);
 	}
 	if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_TRGEV0))==GPTA_INT_TRGEV0)
 	{	
-			
 	    csp_gpta_clr_isr(ptGptaBase, GPTA_INT_TRGEV0);
-	   	
 	}
-	
+	if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_TRGEV1))==GPTA_INT_TRGEV1)
+	{			
+	    csp_gpta_clr_isr(ptGptaBase, GPTA_INT_TRGEV1);
+	}
     if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_CAPLD0))==GPTA_INT_CAPLD0)
 	{		
 		s_wGpta_Cmp_Buff[0]=csp_gpta_get_cmpa(ptGptaBase);
@@ -330,6 +308,26 @@ __attribute__((weak)) void gpta1_irqhandler(csp_gpta_t *ptGptaBase)
 		s_wGpta_Cmp_Buff[1]=csp_gpta_get_cmpb(ptGptaBase);
 		csp_gpta_clr_isr(ptGptaBase, GPTA_INT_CAPLD1);			
 	}
-
+    if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_CAPLD2))==GPTA_INT_CAPLD2)
+	{		
+     	s_wGpta_Cmp_Buff[0]=csp_gpta_get_cmpa(ptGptaBase);
+		s_wGpta_Cmp_Buff[1]=csp_gpta_get_cmpb(ptGptaBase);
+		s_wGpta_Cmp_Buff[2]=csp_gpta_get_cmpaa(ptGptaBase);
+		csp_gpta_clr_isr(ptGptaBase, GPTA_INT_CAPLD2);			
+	}
+	if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_CAPLD3))==GPTA_INT_CAPLD3)
+	{		
+     	s_wGpta_Cmp_Buff[0]=csp_gpta_get_cmpa(ptGptaBase);
+		s_wGpta_Cmp_Buff[1]=csp_gpta_get_cmpb(ptGptaBase);
+		s_wGpta_Cmp_Buff[2]=csp_gpta_get_cmpaa(ptGptaBase);
+		s_wGpta_Cmp_Buff[3]=csp_gpta_get_cmpba(ptGptaBase);
+		csp_gpta_clr_isr(ptGptaBase, GPTA_INT_CAPLD3);			
+	}	
+	
+    if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_CBU))==GPTA_INT_CBU)
+	{
+	    csp_gpta_clr_isr(ptGptaBase, GPTA_INT_CBU);
+	   	
+	}
 }
 
