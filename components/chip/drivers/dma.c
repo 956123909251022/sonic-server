@@ -164,6 +164,29 @@ csi_error_t csi_dma_ch_start(csp_dma_t *ptDmaBase, csi_dma_ch_e eDmaCh, void *pS
 	
 	return CSI_OK;
 }
+
+/** \brief dma channel transfer restart
+ * 
+ *  \param[in] ptDmaBase: pointer of dma reg structure.
+ *  \param[in] eDmaCh: channel num of dma(4 channel: 0->3)
+ *  \return error code \ref csi_error_t
+ */
+csi_error_t csi_dma_ch_restart(csp_dma_t *ptDmaBase, csi_dma_ch_e eDmaCh)
+{
+
+	csp_dma_t *ptDmaChBase = (csp_dma_t *)DMA_REG_BASE(ptDmaBase, eDmaCh);
+	
+	if(eDmaCh >= DMA_CH_MAX_NUM)
+		return CSI_ERROR;
+
+	if(csp_dma_get_crx(ptDmaChBase) & DMA_RELOAD_MSK)               //if reload disable,enable channel
+		csp_dma_ch_en(ptDmaChBase);										//
+	if(!csp_dma_get_rsrx(ptDmaChBase))
+		csp_dma_ch_swtrig(ptDmaChBase);								//sw triger 
+	
+	return CSI_OK;
+}
+
 /** \brief enable/disable dma interrupt 
  * 
  *  \param[in] ptDmaBase: pointer of dma register structure

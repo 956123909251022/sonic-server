@@ -159,6 +159,14 @@ csi_error_t csi_dma_ch_init(csp_dma_t *ptDmaBase, csi_dma_ch_e eDmaCh, csi_dma_c
 */
 csi_error_t csi_dma_ch_start(csp_dma_t *ptDmaBase, csi_dma_ch_e eDmaCh, void *pSrcAddr, void *pDstAddr, uint16_t hwHTranNum, uint16_t hwLTranNum);
 
+/** \brief dma channel transfer restart
+ * 
+ *  \param[in] ptDmaBase: pointer of dma reg structure.
+ *  \param[in] eDmaCh: channel num of dma(4 channel: 0->3)
+ *  \return error code \ref csi_error_t
+ */
+csi_error_t csi_dma_ch_restart(csp_dma_t *ptDmaBase, csi_dma_ch_e eDmaCh);
+
 /** 
   \brief 	   enable/disable dma interrupt 
   \param[in]   ptDmaBase	pointer of dma register structure
