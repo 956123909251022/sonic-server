@@ -259,27 +259,27 @@ typedef enum {
 #define CLO_SRC_MSK (0xful << 8)
 #define CLO_SRC_POS (0x8)
 typedef enum{
-	CLO_ISCLK = 0,
-	CLO_IMCLK,
-	CLO_ESCLK,
-	CLO_EMCLK = 3,
-	CLO_HFCLK,
-	CLO_RTCCLK = 6,
-	CLO_PCLK,
-	CLO_HCLK,
-	CLO_IWDTCLK,
-	CLO_SYSCLK = 0xd
+	CLO_SRC_ISCLK = 0,
+	CLO_SRC_IMCLK,
+	CLO_SRC_ESCLK,
+	CLO_SRC_EMCLK = 3,
+	CLO_SRC_HFCLK,
+	CLO_SRC_RTCCLK = 6,
+	CLO_SRC_PCLK,
+	CLO_SRC_HCLK,
+	CLO_SRC_IWDTCLK,
+	CLO_SRC_SYSCLK = 0xd
 }clo_src_e;
 
 #define CLO_DIV_MSK 	(0x7ul << 12)
 #define CLO_DIV_POS 	(12)
 
 typedef enum{
-	CLO_DIV1 = 1,
-	CLO_DIV2,	
-	CLO_DIV4,	
-	CLO_DIV8,	
-	CLO_DIV16	
+	CLO_CLK_DIV1 = 1,
+	CLO_CLK_DIV2,	
+	CLO_CLK_DIV4,	
+	CLO_CLK_DIV8,	
+	CLO_CLK_DIV16	
 }clo_div_e;
 
 #define FLASH_LPMODE_POS	15
