@@ -225,6 +225,12 @@
       </Flash>
     </BuildConfig>
   </BuildConfigs>
+  <ToolsConfig>
+    <Compiler>
+      <Name>CKV2ElfMinilib</Name>
+      <Version>latest</Version>
+    </Compiler>
+  </ToolsConfig>
   <DebugSessions>
     <watchExpressions/>
     <memoryExpressions>;;;</memoryExpressions>
