@@ -8,10 +8,9 @@
  *============================================================================
  */
 /* include ----------------------------------------------------------------*/
-#include "demo.h"
-#include "pin.h"
+#include <demo.h>
+#include <pin.h>
 
-uint8_t byFlashData[] = {0x12, 0x34, 0x56, 0x78,0x9a,0xbc, 0xde, 0xff};
 
 void user_demo(void)
 {
@@ -63,7 +62,6 @@ void user_demo(void)
 //	ifc_pflash_page_program_demo();
 //	ifc_page_erase_demo();
 //	ifc_program_demo();
-//
 
 /// ***************************************************
 ///  RTC相关的示例代码
