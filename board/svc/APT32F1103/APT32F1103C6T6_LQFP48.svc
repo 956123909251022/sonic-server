@@ -5717,14 +5717,14 @@
           </Property>
           <Property class="Text" property_class="BT0Timer">
             <label>Time Interval</label>
-            <value>1</value>
-            <validReg>^[1-9]\d*$</validReg>
+            <value>10000</value>
+            <validReg>^[0-9]+$</validReg>
             <Comment>文本输入，单位us。定时中断服务函数需要user_bt0_handler要自定义</Comment>
           </Property>
           <Property class="Text" property_class="BT0PWM">
             <label>PWM Fre</label>
             <value>1</value>
-            <validReg>^[1-9]\d*$</validReg>
+            <validReg>^[0-9]+$</validReg>
             <Comment>文本输入，单位Hz</Comment>
           </Property>
           <Property class="Text" property_class="BT0PWM">
@@ -5735,38 +5735,52 @@
           </Property>
           <Property class="UIchoice" property_class="BT0PWM">
             <label>PWM Start Level</label>
-            <value>T_START_HIGH</value>
+            <value>BT_PWM_START_LOW</value>
             <Selections>
-              <sel>T_START_HIGH</sel>
-              <sel>T_START_LOW</sel>
+              <sel>BT_PWM_START_LOW</sel>
+              <sel>BT_PWM_START_HIGH</sel>
             </Selections>
           </Property>
           <Property class="UIchoice" property_class="BT0PWM">
             <label>PWM IDLE Level</label>
-            <value>T_IDLE_HIGH</value>
+            <value>BT_PWM_IDLE_LOW</value>
             <Selections>
-              <sel>T_IDLE_HIGH</sel>
-              <sel>T_IDLE_LOW</sel>
+              <sel>BT_PWM_IDLE_LOW</sel>
+              <sel>BT_PWM_IDLE_HIGH</sel>
             </Selections>
           </Property>
-          <Property class="UIchoice" property_class="BT0PWM">
-            <label>Interrupt Source</label>
-            <value>BT_INTSRC_NONE</value>
-            <Selections>
-              <sel>BT_INTSRC_NONE</sel>
-              <sel>BT_INTSRC_PEND</sel>
-              <sel>BT_INTSRC_CMP</sel>
-              <sel>BT_INTSRC_OVF</sel>
-              <sel>BT_INTSRC_EVTRG</sel>
-            </Selections>
+          <Property class="Bool" property_class="BT0PWM">
+            <label>BT_INTSRC_NONE</label>
+            <value>1</value>
+            <Comment>BT Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool" property_class="BT0PWM">
+            <label>BT_INTSRC_PEND</label>
+            <value>0</value>
+            <Comment>BT Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool" property_class="BT0PWM">
+            <label>BT_INTSRC_CMP</label>
+            <value>0</value>
+            <Comment>BT Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool" property_class="BT0PWM">
+            <label>BT_INTSRC_OVF</label>
+            <value>0</value>
+            <Comment>BT Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool" property_class="BT0PWM">
+            <label>BT_INTSRC_EVTRG</label>
+            <value>0</value>
+            <Comment>BT Interrupt Status</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC0_START</label>
             <UseOrNot/>
-            <value>Disable</value>
+            <value>DISABLE</value>
             <Selections>
-              <sel>Enable</sel>
-              <sel>Disable</sel>
+              <sel>ENABLE</sel>
+              <sel>DISABLE</sel>
             </Selections>
             <Comment/>
           </Property>
@@ -5783,20 +5797,20 @@
           <Property class="UIchoice">
             <label>SYNC0_AutoRearm</label>
             <UseOrNot/>
-            <value>Disable</value>
+            <value>DISABLE</value>
             <Selections>
-              <sel>Enable</sel>
-              <sel>Disable</sel>
+              <sel>ENABLE</sel>
+              <sel>DISABLE</sel>
             </Selections>
             <Comment/>
           </Property>
           <Property class="UIchoice">
             <label>SYNC1_INC</label>
             <UseOrNot/>
-            <value>Disable</value>
+            <value>DISABLE</value>
             <Selections>
-              <sel>Enable</sel>
-              <sel>Disable</sel>
+              <sel>ENABLE</sel>
+              <sel>DISABLE</sel>
             </Selections>
             <Comment/>
           </Property>
@@ -5813,20 +5827,20 @@
           <Property class="UIchoice">
             <label>SYNC1_AutoRearm</label>
             <UseOrNot/>
-            <value>Disable</value>
+            <value>DISABLE</value>
             <Selections>
-              <sel>Enable</sel>
-              <sel>Disable</sel>
+              <sel>ENABLE</sel>
+              <sel>DISABLE</sel>
             </Selections>
             <Comment/>
           </Property>
           <Property class="UIchoice">
             <label>SYNC2_STOP</label>
             <UseOrNot/>
-            <value>Disable</value>
+            <value>DISABLE</value>
             <Selections>
-              <sel>Enable</sel>
-              <sel>Disable</sel>
+              <sel>ENABLE</sel>
+              <sel>DISABLE</sel>
             </Selections>
             <Comment/>
           </Property>
@@ -5843,10 +5857,10 @@
           <Property class="UIchoice">
             <label>SYNC2_AutoRearm</label>
             <UseOrNot/>
-            <value>Disable</value>
+            <value>DISABLE</value>
             <Selections>
-              <sel>Enable</sel>
-              <sel>Disable</sel>
+              <sel>ENABLE</sel>
+              <sel>DISABLE</sel>
             </Selections>
             <Comment/>
           </Property>
@@ -5868,13 +5882,13 @@
           <Property class="Text" property_class="BT1Timer">
             <label>Time Interval</label>
             <value>1</value>
-            <validReg>^[1-9]\d*$</validReg>
+            <validReg>^[0-9]+$</validReg>
             <Comment>文本输入，单位us。定时中断服务函数需要user_bt1_handler要自定义</Comment>
           </Property>
           <Property class="Text" property_class="BT1PWM">
             <label>PWM Fre</label>
             <value>1</value>
-            <validReg>^[1-9]\d*$</validReg>
+            <validReg>^[0-9]+$</validReg>
             <Comment>文本输入，单位Hz</Comment>
           </Property>
           <Property class="Text" property_class="BT1PWM">
@@ -5885,38 +5899,52 @@
           </Property>
           <Property class="UIchoice" property_class="BT1PWM">
             <label>PWM Start Level</label>
-            <value>T_START_HIGH</value>
+            <value>BT_PWM_START_LOW</value>
             <Selections>
-              <sel>T_START_HIGH</sel>
-              <sel>T_START_LOW</sel>
+              <sel>BT_PWM_START_LOW</sel>
+              <sel>BT_PWM_START_HIGH</sel>
             </Selections>
           </Property>
           <Property class="UIchoice" property_class="BT1PWM">
             <label>PWM IDLE Level</label>
-            <value>T_IDLE_HIGH</value>
+            <value>BT_PWM_IDLE_LOW</value>
             <Selections>
-              <sel>T_IDLE_HIGH</sel>
-              <sel>T_IDLE_LOW</sel>
+              <sel>BT_PWM_IDLE_LOW</sel>
+              <sel>BT_PWM_IDLE_HIGH</sel>
             </Selections>
           </Property>
-          <Property class="UIchoice" property_class="BT1PWM">
-            <label>Interrupt Source</label>
-            <value>BT_INTSRC_NONE</value>
-            <Selections>
-              <sel>BT_INTSRC_NONE</sel>
-              <sel>BT_INTSRC_PEND</sel>
-              <sel>BT_INTSRC_CMP</sel>
-              <sel>BT_INTSRC_OVF</sel>
-              <sel>BT_INTSRC_EVTRG</sel>
-            </Selections>
+          <Property class="Bool" property_class="BT1PWM">
+            <label>BT_INTSRC_NONE</label>
+            <value>1</value>
+            <Comment>BT Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool" property_class="BT1PWM">
+            <label>BT_INTSRC_PEND</label>
+            <value>0</value>
+            <Comment>BT Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool" property_class="BT1PWM">
+            <label>BT_INTSRC_CMP</label>
+            <value>0</value>
+            <Comment>BT Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool" property_class="BT1PWM">
+            <label>BT_INTSRC_OVF</label>
+            <value>0</value>
+            <Comment>BT Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool" property_class="BT1PWM">
+            <label>BT_INTSRC_EVTRG</label>
+            <value>0</value>
+            <Comment>BT Interrupt Status</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC0_START</label>
             <UseOrNot/>
-            <value>Disable</value>
+            <value>DISABLE</value>
             <Selections>
-              <sel>Enable</sel>
-              <sel>Disable</sel>
+              <sel>ENABLE</sel>
+              <sel>DISABLE</sel>
             </Selections>
             <Comment/>
           </Property>
@@ -5933,20 +5961,20 @@
           <Property class="UIchoice">
             <label>SYNC0_AutoRearm</label>
             <UseOrNot/>
-            <value>Disable</value>
+            <value>DISABLE</value>
             <Selections>
-              <sel>Enable</sel>
-              <sel>Disable</sel>
+              <sel>ENABLE</sel>
+              <sel>DISABLE</sel>
             </Selections>
             <Comment/>
           </Property>
           <Property class="UIchoice">
             <label>SYNC1_INC</label>
             <UseOrNot/>
-            <value>Disable</value>
+            <value>DISABLE</value>
             <Selections>
-              <sel>Enable</sel>
-              <sel>Disable</sel>
+              <sel>ENABLE</sel>
+              <sel>DISABLE</sel>
             </Selections>
             <Comment/>
           </Property>
@@ -5963,20 +5991,20 @@
           <Property class="UIchoice">
             <label>SYNC1_AutoRearm</label>
             <UseOrNot/>
-            <value>Disable</value>
+            <value>DISABLE</value>
             <Selections>
-              <sel>Enable</sel>
-              <sel>Disable</sel>
+              <sel>ENABLE</sel>
+              <sel>DISABLE</sel>
             </Selections>
             <Comment/>
           </Property>
           <Property class="UIchoice">
             <label>SYNC2_STOP</label>
             <UseOrNot/>
-            <value>Disable</value>
+            <value>DISABLE</value>
             <Selections>
-              <sel>Enable</sel>
-              <sel>Disable</sel>
+              <sel>ENABLE</sel>
+              <sel>DISABLE</sel>
             </Selections>
             <Comment/>
           </Property>
@@ -5993,10 +6021,10 @@
           <Property class="UIchoice">
             <label>SYNC2_AutoRearm</label>
             <UseOrNot/>
-            <value>Disable</value>
+            <value>DISABLE</value>
             <Selections>
-              <sel>Enable</sel>
-              <sel>Disable</sel>
+              <sel>ENABLE</sel>
+              <sel>DISABLE</sel>
             </Selections>
             <Comment/>
           </Property>
@@ -9642,7 +9670,7 @@
         </Device>
         <Device deviceId="GPTB">
           <GenCodeFuncName>GPTBInitFunc</GenCodeFuncName>
-          <UseOrNot>1</UseOrNot>
+          <UseOrNot>0</UseOrNot>
           <label>GPTB</label>
           <Property class="UIchoice">
             <label>WorkMode</label>

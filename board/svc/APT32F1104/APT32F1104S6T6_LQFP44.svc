@@ -356,7 +356,6 @@
               <sel>BT1_OUT</sel>
               <sel>SIO</sel>
               <sel>CLO</sel>
-              <sel>TS_CAP</sel>
             </Selections>
             <Comment>管脚功能</Comment>
           </Property>
