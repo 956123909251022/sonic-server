@@ -20,7 +20,7 @@
       <Pins>
         <Pin pinNum="38" group="PA0" displayName="PA0.0">
           <Property class="UIchoice">
-            <label>IOFunctions</label>
+            <label>IOFunction</label>
             <value>High_Z</value>
             <Selections>
               <sel>High_Z</sel>
@@ -50,7 +50,16 @@
               <sel>Strong</sel>
               <sel>Constant</sel>
             </Selections>
-            <Comment>驱动能力 仅输出有效</Comment>
+            <Comment>驱动能力:仅输出有效&#xD;Normal标准&#xD;Strong强驱&#xD;恒流</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>Driving_Slew-Rate</label>
+            <value>Normal</value>
+            <Selections>
+              <sel>Normal</sel>
+              <sel>Fast</sel>
+            </Selections>
+            <Comment>斜率:仅输出有效&#xD;Normal标准&#xD;Fast快速</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Pull Mode</label>
@@ -8684,8 +8693,8 @@
             <label>WorkMode</label>
             <value>EPT_CAPTURE</value>
             <Selections>
-              <sel notAvailable="EPT0WAVE,EPT0DE,EPT0EM,EPT0DZDPSC">EPT_CAPTURE</sel>
-              <sel notAvailable="EPT0CAPTURE,EPT0DE,EPT0EM,EPT0DZDPSC">EPT_WAVE</sel>
+              <sel notAvailable="EPT0WAVE,EPT0DZ,EPT0EM,EPT0DZDPSC">EPT_CAPTURE</sel>
+              <sel notAvailable="EPT0CAPTURE,EPT0DZ,EPT0EM,EPT0DZDPSC">EPT_WAVE</sel>
             </Selections>
             <Comment>EPT工作模式选择 &#xD;EPT_CAPTURE捕捉模式 &#xD;EPT_WAVE波形发生模式</Comment>
           </Property>

@@ -1189,7 +1189,7 @@
         <Pin pinNum="1" group="PB0" displayName="PB0.2">
           <Property class="UIchoice">
             <label>GPIO/AF</label>
-            <value>GPIO</value>
+            <value>AF</value>
             <Selections>
               <sel>GPIO</sel>
               <sel>AF</sel>

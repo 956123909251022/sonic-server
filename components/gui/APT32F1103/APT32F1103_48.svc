@@ -20,8 +20,8 @@
       <Pins>
         <Pin pinNum="38" group="PA0" displayName="PA0.0">
           <Property class="UIchoice">
-            <label>IOFunctions</label>
-            <value>High_Z</value>
+            <label>IOFunction</label>
+            <value>GPTB0_CHB</value>
             <Selections>
               <sel>High_Z</sel>
               <sel>GPIO_INPUT</sel>
@@ -44,17 +44,26 @@
           </Property>
           <Property class="UIchoice">
             <label>Driving Ability</label>
-            <value>Normal</value>
+            <value>Constant</value>
             <Selections>
               <sel>Normal</sel>
               <sel>Strong</sel>
               <sel>Constant</sel>
             </Selections>
-            <Comment>驱动能力 仅输出有效</Comment>
+            <Comment>驱动能力:仅输出有效&#xD;Normal标准&#xD;Strong强驱&#xD;恒流</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>Driving Slew-Rate</label>
+            <value>Fast</value>
+            <Selections>
+              <sel>Normal</sel>
+              <sel>Fast</sel>
+            </Selections>
+            <Comment>斜率:仅输出有效&#xD;Normal标准&#xD;Fast快速</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Pull Mode</label>
-            <value>Pull_None</value>
+            <value>Pull_Down</value>
             <Selections>
               <sel>Pull_None</sel>
               <sel>Pull_Up</sel>
@@ -2848,7 +2857,7 @@
           <label>System Clock</label>
           <Device deviceId="SystemClock">
             <GenCodeFuncName>SysClockInitFunc</GenCodeFuncName>
-            <UseOrNot>1</UseOrNot>
+            <UseOrNot>0</UseOrNot>
             <label>System Clock</label>
             <Property class="UIchoice">
               <label>Clock Source</label>
@@ -2935,7 +2944,7 @@
           <label>LVD_R</label>
           <Device deviceId="LVR">
             <GenCodeFuncName>SysLVRInitFunc</GenCodeFuncName>
-            <UseOrNot>1</UseOrNot>
+            <UseOrNot>0</UseOrNot>
             <label>LVD_R</label>
             <Property class="UIchoice">
               <label>Rst Level</label>
@@ -3592,7 +3601,7 @@
         <Device deviceId="ADC">
           <GenCodeFuncName>ADCInitFunc</GenCodeFuncName>
           <UseOrNot>0</UseOrNot>
-          <label>ADC</label>
+          <label>ADC </label>
           <Property class="Text">
             <label>Freq Div</label>
             <value>0x01</value>
@@ -3629,23 +3638,13 @@
               <sel>continue</sel>
             </Selections>
           </Property>
-        </Device>
-        <Device deviceId="ADCInterrupt">
-          <GenCodeFuncName>ADCIntInitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>Interrupt</label>
           <Property class="UIchoice">
             <label>Interrupt</label>
-            <value>ENABLE</value>
+            <value>DISABLE</value>
             <Selections>
               <sel notAvailable="ADCInt">DISABLE</sel>
               <sel>ENABLE</sel>
             </Selections>
-          </Property>
-          <Property class="Bool" property_class="ADCInt">
-            <label>ADC_INTSRC_NONE</label>
-            <value>1</value>
-            <Comment>ADC Interrupt Status</Comment>
           </Property>
           <Property class="Bool" property_class="ADCInt">
             <label>ADC_INTSRC_EOC</label>
@@ -8323,7 +8322,7 @@
         <label>LCD</label>
         <Device deviceId="LCD">
           <GenCodeFuncName>LCDInitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
+          <UseOrNot>1</UseOrNot>
           <label>LCD</label>
           <Property class="UIchoice">
             <label>ClkSrc</label>
@@ -8684,8 +8683,8 @@
             <label>WorkMode</label>
             <value>EPT_CAPTURE</value>
             <Selections>
-              <sel notAvailable="EPT0WAVE,EPT0DE,EPT0EM,EPT0DZDPSC">EPT_CAPTURE</sel>
-              <sel notAvailable="EPT0CAPTURE,EPT0DE,EPT0EM,EPT0DZDPSC">EPT_WAVE</sel>
+              <sel notAvailable="EPT0WAVE,EPT0DZ,EPT0EM,EPT0DZDPSC">EPT_CAPTURE</sel>
+              <sel notAvailable="EPT0CAPTURE,EPT0DZ,EPT0EM,EPT0DZDPSC">EPT_WAVE</sel>
             </Selections>
             <Comment>EPT工作模式选择 &#xD;EPT_CAPTURE捕捉模式 &#xD;EPT_WAVE波形发生模式</Comment>
           </Property>
