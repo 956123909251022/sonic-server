@@ -199,8 +199,8 @@ int gpta_pwm_demo(void)
 	csi_gpta_start(GPTA0);
 //------------------------------------------------------------------------------------------------------------------------
 	 while(1){		
-		  	csi_gpta_change_ch_duty(GPTA0,GPTA_CAMPA, 20);
-	        csi_gpta_change_ch_duty(GPTA0,GPTA_CAMPB, 20);
+		  	csi_gpta_change_ch_duty(GPTA0,GPTA_COMPA, 20);
+	        csi_gpta_change_ch_duty(GPTA0,GPTA_COMPB, 20);
 //			csi_gpta_global_sw(GPTA0) ;                                   //软件产生一次GLD触发
 //			csi_gpio_port_set_high(GPIOA0, (0x01ul << 0));
 		    mdelay(100);
@@ -210,8 +210,8 @@ int gpta_pwm_demo(void)
 //			csi_gpio_port_set_low (GPIOA0, (0x01ul << 0));
 //            mdelay(1);
 //			
-		    csi_gpta_change_ch_duty(GPTA0,GPTA_CAMPA, 50);
-	        csi_gpta_change_ch_duty(GPTA0,GPTA_CAMPB, 50);
+		    csi_gpta_change_ch_duty(GPTA0,GPTA_COMPA, 50);
+	        csi_gpta_change_ch_duty(GPTA0,GPTA_COMPB, 50);
 //	        csi_gpta_global_sw(GPTA0) ;                                   //软件产生一次GLD触发
 //			csi_gpio_port_set_low (GPIOA0, (0x01ul << 0));
 		    mdelay(100);
