@@ -47,6 +47,16 @@ void csi_spi_nss_low(pin_name_e ePinName)
 	csi_pin_set_low(ePinName);
 }
 
+/** \brief start spi
+ * 
+ *  \param[in] ptSpiBase: pointer of spi register structure
+ *  \return none
+ */ 
+void csi_spi_start(csp_spi_t *ptSpiBase)
+{		
+	csp_spi_en(ptSpiBase);
+}
+
 /** \brief apt_spi_int_set 
  * 
  *  \param[in] ptSpiBase: pointer of spi register structure
@@ -90,8 +100,6 @@ csi_error_t csi_spi_init(csp_spi_t *ptSpiBase,csi_spi_config_t *ptSpiCfg)
 	csi_spi_baud(ptSpiBase, ptSpiCfg->wSpiBaud);
 	apt_spi_int_set(ptSpiBase,ptSpiCfg->byInt);
 	csi_spi_Internal_variables_init(ptSpiCfg);	
-							
-	csp_spi_en(ptSpiBase);
 	
 	return tRet;
 }

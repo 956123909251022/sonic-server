@@ -164,6 +164,13 @@ typedef struct
 }csi_spi_transmit_t;
 extern csi_spi_transmit_t g_tSpiTransmit; 
 
+/** \brief start spi
+ * 
+ *  \param[in] ptSpiBase: pointer of spi register structure
+ *  \return none
+ */ 
+void csi_spi_start(csp_spi_t *ptSpiBase);
+
 /** \brief initialize spi data structure
  * 
  *  \param[in] ptSpiBase: pointer of spi register structure

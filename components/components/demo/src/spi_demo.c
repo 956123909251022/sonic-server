@@ -59,6 +59,8 @@ void spi_master_send_demo(void)
 	t_SpiConfig.byTxMode = SPI_TX_MODE_POLL;                 //发送轮询模式
 	csi_spi_init(SPI0,&t_SpiConfig);				
 
+	csi_spi_start(SPI0);
+	
 	my_printf("the spi master send demo!\n");
 	mdelay(500);
 	while(1)
@@ -98,6 +100,8 @@ void spi_master_send_int_demo(void)
 	t_SpiConfig.byTxMode = SPI_TX_MODE_INT;                  //发送使用中断模式
 	csi_spi_init(SPI0,&t_SpiConfig);				
 
+	csi_spi_start(SPI0);
+	
 	my_printf("the spi master send int demo!\n");
 	mdelay(500);
 	while(1)
@@ -134,8 +138,10 @@ void spi_slave_receive_int_demo(void)
 	t_SpiConfig.wSpiBaud = 0; 						 		 //作从机时，通讯速率取决于主机			
 	t_SpiConfig.byInt=  SPI_INTSRC_RXIM;					 //初始配置接收中断	
 	t_SpiConfig.byRxMode = SPI_RX_MODE_INT;                  //接收使用中断模式
-	csi_spi_init(SPI0,&t_SpiConfig);				
-
+	csi_spi_init(SPI0,&t_SpiConfig);			
+	
+	csi_spi_start(SPI0);
+	
 	my_printf("the spi slave receive int demo!\n");
 	mdelay(100);
 
@@ -183,7 +189,9 @@ void spi_master_send_receive_demo(void)
 	t_SpiConfig.byInt= SPI_INTSRC_NONE; 					 //初始配置无中断
 	t_SpiConfig.byTxRxMode = SPI_TX_RX_MODE_POLL;            //收发使用轮询模式
 	csi_spi_init(SPI0,&t_SpiConfig);				
-
+	
+	csi_spi_start(SPI0);
+	
 	my_printf("the spi master send receive demo!\n");
 	mdelay(500);
 	while(1)
@@ -228,7 +236,8 @@ void spi_master_send_receive_fast_demo(void)
 	t_SpiConfig.byInt= SPI_INTSRC_NONE; 					 //初始配置无中断
 	t_SpiConfig.byTxRxMode = SPI_TX_RX_MODE_POLL;            //收发使用轮询模式
 	csi_spi_init(SPI0,&t_SpiConfig);				
-
+	csi_spi_start(SPI0);
+	
 	my_printf("the spi master send receive demo!\n");
 	mdelay(500);
 	while(1)
@@ -267,7 +276,8 @@ void spi_slave_send_receive_int_demo(void)
 	t_SpiConfig.byInt= SPI_INTSRC_RXIM | SPI_INTSRC_TXIM;	 //初始配置发送和接收中断
 	t_SpiConfig.byTxRxMode = SPI_TX_RX_MODE_INT;             //收发使用中断模式
 	csi_spi_init(SPI0,&t_SpiConfig);				
-
+	csi_spi_start(SPI0);
+	
 	my_printf("the spi slave send receive int demo!\n");
 	mdelay(100);
 	while(1)
@@ -502,7 +512,8 @@ int16_t spi_w25q16jvsiq_write_read_demo(void)
 	t_SpiConfig.byInt= SPI_INTSRC_NONE;					     //初始配置无中断	
     t_SpiConfig.byTxRxMode =  SPI_TX_RX_MODE_POLL;           //收发使用轮询方式 
 	csi_spi_init(SPI0,&t_SpiConfig);							
-
+	csi_spi_start(SPI0);
+	
 	my_printf("the spi w25q16 test!\r\n");
 	
 	while(1)
@@ -604,7 +615,6 @@ void spi_etcb_dma_send(void)
 	t_SpiConfig.bySpiFrameLen = SPI_FRAME_LEN_8;             //帧数据长度为8bit
 	t_SpiConfig.wSpiBaud = 12000000; 						//通讯速率12兆			
 	t_SpiConfig.byInt= SPI_INTSRC_NONE;					//初始配置无中断	  
-					
 	
 	csi_etb_init();									//使能ETB模块
 	csi_etb_ch_config(ETB_CH8, &tEtbConfig);		//初始化ETB，DMA ETB CHANNEL 8-11
@@ -614,6 +624,7 @@ void spi_etcb_dma_send(void)
 	csi_dma_ch_init(DMA, 0, &tDmaConfig);				//初始化DMA
 	
 	csi_spi_init(SPI0,&t_SpiConfig);					//初始化并启动spi
+	csi_spi_start(SPI0);
 	
 	csi_spi_nss_low(PA07);
 	csi_spi_send_dma(SPI0,(void *)bySdData,100, 0);  //使能dma通道，等待对应dma请求并传输
@@ -720,7 +731,7 @@ void spi_etcb_dma_send_receive(void)
 
 	
 	csi_spi_init(SPI0,&t_SpiConfig);				//初始化并启动spi
-	
+	csi_spi_start(SPI0);
 	
 	csi_spi_nss_low(PA07);
 	csi_spi_recv_dma(SPI0,(void *)byDesBuf,104, byChnl1);
