@@ -326,7 +326,7 @@ int ept_pwm_dz_em_demo(void)
 	csi_pin_set_mux(PA11, PA11_EPT_CHBY);						//15
 	csi_pin_set_mux(PA12, PA12_EPT_CHCY);                       //16
 	
-	csi_pin_set_mux(PA09,PA09_EBI0);
+	csi_pin_set_mux(PA09,PA09_EBI0);csi_pin_pull_mode(PA09, GPIO_PULLUP);
 	csi_pin_set_mux(PB04,PB04_EBI1);
     
 //	csi_pin_set_mux(PA010, PA010_EPT_CHAY);                       //5

@@ -296,7 +296,7 @@ int gptb_pwm_dz_em_demo(void)
     csi_pin_set_mux(PA014, PA014_GPTB0_CHAY);                       //PIN:9 
 //    csi_pin_set_mux(PB04,  PB04_GPTB0_CHB  );                       //PIN:13 
 //
-	csi_pin_set_mux(PA09,PA09_EBI0);                                //PIN:4
+	csi_pin_set_mux(PA09,PA09_EBI0);csi_pin_pull_mode(PA09, GPIO_PULLUP);
 //	csi_pin_set_mux(PB04,PB04_EBI1);
 
 //------------------------------------------------------------------------------------------------------------------------	
