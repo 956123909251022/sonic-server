@@ -7636,9 +7636,9 @@
           <label>EPT0</label>
           <Property class="UIchoice">
             <label>WorkMode</label>
-            <value>EPT_CAPTURE</value>
+            <value>EPT_WAVE</value>
             <Selections>
-              <sel notAvailable="EPT0WAVE">EPT_CAPTURE</sel>
+              <sel notAvailable="EPT0WAVE,EPT0DE">EPT_CAPTURE</sel>
               <sel notAvailable="EPT0CAPTURE">EPT_WAVE</sel>
             </Selections>
             <Comment>工作模式选择,计数或捕获</Comment>
@@ -7767,111 +7767,111 @@
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>ZRO</label>
-            <value>NA</value>
+            <value>EPT_NA</value>
             <Selections>
-              <sel>NA</sel>
-              <sel>LO</sel>
-              <sel>HI</sel>
-              <sel>TG</sel>
+              <sel>EPT_NA</sel>
+              <sel>EPT_LO</sel>
+              <sel>EPT_HI</sel>
+              <sel>EPT_TG</sel>
             </Selections>
             <Comment/>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>PRD</label>
-            <value>NA</value>
+            <value>EPT_NA</value>
             <Selections>
-              <sel>NA</sel>
-              <sel>LO</sel>
-              <sel>HI</sel>
-              <sel>TG</sel>
+              <sel>EPT_NA</sel>
+              <sel>EPT_LO</sel>
+              <sel>EPT_HI</sel>
+              <sel>EPT_TG</sel>
             </Selections>
             <Comment/>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>C1U</label>
-            <value>NA</value>
+            <value>EPT_NA</value>
             <Selections>
-              <sel>NA</sel>
-              <sel>LO</sel>
-              <sel>HI</sel>
-              <sel>TG</sel>
+              <sel>EPT_NA</sel>
+              <sel>EPT_LO</sel>
+              <sel>EPT_HI</sel>
+              <sel>EPT_TG</sel>
             </Selections>
             <Comment/>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>C1D</label>
-            <value>NA</value>
+            <value>EPT_NA</value>
             <Selections>
-              <sel>NA</sel>
-              <sel>LO</sel>
-              <sel>HI</sel>
-              <sel>TG</sel>
+              <sel>EPT_NA</sel>
+              <sel>EPT_LO</sel>
+              <sel>EPT_HI</sel>
+              <sel>EPT_TG</sel>
             </Selections>
             <Comment/>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>C2U</label>
-            <value>NA</value>
+            <value>EPT_NA</value>
             <Selections>
-              <sel>NA</sel>
-              <sel>LO</sel>
-              <sel>HI</sel>
-              <sel>TG</sel>
+              <sel>EPT_NA</sel>
+              <sel>EPT_LO</sel>
+              <sel>EPT_HI</sel>
+              <sel>EPT_TG</sel>
             </Selections>
             <Comment/>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>C2D</label>
-            <value>NA</value>
+            <value>EPT_NA</value>
             <Selections>
-              <sel>NA</sel>
-              <sel>LO</sel>
-              <sel>HI</sel>
-              <sel>TG</sel>
+              <sel>EPT_NA</sel>
+              <sel>EPT_LO</sel>
+              <sel>EPT_HI</sel>
+              <sel>EPT_TG</sel>
             </Selections>
             <Comment/>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>T1U</label>
-            <value>NA</value>
+            <value>EPT_NA</value>
             <Selections>
-              <sel>NA</sel>
-              <sel>LO</sel>
-              <sel>HI</sel>
-              <sel>TG</sel>
+              <sel>EPT_NA</sel>
+              <sel>EPT_LO</sel>
+              <sel>EPT_HI</sel>
+              <sel>EPT_TG</sel>
             </Selections>
             <Comment/>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>T1D</label>
-            <value>NA</value>
+            <value>EPT_NA</value>
             <Selections>
-              <sel>NA</sel>
-              <sel>LO</sel>
-              <sel>HI</sel>
-              <sel>TG</sel>
+              <sel>EPT_NA</sel>
+              <sel>EPT_LO</sel>
+              <sel>EPT_HI</sel>
+              <sel>EPT_TG</sel>
             </Selections>
             <Comment/>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>T2U</label>
-            <value>NA</value>
+            <value>EPT_NA</value>
             <Selections>
-              <sel>NA</sel>
-              <sel>LO</sel>
-              <sel>HI</sel>
-              <sel>TG</sel>
+              <sel>EPT_NA</sel>
+              <sel>EPT_LO</sel>
+              <sel>EPT_HI</sel>
+              <sel>EPT_TG</sel>
             </Selections>
             <Comment/>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>T2D</label>
-            <value>NA</value>
+            <value>EPT_NA</value>
             <Selections>
-              <sel>NA</sel>
-              <sel>LO</sel>
-              <sel>HI</sel>
-              <sel>TG</sel>
+              <sel>EPT_NA</sel>
+              <sel>EPT_LO</sel>
+              <sel>EPT_HI</sel>
+              <sel>EPT_TG</sel>
             </Selections>
             <Comment/>
           </Property>
@@ -7964,9 +7964,265 @@
             <Comment/>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
+            <label>Mode</label>
+            <value>None</value>
+            <Selections>
+              <sel notAvailable="EPT0DE,EPT0ORL0,EPT0ORL1">None</sel>
+              <sel>DeadZone &amp; Emergency</sel>
+            </Selections>
+            <Comment/>
+          </Property>
+          <Property class="UIchoice" property_class="EPT0DE">
+            <label>DeadZoneClkSrc</label>
+            <value>EPT_DB_DPSC</value>
+            <Selections>
+              <sel>EPT_DB_TCLK</sel>
+              <sel>EPT_DB_DPSC</sel>
+            </Selections>
+            <Comment/>
+          </Property>
+          <Property class="Text" property_class="EPT0DE">
+            <label>DPSC</label>
+            <value>0</value>
+            <validReg>^([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-9][0-9][0-9][0-9]|[1-5][0-9][0-9][0-9][0-9]|6[0-4][0-9][0-9][0-9]|65[0-4][0-9][0-9]|655[0-2][0-9]|6553[0-5])$</validReg>
+            <Comment>时钟分频控制 范围:0~65535之间的整数 FDBCLK = FHCLK / (DPSC+1)</Comment>
+          </Property>
+          <Property class="Text" property_class="EPT0DE">
+            <label>RisingEdgeTime</label>
+            <value>500</value>
+            <Comment>上升沿 单位 ns</Comment>
+          </Property>
+          <Property class="Text" property_class="EPT0DE">
+            <label>FallingEdgeTime</label>
+            <value>200</value>
+            <Comment>下降沿 单位 ns</Comment>
+          </Property>
+          <Property class="UIchoice" property_class="EPT0DE">
+            <label>ChaDeadB</label>
+            <value>EPT_DB_AR_BF</value>
+            <Selections>
+              <sel>EPT_DB_AR_BF</sel>
+              <sel>EPT_DB_BR_BF</sel>
+            </Selections>
+            <Comment/>
+          </Property>
+          <Property class="UIchoice" property_class="EPT0DE">
+            <label>ChbDeadB</label>
+            <value>EPT_DB_AR_BF</value>
+            <Selections>
+              <sel>EPT_DB_AR_BF</sel>
+              <sel>EPT_DB_BR_BF</sel>
+            </Selections>
+            <Comment/>
+          </Property>
+          <Property class="UIchoice" property_class="EPT0DE">
+            <label>ChcDeadB</label>
+            <value>EPT_DB_AR_BF</value>
+            <Selections>
+              <sel>EPT_DB_AR_BF</sel>
+              <sel>EPT_DB_BR_BF</sel>
+            </Selections>
+            <Comment/>
+          </Property>
+          <Property class="UIchoice" property_class="EPT0DE">
+            <label>ChxOuselS1S0</label>
+            <value>EPT_DBOUT_AR_BF</value>
+            <Selections>
+              <sel>EPT_DBOUT_DIS</sel>
+              <sel>EPT_DBOUT_BF</sel>
+              <sel>EPT_DBOUT_AR</sel>
+              <sel>EPT_DBOUT_AR_BF</sel>
+            </Selections>
+            <Comment>通道A上升沿和通道B下降沿使能控制</Comment>
+          </Property>
+          <Property class="UIchoice" property_class="EPT0DE">
+            <label>ChxPolarityS3S2</label>
+            <value>EPT_DB_POL_B</value>
+            <Selections>
+              <sel>EPT_DBOUT_AR_BF</sel>
+              <sel>EPT_DB_POL_A</sel>
+              <sel>EPT_DB_POL_B</sel>
+              <sel>EPT_DB_POL_AB</sel>
+            </Selections>
+            <Comment>通道A和通道B延时输出电平反向控制</Comment>
+          </Property>
+          <Property class="UIchoice" property_class="EPT0DE">
+            <label>ChxInselS5S4</label>
+            <value>EPT_DBCHAIN_AR_AF</value>
+            <Selections>
+              <sel>EPT_DBCHAIN_AR_AF</sel>
+              <sel>EPT_DBCHAIN_BR_AF</sel>
+              <sel>EPT_DBCHAIN_AR_BF</sel>
+              <sel>EPT_DBCHAIN_BR_BF</sel>
+            </Selections>
+            <Comment>上升沿和下降沿延时处理的输入信号选择</Comment>
+          </Property>
+          <Property class="UIchoice" property_class="EPT0DE">
+            <label>ChxOutSwapS8S7</label>
+            <value>EPT_CHOUTX_OUA_OUB</value>
+            <Selections>
+              <sel>EPT_CHOUTX_OUA_OUB</sel>
+              <sel>EPT_CHOUTX_OUA_OUA</sel>
+              <sel>EPT_CHOUTX_OUB_OUB</sel>
+              <sel>EPT_CHOUTX_OUB_OUA</sel>
+            </Selections>
+            <Comment>OUTA=通道A输出，OUTB=通道B输出</Comment>
+          </Property>
+          <Property class="UIchoice" property_class="EPT0DE">
+            <label>EPxInt</label>
+            <value>EPT_EBI0</value>
+            <Selections>
+              <sel notAvailable="EPT0ORL0,EPT0ORL1">EPT_EBI0</sel>
+              <sel notAvailable="EPT0ORL0,EPT0ORL1">EPT_EBI1</sel>
+              <sel notAvailable="EPT0ORL0,EPT0ORL1">EPT_EBI2</sel>
+              <sel notAvailable="EPT0ORL0,EPT0ORL1">EPT_EBI3</sel>
+              <sel notAvailable="EPT0ORL0,EPT0ORL1">EPT_CMP0</sel>
+              <sel notAvailable="EPT0ORL0,EPT0ORL1">EPT_CMP1</sel>
+              <sel notAvailable="EPT0ORL0,EPT0ORL1">EPT_LVD</sel>
+              <sel notAvailable="EPT0ORL1">EPT_ORL0</sel>
+              <sel notAvailable="EPT0ORL0">EPT_ORL1</sel>
+            </Selections>
+            <Comment>EPx选择外部IO端口(EBI0~EBI4)</Comment>
+          </Property>
+          <Property class="Bool" property_class="EPT0ORL0">
+            <label>EPT_ORLx_EBI0</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="EPT0ORL0">
+            <label>EPT_ORLx_EBI1</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="EPT0ORL0">
+            <label>EPT_ORLx_EBI2</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="EPT0ORL0">
+            <label>EPT_ORLx_EBI3</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="EPT0ORL0">
+            <label>EPT_ORLx_CMP0</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="EPT0ORL0">
+            <label>EPT_ORLx_CMP1</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="EPT0ORL1">
+            <label>EPT_ORLx_EBI0</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="EPT0ORL1">
+            <label>EPT_ORLx_EBI1</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="EPT0ORL1">
+            <label>EPT_ORLx_EBI2</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="EPT0ORL1">
+            <label>EPT_ORLx_EBI3</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="EPT0ORL1">
+            <label>EPT_ORLx_CMP0</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="EPT0ORL1">
+            <label>EPT_ORLx_CMP1</label>
+            <value>1</value>
+            <Comment/>
+          </Property>
+          <Property class="UIchoice" property_class="EPT0DE">
+            <label>PolEBIx</label>
+            <value>EPT_EBI_POL_H</value>
+            <Selections>
+              <sel>EPT_EBI_POL_H</sel>
+              <sel>EPT_EBI_POL_L</sel>
+            </Selections>
+            <Comment>EBIx的输入有效极性选择控制</Comment>
+          </Property>
+          <Property class="UIchoice" property_class="EPT0DE">
+            <label>EPx</label>
+            <value>EPT_EP0</value>
+            <Selections>
+              <sel>EPT_EP0</sel>
+              <sel>EPT_EP1</sel>
+              <sel>EPT_EP2</sel>
+              <sel>EPT_EP3</sel>
+              <sel>EPT_EP4</sel>
+              <sel>EPT_EP5</sel>
+              <sel>EPT_EP6</sel>
+              <sel>EPT_EP7</sel>
+            </Selections>
+            <Comment>使能EPx</Comment>
+          </Property>
+          <Property class="UIchoice" property_class="EPT0DE">
+            <label>EPxLckmd</label>
+            <value>EPT_EP_DIS</value>
+            <Selections>
+              <sel>EPT_EP_DIS</sel>
+              <sel>EPT_EP_SLCK</sel>
+              <sel>EPT_EP_HLCK</sel>
+            </Selections>
+            <Comment>使能锁</Comment>
+          </Property>
+          <Property class="UIchoice" property_class="EPT0DE">
+            <label>Osrshdw</label>
+            <value>EPT_OSR_IMMEDIATE</value>
+            <Selections>
+              <sel>EPT_OSR_IMMEDIATE</sel>
+              <sel>EPT_OSR_SHADOW</sel>
+            </Selections>
+            <Comment>锁止端口状态载入方式</Comment>
+          </Property>
+          <Property class="UIchoice" property_class="EPT0DE">
+            <label>Fltpace0</label>
+            <value>EPT_EPFLT0_2P</value>
+            <Selections>
+              <sel>EPT_EPFLT0_DIS</sel>
+              <sel>EPT_EPFLT0_2P</sel>
+              <sel>EPT_EPFLT0_4P</sel>
+              <sel>EPT_EPFLT0_6P</sel>
+              <sel>EPT_EPFLT0_8P</sel>
+              <sel>EPT_EPFLT0_16P</sel>
+              <sel>EPT_EPFLT0_32P</sel>
+              <sel>EPT_EPFLT0_64P</sel>
+            </Selections>
+            <Comment>EP0、EP1、EP2和EP3的数字去抖滤波检查周期数</Comment>
+          </Property>
+          <Property class="UIchoice" property_class="EPT0DE">
+            <label>Fltpace1</label>
+            <value>EPT_EPFLT1_2P</value>
+            <Selections>
+              <sel>EPT_EPFLT1_DIS</sel>
+              <sel>EPT_EPFLT1_2P</sel>
+              <sel>EPT_EPFLT1_4P</sel>
+              <sel>EPT_EPFLT1_6P</sel>
+              <sel>EPT_EPFLT1_8P</sel>
+              <sel>EPT_EPFLT1_16P</sel>
+              <sel>EPT_EPFLT1_32P</sel>
+              <sel>EPT_EPFLT1_64P</sel>
+            </Selections>
+            <Comment>EP4、EP5、EP6和EP7的数字去抖滤波检查周期数</Comment>
+          </Property>
+          <Property class="UIchoice" property_class="EPT0DE">
             <label/>
             <value/>
             <Selections>
+              <sel/>
+              <sel/>
               <sel/>
               <sel/>
             </Selections>
@@ -8774,7 +9030,7 @@
         <label>LCD</label>
         <Device deviceId="LCD">
           <GenCodeFuncName>LCDInitFunc</GenCodeFuncName>
-          <UseOrNot>1</UseOrNot>
+          <UseOrNot>0</UseOrNot>
           <label>LCD</label>
           <Property class="UIchoice">
             <label>ClkSrc</label>
