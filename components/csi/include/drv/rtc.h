@@ -116,11 +116,11 @@ typedef enum{
 }csi_rtc_trgsrc_e;
 
 typedef enum{
-	RTC_INTSRC_ALMA = 0x01,
-	RTC_INTSRC_ALMB = 0x02,
-	RTC_INTSRC_CPRD = 0x04,
+	RTC_INTSRC_ALMA   = 0x01,
+	RTC_INTSRC_ALMB   = 0x02,
+	RTC_INTSRC_CPRD   = 0x04,
 	RTC_INTSRC_TRGEV0 = 0x08,
-	RTC_INTSRC_TRGEV1= 0x10
+	RTC_INTSRC_TRGEV1 = 0x10
 }csi_rtc_intsrc_e;
 
 typedef enum{
