@@ -226,4 +226,8 @@ void csi_etb_ch_start(csi_etb_ch_e eEtbCh);
 */
 void csi_etb_ch_stop(csi_etb_ch_e eEtbCh);
 
+#ifdef __cplusplus
+}
+#endif
+
 #endif /* _CSI_ETB_H_ */
