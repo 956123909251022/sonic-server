@@ -36,9 +36,9 @@ extern void cnta_irqhandler(csp_cnta_t *ptCntaBase);
 extern void spi_irqhandler(csp_spi_t *ptSpiBase);
 extern void sio_irqhandler(csp_sio_t *ptSioBase);
 extern void adc_irqhandler(csp_adc_t *ptAdcBase);
-extern void ept_initen_irqhandler(csp_ept_t *ptEptBase);
-extern void gpta0_initen_irqhandler(csp_gpta_t *ptGptaBase);
-extern void gpta1_initen_irqhandler(csp_gpta_t *ptGptaBase);
+extern void ept_irqhandler(csp_ept_t *ptEptBase);
+extern void gpta0_irqhandler(csp_gpta_t *ptGptaBase);
+extern void gpta1_irqhandler(csp_gpta_t *ptGptaBase);
 extern void gptb0_irqhandler_pro(csp_gptb_t *ptGptbBase);
 extern void gptb1_irqhandler_pro(csp_gptb_t *ptGptbBase);
 extern void gpio_irqhandler(uint8_t byExiNum);
@@ -122,7 +122,7 @@ void ept0_int_handler(void)
 {	
 #if	EPT_INT_HANDLE_EN	
 	// ISR content ...
-	ept_initen_irqhandler(EPT0);
+	ept_irqhandler(EPT0);
 	
 #endif
 }
@@ -147,7 +147,7 @@ void wwdt_int_handler(void)
 void gpta0_int_handler(void) 
 {
 #if GPTA0_INT_HANDLE_EN
-    gpta0_initen_irqhandler(GPTA0);
+    gpta0_irqhandler(GPTA0);
 	
 #endif
 }
@@ -155,7 +155,7 @@ void gpta0_int_handler(void)
 void gpta1_int_handler(void) 
 {
 #if GPTA1_INT_HANDLE_EN
-    gpta1_initen_irqhandler(GPTA1);
+    gpta1_irqhandler(GPTA1);
 	
 #endif
 }
