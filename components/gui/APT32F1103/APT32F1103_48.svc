@@ -5579,7 +5579,7 @@
               <sel>UART_TX_MODE_POLL</sel>
               <sel>UART_TX_MODE_INT</sel>
             </Selections>
-            <Comment>发送模式&#xD;注释:开启UART_TX_MOD_INT时,默认推荐INT配置为UART_INRSRC_TXDONE</Comment>
+            <Comment>发送模式&#xD;注释:开启UART_TX_MOD_INT时,默认INT配置为UART_INRSRC_TXDONE</Comment>
           </Property>
           <Property class="UIchoice">
             <label>RXMode</label>
@@ -5588,7 +5588,7 @@
               <sel>UART_RX_MODE_POLL</sel>
               <sel>UART_RX_MODE_INT</sel>
             </Selections>
-            <Comment>接收模式&#xD;注释:开启UART_RX_MOD_INT时,默认推荐INT配置为UART_INRSRC_RXFIFO和UART_INRSRC_RXTO</Comment>
+            <Comment>接收模式&#xD;注释:开启UART_RX_MOD_INT时,默认INT配置为UART_INRSRC_RXFIFO和UART_INRSRC_RXTO</Comment>
           </Property>
           <Property class="UIchoice">
             <label>UART FUNC</label>
@@ -5632,7 +5632,7 @@
               <sel>UART_TX_MODE_POLL</sel>
               <sel>UART_TX_MODE_INT</sel>
             </Selections>
-            <Comment>发送模式&#xD;注释:开启UART_TX_MOD_INT时,默认推荐INT配置为UART_INRSRC_TXDONE</Comment>
+            <Comment>发送模式&#xD;注释:开启UART_TX_MOD_INT时,默认INT配置为UART_INRSRC_TXDONE</Comment>
           </Property>
           <Property class="UIchoice">
             <label>RXMode</label>
@@ -5641,7 +5641,7 @@
               <sel>UART_RX_MODE_POLL</sel>
               <sel>UART_RX_MODE_INT</sel>
             </Selections>
-            <Comment>接收模式&#xD;注释:开启UART_RX_MOD_INT时,默认推荐INT配置为UART_INRSRC_RXFIFO和UART_INRSRC_RXTO</Comment>
+            <Comment>接收模式&#xD;注释:开启UART_RX_MOD_INT时,默认INT配置为UART_INRSRC_RXFIFO和UART_INRSRC_RXTO</Comment>
           </Property>
           <Property class="UIchoice">
             <label>UART FUNC</label>
@@ -5685,7 +5685,7 @@
               <sel>UART_TX_MODE_POLL</sel>
               <sel>UART_TX_MODE_INT</sel>
             </Selections>
-            <Comment>发送模式&#xD;注释:开启UART_TX_MOD_INT时,默认推荐INT配置为UART_INRSRC_TXDONE</Comment>
+            <Comment>发送模式&#xD;注释:开启UART_TX_MOD_INT时,默认INT配置为UART_INRSRC_TXDONE</Comment>
           </Property>
           <Property class="UIchoice">
             <label>RXMode</label>
@@ -5694,7 +5694,7 @@
               <sel>UART_RX_MODE_POLL</sel>
               <sel>UART_RX_MODE_INT</sel>
             </Selections>
-            <Comment>接收模式&#xD;注释:开启UART_RX_MOD_INT时,默认推荐INT配置为UART_INRSRC_RXFIFO和UART_INRSRC_RXTO</Comment>
+            <Comment>接收模式&#xD;注释:开启UART_RX_MOD_INT时,默认INT配置为UART_INRSRC_RXFIFO和UART_INRSRC_RXTO</Comment>
           </Property>
           <Property class="UIchoice">
             <label>UART FUNC</label>
@@ -5793,7 +5793,7 @@
               <sel>USART_TX_MODE_POLL</sel>
               <sel>USART_TX_MODE_INT</sel>
             </Selections>
-            <Comment>发送模式&#xD;注释:开启USART_TX_MOD_INT时,默认推荐INT配置为UART_INRSRC_TXDONE  </Comment>
+            <Comment>发送模式&#xD;注释:开启USART_TX_MOD_INT时,默认INT配置为UART_INRSRC_TXDONE  </Comment>
           </Property>
           <Property class="UIchoice">
             <label>RXMode</label>
@@ -5802,7 +5802,7 @@
               <sel>USART_RX_MODE_POLL</sel>
               <sel>USART_RX_MODE_INT</sel>
             </Selections>
-            <Comment>接收模式&#xD;注释:开启USART_RX_MOD_INT时,默认推荐INT配置为USART_INRSRC_RXFIFO和USART_INRSRC_RXTO </Comment>
+            <Comment>接收模式&#xD;注释:开启USART_RX_MOD_INT时,默认INT配置为USART_INRSRC_RXFIFO和USART_INRSRC_RXTO </Comment>
           </Property>
           <Property class="UIchoice">
             <label>USART FUNC</label>
@@ -5934,7 +5934,7 @@
         <label>BT</label>
         <Device deviceId="BT0">
           <GenCodeFuncName>BasicTime0InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
+          <UseOrNot>1</UseOrNot>
           <label>BT0</label>
           <Property class="UIchoice">
             <label>Mode</label>
@@ -5943,13 +5943,13 @@
               <sel notAvailable="BT0PWM">Timer</sel>
               <sel notAvailable="BT0Timer">PWM</sel>
             </Selections>
-            <Comment>选择BT做PWM或Timer</Comment>
+            <Comment>选择BT做PWM或Timer&#xD;选择Timer时,默认开启周期结束(PEND)中断</Comment>
           </Property>
           <Property class="Text" property_class="BT0Timer">
             <label>Time Interval</label>
             <value>10000</value>
             <validReg>^[0-9]+$</validReg>
-            <Comment>文本输入,单位us。定时中断服务函数需要user_bt0_handler要自定义</Comment>
+            <Comment>文本输入,单位us。定时中断函数bt_irqhandler需要用户自定义</Comment>
           </Property>
           <Property class="Text" property_class="BT0PWM">
             <label>PWM Fre</label>
@@ -5983,12 +5983,12 @@
           </Property>
           <Property class="UIchoice" property_class="BT0PWM">
             <label>Interrupt</label>
-            <value>DISABLE</value>
+            <value>ENABLE</value>
             <Selections>
               <sel notAvailable="BT0Int">DISABLE</sel>
               <sel>ENABLE</sel>
             </Selections>
-            <Comment/>
+            <Comment>中断使能</Comment>
           </Property>
           <Property class="Bool" property_class="BT0Int">
             <label>BT_INTSRC_PEND</label>
@@ -6028,7 +6028,7 @@
               <sel>BT_TRGSRC_CMP</sel>
               <sel>BT_TRGSRC_OVF</sel>
             </Selections>
-            <Comment/>
+            <Comment>TRGEV事件的触发源选择控制位&#xD;BT_TRGSRC_DIS:禁止TRGOUT的触发&#xD;BT_TRGSRC_PEND:指定PEND事件用于产生TRGEV事件&#xD;BT_TRGSRC_CMP:指定CMP事件用于产生TRGEV事件&#xD;BT_TRGSRC_OVF:指定OVF事件用于产生TRGEV事件</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC0_START</label>
@@ -6132,13 +6132,13 @@
               <sel notAvailable="BT1PWM">Timer</sel>
               <sel notAvailable="BT1Timer">PWM</sel>
             </Selections>
-            <Comment>选择BT做PWM或Timer</Comment>
+            <Comment>选择BT做PWM或Timer&#xD;选择Timer时,默认开启周期结束(PEND)中断</Comment>
           </Property>
           <Property class="Text" property_class="BT1Timer">
             <label>Time Interval</label>
             <value>10000</value>
             <validReg>^[0-9]+$</validReg>
-            <Comment>文本输入,单位us。定时中断服务函数需要user_bt0_handler要自定义</Comment>
+            <Comment>文本输入,单位us。定时中断函数bt_irqhandler需要用户自定义</Comment>
           </Property>
           <Property class="Text" property_class="BT1PWM">
             <label>PWM Fre</label>
@@ -6177,7 +6177,7 @@
               <sel notAvailable="BT1Int">DISABLE</sel>
               <sel>ENABLE</sel>
             </Selections>
-            <Comment/>
+            <Comment>中断使能</Comment>
           </Property>
           <Property class="Bool" property_class="BT1Int">
             <label>BT_INTSRC_PEND</label>
@@ -6217,7 +6217,7 @@
               <sel>BT_TRGSRC_CMP</sel>
               <sel>BT_TRGSRC_OVF</sel>
             </Selections>
-            <Comment/>
+            <Comment>TRGEV事件的触发源选择控制位&#xD;BT_TRGSRC_DIS:禁止TRGOUT的触发&#xD;BT_TRGSRC_PEND:指定PEND事件用于产生TRGEV事件&#xD;BT_TRGSRC_CMP:指定CMP事件用于产生TRGEV事件&#xD;BT_TRGSRC_OVF:指定OVF事件用于产生TRGEV事件</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SYNC0_START</label>
@@ -9312,7 +9312,7 @@
               <sel notAvailable="EPT0DZDPSC">EPT_DB_TCLK</sel>
               <sel>EPT_DB_DPSC</sel>
             </Selections>
-            <Comment>死区控制延时计数器的时钟源选择&#xD;EPT_DB_TCLK:死区控制延时计数器以TCLK频率工作&#xD;EPT_DB_DPSC:死区控制延时计数器以HCLK/(DPSC+1)工作</Comment>
+            <Comment>死区控制延时计数器的时钟源选择&#xD;EPT_DB_TCLK:死区控制延时计数器以TCLK频率工作&#xD;EPT_DB_DPSC:死区控制延时计数器以PCLK/(DPSC+1)工作</Comment>
           </Property>
           <Property class="Text" property_class="EPT0DZDPSC">
             <label>DPSC</label>
@@ -10290,7 +10290,7 @@
               <sel>GPTB_DB_TCLK</sel>
               <sel>GPTB_DB_DPSC</sel>
             </Selections>
-            <Comment>死区控制延时计数器的时钟源选择&#xD;GPTB_DB_TCLK:死区控制延时计数器以TCLK频率工作&#xD;GPTB_DB_DPSC:死区控制延时计数器以HCLK/(DPSC+1)工作</Comment>
+            <Comment>死区控制延时计数器的时钟源选择&#xD;GPTB_DB_TCLK:死区控制延时计数器以TCLK频率工作&#xD;GPTB_DB_DPSC:死区控制延时计数器以PCLK/(DPSC+1)工作</Comment>
           </Property>
           <Property class="Text" property_class="GPTBDZ">
             <label>DPSC</label>
