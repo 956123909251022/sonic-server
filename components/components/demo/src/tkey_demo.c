@@ -260,11 +260,9 @@ void tkey_demo(void)
 }
 
 	
-	
-	
 void gptb0_irqhandler_pro(csp_gptb_t *ptGptbBase)
 {
-	if(((csp_gptb_get_misr(ptGptbBase) & GPTB_INT_CBU))==GPTB_INT_CBU) {
-	    csp_gptb_clr_int(ptGptbBase, GPTB_INT_CBU);	   	
+	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_CBU))==GPTB_INT_CBU) {
+	    csp_gptb_clr_isr(ptGptbBase, GPTB_INT_CBU);	   	
 	}	
 }	
