@@ -47,7 +47,7 @@ typedef enum{
 
 typedef enum
 {
-	LPT_TRGOUT0	= 0,  		   
+	LPT_TRGOUT	= 0,  		   
 }csi_lpt_trgout_e;
 
 typedef enum
