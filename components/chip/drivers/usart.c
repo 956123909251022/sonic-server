@@ -425,7 +425,7 @@ csi_error_t csi_usart_dma_rx_init(csp_usart_t *ptUsartBase, csi_dma_reload_e eRe
 		return CSI_ERROR;
 	ret = csi_dma_ch_init(DMA, eDmaCh, &tDmaConfig);	//初始化DMA
 	
-	csp_usart_set_rxdma(ptUsartBase, US_RDMA_EN, US_RDMA_FIFO_NSPACE);		//配置TX DMA模式并使能
+	csp_usart_set_rxdma(ptUsartBase, US_RDMA_EN, US_RDMA_FIFO_NSPACE);		//配置RX DMA模式并使能
 	
 	return ret;
 }
