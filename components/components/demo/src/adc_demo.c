@@ -572,14 +572,16 @@ int adc_samp_continuous_dma_transfer_demo(void)
 	int ret = 0;
 	uint8_t i;
 	uint16_t hwTemp[3];
-	uint16_t hwValBuf[1200];
+ 	volatile uint16_t hwValBuf[1200];
 	
 	csi_dma_ch_config_t tDmaConfig;				
 	csi_etb_config_t 	tEtbConfig;	
 	csi_adc_config_t 	tAdcConfig;
 	
+	memset((uint8_t *)hwValBuf, 0, 2400);						//清除数据缓存					
+	
 	//adc 输入管脚配置
-	//csi_pin_set_mux(PA00, PA00_ADC_AIN0);					//ADC GPIO作为输入通道
+	//csi_pin_set_mux(PA00, PA00_ADC_AIN0);						//ADC GPIO作为输入通道
 	csi_pin_set_mux(PA01, PA01_ADC_AIN1);
 	csi_pin_set_mux(PA03, PA03_ADC_AIN2);
 	csi_pin_set_mux(PB00, PB00_ADC_AIN3);
@@ -637,18 +639,16 @@ int adc_samp_continuous_dma_transfer_demo(void)
 		{
 			hwDmaTranCnt ++;
 			
-			
-			if(hwDmaTranCnt > 400)						//传输300次到
+			if(hwDmaTranCnt > 400)						//传输400次到
 			{
 				csi_bt_stop(BT0);						//停止BT0
 				csi_adc_stop(ADC0);						//停止ADC
 			}
 			else
 			{
-				
 				for(i = 0; i < 3 ;i ++)
 				{
-					hwTemp[i] = wDaBuf[i];				//取16位的ADC采样数据			
+					hwTemp[i] = wDaBuf[i];				//取16位的ADC采样数据		
 				}
 				//将400次(1200 halfword)传输数据拷贝到缓存hwValBuf中(用户可自行增加次数，考虑此处处理数据buf大小问题)
 				memcpy(((uint8_t *)hwValBuf+6*(hwDmaTranCnt-1)), (uint8_t*)hwTemp, 6);
@@ -667,20 +667,9 @@ int adc_samp_continuous_dma_transfer_demo(void)
  *  \param[in] ptBtBase: pointer of bt register structure
  *  \return none
  */ 
-static void adc_data_dma_transfer(csp_adc_t *ptAdcBase, csi_dma_ch_e eDmaCh, const void *pData, uint16_t hwSize)
-{
-	csi_dma_ch_start(DMA, eDmaCh, (void *)&(ptAdcBase->DR[0]), (void *)pData, 1, hwSize);
-}
-
-/** \brief bt interrupt handle function
- * 
- *  \param[in] ptBtBase: pointer of bt register structure
- *  \return none
- */ 
 void bt_irqhandler(csp_bt_t *ptBtBase)
 {
 	// ISR content ...
-	//static uint16_t hwDaBuf[3];
 	volatile uint32_t wMisr = csp_bt_get_isr(ptBtBase);
 	
 	if(wMisr & BT_PEND_INT)					//PEND interrupt
