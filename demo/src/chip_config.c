@@ -9,10 +9,6 @@
 
 void pin_init(void)
 {
-		Driving Ability : "Normal"
-		IOFunctions : "High_Z"
-		Pull Mode : "Pull_None"
-		pinNum : "38"
 }
 
 void ch0_config(void)
