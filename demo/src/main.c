@@ -38,7 +38,6 @@ int main()
 	
 	user_demo();							//demo				
 	
-	
 	while(1)
 	{
 		mdelay(100);						//delay 100ms
