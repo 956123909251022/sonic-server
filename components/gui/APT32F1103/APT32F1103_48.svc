@@ -5778,7 +5778,7 @@
             <label>wTimeOut</label>
             <value>40</value>
             <validReg>^([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-9][0-9][0-9][0-9]|[1-5][0-9][0-9][0-9][0-9]|6[0-4][0-9][0-9][0-9]|65[0-4][0-9][0-9]|655[0-2][0-9]|6553[0-5])$</validReg>
-            <Comment>设置窗口值 单位ms</Comment>
+            <Comment>看门狗窗口时长 单位ms</Comment>
           </Property>
         </Device>
       </Category>
@@ -5795,7 +5795,7 @@
               <sel notAvailable="LPTPWM">Timer</sel>
               <sel notAvailable="LPTTimer">PWM</sel>
             </Selections>
-            <Comment>如果选timer，timer interval设置有效，如果选PWM，4个PWM设置有效</Comment>
+            <Comment>模式选择&#xD;Timer:使用LPT定时&#xD;PWM:使用LPT产生PWM波&#xD;</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Clock Source</label>
@@ -5808,23 +5808,23 @@
               <sel>LPT_CLK_IN_RISE</sel>
               <sel>LPT_CLK_IN_FALL</sel>
             </Selections>
-            <Comment>定时中断服务函数需要user_lpt_handler要自定义</Comment>
+            <Comment>LPT时钟源选择</Comment>
           </Property>
           <Property class="Text" property_class="LPTTimer">
             <label>Time Interval</label>
             <value>500</value>
-            <Comment>文本输入，范围待定，单位ms</Comment>
+            <Comment>LPT定时长度，单位ms</Comment>
           </Property>
           <Property class="Text" property_class="LPTPWM">
             <label>PWM Fre</label>
             <value>1000</value>
-            <Comment>文本输入，范围待定，单位Hz</Comment>
+            <Comment>PWM输出频率，单位Hz</Comment>
           </Property>
           <Property class="Text" property_class="LPTPWM">
             <label>PWM DutyCycle</label>
             <value>50</value>
             <validReg>^([0-9]|[1-9][0-9]|100)$</validReg>
-            <Comment>文本输入，范围0~100之间的整数</Comment>
+            <Comment>PWM输出占空比，范围0~100之间的整数</Comment>
           </Property>
           <Property class="UIchoice" property_class="LPTPWM">
             <label>PWM Start Level</label>
@@ -5833,6 +5833,7 @@
               <sel>LPT_PWM_START_LOW</sel>
               <sel>LPT_PWM_START_HIGH</sel>
             </Selections>
+            <Comment>PWM初始电平&#xD;LPT_PWM_START_HIGH：初始高电平&#xD;LPT_PWM_START_LOW：初始低电平</Comment>
           </Property>
           <Property class="UIchoice" property_class="LPTPWM">
             <label>PWM IDLE Level</label>
@@ -5841,26 +5842,31 @@
               <sel>LPT_PWM_IDLE_Z</sel>
               <sel>LPT_PWM_IDLE_LOW</sel>
             </Selections>
+            <Comment>PWM波形输出被停止时，输出端口的缺省状态&#xD;LPT_PWM_IDLE_Z：高阻输出&#xD;LPT_PWM_IDLE_LOW：低电平输出</Comment>
           </Property>
-          <Property class="Bool" property_class="LPTPWM">
-            <label>LPT_INTSRC_NONE</label>
-            <value>1</value>
-            <Comment>NONE Interrupt</Comment>
+          <Property class="UIchoice" property_class="LPTPWM">
+            <label>Interrupt</label>
+            <value>DISABLE</value>
+            <Selections>
+              <sel notAvailable="LPTInt">DISABLE</sel>
+              <sel>ENABLE</sel>
+            </Selections>
+            <Comment/>
           </Property>
-          <Property class="Bool" property_class="LPTPWM">
+          <Property class="Bool" property_class="LPTInt">
             <label>LPT_INTSRC_TRGEV0</label>
-            <value>1</value>
-            <Comment/>
+            <value>0</value>
+            <Comment>TRGEV0中断</Comment>
           </Property>
-          <Property class="Bool" property_class="LPTPWM">
+          <Property class="Bool" property_class="LPTInt">
             <label>LPT_INTSRC_MATCH</label>
-            <value>1</value>
-            <Comment/>
+            <value>0</value>
+            <Comment>MATCH中断</Comment>
           </Property>
-          <Property class="Bool" property_class="LPTPWM">
+          <Property class="Bool" property_class="LPTInt">
             <label>LPT_INTSRC_PEND</label>
-            <value>1</value>
-            <Comment/>
+            <value>0</value>
+            <Comment>PEND中断</Comment>
           </Property>
         </Device>
       </Category>
@@ -8576,7 +8582,7 @@
               <sel notAvailable="I2CSlave">Master</sel>
               <sel notAvailable="I2CMaster">Slave</sel>
             </Selections>
-            <Comment>主从模式选择</Comment>
+            <Comment>模式选择&#xD;Master：主机模式&#xD;Slave：从机模式</Comment>
           </Property>
           <Property class="UIchoice">
             <label>AddrMode</label>
@@ -8585,18 +8591,18 @@
               <sel>IIC_ADDRESS_7BIT</sel>
               <sel>IIC_ADDRESS_10BIT</sel>
             </Selections>
-            <Comment>设置地址模式</Comment>
+            <Comment>寻址控制模式&#xD;IIC_ADDRESS_7BIT：7位寻址&#xD;IIC_ADDRESS_10BIT：10位寻址</Comment>
           </Property>
           <Property class="Bool" property_class="I2CMaster">
             <label>ReStart</label>
             <value>1</value>
-            <Comment>使能重复起始位</Comment>
+            <Comment>重复起始位控制&#xD;0: 禁止&#xD;1: 使能</Comment>
           </Property>
           <Property class="Text" property_class="I2CSlave">
             <label>SlaveAddr</label>
             <value>0xa0</value>
             <validReg>^(0[xX])([0-9a-fA-F]|[1-9a-fA-F][0-9a-fA-F]|[0-7][0-9a-fA-F][0-9a-eA-E])$</validReg>
-            <Comment>从机地址 设置范围 0x00~0x7fe</Comment>
+            <Comment>从机地址，设置范围0x00~0x7fe</Comment>
           </Property>
           <Property class="UIchoice">
             <label>SpeedMode</label>
@@ -8606,7 +8612,7 @@
               <sel>IIC_BUS_SPEED_FAST</sel>
               <sel>IIC_BUS_SPEED_FAST_PLUS</sel>
             </Selections>
-            <Comment>设置主机速度模式	IIC_BUS_SPEED_STANDARD &lt;=100kHz   IIC_BUS_SPEED_FAST &lt;=400kHz    IIC_BUS_SPEED_FAST_PLUS &lt;=  1MHz</Comment>
+            <Comment>工作速度&#xD;IIC_BUS_SPEED_STANDARD：标准模式&#xD;IIC_BUS_SPEED_FAST：高速模式&#xD;IIC_BUS_SPEED_FAST_PLUS：超高速模式&#xD;</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Interrupt</label>
@@ -8620,72 +8626,72 @@
           <Property class="Bool" property_class="IICInt">
             <label>IIC_INTSRC_RX_UNDER</label>
             <value>0</value>
-            <Comment>IIC Interrupt Status</Comment>
+            <Comment>RX FIFO空时，继续读I2C_DATA_CMD中断</Comment>
           </Property>
           <Property class="Bool" property_class="IICInt">
             <label>IIC_INTSRC_RX_OVER</label>
             <value>0</value>
-            <Comment>IIC Interrupt Status</Comment>
+            <Comment>RX FIFO 溢出中断</Comment>
           </Property>
           <Property class="Bool" property_class="IICInt">
             <label>IIC_INTSRC_RX_FULL</label>
             <value>0</value>
-            <Comment>IIC Interrupt Status</Comment>
+            <Comment>RX FIFO 满中断</Comment>
           </Property>
           <Property class="Bool" property_class="IICInt">
             <label>IIC_INTSRC_TX_OVER</label>
             <value>0</value>
-            <Comment>IIC Interrupt Status</Comment>
+            <Comment>TX FIFO溢出中断</Comment>
           </Property>
           <Property class="Bool" property_class="IICInt">
             <label>IIC_INTSRC_TX_EMPTY</label>
             <value>0</value>
-            <Comment>IIC Interrupt Status</Comment>
+            <Comment>TX FIFO空中断</Comment>
           </Property>
           <Property class="Bool" property_class="IICInt">
             <label>IIC_INTSRC_RD_REQ</label>
             <value>0</value>
-            <Comment>IIC Interrupt Status</Comment>
+            <Comment>读请求中断</Comment>
           </Property>
           <Property class="Bool" property_class="IICInt">
             <label>IIC_INTSRC_TX_ABRT</label>
             <value>0</value>
-            <Comment>IIC Interrupt Status</Comment>
+            <Comment>发送被中止中断</Comment>
           </Property>
           <Property class="Bool" property_class="IICInt">
             <label>IIC_INTSRC_RX_DONE</label>
             <value>0</value>
-            <Comment>IIC Interrupt Status</Comment>
+            <Comment>接收完成中断</Comment>
           </Property>
           <Property class="Bool" property_class="IICInt">
             <label>IIC_INTSRC_BUSY</label>
             <value>0</value>
-            <Comment>IIC Interrupt Status</Comment>
+            <Comment>IIC正在工作中断</Comment>
           </Property>
           <Property class="Bool" property_class="IICInt">
             <label>IIC_INTSRC_STOP_DET</label>
             <value>0</value>
-            <Comment>IIC Interrupt Status</Comment>
+            <Comment>停止位检测中断</Comment>
           </Property>
           <Property class="Bool" property_class="IICInt">
             <label>IIC_INTSRC_START_DET</label>
             <value>0</value>
-            <Comment>IIC Interrupt Status</Comment>
+            <Comment>起始位检测中断</Comment>
           </Property>
           <Property class="Bool" property_class="IICInt">
             <label>IIC_INTSRC_GEN_CALL</label>
             <value>0</value>
-            <Comment>IIC Interrupt Status</Comment>
+            <Comment>IIC从机接收一般呼叫中断</Comment>
           </Property>
           <Property class="Bool" property_class="IICInt">
             <label>IIC_INTSRC_RESTART_DET</label>
             <value>0</value>
-            <Comment>IIC Interrupt Status</Comment>
+            <Comment>重复起始位检测中断</Comment>
           </Property>
           <Property class="Bool" property_class="IICInt">
             <label>IIC_INTSRC_SCL_SLOW</label>
             <value>0</value>
-            <Comment>IIC Interrupt Status</Comment>
+            <Comment>SCL拉低锁死中断</Comment>
           </Property>
           <Property class="Text">
             <label>RxBufferSize</label>
