@@ -40,7 +40,7 @@
               <sel>CMP_IN0</sel>
               <sel>TKEY_CH24</sel>
             </Selections>
-            <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出</Comment>
+            <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Driving Ability</label>
@@ -3021,7 +3021,6 @@
         <Category>
           <label>Flash Check</label>
           <Device deviceId="Flash check">
-            <Comment>SRAM实时校验功能</Comment>
             <GenCodeFuncName>SysFlashCheckInitFunc</GenCodeFuncName>
             <UseOrNot>0</UseOrNot>
             <label>Flash Check</label>
@@ -3137,7 +3136,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP1">
@@ -3163,7 +3162,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP2">
@@ -3188,7 +3187,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP3">
@@ -3213,7 +3212,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP4">
@@ -3238,7 +3237,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP5">
@@ -3263,7 +3262,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP6">
@@ -3288,7 +3287,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP7">
@@ -3313,7 +3312,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP8">
@@ -3338,7 +3337,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP9">
@@ -3363,7 +3362,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP10">
@@ -3388,7 +3387,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP11">
@@ -3413,7 +3412,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP12">
@@ -3437,7 +3436,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP13">
@@ -3461,7 +3460,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP14">
@@ -3484,7 +3483,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP15">
@@ -3507,7 +3506,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP16">
@@ -3543,7 +3542,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP17">
@@ -3579,7 +3578,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP18">
@@ -3607,7 +3606,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
         <Device deviceId="EXI_GRP19">
@@ -3635,7 +3634,7 @@
               <sel>GPIO_IRQ_FALLING_EDGE</sel>
               <sel>GPIO_IRQ_BOTH_EDGE</sel>
             </Selections>
-            <Comment>中断边沿模式，上升/下降/双边沿</Comment>
+            <Comment>中断触发边沿模式，上升/下降/双边沿</Comment>
           </Property>
         </Device>
       </Category>
@@ -5557,7 +5556,7 @@
               <sel>UART_PARITY_EVEN</sel>
               <sel>UART_PARITY_ODD</sel>
             </Selections>
-            <Comment/>
+            <Comment>校验位类型:(默认：无校验位)&#xD;UART_PARITY_NONE：无校验位&#xD;UART_PARITY_EVEN：偶校验&#xD;UART_PARITY_ODD：奇校验</Comment>
           </Property>
           <Property class="UIchoice">
             <label>TXMode</label>
@@ -5566,7 +5565,7 @@
               <sel>UART_TX_MODE_POLL</sel>
               <sel>UART_TX_MODE_INT</sel>
             </Selections>
-            <Comment>发送模式</Comment>
+            <Comment>发送模式&#xD;注释：开启UART_TX_MOD_INT时，默认推荐INT配置为UART_INRSRC_TXDONE</Comment>
           </Property>
           <Property class="UIchoice">
             <label>RXMode</label>
@@ -5575,7 +5574,7 @@
               <sel>UART_RX_MODE_POLL</sel>
               <sel>UART_RX_MODE_INT</sel>
             </Selections>
-            <Comment>接收模式</Comment>
+            <Comment>接收模式&#xD;注释：开启UART_RX_MOD_INT时，默认推荐INT配置为UART_INRSRC_RXFIFO和UART_INRSRC_RXTO</Comment>
           </Property>
           <Property class="UIchoice">
             <label>UART FUNC</label>
@@ -5585,6 +5584,7 @@
               <sel>UART_FUNC_TX</sel>
               <sel>UART_FUNC_RX_TX</sel>
             </Selections>
+            <Comment>UART功能使能&#xD;UART_FUNC_RX:接收使能&#xD;UART_FUNC_TX:发送使能&#xD;UART_FUNC_RX_TX:发送接收使能</Comment>
           </Property>
         </Device>
         <Device deviceId="UART1">
@@ -5609,7 +5609,7 @@
               <sel>UART_PARITY_EVEN</sel>
               <sel>UART_PARITY_ODD</sel>
             </Selections>
-            <Comment/>
+            <Comment>校验位类型:(默认：无校验位)&#xD;UART_PARITY_NONE：无校验位&#xD;UART_PARITY_EVEN：偶校验&#xD;UART_PARITY_ODD：奇校验</Comment>
           </Property>
           <Property class="UIchoice">
             <label>TXMode</label>
@@ -5618,7 +5618,7 @@
               <sel>UART_TX_MODE_POLL</sel>
               <sel>UART_TX_MODE_INT</sel>
             </Selections>
-            <Comment>发送模式</Comment>
+            <Comment>发送模式&#xD;注释：开启UART_TX_MOD_INT时，默认推荐INT配置为UART_INRSRC_TXDONE</Comment>
           </Property>
           <Property class="UIchoice">
             <label>RXMode</label>
@@ -5627,7 +5627,7 @@
               <sel>UART_RX_MODE_POLL</sel>
               <sel>UART_RX_MODE_INT</sel>
             </Selections>
-            <Comment>接收模式</Comment>
+            <Comment>接收模式&#xD;注释：开启UART_RX_MOD_INT时，默认推荐INT配置为UART_INRSRC_RXFIFO和UART_INRSRC_RXTO</Comment>
           </Property>
           <Property class="UIchoice">
             <label>UART FUNC</label>
@@ -5637,6 +5637,7 @@
               <sel>UART_FUNC_TX</sel>
               <sel>UART_FUNC_RX_TX</sel>
             </Selections>
+            <Comment>UART功能使能&#xD;UART_FUNC_RX:接收使能&#xD;UART_FUNC_TX:发送使能&#xD;UART_FUNC_RX_TX:发送接收使能</Comment>
           </Property>
         </Device>
         <Device deviceId="UART2">
@@ -5661,7 +5662,7 @@
               <sel>UART_PARITY_EVEN</sel>
               <sel>UART_PARITY_ODD</sel>
             </Selections>
-            <Comment/>
+            <Comment>校验位类型:(默认：无校验位)&#xD;UART_PARITY_NONE：无校验位&#xD;UART_PARITY_EVEN：偶校验&#xD;UART_PARITY_ODD：奇校验</Comment>
           </Property>
           <Property class="UIchoice">
             <label>TXMode</label>
@@ -5670,7 +5671,7 @@
               <sel>UART_TX_MODE_POLL</sel>
               <sel>UART_TX_MODE_INT</sel>
             </Selections>
-            <Comment>发送模式</Comment>
+            <Comment>发送模式&#xD;注释：开启UART_TX_MOD_INT时，默认推荐INT配置为UART_INRSRC_TXDONE</Comment>
           </Property>
           <Property class="UIchoice">
             <label>RXMode</label>
@@ -5679,7 +5680,7 @@
               <sel>UART_RX_MODE_POLL</sel>
               <sel>UART_RX_MODE_INT</sel>
             </Selections>
-            <Comment>接收模式</Comment>
+            <Comment>接收模式&#xD;注释：开启UART_RX_MOD_INT时，默认推荐INT配置为UART_INRSRC_RXFIFO和UART_INRSRC_RXTO</Comment>
           </Property>
           <Property class="UIchoice">
             <label>UART FUNC</label>
@@ -5689,6 +5690,7 @@
               <sel>UART_FUNC_TX</sel>
               <sel>UART_FUNC_RX_TX</sel>
             </Selections>
+            <Comment>UART功能使能&#xD;UART_FUNC_RX:接收使能&#xD;UART_FUNC_TX:发送使能&#xD;UART_FUNC_RX_TX:发送接收使能</Comment>
           </Property>
         </Device>
       </Category>
@@ -5696,7 +5698,7 @@
         <label>USART</label>
         <Device deviceId="USART0">
           <GenCodeFuncName>USART0InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
+          <UseOrNot>1</UseOrNot>
           <label>USART0</label>
           <Property class="UIchoice">
             <label>CLK Source</label>
@@ -5706,6 +5708,7 @@
               <sel>USART_CLKSRC_DIV8</sel>
               <sel>USART_CLKSRC_CK0</sel>
             </Selections>
+            <Comment>时钟选择(波特率发生器的输入时钟)&#xD;CLKS       时钟选择位&#xD;CLKS[1:0] 选择的时钟&#xD;0 0          PCLK&#xD;0 1          PCLK/8&#xD;1 x          USART0_CK输入的外部时钟</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Mode</label>
@@ -5714,10 +5717,10 @@
               <sel>USART_MODE_ASYNC</sel>
               <sel>USART_MODE_SYNC</sel>
             </Selections>
+            <Comment>同步模式选择&#xD;USART_MODE_ASYNC:USART工作在异步模式&#xD;USART_MODE_SYNC:USART工作在同步模式</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Data Bits</label>
-            <Comment>USART Mode Parameters</Comment>
             <value>USART_DATA_BITS_8</value>
             <Selections>
               <sel>USART_DATA_BITS_5</sel>
@@ -5726,20 +5729,19 @@
               <sel>USART_DATA_BITS_8</sel>
               <sel>USART_DATA_BITS_9</sel>
             </Selections>
+            <Comment>字节长度 (除开始位，停止位和校验位外的字节长度)</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Stop Bits</label>
-            <Comment>USART Mode Parameters</Comment>
             <value>USART_STOP_BITS_1</value>
             <Selections>
               <sel>USART_STOP_BITS_1</sel>
-              <sel>USART_STOP_BITS_1_5</sel>
               <sel>USART_STOP_BITS_2</sel>
             </Selections>
+            <Comment>停止位的个数&#xD;停止位个数跟SYNC设置的模式有关</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Parity</label>
-            <Comment>USART Mode Parameters</Comment>
             <value>USART_PARITY_NONE</value>
             <Selections>
               <sel>USART_PARITY_EVEN</sel>
@@ -5749,6 +5751,7 @@
               <sel>USART_PARITY_NONE</sel>
               <sel>USART_PARITY_MD</sel>
             </Selections>
+            <Comment>校验类型位(默认:无校验位)&#xD;PAR[2:0] 校验类型&#xD;0 0 0:     偶校验&#xD;0 0 1:     奇校验&#xD;0 1 0:     0校验 (Space)&#xD;0 1 1:     1校验 (Mark)&#xD;1 0 X:     无校验&#xD;1 1 X:     Multi-drop模式&#xD;注意：如果使用LIN，PAR[2:0]必须设置为'10X'</Comment>
           </Property>
           <Property class="UIchoice">
             <label>ClkOutEn</label>
@@ -5757,11 +5760,12 @@
               <sel>DISABLE</sel>
               <sel>ENABLE</sel>
             </Selections>
+            <Comment>时钟输出选择&#xD;DISABLE:USART不输出USARTCLK&#xD;ENABLE:USART输出USARTCLK</Comment>
           </Property>
           <Property class="Text">
             <label>Baudrate</label>
             <value>115200</value>
-            <Comment>文本输入,单位Hz</Comment>
+            <Comment>文本输入,最大值为3000000,单位Hz</Comment>
           </Property>
           <Property class="Text">
             <label>Receive Timeout</label>
@@ -5775,7 +5779,7 @@
               <sel>USART_TX_MODE_POLL</sel>
               <sel>USART_TX_MODE_INT</sel>
             </Selections>
-            <Comment>发送模式</Comment>
+            <Comment>发送模式&#xD;注释：开启USART_TX_MOD_INT时，默认推荐INT配置为UART_INRSRC_TXDONE  </Comment>
           </Property>
           <Property class="UIchoice">
             <label>RXMode</label>
@@ -5784,7 +5788,7 @@
               <sel>USART_RX_MODE_POLL</sel>
               <sel>USART_RX_MODE_INT</sel>
             </Selections>
-            <Comment>接收模式</Comment>
+            <Comment>接收模式&#xD;注释：开启USART_RX_MOD_INT时，默认推荐INT配置为USART_INRSRC_RXFIFO和USART_INRSRC_RXTO </Comment>
           </Property>
           <Property class="UIchoice">
             <label>USART FUNC</label>
@@ -5794,7 +5798,7 @@
               <sel>USART_FUNC_TX</sel>
               <sel>USART_FUNC_RX_TX</sel>
             </Selections>
-            <Comment>开启USART的RX和TX功能，也可单独开启RX或者TX功能</Comment>
+            <Comment>UART功能使能&#xD;USART_FUNC_RX:接收使能&#xD;USART_FUNC_TX:发送使能&#xD;USART_FUNC_RX_TX:发送接收使能</Comment>
           </Property>
         </Device>
       </Category>
@@ -6306,7 +6310,7 @@
               <sel notAvailable="CNTAPWM">Timer</sel>
               <sel notAvailable="CNTATimer">PWM</sel>
             </Selections>
-            <Comment>模式选择</Comment>
+            <Comment>CNTA工作模式</Comment>
           </Property>
           <Property class="Text" property_class="CNTATimer">
             <label>TimeOut</label>
@@ -6320,7 +6324,7 @@
               <sel>CNTA_POLAR_LOW</sel>
               <sel>CNTA_POLAR_HIGH</sel>
             </Selections>
-            <Comment>开始极性</Comment>
+            <Comment>载波输出波形的初始极性选择&#xD;CNTA_POLAR_LOW:低&#xD;CNTA_POLAR_HIGH:高</Comment>
           </Property>
           <Property class="UIchoice" property_class="CNTAPWM">
             <label>StopLevel</label>
@@ -6329,7 +6333,7 @@
               <sel>CNTA_STOP_LOW</sel>
               <sel>CNTA_STOP_HIGH</sel>
             </Selections>
-            <Comment>结束极性</Comment>
+            <Comment>当关闭载波时REM的输出状态&#xD;CNTA_STOP_LOW:低&#xD;CNTA_STOP_HIGH:高</Comment>
           </Property>
           <Property class="Text" property_class="CNTAPWM">
             <label>Freq</label>
@@ -6345,22 +6349,22 @@
           <Property class="Bool" property_class="CNTAPWM">
             <label>CNTA_INTSRC_NONE</label>
             <value>1</value>
-            <Comment/>
+            <Comment>高/低电平结束中断的禁止</Comment>
           </Property>
           <Property class="Bool" property_class="CNTAPWM">
             <label>CNTA_INTSRC_PENDL</label>
             <value>1</value>
-            <Comment/>
+            <Comment>低电平结束中断的使能</Comment>
           </Property>
           <Property class="Bool" property_class="CNTAPWM">
             <label>CNTA_INTSRC_PENDH</label>
             <value>1</value>
-            <Comment/>
+            <Comment>高电平结束中断的使能</Comment>
           </Property>
           <Property class="Bool" property_class="CNTAPWM">
             <label>CNTA_INTSRC_PENDHL</label>
             <value>1</value>
-            <Comment/>
+            <Comment>高/低电平结束中断的使能</Comment>
           </Property>
           <Property class="UIchoice" property_class="CNTAPWM">
             <label>BTPENDREM</label>
@@ -6370,7 +6374,7 @@
               <sel>CNTA_PEND_CARR_CLR</sel>
               <sel>CNTA_PEND_CARR_SET</sel>
             </Selections>
-            <Comment>当BT周期结束中断发生时,硬件触发控制载波</Comment>
+            <Comment>当BT周期结束中断发生时，硬件触发控制载波的打开和关闭&#xD;CNTA_PEND_CARR_DIS: 禁止CARRIERON的硬件自动触发&#xD;CNTA_PEND_CARR_CLR: BT周期结束中断发生时，CARRIERON位会被硬件自动清零&#xD;CNTA_PEND_CARR_SET: BT周期结束中断发生时，CARRIERON位会被硬件自动置位</Comment>
           </Property>
           <Property class="UIchoice" property_class="CNTAPWM">
             <label>BTMATCHREM</label>
@@ -6380,7 +6384,7 @@
               <sel>CNTA_MATCH_CARR_CLR</sel>
               <sel>CNTA_MATCH_CARR_SET</sel>
             </Selections>
-            <Comment>当BT脉冲匹配中断发生时,硬件触发控制载波</Comment>
+            <Comment>当BT脉冲匹配中断发生时，硬件触发控制载波的打开和关闭&#xD;CNTA_MATCH_CARR_DIS: 禁止CARRIERON的硬件自动触发&#xD;CNTA_MATCH_CARR_CLR: BT脉冲匹配中断发生时，CARRIERON位会被硬件自动清零&#xD;CNTA_MATCH_CARR_SET: BT脉冲匹配中断发生时，CARRIERON位会被硬件自动置位</Comment>
           </Property>
           <Property class="UIchoice" property_class="CNTAPWM">
             <label>HWUpdate</label>
@@ -6391,7 +6395,7 @@
               <sel>CNTA_HW_TCPEND</sel>
               <sel>CNTA_HW_TCMATCH_TCPEND</sel>
             </Selections>
-            <Comment>使能计数值寄存器的硬件自动更新功能</Comment>
+            <Comment>使能计数值寄存器的硬件自动更新功能&#xD;CNTA_HW_DIS：禁止BT脉冲匹配/周期结束的计数值自动载入&#xD;CNTA_HW_TCMATCH：当BT脉冲匹配中断发生时，计数值会自动载入计数器&#xD;CNTA_HW_TCPEND：当BT周期结束中断发生时，计数值会自动载入计数器&#xD;CNTA_HW_TCMATCH_TCPEND：当BT脉冲匹配/周期结束中断发生时，计数值会自动载入计数器</Comment>
           </Property>
         </Device>
       </Category>
@@ -6410,7 +6414,7 @@
               <sel>RTC_CLKSRC_ESOSC</sel>
               <sel>RTC_CLKSRC_EMOSC_DIV4</sel>
             </Selections>
-            <Comment/>
+            <Comment>RTC时钟源选择RTC_CLKSRC_ISOSC：ISOSC&#xD;RTC_CLKSRC_IMOSC_DIV4：IMOSC/4&#xD;RTC_CLKSRC_ESOSC：ESOSC&#xD;RTC_CLKSRC_EMOSC_DIV4：EMOSC/4</Comment>
           </Property>
           <Property class="UIchoice">
             <label>Timer Format</label>
@@ -6419,7 +6423,7 @@
               <sel notAvailable="RTC12Hour">RTC_24FMT</sel>
               <sel notAvailable="RTC24Hour">RTC_12FMT</sel>
             </Selections>
-            <Comment>时间模式 24小时制/12小时制</Comment>
+            <Comment>计时模式设置&#xD;RTC_24FMT：24小时制&#xD;：12小时制(AM/PM)</Comment>
           </Property>
           <Property class="Text">
             <label>Year</label>
@@ -6431,7 +6435,7 @@
             <label>Month</label>
             <value>2</value>
             <validReg>^([1-9]|[1][0-2])$</validReg>
-            <Comment>文本输入</Comment>
+            <Comment>文本输入 范围0-12</Comment>
           </Property>
           <Property class="Text">
             <label>Day</label>
@@ -6446,13 +6450,13 @@
               <sel>RTC_AM</sel>
               <sel>RTC_PM</sel>
             </Selections>
-            <Comment>AM or PM</Comment>
+            <Comment>AM或PM标志&#xD;RTC_AM：AM 或 24小时格式&#xD;RTC_PM：PM</Comment>
           </Property>
           <Property class="Text" property_class="RTC12Hour">
             <label>Hour</label>
             <value>9</value>
-            <validReg>^([1-9]|[1][0-2])$</validReg>
-            <Comment>文本输入 范围1-12</Comment>
+            <validReg>^([0-9]|[1][0-2])$</validReg>
+            <Comment>文本输入 范围0-12</Comment>
           </Property>
           <Property class="Text" property_class="RTC24Hour">
             <label>Hour</label>
@@ -6542,7 +6546,7 @@
               <sel>RTC_AM</sel>
               <sel>RTC_PM</sel>
             </Selections>
-            <Comment>AM or PM</Comment>
+            <Comment>AM或PM标志&#xD;RTC_AM：AM 或 24小时格式&#xD;RTC_PM：PMM</Comment>
           </Property>
         </Device>
         <Device deviceId="RTCAlarmB">
@@ -6614,7 +6618,7 @@
               <sel>RTC_AM</sel>
               <sel>RTC_PM</sel>
             </Selections>
-            <Comment>AM or PM</Comment>
+            <Comment>AM或PM标志&#xD;RTC_AM：AM 或 24小时格式&#xD;RTC_PM：PMM</Comment>
           </Property>
         </Device>
       </Category>
@@ -8437,7 +8441,7 @@
               <sel>DMA_CH2</sel>
               <sel>DMA_CH3</sel>
             </Selections>
-            <Comment/>
+            <Comment>DMA通道，范围：CH0~CH3</Comment>
           </Property>
         </Device>
       </Category>
@@ -8626,7 +8630,7 @@
         <label>I2C</label>
         <Device deviceId="I2C">
           <GenCodeFuncName>I2CInitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
+          <UseOrNot>1</UseOrNot>
           <label>I2C</label>
           <Property class="UIchoice">
             <label>Mode</label>
@@ -8746,27 +8750,27 @@
             <value>0</value>
             <Comment>SCL拉低锁死中断</Comment>
           </Property>
-          <Property class="Text">
+          <Property class="Text" property_class="I2CSlave">
             <label>RxBufferSize</label>
-            <value>0xffff</value>
+            <value>0x20</value>
             <validReg>^(0[xX])([0-9a-fA-F]{4})$</validReg>
             <Comment>接收数组长度设置 范围 0~0xffff 接收数组g_byWriteBuffer需手动定义全局变量</Comment>
           </Property>
-          <Property class="Text">
+          <Property class="Text" property_class="I2CSlave">
             <label>TxBufferSize</label>
-            <value>0xffff</value>
+            <value>0x20</value>
             <validReg>^(0[xX])([0-9a-fA-F]{4})$</validReg>
             <Comment>发送数组长度设置 范围 0~0xffff 发送数组g_bySendBuffer需手动定义全局变量</Comment>
           </Property>
           <Property class="Text" property_class="I2CMaster">
             <label>SDATimeOut</label>
-            <value>0xffffffff</value>
+            <value>0xffff</value>
             <validReg>^(0[xX])([0-9a-fA-F]{8})$</validReg>
             <Comment>SDA超时时间设置 1/主频 * g_tIicMasterCfg.wSdaTimeout ms 范围 0~0xffffffff</Comment>
           </Property>
           <Property class="Text" property_class="I2CMaster">
             <label>SCLTimeOut</label>
-            <value>0xffffffff</value>
+            <value>0xffff</value>
             <validReg>^(0[xX])([0-9a-fA-F]{8})$</validReg>
             <Comment>SCL超时时间设置 1/主频 * g_tIicMasterCfg.wSdaTimeout ms 范围 0~0xffffffff</Comment>
           </Property>
