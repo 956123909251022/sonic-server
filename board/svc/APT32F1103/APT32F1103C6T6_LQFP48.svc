@@ -5308,23 +5308,22 @@
             <Comment>发送模式</Comment>
           </Property>
           <Property class="UIchoice">
-            <label>Interrupt Source</label>
-            <value>UART_INTSRC_NONE</value>
+            <label>RXMode</label>
+            <value>UART_RX_MODE_INT</value>
             <Selections>
-              <sel>UART_INTSRC_NONE</sel>
-              <sel>UART_INTSRC_TX</sel>
-              <sel>UART_INTSRC_RX</sel>
-              <sel>UART_INTSRC_TX_OV</sel>
-              <sel>UART_INTSRC_RX_OV</sel>
-              <sel>UART_INTSRC_PAR_ERR</sel>
-              <sel>UART_INTSRC_TXFIFO</sel>
-              <sel>UART_INTSRC_RXFIFO</sel>
-              <sel>UART_INTSRC_RXFIFO_OV</sel>
-              <sel>UART_INTSRC_TXDONE</sel>
-              <sel>UART_INTSRC_RXTO</sel>
-              <sel>UART_INTSRC_RXBRK</sel>
+              <sel>UART_RX_MODE_POLL</sel>
+              <sel>UART_RX_MODE_INT</sel>
             </Selections>
-            <Comment>中断触发源</Comment>
+            <Comment>接收模式</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>UART FUNC</label>
+            <value>UART_FUNC_RX_TX</value>
+            <Selections>
+              <sel>UART_FUNC_RX</sel>
+              <sel>UART_FUNC_TX</sel>
+              <sel>UART_FUNC_RX_TX</sel>
+            </Selections>
           </Property>
         </Device>
         <Device deviceId="UART1">
@@ -5356,23 +5355,22 @@
             <Comment>发送模式</Comment>
           </Property>
           <Property class="UIchoice">
-            <label>Interrupt Source</label>
-            <value>UART_INTSRC_NONE</value>
+            <label>RXMode</label>
+            <value>UART_RX_MODE_INT</value>
             <Selections>
-              <sel>UART_INTSRC_NONE</sel>
-              <sel>UART_INTSRC_TX</sel>
-              <sel>UART_INTSRC_RX</sel>
-              <sel>UART_INTSRC_TX_OV</sel>
-              <sel>UART_INTSRC_RX_OV</sel>
-              <sel>UART_INTSRC_PAR_ERR</sel>
-              <sel>UART_INTSRC_TXFIFO</sel>
-              <sel>UART_INTSRC_RXFIFO</sel>
-              <sel>UART_INTSRC_RXFIFO_OV</sel>
-              <sel>UART_INTSRC_TXDONE</sel>
-              <sel>UART_INTSRC_RXTO</sel>
-              <sel>UART_INTSRC_RXBRK</sel>
+              <sel>UART_RX_MODE_POLL</sel>
+              <sel>UART_RX_MODE_INT</sel>
             </Selections>
-            <Comment>中断触发源</Comment>
+            <Comment>接收模式</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>UART FUNC</label>
+            <value>UART_FUNC_RX_TX</value>
+            <Selections>
+              <sel>UART_FUNC_RX</sel>
+              <sel>UART_FUNC_TX</sel>
+              <sel>UART_FUNC_RX_TX</sel>
+            </Selections>
           </Property>
         </Device>
         <Device deviceId="UART2">
@@ -5404,23 +5402,22 @@
             <Comment>发送模式</Comment>
           </Property>
           <Property class="UIchoice">
-            <label>Interrupt Source</label>
-            <value>UART_INTSRC_NONE</value>
+            <label>RXMode</label>
+            <value>UART_RX_MODE_INT</value>
             <Selections>
-              <sel>UART_INTSRC_NONE</sel>
-              <sel>UART_INTSRC_TX</sel>
-              <sel>UART_INTSRC_RX</sel>
-              <sel>UART_INTSRC_TX_OV</sel>
-              <sel>UART_INTSRC_RX_OV</sel>
-              <sel>UART_INTSRC_PAR_ERR</sel>
-              <sel>UART_INTSRC_TXFIFO</sel>
-              <sel>UART_INTSRC_RXFIFO</sel>
-              <sel>UART_INTSRC_RXFIFO_OV</sel>
-              <sel>UART_INTSRC_TXDONE</sel>
-              <sel>UART_INTSRC_RXTO</sel>
-              <sel>UART_INTSRC_RXBRK</sel>
+              <sel>UART_RX_MODE_POLL</sel>
+              <sel>UART_RX_MODE_INT</sel>
             </Selections>
-            <Comment>中断触发源</Comment>
+            <Comment>接收模式</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>UART FUNC</label>
+            <value>UART_FUNC_RX_TX</value>
+            <Selections>
+              <sel>UART_FUNC_RX</sel>
+              <sel>UART_FUNC_TX</sel>
+              <sel>UART_FUNC_RX_TX</sel>
+            </Selections>
           </Property>
         </Device>
       </Category>
