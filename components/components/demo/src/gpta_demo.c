@@ -20,7 +20,7 @@
 /* Private macro-----------------------------------------------------------*/
 /* Private variablesr------------------------------------------------------*/
 
-/** \brief gpta timer
+/** \brief GPTA基本定时功能
  * 
  *  \param[in] none
  *  \return error code
@@ -222,33 +222,6 @@ int gpta_pwm_demo(void)
 	}			
     return iRet;
 }
-
-void load1(void)
-{   
-	csi_gpta_channel_aqload_config(GPTA0, GPTA_LD_IMM, GPTA_LDCMP_PRD ,GPTA_CHANNEL_1);
-	csi_gpta_channel_aqload_config(GPTA0, GPTA_LD_IMM, GPTA_LDCMP_PRD ,GPTA_CHANNEL_2);
-	csi_gpio_port_set_high(GPIOA0, (0x01ul << 0));
-	csi_gpta_pwmchannel_config_t  channel1;
-	channel1.byActionZro    =   LO;
-	channel1.byActionPrd    =   LO;
-	channel1.byActionC1u    =   LO;
-	channel1.byActionC1d    =   LO;
-	channel1.byActionC2u    =   LO;
-	channel1.byActionC2d    =   LO;
-	channel1.byActionT1u    =   LO;
-	channel1.byActionT1d    =   LO;
-	channel1.byActionT2u    =   LO;
-	channel1.byActionT2d    =   LO;
-	channel1.byChoiceC1sel  =   GPTA_CMPA;
-	channel1.byChoiceC2sel  =   GPTA_CMPA;	
-	csi_gpta_channel_config(GPTA0, &channel1,  GPTA_CHANNEL_1);//channel
-//	channel.byChoiceC1sel  =   EPT_CMPB;
-//	channel.byChoiceC2sel  =   EPT_CMPB;
-	csi_gpta_channel_config(GPTA0, &channel1,  GPTA_CHANNEL_2);
-
-	csi_gpio_port_set_low (GPIOA0, (0x01ul << 0));
-}
-
 
 
 

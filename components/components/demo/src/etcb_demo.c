@@ -23,11 +23,12 @@
 /* Private macro-----------------------------------------------------------*/
 /* Private variablesr------------------------------------------------------*/
 
-
-/*
- * 多个一对一触发模式
- *EXI1 		 --> BT_SYNC0 
- *BT0_TRGOUT --> LPT_SYNC0 
+/**
+*  \brief 多个一对一触发模式
+*	EXI1 		 --> BT_SYNC0 
+*	BT0_TRGOUT --> LPT_SYNC0 
+*  \param[in] none
+*  \return error code
 */
 int etcb_one_trg_one_demo0(void)
 {
@@ -73,10 +74,9 @@ int etcb_one_trg_one_demo0(void)
 	return iRet;
 }
 
-/*
- * 一对一触发模式
- *EPT --> ADC_SYNC0 
-*/
+
+//ADC采样序列通道参数配置，默认情况，重复采样和平均系数为1(ADC采样值不平均)
+//ADC触发输入为ADCSYNC_IN0
 uint8_t  byAdcChnlNum;                                          //采样序列的通道数
 const csi_adc_seq_t SeqCfg1[] =
 {
@@ -108,6 +108,12 @@ void apt_etcb_adc_irqhandler(csp_adc_t *ptAdcBase)
 	}
 }
 
+
+/**
+*  \brief ETCB触发，一对一模式，目标事件ADC配置
+*  \param[in] none
+*  \return none
+*/
 void etcb_adc_config(void)
 {
 	csi_adc_config_t tAdcConfig;
@@ -138,6 +144,11 @@ void etcb_adc_config(void)
 	csi_adc_start(ADC0);										 //启动ADC	
 }
 
+/**
+*  \brief ETCB触发，事件源EPT配置
+*  \param[in] none
+*  \return none
+*/
 void etcb_ept_config(void)
 {
 //------------------------------------------------------------------------------------------------------------------------	
@@ -182,6 +193,12 @@ void etcb_ept_config(void)
 	csi_ept_start(EPT0);	
 }
 
+/**
+*  \brief 一对一触发模式
+*	EPT --> ADC_SYNC0 
+*  \param[in] none
+*  \return error code
+*/
 int etcb_one_trg_one_demo1(void)
 {
 	int iRet = 0;
@@ -206,10 +223,8 @@ int etcb_one_trg_one_demo1(void)
 	return iRet;
 }
 
-/*
- * 一对多触发模式
- *EPT -->ADC_SYNC0 ADC_SYNC1
-*/
+//ADC采样序列通道参数配置，默认情况，重复采样和平均系数为1(ADC采样值不平均)
+//ADC触发，ADCIN1触发输入为ADCSYNC_IN0，ADCIN2触发输入为ADCSYNC_IN1
 const csi_adc_seq_t SeqCfg2[] =
 {
 	//输入通道		//连续重复采样次数		//平均系数			//触发源选择
@@ -217,6 +232,11 @@ const csi_adc_seq_t SeqCfg2[] =
 	{ADCIN2,		ADC_CV_COUNT_1,			ADC_AVG_COF_1,		ADCSYNC_IN1},
 }; 
 
+/**
+*  \brief ETCB触发，一对多模式，目标事件ADC配置
+*  \param[in] none
+*  \return none
+*/
 void etcb_adc_config12(void)
 {
 	csi_adc_config_t tAdcConfig;
@@ -242,6 +262,12 @@ void etcb_adc_config12(void)
 	csi_adc_start(ADC0);										 //启动ADC	
 }
 
+/**
+*  \brief 一对多触发模式
+*	EPT -->ADC_SYNC0 ADC_SYNC1
+*  \param[in] none
+*  \return error code
+*/
 int etcb_one_trg_more_demo(void)
 {
 	int iRet = 0;
@@ -269,10 +295,8 @@ int etcb_one_trg_more_demo(void)
 	return iRet;
 }
 
-/*
- * 多对一触发模式
- *EXI0 EXI1 EXI3--> ADC_SYNC0 
-*/
+//ADC采样序列通道参数配置，默认情况，重复采样和平均系数为1(ADC采样值不平均)
+//ADC触发输入为ADCSYNC_IN0
 const csi_adc_seq_t SeqCfg3[] =
 {
 	//输入通道		//连续重复采样次数		//平均系数			//触发源选择
@@ -281,6 +305,11 @@ const csi_adc_seq_t SeqCfg3[] =
 	{ADCIN12,		ADC_CV_COUNT_1,			ADC_AVG_COF_1,		ADCSYNC_IN0},	
 };
 
+/**
+*  \brief ETCB触发，多对一模式，目标事件ADC配置
+*  \param[in] none
+*  \return none
+*/
 void etcb_adc_config13(void)
 {
 	csi_adc_config_t tAdcConfig;
@@ -307,6 +336,12 @@ void etcb_adc_config13(void)
 	csi_adc_start(ADC0);										 //启动ADC	
 }
 
+/**
+*  \brief 多对一触发模式
+*   EXI0 EXI1 EXI3--> ADC_SYNC0 
+*  \param[in] none
+*  \return error code
+*/
 int etcb_more_trg_one_demo(void)
 {	
 	int iRet = 0;
@@ -352,11 +387,14 @@ int etcb_more_trg_one_demo(void)
 	return iRet;
 }
 
-/*
- * 多对一/一对一混合触发模式
- *EXI0 EXI1 EXI3--> BT_SYNC0 
- *BT0_TRGOUT    --> LPT_SYNC0 
- *LPT_TRGOUT    --> ADC_SYNC0 
+
+/**
+*  \brief 多对一/一对一混合触发模式
+*  EXI0 EXI1 EXI3--> BT_SYNC0 
+*  BT0_TRGOUT    --> LPT_SYNC0 
+*  LPT_TRGOUT    --> ADC_SYNC0 
+*  \param[in] none
+*  \return error code
 */
 int etcb_mix_demo(void)
 {	

@@ -56,11 +56,11 @@ int cmp_base_demo(void)
  *  \brief 当积分计数器值≥CMP_DFCR1[DEPTH](滤波时间周期)时，输出高；当积分计数器值= 0时，输出低。
  *  \brief 如果PCLK时钟配置为24M，滤波时钟周期为： 24M/(119+1)/2^2 => 20us
  *  \brief 滤波积分的时间周期为20*CMP_DFCR_DEPTH1_16 = 320us。
- *  \brief 
+ *  
  *  \brief 滤波器2是一个去抖滤波器，只有当采样到的电平连续CMP_DFCR2[DEPTH](去抖时间周期)次保持一致，滤波器才会改变输出。
  *  \brief 如果PCLK时钟配置为24M，滤波时钟周期为： 24M/(119+1)/2^2 => 20us
  *  \brief 滤波去抖的时间周期为20*CMP_DFCR_DEPTH2_16 = 320us。
- *  \brief 
+ *   
  *  \param[in] none
  *  \return error code
  */
@@ -103,7 +103,7 @@ int cmp_dfcr_demo(void)
  *  \brief 窗口的宽度由时钟分频和窗口计数决定，同时可配置相应的窗口延迟
  *  \brief 如果PCLK时钟配置为24M，窗口滤波时钟周期为： 24M/（4+1） => 5/24(us)
  *  \brief 窗口滤波的时间宽度为5/24 * 200 = 17us，电平翻转将在窗口内生效，窗口外不进行电平翻转
- *  \brief 
+ *   
  *  \param[in] none
  *  \return error code
  */

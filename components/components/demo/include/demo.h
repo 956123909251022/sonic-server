@@ -98,11 +98,11 @@ int sio_hdq_send_recv_demo(void);
 int sio_hdq_recv_rdcmd_demo(void);
 
 //lpt demo
-extern int lpt_timer_demo(void);
-extern int lpt_pwm_demo(void);
-int lbt_sync_trg_start_demo(void);
-int lbt_trg_out_demo(void);
-int lbt_soft_trg_out_demo(void);
+int lpt_timer_demo(void);
+int lpt_pwm_demo(void);
+int lpt_sync_trg_start_demo(void);
+int lpt_trg_out_demo(void);
+int lpt_soft_trg_out_demo(void);
 
 //reliability demo
 extern void lvd_demo(void);

@@ -102,7 +102,7 @@ int lpt_pwm_duty_demo(void)
  *  \param[in] none
  *  \return error code
  */
-int lbt_sync_trg_start_demo(void)
+int lpt_sync_trg_start_demo(void)
 {
 	int iRet = 0;
 	volatile uint8_t ch;
@@ -138,7 +138,7 @@ int lbt_sync_trg_start_demo(void)
  *  \param[in] none
  *  \return error code
  */
-int lbt_trg_out_demo(void)
+int lpt_trg_out_demo(void)
 {
 	int iRet = 0;
 	volatile uint8_t ch;
@@ -171,7 +171,7 @@ int lbt_trg_out_demo(void)
  *  \param[in] none
  *  \return error code
  */
-int lbt_soft_trg_out_demo(void)
+int lpt_soft_trg_out_demo(void)
 {
 	int iRet = 0;
 	volatile uint8_t ch;
