@@ -8690,7 +8690,7 @@
           <label>EPT0</label>
           <Property class="UIchoice">
             <label>WorkMode</label>
-            <value>EPT_WAVE</value>
+            <value>EPT_CAPTURE</value>
             <Selections>
               <sel notAvailable="EPT0WAVE,EPT0DE,EPT0EM">EPT_CAPTURE</sel>
               <sel notAvailable="EPT0CAPTURE,EPT0DE,EPT0EM">EPT_WAVE</sel>
@@ -8715,25 +8715,6 @@
               <sel>EPT_OP_OT</sel>
             </Selections>
             <Comment>计数器单次触发工作模式选择</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>SYNC</label>
-            <value>EPT_SW_START</value>
-            <Selections>
-              <sel>EPT_SW_START</sel>
-              <sel>EPT_SYNC_START</sel>
-            </Selections>
-            <Comment>软件使能同步触发使能控制(RSSR中START控制位)</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>PSCLD</label>
-            <value>EPT_LDPSCR_ZRO</value>
-            <Selections>
-              <sel>EPT_LDPSCR_ZRO</sel>
-              <sel>EPT_LDPSCR_PRD</sel>
-              <sel>EPT_LDPSCR_ZROPRD</sel>
-            </Selections>
-            <Comment>PSCR(分频)活动寄存器载入控制.活动寄存器在配置条件满足时,从影子寄存器载入更新值</Comment>
           </Property>
           <Property class="Text" property_class="EPT0WAVE">
             <label>Freq</label>
@@ -9284,45 +9265,6 @@
             <Comment>使能锁</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0EM">
-            <label>Osrshdw</label>
-            <value>EPT_OSR_IMMEDIATE</value>
-            <Selections>
-              <sel>EPT_OSR_IMMEDIATE</sel>
-              <sel>EPT_OSR_SHADOW</sel>
-            </Selections>
-            <Comment>锁止端口状态载入方式</Comment>
-          </Property>
-          <Property class="UIchoice" property_class="EPT0EM">
-            <label>Fltpace0</label>
-            <value>EPT_EPFLT0_2P</value>
-            <Selections>
-              <sel>EPT_EPFLT0_DIS</sel>
-              <sel>EPT_EPFLT0_2P</sel>
-              <sel>EPT_EPFLT0_4P</sel>
-              <sel>EPT_EPFLT0_6P</sel>
-              <sel>EPT_EPFLT0_8P</sel>
-              <sel>EPT_EPFLT0_16P</sel>
-              <sel>EPT_EPFLT0_32P</sel>
-              <sel>EPT_EPFLT0_64P</sel>
-            </Selections>
-            <Comment>EP0、EP1、EP2和EP3的数字去抖滤波检查周期数</Comment>
-          </Property>
-          <Property class="UIchoice" property_class="EPT0EM">
-            <label>Fltpace1</label>
-            <value>EPT_EPFLT1_2P</value>
-            <Selections>
-              <sel>EPT_EPFLT1_DIS</sel>
-              <sel>EPT_EPFLT1_2P</sel>
-              <sel>EPT_EPFLT1_4P</sel>
-              <sel>EPT_EPFLT1_6P</sel>
-              <sel>EPT_EPFLT1_8P</sel>
-              <sel>EPT_EPFLT1_16P</sel>
-              <sel>EPT_EPFLT1_32P</sel>
-              <sel>EPT_EPFLT1_64P</sel>
-            </Selections>
-            <Comment>EP4、EP5、EP6和EP7的数字去抖滤波检查周期数</Comment>
-          </Property>
-          <Property class="UIchoice" property_class="EPT0EM">
             <label>EMCOAX</label>
             <value>EPT_EM_OUT_NONE</value>
             <Selections>
@@ -9495,25 +9437,6 @@
               <sel>GPTA_OP_OT</sel>
             </Selections>
             <Comment>计数器单次触发工作模式选择</Comment>
-          </Property>
-          <Property class="UIchoice" property_class="GPTACommon">
-            <label>SYNC</label>
-            <value>GPTA_SW_START</value>
-            <Selections>
-              <sel>GPTA_SW_START</sel>
-              <sel>GPTA_SYNC_START</sel>
-            </Selections>
-            <Comment>软件使能同步触发使能控制(RSSR中START控制位)</Comment>
-          </Property>
-          <Property class="UIchoice" property_class="GPTACommon">
-            <label>PSCLD</label>
-            <value>GPTA_LDPSCR_ZRO</value>
-            <Selections>
-              <sel>GPTA_LDPSCR_ZRO</sel>
-              <sel>GPTA_LDPSCR_PRD</sel>
-              <sel>GPTA_LDPSCR_ZROPRD</sel>
-            </Selections>
-            <Comment>PSCR(分频)活动寄存器载入控制.活动寄存器在配置条件满足时,从影子寄存器载入更新值</Comment>
           </Property>
           <Property class="Text" property_class="GPTAWAVE">
             <label>Freq</label>
@@ -9835,25 +9758,6 @@
               <sel>GPTB_OP_OT</sel>
             </Selections>
             <Comment>计数器单次触发工作模式选择</Comment>
-          </Property>
-          <Property class="UIchoice" property_class="GPTBCommon">
-            <label>SYNC</label>
-            <value>GPTB_SW_START</value>
-            <Selections>
-              <sel>GPTB_SW_START</sel>
-              <sel>GPTB_SYNC_START</sel>
-            </Selections>
-            <Comment>软件使能同步触发使能控制(RSSR中START控制位)</Comment>
-          </Property>
-          <Property class="UIchoice" property_class="GPTBCommon">
-            <label>PSCLD</label>
-            <value>GPTB_LDPSCR_ZRO</value>
-            <Selections>
-              <sel>GPTB_LDPSCR_ZRO</sel>
-              <sel>GPTB_LDPSCR_PRD</sel>
-              <sel>GPTB_LDPSCR_ZROPRD</sel>
-            </Selections>
-            <Comment>PSCR(分频)活动寄存器载入控制.活动寄存器在配置条件满足时,从影子寄存器载入更新值</Comment>
           </Property>
           <Property class="Text" property_class="GPTBWAVE">
             <label>Freq</label>
@@ -10286,26 +10190,6 @@
               <sel>GPTB_EP_HLCK</sel>
             </Selections>
             <Comment>使能 软/硬 锁</Comment>
-          </Property>
-          <Property class="UIchoice" property_class="GPTBEM">
-            <label>Osrshdw</label>
-            <value>GPTB_IMMEDIATE</value>
-            <Selections>
-              <sel>GPTB_IMMEDIATE</sel>
-              <sel>GPTB_SHADOW</sel>
-            </Selections>
-            <Comment>锁止端口状态载入方式</Comment>
-          </Property>
-          <Property class="UIchoice" property_class="GPTBEM">
-            <label>Fltpace0</label>
-            <value>GPTB_EPFLT0_2P</value>
-            <Selections>
-              <sel>GPTB_EPFLT0_DIS</sel>
-              <sel>GPTB_EPFLT0_2P</sel>
-              <sel>GPTB_EPFLT0_3P</sel>
-              <sel>GPTB_EPFLT0_4P</sel>
-            </Selections>
-            <Comment>EP0、EP1、EP2和EP3的数字去抖滤波检查周期数</Comment>
           </Property>
           <Property class="UIchoice" property_class="GPTBEM">
             <label>GPTB_EMCOAX</label>
