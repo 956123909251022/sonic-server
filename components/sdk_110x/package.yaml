@@ -1,5 +1,5 @@
 name: sdk_110x
-version: V1.2.2
+version: V1.2.3
 description: sdk for apt32f110x
 tag: ""
 keywords: 
@@ -9,8 +9,8 @@ license: ""
 homepage: 
 type: sdk
 depends:
-  - apt32f110x_evb: V1.2.2
-  - apt_console: v1.0.2
+  - apt32f110x_evb: V1.2.3
+  - apt_console: v1.0.3
 hw_info:
   cpu_id: ""
   cpu_name: ""
@@ -32,5 +32,5 @@ source_file:
 def_config: 
 install: 
 depends_forward:
-  - apt32f110x_evb: V1.2.2
-  - apt_console: v1.0.2
+  - apt32f110x_evb: V1.2.3
+  - apt_console: v1.0.3

@@ -12,7 +12,7 @@ def_config:
   DBG_PRINT2PC: 1
   IS_CHIP_1103: 1
 name: demo
-version: V1.2.2
+version: V1.2.3
 description: 我的第一个方案工程
 tag: ""
 keywords: 
@@ -21,8 +21,8 @@ author:
 license: ""
 type: solution
 depends:
-  - apt32f110x_demo: V1.2.2
-  - sdk_110x: V1.2.2
+  - apt32f110x_demo: V1.2.3
+  - sdk_110x: V1.2.3
 build_config:
   include:
     - include
@@ -37,7 +37,7 @@ build_config:
 source_file:
   - src/*.c
 depends_forward:
-  - apt32f110x_demo: V1.2.2
-  - sdk_110x: V1.2.2
+  - apt32f110x_demo: V1.2.3
+  - sdk_110x: V1.2.3
 install: 
 homepage: 
