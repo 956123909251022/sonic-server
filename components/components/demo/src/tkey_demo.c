@@ -1,12 +1,12 @@
-
-/*============================================================================
- * Name        : main.c
- * Author      : $(username)
- * Version     : 0.0.0
- * Copyright   : Your copyright notice
- * Description : Simple function in C, Ansi-style
- *============================================================================
- */
+/***********************************************************************//** 
+ * \file  tkey_demo.c
+ * \copyright Copyright (C) 2020-2025 @ APTCHIP
+ * <table>
+ * <tr><th> Date  <th>Version  <th>Author  <th>Description
+ * <tr><td> 2022-6-7 <td>V0.0  <td>XB      <td>demo
+ * </table>
+ * *********************************************************************
+*/
 /* include ----------------------------------------------------------------*/
 #include "demo.h"
 #include "pin.h"
