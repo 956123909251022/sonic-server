@@ -95,7 +95,7 @@ typedef struct {
 	uint32_t		wPclk;
 }csi_clk_config_t;
 
-extern csi_clk_config_t tClkConfig;
+extern csi_clk_config_t g_tClkConfig;
 
 //typedef struct {
 //    cclk_src_e	eSysClkSrc;      /* select sysclk source clock */
