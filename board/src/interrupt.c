@@ -113,7 +113,7 @@ void adc_int_handler(void)
 {
 #if	ADC_INT_HANDLE_EN
 	// ISR content ...
-	adc_irqhandler(ADC0);
+	adc_irqhandler(ADC0);//this is a weak function defined in adc_demo.c, for better efficiency, we recommand user directly implement IRQ handler here without any function call.
 	
 #endif
 }
