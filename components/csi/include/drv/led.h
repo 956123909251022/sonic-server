@@ -57,8 +57,8 @@ typedef struct csi_led_config {
 	uint8_t 	byClk;			//clk configure
 	uint8_t 	byBrt;			//brightness configure
 	uint16_t 	hwComMask;		//COM enable
-	uint8_t 	byOnTime;		//scanning timing: COM on cycles,needs to be a multiple of 8, otherwise the timing will NOT be accurate
-	uint8_t 	byBreakTime;	//scanning timing: cycles between COMs
+	uint16_t 	byOnTime;		//scanning timing: COM on cycles,needs to be a multiple of 8, otherwise the timing will NOT be accurate
+	uint16_t 	byBreakTime;	//scanning timing: cycles between COMs
 	uint8_t 	byInt;			//Interrupt Source
 }csi_led_config_t;
 
