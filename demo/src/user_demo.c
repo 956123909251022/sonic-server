@@ -126,6 +126,12 @@ void user_demo(void)
 //	adc_samp_continuous_int_demo();
 //	adc_samp_continuous_dma_transfer_demo();
 
+	//demo_pro中，adc支持采样深度配置，中断处理较复杂
+//	adc_samp_oneshot_demo_pro();
+//	adc_samp_continuous_demo_pro();
+//	adc_samp_oneshot_int_demo_pro();
+//	adc_samp_continuous_int_demo_pro();
+
 /// ***************************************************
 ///  CRC相关的示例代码
 /// ***************************************************
@@ -152,6 +158,11 @@ void user_demo(void)
 //	uart_send_dma_demo();
 //	uart_recv_dma_demo();
 
+	//demo_pro中，uart接收支持循环buf
+//	uart_recv_int_demo();
+//	uart_recv_dynamic_demo();
+//	uart_recv_dynamic_int_demo();
+
 /// ***************************************************
 ///  USART相关的示例代码
 /// ***************************************************
@@ -164,6 +175,10 @@ void user_demo(void)
 //	usart_send_dma_demo();
 //	usart_send_dma_demo();
 //	usart_recv_dma_demo();
+
+	//demo_pro中，usart接收支持循环buf
+//	usart_recv_int_demo();
+//	usart_recv_dynamic_demo();
 
 /// ***************************************************
 ///  IIC相关的示例代码
