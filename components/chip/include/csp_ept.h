@@ -377,10 +377,7 @@ typedef enum{
 #define EPT_CMPC_LD_MSK	(0x1 << EPT_CMPC_LD_POS)
 #define EPT_CMPD_LD_POS	(3)
 #define EPT_CMPD_LD_MSK	(0x1 << EPT_CMPD_LD_POS)
-typedef enum {
-	EPT_CMPLD_SHDW = 0,
-	EPT_CMPLD_IMM
-}csp_ept_cmpdata_ldmd_e;
+
 
 #define EPT_CMPA_LDTIME_POS	(4)
 #define EPT_CMPA_LDTIME_MSK	(0x7 << EPT_CMPA_LDTIME_POS)
@@ -394,12 +391,7 @@ typedef enum {
 
 #define EPT_CMP_LDTIME_POS(n)	(4+ ((n)*3))
 #define EPT_CMP_LDTIME_MSK(n)	(0x7 << EPT_CMP_LDTIME_POS(n))
-typedef enum{
-	EPT_LDCMP_NEVER=0,
-	EPT_LDCMP_ZRO,
-	EPT_LDCMP_PRD,
-	EPT_LDCMP_LD_SYNC=4,	
-}csp_ept_ldamd_e;
+
 
 #define EPT_SHDWAFULL 	(0x1 <<20)
 #define EPT_SHDWBFULL 	(0x1 <<21)
@@ -450,12 +442,7 @@ typedef enum{
 #define EPT_ACT_T2U_MSK	(0x3 << EPT_ACT_T2U_POS)
 #define EPT_ACT_T2D_POS	(18)
 #define EPT_ACT_T2D_MSK	(0x3 << EPT_ACT_T2D_POS)
-typedef enum {
-	NA = 0,
-	LO,
-	HI,
-	TG	
-}csp_ept_action_e;
+
 #define EPT_C1SEL_POS	(20)
 #define EPT_C1SEL_MSK	(0x3<<EPT_C1SEL_POS)
 #define EPT_C2SEL_POS	(22)
@@ -520,19 +507,6 @@ typedef enum {
 #define EPT_DBDTF_SHDWEN_MSK	(0x3 << EPT_DBDTF_SHDWEN_POS)
 #define EPT_DCKPSC_SHDWEN_POS	(9)
 #define EPT_DCKPSC_SHDWEN_MSK	(0x3 << EPT_DCKPSC_SHDWEN_POS)
-
-typedef enum{
-	EPT_LD_NEVER = 0,
-	EPT_LD_ZRO,
-	EPT_LD_PRD,
-	EPT_LD_ZRO_PRD	
-}csp_ept_lddb_e;
-
-typedef enum{
-	EPT_SHDW_IMMEDIATE =0,
-	EPT_SHDW_SHADOW      
-}csp_ept_shdw_e;
-
 
 //DBCR
 #define DB_CHA_OUTSEL_POS	(0)
@@ -674,14 +648,14 @@ typedef enum
 #define EPT_SEL_POS_EP(n)	((n) << 2)
 #define EPT_SEL_MSK_EP(n)	(0xf << EPT_SEL_POS_EP(n))
 typedef enum{
-	EP0 = 0,
-	EP1,
-	EP2,
-	EP3,
-	EP4,
-	EP5,
-	EP6,
-	EP7,
+	EPT_EP_0 = 0,
+	EPT_EP_1,
+	EPT_EP_2,
+	EPT_EP_3,
+	EPT_EP_4,
+	EPT_EP_5,
+	EPT_EP_6,
+	EPT_EP_7,
 }csp_ept_ep_e;
 typedef enum {
 	EBI0 = 1,
@@ -818,12 +792,6 @@ typedef enum{
 #define EPT_EMCHBY_O_MSK	(0x3 << EPT_EMCHBY_O_POS)
 #define EPT_EMCHCY_O_POS	(12)
 #define EPT_EMCHCY_O_MSK	(0x3 << EPT_EMCHCY_O_POS)
-typedef enum {
-	EM_OUT_HZ,
-	EM_OUT_H,
-	EM_OUT_L,
-	EM_OUT_NONE
-}csp_ept_emout_e;
 
 
 //EMSLSR, EMSLCLR, EMHLSR, EMHLCLRm EMRISR, EMMISR, EMIMCR, EMICR

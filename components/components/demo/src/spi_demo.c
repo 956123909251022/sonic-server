@@ -14,7 +14,7 @@
  * <tr><th> Date  <th>Version    <th>Author  <th>Description
  * <tr><td> 2020-11-24 <td>V0.0  <td>ZJY     <td>initial
  * <tr><td> 2021-11-29 <td>V0.1  <td>LQ      <td>modify
- * <tr><td> 2023-5-10  <td>V0.1  <td>wch     <td>modify
+ * <tr><td> 2023-5-10  <td>V0.2  <td>wch     <td>modify
  * </table>
  * *********************************************************************
 */
@@ -131,7 +131,7 @@ void spi_slave_receive_int_demo(void)
 	t_SpiConfig.bySpiMode = SPI_SLAVE;						 //作为从机	
 	t_SpiConfig.bySpiPolarityPhase = SPI_FORMAT_CPOL0_CPHA1; //clk空闲电平为0，相位为在第二个边沿采集数据
 	t_SpiConfig.bySpiFrameLen = SPI_FRAME_LEN_8;             //帧数据长度为8bit
-	t_SpiConfig.wSpiBaud = 2000000; 						 //通讯速率2兆,此参数取决于主机			
+	t_SpiConfig.wSpiBaud = 0; 						 		 //作从机时，通讯速率取决于主机			
 	t_SpiConfig.byInt=  SPI_INTSRC_RXIM;					 //初始配置接收中断	
 	t_SpiConfig.byRxMode = SPI_RX_MODE_INT;                  //接收使用中断模式
 	csi_spi_init(SPI0,&t_SpiConfig);				
@@ -263,7 +263,7 @@ void spi_slave_send_receive_int_demo(void)
 	t_SpiConfig.bySpiMode = SPI_SLAVE;						 //作为从机
 	t_SpiConfig.bySpiPolarityPhase = SPI_FORMAT_CPOL0_CPHA1; //clk空闲电平为0，相位为在第二个边沿采集数据
 	t_SpiConfig.bySpiFrameLen = SPI_FRAME_LEN_8;             //帧数据长度为8bit
-	t_SpiConfig.wSpiBaud = 2000000; 						 //通讯速率2兆,此参数取决于主机			
+	t_SpiConfig.wSpiBaud = 0; 						 		 //作从机时，通讯速率取决于主机			
 	t_SpiConfig.byInt= SPI_INTSRC_RXIM | SPI_INTSRC_TXIM;	 //初始配置发送和接收中断
 	t_SpiConfig.byTxRxMode = SPI_TX_RX_MODE_INT;             //收发使用中断模式
 	csi_spi_init(SPI0,&t_SpiConfig);				

@@ -4,7 +4,8 @@
  * \copyright Copyright (C) 2015-2020 @ APTCHIP
  * <table>
  * <tr><th> Date  <th>Version  <th>Author	<th>Description
- * <tr><td> 2020-12-8 <td>V0.0 <td>WNN   	<td>initial
+ * <tr><td> 2020-12-8  <td>V0.0 <td>WNN   	<td>initial
+ * <tr><td> 2023-5-10  <td>V0.1 <td>wch     <td>modify
  * </table>
  * *********************************************************************
 */
@@ -17,22 +18,22 @@
 /** \brief   led init & configuration: clk, brightness, COM mask
  * 
  *  \param[in] ptLedBase: pointer of LED register structure
- *  \param[in] tLedCfg:	pointer of led parameter config structure
+ *  \param[in] ptLedCfg:	pointer of led parameter config structure
  *  \return  csi_error_t  
  */
-csi_error_t csi_led_init(csp_led_t *ptLedBase, csi_led_config_t *tLedCfg) 
+csi_error_t csi_led_init(csp_led_t *ptLedBase, csi_led_config_t *ptLedCfg) 
 {
 	csi_clk_enable((uint32_t *)ptLedBase);	
-	csp_led_set_brt(ptLedBase, tLedCfg->byBrt);
-	csp_led_set_clk(ptLedBase, tLedCfg->byClk);
-	csp_led_set_commask(ptLedBase, (tLedCfg->hwComMask) & 0x3ff);
-	if(tLedCfg->byOnTime > 2096 || tLedCfg->byBreakTime > 524)
+	csp_led_set_brt(ptLedBase, ptLedCfg->byBrt);
+	csp_led_set_clk(ptLedBase, ptLedCfg->byClk);
+	csp_led_set_commask(ptLedBase, (ptLedCfg->hwComMask) & 0x3ff);
+	if(ptLedCfg->byOnTime > 2096 || ptLedCfg->byBreakTime > 524)
 		return CSI_ERROR;
-	csp_led_set_dcomcnt(ptLedBase, (tLedCfg->byOnTime/8 - 7));
-	csp_led_set_novcnt(ptLedBase, (tLedCfg->byBreakTime/2 -7));
+	csp_led_set_dcomcnt(ptLedBase, (ptLedCfg->byOnTime/8 - 7));
+	csp_led_set_novcnt(ptLedBase, (ptLedCfg->byBreakTime/2 -7));
 	
-	if(tLedCfg->byInt) {
-		csp_led_int_enable(ptLedBase, tLedCfg->byInt, ENABLE);
+	if(ptLedCfg->byInt) {
+		csp_led_int_enable(ptLedBase, ptLedCfg->byInt, ENABLE);
 		csi_irq_enable((uint32_t *)ptLedBase);
 	}
 	return CSI_OK;
@@ -47,7 +48,7 @@ csi_error_t csi_led_init(csp_led_t *ptLedBase, csi_led_config_t *tLedCfg)
  */ 
 void csi_led_int_enable(csp_led_t *ptLedBase, csi_led_intsrc_e eIntSrc, bool bEnable)
 {
-	csp_led_int_enable(ptLedBase, eIntSrc, bEnable);
+	csp_led_int_enable(ptLedBase, (csp_led_int_e)eIntSrc, bEnable);
 	
 	if (bEnable) {
 		csi_irq_enable((uint32_t *)ptLedBase);
@@ -77,7 +78,7 @@ void csi_led_write_data(csp_led_t *ptLedBase, uint8_t byCom, uint8_t byData)
  * \param[in] hwOnMsk: on pattern
  * \return  None
  */
-void csi_led_blink_control(csp_led_t *ptLedBase, csp_led_blk_e eLedBlk, uint16_t hwOnMsk)
+void csi_led_blink_control(csp_led_t *ptLedBase, csi_led_blk_e eLedBlk, uint16_t hwOnMsk)
 {
 	if(eLedBlk == LED_BLK_ON)
 		csp_led_com_on(ptLedBase, (hwOnMsk & LED_BLK_MSK));

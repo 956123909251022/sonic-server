@@ -142,16 +142,16 @@ int ept_pwm_demo(void)
 //	csi_ept_channel_aqload_config(EPT0, EPT_LD_SHDW, EPT_LDCMP_PRD ,EPT_CHANNEL_3);
 
 	csi_ept_pwmchannel_config_t  channel;
-	channel.byActionZro    =   LO;
-	channel.byActionPrd    =   NA;
-	channel.byActionC1u    =   HI;
-	channel.byActionC1d    =   LO;
-	channel.byActionC2u    =   NA;
-	channel.byActionC2d    =   NA;
-	channel.byActionT1u    =   LO;
-	channel.byActionT1d    =   LO;
-	channel.byActionT2u    =   NA;
-	channel.byActionT2d    =   NA;
+	channel.byActionZro    =   EPT_LO;
+	channel.byActionPrd    =   EPT_NA;
+	channel.byActionC1u    =   EPT_HI;
+	channel.byActionC1d    =   EPT_LO;
+	channel.byActionC2u    =   EPT_NA;
+	channel.byActionC2d    =   EPT_NA;
+	channel.byActionT1u    =   EPT_LO;
+	channel.byActionT1d    =   EPT_LO;
+	channel.byActionT2u    =   EPT_NA;
+	channel.byActionT2d    =   EPT_NA;
 	channel.byChoiceC1sel  =   EPT_CMPA;
 	channel.byChoiceC2sel  =   EPT_CMPA;	
 	csi_ept_channel_config(EPT0, &channel,  EPT_CHANNEL_1);//channel
@@ -187,15 +187,15 @@ int ept_pwm_demo(void)
 //------------------------------------------------------------------------------------------------------------------------
 	csi_ept_start(EPT0);//start  timer
 	while(1){	
-		    csi_ept_change_ch_duty(EPT0,EPT_CAMPA, 50);
-		    csi_ept_change_ch_duty(EPT0,EPT_CAMPB, 50);
-            csi_ept_change_ch_duty(EPT0,EPT_CAMPC, 50);
-            csi_ept_change_ch_duty(EPT0,EPT_CAMPD, 50);  
+		    csi_ept_change_ch_duty(EPT0,EPT_COMPA, 50);
+		    csi_ept_change_ch_duty(EPT0,EPT_COMPB, 50);
+            csi_ept_change_ch_duty(EPT0,EPT_COMPC, 50);
+            csi_ept_change_ch_duty(EPT0,EPT_COMPD, 50);  
 		    mdelay(200);                        
-		    csi_ept_change_ch_duty(EPT0,EPT_CAMPA, 20);
-			csi_ept_change_ch_duty(EPT0,EPT_CAMPB, 20);
-            csi_ept_change_ch_duty(EPT0,EPT_CAMPC, 20);
-			csi_ept_change_ch_duty(EPT0,EPT_CAMPD, 20); 
+		    csi_ept_change_ch_duty(EPT0,EPT_COMPA, 20);
+			csi_ept_change_ch_duty(EPT0,EPT_COMPB, 20);
+            csi_ept_change_ch_duty(EPT0,EPT_COMPC, 20);
+			csi_ept_change_ch_duty(EPT0,EPT_COMPD, 20); 
 		    mdelay(200);	
 	}
 	return iRet;
@@ -238,16 +238,16 @@ int ept_pwm_dz_demo(void)
 //	csi_ept_int_enable(EPT0, EPT_INTSRC_TRGEV0,true);
 //------------------------------------------------------------------------------------------------------------------------
 	csi_ept_pwmchannel_config_t  tEptchannelCfg;
-	tEptchannelCfg.byActionZro    =   LO;
-	tEptchannelCfg.byActionPrd    =   NA;
-	tEptchannelCfg.byActionC1u    =   HI;
-	tEptchannelCfg.byActionC1d    =   LO;
-	tEptchannelCfg.byActionC2u    =   NA;
-	tEptchannelCfg.byActionC2d    =   NA;
-	tEptchannelCfg.byActionT1u    =   LO;
-	tEptchannelCfg.byActionT1d    =   LO;
-	tEptchannelCfg.byActionT2u    =   NA;
-	tEptchannelCfg.byActionT2d    =   NA;
+	tEptchannelCfg.byActionZro    =   EPT_LO;
+	tEptchannelCfg.byActionPrd    =   EPT_NA;
+	tEptchannelCfg.byActionC1u    =   EPT_HI;
+	tEptchannelCfg.byActionC1d    =   EPT_LO;
+	tEptchannelCfg.byActionC2u    =   EPT_NA;
+	tEptchannelCfg.byActionC2d    =   EPT_NA;
+	tEptchannelCfg.byActionT1u    =   EPT_LO;
+	tEptchannelCfg.byActionT1d    =   EPT_LO;
+	tEptchannelCfg.byActionT2u    =   EPT_NA;
+	tEptchannelCfg.byActionT2d    =   EPT_NA;
 	tEptchannelCfg.byChoiceC1sel  =   EPT_CMPA;
 	tEptchannelCfg.byChoiceC2sel  =   EPT_CMPA;	
 	csi_ept_channel_config(EPT0, &tEptchannelCfg,  EPT_CHANNEL_1);//channel
@@ -259,8 +259,8 @@ int ept_pwm_dz_demo(void)
 	csi_ept_deadzone_config_t  tEptDeadZoneTime;
 	tEptDeadZoneTime.byDcksel               = EPT_DB_DPSC;     //
 	tEptDeadZoneTime.hwDpsc                 =  0;              //FDBCLK = FHCLK / (DPSC+1)
-	tEptDeadZoneTime.hwRisingEdgereGister   = 500;             //上升沿-ns
-	tEptDeadZoneTime.hwFallingEdgereGister  = 200;             //下降沿-ns
+	tEptDeadZoneTime.hwRisingEdgeTime   = 500;             //上升沿-ns
+	tEptDeadZoneTime.hwFallingEdgeTime  = 200;             //下降沿-ns
 	tEptDeadZoneTime.byChaDedb              = DB_AR_BF;        //不使用死区双沿
 	tEptDeadZoneTime.byChbDedb              = DB_AR_BF;
 	tEptDeadZoneTime.byChcDedb              = DB_AR_BF;
@@ -291,13 +291,13 @@ int ept_pwm_dz_demo(void)
 //------------------------------------------------------------------------------------------------------------------------	
 	csi_ept_start(EPT0);//start  timer
     while(1){			
-		    csi_ept_change_ch_duty(EPT0,EPT_CAMPA, 80);
-            csi_ept_change_ch_duty(EPT0,EPT_CAMPB, 80);
-		    csi_ept_change_ch_duty(EPT0,EPT_CAMPC, 80);  
+		    csi_ept_change_ch_duty(EPT0,EPT_COMPA, 80);
+            csi_ept_change_ch_duty(EPT0,EPT_COMPB, 80);
+		    csi_ept_change_ch_duty(EPT0,EPT_COMPC, 80);  
 		    mdelay(200);                        
-		    csi_ept_change_ch_duty(EPT0,EPT_CAMPA, 40);
-            csi_ept_change_ch_duty(EPT0,EPT_CAMPB, 40);
-		    csi_ept_change_ch_duty(EPT0,EPT_CAMPC, 40);
+		    csi_ept_change_ch_duty(EPT0,EPT_COMPA, 40);
+            csi_ept_change_ch_duty(EPT0,EPT_COMPB, 40);
+		    csi_ept_change_ch_duty(EPT0,EPT_COMPC, 40);
 		    mdelay(200);
 	}			
 	return iRet;
@@ -346,16 +346,16 @@ int ept_pwm_dz_em_demo(void)
 
 //------------------------------------------------------------------------------------------------------------------------
 	csi_ept_pwmchannel_config_t  tEptchannelCfg;
-	tEptchannelCfg.byActionZro    =   LO;
-	tEptchannelCfg.byActionPrd    =   NA;
-	tEptchannelCfg.byActionC1u    =   HI;
-	tEptchannelCfg.byActionC1d    =   LO;
-	tEptchannelCfg.byActionC2u    =   NA;
-	tEptchannelCfg.byActionC2d    =   NA;
-	tEptchannelCfg.byActionT1u    =   LO;
-	tEptchannelCfg.byActionT1d    =   LO;
-	tEptchannelCfg.byActionT2u    =   NA;
-	tEptchannelCfg.byActionT2d    =   NA;
+	tEptchannelCfg.byActionZro    =   EPT_LO;
+	tEptchannelCfg.byActionPrd    =   EPT_NA;
+	tEptchannelCfg.byActionC1u    =   EPT_HI;
+	tEptchannelCfg.byActionC1d    =   EPT_LO;
+	tEptchannelCfg.byActionC2u    =   EPT_NA;
+	tEptchannelCfg.byActionC2d    =   EPT_NA;
+	tEptchannelCfg.byActionT1u    =   EPT_LO;
+	tEptchannelCfg.byActionT1d    =   EPT_LO;
+	tEptchannelCfg.byActionT2u    =   EPT_NA;
+	tEptchannelCfg.byActionT2d    =   EPT_NA;
 	tEptchannelCfg.byChoiceC1sel  =   EPT_CMPA;
 	tEptchannelCfg.byChoiceC2sel  =   EPT_CMPA;	
 	csi_ept_channel_config(EPT0, &tEptchannelCfg,  EPT_CHANNEL_1);//channel
@@ -367,8 +367,8 @@ int ept_pwm_dz_em_demo(void)
 	csi_ept_deadzone_config_t  tEptDeadZoneTime;
 	tEptDeadZoneTime.byDcksel               = EPT_DB_DPSC;     //
 	tEptDeadZoneTime.hwDpsc                 =  0;              //FDBCLK = FHCLK / (DPSC+1)
-	tEptDeadZoneTime.hwRisingEdgereGister   = 500;             //上升沿-ns
-	tEptDeadZoneTime.hwFallingEdgereGister  = 200;             //下降沿-ns
+	tEptDeadZoneTime.hwRisingEdgeTime   = 500;             //上升沿-ns
+	tEptDeadZoneTime.hwFallingEdgeTime  = 200;             //下降沿-ns
 	tEptDeadZoneTime.byChaDedb              = DB_AR_BF;        //不使用死区双沿
 	tEptDeadZoneTime.byChbDedb              = DB_AR_BF;
 	tEptDeadZoneTime.byChcDedb              = DB_AR_BF;
@@ -385,7 +385,7 @@ int ept_pwm_dz_em_demo(void)
     csi_ept_emergency_config_t   tEptEmergencyCfg;            //紧急状态输入
     tEptEmergencyCfg.byEpxInt    = EBI0 ;                     //EPx选择外部IO端口（EBI0~EBI4）
     tEptEmergencyCfg.byPolEbix   = EBI_POL_H;//EBI_POL_H;     //EBIx的输入有效极性选择控制
-	tEptEmergencyCfg.byEpx       = EP6;                       //使能EPx
+	tEptEmergencyCfg.byEpx       = EPT_EP6;                       //使能EPx
 	tEptEmergencyCfg.byEpxLckmd  = EP_HLCK;                   //使能 锁
 	tEptEmergencyCfg.byOsrshdw   = IMMEDIATE; //SHADOW;       //锁止端口状态载入方式
     tEptEmergencyCfg.byFltpace0  = EPFLT0_2P;                 //EP0、EP1、EP2和EP3的数字去抖滤波检查周期数
@@ -394,14 +394,14 @@ int ept_pwm_dz_em_demo(void)
 	if(tEptEmergencyCfg.byEpxInt ==ORL1){tEptEmergencyCfg.byOrl1 = ORLx_EBI1 |ORLx_EBI2|ORLx_EBI3;}
 	csi_ept_emergency_config(EPT0,&tEptEmergencyCfg);
 	
-	csi_ept_emergency_pinout(EPT0,EMCOAX,EM_OUT_L);           //紧急状态下输出状态设置（注意mos/igbt的驱动电平）
-	csi_ept_emergency_pinout(EPT0,EMCOBX,EM_OUT_L);
-	csi_ept_emergency_pinout(EPT0,EMCOCX,EM_OUT_L);
-	csi_ept_emergency_pinout(EPT0,EMCOAY,EM_OUT_L);
-	csi_ept_emergency_pinout(EPT0,EMCOBY,EM_OUT_L);
-	csi_ept_emergency_pinout(EPT0,EMCOCY,EM_OUT_L);
+	csi_ept_emergency_pinout(EPT0,EMCOAX,EPT_EM_OUT_L);           //紧急状态下输出状态设置（注意mos/igbt的驱动电平）
+	csi_ept_emergency_pinout(EPT0,EMCOBX,EPT_EM_OUT_L);
+	csi_ept_emergency_pinout(EPT0,EMCOCX,EPT_EM_OUT_L);
+	csi_ept_emergency_pinout(EPT0,EMCOAY,EPT_EM_OUT_L);
+	csi_ept_emergency_pinout(EPT0,EMCOBY,EPT_EM_OUT_L);
+	csi_ept_emergency_pinout(EPT0,EMCOCY,EPT_EM_OUT_L);
 	
-	csi_ept_emergency_int_enable(EPT0,EPT_INTSRC_EP6);        //紧急状态输入中断使能
+	csi_ept_emint_en(EPT0,EPT_INTSRC_EP6);        //紧急状态输入中断使能
 //------------------------------------------------------------------------------------------------------------------------	
 
 //	csi_ept_set_sync (EPT0, EPT_TRG_SYNCEN3, EPT_TRG_CONTINU,EPT_AUTO_REARM_ZRO);	
@@ -446,13 +446,13 @@ int ept_pwm_dz_em_demo(void)
 ////			csi_ept_continuous_software_output(EPT0, EPT_CHANNEL_1,EPT_EM_AQCSF_NONE);
 ////			csi_ept_continuous_software_output(EPT0, EPT_CHANNEL_2,EPT_EM_AQCSF_NONE);
 ////			csi_ept_continuous_software_output(EPT0, EPT_CHANNEL_3,EPT_EM_AQCSF_NONE);
-	        csi_ept_change_ch_duty(EPT0,EPT_CAMPA, 20);
-            csi_ept_change_ch_duty(EPT0,EPT_CAMPB, 20);
-		    csi_ept_change_ch_duty(EPT0,EPT_CAMPC, 20);
+	        csi_ept_change_ch_duty(EPT0,EPT_COMPA, 20);
+            csi_ept_change_ch_duty(EPT0,EPT_COMPB, 20);
+		    csi_ept_change_ch_duty(EPT0,EPT_COMPC, 20);
 		    mdelay(200);
-			csi_ept_change_ch_duty(EPT0,EPT_CAMPA, 80);
-            csi_ept_change_ch_duty(EPT0,EPT_CAMPB, 80);
-		    csi_ept_change_ch_duty(EPT0,EPT_CAMPC, 80);
+			csi_ept_change_ch_duty(EPT0,EPT_COMPA, 80);
+            csi_ept_change_ch_duty(EPT0,EPT_COMPB, 80);
+		    csi_ept_change_ch_duty(EPT0,EPT_COMPC, 80);
 			mdelay(200);
 	}			
 	return iRet;
@@ -475,7 +475,7 @@ __attribute__((weak)) void ept_irqhandler(csp_ept_t *ptEptBase)
 	
 	if(((csp_ept_get_emisr(ptEptBase) & EPT_INT_EP6))==EPT_INT_EP6)
 	{
-		csp_ept_clr_emHdlck(EPT0, EP6);
+		csp_ept_clr_emHdlck(EPT0, EPT_EP6);
 		csp_ept_clr_emisr(ptEptBase,EPT_INT_EP6);	
 	}	
 	
@@ -492,13 +492,13 @@ __attribute__((weak)) void ept_irqhandler(csp_ept_t *ptEptBase)
 		if(s_byEptTick>=5)
 		{		
 			s_byEptTick=0;						 
-			csi_ept_channel_cmpload_config(EPT0, EPT_CMPLD_IMM, EPT_LDCMP_ZRO ,EPT_CAMPA);
-			csi_ept_channel_cmpload_config(EPT0, EPT_CMPLD_IMM, EPT_LDCMP_ZRO ,EPT_CAMPB);
-			csi_ept_channel_cmpload_config(EPT0, EPT_CMPLD_IMM, EPT_LDCMP_ZRO ,EPT_CAMPC);
-			csi_ept_channel_cmpload_config(EPT0, EPT_CMPLD_IMM, EPT_LDCMP_ZRO ,EPT_CAMPD);
-			csi_ept_change_ch_duty(EPT0,EPT_CAMPA, 20);
-			csi_ept_change_ch_duty(EPT0,EPT_CAMPB, 20);
-			csi_ept_change_ch_duty(EPT0,EPT_CAMPC, 20);							 
+			csi_ept_channel_cmpload_config(EPT0, EPT_IMMEDIATE, EPT_LDMD_ZRO ,EPT_COMPA);
+			csi_ept_channel_cmpload_config(EPT0, EPT_IMMEDIATE, EPT_LDMD_ZRO ,EPT_COMPB);
+			csi_ept_channel_cmpload_config(EPT0, EPT_IMMEDIATE, EPT_LDMD_ZRO ,EPT_COMPC);
+			csi_ept_channel_cmpload_config(EPT0, EPT_IMMEDIATE, EPT_LDMD_ZRO ,EPT_COMPD);
+			csi_ept_change_ch_duty(EPT0,EPT_COMPA, 20);
+			csi_ept_change_ch_duty(EPT0,EPT_COMPB, 20);
+			csi_ept_change_ch_duty(EPT0,EPT_COMPC, 20);							 
 		}
 		csp_ept_clr_isr(ptEptBase, EPT_INT_CBU);
 	}
