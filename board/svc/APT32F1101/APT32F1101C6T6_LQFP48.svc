@@ -356,7 +356,6 @@
               <sel>BT1_OUT</sel>
               <sel>SIO</sel>
               <sel>CLO</sel>
-              <sel>TS_CAP</sel>
             </Selections>
             <Comment>管脚功能</Comment>
           </Property>
@@ -2231,7 +2230,7 @@
             <value>DBUG_SWDIO</value>
             <Selections>
               <sel>DBUG_SWDIO</sel>
-              <sel>CNTA_REM</sel>
+              <sel>CNTA_BUZ</sel>
               <sel>GPTA1_CHA</sel>
               <sel>LED_COM2</sel>
             </Selections>
@@ -2418,7 +2417,7 @@
             <value>GPTB1_CHAY</value>
             <Selections>
               <sel>GPTB1_CHAY</sel>
-              <sel>CNTA_REM</sel>
+              <sel>CNTA_BUZ</sel>
               <sel>USART0_RX</sel>
               <sel>BT1_OUT</sel>
               <sel>I2C0_SDA</sel>
@@ -2608,7 +2607,7 @@
             <value>GPTB1_CHAX</value>
             <Selections>
               <sel>GPTB1_CHAX</sel>
-              <sel>CNTA_REM</sel>
+              <sel>CNTA_BUZ</sel>
               <sel>SPI0_NSS</sel>
               <sel>LED_C0M9</sel>
               <sel>I2C0_SDA</sel>
@@ -2789,6 +2788,9 @@
       </Pins>
     </ChipView>
     <ChipPropertiesView>
+      <ChipPins>
+        <label>I/O ports</label>
+      </ChipPins>
     </ChipPropertiesView>
   </ChipConfig2>
 </com.csky.cds.peripheral>

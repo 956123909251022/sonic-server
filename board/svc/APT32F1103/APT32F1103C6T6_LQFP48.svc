@@ -2288,7 +2288,7 @@
             <Selections>
               <sel>LCD_SEG19</sel>
               <sel>DBUG_SWDIO</sel>
-              <sel>CNTA_REM</sel>
+              <sel>CNTA_BUZ</sel>
               <sel>GPTA1_CHA</sel>
               <sel>LED_COM2</sel>
               <sel>TKEY_CH10</sel>
@@ -2481,7 +2481,7 @@
             <Selections>
               <sel>LCD_SEG28</sel>
               <sel>GPTB1_CHAY</sel>
-              <sel>CNTA_REM</sel>
+              <sel>CNTA_BUZ</sel>
               <sel>USART0_RX</sel>
               <sel>BT1_OUT</sel>
               <sel>I2C0_SDA</sel>
@@ -2680,7 +2680,7 @@
               <sel>LCD_SEG31</sel>
               <sel>VLC1</sel>
               <sel>GPTB1_CHAX</sel>
-              <sel>CNTA_REM</sel>
+              <sel>CNTA_BUZ</sel>
               <sel>SPI0_NSS</sel>
               <sel>LED_C0M9</sel>
               <sel>I2C0_SDA</sel>
