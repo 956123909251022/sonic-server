@@ -56,7 +56,7 @@
 #include <drv/lcd.h>
 #endif
 //
-#if	defined(IS_CHIP_1101) || defined(IS_CHIP_1103)
+#if	defined(IS_CHIP_1103)
 #include <drv/tkey.h>
 #endif
 
