@@ -880,28 +880,28 @@
         <Bit Name="TRIG_MODE" Authority="RW" Bits="1" Description="触发模式选择&#xD;&#xA;0: 硬件触发&#xD;&#xA;1: 软件触发 (由ETCB_SWTRG寄存器触发)" />
         <Bit Name="CH7_EN" Authority="RW" Bits="0" Description="通道7使能控制&#xD;&#xA;0: 禁止&#xD;&#xA;1: 使能" />
       </Register>
-      <Register Name="ETCB_CH8CON" Authority="RW" Address="0x40012040" Width="32" Description="ETCB通道8控制寄存器">
+      <Register Name="ETCB_CH8CON" Authority="RW" Address="0x40012044" Width="32" Description="ETCB通道8控制寄存器">
         <Bit Name="DST_SEL" Authority="RW" Bits="31-26" Description="触发目标选择&#xD;&#xA;参考事件对应表" />
         <Bit Name="SRC_SEL" Authority="RW" Bits="18-12" Description="触发源选择&#xD;&#xA;参考事件对应表" />
         <Bit Name="DMA_EN" Authority="RW" Bits="2" Description="DMA功能&#xD;&#xA;0: 禁止&#xD;&#xA;1: 使能" />
         <Bit Name="TRIG_MODE" Authority="RW" Bits="1" Description="触发模式选择&#xD;&#xA;0: 硬件触发&#xD;&#xA;1: 软件触发 (由ETCB_SWTRG寄存器触发)" />
         <Bit Name="CH8_EN" Authority="RW" Bits="0" Description="通道8使能控制&#xD;&#xA;0: 禁止&#xD;&#xA;1: 使能" />
       </Register>
-      <Register Name="ETCB_CH9CON" Authority="RW" Address="0x40012040" Width="32" Description="ETCB通道9控制寄存器">
+      <Register Name="ETCB_CH9CON" Authority="RW" Address="0x40012048" Width="32" Description="ETCB通道9控制寄存器">
         <Bit Name="DST_SEL" Authority="RW" Bits="31-26" Description="触发目标选择&#xD;&#xA;参考事件对应表" />
         <Bit Name="SRC_SEL" Authority="RW" Bits="18-12" Description="触发源选择&#xD;&#xA;参考事件对应表" />
         <Bit Name="DMA_EN" Authority="RW" Bits="2" Description="DMA功能&#xD;&#xA;0: 禁止&#xD;&#xA;1: 使能" />
         <Bit Name="TRIG_MODE" Authority="RW" Bits="1" Description="触发模式选择&#xD;&#xA;0: 硬件触发&#xD;&#xA;1: 软件触发 (由ETCB_SWTRG寄存器触发)" />
         <Bit Name="CH9_EN" Authority="RW" Bits="0" Description="通道9使能控制&#xD;&#xA;0: 禁止&#xD;&#xA;1: 使能" />
       </Register>
-      <Register Name="ETCB_CH10CON" Authority="RW" Address="0x40012040" Width="32" Description="ETCB通道10控制寄存器">
+      <Register Name="ETCB_CH10CON" Authority="RW" Address="0x4001204c" Width="32" Description="ETCB通道10控制寄存器">
         <Bit Name="DST_SEL" Authority="RW" Bits="31-26" Description="触发目标选择&#xD;&#xA;参考事件对应表" />
         <Bit Name="SRC_SEL" Authority="RW" Bits="18-12" Description="触发源选择&#xD;&#xA;参考事件对应表" />
         <Bit Name="DMA_EN" Authority="RW" Bits="2" Description="DMA功能&#xD;&#xA;0: 禁止&#xD;&#xA;1: 使能" />
         <Bit Name="TRIG_MODE" Authority="RW" Bits="1" Description="触发模式选择&#xD;&#xA;0: 硬件触发&#xD;&#xA;1: 软件触发 (由ETCB_SWTRG寄存器触发)" />
         <Bit Name="CH10_EN" Authority="RW" Bits="0" Description="通道10使能控制&#xD;&#xA;0: 禁止&#xD;&#xA;1: 使能" />
       </Register>
-      <Register Name="ETCB_CH11CON" Authority="RW" Address="0x40012040" Width="32" Description="ETCB通道11控制寄存器">
+      <Register Name="ETCB_CH11CON" Authority="RW" Address="0x40012050" Width="32" Description="ETCB通道11控制寄存器">
         <Bit Name="DST_SEL" Authority="RW" Bits="31-26" Description="触发目标选择&#xD;&#xA;参考事件对应表" />
         <Bit Name="SRC_SEL" Authority="RW" Bits="18-12" Description="触发源选择&#xD;&#xA;参考事件对应表" />
         <Bit Name="DMA_EN" Authority="RW" Bits="2" Description="DMA功能&#xD;&#xA;0: 禁止&#xD;&#xA;1: 使能" />
@@ -947,13 +947,16 @@
         <Bit Name="DST" Authority="RW" Bits="1-0" Description="设置在扫描过程中，没有被激活为当前扫描通道的通道&#xD;&#xA;状态&#xD;&#xA;0h： 高阻状态&#xD;&#xA;1h： 高电平输出&#xD;&#xA;2h： 低电平输出&#xD;&#xA;3h： 高阻状态" />
       </Register>
       <Register Name="TCH_RSSR" Authority="RW" Address="0x40020010" Width="32" Description="Restart Start Control Register">
-        <Bit Name="VALBUF" Authority="RO" Bits="15-0" Description="当前扫描通道采样值" />
+        <Bit Name="SRR" Authority="RO" Bits="15-12" Description="当写入0X5时，将导致软件重置TKEY，所有寄存器将恢复为默认值 " />
+        <Bit Name="START" Authority="RW" Bits="0" Description="扫描启动控制位&#xD;&#xA;0h： 停止扫描&#xD;&#xA;1h： 启动扫描" />
       </Register>
       <Register Name="TCH_THR" Authority="RW" Address="0x40020014" Width="32" Description="Touch Threshold Register">
-        <Bit Name="SENCNT" Authority="RO" Bits="15-0" Description="Sensor Node 充放电次数计数器当前值" />
+        <Bit Name="THREN" Authority="RW" Bits="8" Description="THR控制&#xD;&#xA;0h: 禁止&#xD;&#xA;1h: 使能" />
+        <Bit Name="THRSEL" Authority="RW" Bits="2-0" Description="扫描偏差阈值设置。选择当前采样数据和上次采样数据进行比较的范围。当比较结果不一致是，置位THROVR标志位&#xD;&#xA;0h：仅比较b23到b4，b3到b0不比较, 16&#xD;&#xA;1h：仅比较b23到b5，b4到b0不比较, 32&#xD;&#xA;2h：仅比较b23到b6，b5到b0不比较, 64&#xD;&#xA;3h：仅比较b23到b7，b6到b0不比较, 128&#xD;&#xA;4h：仅比较b23到b8，b7到b0不比较, 256&#xD;&#xA;5h：仅比较b23到b9，b8到b0不比较, 512&#xD;&#xA;6h：仅比较b23到b10，b9到b0不比较, 1024&#xD;&#xA;7h：仅比较b23到b11，b10到b0不比较, 2048" />
       </Register>
       <Register Name="TCH_SCVAL" Authority="RW" Address="0x40020018" Width="32" Description="Current Touch Sample Counter Value">
-        <Bit Name="TCHCNT" Authority="RO" Bits="15-0" Description="扫描时间计数器当前值 " />
+        <Bit Name="CH_NO" Authority="RO" Bits="28-24" Description="采样值对应的通道" />
+        <Bit Name="VALBUF" Authority="RO" Bits="23-0" Description="通道采样值寄存器" />
       </Register>
       <Register Name="TCH_TKST" Authority="RW" Address="0x4002001c" Width="32" Description="Touch State Register">
         <Bit Name="CUR_SEQ" Authority="RO" Bits="28-24" Description="当前的序列号" />
