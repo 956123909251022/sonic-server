@@ -24,7 +24,6 @@ build_config:
   libpath: 
 source_file:
   - src/*.c
-  - include/sys_console.h
 install:
   - dest: include/console
     source:
