@@ -226,6 +226,15 @@ void csi_bt_rearm_sync(csp_bt_t *ptBtBase,csi_bt_trgin_e eTrgin);
 csi_error_t csi_bt_set_evtrg(csp_bt_t *ptBtBase, csi_bt_trgout_e eTrgOut, csi_bt_trgsrc_e eTrgSrc);
 
 /** 
+  \brief bt evtrg output enable/disable
+  \param[in] ptBtBase: pointer of bt register structure
+  \param[in] eTrgOut: bt evtrg out port (0)
+  \param[in] bEnable: ENABLE/DISABLE
+  \return error code \ref csi_error_t
+ */
+csi_error_t csi_bt_evtrg_enable(csp_bt_t *ptBtBase, csi_bt_trgout_e eTrgOut, bool bEnable);
+
+/** 
   \brief 	   bt software generates a trigger event
   \param[in]   ptBtBase		pointer of bt register structure
   \return 	   none
