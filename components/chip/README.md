@@ -1,16 +1,28 @@
-# Chip组件信息：外设CSI驱动。依赖于SDK组件。
+# Chip�����Ϣ������CSI������������SDK�����
 
 # Release Notes
+
+======================================================
+Version: V1.2.4
+Release Date: 2023.03.23
+
+Release Notes
+1.����csi_calc_clk_freq�ӿں���
+2.����csi_get_sclk_freq��csi_get_pclk_freq�ӿں���
+3.csi_led_set_blink_pattren�ӿڸ���Ϊcsi_led_blink_control
+4.����touch�⵽V1.0
+5.Startup.S�м���.por��
+======================================================
 
 ======================================================
 Version: V1.2.3
 Release Date: 2023.02.17
 
 Release Notes
-1.修复BT0和BT1同时使用PWM的BUG,更新bt同步demo名称
-2.升级TKEY库，增加trim调节隐藏变量，修复隐藏变量存在修改不成功问题
-3.添加可一起配置全部中断优先级接口函数，初始化时所有中断优先级配置为最低
-4.DMA新增接口函数csi_dma_ch_restart，用于重启dma传输
+1.�޸�BT0��BT1ͬʱʹ��PWM��BUG,����btͬ��demo����
+2.����TKEY�⣬����trim�������ر������޸����ر��������޸Ĳ��ɹ�����
+3.���ӿ�һ������ȫ���ж����ȼ��ӿں�������ʼ��ʱ�����ж����ȼ�����Ϊ���
+4.DMA�����ӿں���csi_dma_ch_restart����������dma����
 ======================================================
 
 ======================================================
@@ -18,19 +30,19 @@ Version: V1.2.2
 Release Date: 2022.12.9
 
 Release Notes
-1.ADC/BT/PIN/LPT/RTC/CMP添加触发输出单独使能/禁止接口
-2.RTC/CMP设置触发输出接口函数统一参数格式
-3.GPTA/GPTB/EPT触发输出使能接口函数统一参数
-4.更新UART/USART初始化函数，接收超时中断在接收中断模式下不再默认使能，由用户初始化时选择
-5.UART/USART初始化参数中增加接收超时时间参数，用户可配置。
-6.USART初始化参数中增加接收超时使能的参数，用户可配使能或禁止。
-7.更新gpio的中断配置方式，GPIO和VIC中断分开单独使能
-8.统一csp底层中断状态获取/清除接口
-9.解决sclk低频delay的us延时问题
-10.完善比较器(cmp)demo注释
-11.增加csi_drv.h对c++支持
-12.修复TKEY中处理问题，增加parameter隐藏的部分注释。
-13.添加ADC数据采集，通过DMA传输数据的demo
+1.ADC/BT/PIN/LPT/RTC/CMP���Ӵ����������ʹ��/��ֹ�ӿ�
+2.RTC/CMP���ô�������ӿں���ͳһ������ʽ
+3.GPTA/GPTB/EPT�������ʹ�ܽӿں���ͳһ����
+4.����UART/USART��ʼ�����������ճ�ʱ�ж��ڽ����ж�ģʽ�²���Ĭ��ʹ�ܣ����û���ʼ��ʱѡ��
+5.UART/USART��ʼ�����������ӽ��ճ�ʱʱ��������û������á�
+6.USART��ʼ�����������ӽ��ճ�ʱʹ�ܵĲ������û�����ʹ�ܻ��ֹ��
+7.����gpio���ж����÷�ʽ��GPIO��VIC�жϷֿ�����ʹ��
+8.ͳһcsp�ײ��ж�״̬��ȡ/����ӿ�
+9.���sclk��Ƶdelay��us��ʱ����
+10.���ƱȽ���(cmp)demoע��
+11.����csi_drv.h��c++֧��
+12.�޸�TKEY�д������⣬����parameter���صĲ���ע�͡�
+13.����ADC���ݲɼ���ͨ��DMA�������ݵ�demo
 ======================================================
 
 ======================================================
@@ -38,7 +50,7 @@ Version: V1.2.1
 Release Date: 2022.10.24
 
 Release Notes
-1.更新组件配置文件，版本升级到V1.2.1
+1.������������ļ����汾������V1.2.1
 ======================================================
 
 ======================================================
@@ -46,14 +58,14 @@ Version: V1.2.0
 Release Date: 2022.10.21
 
 Release Notes
-1.CMP部分代码规范优化,更新底层DFCR滤波接口函数
-2.添加GPTA/B底层相位使能接口函数，添加GPTA/B相位设置的csi接口函数
-3.TOUCH部分，更改库为去耦合后的库文件，同步修改源文件
-4.更新对应TOUCH DEMO
-5.csi_sysclk_config函数加入参数。
-6.删除1101对TOUCH的支持
-7.修复csi_get_lvdlevel中的BUG
-8.去掉系统中long long类型除法运算
+1.CMP���ִ���淶�Ż�,���µײ�DFCR�˲��ӿں���
+2.����GPTA/B�ײ���λʹ�ܽӿں���������GPTA/B��λ���õ�csi�ӿں���
+3.TOUCH���֣����Ŀ�Ϊȥ��Ϻ�Ŀ��ļ���ͬ���޸�Դ�ļ�
+4.���¶�ӦTOUCH DEMO
+5.csi_sysclk_config�������������
+6.ɾ��1101��TOUCH��֧��
+7.�޸�csi_get_lvdlevel�е�BUG
+8.ȥ��ϵͳ��long long���ͳ�������
 ======================================================
 
 ======================================================
@@ -61,13 +73,13 @@ Version: V1.1.0
 Release Date: 2022.9.8
 
 Release Notes
-1.新增TKEY相关代码，支持TOUCH功能
-2.更新GPTA,支持24位计数模式等
-3.优化HWDIV处理
-4.更新PIN的中断配置方式，GPIO和VIC中断分开单独使能
-5.更正UART和USART中DMA处理中的BUG和波特率计算方式。
-6.更新SIO发送函数，支持中断发送
-7.IFC中增加page erase和page PGM操作
+1.����TKEY��ش��룬֧��TOUCH����
+2.����GPTA,֧��24λ����ģʽ��
+3.�Ż�HWDIV����
+4.����PIN���ж����÷�ʽ��GPIO��VIC�жϷֿ�����ʹ��
+5.����UART��USART��DMA�����е�BUG�Ͳ����ʼ��㷽ʽ��
+6.����SIO���ͺ�����֧���жϷ���
+7.IFC������page erase��page PGM����
 ======================================================
 
 ======================================================
@@ -75,11 +87,11 @@ Version: V1.0.4
 Release Date: 2022.7.15
 
 Release Notes
-1.更新iwdt驱动，关闭时清除CNT，打开后延时清除CNT。
-2.devices下csi_irq/clkmap_t结构体替换为cai_devmap_t。
-3.更新csi_clk_enable/diaable和csi_irq_enable/disable。
-4.更新DMA csi_dma_ch_start函数，高低传输数量可传参。
-5.更新对应SPI、UART、USART的DMA传输函数。
+1.����iwdt�������ر�ʱ���CNT���򿪺���ʱ���CNT��
+2.devices��csi_irq/clkmap_t�ṹ���滻Ϊcai_devmap_t��
+3.����csi_clk_enable/diaable��csi_irq_enable/disable��
+4.����DMA csi_dma_ch_start�������ߵʹ��������ɴ��Ρ�
+5.���¶�ӦSPI��UART��USART��DMA���亯����
 ======================================================
 
 ======================================================
@@ -87,11 +99,11 @@ Version: V1.0.3
 Release Date: 2022.4.1
 
 Release Notes
-1.微调、优化EPT、GPT接口，增加EPT、GPT的stop函数声明。
-2.更新irqn_type_e中的中断命名，改为XXX_IRQ_NUM。
-3.更新irqn_type_e中的中断命名，改为XXX_IRQ_NUM。
-4.修改uart的偶校验处理BUG
-5.修改dma通道启动函数处理中状态查询BUG
+1.΢�����Ż�EPT��GPT�ӿڣ�����EPT��GPT��stop����������
+2.����irqn_type_e�е��ж���������ΪXXX_IRQ_NUM��
+3.����irqn_type_e�е��ж���������ΪXXX_IRQ_NUM��
+4.�޸�uart��żУ�鴦��BUG
+5.�޸�dmaͨ����������������״̬��ѯBUG
 ======================================================
 
 ======================================================
@@ -99,9 +111,9 @@ Version: V1.0.2
 Release Date: 2022.2.22
 
 Release Notes
-1.更新spi驱动接口，取消同步、异步概念。
-2.修改ETCB驱动中数组越界Bug。
-3.优化部分IP的api接口，实现应用代码和硬件层分离。
+1.����spi�����ӿڣ�ȡ��ͬ�����첽���
+2.�޸�ETCB����������Խ��Bug��
+3.�Ż�����IP��api�ӿڣ�ʵ��Ӧ�ô����Ӳ������롣
 ======================================================
 
 ======================================================
@@ -109,12 +121,12 @@ Version: V1.0.1
 Release Date: 2022.1.24
 
 Release Notes
-1.统一apt csi驱动中中断参数命名、中断参数枚举定义命名。
-2.统一同步和触发API接口参数。
-3.修改BT计数模式中的BUG。
-4.tick中添加注册回调函数csi接口函数。
-5.添加用户寄存器读写的csi接口函数。
-6.更新CNTA定时csi接口函数，和别的定时器统一。
+1.ͳһapt csi�������жϲ����������жϲ���ö�ٶ���������
+2.ͳһͬ���ʹ���API�ӿڲ�����
+3.�޸�BT����ģʽ�е�BUG��
+4.tick������ע��ص�����csi�ӿں�����
+5.�����û��Ĵ�����д��csi�ӿں�����
+6.����CNTA��ʱcsi�ӿں������ͱ�Ķ�ʱ��ͳһ��
 ======================================================
 
 =====================================================
@@ -122,7 +134,7 @@ Version: V1.0.0
 Release Date: 2022.1.14
 
 Release Notes
-初始版本。
+��ʼ�汾��
 ======================================================
 
 
