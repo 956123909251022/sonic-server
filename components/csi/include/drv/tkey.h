@@ -287,7 +287,7 @@ typedef enum
  @brief  tkey Variable Definition extern
 ***********************************************************************/
 extern volatile unsigned char  	byTkeyGlobalSens;
-extern volatile unsigned char		byTkeyGlobalTrigger;
+extern volatile unsigned char	byTkeyGlobalTrigger;
 extern volatile unsigned char 	byTkeyGlobalIcon;	
 extern volatile unsigned char 	byPressDebounce;		
 extern volatile unsigned char 	byReleaseDebounce;	
@@ -299,8 +299,8 @@ extern volatile unsigned char 	byTkeyRebuildTime;
 extern volatile unsigned char 	byTkeyFineTurn;
 extern volatile unsigned char 	byTkeyIcon[32];
 extern volatile unsigned char 	byTkeyChxSens[32];		
-extern volatile unsigned char		byTkeyChxTrigger[32];							
-extern volatile unsigned char		byTkeyChxIcon[32];
+extern volatile unsigned char	byTkeyChxTrigger[32];							
+extern volatile unsigned char	byTkeyChxIcon[32];
 extern volatile unsigned char   byTkeyWakeupLevel;
 extern volatile unsigned char 	byTkeyLowPowerMode;
 extern volatile unsigned char 	byTkeyLowPowerLevel;
