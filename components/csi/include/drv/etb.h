@@ -63,7 +63,7 @@ typedef enum {
  * \brief    ETB event source
  */
 typedef enum{
-	ETB_LPT_TRGOUT0 	= 0,
+	ETB_LPT_TRGOUT 		= 0,
 	ETB_EXI_TRGOUT0 	= 4,
 	ETB_EXI_TRGOUT1,
 	ETB_EXI_TRGOUT2,	
