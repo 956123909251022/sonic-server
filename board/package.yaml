@@ -124,6 +124,7 @@ keywords: ~
 author: ""
 depends:
   - apt32f110x_chip: V1.2.2
+  - apt_csi: V1.2.2
 defconfig: ~
 source_file:
   - src/*.c
@@ -136,3 +137,4 @@ homepage: ~
 soc_config: ~
 depends_forward:
   - apt32f110x_chip: V1.2.2
+  - apt_csi: V1.2.2
