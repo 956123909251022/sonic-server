@@ -147,7 +147,7 @@ void wwdt_int_handler(void)
 void gpta0_int_handler(void) 
 {
 #if GPTA0_INT_HANDLE_EN
-    gpta0_irqhandler(GPTA0);
+    gpta0_irqhandler(GPTA0); //this is a weak function defined in gpta_demo.c, for better efficiency, we recommand user directly implement IRQ handler here without any function call.
 	
 #endif
 }
@@ -155,7 +155,7 @@ void gpta0_int_handler(void)
 void gpta1_int_handler(void) 
 {
 #if GPTA1_INT_HANDLE_EN
-    gpta1_irqhandler(GPTA1);
+    gpta1_irqhandler(GPTA1); //this is a weak function defined in gpta_demo.c, for better efficiency, we recommand user directly implement IRQ handler here without any function call.
 	
 #endif
 }
@@ -321,7 +321,7 @@ void cmp_int_handler(void)
 #if	CMP_INT_HANDLE_EN
 	#if	defined(IS_CHIP_1101) || defined(IS_CHIP_1103) || defined(IS_CHIP_1104)
 		// ISR content ...
-		cmp_irqhandler(CMP0);
+		cmp_irqhandler(CMP0); //this is a weak function defined in cmp_demo.c, for better efficiency, we recommand user directly implement IRQ handler here without any function call.
 	#endif
 #endif
 }

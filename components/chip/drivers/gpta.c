@@ -15,116 +15,7 @@
 #include "csp_gpta.h"
 #include "drv/pin.h"
 #include <drv/irq.h>
-extern void load1(void);
-uint32_t gTick;
-uint32_t gGpta0Prd;
-uint32_t gGpta1Prd;
-uint32_t wGpta_Cmp_Buff[4] = {0};
 
-/** \brief gpta interrupt handle weak function
- *   		- 
- *     		- 
- * 			- 
- *  \param[in] none
- *  \return    none
- */
-__attribute__((weak)) void gpta0_irqhandler(csp_gpta_t *ptGptaBase)
-{
-
-	if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_PEND))==GPTA_INT_PEND)
-	{	
-		csi_gpio_port_set_high(GPIOA0, (0x01ul << 0));			
-            nop;
-		csi_gpio_port_set_low (GPIOA0, (0x01ul << 0));
-	    csp_gpta_clr_isr(ptGptaBase, GPTA_INT_PEND);
-	}
-	if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_TRGEV0))==GPTA_INT_TRGEV0)
-	{	
-		//csi_gpio_port_set_high(GPIOA0, (0x01ul << 0));				//输出高
-//		csi_gpta_change_ch_duty(GPTA0,GPTA_CH_A, 25);
-//	    csi_gpta_change_ch_duty(GPTA0,GPTA_CH_B, 25);	
-	    csp_gpta_clr_isr(ptGptaBase, GPTA_INT_TRGEV0);
-	   	//csi_gpio_port_set_low (GPIOA0, (0x01ul << 0));
-	}
-	if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_TRGEV1))==GPTA_INT_TRGEV1)
-	{	
-//		csi_gpta_change_ch_duty(GPTA0,GPTA_CH_A, 50);
-//	    csi_gpta_change_ch_duty(GPTA0,GPTA_CH_B, 50);		
-	    csp_gpta_clr_isr(ptGptaBase, GPTA_INT_TRGEV1);
-	   	
-	}
-    if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_CAPLD0))==GPTA_INT_CAPLD0)
-	{		
-	 wGpta_Cmp_Buff[0]=csp_gpta_get_cmpa(ptGptaBase);
-	 csp_gpta_clr_isr(ptGptaBase, GPTA_INT_CAPLD0);			
-	}
-	if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_CAPLD1))==GPTA_INT_CAPLD1)
-	{		
-     	wGpta_Cmp_Buff[0]=csp_gpta_get_cmpa(ptGptaBase);
-		wGpta_Cmp_Buff[1]=csp_gpta_get_cmpb(ptGptaBase);
-		csp_gpta_clr_isr(ptGptaBase, GPTA_INT_CAPLD1);			
-	}
-    if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_CAPLD2))==GPTA_INT_CAPLD2)
-	{		
-     	wGpta_Cmp_Buff[0]=csp_gpta_get_cmpa(ptGptaBase);
-		wGpta_Cmp_Buff[1]=csp_gpta_get_cmpb(ptGptaBase);
-		wGpta_Cmp_Buff[2]=csp_gpta_get_cmpaa(ptGptaBase);
-		csp_gpta_clr_isr(ptGptaBase, GPTA_INT_CAPLD2);			
-	}
-	if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_CAPLD3))==GPTA_INT_CAPLD3)
-	{		
-     	wGpta_Cmp_Buff[0]=csp_gpta_get_cmpa(ptGptaBase);
-		wGpta_Cmp_Buff[1]=csp_gpta_get_cmpb(ptGptaBase);
-		wGpta_Cmp_Buff[2]=csp_gpta_get_cmpaa(ptGptaBase);
-		wGpta_Cmp_Buff[3]=csp_gpta_get_cmpba(ptGptaBase);
-		csp_gpta_clr_isr(ptGptaBase, GPTA_INT_CAPLD3);			
-	}	
-	
-    if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_CBU))==GPTA_INT_CBU)
-	{	
-		gTick++;if(gTick>=5){	
-								   //load1();	
-	                               gTick=0;
-								   csi_gpio_port_set_high(GPIOA0, (0x01ul << 0));
-								   csi_gpta_channel_cmpload_config(GPTA0, GPTA_CMPLD_IMM, GPTA_LDCMP_ZRO ,GPTA_CAMPA);
-	                               csi_gpta_channel_cmpload_config(GPTA0, GPTA_CMPLD_IMM, GPTA_LDCMP_ZRO ,GPTA_CAMPB);
-								   csi_gpta_change_ch_duty(GPTA0,GPTA_CAMPA, 25);
-	                               csi_gpta_change_ch_duty(GPTA0,GPTA_CAMPB, 25);
-								   csi_gpio_port_set_low (GPIOA0, (0x01ul << 0));
-		                         }
-	    csp_gpta_clr_isr(ptGptaBase, GPTA_INT_CBU);
-	   	
-	}
-
-}
-__attribute__((weak)) void gpta1_irqhandler(csp_gpta_t *ptGptaBase)
-{
-
-	if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_PEND))==GPTA_INT_PEND)
-	{	
-	  
-	    csp_gpta_clr_isr(ptGptaBase, GPTA_INT_PEND);
-	}
-	if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_TRGEV0))==GPTA_INT_TRGEV0)
-	{	
-			
-	    csp_gpta_clr_isr(ptGptaBase, GPTA_INT_TRGEV0);
-	   	
-	}
-	
-    if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_CAPLD0))==GPTA_INT_CAPLD0)
-	{		
-	 wGpta_Cmp_Buff[0]=csp_gpta_get_cmpa(ptGptaBase);
-	 csp_gpta_clr_isr(ptGptaBase, GPTA_INT_CAPLD0);			
-	}
-	if(((csp_gpta_get_isr(ptGptaBase) & GPTA_INT_CAPLD1))==GPTA_INT_CAPLD1)
-	{		
-     	wGpta_Cmp_Buff[0]=csp_gpta_get_cmpa(ptGptaBase);
-		wGpta_Cmp_Buff[1]=csp_gpta_get_cmpb(ptGptaBase);
-	 csp_gpta_clr_isr(ptGptaBase, GPTA_INT_CAPLD1);			
-	}
-
-}
 /** \brief capture configuration
  * 
  *  \param[in] ptGptaBase: pointer of gptb register structure
@@ -177,8 +68,6 @@ csi_error_t csi_gpta_capture_init(csp_gpta_t *ptGptaBase, csi_gpta_captureconfig
 		csp_gpta_int_enable(ptGptaBase, ptGptaPwmCfg->wInt, true);		//enable interrupt
 		csi_irq_enable((uint32_t *)ptGptaBase);							//enable  irq
 	}
-	
-//	gGpta0Prd=wPrdrLoad;
 	
 	return CSI_OK;
 }
@@ -252,9 +141,6 @@ csi_error_t  csi_gpta_wave_init(csp_gpta_t *ptGptaBase, csi_gpta_pwmconfig_t *pt
 		csp_gpta_int_enable(ptGptaBase, ptGptaPwmCfg->wInt, true);		//enable interrupt
 		csi_irq_enable((uint32_t *)ptGptaBase);							    //enable  irq
 	}
-	
-	gGpta0Prd=wPrdrLoad;
-	
 	return CSI_OK;	
 }
 
@@ -313,7 +199,7 @@ csi_error_t csi_gpta_timer_init(csp_gpta_t *ptGptaBase, uint32_t wTimeOut)
  */ 
 void csi_gpta_count_mode(csp_gpta_t *ptGptaBase, csi_gpta_opmd_e eCntMode)
 {
-	csp_gpta_set_opmd(ptGptaBase, eCntMode);
+	csp_gpta_set_opmd(ptGptaBase, (csp_gpta_opmd_e)eCntMode);
 }
 
 /** \brief enable/disable gpta burst 
@@ -515,7 +401,7 @@ void csi_gpta_stop(csp_gpta_t *ptGptaBase)
  */
 void csi_gpta_set_start_mode(csp_gpta_t *ptGptaBase, csi_gpta_stmd_e eMode)
 {
-	csp_gpta_set_start_src(ptGptaBase, eMode);
+	csp_gpta_set_start_src(ptGptaBase, (csp_gpta_startsrc_e)eMode);
 }
 /** \brief set gpta operation mode
  * 
@@ -525,7 +411,7 @@ void csi_gpta_set_start_mode(csp_gpta_t *ptGptaBase, csi_gpta_stmd_e eMode)
  */
 void csi_gpta_set_os_mode(csp_gpta_t *ptGptaBase, csi_gpta_opmd_e eMode)
 {
-	csp_gpta_set_opmd(ptGptaBase, eMode);
+	csp_gpta_set_opmd(ptGptaBase, (csp_gpta_opmd_e)eMode);
 }
 
 /** \brief set gpta stop status
@@ -692,8 +578,8 @@ void csi_gpta_int_enable(csp_gpta_t *ptGptaBase, csp_gpta_int_e eInt, bool bEnab
  */
 void csi_gpta_set_sync(csp_gpta_t *ptGptaBase, csi_gpta_trgin_e eTrgIn, csi_gpta_trgmode_e eTrgMode, csi_gpta_arearm_e eAutoRearm)
 {
-	csp_gpta_set_sync_mode(ptGptaBase, eTrgIn, eTrgMode);
-	csp_gpta_set_auto_rearm(ptGptaBase, eAutoRearm);
+	csp_gpta_set_sync_mode(ptGptaBase, eTrgIn, (csp_gpta_syncmd_e)eTrgMode);
+	csp_gpta_set_auto_rearm(ptGptaBase, (csp_gpta_arearm_e)eAutoRearm);
 	csp_gpta_sync_enable(ptGptaBase, eTrgIn, ENABLE);
 }
 

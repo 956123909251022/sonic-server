@@ -21,35 +21,6 @@
 /* externs variablesr------------------------------------------------------*/
 /* Private variablesr------------------------------------------------------*/
 
-/** \brief CMP interrupt handle function
- * 
- *  \param[in] none
- *  \return none
- */ 
-__attribute__((weak)) void cmp_irqhandler(csp_cmp_t *ptCmpBase)
-{
-    // ISR content ...
-	csp_cmp_t *ptCmp0Base, *ptCmp1Base;
-	ptCmp0Base = (csp_cmp_t *)(APB_CMP0_BASE);
-	ptCmp1Base = (csp_cmp_t *)(APB_CMP1_BASE);
-	
-	if(csp_cmp_get_isr(ptCmpBase) & CMP0_EDGEDET0_INT)
-	{
-		csp_cmp_clr_isr(ptCmp0Base,CMP_INTSRC_EDGEDET);
-	}
-	else if(csp_cmp_get_isr(ptCmpBase) & CMP1_EDGEDET1_INT)
-	{
-		csp_cmp_clr_isr(ptCmp1Base,CMP_INTSRC_EDGEDET);	
-	}
-	else if(csp_cmp_get_isr(ptCmpBase) & CMP0_RAWDET0_INT)
-	{
-		csp_cmp_clr_isr(ptCmp0Base,CMP_INSRCT_RAWDET);	
-	}
-	else if(csp_cmp_get_isr(ptCmpBase) & CMP1_RAWDET1_INT)
-	{
-		csp_cmp_clr_isr(ptCmp1Base,CMP_INSRCT_RAWDET);	
-	}
-}
 /** \brief Enable cmp power manage
  * 
  *  \param[in] ptCmpBase: pointer of cmp register structure
@@ -59,7 +30,7 @@ __attribute__((weak)) void cmp_irqhandler(csp_cmp_t *ptCmpBase)
  */
 void csi_cmp_int_enable(csp_cmp_t *ptCmpBase, csi_cmp_intsrc_e eIntSrc,bool bEnable)
 {
-	csp_cmp_int_enable(ptCmpBase, eIntSrc,bEnable);
+	csp_cmp_int_enable(ptCmpBase, (cmp_int_e)eIntSrc,bEnable);
 	if (bEnable) 
 	{
 		csi_irq_enable((uint32_t *)ptCmpBase);
@@ -187,7 +158,7 @@ csi_error_t csi_cmp_wfcr_config(csp_cmp_t *ptCmpBase,csi_cmp_wfcr_config_t *ptCm
 csi_error_t csi_cmp_set_evtrg(csp_cmp_t *ptCmpBase, csi_cmp_trgout_e eTrgOut, csi_cmp_trgsrc_e eTrgSrc)
 {
 	if(eTrgOut == CMP_TRGOUT)
-		csp_cmp_evtrg(ptCmpBase, ENABLE ,eTrgSrc);
+		csp_cmp_evtrg(ptCmpBase, ENABLE ,(cmp_eve_sel_e)eTrgSrc);
 	else 
 		return CSI_ERROR;
 		
@@ -232,7 +203,7 @@ uint8_t csi_cmp_get_out(csp_cmp_t *ptCmpBase,uint8_t byOutCh)
  */
 void csi_cmp_clr_isr(csp_cmp_t *ptCmpBase,csi_cmp_intsrc_e eIntMode)
 {
-	csp_cmp_clr_isr(ptCmpBase,eIntMode);
+	csp_cmp_clr_isr(ptCmpBase,(cmp_int_e)eIntMode);
 }
 
 /** \brief get cmp interrupt status

@@ -138,7 +138,7 @@ int cmp_wfcr_demo(void)
 	tCmpWfcrCfg.hwWcnt    = 200;                 //窗口计数
 	csi_cmp_wfcr_config(CMP0,&tCmpWfcrCfg);
 	
-	csi_cmp_set_evtrg(CMP0, CMP_EVE_DOWN_UP, ENABLE);
+	csi_cmp_set_evtrg(CMP0, CMP_TRGOUT,CMP_EVE_DOWN_UP);
 	
 	csi_cmp_start(CMP0);	
 
@@ -165,4 +165,34 @@ int cmp_wfcr_demo(void)
 	}	
 
 	return iRet;	
+}
+
+/** \brief CMP interrupt handle function
+ * 
+ *  \param[in] none
+ *  \return none
+ */ 
+__attribute__((weak)) void cmp_irqhandler(csp_cmp_t *ptCmpBase)
+{
+    // ISR content ...
+	csp_cmp_t *ptCmp0Base, *ptCmp1Base;
+	ptCmp0Base = (csp_cmp_t *)(APB_CMP0_BASE);
+	ptCmp1Base = (csp_cmp_t *)(APB_CMP1_BASE);
+	
+	if(csp_cmp_get_isr(ptCmpBase) & CMP0_EDGEDET0_INT)
+	{
+		csp_cmp_clr_isr(ptCmp0Base,CMP_EDGEDET_INT);
+	}
+	else if(csp_cmp_get_isr(ptCmpBase) & CMP1_EDGEDET1_INT)
+	{
+		csp_cmp_clr_isr(ptCmp1Base,CMP_EDGEDET_INT);	
+	}
+	else if(csp_cmp_get_isr(ptCmpBase) & CMP0_RAWDET0_INT)
+	{
+		csp_cmp_clr_isr(ptCmp0Base,CMP_RAWDET_INT);	
+	}
+	else if(csp_cmp_get_isr(ptCmpBase) & CMP1_RAWDET1_INT)
+	{
+		csp_cmp_clr_isr(ptCmp1Base,CMP_RAWDET_INT);	
+	}
 }
