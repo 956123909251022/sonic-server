@@ -50,6 +50,7 @@ csi_error_t csi_sysclk_config(csi_clk_config_t tClkCfg)
 	
 	wTargetSclk = wFreq/g_wHclkDiv[tClkCfg.eSdiv];
 	eSrc = tClkCfg.eClkSrc;
+	csp_eflash_lpmd_enable(SYSCON, 0);					//disable Flash LP Mode					
 	
 	switch (eSrc)
 	{
