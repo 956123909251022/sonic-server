@@ -299,6 +299,9 @@ unsigned char 	byTkeyIcon[32];
 unsigned char 	byTkeyChxSens[32];		
 unsigned char	byTkeyChxTrigger[32];							
 unsigned char	byTkeyChxIcon[32];
+unsigned char   dwTkeyWakeupLevel;
+unsigned char 	byTkeyLowPowerMode;
+unsigned char 	byTkeyLowPowerLevel;
 
 unsigned short  hwTkeyGlobalTrigger;
 unsigned short 	hwTkeyBaseCnt;	
@@ -311,10 +314,29 @@ unsigned short 	hwTkeyTriggerLevel[32];
 unsigned long  	dwTkeyScanFreq;
 unsigned long  	dwTkeyIoEnable;	
 unsigned long  	dwTkeyWakeupIoEnable;
-
+/*
 unsigned char 	byTkeyLowPowerMode;
 unsigned char 	byTkeyLowPowerLevel;	
 unsigned char 	byAutoAdjustDis;
+*/
+/***********************************************************************
+ @brief  Tkey Hidden Variable Definition
+***********************************************************************/
+unsigned char 	byTkeyDstStatus;		
+//Used to modify the default state when TCHx is not enabled;0/3=Z,1=high,2=low(Default)
+unsigned char 	byTkeyIntrStatus;		
+//Used to enable the default internal resistor of TCHx;0=disable(Default),1=enable
+unsigned char   byTkeyImtvtimTime;		
+//Used to modify the scan interval;0=none(Default),1=16ms,2=32ms,3=64ms,4=128ms,>4=186ms
+unsigned char 	byAutoAdjustDis;		
+//Used to enable or disable automatic TriggerLevel adjustment on the first pressd of each TCHx;1=disable,0=enable(Default)
+unsigned char 	byTkeyNegBuildBounce;	
+//Used to modify the Bounce of the forced negative Rebuild;>=1 (Default=3)
+//The higher the number, the longer it takes to trigger the update mechanism
+unsigned char 	byTkeyPosBuildBounce;
+//Used to modify the Bounce of the forced postive Rebuild;>=1 (Default=3)
+//The higher the number, the longer it takes to trigger the update mechanism
+
 
 extern volatile unsigned long dwKey_Map;
 extern volatile unsigned char byForceReBuild;

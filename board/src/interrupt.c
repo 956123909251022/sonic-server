@@ -68,8 +68,10 @@ void coret_int_handler(void)
 #if	CORET_INT_HANDLE_EN
     // ISR content ...
 	tick_irqhandler();		//system coret 
-	#if	defined(IS_CHIP_1101) || defined(IS_CHIP_1103)
-		csi_tkey_basecnt_process();
+	#if	TKEY_INT_HANDLE_EN
+		#if	defined(IS_CHIP_1101) || defined(IS_CHIP_1103)
+			csi_tkey_basecnt_process();
+		#endif
 	#endif
 #endif
 }
