@@ -11,7 +11,7 @@
 */
 #include <stdint.h>
 #include <sys_clk.h>
-#include <pin.h>
+#include <drv/pin.h>
 #include "board_config.h"
 
 #include <csp.h>

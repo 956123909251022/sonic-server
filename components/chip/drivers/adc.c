@@ -14,9 +14,8 @@
 #include <drv/irq.h>
 #include <drv/clk.h>
 #include <sys_clk.h>
+#include <drv/gpio.h>
 #include "csp_common.h"
-#include "drv/gpio.h"
-
 #include "csp_adc.h"
 /* Private macro-----------------------------------------------------------*/
 #define	ADC_SAMP_TIMEOUT		0xFFFF

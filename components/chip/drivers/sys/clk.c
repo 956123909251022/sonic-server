@@ -12,13 +12,12 @@
 */
 #include <drv/clk.h>
 #include <drv/pin.h>
-
+#include <drv/irq.h>
+#include <drv/lpt.h>
+#include <soc.h>
 #include "csp.h"
 #include "board_config.h"
 #include "csp_syscon.h"
-#include "lpt.h"
-#include <drv/irq.h>
-#include <soc.h>
 
 //extern csi_clkmap_t clk_map[];
 extern csi_devmap_t g_tDevMap[];

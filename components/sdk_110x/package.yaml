@@ -10,7 +10,7 @@ homepage:
 type: sdk
 depends:
   - apt32f110x_evb: V1.2.5
-  - apt_console: v1.0.3
+  - apt_console: v1.0.4
 hw_info:
   cpu_id: ""
   cpu_name: ""
@@ -33,4 +33,4 @@ def_config:
 install: 
 depends_forward:
   - apt32f110x_evb: V1.2.5
-  - apt_console: v1.0.3
+  - apt_console: v1.0.4

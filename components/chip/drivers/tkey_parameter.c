@@ -9,7 +9,7 @@
  * *********************************************************************
 */ 
 
-#include "tkey.h"
+#include <drv/tkey.h>
 
 void csi_tkey_parameter_init(void)
 {

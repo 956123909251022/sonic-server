@@ -10,10 +10,10 @@
 */
 
 #include <soc.h>
-#include "csp.h"
-#include "reliability.h"
-#include "irq.h"
+#include <drv/reliability.h>
+#include <drv/irq.h>
 #include "csp_syscon.h"
+#include "csp.h"
 
 /// ************************************************************************
 ///						for LVD module
