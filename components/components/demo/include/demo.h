@@ -65,9 +65,8 @@ int usart_char_demo(void);
 int usart_send_demo(void);
 int usart_recv_demo(void);
 int usart_send_int_demo(void);
-int usart_recv_int_demo(void);
-int usart_recv_dynamic_demo(void);
-
+int usart_recv_rx_int_demo(void);
+int usart_recv_rxfifo_int_demo(void);
 int usart_send_dma_demo(void);
 int usart_recv_dma_demo(void);
 //lin
