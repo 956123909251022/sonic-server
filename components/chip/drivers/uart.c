@@ -481,10 +481,10 @@ csi_error_t csi_uart_dma_tx_init(csp_uart_t *ptUartBase, csi_dma_ch_e eDmaCh, cs
 	tEtbConfig.byDstIp 	= ETB_DMA_CH0 + eDmaCh;					//ETB DMA通道 作为目标实际
 	tEtbConfig.byTrgMode = ETB_HARDWARE_TRG;					//通道触发模式采样硬件触发
 	
-	ret = csi_etb_ch_config(eEtbCh, &tEtbConfig);				//初始化ETB，DMA ETB CHANNEL > ETB_CH19_ID
+	ret = csi_etb_ch_config(eEtbCh, &tEtbConfig);				//初始化ETB，DMA ETB CHANNEL > ETB_CH9_ID
 	if(ret < CSI_OK)
 		return CSI_ERROR;
-	ret = csi_dma_ch_init(DMA, eDmaCh, &tDmaConfig);		//初始化DMA
+	ret = csi_dma_ch_init(DMA, eDmaCh, &tDmaConfig);			//初始化DMA
 	
 	return ret;
 }
