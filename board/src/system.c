@@ -27,7 +27,7 @@ __attribute__((weak)) void system_init(void)
 	//config system clk, close interrupt
 	CK_CPU_DISALLNORMALIRQ;					//disable total interrupt
 	csi_iwdt_close();						//close iwdt
-	csi_irq_all_set_prio(IRQ_PRIO_3);		//the all irq priority configure to the lowest
+	csi_irq_set_all_prio(IRQ_PRIO_3);		//the all irq priority configure to the lowest
 	csi_sysclk_config(tClkConfig);			//sysclk config
 	csi_get_sclk_freq();					//get sysclk
 	csi_get_pclk_freq();					//get pclk

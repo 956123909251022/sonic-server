@@ -223,7 +223,7 @@ void csi_irq_disable(void *pIpBase)
  *  \param[in] ePrio:  irq priority ,\ref csi_uart_func_e
  *  \return none.
  */
-void csi_irq_all_set_prio(csi_irq_prio_e ePrio)
+void csi_irq_set_all_prio(csi_irq_prio_e ePrio)
 {
 	uint8_t i;
 	for(i = 0; i < 8; i++)
