@@ -97,13 +97,13 @@ typedef enum{
 
 ///Interrupt regs: IMCR, RISR, MISR, ICR
 typedef enum{
-	IFCINT_ERS_END = 1,
-	IFCINT_PGM_END = 2,
-	IFCINT_PEP_END = 4,
+	IFCINT_ERS_END	= 1,
+	IFCINT_PGM_END 	= 2,
+	IFCINT_PEP_END 	= 4,
 	IFCINT_PROT_ERR = (0x1ul << 12),
 	IFCINT_UDEF_ERR = (0x1ul << 13),
 	IFCINT_ADDR_ERR = (0x1ul << 14),
-	IFCINT_OVW_ERR = (0x1ul << 15)
+	IFCINT_OVW_ERR  = (0x1ul << 15)
 }ifc_int_e;
 
 static inline void csp_ifc_clk_enable(csp_ifc_t *ptIfcBase, bool bEnable)
@@ -141,16 +141,15 @@ static inline void csp_ifc_int_enable(csp_ifc_t *ptIfcBase, ifc_int_e eInt, bool
 		ptIfcBase->IMCR &= ~eInt;
 }
 
-static inline uint32_t csp_ifc_get_misr(csp_ifc_t *ptIfcBase)
-{
-	return (ptIfcBase->MISR);
-}
-
 static inline uint32_t csp_ifc_get_risr(csp_ifc_t *ptIfcBase)
 {
 	return (ptIfcBase->RISR);
 }
-static inline void csp_ifc_clr_int(csp_ifc_t *ptIfcBase, ifc_int_e eInt)
+static inline uint32_t csp_ifc_get_isr(csp_ifc_t *ptIfcBase)
+{
+	return (ptIfcBase->MISR);
+}
+static inline void csp_ifc_clr_isr(csp_ifc_t *ptIfcBase, ifc_int_e eInt)
 {
 	ptIfcBase->ICR = eInt;
 }

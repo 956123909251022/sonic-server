@@ -76,8 +76,8 @@ typedef enum {
 
 ///RISR/IMCR/MISR/ICR
 typedef enum {
-	LED_INT_ICEND = 0x1<<0,
-	LED_INT_IPEND = 0x1 <<1
+	LED_INT_ICEND = 0x1 << 0,
+	LED_INT_IPEND = 0x1 << 1
 }csp_led_int_e;
 
 ///TIMCR
@@ -125,11 +125,11 @@ static inline void csp_led_int_enable(csp_led_t *ptLedBase, csp_led_int_e eInt, 
 	else
 		ptLedBase->IMCR &= ~eInt; 
 }
-static inline void csp_led_clr_int(csp_led_t *ptLedBase, csp_led_int_e eInt)
+static inline void csp_led_clr_isr(csp_led_t *ptLedBase, csp_led_int_e eInt)
 {
 	ptLedBase -> ICR =  eInt;
 }
-static inline uint32_t csp_led_get_misr(csp_led_t *ptLedBase)
+static inline uint32_t csp_led_get_isr(csp_led_t *ptLedBase)
 {
 	return ptLedBase -> MISR;
 }

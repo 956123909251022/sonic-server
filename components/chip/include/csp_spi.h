@@ -356,7 +356,7 @@ static inline void csp_spi_default_init(csp_spi_t *ptSpiBase)
     ptSpiBase->ICR	 = SPI_ICR_RST; 
 }
 
-static inline void csp_spi_set_int(csp_spi_t *ptSpiBase,spi_int_e eSpiInt,bool bEnable)
+static inline void csp_spi_int_enable(csp_spi_t *ptSpiBase,spi_int_e eSpiInt,bool bEnable)
 {
 	if(bEnable)
 		ptSpiBase->IMSCR |= eSpiInt;

@@ -105,7 +105,7 @@ static inline void csp_wwdt_clr_isr(csp_wwdt_t *ptWwdtBase)
 	ptWwdtBase->ICR = 0x1 << WWDT_EVI_POS;
 }
 
-static inline uint32_t csp_wwdt_get_misr(csp_wwdt_t *ptWwdtBase)
+static inline uint32_t csp_wwdt_get_isr(csp_wwdt_t *ptWwdtBase)
 {
 	return (ptWwdtBase->MISR);
 }

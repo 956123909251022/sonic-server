@@ -473,15 +473,15 @@ static inline uint32_t csp_lpt_get_risr(csp_lpt_t *ptLptBase)
 {
 	return ((ptLptBase->RISR) & 0x7);
 }
-static inline uint32_t csp_lpt_get_misr(csp_lpt_t *ptLptBase)
+static inline uint32_t csp_lpt_get_isr(csp_lpt_t *ptLptBase)
 {
 	return ((ptLptBase->MISR) & 0x7);
 }
-static inline void csp_lpt_clr_misr(csp_lpt_t *ptLptBase, lpt_int_e eIntNum)
+static inline void csp_lpt_clr_isr(csp_lpt_t *ptLptBase, lpt_int_e eIntNum)
 {
 	ptLptBase->ICR = eIntNum;
 }
-static inline void csp_lpt_clr_all_int(csp_lpt_t *ptLptBase)
+static inline void csp_lpt_clr_all_isr(csp_lpt_t *ptLptBase)
 {
 	ptLptBase->ICR = 0x07;
 }
