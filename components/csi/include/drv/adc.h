@@ -22,6 +22,10 @@
 extern "C" {
 #endif
 
+#define CALIBRATION_TS1  *((uint32_t *)(0x00080140))
+#define CALIBRATION_IR1  *((uint32_t *)(0x00080144))
+#define CALIBRATION_TS2  *((uint32_t *)(0x00080180))
+#define CALIBRATION_IR2  *((uint32_t *)(0x00080184))
 
 /**
  * \enum	csi_adc_conv_mode_e

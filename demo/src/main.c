@@ -36,8 +36,8 @@ int main()
 	
 	my_printf("Hello World~~~~~~~\n");		//print message
 	
-	user_demo();							//demo				
-	
+	user_demo();							//demo		
+
 	while(1)
 	{
 		mdelay(100);						//delay 100ms

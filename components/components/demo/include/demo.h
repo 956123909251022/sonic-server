@@ -83,6 +83,9 @@ int adc_samp_oneshot_int_demo(void);
 int adc_samp_continuous_int_demo(void);
 //DMA传输
 int adc_samp_continuous_dma_transfer_demo(void);
+//TS温度传感器
+float adc_ts_gettemperature_demo(void);
+void adc_ts_init_demo(void);
 
 //sio demo
 //sio led

@@ -33,6 +33,12 @@ const csi_adc_seq_t tSeqCfg[] =
 	{ADCIN4,		ADC_CV_COUNT_16,			ADC_AVG_COF_16,		ADCSYNC_NONE},
 }; 
 
+const csi_adc_seq_t tSeqTsCfg[] =
+{
+	//输入通道		//连续重复采样次数		//平均系数			//触发源选择
+	{ADCIN_INTVREF,	ADC_CV_COUNT_128,		ADC_AVG_COF_128,	ADCSYNC_NONE},
+};
+
 //采样序列的通道数
 static uint8_t 	s_byChnlNum = sizeof(tSeqCfg)/sizeof(tSeqCfg[0]);
 
@@ -412,4 +418,158 @@ void bt_irqhandler(csp_bt_t *ptBtBase)
 		csi_adc_evtrg_enable(ADC0,ADC_TRGOUT0,ENABLE);					//使能ADC触发通道0,触发DMA传输，20ms传输一次
 		csi_pin_toggle(PA06);
 	}
+}
+
+
+/** \brief 使用内部温度传感器的ADC配置
+ *  \brief 需要把任意一个通道配置成ADCIN_INTVREF
+ * 
+ *  \param[in] none
+ *  \return none
+ */
+void adc_ts_init_demo(void)
+{
+	csi_adc_config_t tAdcConfig;
+	uint8_t byNum = 1;
+	//STEP 1: ADC初始化
+	//adc 输入管脚配置
+	csi_pin_set_mux(PA00, PA00_AVREF);                                      //GPIO的AF功能设置为VREF+                             
+	//adc 参数配置初始化
+	tAdcConfig.byClkDiv = 48;									                  //ADC clk两分频：clk = pclk/2
+	tAdcConfig.bySampHold = 0x10;								              //ADC 采样时间： time = 16 + 6 = 22(ADC clk周期)
+	tAdcConfig.byConvMode = ADC_CONV_ONESHOT;				  //ADC 转换模式： 单次转换；
+	tAdcConfig.byVrefSrc = ADCVREF_FVR4096_VSS;					  //ADC 参考电压： 系统VDD
+	tAdcConfig.wInt = ADC_INTSRC_NONE;                                 //中断设置
+	tAdcConfig.ptSeqCfg = (csi_adc_seq_t *)tSeqTsCfg;	             //ADC 采样序列： 具体参考结构体变量 SeqCfg3
+	csi_adc_init(ADC0, &tAdcConfig);							                  //初始化ADC参数配置
+	csi_adc_set_seqx(ADC0, tAdcConfig.ptSeqCfg, byNum);	 	  //配置ADC采样序列	
+}
+
+/** \brief  获取当前温度传感器温度值
+ *  \brief   计算步骤： 
+ *                    STEP1: ADC输入源选择INTVREF，且ADCC_CR[INTVREF_SEL] = 0x3时，采样到的值为ADC_TS
+ *                    STEP2: ADC输入源选择INTVREF，且ADCC_CR[INTVREF_SEL] = 0x2时，采样到的值为ADC_1V    
+ *			           STEP3: 读取芯片内部标定值
+ *                    STEP4: 公式计算
+ * 
+ *  \brief   标定值说明：
+ *                     标定值(4Bytes)已经保存在对应的地址中，在adc.h文件中已用宏定义表示
+ *                            名称        地址                说明                                                     adc.h中的名字
+ *                            TS1         0x80140         常温下温度传感器信息                      CALIBRATION_TS1
+ *                            IR1          0x80144         常温下内部1V电压参考信息             CALIBRATION_IR1
+ *                            TS2         0x80180         高温下温度传感器信息                      CALIBRATION_TS2
+ *                            IR2          0x80184         高温下内部1V电压参考信息              CALIBRATION_IR2
+ *                    每个标定值的对应字段说明如下
+ *                            [31:28]FLAG + [27:16]TEMP + [15:12]rsvd + [11:0]DATA
+ *                                                       |
+ *                                            [27]为TEMP的符号位，0表示正温度，1表示负温度  
+ *                    举例:  
+ *                          若  TS1=  0x5d800673 
+ *                          则  TS1_FLAG   = 0x5        有效数据
+ *                                TS1_TEMP  = 0xd80   此温度值为负温度，此值为补码。计算时需要将其还原成原码
+ *                                TS1_DATA  = 0x673   温度传感器的电压采样值
+ * 
+ *  \brief   公式如下：
+ *              
+ *                                                                  (TS2_TEMP - TS1_TEMP) * 0.0625           TS2_DATA            ADC_TS
+ *              Tx = TS2_TEMP * 0.0625 - ————————————————— * (—————— - ——————)
+ *                                                                      TS2_DATA             TS1_DATA                IR2_DATA            ADC_1V
+ *                                                                   ——————  -  ———————
+ *                                                                       IR2_DATA              IR1_DATA
+ *              其中：xxx_TEMP的获取
+ *                                如果是正温度：
+ *                                                          TS1_TEMP  =   (float) (TS1 & 0x0fff0000) >> 16;
+ *                                                          TS2_TEMP  =   (float) (TS2 & 0x0fff0000) >> 16;
+ *                                如果是负温度：
+ *                                                          TS1_TEMP  =   (float) (0 - ((((uint16_t)((TS1 & 0x0fff0000) >> 16) - 1) ^ 0x7FF) & 0x7FF));
+ *                                                          TS2_TEMP  =   (float) (0 - ((((uint16_t)((TS2 & 0x0fff0000) >> 16) - 1) ^ 0x7FF) & 0x7FF));
+ *                         xxx_DATA的获取
+ *                                                          TS1_DATA = (float) (TS1 & 0x00000fff);
+ *                                                          TS2_DATA = (float) (TS2 & 0x00000fff);
+ *                                                          IR1_DATA  = (float) (IR1 & 0x00000fff);
+ *                                                          IR2_DATA  = (float) (IR2 & 0x00000fff);
+ * 
+ * 
+ *  \param[in] none
+ *  \return temperature value
+ */
+float adc_ts_gettemperature_demo(void)
+{
+	int16_t hwADC_TS;
+	int16_t hwADC_1V;
+	int16_t hw_chipTemp= 0;
+	
+	float fTS1_DATA, fTS1_TEMP, fTS2_DATA, fTS2_TEMP;
+	float fIR1_DATA, fIR2_DATA;
+	float fADC_TS, fADC_1V;
+	float fTEMP_X = 0;
+	
+	uint8_t valid1,valid2,valid3,valid4;
+	
+	//STEP1: ADC输入源选择INTVREF，且ADCC_CR[INTVREF_SEL] = 0x3时，采样到的值为hwADC_TS
+	ADC0->CR |= (0x03 << 17);                                                      //内部温度传感器采集
+	csi_adc_start(ADC0);										                           //启动ADC	
+	while(!(ADC0->SR & ADC12_SEQ(0)));
+	hwADC_TS = csi_adc_read_channel(ADC0, 0);
+		
+	//STEP2: ADC输入源选择INTVREF，且ADCC_CR[INTVREF_SEL] = 0x2时，采样到的值为hwADC_1V
+	ADC0->CR = (ADC0->CR & (~(0x03 << 17)) ) | (0x02 << 17);//切换到内部1.0v
+	csi_adc_start(ADC0);										                            //启动ADC	
+	while(!(ADC0->SR & ADC12_SEQ(0)));
+	hwADC_1V = csi_adc_read_channel(ADC0, 0);
+	
+	//STEP3: 读取芯片内部标定值
+	//已经用宏定义表示CALIBRATION_TS1 CALIBRATION_IR1 CALIBRATION_TS2 CALIBRATION_IR2
+	valid1 = (CALIBRATION_TS1& 0xf0000000) >> 28;
+	valid2 = (CALIBRATION_IR1& 0xf0000000) >> 28;
+	valid3 = (CALIBRATION_TS2 & 0xf0000000) >> 28;
+	valid4 = (CALIBRATION_IR2 & 0xf0000000) >> 28;
+	
+	//STEP4: 公式计算
+	//当前温度(℃)= xxx_TEMP * 0.0625
+	if( (0x5 == valid1) && (0x5 == valid2) && (0x5 == valid3) && (0x5 == valid4) )
+	{
+		//温度
+		if((CALIBRATION_TS1 & 0x08000000) == 0x08000000) //负数
+		{
+			fTS1_TEMP = (float)(0 - ((((uint16_t)((CALIBRATION_TS1 & 0x0fff0000) >> 16) - 1) ^ 0x7FF) & 0x7FF));
+		}
+		else//正数
+		{
+			fTS1_TEMP = (float)((CALIBRATION_TS1 & 0x0fff0000) >> 16 );
+		}
+		
+		if((CALIBRATION_TS2 & 0x08000000) == 0x08000000) //负数
+		{
+			fTS2_TEMP = (float)(0 - ((((uint16_t)((CALIBRATION_TS2 & 0x0fff0000) >> 16) - 1) ^ 0x7FF) & 0x7FF));
+		}
+		else//正数
+		{
+			fTS2_TEMP = (float)((CALIBRATION_TS2 & 0x0fff0000) >> 16 );
+		}
+		
+		fTS1_TEMP = fTS1_TEMP * 0.0625;
+		fTS2_TEMP = fTS2_TEMP * 0.0625;
+		
+		//ts
+		fTS1_DATA = (float)(CALIBRATION_TS1 & 0x00000fff);
+		fTS2_DATA = (float)(CALIBRATION_TS2 & 0x00000fff);
+		fADC_TS = (float)(hwADC_TS & 0x0fff);
+		
+		//ir
+		fIR1_DATA = (float)(CALIBRATION_IR1 & 0x00000fff);
+		fIR2_DATA = (float)(CALIBRATION_IR2 & 0x00000fff);
+		fADC_1V = (float)(hwADC_1V & 0x00000fff);
+		
+		fTEMP_X = fTS2_TEMP - (fTS2_TEMP - fTS1_TEMP) / (fTS2_DATA/fIR2_DATA - fTS1_DATA/fIR1_DATA ) * (fTS2_DATA/fIR2_DATA - fADC_TS/fADC_1V);
+		hw_chipTemp = (int16_t)(fTEMP_X * 100);
+		my_printf("110_temp = %d  |  hwADC_TS = %d  |  hwADC_1V = %d  \r\n", hw_chipTemp, hwADC_TS, hwADC_1V);
+	}
+	else 
+	{
+		my_printf("\r\nCalibration data is invalid !!!\r\n");
+	}
+	
+	return fTEMP_X;
+	
 }
