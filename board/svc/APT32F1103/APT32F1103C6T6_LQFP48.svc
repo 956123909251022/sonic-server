@@ -26,7 +26,7 @@
           </Property>
           <Property class="UIchoice">
             <label>GPIO/AF</label>
-            <value>GPIO</value>
+            <value>AF</value>
             <Selections>
               <sel>GPIO</sel>
               <sel>AF</sel>
@@ -35,7 +35,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value>AF_DIS</value>
+            <value>CMP1_OUT</value>
             <Selections>
               <sel>AF_DIS</sel>
               <sel>RTC_ALM</sel>
@@ -8697,7 +8697,7 @@
           <label>EPT0</label>
           <Property class="UIchoice">
             <label>WorkMode</label>
-            <value>EPT_CAPTURE</value>
+            <value>EPT_WAVE</value>
             <Selections>
               <sel notAvailable="EPT0WAVE,EPT0DE,EPT0EM,EPT0DZDPSC">EPT_CAPTURE</sel>
               <sel notAvailable="EPT0CAPTURE,EPT0DE,EPT0EM,EPT0DZDPSC">EPT_WAVE</sel>
@@ -9079,12 +9079,12 @@
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
             <label>DeadZone</label>
-            <value>DISABLE</value>
+            <value>ENABLE</value>
             <Selections>
               <sel notAvailable="EPT0DZ">DISABLE</sel>
               <sel>ENABLE</sel>
             </Selections>
-            <Comment>死区控制延时计数器的时钟源选择</Comment>
+            <Comment>死区模式</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0DZ">
             <label>DeadZoneClkSrc</label>
@@ -9189,7 +9189,22 @@
               <sel notAvailable="EPT0EM,EPT0ORL0,EPT0ORL1">DISABLE</sel>
               <sel>ENABLE</sel>
             </Selections>
-            <Comment/>
+            <Comment>紧急模式</Comment>
+          </Property>
+          <Property class="UIchoice" property_class="EPT0EM">
+            <label>EPx</label>
+            <value>EPT_EP0</value>
+            <Selections>
+              <sel>EPT_EP0</sel>
+              <sel>EPT_EP1</sel>
+              <sel>EPT_EP2</sel>
+              <sel>EPT_EP3</sel>
+              <sel>EPT_EP4</sel>
+              <sel>EPT_EP5</sel>
+              <sel>EPT_EP6</sel>
+              <sel>EPT_EP7</sel>
+            </Selections>
+            <Comment>紧急模式触发信号输入通道EP0-7</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0EM">
             <label>EPxInt</label>
@@ -9205,37 +9220,37 @@
               <sel>EPT_ORL0</sel>
               <sel>EPT_ORL1</sel>
             </Selections>
-            <Comment>EPx选择外部IO端口(EBI0~EBI4)</Comment>
+            <Comment>EPx的输入选择控制&#xD;EPT_EBI0:选择EBI0（GPIO）作为当前EP的输入&#xD;EPT_EBI1:选择EBI1（GPIO）作为当前EP的输入&#xD;EPT_EBI2:选择EBI2（GPIO）作为当前EP的输入&#xD;EPT_EBI3:选择EBI3（GPIO）作为当前EP的输入&#xD;EPT_CMP0:选择CMP0作为当前EP的输入&#xD;EPT_CMP1:选择CMP1作为当前EP的输入&#xD;EPT_LVD:选择LVD作为当前EP的输入&#xD;EPT_ORL0:选择ORL0作为当前EP的输入&#xD;EPT_ORL1:选择ORL1作为当前EP的输入</Comment>
           </Property>
           <Property class="Bool" property_class="EPT0ORL0">
             <label>EPT_ORLx_EBI0</label>
             <value>1</value>
-            <Comment/>
+            <Comment>多路通道的逻辑OR作为EPx中的输入信号(ORL1)&#xD;0h：屏蔽当前通道作为OR输入&#xD;1h：使能当前通道作为OR输入</Comment>
           </Property>
           <Property class="Bool" property_class="EPT0ORL0">
             <label>EPT_ORLx_EBI1</label>
             <value>0</value>
-            <Comment/>
+            <Comment>多路通道的逻辑OR作为EPx中的输入信号(ORL1)&#xD;0h：屏蔽当前通道作为OR输入&#xD;1h：使能当前通道作为OR输入</Comment>
           </Property>
           <Property class="Bool" property_class="EPT0ORL0">
             <label>EPT_ORLx_EBI2</label>
             <value>0</value>
-            <Comment/>
+            <Comment>多路通道的逻辑OR作为EPx中的输入信号(ORL1)&#xD;0h：屏蔽当前通道作为OR输入&#xD;1h：使能当前通道作为OR输入</Comment>
           </Property>
           <Property class="Bool" property_class="EPT0ORL0">
             <label>EPT_ORLx_EBI3</label>
             <value>0</value>
-            <Comment/>
+            <Comment>多路通道的逻辑OR作为EPx中的输入信号(ORL1)&#xD;0h：屏蔽当前通道作为OR输入&#xD;1h：使能当前通道作为OR输入</Comment>
           </Property>
           <Property class="Bool" property_class="EPT0ORL0">
             <label>EPT_ORLx_CMP0</label>
             <value>0</value>
-            <Comment/>
+            <Comment>多路通道的逻辑OR作为EPx中的输入信号(ORL1)&#xD;0h：屏蔽当前通道作为OR输入&#xD;1h：使能当前通道作为OR输入</Comment>
           </Property>
           <Property class="Bool" property_class="EPT0ORL0">
             <label>EPT_ORLx_CMP1</label>
             <value>0</value>
-            <Comment/>
+            <Comment>多路通道的逻辑OR作为EPx中的输入信号(ORL1)&#xD;0h：屏蔽当前通道作为OR输入&#xD;1h：使能当前通道作为OR输入</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0EM">
             <label>PolEBIx</label>
@@ -9244,22 +9259,7 @@
               <sel>EPT_EBI_POL_H</sel>
               <sel>EPT_EBI_POL_L</sel>
             </Selections>
-            <Comment>EBIx的输入有效极性选择控制</Comment>
-          </Property>
-          <Property class="UIchoice" property_class="EPT0EM">
-            <label>EPx</label>
-            <value>EPT_EP0</value>
-            <Selections>
-              <sel>EPT_EP0</sel>
-              <sel>EPT_EP1</sel>
-              <sel>EPT_EP2</sel>
-              <sel>EPT_EP3</sel>
-              <sel>EPT_EP4</sel>
-              <sel>EPT_EP5</sel>
-              <sel>EPT_EP6</sel>
-              <sel>EPT_EP7</sel>
-            </Selections>
-            <Comment>使能EPx</Comment>
+            <Comment>EBIx的输入有效极性选择控制&#xD;EPT_EBI_POL_H:高电平有效&#xD;EPT_EBI_POL_L:低电平有效</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0EM">
             <label>EPxLckmd</label>
@@ -9269,7 +9269,7 @@
               <sel>EPT_EP_SLCK</sel>
               <sel>EPT_EP_HLCK</sel>
             </Selections>
-            <Comment>使能锁</Comment>
+            <Comment>EPx端触发锁止模式控制&#xD;EPT_EP_DIS:禁止当前EPx触发锁止&#xD;EPT_EP_SLCK:使能当前EPx触发软锁止&#xD;EPT_EP_HLCK:使能当前EPx触发硬锁止</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0EM">
             <label>EMCOAX</label>
@@ -9280,7 +9280,7 @@
               <sel>EPT_EM_OUT_L</sel>
               <sel>EPT_EM_OUT_NONE</sel>
             </Selections>
-            <Comment>紧急状态下输出状态设置(注意mos/igbt的驱动电平)</Comment>
+            <Comment>当发生EP触发的软锁止或者硬锁止时，在CHAX通道上的输出状态设置&#xD;EPT_EM_OUT_HZ:高阻态&#xD;EPT_EM_OUT_H:高电平&#xD;EPT_EM_OUT_L:低电平&#xD;EPT_EM_OUT_NONE:不做处理</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0EM">
             <label>EMCOBX</label>
@@ -9291,7 +9291,7 @@
               <sel>EPT_EM_OUT_L</sel>
               <sel>EPT_EM_OUT_NONE</sel>
             </Selections>
-            <Comment>紧急状态下输出状态设置(注意mos/igbt的驱动电平)</Comment>
+            <Comment>当发生EP触发的软锁止或者硬锁止时，在CHBX通道上的输出状态设置&#xD;EPT_EM_OUT_HZ:高阻态&#xD;EPT_EM_OUT_H:高电平&#xD;EPT_EM_OUT_L:低电平&#xD;EPT_EM_OUT_NONE:不做处理</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0EM">
             <label>EMCOCX</label>
@@ -9302,7 +9302,7 @@
               <sel>EPT_EM_OUT_L</sel>
               <sel>EPT_EM_OUT_NONE</sel>
             </Selections>
-            <Comment>紧急状态下输出状态设置(注意mos/igbt的驱动电平)</Comment>
+            <Comment>当发生EP触发的软锁止或者硬锁止时，在CHCX通道上的输出状态设置&#xD;EPT_EM_OUT_HZ:高阻态&#xD;EPT_EM_OUT_H:高电平&#xD;EPT_EM_OUT_L:低电平&#xD;EPT_EM_OUT_NONE:不做处理</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0EM">
             <label>EMCOD</label>
@@ -9313,7 +9313,7 @@
               <sel>EPT_EM_OUT_L</sel>
               <sel>EPT_EM_OUT_NONE</sel>
             </Selections>
-            <Comment>紧急状态下输出状态设置(注意mos/igbt的驱动电平)</Comment>
+            <Comment>当发生EP触发的软锁止或者硬锁止时，在CHD通道上的输出状态设置&#xD;EPT_EM_OUT_HZ:高阻态&#xD;EPT_EM_OUT_H:高电平&#xD;EPT_EM_OUT_L:低电平&#xD;EPT_EM_OUT_NONE:不做处理</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0EM">
             <label>EMCOAY</label>
@@ -9324,7 +9324,7 @@
               <sel>EPT_EM_OUT_L</sel>
               <sel>EPT_EM_OUT_NONE</sel>
             </Selections>
-            <Comment>紧急状态下输出状态设置(注意mos/igbt的驱动电平)</Comment>
+            <Comment>当发生EP触发的软锁止或者硬锁止时，在CHAY通道上的输出状态设置&#xD;EPT_EM_OUT_HZ:高阻态&#xD;EPT_EM_OUT_H:高电平&#xD;EPT_EM_OUT_L:低电平&#xD;EPT_EM_OUT_NONE:不做处理</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0EM">
             <label>EMCOBY</label>
@@ -9335,7 +9335,7 @@
               <sel>EPT_EM_OUT_L</sel>
               <sel>EPT_EM_OUT_NONE</sel>
             </Selections>
-            <Comment>紧急状态下输出状态设置(注意mos/igbt的驱动电平)</Comment>
+            <Comment>当发生EP触发的软锁止或者硬锁止时，在CHBY通道上的输出状态设置&#xD;EPT_EM_OUT_HZ:高阻态&#xD;EPT_EM_OUT_H:高电平&#xD;EPT_EM_OUT_L:低电平&#xD;EPT_EM_OUT_NONE:不做处理</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0EM">
             <label>EMCOCY</label>
@@ -9346,62 +9346,62 @@
               <sel>EPT_EM_OUT_L</sel>
               <sel>EPT_EM_OUT_NONE</sel>
             </Selections>
-            <Comment>紧急状态下输出状态设置(注意mos/igbt的驱动电平)</Comment>
+            <Comment>当发生EP触发的软锁止或者硬锁止时，在CHCY通道上的输出状态设置&#xD;EPT_EM_OUT_HZ:高阻态&#xD;EPT_EM_OUT_H:高电平&#xD;EPT_EM_OUT_L:低电平&#xD;EPT_EM_OUT_NONE:不做处理</Comment>
           </Property>
           <Property class="Bool" property_class="EPT0EM">
             <label>EPT_INTSRC_EP0</label>
             <value>0</value>
-            <Comment/>
+            <Comment>EP0事件中断&#xD;0h:无中断请求发生&#xD;1h:中断请求发生</Comment>
           </Property>
           <Property class="Bool" property_class="EPT0EM">
             <label>EPT_INTSRC_EP1</label>
             <value>0</value>
-            <Comment/>
+            <Comment>EP1事件中断&#xD;0h:无中断请求发生&#xD;1h:中断请求发生</Comment>
           </Property>
           <Property class="Bool" property_class="EPT0EM">
             <label>EPT_INTSRC_EP2</label>
             <value>0</value>
-            <Comment/>
+            <Comment>EP2事件中断&#xD;0h:无中断请求发生&#xD;1h:中断请求发生</Comment>
           </Property>
           <Property class="Bool" property_class="EPT0EM">
             <label>EPT_INTSRC_EP3</label>
             <value>0</value>
-            <Comment/>
+            <Comment>EP3事件中断&#xD;0h:无中断请求发生&#xD;1h:中断请求发生</Comment>
           </Property>
           <Property class="Bool" property_class="EPT0EM">
             <label>EPT_INTSRC_EP4</label>
             <value>0</value>
-            <Comment/>
+            <Comment>EP4事件中断&#xD;0h:无中断请求发生&#xD;1h:中断请求发生</Comment>
           </Property>
           <Property class="Bool" property_class="EPT0EM">
             <label>EPT_INTSRC_EP5</label>
             <value>0</value>
-            <Comment/>
+            <Comment>EP5事件中断&#xD;0h:无中断请求发生&#xD;1h:中断请求发生</Comment>
           </Property>
           <Property class="Bool" property_class="EPT0EM">
             <label>EPT_INTSRC_EP6</label>
             <value>0</value>
-            <Comment/>
+            <Comment>EP6事件中断&#xD;0h:无中断请求发生&#xD;1h:中断请求发生</Comment>
           </Property>
           <Property class="Bool" property_class="EPT0EM">
             <label>EPT_INTSRC_EP7</label>
-            <value>0</value>
+            <Comment>EP7事件中断&#xD;0h:无中断请求发生&#xD;1h:中断请求发生</Comment>
             <Comment/>
           </Property>
           <Property class="Bool" property_class="EPT0EM">
             <label>EPT_INTSRC_CPUF</label>
             <value>0</value>
-            <Comment/>
+            <Comment>CPU_FAULT事件触发的异常事件中断原始标志位&#xD;0h:无中断请求发生&#xD;1h:中断请求发生</Comment>
           </Property>
           <Property class="Bool" property_class="EPT0EM">
             <label>EPT_INTSRC_MEMF</label>
             <value>0</value>
-            <Comment/>
+            <Comment>MEM_FAULT事件触发的异常事件中断原始标志位&#xD;0h:无中断请求发生&#xD;1h:中断请求发生</Comment>
           </Property>
           <Property class="Bool" property_class="EPT0EM">
             <label>EPT_INTSRC_EOMF</label>
             <value>0</value>
-            <Comment/>
+            <Comment>EOM_FAULT事件触发的异常事件中断原始标志位&#xD;0h:无中断请求发生&#xD;1h:中断请求发生</Comment>
           </Property>
         </Device>
       </Category>

@@ -9,6 +9,9 @@
 
 void pin_init(void)
 {
+	csi_pin_set_mux(PA00,PA00_CMP1_OUT);
+	csi_pin_pull_mode(PA00,GPIO_PULLNONE);
+
 }
 
 void ch0_config(void)
