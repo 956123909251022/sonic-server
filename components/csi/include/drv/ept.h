@@ -282,6 +282,13 @@ typedef enum{
 	EPT_COMPD
 }csi_ept_comp_e;
 
+typedef enum {
+	EPT_CMPA= 0,
+	EPT_CMPB,
+	EPT_CMPC,
+	EPT_CMPD
+}csi_ept_csrc_sel_e;
+
 typedef enum{
     EPT_SYNCIN0 =0,
 	EPT_SYNCIN1,
@@ -298,6 +305,44 @@ typedef enum{
 	EPT_DBDTF,
 	EPT_DCKPSC,		
 }csi_ept_dbldr_e;
+
+typedef enum {
+	EPT_DB_TCLK = 0,
+	EPT_DB_DPSC
+}csi_ept_dbclksrc_e;
+
+typedef enum {
+	EPT_DB_AR_BF = 0,
+	EPT_DB_BR_BF
+}csi_ept_dedb_e;
+
+typedef enum {
+	EPT_DBOUT_DIS = 0,    //OUTA close;       OUTB close
+	EPT_DBOUT_BF,         //OUTA close;       OUTB_Falling_edge
+	EPT_DBOUT_AR,         //OUTA Rising edge  OUTB close
+	EPT_DBOUT_AR_BF       //OUTA Rising edge  OUTB_Falling_edge
+}csi_ept_db_outsel_e;
+
+typedef enum {
+	EPT_DAB_POL_DIS = 0,
+	EPT_DB_POL_A,
+	EPT_DB_POL_B,
+	EPT_DB_POL_AB
+}csi_ept_db_pol_e; 
+
+typedef enum {
+	EPT_DBCHAIN_AR_AF = 0,
+	EPT_DBCHAIN_BR_AF,
+	EPT_DBCHAIN_AR_BF,
+	EPT_DBCHAIN_BR_BF
+}csi_ept_dbcha_insel_e;
+
+typedef enum {
+	EPT_CHOUTX_OUA_OUB = 0,
+	EPT_CHOUTX_OUA_OUA,
+	EPT_CHOUTX_OUB_OUB,
+	EPT_CHOUTX_OUB_OUA
+}csi_ept_dbchx_outsel_e;
 
 typedef enum
 {
@@ -335,14 +380,30 @@ typedef enum {
 }csi_ept_stmd_e;
 
 typedef enum{
+	EPT_LDPSCR_ZRO = 0,
+	EPT_LDPSCR_PRD,
+	EPT_LDPSCR_ZROPRD
+}csi_ept_ldpscr_e;
+
+typedef enum{
 	EPT_STP_HZ = 0,
 	EPT_STP_L
 }csi_ept_stopst_e;
 
 typedef enum{
-	EPT_CAP_CONT = 0,
-	EPT_CAP_OT
+	EPT_CAPMD_CONT = 0,
+	EPT_CAPMD_OT,
 }csi_ept_capmd_e;
+
+typedef enum {
+	EPT_LDGLD_ZRO = 0,
+	EPT_LDGLD_PRD,
+	EPT_LDGLD_ZRO_PRD,
+	EPT_LDGLD_ZRO_LD_SYNC,
+	EPT_LDGLD_PRD_LD_SYNC,
+	EPT_LDGLD_ZRO_PRD_LD_SYNC,
+	EPT_LDGLD_SW = 0xf
+}csi_ept_ldgld_e;
 
 #define EPT_EVENT_SLCK_EBI(n)  n
 typedef enum{
@@ -350,12 +411,23 @@ typedef enum{
 	EPT_EVENT_HLCK,
 }csi_ept_event_e;
 
+#define EPT_ORLx_EBI0  1<<0
+#define EPT_ORLx_EBI1  1<<1
+#define	EPT_ORLx_EBI2  1<<2
+#define	EPT_ORLx_EBI3  1<<3
+#define	EPT_ORLx_CMP0  1<<4
+#define	EPT_ORLx_CMP1  1<<5
+
 typedef enum {
-	EPT_EBI0 = 0,
+	EPT_EBI0 = 1,
 	EPT_EBI1,
 	EPT_EBI2,
 	EPT_EBI3,
-	EPT_EBILVD,
+	EPT_CMP0,
+	EPT_CMP1,
+	EPT_LVD,
+	EPT_ORL0 = 0xe,
+	EPT_ORL1,
 }csi_ept_ebi_e;
 
 typedef enum {
@@ -368,6 +440,11 @@ typedef enum{
 	EPT_EP_SLCK,
 	EPT_EP_HLCK
 }csi_ept_ep_lckmd_e;
+
+typedef enum{
+	EPT_OSR_IMMEDIATE=0,
+	EPT_OSR_SHADOW
+}csi_ept_Osrshdw_e;
 
 typedef enum {
 	EPT_EM_OUT_HZ,
@@ -500,6 +577,12 @@ typedef enum{
 	EPT_FILT_SYNCIN5,			//filter input syncin5		
 }csi_ept_filter_insrc_e;
 
+typedef enum{
+	EPT_ALIGN_ZRO = 0,
+	EPT_ALIGN_PRD,
+	EPT_ALIGN_ZRO_PRD,
+	EPT_ALIGN_T1
+}csi_ept_alignmd_e;
 
 /**
  * \enum	csi_ept_cntinit_e
@@ -563,6 +646,27 @@ typedef enum {
 	EPT_HI,
 	EPT_TG	
 }csi_ept_action_e;
+
+typedef enum{
+	EPT_EPFLT0_DIS = 0,
+	EPT_EPFLT0_2P,
+	EPT_EPFLT0_4P,
+	EPT_EPFLT0_6P,
+	EPT_EPFLT0_8P,
+	EPT_EPFLT0_16P,
+	EPT_EPFLT0_32P,
+	EPT_EPFLT0_64P
+}csi_ept_epflt0_e;
+typedef enum{
+	EPT_EPFLT1_DIS = 0,
+	EPT_EPFLT1_2P,
+	EPT_EPFLT1_4P,
+	EPT_EPFLT1_6P,
+	EPT_EPFLT1_8P,
+	EPT_EPFLT1_16P,
+	EPT_EPFLT1_32P,
+	EPT_EPFLT1_64P
+}csi_ept_epflt1_e;
 
 /**
  \brief change ept output dutycycle. 

@@ -387,10 +387,10 @@ csi_error_t csi_gptb_emergency_cfg(csp_gptb_t *ptGptbBase, csi_gptb_emergency_co
 	
     wEmpol=csp_gptb_get_empol(ptGptbBase);	
 	 switch (ptEmCfg ->byEpxInt)
-	 {    case (B_EBI0): wEmpol=( wEmpol  &~ POL_MSK_EBI(0)) | (ptEmCfg -> byPolEbix <<POL_POS_EBI(0) );break;
-		  case (B_EBI1): wEmpol=( wEmpol  &~ POL_MSK_EBI(1)) | (ptEmCfg -> byPolEbix <<POL_POS_EBI(1) );break;
-		  case (B_EBI2): wEmpol=( wEmpol  &~ POL_MSK_EBI(2)) | (ptEmCfg -> byPolEbix <<POL_POS_EBI(2) );break;
-		  case (B_EBI3): wEmpol=( wEmpol  &~ POL_MSK_EBI(3)) | (ptEmCfg -> byPolEbix <<POL_POS_EBI(3) );break;
+	 {    case (GPTB_EBI0): wEmpol=( wEmpol  &~ POL_MSK_EBI(0)) | (ptEmCfg -> byPolEbix <<POL_POS_EBI(0) );break;
+		  case (GPTB_EBI1): wEmpol=( wEmpol  &~ POL_MSK_EBI(1)) | (ptEmCfg -> byPolEbix <<POL_POS_EBI(1) );break;
+		  case (GPTB_EBI2): wEmpol=( wEmpol  &~ POL_MSK_EBI(2)) | (ptEmCfg -> byPolEbix <<POL_POS_EBI(2) );break;
+		  case (GPTB_EBI3): wEmpol=( wEmpol  &~ POL_MSK_EBI(3)) | (ptEmCfg -> byPolEbix <<POL_POS_EBI(3) );break;
 		  default:break;
 	 }
 	csp_gptb_set_empol(ptGptbBase,wEmpol);

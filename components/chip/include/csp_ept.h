@@ -203,11 +203,6 @@ typedef enum {
 
 #define EPT_PSCLD_POS	(16)
 #define EPT_PSCLD_MSK	(0x3 << EPT_PSCLD_POS)
-typedef enum{
-	EPT_LDPSCR_ZRO = 0,
-	EPT_LDPSCR_PRD,
-	EPT_LDPSCR_ZROPRD
-}csp_ept_ldpscr_e;
 
 #define EPT_MODE_POS	(18)
 #define EPT_MODE_MSK     (1ul << EPT_MODE_POS)
@@ -220,10 +215,6 @@ typedef enum{
 
 #define EPT_CAPMD_POS    (20)
 #define EPT_CAPMD_MSK	(0x1 << EPT_CAPMD_POS)
-typedef enum{
-	EPT_CAPMD_CONT = 0,
-	EPT_CAPMD_OT,
-}csp_ept_capmd_e;
 
 #define EPT_STOPWRAP_POS	(21)
 #define EPT_STOPWRAP_MSK	(0x3 << EPT_STOPWRAP_POS)
@@ -292,15 +283,6 @@ typedef enum{
 #define EPT_GLDEN_MSK	(0x1)
 #define EPT_GLDMD_POS	(1)
 #define EPT_GLDMD_MSK	(0xf << EPT_GLDMD_POS)
-typedef enum {
-	EPT_LDGLD_ZRO = 0,
-	EPT_LDGLD_PRD,
-	EPT_LDGLD_ZRO_PRD,
-	EPT_LDGLD_ZRO_LD_SYNC,
-	EPT_LDGLD_PRD_LD_SYNC,
-	EPT_LDGLD_ZRO_PRD_LD_SYNC,
-	EPT_LDGLD_SW = 0xf
-}csp_ept_ldgld_e;
 
 #define EPT_GLDCR_OSTMD_POS  (5)
 #define EPT_GLDCR_OSTMD_MSK	(0x1 << EPT_GLDCR_OSTMD_POS)
@@ -405,12 +387,7 @@ typedef enum{
 #define EPT_AQCR3_SHDWEN_MSK	(0x1 << EPT_AQCR3_SHDWEN_POS)
 #define EPT_AQCR4_SHDWEN_POS	(9)
 #define EPT_AQCR4_SHDWEN_MSK	(0x1 << EPT_AQCR4_SHDWEN_POS)
-typedef enum{
-//	EPT_LD_IMM = 0,
-//	EPT_LD_SHDW 
-	EPT_LD_SHDW = 0,
-	EPT_LD_IMM
-}csp_ept_ld_e;
+
 #define EPT_LDAMD_POS		(2)
 #define EPT_LDAMD_MSK		(0x7 << EPT_LDAMD_POS)
 #define EPT_LDBMD_POS		(5)
@@ -447,12 +424,6 @@ typedef enum{
 #define EPT_C1SEL_MSK	(0x3<<EPT_C1SEL_POS)
 #define EPT_C2SEL_POS	(22)
 #define EPT_C2SEL_MSK	(0x3<<EPT_C2SEL_POS)
-typedef enum {
-	EPT_CMPA= 0,
-	EPT_CMPB,
-	EPT_CMPC,
-	EPT_CMPD
-}csp_ept_csrc_sel_e;
 
 ///AQTSCR
 #define EPT_T1SEL_POS	(0)
@@ -570,18 +541,11 @@ typedef enum {
 	E_DBCHCIN_DR_DF
 }csp_ept_dbchc_insel_e;
 
-typedef enum {
-	E_CHOUTX_OUA_OUB = 0,
-	E_CHOUTX_OUA_OUA,
-	E_CHOUTX_OUB_OUB,
-	E_CHOUTX_OUB_OUA
-}csp_ept_dbchx_outsel_e;
-
 #define EPT_DCKSEL_POS		(24)
 #define EPT_DCKSEL_MSK		(0x1 << EPT_DCKSEL_POS)
 typedef enum {
-	EPT_DB_TCLK = 0,
-	EPT_DB_DPSC
+	EPT_DBCLK_TCLK = 0,
+	EPT_DBCLK_DPSC
 }csp_ept_dbclksrc_e;
 
 #define EPT_CHA_DEDB_POS	(25)
@@ -669,16 +633,6 @@ typedef enum {
 	ORL1,
 }csp_ept_ebi_e;
 
-#define ORLx_EBI0  1<<0
-#define ORLx_EBI1  1<<1
-#define	ORLx_EBI2  1<<2
-#define	ORLx_EBI3  1<<3
-#define	ORLx_CMP0  1<<4
-#define	ORLx_CMP1  1<<5
-
-
-
-
 #define EPT_EP_USE_EBI(m, n)     (((n)+1) << ((m)<<2))
 
 ///EMSRC2 config ORL0, ORL1 and input Filters
@@ -731,11 +685,6 @@ typedef enum{
 	EP_HLCK,
 	EP_DISABLE
 }csp_ept_ep_lckmd_e;
-
-typedef enum{
-             IMMEDIATE=0,
-			 SHADOW
-}csp_ept_Osrshdw_e;
 
 #define EPT_EMOSR_SHDWEN_POS (21)
 #define EPT_EMSOR_SHDWEN_MSK  (0x1 << EPT_EMOSR_SHDWEN_POS)
@@ -816,12 +765,6 @@ typedef enum {
 #define EPT_FLTBLKINV_MSK	(0x1 << EPT_FLTBLKINV_POS)
 #define EPT_ALIGNMD_POS	(5)
 #define EPT_ALIGNMD_MSK	(0x3 << EPT_ALIGNMD_POS)
-typedef enum{
-	EPT_ALIGN_ZRO = 0,
-	EPT_ALIGN_PRD,
-	EPT_ALIGN_ZRO_PRD,
-	EPT_ALIGN_T1
-}csp_ept_alignmd_e;
 
 #define EPT_CROSSMD_POS	(7)
 #define EPT_CROSSMD_MSK	(0x1 << EPT_CROSSMD_POS)

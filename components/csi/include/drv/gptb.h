@@ -242,6 +242,16 @@ typedef enum
     GPTB_WAVE 	= 1		
 }csi_gptb_wave_e;
 
+typedef enum {
+	GPTB_SW = 0,
+	GPTB_SYNC
+}csi_gptb_stmd_e;
+
+typedef enum{
+	GPTB_LDPSCR_ZRO = 0,
+	GPTB_LDPSCR_PRD,
+	GPTB_LDPSCR_ZROPRD
+}csi_gptb_ldpscr_e;
 
 typedef enum {
 	GPTB_UPCNT = 0,
@@ -401,11 +411,6 @@ typedef enum {
 //	GPTB_CH_4
 }csi_gptb_chtype_e;
 
-typedef enum {
-	GPTB_SW = 0,
-	GPTB_SYNC
-}csi_gptb_stmd_e;
-
 typedef enum{
 	GPTB_STP_HZ = 0,
 	GPTB_STP_L
@@ -422,12 +427,19 @@ typedef enum{
 	GPTB_EVENT_HLCK,
 }csi_gptb_event_e;
 
+#define GPTB_ORLx_EBI0  1<<0
+#define GPTB_ORLx_EBI1  1<<1
+#define	GPTB_ORLx_EBI2  1<<2
+#define	GPTB_ORLx_EBI3  1<<3
+
 typedef enum {
-	GPTB_EBI0 = 0,
+	GPTB_EBI0 = 1,
 	GPTB_EBI1,
 	GPTB_EBI2,
 	GPTB_EBI3,
-	GPTB_EBILVD,
+	GPTB_LVD,
+	GPTB_ORL0 = 0x0e,
+	GPTB_ORL1,
 }csi_gptb_ebi_e;
 
 typedef enum {
@@ -454,6 +466,19 @@ typedef enum{
 	GPTB_EP2,
 	GPTB_EP3,
 }csi_gptb_ep_e;
+
+typedef enum{
+	GPTB_EPFLT0_DIS = 0,
+	GPTB_EPFLT0_2P,
+	GPTB_EPFLT0_3P,
+	GPTB_EPFLT0_4P
+}csi_gptb_epflt0_e;
+typedef enum{
+	GPTB_EPFLT1_1P = 0,
+	GPTB_EPFLT1_2P,
+	GPTB_EPFLT1_3P,
+	GPTB_EPFLT1_4P
+}csi_gptb_epflt1_e;
 
 typedef struct {
 	csi_gptb_emout_e eChaxOut;
@@ -537,6 +562,44 @@ typedef enum{
 	GPTB_EVTRG_trigger_Disable = 0,
 	GPTB_Enable_trigger_start
 }csi_gptb_evtrg_trigger_e;
+
+typedef enum {
+	GPTB_DB_TCLK = 0,
+	GPTB_DB_DPSC
+}csi_gptb_dbclksrc_e;
+
+typedef enum {
+	GPTB_DB_AR_BF = 0,
+	GPTB_DB_BR_BF
+}csi_gptb_dedb_e;
+
+typedef enum {
+	GPTB_DBOUT_DIS = 0,
+	GPTB_DBOUT_BF,
+	GPTB_DBOUT_AR,
+	GPTB_DBOUT_AR_BF
+}csi_gptb_db_outsel_e;
+
+typedef enum {
+	GPTB_DB_POL_DIS = 0,
+	GPTB_DB_POL_A,
+	GPTB_DB_POL_B,
+	GPTB_DB_POL_AB
+}csi_gptb_db_pol_e;
+
+typedef enum {
+	GPTB_DBCHAIN_AR_AF = 0,
+	GPTB_DBCHAIN_BR_AF,
+	GPTB_DBCHAIN_AR_BF,
+	GPTB_DBCHAIN_BR_BF
+}csi_gptb_dbcha_insel_e;
+
+typedef enum {
+	GPTB_DBCHAOUT_OUTA_A_OUTB_B = 0,
+	GPTB_DBCHAOUT_OUTA_B_OUTB_B,
+	GPTB_DBCHAOUT_OUTA_A_OUTB_A,
+	GPTB_DBCHAOUT_OUTA_B_OUTB_A
+}csi_gptb_dbcha_outswap_e;
 
 
 /**
