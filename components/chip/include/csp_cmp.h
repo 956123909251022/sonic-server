@@ -378,7 +378,7 @@ static inline void csp_cmp_int_enable(csp_cmp_t *ptCmpBase, cmp_int_e eCmpInt,bo
 	    ptCmpBase->IMCR &= ~eCmpInt; 
 }
 
-static inline void csp_cmp_int_clear(csp_cmp_t *ptCmpBase,cmp_int_e eCmpInt)
+static inline void csp_cmp_clr_isr(csp_cmp_t *ptCmpBase,cmp_int_e eCmpInt)
 {
 	ptCmpBase->ICR|= eCmpInt;
 }
@@ -398,7 +398,7 @@ static inline uint32_t csp_cmp_get_imcr(csp_cmp_t *ptCmpBase)
 	return (uint32_t)(ptCmpBase-> IMCR);
 }
 
-static inline uint32_t csp_cmp_get_misr(csp_cmp_t *ptCmpBase)
+static inline uint32_t csp_cmp_get_isr(csp_cmp_t *ptCmpBase)
 {
 	return (uint32_t)(ptCmpBase-> MISR);
 }
