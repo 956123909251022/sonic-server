@@ -84,16 +84,16 @@ void io_config(uint8_t byGrp)
 	csi_pin_set_mux(PA113, PA113_LED_C0M9);
 		
 	//开启COM口强驱
-	csi_pin_drive(PA16, GPIO_DRIVE_LV1);
-	csi_pin_drive(PB05, GPIO_DRIVE_LV1);
-	csi_pin_drive(PA17, GPIO_DRIVE_LV1);
-	csi_pin_drive(PB06, GPIO_DRIVE_LV1);
-	csi_pin_drive(PB07, GPIO_DRIVE_LV1);
-	csi_pin_drive(PA18, GPIO_DRIVE_LV1);
-	csi_pin_drive(PB08, GPIO_DRIVE_LV1);
-	csi_pin_drive(PA111, GPIO_DRIVE_LV1);
-	csi_pin_drive(PA112, GPIO_DRIVE_LV1);
-	csi_pin_drive(PA113, GPIO_DRIVE_LV1);
+	csi_pin_drive(PA16, GPIO_DRIVE_STRONG);
+	csi_pin_drive(PB05, GPIO_DRIVE_STRONG);
+	csi_pin_drive(PA17, GPIO_DRIVE_STRONG);
+	csi_pin_drive(PB06, GPIO_DRIVE_STRONG);
+	csi_pin_drive(PB07, GPIO_DRIVE_STRONG);
+	csi_pin_drive(PA18, GPIO_DRIVE_STRONG);
+	csi_pin_drive(PB08, GPIO_DRIVE_STRONG);
+	csi_pin_drive(PA111, GPIO_DRIVE_STRONG);
+	csi_pin_drive(PA112, GPIO_DRIVE_STRONG);
+	csi_pin_drive(PA113, GPIO_DRIVE_STRONG);
 }
 
 /**
