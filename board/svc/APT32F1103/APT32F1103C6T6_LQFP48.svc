@@ -3650,41 +3650,131 @@
               <sel>continue</sel>
             </Selections>
           </Property>
-          <Property class="UIchoice">
-            <label>Interrupt Source</label>
-            <value>ADC_INTSRC_EOC</value>
-            <Selections>
-              <sel>ADC_INTSRC_NONE</sel>
-              <sel>ADC_INTSRC_EOC</sel>
-              <sel>ADC_INTSRC_READY</sel>
-              <sel>ADC_INTSRC_OVR</sel>
-              <sel>ADC_INTSRC_CMP0H</sel>
-              <sel>ADC_INTSRC_CMP0L</sel>
-              <sel>ADC_INTSRC_CMP1H</sel>
-              <sel>ADC_INTSRC_CMP1L</sel>
-              <sel>ADC_INTSRC_SEQ0</sel>
-              <sel>ADC_INTSRC_SEQ1</sel>
-              <sel>ADC_INTSRC_SEQ2</sel>
-              <sel>ADC_INTSRC_SEQ3</sel>
-              <sel>ADC_INTSRC_SEQ4</sel>
-              <sel>ADC_INTSRC_SEQ5</sel>
-              <sel>ADC_INTSRC_SEQ6</sel>
-              <sel>ADC_INTSRC_SEQ7</sel>
-              <sel>ADC_INTSRC_SEQ8</sel>
-              <sel>ADC_INTSRC_SEQ9</sel>
-              <sel>ADC_INTSRC_SEQ10</sel>
-              <sel>ADC_INTSRC_SEQ11</sel>
-              <sel>ADC_INTSRC_SEQ12</sel>
-              <sel>ADC_INTSRC_SEQ13</sel>
-              <sel>ADC_INTSRC_SEQ14</sel>
-              <sel>ADC_INTSRC_SEQ15</sel>
-            </Selections>
+          <Property class="Bool">
+            <label>ADC_INTSRC_NONE</label>
+            <value>1</value>
+            <Comment>ADC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>ADC_INTSRC_EOC</label>
+            <value>0</value>
+            <Comment>ADC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>ADC_INTSRC_READY</label>
+            <value>0</value>
+            <Comment>ADC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>ADC_INTSRC_OVR</label>
+            <value>0</value>
+            <Comment>ADC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>ADC_INTSRC_CMP0H</label>
+            <value>0</value>
+            <Comment>ADC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>ADC_INTSRC_CMP0L</label>
+            <value>0</value>
+            <Comment>ADC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>ADC_INTSRC_CMP1H</label>
+            <value>0</value>
+            <Comment>ADC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>ADC_INTSRC_CMP1L</label>
+            <value>0</value>
+            <Comment>ADC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>ADC_INTSRC_SEQ0</label>
+            <value>0</value>
+            <Comment>ADC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>ADC_INTSRC_SEQ1</label>
+            <value>0</value>
+            <Comment>ADC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>ADC_INTSRC_SEQ2</label>
+            <value>0</value>
+            <Comment>ADC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>ADC_INTSRC_SEQ3</label>
+            <value>0</value>
+            <Comment>ADC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>ADC_INTSRC_SEQ4</label>
+            <value>0</value>
+            <Comment>ADC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>ADC_INTSRC_SEQ5</label>
+            <value>0</value>
+            <Comment>ADC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>ADC_INTSRC_SEQ6</label>
+            <value>0</value>
+            <Comment>ADC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>ADC_INTSRC_SEQ7</label>
+            <value>0</value>
+            <Comment>ADC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>ADC_INTSRC_SEQ8</label>
+            <value>0</value>
+            <Comment>ADC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>ADC_INTSRC_SEQ9</label>
+            <value>0</value>
+            <Comment>ADC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>ADC_INTSRC_SEQ10</label>
+            <value>0</value>
+            <Comment>ADC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>ADC_INTSRC_SEQ11</label>
+            <value>0</value>
+            <Comment>ADC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>ADC_INTSRC_SEQ12</label>
+            <value>0</value>
+            <Comment>ADC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>ADC_INTSRC_SEQ13</label>
+            <value>0</value>
+            <Comment>ADC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>ADC_INTSRC_SEQ14</label>
+            <value>0</value>
+            <Comment>ADC Interrupt Status</Comment>
+          </Property>
+          <Property class="Bool">
+            <label>ADC_INTSRC_SEQ15</label>
+            <value>0</value>
+            <Comment>ADC Interrupt Status</Comment>
           </Property>
         </Device>
         <Device deviceId="internal CH0">
           <Comment>ADC内部通道配置必须从0开始，且连续。如果采样数为4，则需要配置internal CH0~3</Comment>
           <GenCodeFuncName>InternalCH0InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
+          <UseOrNot>1</UseOrNot>
           <label>CH0</label>
           <Property class="UIchoice">
             <label>Source</label>
@@ -5775,6 +5865,26 @@
             <Comment>BT Interrupt Status</Comment>
           </Property>
           <Property class="UIchoice">
+            <label>TRGEV</label>
+            <value>DISABLE</value>
+            <Selections>
+              <sel>ENABLE</sel>
+              <sel>DISABLE</sel>
+            </Selections>
+            <Comment>可通过软件触发输出: csi_bt_soft_evtrg(BT0);</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>TRGSRC</label>
+            <value>BT_TRGSRC_DIS</value>
+            <Selections>
+              <sel>BT_TRGSRC_DIS</sel>
+              <sel>BT_TRGSRC_PEND</sel>
+              <sel>BT_TRGSRC_CMP</sel>
+              <sel>BT_TRGSRC_OVF</sel>
+            </Selections>
+            <Comment/>
+          </Property>
+          <Property class="UIchoice">
             <label>SYNC0_START</label>
             <UseOrNot/>
             <value>DISABLE</value>
@@ -5939,6 +6049,26 @@
             <Comment>BT Interrupt Status</Comment>
           </Property>
           <Property class="UIchoice">
+            <label>TRGEV</label>
+            <value>DISABLE</value>
+            <Selections>
+              <sel>ENABLE</sel>
+              <sel>DISABLE</sel>
+            </Selections>
+            <Comment>可通过软件触发输出: csi_bt_soft_evtrg(BT1);</Comment>
+          </Property>
+          <Property class="UIchoice">
+            <label>TRGSRC</label>
+            <value>BT_TRGSRC_DIS</value>
+            <Selections>
+              <sel>BT_TRGSRC_DIS</sel>
+              <sel>BT_TRGSRC_PEND</sel>
+              <sel>BT_TRGSRC_CMP</sel>
+              <sel>BT_TRGSRC_OVF</sel>
+            </Selections>
+            <Comment/>
+          </Property>
+          <Property class="UIchoice">
             <label>SYNC0_START</label>
             <UseOrNot/>
             <value>DISABLE</value>
@@ -6038,7 +6168,7 @@
           <label>CNTA</label>
           <Property class="UIchoice">
             <label>Mode</label>
-            <value>PWM</value>
+            <value>Timer</value>
             <Selections>
               <sel notAvailable="CNTAPWM">Timer</sel>
               <sel notAvailable="CNTATimer">PWM</sel>
@@ -6069,6 +6199,11 @@
             <Comment>结束极性</Comment>
           </Property>
           <Property class="Text" property_class="CNTAPWM">
+            <label>Freq</label>
+            <value>38000</value>
+            <Comment>频率 单位Hz</Comment>
+          </Property>
+          <Property class="Text" property_class="CNTAPWM">
             <label>DutyCycle</label>
             <value>33</value>
             <validReg>^([0-9]{1,2}|100)$</validReg>
@@ -6093,11 +6228,6 @@
             <label>CNTA_INTSRC_PENDHL</label>
             <value>1</value>
             <Comment/>
-          </Property>
-          <Property class="Text" property_class="CNTAPWM">
-            <label>Freq</label>
-            <value>38000</value>
-            <Comment>频率 单位Hz</Comment>
           </Property>
           <Property class="UIchoice" property_class="CNTAPWM">
             <label>BTPENDREM</label>
@@ -6140,7 +6270,7 @@
           <label>RTC</label>
           <Property class="UIchoice">
             <label>ClkSrc</label>
-            <value>RTC_CLKSRC_ESOSC</value>
+            <value>RTC_CLKSRC_ISOSC</value>
             <Selections>
               <sel>RTC_CLKSRC_ISOSC</sel>
               <sel>RTC_CLKSRC_IMOSC_DIV4</sel>
@@ -8303,7 +8433,7 @@
           <label>I2C</label>
           <Property class="UIchoice">
             <label>Mode</label>
-            <value>Slave</value>
+            <value>Master</value>
             <Selections>
               <sel notAvailable="I2CSlave">Master</sel>
               <sel notAvailable="I2CMaster">Slave</sel>
@@ -8347,72 +8477,72 @@
           </Property>
           <Property class="Bool">
             <label>IIC_INTSRC_RX_UNDER</label>
-            <value>1</value>
+            <value>0</value>
             <Comment>IIC Interrupt Status</Comment>
           </Property>
           <Property class="Bool">
             <label>IIC_INTSRC_RX_OVER</label>
-            <value>1</value>
+            <value>0</value>
             <Comment>IIC Interrupt Status</Comment>
           </Property>
           <Property class="Bool">
             <label>IIC_INTSRC_RX_FULL</label>
-            <value>1</value>
+            <value>0</value>
             <Comment>IIC Interrupt Status</Comment>
           </Property>
           <Property class="Bool">
             <label>IIC_INTSRC_TX_OVER</label>
-            <value>1</value>
+            <value>0</value>
             <Comment>IIC Interrupt Status</Comment>
           </Property>
           <Property class="Bool">
             <label>IIC_INTSRC_TX_EMPTY</label>
-            <value>1</value>
+            <value>0</value>
             <Comment>IIC Interrupt Status</Comment>
           </Property>
           <Property class="Bool">
             <label>IIC_INTSRC_RD_REQ</label>
-            <value>1</value>
+            <value>0</value>
             <Comment>IIC Interrupt Status</Comment>
           </Property>
           <Property class="Bool">
             <label>IIC_INTSRC_TX_ABRT</label>
-            <value>1</value>
+            <value>0</value>
             <Comment>IIC Interrupt Status</Comment>
           </Property>
           <Property class="Bool">
             <label>IIC_INTSRC_RX_DONE</label>
-            <value>1</value>
+            <value>0</value>
             <Comment>IIC Interrupt Status</Comment>
           </Property>
           <Property class="Bool">
             <label>IIC_INTSRC_BUSY</label>
-            <value>1</value>
+            <value>0</value>
             <Comment>IIC Interrupt Status</Comment>
           </Property>
           <Property class="Bool">
             <label>IIC_INTSRC_BUSY</label>
-            <value>1</value>
+            <value>0</value>
             <Comment>IIC Interrupt Status</Comment>
           </Property>
           <Property class="Bool">
             <label>IIC_INTSRC_START_DET</label>
-            <value>1</value>
+            <value>0</value>
             <Comment>IIC Interrupt Status</Comment>
           </Property>
           <Property class="Bool">
             <label>IIC_INTSRC_GEN_CALL</label>
-            <value>1</value>
+            <value>0</value>
             <Comment>IIC Interrupt Status</Comment>
           </Property>
           <Property class="Bool">
             <label>IIC_INTSRC_RESTART_DET</label>
-            <value>1</value>
+            <value>0</value>
             <Comment>IIC Interrupt Status</Comment>
           </Property>
           <Property class="Bool">
             <label>IIC_INTSRC_SCL_SLOW</label>
-            <value>1</value>
+            <value>0</value>
             <Comment>IIC Interrupt Status</Comment>
           </Property>
           <Property class="Text">
@@ -8505,22 +8635,22 @@
           </Property>
           <Property class="Bool">
             <label>SPI_INTSRC_ROTIM</label>
-            <value>1</value>
+            <value>0</value>
             <Comment>Receive Overrun Interrupt</Comment>
           </Property>
           <Property class="Bool">
             <label>SPI_INTSRC_RTIM</label>
-            <value>1</value>
+            <value>0</value>
             <Comment>Receive Timeout Interrupt</Comment>
           </Property>
           <Property class="Bool">
             <label>SPI_INTSRC_RXIM</label>
-            <value>1</value>
+            <value>0</value>
             <Comment>Receive FIFO Interrupt</Comment>
           </Property>
           <Property class="Bool">
             <label>SPI_INTSRC_TXIM</label>
-            <value>1</value>
+            <value>0</value>
             <Comment>Transmit FIFO interrupt</Comment>
           </Property>
           <Property class="UIchoice">
@@ -8560,7 +8690,7 @@
           <label>EPT0</label>
           <Property class="UIchoice">
             <label>WorkMode</label>
-            <value>EPT_CAPTURE</value>
+            <value>EPT_WAVE</value>
             <Selections>
               <sel notAvailable="EPT0WAVE,EPT0DE,EPT0EM">EPT_CAPTURE</sel>
               <sel notAvailable="EPT0CAPTURE,EPT0DE,EPT0EM">EPT_WAVE</sel>
@@ -8604,6 +8734,16 @@
               <sel>EPT_LDPSCR_ZROPRD</sel>
             </Selections>
             <Comment>PSCR(分频)活动寄存器载入控制.活动寄存器在配置条件满足时,从影子寄存器载入更新值</Comment>
+          </Property>
+          <Property class="Text" property_class="EPT0WAVE">
+            <label>Freq</label>
+            <value>10000</value>
+            <Comment/>
+          </Property>
+          <Property class="Text" property_class="EPT0WAVE">
+            <label>Duty Cycle</label>
+            <value>50</value>
+            <Comment>范围:0~100.PWM占空比</Comment>
           </Property>
           <Property class="UIchoice" property_class="EPT0CAPTURE">
             <label>CaptureMode</label>
@@ -8749,16 +8889,6 @@
           <Property class="Bool">
             <label>EPT_INTSRC_PEND</label>
             <value>0</value>
-            <Comment/>
-          </Property>
-          <Property class="Text" property_class="EPT0WAVE">
-            <label>Duty Cycle</label>
-            <value>50</value>
-            <Comment>范围:0~100.PWM占空比</Comment>
-          </Property>
-          <Property class="Text" property_class="EPT0WAVE">
-            <label>Freq</label>
-            <value>10000</value>
             <Comment/>
           </Property>
           <Property class="UIchoice" property_class="EPT0WAVE">
@@ -9385,6 +9515,16 @@
             </Selections>
             <Comment>PSCR(分频)活动寄存器载入控制.活动寄存器在配置条件满足时,从影子寄存器载入更新值</Comment>
           </Property>
+          <Property class="Text" property_class="GPTAWAVE">
+            <label>Freq</label>
+            <value>10000</value>
+            <Comment/>
+          </Property>
+          <Property class="Text" property_class="GPTAWAVE">
+            <label>Duty Cycle</label>
+            <value>50</value>
+            <Comment>范围:0~100.PWM占空比</Comment>
+          </Property>
           <Property class="UIchoice" property_class="GPTACAPTURE">
             <label>CaptureMode</label>
             <value>GPTA_CAPMD_CONT</value>
@@ -9509,16 +9649,6 @@
           <Property class="Bool" property_class="GPTACommon">
             <label>GPTA_INTSRC_PEND</label>
             <value>0</value>
-            <Comment/>
-          </Property>
-          <Property class="Text" property_class="GPTAWAVE">
-            <label>Duty Cycle</label>
-            <value>50</value>
-            <Comment>范围:0~100.PWM占空比</Comment>
-          </Property>
-          <Property class="Text" property_class="GPTAWAVE">
-            <label>Freq</label>
-            <value>10000</value>
             <Comment/>
           </Property>
           <Property class="UIchoice" property_class="GPTAWAVE">
@@ -9725,6 +9855,16 @@
             </Selections>
             <Comment>PSCR(分频)活动寄存器载入控制.活动寄存器在配置条件满足时,从影子寄存器载入更新值</Comment>
           </Property>
+          <Property class="Text" property_class="GPTBWAVE">
+            <label>Freq</label>
+            <value>10000</value>
+            <Comment/>
+          </Property>
+          <Property class="Text" property_class="GPTBWAVE">
+            <label>Duty Cycle</label>
+            <value>50</value>
+            <Comment>范围:0~100.PWM占空比</Comment>
+          </Property>
           <Property class="UIchoice" property_class="GPTBCAPTURE">
             <label>CaptureMode</label>
             <value>GPTB_CAPMD_CONT</value>
@@ -9839,16 +9979,6 @@
           <Property class="Bool" property_class="GPTBCommon">
             <label>GPTB_INTSRC_PEND</label>
             <value>0</value>
-            <Comment/>
-          </Property>
-          <Property class="Text" property_class="GPTBWAVE">
-            <label>Duty Cycle</label>
-            <value>50</value>
-            <Comment>范围:0~100.PWM占空比</Comment>
-          </Property>
-          <Property class="Text" property_class="GPTBWAVE">
-            <label>Freq</label>
-            <value>10000</value>
             <Comment/>
           </Property>
           <Property class="UIchoice" property_class="GPTBWAVE">
