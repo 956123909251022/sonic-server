@@ -665,6 +665,42 @@ uint16_t csi_ept_get_prdr(csp_ept_t *ptEptBase)
 	return csp_ept_get_prdr(ptEptBase);
 }
 
+/** \brief  update ept PRDR and CMPx reg value
+ * 
+ *  \param[in] ptEptBase: pointer of ept register structure
+ *  \param[in] eComp: select which COMP to set(COMPA or COMPB or COMPC or COMPD)
+ *  \param[in] hwPrdr: ept PRDR reg  value
+ *  \param[in] hwCmp: ept COMP reg value
+ *  \return none
+ */
+csi_error_t csi_ept_prdr_cmp_update(csp_ept_t *ptEptBase,csi_ept_comp_e eComp, uint16_t hwPrdr, uint16_t hwCmp) 
+{
+	csp_ept_set_prdr(ptEptBase, (uint16_t)hwPrdr);			//set EPT PRDR Value
+	switch (eComp)
+	{	
+		case (EPT_COMPA):
+			csp_ept_set_cmpa(ptEptBase, (uint16_t)hwCmp);	//set EPT COMPA Value
+			break;
+			
+		case (EPT_COMPB):
+			csp_ept_set_cmpb(ptEptBase, (uint16_t)hwCmp);	//set EPT COMPB Value
+			break;
+			
+		case (EPT_COMPC):
+			csp_ept_set_cmpc(ptEptBase, (uint16_t)hwCmp);	//set EPT COMPC Value
+		    break;
+			
+		case (EPT_COMPD):
+			csp_ept_set_cmpd(ptEptBase, (uint16_t)hwCmp);	//set EPT COMPD Value
+		    break;
+			
+		default: 
+			return CSI_ERROR;
+			break;
+	}
+    return (CSI_OK);
+}
+
 /** \brief change ept output dutycycle. 
  * 
  *  \param[in] ptEptBase :    pointer of ept register structure

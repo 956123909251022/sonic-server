@@ -652,13 +652,13 @@ typedef enum {
 
 
 typedef enum {
-	B_EM_INT_EP0 = 0x1,
-	B_EM_INT_EP1 = 0x1 << 1,
-	B_EM_INT_EP2 = 0x1 << 2,
-	B_EM_INT_EP3 = 0x1 << 3,
-	B_EM_INT_CPUF= 0x1 << 8,
-	B_EM_INT_MEMF= 0x1 << 9,
-	B_EM_INT_EOMF= 0x1 << 10
+	GPTB_EM_INT_EP0 = 0x1,
+	GPTB_EM_INT_EP1 = 0x1 << 1,
+	GPTB_EM_INT_EP2 = 0x1 << 2,
+	GPTB_EM_INT_EP3 = 0x1 << 3,
+	GPTB_EM_INT_CPUF= 0x1 << 8,
+	GPTB_EM_INT_MEMF= 0x1 << 9,
+	GPTB_EM_INT_EOMF= 0x1 << 10
 }csp_gptb_emint_e;
 
 typedef enum{

@@ -745,17 +745,17 @@ typedef enum{
 
 //EMSLSR, EMSLCLR, EMHLSR, EMHLCLRm EMRISR, EMMISR, EMIMCR, EMICR
 typedef enum {
-	EPT_INT_EP0 = 0x1,
-	EPT_INT_EP1 = 0x1 << 1,
-	EPT_INT_EP2 = 0x1 << 2,
-	EPT_INT_EP3 = 0x1 << 3,
-	EPT_INT_EP4 = 0x1 << 4,
-	EPT_INT_EP5 = 0x1 << 5,
-	EPT_INT_EP6 = 0x1 << 6,
-	EPT_INT_EP7 = 0x1 << 7,
-	EPT_INT_CPUF= 0x1 << 8,
-	EPT_INT_MEMF= 0x1 << 9,
-	EPT_INT_EOMF= 0x1 << 10
+	EPT_EM_INT_EP0 = 0x1,
+	EPT_EM_INT_EP1 = 0x1 << 1,
+	EPT_EM_INT_EP2 = 0x1 << 2,
+	EPT_EM_INT_EP3 = 0x1 << 3,
+	EPT_EM_INT_EP4 = 0x1 << 4,
+	EPT_EM_INT_EP5 = 0x1 << 5,
+	EPT_EM_INT_EP6 = 0x1 << 6,
+	EPT_EM_INT_EP7 = 0x1 << 7,
+	EPT_EM_INT_CPUF= 0x1 << 8,
+	EPT_EM_INT_MEMF= 0x1 << 9,
+	EPT_EM_INT_EOMF= 0x1 << 10
 }csp_ept_emint_e;
 
 ///TRGFTCR

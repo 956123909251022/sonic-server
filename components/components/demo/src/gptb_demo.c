@@ -22,7 +22,6 @@
 /* Private macro-----------------------------------------------------------*/
 /* Private variablesr------------------------------------------------------*/
 static uint32_t s_wGptbCapBuff[4] = {0};
-static uint8_t  s_byTick;
 
 /** \brief GPTB基本定时功能
  * 
@@ -69,21 +68,19 @@ int gptb_capture_demo(void)
 	ch = csi_etb_ch_alloc(tEtbConfig.byChType);	//自动获取空闲通道号,ch >= 0 获取成功						//ch < 0,则获取通道号失败		
 	iRet = csi_etb_ch_config(ch, &tEtbConfig);	
 //------------------------------------------------------------------------------------------------------------------------	
-	csi_gptb_captureconfig_t tPwmCfg;								  
-	tPwmCfg.byWorkmod       = GPTB_CAPTURE;                     //WAVE or CAPTURE    //计数或捕获	
-	tPwmCfg.byCountingMode  = GPTB_UPCNT;                       //CNYMD  //计数方向
-	tPwmCfg.byOneshotMode   = GPTB_OP_CONT;                     //OPM    //单次或连续(工作方式)
-	tPwmCfg.byStartSrc      = GPTB_SYNC;				    //软件使能同步触发使能控制（RSSR中START控制位）//启动方式
-	tPwmCfg.byPscld         = GPTB_LDPSCR_ZRO;                  //PSCR(分频)活动寄存器载入控制。活动寄存器在配置条件满足时，从影子寄存器载入更新值	
-	tPwmCfg.byCaptureCapmd  = GPTB_CAPMD_CONT;                  //0:连续捕捉模式    1h：一次性捕捉模式
-	tPwmCfg.byCaptureStopWrap=4-1;                              //Capture模式下，捕获事件计数器周期设置值
-	tPwmCfg.byCaptureLdaret  =0;                                //CMPA捕捉载入后，计数器值计数状态控制位(1h：CMPA触发后，计数器值进行重置;0h：CMPA触发后，计数器值不进行重置)
-	tPwmCfg.byCaptureLdbret  =0;    
-	tPwmCfg.byCaptureLdaaret  =0;    
-	tPwmCfg.byCaptureLdbaret  =1;    	
-
-	tPwmCfg.wInt 		 =GPTB_INTSRC_CAPLD3;                   //interrupt
-	csi_gptb_capture_init(GPTB0, &tPwmCfg);	
+	csi_gptb_captureconfig_t tCapCfg;								  
+	tCapCfg.byWorkmod        =  GPTB_CAPTURE;                     //WAVE or CAPTURE    //计数或捕获	
+	tCapCfg.byCountingMode   =  GPTB_UPCNT;                       //CNYMD  //计数方向
+	tCapCfg.byStartSrc       =  GPTB_SYNC;				    	//软件使能同步触发使能控制（RSSR中START控制位）//启动方式
+	tCapCfg.byPscld          =  GPTB_LDPSCR_ZRO;                  //PSCR(分频)活动寄存器载入控制。活动寄存器在配置条件满足时，从影子寄存器载入更新值	
+	tCapCfg.byCaptureCapmd    = GPTB_CAPMD_CONT;                  //0:连续捕捉模式    1h：一次性捕捉模式
+	tCapCfg.byCaptureStopWrap = 4-1;                              //Capture模式下，捕获事件计数器周期设置值
+	tCapCfg.byCaptureLdaret   = 0;                                //CMPA捕捉载入后，计数器值计数状态控制位(1h：CMPA触发后，计数器值进行重置;0h：CMPA触发后，计数器值不进行重置)
+	tCapCfg.byCaptureLdbret   = 0;    
+	tCapCfg.byCaptureLdaaret  = 0;    
+	tCapCfg.byCaptureLdbaret  = 1;    	
+	tCapCfg.wInt 		      = GPTB_INTSRC_CAPLD3;                   //interrupt
+	csi_gptb_capture_init(GPTB0, &tCapCfg);	
 //------------------------------------------------------------------------------------------------------------------------
 	csi_gptb_set_sync (GPTB0, GPTB_TRG_SYNCEN2, GPTB_TRG_CONTINU,GPTB_AUTO_REARM_ZRO);
 //------------------------------------------------------------------------------------------------------------------------
@@ -106,13 +103,13 @@ int gptb_capture_demo(void)
 	}	
 	
 	return iRet;
-};
-
+}
 
 /** \brief GPTB波形输出示例代码
- *   		-10kHZ   输出波形
- *     		-PWMA在50%和20%之间切换
- * 			-
+ *   		-10kHZ，占空比50%   输出波形
+ *     		-可通过以下两种方式灵活调整PWM参数
+ * 			--csi_gptb_change_ch_duty：修改PWM占空比
+ *			--csi_gptb_prdr_cmp_update：修改PWM周期寄存器和比较寄存器的值			-
  *  \param[in] none
  *  \return error code
  */
@@ -123,12 +120,7 @@ int gptb_pwm_demo(void)
 	csi_pin_set_mux(PA013, PA013_GPTB0_CHAX);						//PIN:8
     csi_pin_set_mux(PA014, PA014_GPTB0_CHAY);                       //PIN:9 
     csi_pin_set_mux(PB04,  PB04_GPTB0_CHB  );                       //PIN:13 
-
-//	csi_pin_set_mux(PA09,PA09_EBI0);                                //PIN:4
-//	csi_pin_set_mux(PB04,PB04_EBI1);
-//------------------------------------------------------------------------------------------------------------------------
-//    csi_gptb_channel_cmpload_config(GPTB0, GPTB_CMPLD_SHDW, GPTB_LDCMP_ZRO ,GPTB_CAMPA);
-//	csi_gptb_channel_cmpload_config(GPTB0, GPTB_CMPLD_SHDW, GPTB_LDCMP_ZRO ,GPTB_CAMPB);		
+//------------------------------------------------------------------------------------------------------------------------	
     csi_gptb_pwmconfig_t tPwmCfg;								  
 	tPwmCfg.byWorkmod        = GPTB_WAVE;                       //WAVE  波形模式
 	tPwmCfg.byCountingMode   = GPTB_UPDNCNT;                    //CNYMD  //计数方向
@@ -137,13 +129,9 @@ int gptb_pwm_demo(void)
 	tPwmCfg.byPscld          = GPTB_LDPSCR_ZRO;                 //PSCR(分频)活动寄存器载入控制。活动寄存器在配置条件满足时，从影子寄存器载入更新值		
 	tPwmCfg.byDutyCycle 	 = 50;								//pwm ouput duty cycle//PWM初始值			
 	tPwmCfg.wFreq 			 = 10000;							//pwm ouput frequency	
-	tPwmCfg.wInt 		 = GPTB_INTSRC_CBU;                    //interrupt
+	tPwmCfg.wInt 			 = GPTB_INTSRC_NONE;                //interrupt
 	csi_gptb_wave_init(GPTB0, &tPwmCfg);
-		
-//------------------------------------------------------------------------------------------------------------------------	
-//	csi_gptb_channel_aqload_config(GPTB0, GPTB_LD_SHDW, GPTB_LDCMP_PRD ,GPTB_CHANNEL_1);//配置波形控制寄存器的载入模式：Immediate/Shadow  注意：在改变AQLDR寄存器时 会清除相应的AQCRx
-//	csi_gptb_channel_aqload_config(GPTB0, GPTB_LD_SHDW, GPTB_LDCMP_PRD ,GPTB_CHANNEL_2);
-//	
+//------------------------------------------------------------------------------------------------------------------------		
 	csi_gptb_pwmchannel_config_t  channel;
 	channel.byActionZro    =   GPTB_LO;
 	channel.byActionPrd    =   GPTB_NA;
@@ -181,22 +169,20 @@ int gptb_pwm_demo(void)
 	csi_gptb_int_enable(GPTB0, GPTB_INTSRC_TRGEV1 , ENABLE);
 	
 	csi_gptb_start(GPTB0);//start  timer
-
 //------------------------------------------------------------------------------------------------------------------------	
-	while(1){	
+	while(1)
+	{	
+		csi_gptb_change_ch_duty(GPTB0,GPTB_COMPA,50);
+		csi_gptb_change_ch_duty(GPTB0,GPTB_COMPB,50);
+		csi_gptb_prdr_cmp_update(GPTB0,GPTB_COMPA,2400,600); 	//修改PWM1周期为2400，比较值为600
+		csi_gptb_prdr_cmp_update(GPTB0,GPTB_COMPB,2400,600); 	//修改PWM2周期为2400，比较值为600 
+		mdelay(100); 
 
-//            csi_gptb_global_sw(GPTB0) ;                            //软件产生一次GLD触发
-//            csi_gpio_port_set_high(GPIOA0, (0x01ul << 0));
-			csi_gptb_change_ch_duty(GPTB0,GPTB_COMPA,50);
-            csi_gptb_change_ch_duty(GPTB0,GPTB_COMPB,50);
-		    mdelay(100); 
-                       
-
-//			csi_gptb_global_sw(GPTB0) ; 
-//			csi_gpio_port_set_low (GPIOA0, (0x01ul << 0));
-            csi_gptb_change_ch_duty(GPTB0,GPTB_COMPA, 20);
-            csi_gptb_change_ch_duty(GPTB0,GPTB_COMPB, 20);
-		    mdelay(100);	
+		csi_gptb_change_ch_duty(GPTB0,GPTB_COMPA, 20);
+		csi_gptb_change_ch_duty(GPTB0,GPTB_COMPB, 20);
+		csi_gptb_prdr_cmp_update(GPTB0,GPTB_COMPA,2400,1800); 	//修改PWM1周期为2400，比较值为1800
+		csi_gptb_prdr_cmp_update(GPTB0,GPTB_COMPB,2400,1800); 	//修改PWM2周期为2400，比较值为1800 
+		mdelay(100);	
 	}
 	return iRet;
 }
@@ -215,9 +201,6 @@ int gptb_pwm_dz_demo(void)
 	csi_pin_set_mux(PA013, PA013_GPTB0_CHAX);						//PIN:8
     csi_pin_set_mux(PA014, PA014_GPTB0_CHAY);                       //PIN:9 
     csi_pin_set_mux(PB04,  PB04_GPTB0_CHB  );                       //PIN:13 
-
-//	csi_pin_set_mux(PA09,PA09_EBI0);                                //PIN:4
-//	csi_pin_set_mux(PB04,PB04_EBI1);
 //------------------------------------------------------------------------------------------------------------------------	
 	csi_gptb_pwmconfig_t tPwmCfg;								  
 	tPwmCfg.byWorkmod       = GPTB_WAVE;                        //WAVE or CAPTURE    //计数或捕获	
@@ -227,7 +210,7 @@ int gptb_pwm_dz_demo(void)
 	tPwmCfg.byPscld         = GPTB_LDPSCR_ZRO;                  //PSCR(分频)活动寄存器载入控制。活动寄存器在配置条件满足时，从影子寄存器载入更新值	
 	tPwmCfg.byDutyCycle 	= 50;							    //pwm ouput duty cycle//PWM初始值			
 	tPwmCfg.wFreq 			= 10000;						    //pwm ouput frequency			
-//	tPwmCfg.wInt 		= GPTB_INT_TRGEV0;                  //interrupt
+	tPwmCfg.wInt 		    = GPTB_INTSRC_NONE;                  //interrupt
 	csi_gptb_wave_init(GPTB0, &tPwmCfg);
 //	csi_gptb_set_sync (GPTB0, GPTB_TRG_SYNCEN2, GPTB_TRG_CONTINU,GPTB_AUTO_REARM_ZRO);	
 //	csi_gptb_set_evtrg(GPTB0, GPTB_TRGOUT0, GPTB_TRGSRC_PE1);    //EP1用trg0输出，
@@ -253,29 +236,29 @@ int gptb_pwm_dz_demo(void)
 		
 //csp_gptb_set_aqtscr(GPTB0,GPTB_T1,EP1);//波形输出T事件选择
 //------------------------------------------------------------------------------------------------------------------------	
-	csi_gptb_deadzone_config_t  tGptbDeadZoneTime;
-	tGptbDeadZoneTime.byDcksel               = GPTB_DB_DPSC;    //
-	tGptbDeadZoneTime.hwDpsc                 =  0;              //FDBCLK = FHCLK / (DPSC+1)
-	tGptbDeadZoneTime.hwRisingEdgereGister   = 500;             //上升沿-ns
-	tGptbDeadZoneTime.hwFallingEdgereGister  = 200;             //下降沿-ns
-	tGptbDeadZoneTime.byChaDedb              = GPTB_DB_AR_BF;      //不使用死区双沿
-	csi_gptb_dz_config(GPTB0,&tGptbDeadZoneTime);
+	csi_gptb_deadzone_config_t  tGptbDeadZoneCfg;
+	tGptbDeadZoneCfg.byDcksel               = GPTB_DB_DPSC;    //
+	tGptbDeadZoneCfg.hwDpsc                 = 0;              //FDBCLK = FHCLK / (DPSC+1)
+	tGptbDeadZoneCfg.hwRisingEdgeTime       = 500;             //上升沿-ns
+	tGptbDeadZoneCfg.hwFallingEdgeTime      = 200;             //下降沿-ns
+	tGptbDeadZoneCfg.byChaDedb              = GPTB_DB_AR_BF;      //不使用死区双沿
+	csi_gptb_dz_config(GPTB0,&tGptbDeadZoneCfg);
 	
-	tGptbDeadZoneTime.byChxOuselS1S0      = GPTB_DBOUT_AR_BF;      //使能通道A的上升沿延时，使能通道B的下降沿延时
-	tGptbDeadZoneTime.byChxPolarityS3S2   = GPTB_DB_POL_B;         //通道A和通道B延时输出电平是否反向
-	tGptbDeadZoneTime.byChxInselS5S4      = GPTB_DBCHAIN_AR_AF;    //PWMA作为上升沿和下降沿延时处理的输入信号
-	tGptbDeadZoneTime.byChxOutSwapS8S7    = GPTB_DBCHAOUT_OUTA_A_OUTB_B;   //OUTA=通道A输出，OUTB=通道B输出
-    csi_gptb_channelmode_config(GPTB0,&tGptbDeadZoneTime,GPTB_CHANNEL_1);
-													  
+	tGptbDeadZoneCfg.byChxOuselS1S0      = GPTB_DBOUT_AR_BF;      //使能通道A的上升沿延时，使能通道B的下降沿延时
+	tGptbDeadZoneCfg.byChxPolarityS3S2   = GPTB_DB_POL_B;         //通道A和通道B延时输出电平是否反向
+	tGptbDeadZoneCfg.byChxInselS5S4      = GPTB_DBCHAIN_AR_AF;    //PWMA作为上升沿和下降沿延时处理的输入信号
+	tGptbDeadZoneCfg.byChxOutSwapS8S7    = GPTB_DBCHAOUT_OUTA_A_OUTB_B;   //OUTA=通道A输出，OUTB=通道B输出
+    csi_gptb_channelmode_config(GPTB0,&tGptbDeadZoneCfg,GPTB_CHANNEL_1);
 //------------------------------------------------------------------------------------------------------------------------	
 	csi_gptb_start(GPTB0);//start  timer
-    while(1){			
-		    csi_gptb_change_ch_duty(GPTB0,GPTB_COMPA, 80);
-            csi_gptb_change_ch_duty(GPTB0,GPTB_COMPB, 80);		  
-		    mdelay(200);                        
-		    csi_gptb_change_ch_duty(GPTB0,GPTB_COMPA, 40);
-            csi_gptb_change_ch_duty(GPTB0,GPTB_COMPB, 40);
-		    mdelay(200);
+    while(1)
+	{			
+		csi_gptb_change_ch_duty(GPTB0,GPTB_COMPA, 80);
+		csi_gptb_change_ch_duty(GPTB0,GPTB_COMPB, 80);		  
+		mdelay(200);                        
+		csi_gptb_change_ch_duty(GPTB0,GPTB_COMPA, 40);
+		csi_gptb_change_ch_duty(GPTB0,GPTB_COMPB, 40);
+		mdelay(200);
 	}			
 	return iRet;
 };
@@ -294,11 +277,9 @@ int gptb_pwm_dz_em_demo(void)
 //------------------------------------------------------------------------------------------------------------------------	
     csi_pin_set_mux(PA013, PA013_GPTB0_CHAX);						//PIN:8
     csi_pin_set_mux(PA014, PA014_GPTB0_CHAY);                       //PIN:9 
-//    csi_pin_set_mux(PB04,  PB04_GPTB0_CHB  );                       //PIN:13 
-//
-	csi_pin_set_mux(PA09,PA09_EBI0);csi_pin_pull_mode(PA09, GPIO_PULLUP);
-//	csi_pin_set_mux(PB04,PB04_EBI1);
 
+	csi_pin_set_mux(PA09,PA09_EBI0);csi_pin_pull_mode(PA09,GPIO_PULLUP);
+	csi_pin_set_mux(PB04,PB04_EBI1);csi_pin_pull_mode(PB04,GPIO_PULLUP);
 //------------------------------------------------------------------------------------------------------------------------	
 	csi_gptb_pwmconfig_t tPwmCfg;								  
 	tPwmCfg.byWorkmod       = GPTB_WAVE;                        //WAVE or CAPTURE    //计数或捕获	
@@ -308,9 +289,8 @@ int gptb_pwm_dz_em_demo(void)
 	tPwmCfg.byPscld         = GPTB_LDPSCR_ZRO;                  //PSCR(分频)活动寄存器载入控制。活动寄存器在配置条件满足时，从影子寄存器载入更新值	
 	tPwmCfg.byDutyCycle 	= 50;							    //pwm ouput duty cycle//PWM初始值(0~100)		
 	tPwmCfg.wFreq 			= 10000;						    //pwm ouput frequency			
-	tPwmCfg.wInt 		= GPTB_INTSRC_PEND;                                //interrupt
+	tPwmCfg.wInt 			= GPTB_INTSRC_PEND;                                //interrupt
 	csi_gptb_wave_init(GPTB0, &tPwmCfg);
-
 //------------------------------------------------------------------------------------------------------------------------
 	csi_gptb_pwmchannel_config_t  tGptbchannelCfg;
 	tGptbchannelCfg.byActionZro    =   GPTB_LO;
@@ -329,41 +309,37 @@ int gptb_pwm_dz_em_demo(void)
 	tGptbchannelCfg.byChoiceC1sel  =   GPTB_CMPB;
 	tGptbchannelCfg.byChoiceC2sel  =   GPTB_CMPB;	
 	csi_gptb_channel_config(GPTB0, &tGptbchannelCfg,  GPTB_CHANNEL_2);
-//    csp_gptb_set_aqtscr(GPTB0,GPTB_T1,EP2);//波形输出T事件选择
 //------------------------------------------------------------------------------------------------------------------------	
-	csi_gptb_deadzone_config_t  tGptbDeadZoneTime;
-	tGptbDeadZoneTime.byDcksel               = GPTB_DB_DPSC;     //
-	tGptbDeadZoneTime.hwDpsc                 =  0;              //FDBCLK = FHCLK / (DPSC+1)
-	tGptbDeadZoneTime.hwRisingEdgereGister   = 500;             //上升沿-ns
-	tGptbDeadZoneTime.hwFallingEdgereGister  = 200;             //下降沿-ns
-	tGptbDeadZoneTime.byChaDedb              = GPTB_DB_AR_BF;        //不使用死区双沿
-	csi_gptb_dz_config(GPTB0,&tGptbDeadZoneTime);
+	csi_gptb_deadzone_config_t  tGptbDeadZoneCfg;
+	tGptbDeadZoneCfg.byDcksel               = GPTB_DB_DPSC;     //
+	tGptbDeadZoneCfg.hwDpsc                 = 0;              //FDBCLK = FHCLK / (DPSC+1)
+	tGptbDeadZoneCfg.hwRisingEdgeTime   = 500;             //上升沿-ns
+	tGptbDeadZoneCfg.hwFallingEdgeTime  = 200;             //下降沿-ns
+	tGptbDeadZoneCfg.byChaDedb              = GPTB_DB_AR_BF;        //不使用死区双沿
+	csi_gptb_dz_config(GPTB0,&tGptbDeadZoneCfg);
 	
-	tGptbDeadZoneTime.byChxOuselS1S0      = GPTB_DBOUT_AR_BF;      //使能通道A的上升沿延时，使能通道B的下降沿延时
-	tGptbDeadZoneTime.byChxPolarityS3S2   = GPTB_DB_POL_B;         //通道A和通道B延时输出电平是否反向
-	tGptbDeadZoneTime.byChxInselS5S4      = GPTB_DBCHAIN_AR_AF;    //PWMA作为上升沿和下降沿延时处理的输入信号
-	tGptbDeadZoneTime.byChxOutSwapS8S7    = GPTB_DBCHAOUT_OUTA_A_OUTB_B;   //OUTA=通道A输出，OUTB=通道B输出  CHOUTX_OUA_OUB
-    csi_gptb_channelmode_config(GPTB0,&tGptbDeadZoneTime,GPTB_CHANNEL_1);
-
- 	
+	tGptbDeadZoneCfg.byChxOuselS1S0      = GPTB_DBOUT_AR_BF;      //使能通道A的上升沿延时，使能通道B的下降沿延时
+	tGptbDeadZoneCfg.byChxPolarityS3S2   = GPTB_DB_POL_B;         //通道A和通道B延时输出电平是否反向
+	tGptbDeadZoneCfg.byChxInselS5S4      = GPTB_DBCHAIN_AR_AF;    //PWMA作为上升沿和下降沿延时处理的输入信号
+	tGptbDeadZoneCfg.byChxOutSwapS8S7    = GPTB_DBCHAOUT_OUTA_A_OUTB_B;   //OUTA=通道A输出，OUTB=通道B输出  CHOUTX_OUA_OUB
+    csi_gptb_channelmode_config(GPTB0,&tGptbDeadZoneCfg,GPTB_CHANNEL_1);
 //------------------------------------------------------------------------------------------------------------------------	
-    csi_gptb_emergency_config_t   tGptbEmergencyCfg;             //紧急状态输入
-    tGptbEmergencyCfg.byEpxInt    = GPTB_EBI0 ;                     //EPx选择外部IO端口（EBI0~EBI4）
-    tGptbEmergencyCfg.byPolEbix   = GPTB_EBI_POL_L;                 //EBIx的输入有效极性选择控制
-	tGptbEmergencyCfg.byEpx       = GPTB_EP3;                       //使能EPx
-	tGptbEmergencyCfg.byEpxLckmd  = GPTB_EP_HLCK;                   //使能 软/硬 锁
-	tGptbEmergencyCfg.byOsrshdw   = GPTB_IMMEDIATE;                 //锁止端口状态载入方式
-    tGptbEmergencyCfg.byFltpace0  = GPTB_EPFLT0_2P;                 //EP0、EP1、EP2和EP3的数字去抖滤波检查周期数
-	if(tGptbEmergencyCfg.byEpxInt ==GPTB_ORL0){tGptbEmergencyCfg.byOrl0 = GPTB_ORLx_EBI0 |GPTB_ORLx_EBI1|GPTB_ORLx_EBI2;}
-	if(tGptbEmergencyCfg.byEpxInt ==GPTB_ORL1){tGptbEmergencyCfg.byOrl1 = GPTB_ORLx_EBI0 |GPTB_ORLx_EBI1|GPTB_ORLx_EBI2;}
-	csi_gptb_emergency_cfg(GPTB0,&tGptbEmergencyCfg);
+    csi_gptb_emergency_config_t   tGptbEmCfg;             //紧急状态输入
+    tGptbEmCfg.byEpxInt    = GPTB_EBI0 ;                     //EPx选择外部IO端口（EBI0~EBI4）
+    tGptbEmCfg.byPolEbix   = GPTB_EBI_POL_L;                 //EBIx的输入有效极性选择控制
+	tGptbEmCfg.byEpx       = GPTB_EP3;                       //使能EPx
+	tGptbEmCfg.byEpxLckmd  = GPTB_EP_HLCK;                   //使能 软/硬 锁
+	tGptbEmCfg.byOsrshdw   = GPTB_IMMEDIATE;                 //锁止端口状态载入方式
+    tGptbEmCfg.byFltpace0  = GPTB_EPFLT0_2P;                 //EP0、EP1、EP2和EP3的数字去抖滤波检查周期数
+	if(tGptbEmCfg.byEpxInt == GPTB_ORL0){tGptbEmCfg.byOrl0 = GPTB_ORLx_EBI0 |GPTB_ORLx_EBI1|GPTB_ORLx_EBI2;}
+	if(tGptbEmCfg.byEpxInt == GPTB_ORL1){tGptbEmCfg.byOrl1 = GPTB_ORLx_EBI0 |GPTB_ORLx_EBI1|GPTB_ORLx_EBI2;}
+	csi_gptb_emergency_cfg(GPTB0,&tGptbEmCfg);
 	
     csi_gptb_emergency_pinxout(GPTB0,GPTB_EMCOAX,GPTB_EMOUT_L);    //紧急状态下输出状态设置（注意mos/igbt的驱动电平）
 	csi_gptb_emergency_pinxout(GPTB0,GPTB_EMCOAY,GPTB_EMOUT_L);
 	
     csi_gptb_emint_en(GPTB0,GPTB_INTSRC_EP3);             //紧急状态输入中断使能
 //------------------------------------------------------------------------------------------------------------------------	
-
 //	csi_gptb_set_sync (GPTB0, GPTB_TRG_SYNCEN3, GPTB_TRG_CONTINU,GPTB_AUTO_REARM_ZRO);	
 //	csi_gptb_set_evtrg (GPTB0, GPTB_TRGOUT0, GPTB_TRGSRC_EP0);    //EPx用trg0输出，GPTB_TRGSRC_EP0
 //	csi_gptb_int_enable(GPTB0, GPTB_INT_TRGEV0,true);
@@ -382,34 +358,16 @@ int gptb_pwm_dz_em_demo(void)
 //	tReglk.byAqcsf   = 1;  																				//0xa  
 //    csi_gptb_reglk_config(GPTB0,&tReglk);
 //------------------------------------------------------------------------------------------------------------------------
-    csi_gptb_start(GPTB0);//start  timer
-	
-
+    csi_gptb_start(GPTB0);//start  timer	
 //------------------------------------------------------------------------------------------------------------------------	
-    while(1){			
-             
-//		     udelay(10);		    
-//			 csi_gpio_port_set_high(GPIOA0, (0x01ul << 0));
-//			  csp_gptb_force_em(GPTB0,B_EP3);
-//			 csi_gpio_port_set_low (GPIOA0, (0x01ul << 0));
-//		    mdelay(2);
-////            csi_gptb_Onetime_software_output(GPTB0, GPTB_OSTSF1, LO);
-////            csi_gptb_Onetime_software_output(GPTB0, GPTB_OSTSF2, LO);
-////            csi_gptb_Onetime_software_output(GPTB0, GPTB_OSTSF3, LO);
-			csi_gptb_change_ch_duty(GPTB0,GPTB_COMPA, 80);
-            csi_gptb_change_ch_duty(GPTB0,GPTB_COMPB, 80);
-            mdelay(100);		
-////			csi_gptb_continuous_software_output(GPTB0, GPTB_CHANNEL_1,GPTB_EM_AQCSF_L);
-////			csi_gptb_continuous_software_output(GPTB0, GPTB_CHANNEL_2,GPTB_EM_AQCSF_L);
-////			csi_gptb_continuous_software_output(GPTB0, GPTB_CHANNEL_3,GPTB_EM_AQCSF_L);
-////			mdelay(100);
-////			csi_gptb_continuous_software_output(GPTB0, GPTB_CHANNEL_1,GPTB_EM_AQCSF_NONE);
-////			csi_gptb_continuous_software_output(GPTB0, GPTB_CHANNEL_2,GPTB_EM_AQCSF_NONE);
-////			csi_gptb_continuous_software_output(GPTB0, GPTB_CHANNEL_3,GPTB_EM_AQCSF_NONE);
-		
-            csi_gptb_change_ch_duty(GPTB0,GPTB_COMPA, 40);
-            csi_gptb_change_ch_duty(GPTB0,GPTB_COMPB, 40);
-		    mdelay(100);
+    while(1)
+	{			
+		csi_gptb_change_ch_duty(GPTB0,GPTB_COMPA, 80);
+		csi_gptb_change_ch_duty(GPTB0,GPTB_COMPB, 80);
+		mdelay(100);		
+		csi_gptb_change_ch_duty(GPTB0,GPTB_COMPA, 40);
+		csi_gptb_change_ch_duty(GPTB0,GPTB_COMPB, 40);
+		mdelay(100);
 	}			
 	return iRet;
 }
@@ -419,74 +377,93 @@ int gptb_pwm_dz_em_demo(void)
  *  \return    none
  */
 __attribute__((weak)) void gptb_irqhandler(csp_gptb_t *ptGptbBase)
-  {  	
-	if(((csp_gptb_get_emisr(ptGptbBase) & B_EM_INT_CPUF))==B_EM_INT_CPUF)
-	{ 
-	  nop;//udelay(10);		  
-	  ptGptbBase -> EMHLCLR |=B_EM_INT_CPUF;
-	  csp_gptb_clr_emisr(ptGptbBase,B_EM_INT_CPUF);	
-	 }
-	  
-	if(((csp_gptb_get_emisr(ptGptbBase) & B_EM_INT_EP3))==B_EM_INT_EP3)
-	{ 
-	  nop;udelay(10);
-	  csp_gptb_clr_emHdlck(ptGptbBase, GPTB_EP_3);
-	  csp_gptb_clr_emisr(ptGptbBase,B_EM_INT_EP3);	
-	 }
-	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_TRGEV0))==GPTB_INT_TRGEV0)
+{  	
+	volatile uint32_t wEMMisr = csp_gptb_get_emisr(ptGptbBase);
+	volatile uint32_t wMisr   = csp_gptb_get_isr(ptGptbBase);	
+	
+	//GPTB emergency interrupt
+	if(wEMMisr > 0)
 	{
-	   csp_gptb_clr_isr(ptGptbBase, GPTB_INT_TRGEV0);
-	}	
-	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_TRGEV1))==GPTB_INT_TRGEV1)
-	{
-	   csp_gptb_clr_isr(ptGptbBase, GPTB_INT_TRGEV1);
-	}	
-	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_CAPLD0))==GPTB_INT_CAPLD0)
-	{
-	  s_wGptbCapBuff[0]=csp_gptb_get_cmpa(ptGptbBase);
-	  csp_gptb_clr_isr(ptGptbBase, GPTB_INT_CAPLD0);	
-	}
-	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_CAPLD1))==GPTB_INT_CAPLD1)
-	{
-	  s_wGptbCapBuff[0]=csp_gptb_get_cmpa(ptGptbBase);
-	  s_wGptbCapBuff[1]=csp_gptb_get_cmpb(ptGptbBase);
-	  csp_gptb_clr_isr(ptGptbBase, GPTB_INT_CAPLD1);	
-	}
-	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_CAPLD2))==GPTB_INT_CAPLD2)
-	{
-	  s_wGptbCapBuff[0]=csp_gptb_get_cmpa(ptGptbBase);
-	  s_wGptbCapBuff[1]=csp_gptb_get_cmpb(ptGptbBase);	
-	  s_wGptbCapBuff[2]=csp_gptb_get_cmpaa(ptGptbBase);
-	  csp_gptb_clr_isr(ptGptbBase, GPTB_INT_CAPLD2);	
-	}
-	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_CAPLD3))==GPTB_INT_CAPLD3)
-	{
-	  s_wGptbCapBuff[0]=csp_gptb_get_cmpa(ptGptbBase);
-	  s_wGptbCapBuff[1]=csp_gptb_get_cmpb(ptGptbBase);	
-	  s_wGptbCapBuff[2]=csp_gptb_get_cmpaa(ptGptbBase);
-	  s_wGptbCapBuff[3]=csp_gptb_get_cmpba(ptGptbBase);	
-	  csp_gptb_clr_isr(ptGptbBase, GPTB_INT_CAPLD3);	
-	}
-	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_PEND))==GPTB_INT_PEND)
-	{
-	   csi_gpio_port_set_high(GPIOA0, (0x01ul << 0));			
-	   nop;
-	   csi_gpio_port_set_low (GPIOA0, (0x01ul << 0));
-	   csp_gptb_clr_isr(ptGptbBase, GPTB_INT_PEND);
-	}
-	if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_CBU))==GPTB_INT_CBU)
-	{	
-		s_byTick++;
-		if(s_byTick>=5)
-		{		
-			s_byTick=0;
-			csi_gpio_port_set_high(GPIOA0, (0x01ul << 0));
-			csi_gptb_channel_cmpload_config(GPTB0, GPTB_IMMEDIATE, GPTB_LDMD_ZRO ,GPTB_COMPA);
-	        csi_gptb_channel_cmpload_config(GPTB0, GPTB_IMMEDIATE, GPTB_LDMD_ZRO ,GPTB_COMPB);
-			csi_gptb_change_ch_duty(GPTB0,GPTB_COMPA, 25);
-			csi_gptb_change_ch_duty(GPTB0,GPTB_COMPB, 25);
-			csi_gpio_port_set_low (GPIOA0, (0x01ul << 0));  
+		if((wEMMisr & GPTB_EM_INT_EP0) == GPTB_EM_INT_EP0)
+		{
+			csp_gptb_clr_emisr(ptGptbBase, GPTB_EM_INT_EP0);
 		}
-	    csp_gptb_clr_isr(ptGptbBase, GPTB_INT_CBU);
-	}	
+		if((wEMMisr & GPTB_EM_INT_EP1) == GPTB_EM_INT_EP1)
+		{
+			csp_gptb_clr_emisr(ptGptbBase, GPTB_EM_INT_EP1);
+		}
+		if((wEMMisr & GPTB_EM_INT_EP2) == GPTB_EM_INT_EP2)
+		{
+			csp_gptb_clr_emisr(ptGptbBase, GPTB_EM_INT_EP2);
+		}
+		if((wEMMisr & GPTB_EM_INT_EP3) == GPTB_EM_INT_EP3)
+		{
+			csp_gptb_clr_emisr(ptGptbBase, GPTB_EM_INT_EP3);
+		}	
+		if(((csp_gptb_get_emisr(ptGptbBase) & GPTB_EM_INT_CPUF)) == GPTB_EM_INT_CPUF)
+		{ 
+			nop;		  
+			ptGptbBase -> EMHLCLR |= GPTB_EM_INT_CPUF;
+			csp_gptb_clr_emisr(ptGptbBase,GPTB_EM_INT_CPUF);	
+		}
+	}
+	
+	//GPTB interrupt
+	if(wMisr > 0)
+	{
+		if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_TRGEV0))==GPTB_INT_TRGEV0)
+		{
+			csp_gptb_clr_isr(ptGptbBase, GPTB_INT_TRGEV0);
+		}	
+		if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_TRGEV1))==GPTB_INT_TRGEV1)
+		{
+			csp_gptb_clr_isr(ptGptbBase, GPTB_INT_TRGEV1);
+		}	
+		if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_CAPLD0))==GPTB_INT_CAPLD0)
+		{
+			s_wGptbCapBuff[0]=csp_gptb_get_cmpa(ptGptbBase);
+			csp_gptb_clr_isr(ptGptbBase, GPTB_INT_CAPLD0);	
+		}
+		if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_CAPLD1))==GPTB_INT_CAPLD1)
+		{
+			s_wGptbCapBuff[0]=csp_gptb_get_cmpa(ptGptbBase);
+			s_wGptbCapBuff[1]=csp_gptb_get_cmpb(ptGptbBase);
+			csp_gptb_clr_isr(ptGptbBase, GPTB_INT_CAPLD1);	
+		}
+		if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_CAPLD2))==GPTB_INT_CAPLD2)
+		{
+			s_wGptbCapBuff[0]=csp_gptb_get_cmpa(ptGptbBase);
+			s_wGptbCapBuff[1]=csp_gptb_get_cmpb(ptGptbBase);	
+			s_wGptbCapBuff[2]=csp_gptb_get_cmpaa(ptGptbBase);
+			csp_gptb_clr_isr(ptGptbBase, GPTB_INT_CAPLD2);	
+		}
+		if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_CAPLD3))==GPTB_INT_CAPLD3)
+		{
+			s_wGptbCapBuff[0]=csp_gptb_get_cmpa(ptGptbBase);
+			s_wGptbCapBuff[1]=csp_gptb_get_cmpb(ptGptbBase);	
+			s_wGptbCapBuff[2]=csp_gptb_get_cmpaa(ptGptbBase);
+			s_wGptbCapBuff[3]=csp_gptb_get_cmpba(ptGptbBase);	
+			csp_gptb_clr_isr(ptGptbBase, GPTB_INT_CAPLD3);	
+		}
+		if(((csp_gptb_get_isr(ptGptbBase) & GPTB_INT_PEND))==GPTB_INT_PEND)
+		{
+			csp_gptb_clr_isr(ptGptbBase, GPTB_INT_PEND);
+		}
+		if((wMisr & GPTB_INT_CAU) == GPTB_INT_CAU)
+		{
+			csp_gptb_clr_isr(ptGptbBase, GPTB_INT_CAU);
+		}
+		if((wMisr & GPTB_INT_CAD) == GPTB_INT_CAD)
+		{
+			csp_gptb_clr_isr(ptGptbBase, GPTB_INT_CAD);
+		}
+		if((wMisr & GPTB_INT_CBU) == GPTB_INT_CBU)
+		{
+			csp_gptb_clr_isr(ptGptbBase, GPTB_INT_CBU);
+		}
+		if((wMisr & GPTB_INT_CBD) == GPTB_INT_CBD)
+		{
+			csp_gptb_clr_isr(ptGptbBase, GPTB_INT_CBD);
+		}	
+	}
 }

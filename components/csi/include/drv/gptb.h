@@ -103,8 +103,8 @@ struct  csi_gptb_deadzone_config
 	uint8_t       byChbDedb;
 	uint8_t       byChcDedb;
 	uint16_t      hwDpsc;                 //
-	uint16_t      hwRisingEdgereGister ;  //
-	uint16_t      hwFallingEdgereGister;  //
+	uint16_t      hwRisingEdgeTime ;  //
+	uint16_t      hwFallingEdgeTime;  //
 };
 
 
@@ -681,6 +681,16 @@ uint16_t csi_gptb_get_prdr(csp_gptb_t *ptGptbBase);
  *  \return none
  */
 void csi_gptb_set_phsr(csp_gptb_t *ptGptbBase, uint16_t hwPhsr,bool bEnable);
+
+/** \brief  update gptb PRDR and CMPx reg value
+ * 
+ *  \param[in] ptGptbBase: pointer of ept register structure
+ *  \param[in] eComp: select which COMP to set(COMPA or COMPB)
+ *  \param[in] hwPrdr: gptb PRDR reg  value
+ *  \param[in] hwCmp: gptb COMP reg value
+ *  \return none
+ */
+csi_error_t csi_gptb_prdr_cmp_update(csp_gptb_t *ptGptbBase,csi_gptb_comp_e eComp, uint16_t hwPrdr, uint16_t hwCmp);
 
 /** \brief change gptb output dutycycle. 
  * 

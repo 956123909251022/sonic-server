@@ -300,8 +300,8 @@ csi_error_t csi_gptb_dz_config(csp_gptb_t *ptGptbBase, csi_gptb_deadzone_config_
 	
 	wVal=csi_get_pclk_freq();
 	wVal=(1000000000/(wVal/(ptDeadZoneCfg->hwDpsc+1)));    //NS/(1/(48000000/(DPSC+1))*10^9) // 500NS/(1000/48) = 24;	
-	csp_gptb_set_dbdtr(ptGptbBase	,ptDeadZoneCfg-> hwRisingEdgereGister /wVal);
-	csp_gptb_set_dbdtf(ptGptbBase	,ptDeadZoneCfg-> hwFallingEdgereGister/wVal);
+	csp_gptb_set_dbdtr(ptGptbBase	,ptDeadZoneCfg-> hwRisingEdgeTime /wVal);
+	csp_gptb_set_dbdtf(ptGptbBase	,ptDeadZoneCfg-> hwFallingEdgeTime/wVal);
 	
 	return CSI_OK;	
 }
@@ -560,6 +560,34 @@ void csi_gptb_set_phsr(csp_gptb_t *ptGptbBase, uint16_t hwPhsr,bool bEnable)
 {
 	csp_gptb_set_phsr(ptGptbBase, hwPhsr);
 	csp_gptb_phsen_enable(ptGptbBase, bEnable);
+}
+
+/** \brief  update gptb PRDR and CMPx reg value
+ * 
+ *  \param[in] ptGptbBase: pointer of ept register structure
+ *  \param[in] eComp: select which COMP to set(COMPA or COMPB)
+ *  \param[in] hwPrdr: gptb PRDR reg  value
+ *  \param[in] hwCmp: gptb COMP reg value
+ *  \return none
+ */
+csi_error_t csi_gptb_prdr_cmp_update(csp_gptb_t *ptGptbBase,csi_gptb_comp_e eComp, uint16_t hwPrdr, uint16_t hwCmp) 
+{
+	csp_gptb_set_prdr(ptGptbBase, (uint16_t)hwPrdr);			//set GPTB PRDR Value
+	switch (eComp)
+	{	
+		case (GPTB_COMPA):
+			csp_gptb_set_cmpa(ptGptbBase, (uint16_t)hwCmp);	//set GPTB COMPA Value
+			break;
+			
+		case (GPTB_COMPB):
+			csp_gptb_set_cmpb(ptGptbBase, (uint16_t)hwCmp);	//set GPTB COMPB Value
+			break;
+			
+		default: 
+			return CSI_ERROR;
+			break;
+	}
+    return (CSI_OK);
 }
 
 /** \brief change gptb output dutycycle. 
