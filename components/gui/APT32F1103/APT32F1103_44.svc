@@ -13,12 +13,12 @@
       </DLLConfig>
     </CodeGenerateConfig>
     <ChipView>
-      <ChipName>48Pin</ChipName>
+      <ChipName>44Pin</ChipName>
       <ChipShape>CVS_LOOK_SQUARE</ChipShape>
-      <PinCount>48</PinCount>
-      <GenCodeFuncName>APT32F1103_48PinInitFunc</GenCodeFuncName>
+      <PinCount>44</PinCount>
+      <GenCodeFuncName>APT32F1103_44PinInitFunc</GenCodeFuncName>
       <Pins>
-        <Pin pinNum="38" group="PA0" displayName="PA0.0">
+        <Pin pinNum="35" group="PA0" displayName="PA0.0">
           <Property class="UIchoice">
             <label>PinFunctions</label>
             <value>Undefined</value>
@@ -72,7 +72,7 @@
             <Comment>上下拉&#xD;Pull_None:上下拉禁止&#xD;Pull_Up:上拉&#xD;Pull_Down:下拉</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="39" group="PA0" displayName="PA0.1">
+        <Pin pinNum="36" group="PA0" displayName="PA0.1">
           <Property class="UIchoice">
             <label>PinFunctions</label>
             <value>Undefined</value>
@@ -123,7 +123,7 @@
             <Comment>上下拉&#xD;Pull_None:上下拉禁止&#xD;Pull_Up:上拉&#xD;Pull_Down:下拉</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="40" group="PA0" displayName="PA0.2">
+        <Pin pinNum="37" group="PA0" displayName="PA0.2">
           <Property class="UIchoice">
             <label>PinFunctions</label>
             <value>Undefined</value>
@@ -174,7 +174,7 @@
             <Comment>上下拉&#xD;Pull_None:上下拉禁止&#xD;Pull_Up:上拉&#xD;Pull_Down:下拉</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="41" group="PA0" displayName="PA0.3">
+        <Pin pinNum="38" group="PA0" displayName="PA0.3">
           <Property class="UIchoice">
             <label>PinFunctions</label>
             <value>Undefined</value>
@@ -226,7 +226,7 @@
             <Comment>上下拉&#xD;Pull_None:上下拉禁止&#xD;Pull_Up:上拉&#xD;Pull_Down:下拉</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="42" group="PA0" displayName="PA0.4">
+        <Pin pinNum="39" group="PA0" displayName="PA0.4">
           <Property class="UIchoice">
             <label>PinFunctions</label>
             <value>Undefined</value>
@@ -278,7 +278,7 @@
             <Comment>上下拉&#xD;Pull_None:上下拉禁止&#xD;Pull_Up:上拉&#xD;Pull_Down:下拉</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="43" group="PA0" displayName="PA0.5">
+        <Pin pinNum="40" group="PA0" displayName="PA0.5">
           <Property class="UIchoice">
             <label>PinFunctions</label>
             <value>Undefined</value>
@@ -328,7 +328,7 @@
             <Comment>上下拉&#xD;Pull_None:上下拉禁止&#xD;Pull_Up:上拉&#xD;Pull_Down:下拉</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="1" group="PA0" displayName="PA0.6">
+        <Pin pinNum="2" group="PA0" displayName="PA0.6">
           <Property class="UIchoice">
             <label>PinFunctions</label>
             <value>Undefined</value>
@@ -380,7 +380,7 @@
             <Comment>上下拉&#xD;Pull_None:上下拉禁止&#xD;Pull_Up:上拉&#xD;Pull_Down:下拉</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="2" group="PA0" displayName="PA0.7">
+        <Pin pinNum="3" group="PA0" displayName="PA0.7">
           <Property class="UIchoice">
             <label>PinFunctions</label>
             <value>Undefined</value>
@@ -432,7 +432,7 @@
             <Comment>上下拉&#xD;Pull_None:上下拉禁止&#xD;Pull_Up:上拉&#xD;Pull_Down:下拉</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="3" group="PA0" displayName="PA0.8">
+        <Pin pinNum="4" group="PA0" displayName="PA0.8">
           <Property class="UIchoice">
             <label>PinFunctions</label>
             <value>Undefined</value>
@@ -485,7 +485,7 @@
             <Comment>上下拉&#xD;Pull_None:上下拉禁止&#xD;Pull_Up:上拉&#xD;Pull_Down:下拉</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="4" group="PA0" displayName="PA0.9">
+        <Pin pinNum="5" group="PA0" displayName="PA0.9">
           <Property class="UIchoice">
             <label>PinFunctions</label>
             <value>Undefined</value>
@@ -538,7 +538,7 @@
             <Comment>上下拉&#xD;Pull_None:上下拉禁止&#xD;Pull_Up:上拉&#xD;Pull_Down:下拉</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="5" group="PA0" displayName="PA0.10">
+        <Pin pinNum="6" group="PA0" displayName="PA0.10">
           <Property class="UIchoice">
             <label>PinFunctions</label>
             <value>Undefined</value>
@@ -591,7 +591,7 @@
             <Comment>上下拉&#xD;Pull_None:上下拉禁止&#xD;Pull_Up:上拉&#xD;Pull_Down:下拉</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="6" group="PA0" displayName="PA0.11">
+        <Pin pinNum="7" group="PA0" displayName="PA0.11">
           <Property class="UIchoice">
             <label>PinFunctions</label>
             <value>Undefined</value>
@@ -643,7 +643,7 @@
             <Comment>上下拉&#xD;Pull_None:上下拉禁止&#xD;Pull_Up:上拉&#xD;Pull_Down:下拉</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="7" group="PA0" displayName="PA0.12">
+        <Pin pinNum="8" group="PA0" displayName="PA0.12">
           <Property class="UIchoice">
             <label>PinFunctions</label>
             <value>Undefined</value>
@@ -696,7 +696,7 @@
             <Comment>上下拉&#xD;Pull_None:上下拉禁止&#xD;Pull_Up:上拉&#xD;Pull_Down:下拉</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="8" group="PA0" displayName="PA0.13">
+        <Pin pinNum="9" group="PA0" displayName="PA0.13">
           <Property class="UIchoice">
             <label>PinFunctions</label>
             <value>Undefined</value>
@@ -748,7 +748,7 @@
             <Comment>上下拉&#xD;Pull_None:上下拉禁止&#xD;Pull_Up:上拉&#xD;Pull_Down:下拉</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="9" group="PA0" displayName="PA0.14">
+        <Pin pinNum="10" group="PA0" displayName="PA0.14">
           <Property class="UIchoice">
             <label>PinFunctions</label>
             <value>Undefined</value>
@@ -798,7 +798,7 @@
             <Comment>上下拉&#xD;Pull_None:上下拉禁止&#xD;Pull_Up:上拉&#xD;Pull_Down:下拉</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="10" group="PA0" displayName="PA0.15">
+        <Pin pinNum="11" group="PA0" displayName="PA0.15">
           <Property class="UIchoice">
             <label>PinFunctions</label>
             <value>Undefined</value>
@@ -847,7 +847,7 @@
             <Comment>上下拉&#xD;Pull_None:上下拉禁止&#xD;Pull_Up:上拉&#xD;Pull_Down:下拉</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="46" group="PB0" displayName="PB0.0">
+        <Pin pinNum="43" group="PB0" displayName="PB0.0">
           <Property class="UIchoice">
             <label>PinFunctions</label>
             <value>Undefined</value>
@@ -900,7 +900,7 @@
             <Comment>上下拉&#xD;Pull_None:上下拉禁止&#xD;Pull_Up:上拉&#xD;Pull_Down:下拉</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="47" group="PB0" displayName="PB0.1">
+        <Pin pinNum="44" group="PB0" displayName="PB0.1">
           <Property class="UIchoice">
             <label>PinFunctions</label>
             <value>Undefined</value>
@@ -952,7 +952,7 @@
             <Comment>上下拉&#xD;Pull_None:上下拉禁止&#xD;Pull_Up:上拉&#xD;Pull_Down:下拉</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="48" group="PB0" displayName="PB0.2">
+        <Pin pinNum="1" group="PB0" displayName="PB0.2">
           <Property class="UIchoice">
             <label>PinFunctions</label>
             <value>Undefined</value>
@@ -1004,7 +1004,7 @@
             <Comment>上下拉&#xD;Pull_None:上下拉禁止&#xD;Pull_Up:上拉&#xD;Pull_Down:下拉</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="11" group="PB0" displayName="PB0.3">
+        <Pin pinNum="12" group="PB0" displayName="PB0.3">
           <Property class="UIchoice">
             <label>PinFunctions</label>
             <value>Undefined</value>
@@ -1971,60 +1971,7 @@
             <Comment>上下拉&#xD;Pull_None:上下拉禁止&#xD;Pull_Up:上拉&#xD;Pull_Down:下拉</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="31" group="PA1" displayName="PA1.10">
-          <Property class="UIchoice">
-            <label>PinFunctions</label>
-            <value>Undefined</value>
-            <Selections>
-              <sel>High_Z</sel>
-              <sel>GPIO_INPUT</sel>
-              <sel>GPIO_INPUT with Filter</sel>
-              <sel>GPIO_OUTPUT_Push-Pull</sel>
-              <sel>GPIO_OUTPUT_Open-Drain</sel>
-              <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
-              <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_SEG28</sel>
-              <sel>GPTB1_CHAY</sel>
-              <sel>CNTA_BUZ</sel>
-              <sel>USART0_RX</sel>
-              <sel>BT1_OUT</sel>
-              <sel>I2C0_SDA</sel>
-              <sel>TKEY_CH19</sel>
-              <sel>CMP_IN1</sel>
-            </Selections>
-            <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
-          </Property>
-          <Property class="Choice">
-            <label>Driving Ability</label>
-            <value>Normal</value>
-            <Selections>
-              <sel>Normal</sel>
-              <sel>Strong</sel>
-              <sel>Constant</sel>
-            </Selections>
-            <Comment>驱动能力:仅输出有效&#xD;Normal:标准&#xD;Stronge:强驱&#xD;Constant:恒流</Comment>
-          </Property>
-          <Property class="Choice">
-            <label>Driving Slew-Rate</label>
-            <value>Normal</value>
-            <Selections>
-              <sel>Normal</sel>
-              <sel>Fast</sel>
-            </Selections>
-            <Comment>斜率:仅输出有效&#xD;Normal:标准&#xD;Fast:快速</Comment>
-          </Property>
-          <Property class="Choice">
-            <label>Pull Mode</label>
-            <value>Pull_None</value>
-            <Selections>
-              <sel>Pull_None</sel>
-              <sel>Pull_Up</sel>
-              <sel>Pull_Down</sel>
-            </Selections>
-            <Comment>上下拉&#xD;Pull_None:上下拉禁止&#xD;Pull_Up:上拉&#xD;Pull_Down:下拉</Comment>
-          </Property>
-        </Pin>
-        <Pin pinNum="32" group="PA1" displayName="PA1.11">
+        <Pin pinNum="31" group="PA1" displayName="PA1.11">
           <Property class="UIchoice">
             <label>PinFunctions</label>
             <value>Undefined</value>
@@ -2077,7 +2024,7 @@
             <Comment>上下拉&#xD;Pull_None:上下拉禁止&#xD;Pull_Up:上拉&#xD;Pull_Down:下拉</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="33" group="PA1" displayName="PA1.12">
+        <Pin pinNum="32" group="PA1" displayName="PA1.12">
           <Property class="UIchoice">
             <label>PinFunctions</label>
             <value>Undefined</value>
@@ -2130,7 +2077,7 @@
             <Comment>上下拉&#xD;Pull_None:上下拉禁止&#xD;Pull_Up:上拉&#xD;Pull_Down:下拉</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="34" group="PA1" displayName="PA1.13">
+        <Pin pinNum="33" group="PA1" displayName="PA1.13">
           <Property class="UIchoice">
             <label>PinFunctions</label>
             <value>Undefined</value>
@@ -2183,112 +2130,9 @@
             <Comment>上下拉&#xD;Pull_None:上下拉禁止&#xD;Pull_Up:上拉&#xD;Pull_Down:下拉</Comment>
           </Property>
         </Pin>
-        <Pin pinNum="37" group="PC0" displayName="PC0.0">
-          <Property class="UIchoice">
-            <label>PinFunctions</label>
-            <value>Undefined</value>
-            <Selections>
-              <sel>High_Z</sel>
-              <sel>GPIO_INPUT</sel>
-              <sel>GPIO_INPUT with Filter</sel>
-              <sel>GPIO_OUTPUT_Push-Pull</sel>
-              <sel>GPIO_OUTPUT_Open-Drain</sel>
-              <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
-              <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>SIO</sel>
-              <sel>BT1_OUT</sel>
-              <sel>GPTB0_CHAX</sel>
-              <sel>CLO</sel>
-              <sel>AVGND</sel>
-              <sel>ADC_AIN17</sel>
-              <sel>CMP_IN7</sel>
-              <sel>TKEY_CH23</sel>
-            </Selections>
-            <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
-          </Property>
-          <Property class="Choice">
-            <label>Driving Ability</label>
-            <value>Normal</value>
-            <Selections>
-              <sel>Normal</sel>
-              <sel>Strong</sel>
-              <sel>Constant</sel>
-            </Selections>
-            <Comment>驱动能力:仅输出有效&#xD;Normal:标准&#xD;Stronge:强驱&#xD;Constant:恒流</Comment>
-          </Property>
-          <Property class="Choice">
-            <label>Driving Slew-Rate</label>
-            <value>Normal</value>
-            <Selections>
-              <sel>Normal</sel>
-              <sel>Fast</sel>
-            </Selections>
-            <Comment>斜率:仅输出有效&#xD;Normal:标准&#xD;Fast:快速</Comment>
-          </Property>
-          <Property class="Choice">
-            <label>Pull Mode</label>
-            <value>Pull_None</value>
-            <Selections>
-              <sel>Pull_None</sel>
-              <sel>Pull_Up</sel>
-              <sel>Pull_Down</sel>
-            </Selections>
-            <Comment>上下拉&#xD;Pull_None:上下拉禁止&#xD;Pull_Up:上拉&#xD;Pull_Down:下拉</Comment>
-          </Property>
-        </Pin>
-        <Pin pinNum="12" group="PC0" displayName="PC0.1">
-          <Property class="UIchoice">
-            <label>PinFunctions</label>
-            <value>Undefined</value>
-            <Selections>
-              <sel>High_Z</sel>
-              <sel>GPIO_INPUT</sel>
-              <sel>GPIO_INPUT with Filter</sel>
-              <sel>GPIO_OUTPUT_Push-Pull</sel>
-              <sel>GPIO_OUTPUT_Open-Drain</sel>
-              <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
-              <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_SEG9</sel>
-              <sel>GPTA0_CHA</sel>
-              <sel>LED_S3</sel>
-              <sel>ADC_AIN15</sel>
-            </Selections>
-            <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
-          </Property>
-          <Property class="Choice">
-            <label>Driving Ability</label>
-            <value>Normal</value>
-            <Selections>
-              <sel>Normal</sel>
-              <sel>Strong</sel>
-              <sel>Constant</sel>
-            </Selections>
-            <Comment>驱动能力:仅输出有效&#xD;Normal:标准&#xD;Stronge:强驱&#xD;Constant:恒流</Comment>
-          </Property>
-          <Property class="Choice">
-            <label>Driving Slew-Rate</label>
-            <value>Normal</value>
-            <Selections>
-              <sel>Normal</sel>
-              <sel>Fast</sel>
-            </Selections>
-            <Comment>斜率:仅输出有效&#xD;Normal:标准&#xD;Fast:快速</Comment>
-          </Property>
-          <Property class="Choice">
-            <label>Pull Mode</label>
-            <value>Pull_None</value>
-            <Selections>
-              <sel>Pull_None</sel>
-              <sel>Pull_Up</sel>
-              <sel>Pull_Down</sel>
-            </Selections>
-            <Comment>上下拉&#xD;Pull_None:上下拉禁止&#xD;Pull_Up:上拉&#xD;Pull_Down:下拉</Comment>
-          </Property>
-        </Pin>
-        <Pin pinNum="35" displayName="VSS"/>
-        <Pin pinNum="36" displayName="VLCD"/>
-        <Pin pinNum="44" displayName="VSS"/>
-        <Pin pinNum="45" displayName="VDD"/>
+        <Pin pinNum="34" displayName="VLCD"/>
+        <Pin pinNum="41" displayName="VSS"/>
+        <Pin pinNum="42" displayName="VDD"/>
       </Pins>
     </ChipView>
     <ChipPropertiesView>
@@ -2551,534 +2395,6 @@
       <ChipPins>
         <label>I/O ports</label>
       </ChipPins>
-      <Category>
-        <label>EXI</label>
-        <Comment>GPIO中断配置,单个管脚不能用于多个GROUP</Comment>
-        <Device deviceId="EXI_GRP0">
-          <GenCodeFuncName>EXIGRP0InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP0</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA00</value>
-            <Selections>
-              <sel>PA00</sel>
-              <sel>PA10</sel>
-              <sel>PB00</sel>
-              <sel>PC00</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP1">
-          <GenCodeFuncName>EXIGRP1InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP1</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA01</value>
-            <Selections>
-              <sel>PA01</sel>
-              <sel>PA11</sel>
-              <sel>PB01</sel>
-              <sel>PC01</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP2">
-          <GenCodeFuncName>EXIGRP2InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP2</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA02</value>
-            <Selections>
-              <sel>PA02</sel>
-              <sel>PA12</sel>
-              <sel>PB02</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP3">
-          <GenCodeFuncName>EXIGRP3InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP3</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA03</value>
-            <Selections>
-              <sel>PA03</sel>
-              <sel>PA13</sel>
-              <sel>PB03</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP4">
-          <GenCodeFuncName>EXIGRP4InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP4</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA04</value>
-            <Selections>
-              <sel>PA04</sel>
-              <sel>PA14</sel>
-              <sel>PB04</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP5">
-          <GenCodeFuncName>EXIGRP5InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP5</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA05</value>
-            <Selections>
-              <sel>PA05</sel>
-              <sel>PA15</sel>
-              <sel>PB05</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP6">
-          <GenCodeFuncName>EXIGRP6InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP6</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA06</value>
-            <Selections>
-              <sel>PA06</sel>
-              <sel>PA16</sel>
-              <sel>PB06</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP7">
-          <GenCodeFuncName>EXIGRP7InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP7</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA07</value>
-            <Selections>
-              <sel>PA07</sel>
-              <sel>PA17</sel>
-              <sel>PB07</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP8">
-          <GenCodeFuncName>EXIGRP8InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP8</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA08</value>
-            <Selections>
-              <sel>PA08</sel>
-              <sel>PA18</sel>
-              <sel>PB08</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP9">
-          <GenCodeFuncName>EXIGRP9InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP9</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA09</value>
-            <Selections>
-              <sel>PA09</sel>
-              <sel>PA19</sel>
-              <sel>PB09</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP10">
-          <GenCodeFuncName>EXIGRP10InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP10</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA010</value>
-            <Selections>
-              <sel>PA010</sel>
-              <sel>PA110</sel>
-              <sel>PB010</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP11">
-          <GenCodeFuncName>EXIGRP11InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP11</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA011</value>
-            <Selections>
-              <sel>PA011</sel>
-              <sel>PA111</sel>
-              <sel>PB011</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP12">
-          <GenCodeFuncName>EXIGRP12InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP12</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA012</value>
-            <Selections>
-              <sel>PA012</sel>
-              <sel>PA112</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP13">
-          <GenCodeFuncName>EXIGRP13InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP13</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA013</value>
-            <Selections>
-              <sel>PA013</sel>
-              <sel>PA113</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP14">
-          <GenCodeFuncName>EXIGRP14InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP14</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA014</value>
-            <Selections>
-              <sel>PA014</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP15">
-          <GenCodeFuncName>EXIGRP15InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP15</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA015</value>
-            <Selections>
-              <sel>PA015</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP16">
-          <GenCodeFuncName>EXIGRP16InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP16</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA00</value>
-            <Selections>
-              <sel>PA00</sel>
-              <sel>PA01</sel>
-              <sel>PA02</sel>
-              <sel>PA03</sel>
-              <sel>PA04</sel>
-              <sel>PA05</sel>
-              <sel>PA06</sel>
-              <sel>PA07</sel>
-              <sel>PB00</sel>
-              <sel>PB01</sel>
-              <sel>PB02</sel>
-              <sel>PB03</sel>
-              <sel>PC00</sel>
-              <sel>PC01</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP17">
-          <GenCodeFuncName>EXIGRP17InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP17</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA00</value>
-            <Selections>
-              <sel>PA00</sel>
-              <sel>PA01</sel>
-              <sel>PA02</sel>
-              <sel>PA03</sel>
-              <sel>PA04</sel>
-              <sel>PA05</sel>
-              <sel>PA06</sel>
-              <sel>PA07</sel>
-              <sel>PB00</sel>
-              <sel>PB01</sel>
-              <sel>PB02</sel>
-              <sel>PB03</sel>
-              <sel>PC00</sel>
-              <sel>PC01</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP18">
-          <GenCodeFuncName>EXIGRP18InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP18</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PB00</value>
-            <Selections>
-              <sel>PB00</sel>
-              <sel>PB01</sel>
-              <sel>PB02</sel>
-              <sel>PB03</sel>
-              <sel>PC00</sel>
-              <sel>PC01</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP19">
-          <GenCodeFuncName>EXIGRP19InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP19</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PB00</value>
-            <Selections>
-              <sel>PB00</sel>
-              <sel>PB01</sel>
-              <sel>PB02</sel>
-              <sel>PB03</sel>
-              <sel>PC00</sel>
-              <sel>PC01</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-      </Category>
     </ChipPropertiesView>
   </ChipConfig2>
 </com.csky.cds.peripheral>

@@ -16,7 +16,7 @@
       <ChipName>48Pin</ChipName>
       <ChipShape>CVS_LOOK_SQUARE</ChipShape>
       <PinCount>48</PinCount>
-      <GenCodeFuncName>APT32F1103_48PinInitFunc</GenCodeFuncName>
+      <GenCodeFuncName>APT32F1101_48PinInitFunc</GenCodeFuncName>
       <Pins>
         <Pin pinNum="38" group="PA0" displayName="PA0.0">
           <Property class="UIchoice">
@@ -38,7 +38,6 @@
               <sel>FVR</sel>
               <sel>ADC_AIN0</sel>
               <sel>CMP_IN0</sel>
-              <sel>TKEY_CH24</sel>
             </Selections>
             <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
           </Property>
@@ -89,7 +88,6 @@
               <sel>GPTB1_CHAX</sel>
               <sel>SIO</sel>
               <sel>ADC_AIN1</sel>
-              <sel>TKEY_CH25</sel>
             </Selections>
             <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
           </Property>
@@ -140,7 +138,6 @@
               <sel>GPTB1_CHAY</sel>
               <sel>GPTB1_CHB</sel>
               <sel>ADC_AIN18</sel>
-              <sel>TKEY_CH26</sel>
             </Selections>
             <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
           </Property>
@@ -192,7 +189,6 @@
               <sel>I2C0_SCL</sel>
               <sel>ADC_AIN2</sel>
               <sel>CMP_IN2</sel>
-              <sel>TKEY_CH27</sel>
             </Selections>
             <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
           </Property>
@@ -244,7 +240,6 @@
               <sel>I2C0_SDA</sel>
               <sel>INTVREF</sel>
               <sel>CMP_IN3</sel>
-              <sel>TKEY_CH28</sel>
             </Selections>
             <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
           </Property>
@@ -340,7 +335,6 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_COM0</sel>
               <sel>GPTB0_CHB</sel>
               <sel>USART0_RX</sel>
               <sel>UART1_RX</sel>
@@ -392,7 +386,6 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_COM1</sel>
               <sel>LPT_INOUT</sel>
               <sel>I2C0_SCL</sel>
               <sel>USART0_CK</sel>
@@ -444,8 +437,6 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_COM2</sel>
-              <sel>LCD_SEG0</sel>
               <sel>CMP1_OUT</sel>
               <sel>I2C0_SDA</sel>
               <sel>USART0_TX</sel>
@@ -497,8 +488,6 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_COM3</sel>
-              <sel>LCD_SEG1</sel>
               <sel>EBI0</sel>
               <sel>GPTA0_CHA</sel>
               <sel>BT1_OUT</sel>
@@ -550,8 +539,6 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_COM4</sel>
-              <sel>LCD_SEG2</sel>
               <sel>EPT_CHAY</sel>
               <sel>GPTA0_CHB</sel>
               <sel>GPTB1_CHAX</sel>
@@ -603,8 +590,6 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_COM5</sel>
-              <sel>LCD_SEG3</sel>
               <sel>EPT_CHBY</sel>
               <sel>GPTA1_CHA</sel>
               <sel>LED_S0</sel>
@@ -655,8 +640,6 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_COM6</sel>
-              <sel>LCD_SEG4</sel>
               <sel>EPT_CHCY</sel>
               <sel>GPTA1_CHB</sel>
               <sel>LPT_INOUT</sel>
@@ -708,8 +691,6 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_COM7</sel>
-              <sel>LCD_SEG5</sel>
               <sel>GPTB0_CHAX</sel>
               <sel>SIO</sel>
               <sel>LED_S3</sel>
@@ -760,11 +741,9 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_SEG6</sel>
               <sel>GPTB0_CHAY</sel>
               <sel>GPTB0_CHB</sel>
               <sel>LED_S0</sel>
-              <sel>TKEY_CH0</sel>
             </Selections>
             <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
           </Property>
@@ -810,10 +789,8 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_SEG7</sel>
               <sel>GPTB1_CHAX</sel>
               <sel>LED_S1</sel>
-              <sel>TKEY_CH1</sel>
             </Selections>
             <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
           </Property>
@@ -865,7 +842,6 @@
               <sel>CLO</sel>
               <sel>ADC_AIN3</sel>
               <sel>CMP_IN4</sel>
-              <sel>TKEY_CH29</sel>
               <sel>ELVI</sel>
             </Selections>
             <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
@@ -918,7 +894,6 @@
               <sel>SIO</sel>
               <sel>ADC_AIN4</sel>
               <sel>CMP_IN5</sel>
-              <sel>TKEY_CH30</sel>
             </Selections>
             <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
           </Property>
@@ -970,7 +945,6 @@
               <sel>UART1_TX</sel>
               <sel>ADC_AIN5</sel>
               <sel>CMP_IN6</sel>
-              <sel>TKEY_CH31</sel>
             </Selections>
             <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
           </Property>
@@ -1016,7 +990,6 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_SEG8</sel>
               <sel>GPTB1_CHAY</sel>
               <sel>GPTB1_CHB</sel>
               <sel>LED_S2</sel>
@@ -1066,7 +1039,6 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_SEG10</sel>
               <sel>GPTB0_CHB</sel>
               <sel>GPTA1_CHA</sel>
               <sel>EBI1</sel>
@@ -1117,12 +1089,10 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_SEG18</sel>
               <sel>SIO</sel>
               <sel>CMP1_OUT</sel>
               <sel>UART0_RX</sel>
               <sel>LED_COM1</sel>
-              <sel>TKEY_CH9</sel>
             </Selections>
             <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
           </Property>
@@ -1168,12 +1138,10 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_SEG20</sel>
               <sel>I2C0_SCL</sel>
               <sel>GPTA0_CHA</sel>
               <sel>UART2_TX</sel>
               <sel>LED_COM3</sel>
-              <sel>TKEY_CH11</sel>
             </Selections>
             <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
           </Property>
@@ -1219,12 +1187,10 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_SEG21</sel>
               <sel>I2C0_SDA</sel>
               <sel>GPTA1_CHA</sel>
               <sel>UART2_RX</sel>
               <sel>LED_COM4</sel>
-              <sel>TKEY_CH12</sel>
             </Selections>
             <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
           </Property>
@@ -1270,12 +1236,10 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_SEG23</sel>
               <sel>UART0_TX</sel>
               <sel>USART0_RX</sel>
               <sel>SPI0_NSS</sel>
               <sel>LED_COM6</sel>
-              <sel>TKEY_CH14</sel>
             </Selections>
             <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
           </Property>
@@ -1321,12 +1285,10 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_SEG24</sel>
               <sel>UART0_RX</sel>
               <sel>GPTB1_CHB</sel>
               <sel>SPI0_SCK</sel>
               <sel>USART0_CK</sel>
-              <sel>TKEY_CH15</sel>
             </Selections>
             <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
           </Property>
@@ -1372,12 +1334,10 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_SEG25</sel>
               <sel>GPTA0_CHA</sel>
               <sel>GPTA1_CHA</sel>
               <sel>SPI0_MISO</sel>
               <sel>LED_COM6</sel>
-              <sel>TKEY_CH16</sel>
             </Selections>
             <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
           </Property>
@@ -1423,13 +1383,11 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_SEG26</sel>
               <sel>GPTA0_CHB</sel>
               <sel>GPTA1_CHB</sel>
               <sel>SPI0_MOSI</sel>
               <sel>LED_COM7</sel>
               <sel>USART0_CK</sel>
-              <sel>TKEY_CH17</sel>
             </Selections>
             <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
           </Property>
@@ -1475,11 +1433,9 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_SEG11</sel>
               <sel>EPT_CHAY</sel>
               <sel>GPTA1_CHB</sel>
               <sel>LED_S5</sel>
-              <sel>TKEY_CH2</sel>
             </Selections>
             <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
           </Property>
@@ -1525,11 +1481,9 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_SEG12</sel>
               <sel>EPT_CHBY</sel>
               <sel>GPTB0_CHAX</sel>
               <sel>LED_S6</sel>
-              <sel>TKEY_CH3</sel>
             </Selections>
             <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
           </Property>
@@ -1575,12 +1529,10 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_SEG13</sel>
               <sel>EPT_CHCY</sel>
               <sel>GPTB0_CHAY</sel>
               <sel>GPTB0_CHB</sel>
               <sel>LED_S7</sel>
-              <sel>TKEY_CH4</sel>
             </Selections>
             <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
           </Property>
@@ -1626,11 +1578,9 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_SEG14</sel>
               <sel>EPT_CHAX</sel>
               <sel>CLO</sel>
               <sel>USART0_CK</sel>
-              <sel>TKEY_CH5</sel>
             </Selections>
             <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
           </Property>
@@ -1676,12 +1626,10 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_SEG15</sel>
               <sel>EPT_CHBX</sel>
               <sel>EBI2</sel>
               <sel>USART0_TX</sel>
               <sel>UART1_TX</sel>
-              <sel>TKEY_CH6</sel>
             </Selections>
             <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
           </Property>
@@ -1727,12 +1675,10 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_SEG16</sel>
               <sel>EPT_CHCX</sel>
               <sel>EBI3</sel>
               <sel>USART0_RX</sel>
               <sel>UART1_RX</sel>
-              <sel>TKEY_CH7</sel>
             </Selections>
             <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
           </Property>
@@ -1778,12 +1724,10 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_SEG17</sel>
               <sel>EPT_CHD</sel>
               <sel>CMP0_OUT</sel>
               <sel>UART0_TX</sel>
               <sel>LED_COM0</sel>
-              <sel>TKEY_CH8</sel>
             </Selections>
             <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
           </Property>
@@ -1829,12 +1773,10 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_SEG19</sel>
               <sel>DBUG_SWDIO</sel>
               <sel>CNTA_BUZ</sel>
               <sel>GPTA1_CHA</sel>
               <sel>LED_COM2</sel>
-              <sel>TKEY_CH10</sel>
             </Selections>
             <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
           </Property>
@@ -1880,12 +1822,10 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_SEG22</sel>
               <sel>DBUG_SWCLK</sel>
               <sel>USART0_TX</sel>
               <sel>LPT_INOUT</sel>
               <sel>LED_COM5</sel>
-              <sel>TKEY_CH13</sel>
             </Selections>
             <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
           </Property>
@@ -1931,13 +1871,11 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_SEG27</sel>
               <sel>GPTB0_CHAY</sel>
               <sel>BT0_OUT</sel>
               <sel>USART0_TX</sel>
               <sel>LED_COM8</sel>
               <sel>I2C0_SCL</sel>
-              <sel>TKEY_CH18</sel>
             </Selections>
             <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
           </Property>
@@ -1983,13 +1921,11 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_SEG28</sel>
               <sel>GPTB1_CHAY</sel>
               <sel>CNTA_BUZ</sel>
               <sel>USART0_RX</sel>
               <sel>BT1_OUT</sel>
               <sel>I2C0_SDA</sel>
-              <sel>TKEY_CH19</sel>
               <sel>CMP_IN1</sel>
             </Selections>
             <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
@@ -2036,14 +1972,11 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_SEG29</sel>
-              <sel>VLC3</sel>
               <sel>GPTB1_CHAX</sel>
               <sel>UART2_TX</sel>
               <sel>CMP0_OUT</sel>
               <sel>LED_C0M7</sel>
               <sel>USART0_CK</sel>
-              <sel>TKEY_CH20</sel>
             </Selections>
             <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
           </Property>
@@ -2089,14 +2022,11 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_SEG30</sel>
-              <sel>VLC2</sel>
               <sel>GPTB0_CHAX</sel>
               <sel>UART2_RX</sel>
               <sel>BT1_OUT</sel>
               <sel>LED_C0M8</sel>
               <sel>I2C0_SCL</sel>
-              <sel>TKEY_CH21</sel>
             </Selections>
             <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
           </Property>
@@ -2142,14 +2072,11 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_SEG31</sel>
-              <sel>VLC1</sel>
               <sel>GPTB1_CHAX</sel>
               <sel>CNTA_BUZ</sel>
               <sel>SPI0_NSS</sel>
               <sel>LED_C0M9</sel>
               <sel>I2C0_SDA</sel>
-              <sel>TKEY_CH22</sel>
             </Selections>
             <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
           </Property>
@@ -2202,7 +2129,6 @@
               <sel>AVGND</sel>
               <sel>ADC_AIN17</sel>
               <sel>CMP_IN7</sel>
-              <sel>TKEY_CH23</sel>
             </Selections>
             <Comment>管脚功能&#xD;High_Z:高阻&#xD;GPIO_INPUT:输入&#xD;GPIO_INPUT with Filter:带30ns滤波输入&#xD;GPIO_OUTPUT_Push-Pull:推挽输出&#xD;GPIO_OUTPUT_Open-Drain:开漏输出&#xD;GPIO_OUTPUT_Push-Pull with Monitor:带输出监测的推挽输出&#xD;GPIO_OUTPUT_Open-Drain with Monitor:带输出监测的开漏输出&#xD;Other:复用功能</Comment>
           </Property>
@@ -2248,7 +2174,6 @@
               <sel>GPIO_OUTPUT_Open-Drain</sel>
               <sel>GPIO_OUTPUT_Push-Pull with Monitor</sel>
               <sel>GPIO_OUTPUT_Open-Drain with Monitor</sel>
-              <sel>LCD_SEG9</sel>
               <sel>GPTA0_CHA</sel>
               <sel>LED_S3</sel>
               <sel>ADC_AIN15</sel>
@@ -2286,7 +2211,7 @@
           </Property>
         </Pin>
         <Pin pinNum="35" displayName="VSS"/>
-        <Pin pinNum="36" displayName="VLCD"/>
+        <Pin pinNum="36" displayName="VDD"/>
         <Pin pinNum="44" displayName="VSS"/>
         <Pin pinNum="45" displayName="VDD"/>
       </Pins>
@@ -2551,534 +2476,6 @@
       <ChipPins>
         <label>I/O ports</label>
       </ChipPins>
-      <Category>
-        <label>EXI</label>
-        <Comment>GPIO中断配置,单个管脚不能用于多个GROUP</Comment>
-        <Device deviceId="EXI_GRP0">
-          <GenCodeFuncName>EXIGRP0InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP0</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA00</value>
-            <Selections>
-              <sel>PA00</sel>
-              <sel>PA10</sel>
-              <sel>PB00</sel>
-              <sel>PC00</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP1">
-          <GenCodeFuncName>EXIGRP1InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP1</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA01</value>
-            <Selections>
-              <sel>PA01</sel>
-              <sel>PA11</sel>
-              <sel>PB01</sel>
-              <sel>PC01</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP2">
-          <GenCodeFuncName>EXIGRP2InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP2</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA02</value>
-            <Selections>
-              <sel>PA02</sel>
-              <sel>PA12</sel>
-              <sel>PB02</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP3">
-          <GenCodeFuncName>EXIGRP3InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP3</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA03</value>
-            <Selections>
-              <sel>PA03</sel>
-              <sel>PA13</sel>
-              <sel>PB03</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP4">
-          <GenCodeFuncName>EXIGRP4InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP4</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA04</value>
-            <Selections>
-              <sel>PA04</sel>
-              <sel>PA14</sel>
-              <sel>PB04</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP5">
-          <GenCodeFuncName>EXIGRP5InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP5</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA05</value>
-            <Selections>
-              <sel>PA05</sel>
-              <sel>PA15</sel>
-              <sel>PB05</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP6">
-          <GenCodeFuncName>EXIGRP6InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP6</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA06</value>
-            <Selections>
-              <sel>PA06</sel>
-              <sel>PA16</sel>
-              <sel>PB06</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP7">
-          <GenCodeFuncName>EXIGRP7InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP7</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA07</value>
-            <Selections>
-              <sel>PA07</sel>
-              <sel>PA17</sel>
-              <sel>PB07</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP8">
-          <GenCodeFuncName>EXIGRP8InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP8</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA08</value>
-            <Selections>
-              <sel>PA08</sel>
-              <sel>PA18</sel>
-              <sel>PB08</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP9">
-          <GenCodeFuncName>EXIGRP9InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP9</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA09</value>
-            <Selections>
-              <sel>PA09</sel>
-              <sel>PA19</sel>
-              <sel>PB09</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP10">
-          <GenCodeFuncName>EXIGRP10InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP10</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA010</value>
-            <Selections>
-              <sel>PA010</sel>
-              <sel>PA110</sel>
-              <sel>PB010</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP11">
-          <GenCodeFuncName>EXIGRP11InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP11</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA011</value>
-            <Selections>
-              <sel>PA011</sel>
-              <sel>PA111</sel>
-              <sel>PB011</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP12">
-          <GenCodeFuncName>EXIGRP12InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP12</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA012</value>
-            <Selections>
-              <sel>PA012</sel>
-              <sel>PA112</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP13">
-          <GenCodeFuncName>EXIGRP13InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP13</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA013</value>
-            <Selections>
-              <sel>PA013</sel>
-              <sel>PA113</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP14">
-          <GenCodeFuncName>EXIGRP14InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP14</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA014</value>
-            <Selections>
-              <sel>PA014</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP15">
-          <GenCodeFuncName>EXIGRP15InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP15</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA015</value>
-            <Selections>
-              <sel>PA015</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP16">
-          <GenCodeFuncName>EXIGRP16InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP16</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA00</value>
-            <Selections>
-              <sel>PA00</sel>
-              <sel>PA01</sel>
-              <sel>PA02</sel>
-              <sel>PA03</sel>
-              <sel>PA04</sel>
-              <sel>PA05</sel>
-              <sel>PA06</sel>
-              <sel>PA07</sel>
-              <sel>PB00</sel>
-              <sel>PB01</sel>
-              <sel>PB02</sel>
-              <sel>PB03</sel>
-              <sel>PC00</sel>
-              <sel>PC01</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP17">
-          <GenCodeFuncName>EXIGRP17InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP17</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PA00</value>
-            <Selections>
-              <sel>PA00</sel>
-              <sel>PA01</sel>
-              <sel>PA02</sel>
-              <sel>PA03</sel>
-              <sel>PA04</sel>
-              <sel>PA05</sel>
-              <sel>PA06</sel>
-              <sel>PA07</sel>
-              <sel>PB00</sel>
-              <sel>PB01</sel>
-              <sel>PB02</sel>
-              <sel>PB03</sel>
-              <sel>PC00</sel>
-              <sel>PC01</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP18">
-          <GenCodeFuncName>EXIGRP18InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP18</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PB00</value>
-            <Selections>
-              <sel>PB00</sel>
-              <sel>PB01</sel>
-              <sel>PB02</sel>
-              <sel>PB03</sel>
-              <sel>PC00</sel>
-              <sel>PC01</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-        <Device deviceId="EXI_GRP19">
-          <GenCodeFuncName>EXIGRP19InitFunc</GenCodeFuncName>
-          <UseOrNot>0</UseOrNot>
-          <label>GRP19</label>
-          <Property class="UIchoice">
-            <label>PinName</label>
-            <value>PB00</value>
-            <Selections>
-              <sel>PB00</sel>
-              <sel>PB01</sel>
-              <sel>PB02</sel>
-              <sel>PB03</sel>
-              <sel>PC00</sel>
-              <sel>PC01</sel>
-            </Selections>
-            <Comment>管脚名称,需在I/O Ports中配置该管脚为输入模式,以及需要的Pull Mode</Comment>
-          </Property>
-          <Property class="UIchoice">
-            <label>IrqMode</label>
-            <value>GPIO_IRQ_RISING_EDGE</value>
-            <Selections>
-              <sel>GPIO_IRQ_RISING_EDGE</sel>
-              <sel>GPIO_IRQ_FALLING_EDGE</sel>
-              <sel>GPIO_IRQ_BOTH_EDGE</sel>
-            </Selections>
-            <Comment>中断触发边沿模式,上升/下降/双边沿</Comment>
-          </Property>
-        </Device>
-      </Category>
     </ChipPropertiesView>
   </ChipConfig2>
 </com.csky.cds.peripheral>

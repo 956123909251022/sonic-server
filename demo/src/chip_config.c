@@ -11,17 +11,7 @@ void pin_init(void)
 {
 }
 
-void ch0_config(void)
-{
-}
-
-void adc_init(void)
-{
-}
-
 void __attribute__ ((weak)) __ChipInitHandler(void)
 {
     pin_init();
-    ch0_config();
-    adc_init();
 }
