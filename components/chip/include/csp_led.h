@@ -109,9 +109,9 @@ static inline void csp_led_set_clk(csp_led_t *ptLedBase, csp_led_ledclk_e eClk)
 {
 	ptLedBase -> CR = (ptLedBase -> CR &(~LED_LEDCLK_MSK)) | (eClk << LED_LEDCLK_POS);
 }
-static inline void csp_led_set_commask(csp_led_t *ptLedBase, uint16_t byComMsk)
+static inline void csp_led_set_commask(csp_led_t *ptLedBase, uint16_t hwComMsk)
 {
-	ptLedBase -> CR = (ptLedBase -> CR & (~LED_COM_EN_MSK)) | (byComMsk << LED_COM_EN_POS);
+	ptLedBase -> CR = (ptLedBase -> CR & (~LED_COM_EN_MSK)) | (hwComMsk << LED_COM_EN_POS);
 }
 static inline void csp_led_set_brt(csp_led_t *ptLedBase, csp_led_brt_e eBrt)
 {

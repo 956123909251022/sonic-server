@@ -1011,7 +1011,7 @@ void csi_ept_reglk_config(csp_ept_t *ptEptBase,csi_ept_reglk_config_t *ptReglk)
 	w_GLK = (w_GLK & ~EPT_CMPB_MSK )| ((ptReglk-> byCmpb & 0xF)<< EPT_CMPB_POS);
 	w_GLK = (w_GLK & ~EPT_GLD2_MSK )| ((ptReglk-> byGld2 & 0xF)<< EPT_GLD2_POS);
 	w_GLK = (w_GLK & ~EPT_RSSR_MSK )| ((ptReglk-> byRssr & 0xF)<< EPT_RSSR_POS);
-	csp_ept_set_feglk(ptEptBase,w_GLK);
+	csp_ept_set_reglk(ptEptBase,w_GLK);
 	w_GLK =0;
 	w_GLK = (w_GLK & ~EPT_EMSLCLR_MSK )| ((ptReglk-> byEmslclr & 0xF)<< EPT_EMSLCLR_POS);
 	w_GLK = (w_GLK & ~EPT_EMHLCLR_MSK )| ((ptReglk-> byEmhlclr & 0xF)<< EPT_EMHLCLR_POS);
@@ -1019,7 +1019,7 @@ void csi_ept_reglk_config(csp_ept_t *ptEptBase,csi_ept_reglk_config_t *ptReglk)
 	w_GLK = (w_GLK & ~EPT_EMFRCR_MSK ) | ((ptReglk-> byEmfrcr  & 0xF)<< EPT_EMFRCR_POS);
 	w_GLK = (w_GLK & ~EPT_AQOSF_MSK )  | ((ptReglk-> byAqosf   & 0xF)<< EPT_AQOSF_POS);
 	w_GLK = (w_GLK & ~EPT_AQCSF_MSK )  | ((ptReglk-> byAqcsf   & 0xF)<< EPT_AQCSF_POS);
-	csp_ept_set_feglk2(ptEptBase,w_GLK);	
+	csp_ept_set_reglk2(ptEptBase,w_GLK);	
 }
 
 
