@@ -70,8 +70,8 @@ int usart_recv_rxfifo_int_demo(void);
 int usart_send_dma_demo(void);
 int usart_recv_dma_demo(void);
 //lin
-int lin_send_test(void);
-int lin_send_recv_test(void);
+int lin_send_demo(void);
+int lin_send_recv_demo(void);
 
 //adc demo
 //normal mode(no interrupt)
