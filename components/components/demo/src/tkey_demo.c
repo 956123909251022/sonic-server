@@ -172,16 +172,20 @@ void tk_led(void)
 /* *******************    库的使用说明      ****************************
 ①F_X_XX 和 C_X_XX版本：
 
-	需要在coret_int_handler中断里调用csi_tkey_basecnt_process()函数，在tkey_int_handler中断里调用csi_tkey_int_process()函数，如下所示：
+	需要在coret_int_handler中断里调用csi_tkey_basecnt_process()函数，在tkey_int_handler中断里调用csi_tkey_int_process()函数
+	（调用csi_tkey_int_process()函数，占用时间时间如果影响到coret_int_handler的运行的话，也可以配置别的定时器中断去调用该函数，
+	建议进中断的时间控制在20ms以下，调用见隔越小，TKEY反应越灵敏），在coret_int_handler的示例如下：
 	void coret_int_handler(void) 
 	{
 	#if	CORET_INT_HANDLE_EN
 		// ISR content ...
 		tick_irqhandler();		//system coret 
-		#if	defined(IS_CHIP_1101) || defined(IS_CHIP_1103)
-			csi_tkey_basecnt_process();
+		#if	TKEY_INT_HANDLE_EN
+			#if	defined(IS_CHIP_1101) || defined(IS_CHIP_1103)
+				csi_tkey_basecnt_process();
+			#endif
 		#endif
-	#endif
+	#endif	
 	}
 	
 	void tkey_int_handler(void) 
