@@ -95,7 +95,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>LCD_COM1</value>
             <Selections>
               <sel>LCD_COM1</sel>
               <sel>LPT_INOUT</sel>
@@ -160,7 +160,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>LCD_COM2</value>
             <Selections>
               <sel>LCD_COM2</sel>
               <sel>LCD_SEG0</sel>
@@ -225,7 +225,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>LCD_COM3</value>
             <Selections>
               <sel>LCD_COM3</sel>
               <sel>LCD_SEG1</sel>
@@ -291,7 +291,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>LCD_COM4</value>
             <Selections>
               <sel>LCD_COM4</sel>
               <sel>LCD_SEG2</sel>
@@ -357,7 +357,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>LCD_COM5</value>
             <Selections>
               <sel>LCD_COM5</sel>
               <sel>LCD_SEG3</sel>
@@ -422,7 +422,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>LCD_COM6</value>
             <Selections>
               <sel>LCD_COM6</sel>
               <sel>LCD_SEG4</sel>
@@ -488,7 +488,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>LCD_COM7</value>
             <Selections>
               <sel>LCD_COM7</sel>
               <sel>LCD_SEG5</sel>
@@ -553,7 +553,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>LCD_SEG6</value>
             <Selections>
               <sel>LCD_SEG6</sel>
               <sel>GPTB0_CHAY</sel>
@@ -616,7 +616,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>LCD_SEG7</value>
             <Selections>
               <sel>LCD_SEG7</sel>
               <sel>GPTB1_CHAX</sel>
@@ -678,7 +678,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>LCD_SEG8</value>
             <Selections>
               <sel>LCD_SEG8</sel>
               <sel>GPTB1_CHAY</sel>
@@ -741,7 +741,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>LCD_SEG9</value>
             <Selections>
               <sel>LCD_SEG9</sel>
               <sel>GPTA0_CHA</sel>
@@ -803,7 +803,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>LCD_SEG10</value>
             <Selections>
               <sel>LCD_SEG10</sel>
               <sel>GPTB0_CHB</sel>
@@ -867,7 +867,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>LCD_SEG11</value>
             <Selections>
               <sel>LCD_SEG11</sel>
               <sel>EPT_CHAY</sel>
@@ -930,7 +930,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>LCD_SEG12</value>
             <Selections>
               <sel>LCD_SEG12</sel>
               <sel>EPT_CHBY</sel>
@@ -993,7 +993,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>LCD_SEG13</value>
             <Selections>
               <sel>LCD_SEG13</sel>
               <sel>EPT_CHCY</sel>
@@ -1057,7 +1057,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>LCD_SEG14</value>
             <Selections>
               <sel>LCD_SEG14</sel>
               <sel>EPT_CHAX</sel>
@@ -1120,7 +1120,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>LCD_SEG15</value>
             <Selections>
               <sel>LCD_SEG15</sel>
               <sel>EPT_CHBX</sel>
@@ -1184,7 +1184,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>LCD_SEG16</value>
             <Selections>
               <sel>LCD_SEG16</sel>
               <sel>EPT_CHCX</sel>
@@ -1248,7 +1248,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>LCD_SEG17</value>
             <Selections>
               <sel>LCD_SEG17</sel>
               <sel>EPT_CHD</sel>
@@ -1312,7 +1312,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>LCD_SEG18</value>
             <Selections>
               <sel>LCD_SEG18</sel>
               <sel>SIO</sel>
@@ -1376,7 +1376,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>LCD_SEG19</value>
             <Selections>
               <sel>LCD_SEG19</sel>
               <sel>DBUG_SWDIO</sel>
@@ -1440,7 +1440,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>LCD_SEG20</value>
             <Selections>
               <sel>LCD_SEG20</sel>
               <sel>I2C0_SCL</sel>
@@ -1504,7 +1504,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>LCD_SEG21</value>
             <Selections>
               <sel>LCD_SEG21</sel>
               <sel>I2C0_SDA</sel>
@@ -1568,7 +1568,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>LCD_SEG22</value>
             <Selections>
               <sel>LCD_SEG22</sel>
               <sel>DBUG_SWCLK</sel>
@@ -1632,7 +1632,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>LCD_SEG23</value>
             <Selections>
               <sel>LCD_SEG23</sel>
               <sel>UART0_TX</sel>
@@ -1696,7 +1696,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>LCD_SEG24</value>
             <Selections>
               <sel>LCD_SEG24</sel>
               <sel>UART0_RX</sel>
@@ -1760,7 +1760,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>LCD_SEG25</value>
             <Selections>
               <sel>LCD_SEG25</sel>
               <sel>GPTA0_CHA</sel>
@@ -1824,7 +1824,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>LCD_SEG26</value>
             <Selections>
               <sel>LCD_SEG26</sel>
               <sel>GPTA0_CHB</sel>
@@ -1889,7 +1889,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>LCD_SEG27</value>
             <Selections>
               <sel>LCD_SEG27</sel>
               <sel>GPTB0_CHAY</sel>
@@ -1954,7 +1954,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>LCD_SEG28</value>
             <Selections>
               <sel>LCD_SEG28</sel>
               <sel>GPTB1_CHAY</sel>
@@ -2020,7 +2020,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>LCD_SEG29</value>
             <Selections>
               <sel>LCD_SEG29</sel>
               <sel>VLC3</sel>
@@ -2086,7 +2086,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>LCD_SEG30</value>
             <Selections>
               <sel>LCD_SEG30</sel>
               <sel>VLC2</sel>
@@ -2152,7 +2152,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>LCD_SEG31</value>
             <Selections>
               <sel>LCD_SEG31</sel>
               <sel>VLC1</sel>
@@ -2220,7 +2220,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value>Undefined</value>
+            <value>SIO</value>
             <Selections>
               <sel>SIO</sel>
               <sel>BT1_OUT</sel>
@@ -2286,7 +2286,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>RTC_ALM</value>
             <Selections>
               <sel>RTC_ALM</sel>
               <sel>CMP1_OUT</sel>
@@ -2353,7 +2353,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>OSC_SXI</value>
             <Selections>
               <sel>OSC_SXI</sel>
               <sel>LPT_INOUT</sel>
@@ -2417,7 +2417,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>OSC_SXO</value>
             <Selections>
               <sel>OSC_SXO</sel>
               <sel>BT1_OUT</sel>
@@ -2481,7 +2481,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>OSC_XI</value>
             <Selections>
               <sel>OSC_XI</sel>
               <sel>I2C0_SDA</sel>
@@ -2546,7 +2546,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>OSC_XO</value>
             <Selections>
               <sel>OSC_XO</sel>
               <sel>I2C0_SCL</sel>
@@ -2611,7 +2611,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>RESETB</value>
             <Selections>
               <sel>RESETB</sel>
               <sel>BT1_OUT</sel>
@@ -2807,7 +2807,7 @@
           </Property>
           <Property class="UIchoice">
             <label>AFFunctions</label>
-            <value/>
+            <value>GPTA0_CHA</value>
             <Selections>
               <sel>GPTA0_CHA</sel>
               <sel>GPTB0_CHAX</sel>
@@ -2873,7 +2873,7 @@
             <label>System Clock</label>
             <Property class="UIchoice">
               <label>Clock Source</label>
-              <value>ISOSC</value>
+              <value>IMOSC</value>
               <Selections>
                 <sel notAvailable="SystemClockFreqHFOSC,SystemClockFreqText,SystemClockISOSCFreqText">IMOSC</sel>
                 <sel notAvailable="SystemClockFreqHFOSC,SystemClockFreqIMOSC,SystemClockISOSCFreqText">EMOSC</sel>
@@ -5510,17 +5510,8 @@
             <Comment>USART接收超时时间，单位：bit位周期，8个bytes(11bit*8=88, 115200波特率时=764us)</Comment>
           </Property>
           <Property class="UIchoice">
-            <label>RecvToEn</label>
-            <value>DISABLE</value>
-            <Comment>enable receive timeout</Comment>
-            <Selections>
-              <sel>DISABLE</sel>
-              <sel>ENABLE</sel>
-            </Selections>
-          </Property>
-          <Property class="UIchoice">
             <label>TXMode</label>
-            <value>USART_TX_MODE_INT</value>
+            <value>USART_TX_MODE_POLL</value>
             <Selections>
               <sel>USART_TX_MODE_POLL</sel>
               <sel>USART_TX_MODE_INT</sel>
@@ -5529,7 +5520,7 @@
           </Property>
           <Property class="UIchoice">
             <label>RXMode</label>
-            <value>USART_RX_MODE_INT</value>
+            <value>USART_RX_MODE_POLL</value>
             <Selections>
               <sel>USART_RX_MODE_POLL</sel>
               <sel>USART_RX_MODE_INT</sel>
@@ -7771,87 +7762,87 @@
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_NONE</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_TRGEV0</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_TRGEV1</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_TRGEV2</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_CAPLD0</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_CAPLD1</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_CAPLD2</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_CAPLD3</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_CAU</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_CAD</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_CBU</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_CBD</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_CCU</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_CCD</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_CDU</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_CDD</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool">
             <label>EPT_INTSRC_PEND</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Text" property_class="EPT0WAVE">
@@ -8194,32 +8185,32 @@
           </Property>
           <Property class="Bool" property_class="EPT0ORL0">
             <label>EPT_ORLx_EBI0</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool" property_class="EPT0ORL0">
             <label>EPT_ORLx_EBI1</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool" property_class="EPT0ORL0">
             <label>EPT_ORLx_EBI2</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool" property_class="EPT0ORL0">
             <label>EPT_ORLx_EBI3</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool" property_class="EPT0ORL0">
             <label>EPT_ORLx_CMP0</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool" property_class="EPT0ORL0">
             <label>EPT_ORLx_CMP1</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="UIchoice" property_class="EPT0EM">
@@ -8371,6 +8362,61 @@
               <sel>EPT_EM_OUT_NONE</sel>
             </Selections>
             <Comment>紧急状态下输出状态设置(注意mos/igbt的驱动电平)</Comment>
+          </Property>
+          <Property class="Bool" property_class="EPT0EM">
+            <label>EPT_INTSRC_EP0</label>
+            <value>0</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="EPT0EM">
+            <label>EPT_INTSRC_EP1</label>
+            <value>0</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="EPT0EM">
+            <label>EPT_INTSRC_EP2</label>
+            <value>0</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="EPT0EM">
+            <label>EPT_INTSRC_EP3</label>
+            <value>0</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="EPT0EM">
+            <label>EPT_INTSRC_EP4</label>
+            <value>0</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="EPT0EM">
+            <label>EPT_INTSRC_EP5</label>
+            <value>0</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="EPT0EM">
+            <label>EPT_INTSRC_EP6</label>
+            <value>0</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="EPT0EM">
+            <label>EPT_INTSRC_EP7</label>
+            <value>0</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="EPT0EM">
+            <label>EPT_INTSRC_CPUF</label>
+            <value>0</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="EPT0EM">
+            <label>EPT_INTSRC_MEMF</label>
+            <value>0</value>
+            <Comment/>
+          </Property>
+          <Property class="Bool" property_class="EPT0EM">
+            <label>EPT_INTSRC_EOMF</label>
+            <value>0</value>
+            <Comment/>
           </Property>
         </Device>
       </Category>
@@ -8716,7 +8762,7 @@
           <label>GPTB</label>
           <Property class="UIchoice">
             <label>WorkMode</label>
-            <value>Timer</value>
+            <value>GPTB_WAVE</value>
             <Selections>
               <sel notAvailable="GPTBCommon,GPTBCAPTURE,GPTBWAVE">Timer</sel>
               <sel notAvailable="GPTBWAVE,GPTBTimer">GPTB_CAPTURE</sel>
@@ -8819,72 +8865,72 @@
           </Property>
           <Property class="Bool" property_class="GPTBCommon">
             <label>GPTB_INTSRC_NONE</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool" property_class="GPTBCommon">
             <label>GPTB_INTSRC_TRGEV0</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool" property_class="GPTBCommon">
             <label>GPTB_INTSRC_TRGEV1</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool" property_class="GPTBCommon">
             <label>GPTB_INTSRC_TRGEV2</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool" property_class="GPTBCommon">
             <label>GPTB_INTSRC_TRGEV3</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool" property_class="GPTBCommon">
             <label>GPTB_INTSRC_CAPLD0</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool" property_class="GPTBCommon">
             <label>GPTB_INTSRC_CAPLD1</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool" property_class="GPTBCommon">
             <label>GPTB_INTSRC_CAPLD2</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool" property_class="GPTBCommon">
             <label>GPTB_INTSRC_CAPLD3</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool" property_class="GPTBCommon">
             <label>GPTB_INTSRC_CAU</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool" property_class="GPTBCommon">
             <label>GPTB_INTSRC_CAD</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool" property_class="GPTBCommon">
             <label>GPTB_INTSRC_CBU</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool" property_class="GPTBCommon">
             <label>GPTB_INTSRC_CBD</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Bool" property_class="GPTBCommon">
             <label>GPTB_INTSRC_PEND</label>
-            <value>1</value>
+            <value>0</value>
             <Comment/>
           </Property>
           <Property class="Text" property_class="GPTBWAVE">
