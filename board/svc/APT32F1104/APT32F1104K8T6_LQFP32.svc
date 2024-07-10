@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.csky.cds.peripheral>
+  <config Version="0.0.1"/>
+  <ChipConfig>
+    <CodeGenerateConfig>
+      <OutputFileName>$(ProjectPath)/src/io_config.c</OutputFileName>
+      <IncludeFile>soc.h</IncludeFile>
+      <IncludeFile>drv/gpio.h</IncludeFile>
+      <IncludeFile>drv/pin.h</IncludeFile>
+      <DLLConfig>
+        <DLLFile>$(ProjectWorkingDirectory)/chip_config_dll.dll</DLLFile>
+        <InitFunc>OnInit</InitFunc>
+        <UninitFunc>OnUnInit</UninitFunc>
+        <GetErrorFunc>GetErrMsg</GetErrorFunc>
+      </DLLConfig>
+    </CodeGenerateConfig>
+    <ChipView>
+      <ChipName>APT32F1104</ChipName>
+      <!--ChipShape>CVS_LOOK_SQUARE CVS_LOOK_RECTANGEL</ChipShape-->
+      <ChipShape>CVS_LOOK_SQUARE</ChipShape>
+      <PinCount>32</PinCount>
+      <GenCodeFuncName>APT32F1104LQFP32PinInitFunc</GenCodeFuncName>
+      <Pins>
+        <Pin pinNum="1" group="PA0" displayName="1">
+          <PinFunctions select="">
+            <Func>GPD</Func>
+            <Func>OSC_XI</Func>
+            <Func>I2C0_SDA</Func>
+            <Func>SIO</Func>
+            <Func>I2C_SCL</Func>
+            <Func>ADC_AN2</Func>
+            <Func>CMP_IN2</Func>
+            <Func>G23</Func>
+            <Func>PA0.3</Func>
+          </PinFunctions>
+          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Direction Comment="" displayName="Direction">output</Direction>
+        </Pin>
+        <Pin pinNum="2" group="PA0" displayName="2">
+          <PinFunctions select="">
+            <Func>GPD</Func>
+            <Func>OSC_XO</Func>
+            <Func>I2C0_SCL</Func>
+            <Func>LPT_INOUT</Func>
+            <Func>I2C_SDA</Func>
+            <Func>INTVREF</Func>
+            <Func>CMP_IN3</Func>
+            <Func>G24</Func>
+            <Func>PA0.4</Func>
+          </PinFunctions>
+          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Direction Comment="" displayName="Direction">output</Direction>
+        </Pin>
+        <Pin pinNum="3" group="PA0" displayName="3">
+          <PinFunctions select="">
+            <Func>GPD</Func>
+            <Func>BT1_OUT</Func>
+            <Func>CLO</Func>
+            <Func>SIO</Func>
+            <Func>G25</Func>
+            <Func>PA0.5</Func>
+          </PinFunctions>
+          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Direction Comment="" displayName="Direction">output</Direction>
+        </Pin>
+        <Pin pinNum="4" canModify="false">
+          <PinFunctions type="VSS" select="">
+            <Func>VSS</Func>
+          </PinFunctions>
+          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Direction Comment="" displayName="Direction">output</Direction>
+        </Pin>
+        <Pin pinNum="5" canModify="false">
+          <PinFunctions type="VDD" select="">
+            <Func>VDD</Func>
+          </PinFunctions>
+          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Direction Comment="" displayName="Direction">output</Direction>
+        </Pin>
+        <Pin pinNum="6" group="PA0" displayName="6">
+          <PinFunctions select="">
+            <Func>GPD</Func>
+            <Func>LCD_COM0</Func>
+            <Func>GPTB0_CHB</Func>
+            <Func>USART0_RX</Func>
+            <Func>UART1_RX</Func>
+            <Func>SPI0_MOSI</Func>
+            <Func>ADC_AN6</Func>
+            <Func>PA0.6</Func>
+          </PinFunctions>
+          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Direction Comment="" displayName="Direction">output</Direction>
+        </Pin>
+        <Pin pinNum="7" group="PA0" displayName="7">
+          <PinFunctions select="">
+            <Func>GPD</Func>
+            <Func>LCD_COM1</Func>
+            <Func>LPT_INOUT</Func>
+            <Func>I2C0_SCL</Func>
+            <Func>USART0_CK</Func>
+            <Func>SPI0_NSS</Func>
+            <Func>ADC_AIN7</Func>
+            <Func>PA0.7</Func>
+          </PinFunctions>
+          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Direction Comment="" displayName="Direction">output</Direction>
+        </Pin>
+        <Pin pinNum="8" group="PA0" displayName="8">
+          <PinFunctions select="">
+            <Func>GPD</Func>
+            <Func>LCD_COM2</Func>
+            <Func>LCD_SEG0</Func>
+            <Func>CMP1_OUT</Func>
+            <Func>I2C0_SDA</Func>
+            <Func>USART0_TX</Func>
+            <Func>SPI0_SCK</Func>
+            <Func>ADC_AIN8</Func>
+            <Func>PA0.8</Func>
+          </PinFunctions>
+          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Direction Comment="" displayName="Direction">output</Direction>
+        </Pin>
+        <Pin pinNum="9" group="PA0" displayName="9">
+          <PinFunctions select="">
+            <Func>PA0.9</Func>
+            <Func>GPD</Func>
+            <Func>LCD_COM3</Func>
+            <Func>LCD_SEG1</Func>
+            <Func>EBI0</Func>
+            <Func>GPTA0_CHA</Func>
+            <Func>BT1_OUT</Func>
+            <Func>SPI0_MISO</Func>
+            <Func>ADC_AIN9</Func>
+          </PinFunctions>
+          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Direction Comment="" displayName="Direction">output</Direction>
+        </Pin>
+        <Pin pinNum="10" group="PA0" displayName="10">
+          <PinFunctions select="">
+            <Func>PA0.10</Func>
+            <Func>GPD</Func>
+            <Func>LCD_COM4</Func>
+            <Func>LCD_SEG2</Func>
+            <Func>EPT_CHAY</Func>
+            <Func>GPTA0_CHB</Func>
+            <Func>GPTB1_CHAX</Func>
+            <Func>SPI0_MOSI</Func>
+            <Func>ADC_AIN10</Func>
+          </PinFunctions>
+          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Direction Comment="" displayName="Direction">output</Direction>
+        </Pin>
+        <Pin pinNum="11" group="PA0" displayName="11">
+          <PinFunctions select="">
+            <Func>PA0.11</Func>
+            <Func>GPD</Func>
+            <Func>LCD_COM5</Func>
+            <Func>LCD_SEG3</Func>
+            <Func>EPT_CHBY</Func>
+            <Func>GPTA1_CHA</Func>
+            <Func>ADC_AIN11</Func>
+          </PinFunctions>
+          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Direction Comment="" displayName="Direction">output</Direction>
+        </Pin>
+        <Pin pinNum="12" group="PA0" displayName="12">
+          <PinFunctions select="">
+            <Func>PA0.12</Func>
+            <Func>GPD</Func>
+            <Func>LCD_COM6</Func>
+            <Func>LCD_SEG4</Func>
+            <Func>EPT_CHCY</Func>
+            <Func>GPTA1_CHB</Func>
+            <Func>LPT_INOUT</Func>
+            <Func>ADC_AIN12</Func>
+          </PinFunctions>
+          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Direction Comment="" displayName="Direction">output</Direction>
+        </Pin>
+        <Pin pinNum="13" group="PA0" displayName="13">
+          <PinFunctions select="">
+            <Func>PA0.13</Func>
+            <Func>GPD</Func>
+            <Func>LCD_COM7</Func>
+            <Func>LCD_SEG5</Func>
+            <Func>GPTB0_CHAX</Func>
+            <Func>SIO</Func>
+            <Func>ADC_AIN13</Func>
+          </PinFunctions>
+          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Direction Comment="" displayName="Direction">output</Direction>
+        </Pin>
+        <Pin pinNum="14" group="PA0" displayName="14">
+          <PinFunctions select="">
+            <Func>PA0.14</Func>
+            <Func>GPD</Func>
+            <Func>LCD_SEG6</Func>
+            <Func>GPTB0_CHB</Func>
+            <Func>GPTB0_CHAY</Func>
+            <Func>G10</Func>
+          </PinFunctions>
+          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Direction Comment="" displayName="Direction">output</Direction>
+        </Pin>
+        <Pin pinNum="15" group="PA0" displayName="15">
+          <PinFunctions select="">
+            <Func>PA0.15</Func>
+            <Func>GPD</Func>
+            <Func>LCD_SEG7</Func>
+            <Func>GPTB1_CHAX</Func>
+            <Func>G11</Func>
+          </PinFunctions>
+          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Direction Comment="" displayName="Direction">output</Direction>
+        </Pin>
+        <Pin pinNum="16" group="PA1" displayName="16">
+          <PinFunctions select="">
+            <Func>PA1.0</Func>
+            <Func>GPD</Func>
+            <Func>LCD_SEG11</Func>
+            <Func>EPT_CHAY</Func>
+            <Func>GPTA1_CHB</Func>
+            <Func>G15</Func>
+          </PinFunctions>
+          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Direction Comment="" displayName="Direction">output</Direction>
+        </Pin>
+        <Pin pinNum="17" group="PA1" displayName="17">
+          <PinFunctions select="">
+            <Func>PA1.1</Func>
+            <Func>GPD</Func>
+            <Func>LCD_SEG12</Func>
+            <Func>EPT_CHBY</Func>
+            <Func>GPTB0_CHAX</Func>
+            <Func>G16</Func>
+          </PinFunctions>
+          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Direction Comment="" displayName="Direction">output</Direction>
+        </Pin>
+        <Pin pinNum="18" group="PA1" displayName="18">
+          <PinFunctions select="">
+            <Func>PA1.2</Func>
+            <Func>GPD</Func>
+            <Func>LCD_SEG13</Func>
+            <Func>EPT_CHCY</Func>
+            <Func>GPTB0_CHB</Func>
+            <Func>GPTB0_CHAY</Func>
+            <Func>G17</Func>
+          </PinFunctions>
+          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Direction Comment="" displayName="Direction">output</Direction>
+        </Pin>
+        <Pin pinNum="19" group="PA1" displayName="19">
+          <PinFunctions select="">
+            <Func>PA1.3</Func>
+            <Func>GPD</Func>
+            <Func>LCD_SEG14</Func>
+            <Func>EPT_CHAX</Func>
+            <Func>CLO</Func>
+            <Func>USART0_CK</Func>
+          </PinFunctions>
+          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Direction Comment="" displayName="Direction">output</Direction>
+        </Pin>
+        <Pin pinNum="20" group="PA1" displayName="20">
+          <PinFunctions select="">
+            <Func>PA1.4</Func>
+            <Func>GPD</Func>
+            <Func>LCD_SEG15</Func>
+            <Func>EPT_CHBX</Func>
+            <Func>EBI2</Func>
+            <Func>USART0_TX</Func>
+            <Func>UART1_TX</Func>
+          </PinFunctions>
+          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Direction Comment="" displayName="Direction">output</Direction>
+        </Pin>
+        <Pin pinNum="21" group="PA1" displayName="21">
+          <PinFunctions select="">
+            <Func>PA1.5</Func>
+            <Func>GPD</Func>
+            <Func>LCD_SEG16</Func>
+            <Func>EPT_CHCX</Func>
+            <Func>EBI3</Func>
+            <Func>USART0_RX</Func>
+            <Func>UART1_RX</Func>
+          </PinFunctions>
+          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Direction Comment="" displayName="Direction">output</Direction>
+        </Pin>
+        <Pin pinNum="22" group="PA1" displayName="22">
+          <PinFunctions select="">
+            <Func>PA1.6</Func>
+            <Func>GPD</Func>
+            <Func>LCD_SEG17</Func>
+            <Func>EPT_CHD</Func>
+            <Func>CMP0_OUT</Func>
+            <Func>UART0_TX</Func>
+          </PinFunctions>
+          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Direction Comment="" displayName="Direction">output</Direction>
+        </Pin>
+        <Pin pinNum="23" group="PA1" displayName="23">
+          <PinFunctions select="">
+            <Func>PA1.7</Func>
+            <Func>GPD</Func>
+            <Func>LCD_SEG19</Func>
+            <Func>DBUG_SWDIO</Func>
+            <Func>CNTA_REM</Func>
+            <Func>GPTA1_CHA</Func>
+          </PinFunctions>
+          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Direction Comment="" displayName="Direction">output</Direction>
+        </Pin>
+        <Pin pinNum="24" group="PA1" displayName="24">
+          <PinFunctions select="">
+            <Func>PA1.8</Func>
+            <Func>GPD</Func>
+            <Func>LCD_SEG22</Func>
+            <Func>DBUG_SWCLK</Func>
+            <Func>USART0_TX</Func>
+            <Func>LPT_INOUT</Func>
+          </PinFunctions>
+          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Direction Comment="" displayName="Direction">output</Direction>
+        </Pin>
+        <Pin pinNum="25" group="PA1" displayName="25">
+          <PinFunctions select="">
+            <Func>GPD</Func>
+            <Func>LCD_SEG27</Func>
+            <Func>GPTB0_CHAY</Func>
+            <Func>BT0_OUT</Func>
+            <Func>USART0_TX</Func>
+            <Func>I2C0_SCL</Func>
+            <Func>PA1.9</Func>
+          </PinFunctions>
+          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Direction Comment="" displayName="Direction">output</Direction>
+        </Pin>
+        <Pin pinNum="26" group="PA1" displayName="26">
+          <PinFunctions select="">
+            <Func>GPD</Func>
+            <Func>LCD_SEG28</Func>
+            <Func>GPTB1_CHAY</Func>
+            <Func>CNTA_REM</Func>
+            <Func>USART0_RX</Func>
+            <Func>BT1_OUT</Func>
+            <Func>I2C0_SDA</Func>
+            <Func>CMP_IN1</Func>
+            <Func>PA1.10</Func>
+          </PinFunctions>
+          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Direction Comment="" displayName="Direction">output</Direction>
+        </Pin>
+        <Pin pinNum="27" group="PA1" displayName="27">
+          <PinFunctions select="">
+            <Func>GPD</Func>
+            <Func>LCD_SEG29</Func>
+            <Func>VLC3</Func>
+            <Func>GPTB1_CHAX</Func>
+            <Func>UART2_TX</Func>
+            <Func>CMP0_OUT</Func>
+            <Func>USART0_CK</Func>
+            <Func>PA1.11</Func>
+          </PinFunctions>
+          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Direction Comment="" displayName="Direction">output</Direction>
+        </Pin>
+        <Pin pinNum="28" group="PA1" displayName="28">
+          <PinFunctions select="">
+            <Func>GPD</Func>
+            <Func>LCD_SEG30</Func>
+            <Func>VLC2</Func>
+            <Func>GPTB0_CHAX</Func>
+            <Func>UART2_RX</Func>
+            <Func>BT1_OUT</Func>
+            <Func>I2C0_SCL</Func>
+            <Func>PA1.12</Func>
+          </PinFunctions>
+          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Direction Comment="" displayName="Direction">output</Direction>
+        </Pin>
+        <Pin pinNum="29" group="PA1" displayName="29">
+          <PinFunctions select="">
+            <Func>GPD</Func>
+            <Func>LCD_SEG31</Func>
+            <Func>VLC1</Func>
+            <Func>GPTB1_CHAX</Func>
+            <Func>CNTA_REM</Func>
+            <Func>SPI0_NSS</Func>
+            <Func>I2C0_SDA</Func>
+            <Func>PA1.13</Func>
+          </PinFunctions>
+          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Direction Comment="" displayName="Direction">output</Direction>
+        </Pin>
+        <Pin pinNum="30" canModify="false">
+          <PinFunctions type="VLCD" select="">
+            <Func>VLCD</Func>
+          </PinFunctions>
+          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Direction Comment="" displayName="Direction">output</Direction>
+        </Pin>
+        <Pin pinNum="31" group="PA0" displayName="31">
+          <PinFunctions select="">
+            <Func>GPD</Func>
+            <Func>OSC_SXI</Func>
+            <Func>LPT_INOUT</Func>
+            <Func>GPTB1_CHAX</Func>
+            <Func>SIO</Func>
+            <Func>ADC_AN1</Func>
+            <Func>CMP_IN1</Func>
+            <Func>G21</Func>
+            <Func>PA0.1</Func>
+          </PinFunctions>
+          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Direction Comment="" displayName="Direction">output</Direction>
+        </Pin>
+        <Pin pinNum="32" group="PA0" displayName="32">
+          <PinFunctions select="">
+            <Func>GPD</Func>
+            <Func>OSC_SXO</Func>
+            <Func>BT1_OUT</Func>
+            <Func>GPTB1_CHAY</Func>
+            <Func>GPTB1_CHB</Func>
+            <Func>ADC_AN18</Func>
+            <Func>G22</Func>
+            <Func>PA0.2</Func>
+          </PinFunctions>
+          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Direction Comment="" displayName="Direction">output</Direction>
+        </Pin>
+      </Pins>
+    </ChipView>
+    <ChipPropertiesView>
+      <ChipPins>
+        <label>I/O ports</label>
+      </ChipPins>
+    </ChipPropertiesView>
+  </ChipConfig>
+</com.csky.cds.peripheral>

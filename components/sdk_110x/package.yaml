@@ -1,0 +1,40 @@
+name: sdk_110x
+version: v1.0.3
+description: sdk for apt32f110x
+tag: ""
+keywords: ~
+author:
+  name: ""
+license: ""
+homepage: ~
+type: sdk
+depends:
+  - apt32f110x_chip: v1.0.3
+  - apt32f110x_evb: v1.0.3
+  - apt_console: v1.0.1
+  - apt_csi: v1.0.3
+hw_info:
+  cpu_id: ""
+  cpu_name: ""
+  vendor_name: ""
+  chip_name: ""
+  board_name: ""
+  ld_script: ""
+  flash_program: ""
+build_config:
+  include: ~
+  internal_include: ~
+  cflag: ""
+  cxxflag: ""
+  asmflag: ""
+  define: ~
+  libs: ~
+  libpath: ~
+source_file: ~
+def_config: ~
+install: ~
+depends_forward:
+  - apt32f110x_chip: v1.0.3
+  - apt32f110x_evb: v1.0.3
+  - apt_console: v1.0.1
+  - apt_csi: v1.0.3
