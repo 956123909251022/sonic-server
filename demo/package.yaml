@@ -1,0 +1,46 @@
+hw_info:
+  cpu_id: ""
+  cpu_name: ck802
+  vendor_name: ""
+  chip_name: ""
+  board_name: ""
+  ld_script: ""
+  flash_program: ""
+def_config:
+  CONFIG_ARCH_INTERRUPTSTACK: 1024
+  CONFIG_DEBUG_MODE: 1
+  CONFIG_KERNEL_NONE: 1
+  CONFIG_SUPPORT_TSPEND: 1
+  CONFIG_XIP: 1
+  DBG_PRINT2PC: 1
+  IS_CHIP_1104: 1
+name: demo
+version: v1.0.0
+description: 我的第一个方案工程
+tag: ""
+keywords: ~
+author:
+  name: ""
+license: ""
+type: solution
+depends:
+  - apt32f110x_demo: v1.0.3
+  - sdk_110x: v1.0.3
+build_config:
+  include:
+    - include
+    - ./
+  internal_include: ~
+  cflag: -Og  -g
+  cxxflag: -Og  -g
+  asmflag: -Wa,--gdwarf2
+  define: ~
+  libs: ~
+  libpath: ~
+source_file:
+  - src/*.c
+depends_forward:
+  - apt32f110x_demo: v1.0.3
+  - sdk_110x: v1.0.3
+install: ~
+homepage: ~
