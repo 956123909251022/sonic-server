@@ -8,7 +8,6 @@
     </File>
   </VirtualDirectory>
   <MergedToYaml>yes</MergedToYaml>
-  <PackPathes>$(ProjectPath)/../../apt32f10x</PackPathes>
   <VendorInfo>
     <VendorName>new_soc_project_c_solution_ck802</VendorName>
   </VendorInfo>
@@ -224,4 +223,5 @@
     <debugLayout/>
     <memoryTabColSizeExpressions>100:8;100:8;100:8;100:8;</memoryTabColSizeExpressions>
   </DebugSessions>
+  <PackPathes>$(ProjectPath)/../board|$(ProjectPath)/../components|</PackPathes>
 </Project>
