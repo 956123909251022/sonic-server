@@ -1,19 +1,14 @@
-/*
-  ******************************************************************************
-  * @file    apt32f102_tkey_parameter.c
-  * @author  APT AE Team
-  * @version V1.05
-  * @date    2020/11/24
-  ******************************************************************************
-  *THIS SOFTWARE WHICH IS FOR ILLUSTRATIVE PURPOSES ONLY WHICH PROVIDES 
-  *CUSTOMER WITH CODING INFORMATION REGARDING THEIR PRODUCTS.
-  *APT CHIP SHALL NOT BE HELD RESPONSIBILITY ADN LIABILITY FOR ANY DIRECT, 
-  *INDIRECT DAMAGES WITH RESPECT TO ANY CLAIMS ARISING FROM THE CONTENT OF 
-  *SUCH SOFTWARE AND/OR THE USE MADE BY CUSTOMERS OF THE CODING INFORMATION 
-  *CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.AND APT CHIP RESERVES 
-  *THE RIGHT TO MAKE CHANGES IN THE SOFTWARE WITHOUT NOTIFICATION
-  ******************************************************************************
-  */
+/***********************************************************************//** 
+ * \file  tkey_parameter.c
+ * \brief  csi tkey parameter
+ * \copyright Copyright (C) 2015-2022 @ ASMCHIP
+ * <table>
+ * <tr><th> Date  <th>Version  <th>Author  <th>Description
+ * <tr><td> 2020-11-24 <td>V0.0  <td>ASM AE Team   <td>initial
+ * </table>
+ * *********************************************************************
+*/ 
+
 #include "csp_tkey.h"
 #include <drv/tkey.h>
 

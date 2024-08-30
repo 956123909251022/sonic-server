@@ -1,13 +1,14 @@
-/*
- * Copyright (C) 2017-2020 Alibaba Group Holding Limited
- */
-
-/******************************************************************************
- * @file     drv/pm.h
- * @brief    header File for pm manage
- * @version  V1.0
- * @date     16. Mar 2020
- ******************************************************************************/
+/***********************************************************************//** 
+ * \file  pm.h
+ * \brief  head file of power management
+ * \copyright Copyright (C) 2015-2020 @ APTCHIP
+ * <table>
+ * <tr><th> Date  <th>Version  <th>Author  <th>Description
+ * <tr><td> 2020-8-10 <td>V0.0  <td>WNN   <td>initial for csi
+ * <tr><td> 2022-2-9  <td>V0.1  <td>ZJY   <td>Perfect handling
+ * </table>
+ * *********************************************************************
+*/
 
 #ifndef _PM_H_
 #define _PM_H_

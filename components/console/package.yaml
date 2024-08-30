@@ -1,5 +1,5 @@
 name: apt_console
-version: v1.0.1
+version: v1.0.2
 description: mini console.
 tag: 核心模块
 keywords:
@@ -11,7 +11,7 @@ yoc_version:
   - v7.2
   - v7.3
 depends:
-  - apt_csi: v1.0.3
+  - apt_csi: v1.0.4
 build_config:
   include:
     - include

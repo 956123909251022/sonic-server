@@ -51,6 +51,8 @@ int uart_send_dma_demo(void)
 	csi_uart_init(UART1, &tUartConfig);			//初始化串口
 	csi_uart_start(UART1, UART_FUNC_RX_TX);		//开启UART的RX和TX功能，也可单独开启RX或者TX功能
 	
+	csi_etb_init();								//使能ETB模块
+	
 	csi_uart_dma_tx_init(UART1, DMA_CH1, ETB_CH10);	
 	
 	while(1)
@@ -93,6 +95,8 @@ int uart_recv_dma_demo(void)
 	
 	csi_uart_init(UART1, &tUartConfig);			//初始化串口
 	csi_uart_start(UART1, UART_FUNC_RX_TX);		//开启UART的RX和TX功能，也可单独开启RX或者TX功能
+
+	csi_etb_init();								//使能ETB模块
 
 	csi_uart_dma_rx_init(UART1, DMA_CH3, ETB_CH8);
 	csi_uart_recv_dma(UART1, DMA_CH3, (void*)byRvUart,22);

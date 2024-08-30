@@ -18,8 +18,10 @@
 #include "csp_syscon.h"
 #include "lpt.h"
 #include <drv/irq.h>
+#include <soc.h>
 
-extern csi_clkmap_t clk_map[];
+//extern csi_clkmap_t clk_map[];
+extern csi_devmap_t dev_map[];
 
 /** \brief clock enable
  * 
@@ -30,16 +32,35 @@ extern csi_clkmap_t clk_map[];
  */
 void csi_clk_enable(void *pIpBase)
 {
-    csi_clkmap_t *ptMap = clk_map;
-
-    while(ptMap->wRegBase) 
+//    csi_clkmap_t *ptMap = clk_map;
+//
+//    while(ptMap->wRegBase) 
+//	{
+//        if((uint32_t)pIpBase == ptMap->wRegBase) 
+//		{
+//			if((uint32_t)pIpBase != CORET_ADDR_BASE)
+//				soc_clk_enable((clk_module_e)ptMap->wModule);
+//			else
+//				SYSCON->GCER = (0x01ul << ptMap->wModule);
+//            break;
+//        }
+//        ptMap++;
+//    }
+	
+	csi_devmap_t *ptMap = dev_map;
+	uint32_t wIpBase = (uint32_t)pIpBase;
+	
+	while(ptMap->hwRegBase) 
 	{
-        if((uint32_t)pIpBase == ptMap->wRegBase) 
+        if((uint16_t)((wIpBase >> 16) | ((wIpBase &0xffff) >> 4)) == ptMap->hwRegBase) 
 		{
-			if((uint32_t)pIpBase != CORET_ADDR_BASE)
-				soc_clk_enable((clk_module_e)ptMap->wModule);
+			if(wIpBase != CORET_ADDR_BASE)
+				soc_clk_enable((clk_module_e)ptMap->byModule);
 			else
-				SYSCON->GCER = (0x01ul << ptMap->wModule);
+			{
+				if(ptMap->byModule != 0xff)
+					SYSCON->GCER = (0x01ul << ptMap->byModule);
+			}
             break;
         }
         ptMap++;
@@ -115,16 +136,35 @@ void csi_clk_enable(void *pIpBase)
  */
 void csi_clk_disable(void *pIpBase)
 {
-    csi_clkmap_t *ptMap = clk_map;
+//    csi_clkmap_t *ptMap = clk_map;
 
-	while(ptMap->wRegBase)
+//	while(ptMap->wRegBase)
+//	{
+//        if((uint32_t)pIpBase == ptMap->wRegBase) 
+//		{
+//			if((uint32_t)pIpBase != CORET_ADDR_BASE)
+//				soc_clk_disable((clk_module_e)ptMap->wModule);
+//			else
+//				SYSCON->GCDR = (0x01ul << ptMap->wModule);
+//            break;
+//        }
+//        ptMap++;
+//    }
+	
+	csi_devmap_t *ptMap = dev_map;
+	uint32_t wIpBase = (uint32_t)pIpBase;
+	
+	while(ptMap->hwRegBase)
 	{
-        if((uint32_t)pIpBase == ptMap->wRegBase) 
+        if((uint16_t)((wIpBase >> 16) | ((wIpBase &0xffff) >> 4)) == ptMap->hwRegBase) 
 		{
-			if((uint32_t)pIpBase != CORET_ADDR_BASE)
-				soc_clk_disable((clk_module_e)ptMap->wModule);
+			if(wIpBase != CORET_ADDR_BASE)
+				soc_clk_disable((clk_module_e)ptMap->byModule);
 			else
-				SYSCON->GCDR = (0x01ul << ptMap->wModule);
+			{
+				if(ptMap->byModule != 0xff)
+					SYSCON->GCDR = (0x01ul << ptMap->byModule);
+			}
             break;
         }
         ptMap++;
@@ -134,7 +174,7 @@ void csi_clk_disable(void *pIpBase)
  * 
  *  enable external main oscillator in SYSCON
  * 
- *  \param none
+ *  \param[in] none
  *  \return csi_error_t
  */
 csi_error_t csi_emosc_enable(uint32_t wFreq)
@@ -166,7 +206,7 @@ csi_error_t csi_emosc_enable(uint32_t wFreq)
  * 
  *  disable external main oscillator in SYSCON
  * 
- *  \param none
+ *  \param[in] none
  *  \return csi_error_t.
  */
 csi_error_t csi_emosc_disable(void)
@@ -188,7 +228,7 @@ csi_error_t csi_emosc_disable(void)
  * 
  *  enable external sub oscillator in SYSCON
  * 
- *  \param none
+ *  \param[in] none
  *  \return csi_error_t
  */
 csi_error_t csi_esosc_enable(uint32_t wFreq)
@@ -210,7 +250,7 @@ csi_error_t csi_esosc_enable(uint32_t wFreq)
  * 
  *  disable external sub oscillator in SYSCON
  * 
- *  \param none
+ *  \param[in] none
  *  \return csi_error_t.
  */
 csi_error_t csi_esosc_disable(void)
@@ -229,10 +269,10 @@ csi_error_t csi_esosc_disable(void)
  * 
  *  enable internal main oscillator in SYSCON
  * 
- *  \param byFre. 	0 - 5MHz
- * 					1 - 4MHz
- * 					2 - 2MHz
-					3 - 131KHz
+ *  \param[in] byFre. 	0 - 5MHz
+ * 						1 - 4MHz
+ * 						2 - 2MHz
+						3 - 131KHz
  *  \return csi_error_t
  */
 csi_error_t csi_imosc_enable(uint8_t byFre)
@@ -251,7 +291,7 @@ csi_error_t csi_imosc_enable(uint8_t byFre)
  * 
  *  disable internal main oscillator in SYSCON
  * 
- *  \param none
+ *  \param[in] none
  *  \return csi_error_t.
  */
 csi_error_t csi_imosc_disable(void)
@@ -269,14 +309,14 @@ csi_error_t csi_imosc_disable(void)
 //		return CSI_OK;
 }
 
- /** \brief hfosc enable
+/** \brief hfosc enable
  * 
  *  enable high frequency oscillator in SYSCON
  * 
- *  \param byFre. 	0 - 48MHz
- * 					1 - 24MHz
- * 					2 - 12MHz
-					3 - 6KHz
+ *  \param[in] byFre. 	0 - 48MHz
+ * 						1 - 24MHz
+ * 						2 - 12MHz
+						3 - 6KHz
  *  \return csi_error_t.
  */
 csi_error_t csi_hfosc_enable(uint8_t byFre)
@@ -295,7 +335,7 @@ csi_error_t csi_hfosc_enable(uint8_t byFre)
  * 
  *  disable high frequency oscillator in SYSCON
  * 
- *  \param none
+ *  \param[in] none
  *  \return csi_error_t
  */
 csi_error_t csi_hfosc_disable(void)
@@ -318,7 +358,7 @@ csi_error_t csi_hfosc_disable(void)
  * 
  *  enable internal sub oscillator in SYSCON
  * 
- *  \param none
+ *  \param[in] none
  *  \return csi_error_t
  */
 csi_error_t csi_isosc_enable(void)
@@ -336,7 +376,7 @@ csi_error_t csi_isosc_enable(void)
  * 
  *  disable internal sub oscillator in SYSCON
  * 
- *  \param none
+ *  \param[in] none
  *  \return csi_error_t.
  */
 csi_error_t csi_isosc_disable(void)
@@ -352,6 +392,53 @@ csi_error_t csi_isosc_disable(void)
 //		return CSI_ERROR;
 //	else
 //		return CSI_OK;
+}
+
+/** \brief emosc filtering enable
+ * 
+ *  \param[in] eFiltSel: \ref csi_emfilt_e
+ *  \param[in] bEnable: ENABLE/DISABLE
+ *  \return none
+ */
+void csi_emosc_filter_enable(csi_emfilt_e eFiltSel, bool bEnable)
+{
+	if(bEnable)
+		SYSCON->OSTR = (SYSCON->OSTR & ~EM_FLTSEL_MSK) | (eFiltSel << EM_FLTSEL_POS) | EM_FLTEN_MSK;
+	else
+		SYSCON->OSTR &= ~EM_FLTEN_MSK;
+}
+
+/** \brief esosc filtering enable
+ * 
+ *  \param[in] bEnable: ENABLE/DISABLE
+ *  \return none
+ */
+void csi_esosc_filter_enable(bool bEnable)
+{
+	if(bEnable)
+		SYSCON->OSTR &=  ~ES_SMTDIS_MSK;
+	else
+		SYSCON->OSTR |= ES_SMTDIS_MSK;
+}
+
+/** \brief set emosc gain 
+ * 
+ *  \param[in] byEmGain: gain value, value < 0x20
+ *  \return none
+ */
+void csi_emosc_set_gain(uint8_t byEmGain)
+{
+	SYSCON->OSTR = (SYSCON->OSTR & ~EM_GM_MSK) | (byEmGain << EM_GM_POS);
+}
+
+/** \brief set esosc gain 
+ * 
+ *  \param[in] byEsGain: gain value, value < 0x10
+ *  \return none
+ */
+void csi_esosc_set_gain(uint8_t byEsGain)
+{
+	SYSCON->OSTR = (SYSCON->OSTR & ~ES_GM_MSK) | (byEsGain << ES_GM_POS);
 }
 
 /** \brief csi_clk_calib
@@ -421,7 +508,7 @@ csi_error_t csi_clk_calib(void)
 		tClkCalib.wClcrStep  = CLCE_STEP_HF;
 	}
 	
-	asm  ("psrclr ie");                                                 //disable interrupt
+	asm  ("psrclr ie");                               //disable interrupt
 	tClkCalib.wClcrValue = SYSCON->CLCR;
 	
 	while(byFlag)
@@ -514,8 +601,8 @@ csi_error_t csi_clk_calib(void)
 				byFlag =0;
 			}			
 		}
-		mdelay(1);
+		delay_ums(4);
 	}
+	//asm  ("psrset ee,ie");			//enable interrupt	
 	return CSI_OK;
-	asm  ("psrset ee,ie");                                                //enable interrupt	
 }

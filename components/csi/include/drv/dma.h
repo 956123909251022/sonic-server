@@ -1,14 +1,13 @@
-/*
- * Copyright (C) 2017-2020 Alibaba Group Holding Limited
- */
-
-/******************************************************************************
- * @file     dma.h
- * @brief    header file for dma driver
- * @version  V1.0
- * @date     08. Apr 2020
- * @model    dma
- ******************************************************************************/
+/***********************************************************************//** 
+ * \file  dma.h
+ * \brief  head file of csi dma
+ * \copyright Copyright (C) 2015-2020 @ APTCHIP
+ * <table>
+ * <tr><th> Date  <th>Version  <th>Author  <th>Description
+ * <tr><td> 2021-12-23 <td>V0.0  <td>ZJY   <td>initial
+ * </table>
+ * *********************************************************************
+*/
 
 #ifndef _DRV_DMA_H_
 #define _DRV_DMA_H_
@@ -152,11 +151,13 @@ csi_error_t csi_dma_ch_init(csp_dma_t *ptDmaBase, csi_dma_ch_e eDmaCh, csi_dma_c
   \param[in]   eDmaCh       channel num of dma(4 channel: 0->3)
   \param[in]   pSrcAddr     transfer source address
   \param[in]   pDstAddr     transfer destination address
-  \param[in]   wLen         transfer length (unit: bytes), if set data_width is 16, the length should be the multiple of 2, and
-                            if set data_width is 32, the length should be the multiple of 4
+  \param[in]   hwHTranNum	high transfer num, hwHTranNum <= 0xfff; transfer number = hwHTranNum * hwLTranNum(TSIZE = ONCE)
+  \param[in]   hwLTranNum	low transfer num,  hwLTranNum <= 0xfff; transfer number = hwHTranNum * hwLTranNum(TSIZE = ONCE)
+			   transfer length (unit: bytes), if set data_width is 16, the length should be the multiple of 2, and
+			   if set data_width is 32, the length should be the multiple of 4
   \return      error code \ref csi_error_t
 */
-csi_error_t csi_dma_ch_start(csp_dma_t *ptDmaBase, csi_dma_ch_e eDmaCh, void *pSrcAddr, void *pDstAddr, uint32_t wLen);
+csi_error_t csi_dma_ch_start(csp_dma_t *ptDmaBase, csi_dma_ch_e eDmaCh, void *pSrcAddr, void *pDstAddr, uint16_t hwHTranNum, uint16_t hwLTranNum);
 
 /** 
   \brief 	   enable/disable dma interrupt 

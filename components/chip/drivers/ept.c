@@ -163,13 +163,6 @@ csi_error_t csi_ept_config_init(csp_ept_t *ptEptBase, csi_ept_config_t *pteptPwm
 		if(pteptPwmCfg->byCaptureRearm)  wCrVal|=EPT_CAPREARM;
 		
 		wPrdrLoad=0xFFFF;
-		
-		if(pteptPwmCfg->byBurst)
-		{   wCrVal|=EPT_BURST;	
-			wCrVal|=EPT_FLT_INIT;
-			wCrVal=(wCrVal & ~(EPT_CGSRC_MSK))|((pteptPwmCfg->byCgsrc&0x03)<<EPT_CGSRC_POS);
-			wCrVal=(wCrVal & ~(EPT_CGFLT_MSK))|((pteptPwmCfg->byCgflt&0x07)<<EPT_CGFLT_POS);
-		}
 	}
 	
 	
@@ -234,13 +227,7 @@ csi_error_t csi_ept_capture_init(csp_ept_t *ptEptBase, csi_ept_captureconfig_t *
 	wCrVal|=EPT_CAPLD_EN;
 	wCrVal|=EPT_CAPREARM;
 	wPrdrLoad=0xFFFF;
-	
-	if(pteptPwmCfg->byBurst)
-	{   wCrVal|=EPT_BURST;	
-	    wCrVal|=EPT_FLT_INIT;
-		wCrVal=(wCrVal & ~(EPT_CGSRC_MSK))|((pteptPwmCfg->byCgsrc&0x03)<<EPT_CGSRC_POS);
-		wCrVal=(wCrVal & ~(EPT_CGFLT_MSK))|((pteptPwmCfg->byCgflt&0x07)<<EPT_CGFLT_POS);
-	}
+
     csp_ept_clken(ptEptBase);                                           // clkEN
 	csp_ept_set_cr(ptEptBase, wCrVal);									// set bt work mode
 	csp_ept_set_pscr(ptEptBase, (uint16_t)wClkDiv);					// clk div
@@ -318,6 +305,21 @@ csi_error_t  csi_ept_wave_init(csp_ept_t *ptEptBase, csi_ept_pwmconfig_t *pteptP
 	gEptPrd=wPrdrLoad;
 	
 	return CSI_OK;	
+}
+
+/** \brief enable/disable ept burst 
+ * 
+ *  \param[in] ptEptBase: pointer of ept register structure
+ *  \param[in] byCgsrc:cgr src 
+ *  \param[in] byCgflt:cfg flt
+ *  \param[in] bEnable: ENABLE/DISABLE
+ *  \return error code \ref csi_error_t
+ */
+csi_error_t csi_ept_burst_enable(csp_ept_t *ptEptBase,uint8_t byCgsrc,uint8_t byCgflt, bool bEnable)
+{
+	csp_ept_set_burst(ptEptBase,byCgsrc,bEnable);	
+	csp_ept_flt_init(ptEptBase,byCgflt,bEnable);
+	return CSI_OK;
 }
 /** \brief Channel configuration
  *  \param[in] ptEptBase: pointer of ept register structure
@@ -860,9 +862,9 @@ void csi_ept_debug_enable(csp_ept_t *ptEptBase, bool bEnable)
  *  \param[in] eEbi: refer to csp_ept_emint_e
  *  \return none
  */
-void csi_ept_emergency_int_enable(csp_ept_t *ptEptBase, csp_ept_emint_e eEbi)
+void csi_ept_emergency_int_enable(csp_ept_t *ptEptBase, csp_ept_emint_e eEm)
 {   csi_irq_enable((uint32_t *)ptEptBase);		//enable  irq
-    csp_ept_Emergency_emimcr(ptEptBase,eEbi);
+    csp_ept_Emergency_emimcr(ptEptBase,eEm);
 }
 
 /** \brief enable/disable ept out trigger 
@@ -1090,12 +1092,12 @@ csi_error_t csi_ept_set_evcntinit(csp_ept_t *ptEptBase, uint8_t byCntChx, uint8_
  return CSI_OK;
 }
 
-/** \brief  ept configuration Loading
+/** \brief  ept Link configuration
  * 
- *  \param[in] ptEptBase: pointer of ept register structure
- *  \param[in] tCfg: refer to csi_ept_feglk_config_t
- *  \return none
- */
+ *  \param[in] ptEptBase    	pointer of ept register structure
+ *  \param[in] Global           refer to csi_ept_feglk_config_t
+ *  \return error code \ref csi_error_t
+*/
 void csi_ept_reglk_config(csp_ept_t *ptEptBase,csi_ept_feglk_config_t *Global)
 {   uint32_t w_GLK;	
 	w_GLK =0;

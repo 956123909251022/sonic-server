@@ -24,9 +24,9 @@
 MEMORY
 {
 	ROM(RX)   : ORIGIN = 0x00000000,  LENGTH = 64K
-	RAM(RWX)  : ORIGIN = 0x20000000,  LENGTH = 8K
+	RAM(RWX)  : ORIGIN = 0x20000000,  LENGTH = 9K
 }
-__kernel_stack = ORIGIN(RAM) + LENGTH(RAM) -8 ;		/* stack top*/
+__kernel_stack = ORIGIN(RAM) + LENGTH(RAM) - 8 ;	/* stack top */
 
 REGION_ALIAS("REGION_TEXT",    RAM);				/* Assign alias names to memory regions */
 REGION_ALIAS("REGION_RODATA",  RAM);
@@ -80,4 +80,14 @@ SECTIONS {
 		_end = . ;
 		end = . ;
     } >REGION_BSS AT > REGION_BSS
+/*
+	._user_heap : 
+	{
+		. = ALIGN(0x4) ;
+		__heap_start = .;
+		. += __heap_size;
+		. = ALIGN(0x4) ;
+		__heap_end = .;
+	} > REGION_BSS AT > REGION_BSS 
+*/
 }

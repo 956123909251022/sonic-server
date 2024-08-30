@@ -3,8 +3,8 @@
  * \brief  csi uart driver
  * \copyright Copyright (C) 2015-2021 @ APTCHIP
  * <table>
- * <tr><th> Date  <th>Version  <th>Author  <th>Description
- * <tr><td> 2020-8-12 <td>V0.0  <td>ZJY   <td>initial
+ * <tr><th> Date  <th>Version  <th>Author	<th>Description
+ * <tr><td> 2020-8-12 <td>V0.0 <td>ZJY   	<td>initial
  * </table>
  * *********************************************************************
 */
@@ -420,11 +420,7 @@ csi_error_t csi_uart_dma_rx_init(csp_uart_t *ptUartBase, csi_dma_ch_e eDmaCh, cs
 	//etb config
 	tEtbConfig.byChType = ETB_ONE_TRG_ONE_DMA;					//单个源触发单个目标，DMA方式
 	tEtbConfig.bySrcIp 	= ETB_UART0_RXSRC + (byUartIdx << 1);	//UART TXSRC作为触发源
-	tEtbConfig.bySrcIp1 = 0xff;						
-	tEtbConfig.bySrcIp2 = 0xff;
 	tEtbConfig.byDstIp 	= ETB_DMA_CH0 + eDmaCh;					//ETB DMA通道 作为目标实际
-	tEtbConfig.byDstIp1 = 0xff;
-	tEtbConfig.byDstIp2 = 0xff;
 	tEtbConfig.byTrgMode = ETB_HARDWARE_TRG;					//通道触发模式采样硬件触发
 	
 	ret = csi_etb_ch_config(eEtbCh, &tEtbConfig);				//初始化ETB，DMA ETB CHANNEL > ETB_CH19_ID
@@ -459,16 +455,12 @@ csi_error_t csi_uart_dma_tx_init(csp_uart_t *ptUartBase, csi_dma_ch_e eDmaCh, cs
 	tDmaConfig.byTransMode 	= DMA_TRANS_ONCE;			//DMA服务模式(传输模式)，连续服务
 	tDmaConfig.byTsizeMode  = DMA_TSIZE_ONE_DSIZE;		//传输数据大小，一个 DSIZE , 即DSIZE定义大小
 	tDmaConfig.byReqMode	= DMA_REQ_HARDWARE;			//DMA请求模式，软件请求（软件触发）
-	tDmaConfig.wInt			= DMA_INTSRC_TCIT;		//使用TCIT中断
+	tDmaConfig.wInt			= DMA_INTSRC_TCIT;			//使用TCIT中断
 	
 	//etb config
 	tEtbConfig.byChType = ETB_ONE_TRG_ONE_DMA;					//单个源触发单个目标，DMA方式
 	tEtbConfig.bySrcIp 	= ETB_UART0_TXSRC + (byUartIdx << 1);	//UART TXSRC作为触发源
-	tEtbConfig.bySrcIp1 = 0xff;						
-	tEtbConfig.bySrcIp2 = 0xff;
 	tEtbConfig.byDstIp 	= ETB_DMA_CH0 + eDmaCh;					//ETB DMA通道 作为目标实际
-	tEtbConfig.byDstIp1 = 0xff;
-	tEtbConfig.byDstIp2 = 0xff;
 	tEtbConfig.byTrgMode = ETB_HARDWARE_TRG;					//通道触发模式采样硬件触发
 	
 	ret = csi_etb_ch_config(eEtbCh, &tEtbConfig);				//初始化ETB，DMA ETB CHANNEL > ETB_CH19_ID
@@ -484,14 +476,18 @@ csi_error_t csi_uart_dma_tx_init(csp_uart_t *ptUartBase, csi_dma_ch_e eDmaCh, cs
  *  \param[in] ptDmaBase: pointer of dma register structure
  *  \param[in] eDmaCh: channel number of dma, eDmaCh: DMA_CH0` DMA_CH3
  *  \param[in] pData: pointer to buffer with data to send to uart transmitter.
- *  \param[in] hwSize: number of data to send (byte).
- *  \return  none
+ *  \param[in] hwSize: number of data to send (byte); hwSize <= 0xfff
+ *  \return error code \ref csi_error_t
  */
-void csi_uart_send_dma(csp_uart_t *ptUartBase, csi_dma_ch_e eDmaCh, const void *pData, uint16_t hwSize)
+csi_error_t csi_uart_send_dma(csp_uart_t *ptUartBase, csi_dma_ch_e eDmaCh, const void *pData, uint16_t hwSize)
 {
+	if(hwSize > 0xfff)
+		return CSI_ERROR;
+		
 	csp_uart_set_txdma(ptUartBase, UART_TDMA_EN, UART_TDMA_FIFO_NFULL);
-	csi_dma_ch_start(DMA, eDmaCh, (void *)pData, (void *)&(ptUartBase->DATA), hwSize);
+	csi_dma_ch_start(DMA, eDmaCh, (void *)pData, (void *)&(ptUartBase->DATA), hwSize, 1);
 	
+	return CSI_OK;
 }
 /** \brief receive data from uart, this function is dma mode
  * 
@@ -499,13 +495,17 @@ void csi_uart_send_dma(csp_uart_t *ptUartBase, csi_dma_ch_e eDmaCh, const void *
  *  \param[in] ptDmaBase: pointer of dma register structure
  *  \param[in] eDmaCh: channel number of dma, eDmaCh: DMA_CH0` DMA_CH3
  *  \param[in] pData: pointer to buffer with data to receive to uart transmitter.
- *  \param[in] hwSize: number of data to receive (byte).
- *  \return  none
+ *  \param[in] hwSize: number of data to receive (byte), hwSize <= 0xfff
+ *  \return  error code \ref csi_error_t
  */
-void csi_uart_recv_dma(csp_uart_t *ptUartBase, csi_dma_ch_e eDmaCh, void *pData, uint16_t hwSize)
+csi_error_t csi_uart_recv_dma(csp_uart_t *ptUartBase, csi_dma_ch_e eDmaCh, void *pData, uint16_t hwSize)
 {
+	if(hwSize > 0xfff)
+		return CSI_ERROR;
 	csp_uart_set_rxdma(UART1, UART_RDMA_EN, UART_RDMA_FIFO_NSPACE);
-	csi_dma_ch_start(DMA, eDmaCh, (void *)&(UART1->DATA), (void *)pData, hwSize);
+	csi_dma_ch_start(DMA, eDmaCh, (void *)&(UART1->DATA), (void *)pData, hwSize, 1);
+	
+	return CSI_OK;
 }
 /** \brief receive data from uart, this function is polling(sync).
  * 

@@ -118,20 +118,47 @@ void csi_cmp_stop(csp_cmp_t *ptCmpBase)
     csp_cmp_disable(ptCmpBase);
 }
 
-/** \brief cmp dflt config
+/** \brief cmp dflt1 config
  * 
  *  \param[in] ptCmpBase: pointer of cmp register structure
+ *  \param[in] bEnable: dflt1 enable or disable
  *  \param[in] ptCmpDfltCfg: pointer of cmp dlft config structure
  *  \return error code \ref csi_error_t
  */
-csi_error_t csi_cmp_dflt_config(csp_cmp_t *ptCmpBase,csi_cmp_dflt_config_t *ptCmpDfltCfg)
+csi_error_t csi_cmp_dflt1_config(csp_cmp_t *ptCmpBase,bool bEnable,csi_cmp_dflt1_config_t *ptCmpDfltCfg)
 {
 	csi_error_t tRet = CSI_OK;
-	
-	csp_cmp_dflt_enable(ptCmpBase ,ENABLE,ENABLE);
-	csp_cmp_dfcr1(ptCmpBase,ptCmpDfltCfg->byDepth1,ptCmpDfltCfg->byDivn1,ptCmpDfltCfg->byDivm1);
-	csp_cmp_dfcr2(ptCmpBase,ptCmpDfltCfg->byDepth2,ptCmpDfltCfg->byDivn2,ptCmpDfltCfg->byDivm2);
-	
+	if(bEnable == ENABLE)
+	{
+		csp_cmp_dflt1_enable(ptCmpBase ,ENABLE);
+		csp_cmp_dfcr1(ptCmpBase,ptCmpDfltCfg->byDepth1,ptCmpDfltCfg->byDivn1,ptCmpDfltCfg->byDivm1);
+	}
+	else
+	{
+		csp_cmp_dflt1_enable(ptCmpBase ,DISABLE);		
+	}
+	return tRet;
+}
+
+/** \brief cmp dflt2 config
+ * 
+ *  \param[in] ptCmpBase: pointer of cmp register structure
+ *  \param[in] bEnable: dflt2 enable or disable
+ *  \param[in] ptCmpDfltCfg: pointer of cmp dlft config structure
+ *  \return error code \ref csi_error_t
+ */
+csi_error_t csi_cmp_dflt2_config(csp_cmp_t *ptCmpBase,bool bEnable,csi_cmp_dflt2_config_t *ptCmpDfltCfg)
+{
+	csi_error_t tRet = CSI_OK;
+	if(bEnable == ENABLE)
+	{	
+		csp_cmp_dflt2_enable(ptCmpBase ,ENABLE);
+		csp_cmp_dfcr2(ptCmpBase,ptCmpDfltCfg->byDepth2,ptCmpDfltCfg->byDivn2,ptCmpDfltCfg->byDivm2);
+	}
+	else
+	{
+		csp_cmp_dflt2_enable(ptCmpBase ,DISABLE);
+	}
 	return tRet;
 }
 

@@ -26,6 +26,7 @@
 /* Private variablesr------------------------------------------------------*/
 csi_iic_slave_t g_tSlave;
 volatile uint32_t wIicErrorCont = 0;
+volatile uint16_t hwReceivecnt = 0;
 volatile uint8_t bySendIndex = 0;
 volatile uint8_t byWriteIndex = 0;
 volatile uint32_t wIicSlaveWriteAddress;
@@ -544,9 +545,9 @@ void csi_iic_slave_receive_send(csp_i2c_t *ptIicBase)
 	{
 		if(csp_i2c_get_isr(ptIicBase)&I2C_RX_FULL_INT)        //有接收到数据
 		{
-			if(bySendIndex == 0)
+			
+			if(hwReceivecnt == 0)
 			{
-				bySendIndex = 1;
 				wIicSlaveWriteAddress = csp_i2c_get_data(ptIicBase);
 				byWriteIndex = wIicSlaveWriteAddress;
 			}
@@ -555,18 +556,23 @@ void csi_iic_slave_receive_send(csp_i2c_t *ptIicBase)
 				if(wIicSlaveWriteAddress<g_tSlave.hwRxSize)
 				{
 					*(g_tSlave.pbySlaveRxBuf+wIicSlaveWriteAddress)= csp_i2c_get_data(ptIicBase);
+					byWriteIndex = *(g_tSlave.pbySlaveRxBuf+wIicSlaveWriteAddress);
+				}else
+				{
+					byWriteIndex = csp_i2c_get_data(ptIicBase);
 				}
 				wIicSlaveWriteAddress++;
 			}
 			csp_i2c_clr_isr(ptIicBase,I2C_RX_FULL_INT);
 			wIicErrorCont=0;
+			hwReceivecnt++;
 		}
 		
 		if(csp_i2c_get_isr(ptIicBase)&I2C_RD_REQ_INT)			//读请求产生
 		{
-			if(bySendIndex==1)
+			if(bySendIndex==0)
 			{
-				bySendIndex=2;
+				bySendIndex=1;
 				csp_i2c_imcr_enable(ptIicBase,I2C_TX_EMPTY_INT);
 				if(byWriteIndex<g_tSlave.hwTxSize)
 				{
@@ -576,6 +582,7 @@ void csi_iic_slave_receive_send(csp_i2c_t *ptIicBase)
 					csp_i2c_set_data_cmd(ptIicBase, 0xFF);
 				}
 				byWriteIndex++;
+				
 			}
 
 			csp_i2c_clr_isr(ptIicBase,I2C_RD_REQ_INT);
@@ -584,7 +591,7 @@ void csi_iic_slave_receive_send(csp_i2c_t *ptIicBase)
 
 		if(csp_i2c_get_isr(ptIicBase)&I2C_TX_EMPTY_INT)				//IIC发送为空
 		{
-			if(bySendIndex==2)
+			if(bySendIndex==1)
 			{
 				if(byWriteIndex<g_tSlave.hwTxSize)
 				{
@@ -621,11 +628,23 @@ void csi_iic_slave_receive_send(csp_i2c_t *ptIicBase)
 				bySendIndex=0;
 			}
 			wIicErrorCont=0;
+			hwReceivecnt = 0;
 		}
 	
 	
 	}
 	
+}
+
+/** \brief set iic SPKLEN
+ * 
+ *  \param[in] ptIicBase: pointer of iic register structure
+ *  \param[in] bySpklenCfg: filter set 
+ *  \return none
+ */ 
+void csi_iic_spklen_set(csp_i2c_t *ptIicBase, uint8_t bySpklen)
+{
+	csp_i2c_set_spklen(ptIicBase,bySpklen);
 }
 
 /** \brief i2c interrupt handle 

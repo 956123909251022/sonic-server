@@ -13,7 +13,8 @@
 #include <stdbool.h>
 #include <irq.h>
 
-extern csi_irqmap_t irq_map[];
+//extern csi_irqmap_t irq_map[];
+extern csi_devmap_t dev_map[];
 
 /** \brief irq enable
  * 
@@ -24,13 +25,28 @@ extern csi_irqmap_t irq_map[];
  */
 void csi_irq_enable(void *pIpBase)
 {
-	csi_irqmap_t *ptMap = irq_map;
-
-    while(ptMap->wRegBase) 
+//	csi_irqmap_t *ptMap = irq_map;
+//
+//    while(ptMap->wRegBase) 
+//	{
+//        if((uint32_t)pIpBase == ptMap->wRegBase) 
+//		{
+//			csi_vic_enable_irq((int32_t)ptMap->wIrqNum);
+//            break;
+//        }
+//		
+//        ptMap++;
+//    }
+	
+	csi_devmap_t *ptMap = dev_map;
+	uint32_t wIpBase = (uint32_t)pIpBase;
+	
+	while(ptMap->hwRegBase) 
 	{
-        if((uint32_t)pIpBase == ptMap->wRegBase) 
+        if((uint16_t)((wIpBase >> 16) | ((wIpBase &0xffff) >> 4)) == ptMap->hwRegBase) 
 		{
-			csi_vic_enable_irq((int32_t)ptMap->wIrqNum);
+			if(ptMap->byIrqNum != 0xff)
+				csi_vic_enable_irq((int32_t)ptMap->byIrqNum);
             break;
         }
 		
@@ -110,13 +126,28 @@ void csi_irq_enable(void *pIpBase)
  */
 void csi_irq_disable(void *pIpBase)
 {
-	csi_irqmap_t *ptMap = irq_map;
-
-    while(ptMap->wRegBase) 
+//	csi_irqmap_t *ptMap = irq_map;
+//
+//    while(ptMap->wRegBase) 
+//	{
+//        if((uint32_t)pIpBase == ptMap->wRegBase) 
+//		{
+//			csi_vic_disable_irq((int32_t)ptMap->wIrqNum);
+//            break;
+//        }
+//		
+//        ptMap++;
+//    }
+	
+	csi_devmap_t *ptMap = dev_map;
+	uint32_t wIpBase = (uint32_t)pIpBase;
+	
+	while(ptMap->hwRegBase) 
 	{
-        if((uint32_t)pIpBase == ptMap->wRegBase) 
+        if((uint16_t)((wIpBase >> 16) | ((wIpBase &0xffff) >> 4)) == ptMap->hwRegBase) 
 		{
-			csi_vic_disable_irq((int32_t)ptMap->wIrqNum);
+			if(ptMap->byIrqNum != 0xff)
+				csi_vic_disable_irq((int32_t)ptMap->byIrqNum);
             break;
         }
 		

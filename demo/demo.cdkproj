@@ -8,6 +8,7 @@
     </File>
   </VirtualDirectory>
   <MergedToYaml>yes</MergedToYaml>
+  <Dependencies Name="BuildSet"/>
   <VendorInfo>
     <VendorName>new_soc_project_c_solution_ck802</VendorName>
   </VendorInfo>
@@ -109,6 +110,7 @@
           <RunUserProg>no</RunUserProg>
           <UserProgName/>
         </AfterMake>
+        <Tools/>
       </User>
       <Compiler>
         <Define/>
@@ -144,7 +146,8 @@
         <LibPath/>
         <OtherFlags/>
         <AutoLDFile>yes</AutoLDFile>
-        <LinkType>start-group</LinkType>
+        <LinkType>whole-archive</LinkType>
+        <IncludeAllLibs>no</IncludeAllLibs>
       </Linker>
       <Debug>
         <LoadApplicationAtStartup>yes</LoadApplicationAtStartup>
@@ -166,6 +169,7 @@
           <CPUNumber>0</CPUNumber>
           <Clock>12000</Clock>
           <Delay>10</Delay>
+          <NResetDelay>100</NResetDelay>
           <WaitReset>50</WaitReset>
           <DDC>yes</DDC>
           <TRST>no</TRST>
@@ -179,6 +183,11 @@
           <GDBName/>
           <GDBServerType>Local</GDBServerType>
           <OtherFlags/>
+          <ICEEnablePCSampling>yes</ICEEnablePCSampling>
+          <ICESamplingFreq>1000</ICESamplingFreq>
+          <RemoteICEEnablePCSampling>yes</RemoteICEEnablePCSampling>
+          <RemoteICESamplingPort>1026</RemoteICESamplingPort>
+          <Version>latest</Version>
         </ConfigICE>
         <ConfigSIM>
           <SIMTarget/>
@@ -186,6 +195,7 @@
           <NoGraphic>yes</NoGraphic>
           <Log>no</Log>
           <SimTrace>no</SimTrace>
+          <Version>latest</Version>
         </ConfigSIM>
         <ConfigOpenOCD>
           <OpenOCDExecutablePath/>
@@ -195,6 +205,8 @@
           <OpenOCDTclPort>6666</OpenOCDTclPort>
           <OpenOCDConfigOptions/>
           <OpenOCDTimeout>5000</OpenOCDTimeout>
+          <PluginID>openocd-sifive</PluginID>
+          <Version>latest</Version>
         </ConfigOpenOCD>
       </Debug>
       <Flash>
@@ -212,7 +224,6 @@
       </Flash>
     </BuildConfig>
   </BuildConfigs>
-  <Dependencies Name="BuildSet"/>
   <DebugSessions>
     <watchExpressions/>
     <memoryExpressions>;;;</memoryExpressions>
@@ -223,5 +234,5 @@
     <debugLayout/>
     <memoryTabColSizeExpressions>100:8;100:8;100:8;100:8;</memoryTabColSizeExpressions>
   </DebugSessions>
-  <PackPathes>$(ProjectPath)/../board|$(ProjectPath)/../components|</PackPathes>
+  <PackPathes>$(ProjectPath)/../board|$(ProjectPath)/../components|$(ProjectPath)/../demo|</PackPathes>
 </Project>

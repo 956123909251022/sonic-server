@@ -4,7 +4,7 @@
  * \copyright Copyright (C) 2015-2020 @ APTCHIP
  * <table>
  * <tr><th> Date  <th>Version  <th>Author  <th>Description
- * <tr><td> 2022-1-17 <td>V0.0  <td>ljy   <td>initial
+ * <tr><td> 2022-1-17 <td>V0.0 <td>ljy     <td>initial
  * </table>
  * *********************************************************************
 */
@@ -18,7 +18,7 @@ extern void load1(void);
 uint32_t gTick;
 uint32_t gGpta0Prd;
 uint32_t gGpta1Prd;
-uint32_t val_buff_t[2];
+uint32_t wGpta_Cmp_Buff[4] = {0};
 
 /** \brief gpta interrupt handle weak function
  *   		- 
@@ -54,15 +54,31 @@ __attribute__((weak)) void gpta0_initen_irqhandler(csp_gpta_t *ptGptaBase)
 	}
     if(((csp_gpta_get_misr(ptGptaBase) & GPTA_INT_CAPLD0))==GPTA_INT_CAPLD0)
 	{		
-	 val_buff_t[0]=csp_gpta_get_cmpa(ptGptaBase);
+	 wGpta_Cmp_Buff[0]=csp_gpta_get_cmpa(ptGptaBase);
 	 csp_gpta_clr_int(ptGptaBase, GPTA_INT_CAPLD0);			
 	}
 	if(((csp_gpta_get_misr(ptGptaBase) & GPTA_INT_CAPLD1))==GPTA_INT_CAPLD1)
 	{		
-     	val_buff_t[0]=csp_gpta_get_cmpa(ptGptaBase);
-		val_buff_t[1]=csp_gpta_get_cmpb(ptGptaBase);
-	 csp_gpta_clr_int(ptGptaBase, GPTA_INT_CAPLD1);			
+     	wGpta_Cmp_Buff[0]=csp_gpta_get_cmpa(ptGptaBase);
+		wGpta_Cmp_Buff[1]=csp_gpta_get_cmpb(ptGptaBase);
+		csp_gpta_clr_int(ptGptaBase, GPTA_INT_CAPLD1);			
 	}
+    if(((csp_gpta_get_misr(ptGptaBase) & GPTA_INT_CAPLD2))==GPTA_INT_CAPLD2)
+	{		
+     	wGpta_Cmp_Buff[0]=csp_gpta_get_cmpa(ptGptaBase);
+		wGpta_Cmp_Buff[1]=csp_gpta_get_cmpb(ptGptaBase);
+		wGpta_Cmp_Buff[2]=csp_gpta_get_cmpaa(ptGptaBase);
+		csp_gpta_clr_int(ptGptaBase, GPTA_INT_CAPLD2);			
+	}
+	if(((csp_gpta_get_misr(ptGptaBase) & GPTA_INT_CAPLD3))==GPTA_INT_CAPLD3)
+	{		
+     	wGpta_Cmp_Buff[0]=csp_gpta_get_cmpa(ptGptaBase);
+		wGpta_Cmp_Buff[1]=csp_gpta_get_cmpb(ptGptaBase);
+		wGpta_Cmp_Buff[2]=csp_gpta_get_cmpaa(ptGptaBase);
+		wGpta_Cmp_Buff[3]=csp_gpta_get_cmpba(ptGptaBase);
+		csp_gpta_clr_int(ptGptaBase, GPTA_INT_CAPLD1);			
+	}	
+	
     if(((csp_gpta_get_misr(ptGptaBase) & GPTA_INT_CBU))==GPTA_INT_CBU)
 	{	
 		gTick++;if(gTick>=5){	
@@ -97,13 +113,13 @@ __attribute__((weak)) void gpta1_initen_irqhandler(csp_gpta_t *ptGptaBase)
 	
     if(((csp_gpta_get_misr(ptGptaBase) & GPTA_INT_CAPLD0))==GPTA_INT_CAPLD0)
 	{		
-	 val_buff_t[0]=csp_gpta_get_cmpa(ptGptaBase);
+	 wGpta_Cmp_Buff[0]=csp_gpta_get_cmpa(ptGptaBase);
 	 csp_gpta_clr_int(ptGptaBase, GPTA_INT_CAPLD0);			
 	}
 	if(((csp_gpta_get_misr(ptGptaBase) & GPTA_INT_CAPLD1))==GPTA_INT_CAPLD1)
 	{		
-     	val_buff_t[0]=csp_gpta_get_cmpa(ptGptaBase);
-		val_buff_t[1]=csp_gpta_get_cmpb(ptGptaBase);
+     	wGpta_Cmp_Buff[0]=csp_gpta_get_cmpa(ptGptaBase);
+		wGpta_Cmp_Buff[1]=csp_gpta_get_cmpb(ptGptaBase);
 	 csp_gpta_clr_int(ptGptaBase, GPTA_INT_CAPLD1);			
 	}
 
@@ -136,19 +152,12 @@ csi_error_t csi_gpta_capture_init(csp_gpta_t *ptGptaBase, csi_gpta_captureconfig
 	wCrVal=(wCrVal & ~(GPTA_STOPWRAP_MSK))|((ptGptaPwmCfg->byCaptureStopWrap&0x03)<<GPTA_STOPWRAP_POS);
 	wCrVal=(wCrVal & ~(GPTA_CMPA_RST_MSK))|((ptGptaPwmCfg->byCaptureLdaret&0x01)  <<GPTA_CMPA_RST_POS);
 	wCrVal=(wCrVal & ~(GPTA_CMPB_RST_MSK))|((ptGptaPwmCfg->byCaptureLdbret&0x01)  <<GPTA_CMPB_RST_POS);
-//	wCrVal=(wCrVal & ~(GPTA_CMPC_RST_MSK))|((ptGptaPwmCfg->byCaptureLdcret&0x01)  <<GPTA_CMPC_RST_POS);
-//	wCrVal=(wCrVal & ~(GPTA_CMPD_RST_MSK))|((ptGptaPwmCfg->byCaptureLddret&0x01)  <<GPTA_CMPD_RST_POS);
+	wCrVal=(wCrVal & ~(GPTA_CMPAA_RST_MSK))|((ptGptaPwmCfg->byCaptureLdaaret&0x01)  <<GPTA_CMPAA_RST_POS);
+	wCrVal=(wCrVal & ~(GPTA_CMPBA_RST_MSK))|((ptGptaPwmCfg->byCaptureLdbaret&0x01)  <<GPTA_CMPBA_RST_POS);
 	
 	wCrVal|=GPTA_CAPLD_EN;
 	wCrVal|=GPTA_CAPREARM;
 	wPrdrLoad=0xFFFF;
-
-	if(ptGptaPwmCfg->byBurst==1)
-	{   wCrVal|=GPTA_BURST;
-	    wCrVal|=GPTA_FLT_INIT;
-		wCrVal=(wCrVal & ~(GPTA_CGSRC_MSK))|((ptGptaPwmCfg->byCgsrc&0x03)<<GPTA_CGSRC_POS);
-		wCrVal=(wCrVal & ~(GPTA_CGFLT_MSK))|((ptGptaPwmCfg->byCgflt&0x07)<<GPTA_CGFLT_POS);
-	}
 
     csp_gpta_clken(ptGptaBase);                                             // clkEN
 	csp_gpta_set_cr(ptGptaBase, wCrVal);									// set bt work mode
@@ -224,6 +233,21 @@ csi_error_t  csi_gpta_wave_init(csp_gpta_t *ptGptaBase, csi_gpta_pwmconfig_t *pt
 	gGpta0Prd=wPrdrLoad;
 	
 	return CSI_OK;	
+}
+
+/** \brief enable/disable gpta burst 
+ * 
+ *  \param[in] ptGptaBase: pointer of gpta register structure
+ *  \param[in] byCgsrc:cgr src 
+ *  \param[in] byCgflt:cfg flt
+ *  \param[in] bEnable: ENABLE/DISABLE
+ *  \return error code \ref csi_error_t
+ */
+csi_error_t csi_gpta_burst_enable(csp_gpta_t *ptGptaBase,uint8_t byCgsrc,uint8_t byCgflt, bool bEnable)
+{
+	csp_gpta_set_burst(ptGptaBase,byCgsrc,bEnable);	
+	csp_gpta_flt_init(ptGptaBase,byCgflt,bEnable);
+	return CSI_OK;
 }
 /** \brief Channel CMPLDR configuration
  * 
@@ -691,11 +715,11 @@ csi_error_t csi_gpta_set_evcntinit(csp_gpta_t *ptGptaBase, uint8_t byCntChx, uin
  return CSI_OK;
 }
 
-/**
- \brief  gpta configuration Loading
- \param  ptGptaBase    	pointer of gptb register structure
- \param  tCfg           refer to csi_gpta_feglk_config_t
- \return CSI_OK /CSI_ERROR
+/** \brief  gpta Link configuration
+ * 
+ *  \param[in] ptGptaBase    	pointer of gptb register structure
+ *  \param[in] Global           refer to csi_gpta_feglk_config_t
+ *  \return error code \ref csi_error_t
 */
 csi_error_t csi_gpta_reglk_config(csp_gpta_t *ptGptaBase,csi_gpta_feglk_config_t *Global)
 {   uint32_t w_GLK;	

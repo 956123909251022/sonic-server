@@ -1,13 +1,13 @@
-/*
- * Copyright (C) 2017-2019 Alibaba Group Holding Limited
- */
-
-/******************************************************************************
-* @file     ringbuffer.h
-* @brief    header file for ringbuffer Driver
-* @version  V1.0
-* @date     August 15.  2019
-******************************************************************************/
+/***********************************************************************//** 
+ * \file  ringbuf.h
+ * \brief  head file for ring buffer
+ * \copyright Copyright (C) 2015-2022 @ APTCHIP
+ * <table>
+ * <tr><th> Date  <th>Version  <th>Author	<th>Description
+ * <tr><td> 2020-8-10 <td>V0.0 <td>ZJY   	<td>initial
+ * </table>
+ * *********************************************************************
+*/
 #ifndef _RING_BUFFER_H_
 #define _RING_BUFFER_H_
 

@@ -13,97 +13,97 @@
 #ifndef _BOARD_CONFIG_H_
 #define _BOARD_CONFIG_H_
 
-#include <stdint.h>
-#include "soc.h"
-#include "sys_clk.h"
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-//如果定义了DBG_PRINT2PC，串口对应脚和PC连上后，可以通过serial pane里的UART #x 看到串口数据
-//#define DBG_PRINT2PC	
+/* emosc value */
+//外部主振荡器频率值
+#ifndef EMOSC_VALUE
+#define EMOSC_VALUE             		16000000U
+#endif
 
-//extern system_clk_config_t g_tSystemClkConfig[];
-//#ifndef EMOSC_VALUE
-//#define EMOSC_VALUE         32768U
-//#endif
-
-
+/* user heap size */
+//定义用户堆的大小，用于动态分配内存，可根据具体需求调整大小
+#define USER_HEAP_SIZE					0x40
 
 /* example pin manager */
-
+//如果定义了DBG_PRINT2PC，串口对应脚和PC连上后，可以通过serial pane里的UART #x 看到串口数据
 #define CONSOLE_IDX                     2
 #define CONSOLE_TXD                     PA111
 #define CONSOLE_RXD                     PA112
 #define CONSOLE_TXD_FUNC                PA111_UART2_TX
 #define CONSOLE_RXD_FUNC                PA112_UART2_RX
 
+/* emosc pin */
+//外部主振荡器管脚
 #define XIN_PIN							PA03
 #define XOUT_PIN						PA04
 #define XIN_PIN_FUNC					PA03_OSC_XI
 #define XOUT_PIN_FUNC					PA04_OSC_XO
 
+/* esosc pin */
+//外部副振荡器管脚
 #define SXIN_PIN						PA01
 #define SXOUT_PIN						PA02
 #define SXIN_PIN_FUNC					PA01_OSC_SXI
 #define SXOUT_PIN_FUNC					PA02_OSC_SXO
 
-
-#define EXI_PIN                      	PA09
-#define EXI_PIN_FUNC                 	PIN_FUNC_INPUT
-
-#define SPI_IDX                 		0
-#define SPI_MOSI_PIN            		PA014            
-#define SPI_MISO_PIN            		PA015            
-#define SPI_NSS_PIN             		PB05             
-#define SPI_SCK_PIN             		PB04             
-#define SPI_MOSI_PIN_FUNC       		PA014_SPI_MOSI
-#define SPI_MISO_PIN_FUNC       		PA015_SPI_MISO
-#define SPI_NSS_PIN_FUNC        		PB05_SPI_NSS
-#define SPI_SCK_PIN_FUNC				PB04_SPI_SCK
-
-#define IIC_IDX		            		0
-#define IIC_SDA_PIN             		PA013        
-#define IIC_SCL_PIN             		PB00        
-#define IIC_SDA_PIN_FUNC        		PA013_I2C_SDA
-#define IIC_SCL_PIN_FUNC        		PB00_I2C_SCL
-
-#define GPIO_IDX						1
-#define GPIO_PIN                		PB02
-#define GPIO_PIN_MSK	     			0x4
-#define GPIO_PIN_FUNC           		PIN_FUNC_OUTPUT
+///* spi pin */
+//#define SPI_MOSI_PIN            		PB011            
+//#define SPI_MISO_PIN            		PB010            
+//#define SPI_SCK_PIN             		PB09  
+//#define SPI_NSS_PIN             		PB08            
+//#define SPI_MOSI_PIN_FUNC       		PB011_SPI0_MOSI
+//#define SPI_MISO_PIN_FUNC       		PB010_SPI0_MISO
+//#define SPI_SCK_PIN_FUNC				PB09_SPI0_SCK
+//#define SPI_NSS_PIN_FUNC        		PB08_SPI0_NSS
+//
+///* iic pin */
+//#define IIC_SCL_PIN             		PA19   
+//#define IIC_SDA_PIN             		PA110    
+//#define IIC_SCL_PIN_FUNC        		PA19_I2C0_SCL
+//#define IIC_SDA_PIN_FUNC        		PA110_I2C0_SDA
+//
+///* sio pin */
+//#define SIO_PIN					   	PA013
+//#define SIO_PIN_FUNC					PA013_SIO
 
 
-#define EPT_IDX                 		0
-#define EPT_PWMCHAY_PIN              	PA012
-#define EPT_PWMCHAX_PIN					PA010
-#define EPT_PWMCHAX_PIN_FUNC            PA010_EPT_CHAX
-#define EPT_PWMCHAY_PIN_FUNC			PA012_EPT_CHAY
-#define EPT_EBI_PIN						PB02
-#define EPT_EBI							PB02_EPI3
-
-#define ADC_IDX							0
-#define ADC_PIN							PA011
-#define ADC_PIN_FUNC					PA011_ADC_AIN12
-#define ADC_CH							ADCIN12
-#define ADC_PIN1						PA013
-#define ADC_PIN1_FUNC					PA013_ADC_AIN14
-#define ADC_CH1							ADCIN14
-
-
-#define TCH_IDX							0
-#define TCH_PIN1						PB03
-#define TCH_PIN2						PA08
-#define	TCH_PIN1_FUNC					PB03_TKEY_CH7
-#define TCH_PIN2_FUNC					PA08_TKEY_CH8
-
-#define SIO_IDX					        0
-#define SIO_PIN					        PA02
-#define SIO_PIN_FUNC					PA02_SIO
-
-
-__attribute__((weak)) void board_init(void);
+//csi Interrupt Handling Enable, 1/0(OPEN/CLOSE)
+//系统中断处理配置默认是全部打开，对应的中断处理会调用处理函数，会占用的代码空间
+//用户不需要用到某个中断时，可以将对应中断宏定义值设置为0可节约代码空间
+#define	CORET_INT_HANDLE_EN				1		//CORET 
+#define	IFC_INT_HANDLE_EN				1		//IFC 
+#define	ADC_INT_HANDLE_EN				1		//ADC
+#define	EPT_INT_HANDLE_EN				1		//EPT 
+#define	DMA_INT_HANDLE_EN				1		//DMA
+#define	WWDT_INT_HANDLE_EN				1		//WWDT
+#define	GPTA0_INT_HANDLE_EN				1		//GPTA0
+#define	GPTA1_INT_HANDLE_EN				1		//GPTA1
+#define	GPTB0_INT_HANDLE_EN				1		//GPTB0
+#define	GPTB1_INT_HANDLE_EN				1		//GPTB1
+#define	RTC_INT_HANDLE_EN				1		//RTC
+#define	UART0_INT_HANDLE_EN				1		//UART0
+#define	UART1_INT_HANDLE_EN				1		//UART1
+#define	UART2_INT_HANDLE_EN				1		//UART2
+#define	USART0_INT_HANDLE_EN			1		//USART0
+#define	SIO_INT_HANDLE_EN				1		//SIO
+#define	I2C_INT_HANDLE_EN				1		//I2C
+#define	SPI_INT_HANDLE_EN				1		//SPI
+#define	EXI0_INT_HANDLE_EN				1		//EXI0(GPIO external interrupt), EXI GROUP0 or GROUP16
+#define	EXI1_INT_HANDLE_EN				1		//EXI1(GPIO external interrupt), EXI GROUP1 or GROUP17
+#define	EXI2_3_INT_HANDLE_EN			1		//EXI2~3(GPIO external interrupt), EXI GROUP2~3 or GROUP18~19
+#define	EXI4_9_INT_HANDLE_EN			1		//EXI4~9(GPIO external interrupt), EXI GROUP4~9 
+#define	EXI10_15_INT_HANDLE_EN			1		//EXI10~15(GPIO external interrupt), EXI GROUP10~15 
+#define	CNTA_INT_HANDLE_EN				1		//CNTA
+#define	LPT_INT_HANDLE_EN				1		//LPT
+#define	BT0_INT_HANDLE_EN				1		//BT0
+#define	BT1_INT_HANDLE_EN				1		//BT1
+#define	CMP_INT_HANDLE_EN				1		//CMP
+#define	LCD_INT_HANDLE_EN				1		//LCD
+#define	LED_INT_HANDLE_EN				1		//LED
+#define	TKEY_INT_HANDLE_EN				1		//TOUCH
 
 #ifdef __cplusplus
 }

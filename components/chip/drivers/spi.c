@@ -750,42 +750,24 @@ __attribute__((weak)) void spi_irqhandler(csp_spi_t *ptSpiBase)
 //high speed spi function for reference
 //-----------------------------------------------------------------------------------------------------------
 
-/** \brief csi_spi_send_receive_1byte
- * 
- *  \param[in] ptSpiBase: pointer of spi register structure
- *  \param[in] byData :the send data 
- *  \return the receive data
- */ 
-uint8_t csi_spi_send_receive_1byte(csp_spi_t *ptSpiBase,uint8_t byData)
-{
-	uint8_t byReceiveData = 0;
-	uint32_t wTimeStart = SPI_SEND_TIMEOUT;
-	 
-	wTimeStart = SPI_SEND_TIMEOUT;
-	while( ( !((uint32_t)(ptSpiBase->SR) & SPI_TNF) ) && (wTimeStart --) ){;}
-	ptSpiBase->DR = byData;
-
-	wTimeStart = SPI_SEND_TIMEOUT;
-	while( (!((uint32_t)(ptSpiBase->SR) & SPI_RNE) ) && (wTimeStart --) ){;}
-	byReceiveData = ptSpiBase->DR;
-	
-	return byReceiveData;
-
-}
-
-
-/** \brief spi send buff(this funtion will ignore the receive)
+/** \brief (this funtion will ignore the receive)
  * 
  *  \param[in] ptSpiBase: pointer of spi register structure
  *  \param[in] pDataOut :send data buffer pointer
  *  \param[in] bySize ：length
  *  \return error code \ref csi_error_t
  */ 
-csi_error_t csi_spi_buff_send(csp_spi_t *ptSpiBase,void *pDataOut,uint8_t bySize)
+csi_error_t csi_spi_send_fast(csp_spi_t *ptSpiBase,void *pDataOut,uint8_t bySize)
 {		
 	csi_error_t tRet = CSI_OK;
 	uint8_t byIcount = 0;
 	uint32_t wTimeStart = SPI_SEND_TIMEOUT;
+	
+	if( (0 == bySize) || (NULL == pDataOut) ) 
+	{
+		tRet = CSI_ERROR;
+		return tRet;
+	}
 	
 	if( g_tSpiTransmit.byWriteable == SPI_STATE_BUSY ) 
 	{
@@ -811,68 +793,7 @@ csi_error_t csi_spi_buff_send(csp_spi_t *ptSpiBase,void *pDataOut,uint8_t bySize
 	return tRet;
 }
 
-/** \brief spi send and receive(equal to 8 or less than eight bytes)
- * 
- *  \param[in] ptSpiBase: pointer of spi register structure
- *  \param[in] pDataOut :send data buffer pointer
- *  \param[in] pDataIn :receive data buffer pointer
- *  \param[in] wSize ：length
- *  \return error code \ref csi_error_t
- */ 
-csi_error_t csi_spi_send_receive_x8(csp_spi_t *ptSpiBase, void *pDataOut,void *pDataIn,uint32_t wSize)
-{	
-	csi_error_t tRet = CSI_OK;
-	uint8_t byCount = 0;
-	uint8_t bySize = 0;
-	uint32_t wTimeStart = SPI_SEND_TIMEOUT;
-
-	if((g_tSpiTransmit.byWriteable == SPI_STATE_BUSY) || (g_tSpiTransmit.byReadable == SPI_STATE_BUSY)) 
-	{
-		tRet = CSI_BUSY;
-		return tRet;
-	}
-	
-	if(wSize > 8)
-		bySize = 8;
-	else
-		bySize = (uint8_t)wSize;
-	
-	csi_spi_clr_rxfifo(ptSpiBase);
-	
-	g_tSpiTransmit.byWriteable = SPI_STATE_BUSY;
-	g_tSpiTransmit.byReadable  = SPI_STATE_BUSY;
-	g_tSpiTransmit.pbyTxData = (uint8_t *)pDataOut;
-	g_tSpiTransmit.pbyRxData = (uint8_t *)pDataIn;
-	
-	while( ((uint32_t)(ptSpiBase->SR) & SPI_BSY ) && (wTimeStart --) ){;} 
-	ptSpiBase->CR1 &= ~SPI_SSE_MSK;
-	for(byCount = 0;byCount<bySize;byCount++)
-	{
-		ptSpiBase->DR = g_tSpiTransmit.pbyTxData[byCount];
-	}
-	ptSpiBase->CR1 |= (SPI_EN << SPI_SSE_POS);
-	wTimeStart = SPI_SEND_TIMEOUT;
-	while( ( (uint32_t)(ptSpiBase->SR) & SPI_BSY ) && (wTimeStart --) ){;} 
-	
-	g_tSpiTransmit.pbyRxData[0]=ptSpiBase->DR;
-	g_tSpiTransmit.pbyRxData[1]=ptSpiBase->DR;
-	g_tSpiTransmit.pbyRxData[2]=ptSpiBase->DR;
-	g_tSpiTransmit.pbyRxData[3]=ptSpiBase->DR;
-	g_tSpiTransmit.pbyRxData[4]=ptSpiBase->DR;
-	g_tSpiTransmit.pbyRxData[5]=ptSpiBase->DR;
-	g_tSpiTransmit.pbyRxData[6]=ptSpiBase->DR;
-	g_tSpiTransmit.pbyRxData[7]=ptSpiBase->DR;
-	
-	wTimeStart = SPI_SEND_TIMEOUT;
-	while( ((uint32_t)(ptSpiBase->SR) & SPI_BSY) && (wTimeStart --) ){;}
-	
-	g_tSpiTransmit.byWriteable =  SPI_STATE_IDLE;
-	g_tSpiTransmit.byReadable =  SPI_STATE_IDLE;
-	
-	return tRet;		
-}
-
-/** \brief spi send and receive(equal to 8 bytes or  more than eight bytes)
+/** \brief spi send and receive fast
  * 
  *  \param[in] ptSpiBase: pointer of spi register structure
  *  \param[in] pDataOut :send data buffer pointer 
@@ -880,32 +801,42 @@ csi_error_t csi_spi_send_receive_x8(csp_spi_t *ptSpiBase, void *pDataOut,void *p
  *  \param[in] wSize ：length
  *  \return error code \ref csi_error_t
  */ 
-csi_error_t csi_spi_send_receive_d8(csp_spi_t *ptSpiBase, uint8_t *pDataOut,uint8_t *pDataIn, uint32_t wSize)
+csi_error_t csi_spi_send_receive_fast(csp_spi_t *ptSpiBase, uint8_t *pDataOut,uint8_t *pDataIn, uint32_t wSize)
 {
-		csi_error_t tRet = CSI_OK;
-		uint8_t byTxsize = wSize;
-		uint32_t wTimeStart = SPI_SEND_TIMEOUT;
-		
-		if((g_tSpiTransmit.byWriteable == SPI_STATE_BUSY) || (g_tSpiTransmit.byReadable == SPI_STATE_BUSY)) 
-		{
-			tRet = CSI_BUSY;
-			return tRet;
-		}
-		
-		g_tSpiTransmit.byWriteable = SPI_STATE_BUSY;
-		g_tSpiTransmit.byReadable  = SPI_STATE_BUSY;
-		g_tSpiTransmit.pbyTxData = (uint8_t *)pDataOut;
-		g_tSpiTransmit.pbyRxData = (uint8_t *)pDataIn;
-#if 1	//Operation mode: send eight byte and read eight byte	
-		uint8_t byOutidx = 0;
-		uint8_t byIdx;
-		uint8_t byRemainder = 0;
-		uint8_t byZheng = 0;
-		uint8_t byLast8Times = 0;
-		uint8_t byLastTxBuff[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+	csi_error_t tRet = CSI_OK;
+	uint8_t byTxsize = wSize;
+	uint32_t wTimeStart = SPI_SEND_TIMEOUT;
 
-		csi_spi_clr_rxfifo(ptSpiBase);
+	uint8_t byCount = 0;
+	
+	uint8_t byOutidx = 0;
+	uint8_t byIdx;
+	uint8_t byRemainder = 0;
+	uint8_t byZheng = 0;
+	uint8_t byLast8Times = 0;
+	uint8_t byLastTxBuff[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+	
+	if( (0 == byTxsize) ||  ( (NULL == pDataOut) && (NULL == pDataIn) ) ) 
+	{
+		tRet = CSI_ERROR;
+		return tRet;
+	}
 
+	if( (g_tSpiTransmit.byWriteable == SPI_STATE_BUSY) || (g_tSpiTransmit.byReadable == SPI_STATE_BUSY) ) 
+	{
+		tRet = CSI_BUSY;
+		return tRet;
+	}
+	
+	g_tSpiTransmit.byWriteable = SPI_STATE_BUSY;
+	g_tSpiTransmit.byReadable  = SPI_STATE_BUSY;
+	g_tSpiTransmit.pbyTxData = (uint8_t *)pDataOut;
+	g_tSpiTransmit.pbyRxData = (uint8_t *)pDataIn;	
+	csi_spi_clr_rxfifo(ptSpiBase);
+	
+	
+	if(byTxsize > 8)
+	{	
 		byZheng = (wSize >> 3);
 		byRemainder = wSize & 0x07;
 		byLast8Times = byZheng << 3;
@@ -924,7 +855,7 @@ csi_error_t csi_spi_send_receive_d8(csp_spi_t *ptSpiBase, uint8_t *pDataOut,uint
 			ptSpiBase->DR = g_tSpiTransmit.pbyTxData[byOutidx+5];
 			ptSpiBase->DR = g_tSpiTransmit.pbyTxData[byOutidx+6];
 			ptSpiBase->DR = g_tSpiTransmit.pbyTxData[byOutidx+7];
-	
+
 			wTimeStart = SPI_SEND_TIMEOUT;
 			while( ((uint32_t)(ptSpiBase->SR) & SPI_BSY) && (wTimeStart --) ){;} 		
 
@@ -941,71 +872,99 @@ csi_error_t csi_spi_send_receive_d8(csp_spi_t *ptSpiBase, uint8_t *pDataOut,uint
 			byOutidx += 8;	
 		}
 		
-	if(byRemainder != 0){	
-		if(byRemainder == 1)
-		{
-			ptSpiBase->DR = byLastTxBuff[0];
-		}
-		else if(byRemainder == 2)
-		{
-			ptSpiBase->DR = byLastTxBuff[0];ptSpiBase->DR = byLastTxBuff[1];
-		}
-		else if(byRemainder == 3)
-		{
-			ptSpiBase->DR = byLastTxBuff[0];ptSpiBase->DR = byLastTxBuff[1];ptSpiBase->DR = byLastTxBuff[2];
-		}
-		else if(byRemainder == 4)
-		{
-			ptSpiBase->DR = byLastTxBuff[0];ptSpiBase->DR = byLastTxBuff[1];ptSpiBase->DR = byLastTxBuff[2];ptSpiBase->DR = byLastTxBuff[3];
-		}
-		else if(byRemainder == 5)
-		{
-			ptSpiBase->DR = byLastTxBuff[0];ptSpiBase->DR = byLastTxBuff[1];ptSpiBase->DR = byLastTxBuff[2];ptSpiBase->DR = byLastTxBuff[3];
-			ptSpiBase->DR = byLastTxBuff[4];
-		}
-		else if(byRemainder == 6)
-		{
-			ptSpiBase->DR = byLastTxBuff[0];ptSpiBase->DR = byLastTxBuff[1];ptSpiBase->DR = byLastTxBuff[2];ptSpiBase->DR = byLastTxBuff[3];
-			ptSpiBase->DR = byLastTxBuff[4];ptSpiBase->DR = byLastTxBuff[5];
-		}
-		else if(byRemainder == 7)
-		{
-			ptSpiBase->DR = byLastTxBuff[0];ptSpiBase->DR = byLastTxBuff[1];ptSpiBase->DR = byLastTxBuff[2];ptSpiBase->DR = byLastTxBuff[3];
-			ptSpiBase->DR = byLastTxBuff[4];ptSpiBase->DR = byLastTxBuff[5];ptSpiBase->DR = byLastTxBuff[6];
-		}
-		else
-		{
-			ptSpiBase->DR = byLastTxBuff[0];ptSpiBase->DR = byLastTxBuff[1];ptSpiBase->DR = byLastTxBuff[2];ptSpiBase->DR = byLastTxBuff[3];
-			ptSpiBase->DR = byLastTxBuff[4];ptSpiBase->DR = byLastTxBuff[5];ptSpiBase->DR = byLastTxBuff[6];ptSpiBase->DR = byLastTxBuff[7];
-		}
-		
-		wTimeStart = SPI_SEND_TIMEOUT;
-		while( ((uint32_t)(ptSpiBase->SR) & SPI_BSY) && (wTimeStart --) ){;} 
+		if(byRemainder != 0)
+		{	
+			switch(byRemainder)
+			{
+				case 1:
+					ptSpiBase->DR = byLastTxBuff[0];
+					break;
+				case 2:
+					ptSpiBase->DR = byLastTxBuff[0];ptSpiBase->DR = byLastTxBuff[1];
+					break;
+				case 3:
+					ptSpiBase->DR = byLastTxBuff[0];ptSpiBase->DR = byLastTxBuff[1];ptSpiBase->DR = byLastTxBuff[2];
+					break;
+				case 4:
+					ptSpiBase->DR = byLastTxBuff[0];ptSpiBase->DR = byLastTxBuff[1];ptSpiBase->DR = byLastTxBuff[2];ptSpiBase->DR = byLastTxBuff[3];
+					break;	
+				case 5:
+					ptSpiBase->DR = byLastTxBuff[0];ptSpiBase->DR = byLastTxBuff[1];ptSpiBase->DR = byLastTxBuff[2];ptSpiBase->DR = byLastTxBuff[3];
+					ptSpiBase->DR = byLastTxBuff[4];
+					break;
+				case 6:
+					ptSpiBase->DR = byLastTxBuff[0];ptSpiBase->DR = byLastTxBuff[1];ptSpiBase->DR = byLastTxBuff[2];ptSpiBase->DR = byLastTxBuff[3];
+					ptSpiBase->DR = byLastTxBuff[4];ptSpiBase->DR = byLastTxBuff[5];
+					break;
+				case 7:
+					ptSpiBase->DR = byLastTxBuff[0];ptSpiBase->DR = byLastTxBuff[1];ptSpiBase->DR = byLastTxBuff[2];ptSpiBase->DR = byLastTxBuff[3];
+					ptSpiBase->DR = byLastTxBuff[4];ptSpiBase->DR = byLastTxBuff[5];ptSpiBase->DR = byLastTxBuff[6];
+					break;	
+				default:
+					break;
+			}
+			wTimeStart = SPI_SEND_TIMEOUT;
+			while( ((uint32_t)(ptSpiBase->SR) & SPI_BSY) && (wTimeStart --) ){;} 
 
-		for(byIdx=0;byIdx<byRemainder;byIdx++)		//read buffer data
-			g_tSpiTransmit.pbyRxData[byOutidx+byIdx] = ptSpiBase->DR;		
+			for(byIdx=0;byIdx<byRemainder;byIdx++)		//read buffer data
+				g_tSpiTransmit.pbyRxData[byOutidx+byIdx] = ptSpiBase->DR;		
+		}
+
 	}
-
-#else //Operation mode: send one byte and read one byte	
-		csi_spi_clrRx_fifo(ptSpiBase);
-		byTxsize = wSize;
-
-		while(byTxsize > 0U)
+	else
+	{
+		while( ((uint32_t)(ptSpiBase->SR) & SPI_BSY ) && (wTimeStart --) ){;} 
+		ptSpiBase->CR1 &= ~SPI_SSE_MSK;
+		for(byCount = 0;byCount<byTxsize;byCount++)
 		{
-			wTimeStart = SPI_SEND_TIMEOUT;
-			while( ((uint32_t)(ptSpiBase->SR) & SPI_BSY) && (wTimeStart --) ){;} 
-			ptSpiBase->DR = *g_tSpiTransmit.pbyTxData;
-
-			wTimeStart = SPI_SEND_TIMEOUT;
-			while( ((uint32_t)(ptSpiBase->SR) & SPI_BSY) && (wTimeStart --) ){;} 
-		
-			byTxsize --;
-			*g_tSpiTransmit.pbyRxData = ptSpiBase->DR;
-			g_tSpiTransmit.pbyTxData ++;
-			g_tSpiTransmit.pbyRxData ++;
-			
+			ptSpiBase->DR = g_tSpiTransmit.pbyTxData[byCount];
 		}
-#endif
+		ptSpiBase->CR1 |= (SPI_EN << SPI_SSE_POS);
+		wTimeStart = SPI_SEND_TIMEOUT;
+		while( ( (uint32_t)(ptSpiBase->SR) & SPI_BSY ) && (wTimeStart --) ){;} 
+		
+		switch(byTxsize)
+		{
+			case 1:
+				g_tSpiTransmit.pbyRxData[0]=ptSpiBase->DR;
+				break;
+			case 2:
+				g_tSpiTransmit.pbyRxData[0]=ptSpiBase->DR;g_tSpiTransmit.pbyRxData[1]=ptSpiBase->DR;
+				break;
+			case 3:
+				g_tSpiTransmit.pbyRxData[0]=ptSpiBase->DR;g_tSpiTransmit.pbyRxData[1]=ptSpiBase->DR;
+				g_tSpiTransmit.pbyRxData[2]=ptSpiBase->DR;
+				break;
+			case 4:
+				g_tSpiTransmit.pbyRxData[0]=ptSpiBase->DR;g_tSpiTransmit.pbyRxData[1]=ptSpiBase->DR;
+				g_tSpiTransmit.pbyRxData[2]=ptSpiBase->DR;g_tSpiTransmit.pbyRxData[3]=ptSpiBase->DR;
+				break;
+			case 5:
+				g_tSpiTransmit.pbyRxData[0]=ptSpiBase->DR;g_tSpiTransmit.pbyRxData[1]=ptSpiBase->DR;
+				g_tSpiTransmit.pbyRxData[2]=ptSpiBase->DR;g_tSpiTransmit.pbyRxData[3]=ptSpiBase->DR;
+				g_tSpiTransmit.pbyRxData[4]=ptSpiBase->DR;
+				break;
+			case 6:
+				g_tSpiTransmit.pbyRxData[0]=ptSpiBase->DR;g_tSpiTransmit.pbyRxData[1]=ptSpiBase->DR;
+				g_tSpiTransmit.pbyRxData[2]=ptSpiBase->DR;g_tSpiTransmit.pbyRxData[3]=ptSpiBase->DR;
+				g_tSpiTransmit.pbyRxData[4]=ptSpiBase->DR;g_tSpiTransmit.pbyRxData[5]=ptSpiBase->DR;
+				break;
+			case 7:
+				g_tSpiTransmit.pbyRxData[0]=ptSpiBase->DR;g_tSpiTransmit.pbyRxData[1]=ptSpiBase->DR;
+				g_tSpiTransmit.pbyRxData[2]=ptSpiBase->DR;g_tSpiTransmit.pbyRxData[3]=ptSpiBase->DR;
+				g_tSpiTransmit.pbyRxData[4]=ptSpiBase->DR;g_tSpiTransmit.pbyRxData[5]=ptSpiBase->DR;
+				g_tSpiTransmit.pbyRxData[6]=ptSpiBase->DR;
+				break;
+			case 8:
+				g_tSpiTransmit.pbyRxData[0]=ptSpiBase->DR;g_tSpiTransmit.pbyRxData[1]=ptSpiBase->DR;
+				g_tSpiTransmit.pbyRxData[2]=ptSpiBase->DR;g_tSpiTransmit.pbyRxData[3]=ptSpiBase->DR;
+				g_tSpiTransmit.pbyRxData[4]=ptSpiBase->DR;g_tSpiTransmit.pbyRxData[5]=ptSpiBase->DR;
+				g_tSpiTransmit.pbyRxData[6]=ptSpiBase->DR;g_tSpiTransmit.pbyRxData[7]=ptSpiBase->DR;
+				break;
+			default:
+				break;
+		}
+	}
 		
 	wTimeStart = SPI_SEND_TIMEOUT;
 	while( ((uint32_t)(ptSpiBase->SR) & SPI_BSY) && (wTimeStart --) ){;}
@@ -1021,28 +980,34 @@ csi_error_t csi_spi_send_receive_d8(csp_spi_t *ptSpiBase, uint8_t *pDataOut,uint
  * 
  *  \param[in] ptSpiBase: pointer of SPI reg structure.
  *  \param[in] pData: pointer to buffer data of SPI transmitter.
- *  \param[in] hwSize: number of data to send (byte).
- *  \param[in] ptDmaBase: pointer of DMA reg structure.
+ *  \param[in] hwSize: number of data to send (byte), hwSize <= 0xfff.
  *  \param[in] byDmaCh: channel of DMA(0 -> 3)
- *  \return  none
+ *  \return  error code \ref csi_error_t
  */
-void csi_spi_send_dma(csp_spi_t *ptSpiBase, const void *pData, uint16_t hwSize, csp_dma_t *ptDmaBase,uint8_t byDmaCh)
+csi_error_t csi_spi_send_dma(csp_spi_t *ptSpiBase, const void *pData, uint16_t hwSize, uint8_t byDmaCh)
 {	
-	csi_dma_ch_start(ptDmaBase, byDmaCh, (void *)pData, (void *)&(ptSpiBase->DR), hwSize);
+	if(hwSize > 0xfff)
+		return CSI_ERROR;
+	csi_dma_ch_start(DMA, byDmaCh, (void *)pData, (void *)&(ptSpiBase->DR), hwSize, 1);
 	csp_spi_set_txdma(ptSpiBase, SPI_TDMA_EN, SPI_TDMA_FIFO_NFULL);
+	
+	return CSI_OK;
 }
 
 /** \brief receive data of spi by DMA
  * 
  *  \param[in] ptSpiBase: pointer of SPI reg structure.
  *  \param[in] pbyRecv: pointer to buffer data of SPI receive.
- *  \param[in] hwSize: number of data to receive (byte).
- *  \param[in] ptDmaBase: pointer of DMA reg structure.
+ *  \param[in] hwSize: number of data to receive (byte), hwSize <= 0xfff.
  *  \param[in] byDmaCh: channel of DMA(0 -> 3)
- *  \return  none
+ *  \return  error code \ref csi_error_t
  */
-void csi_spi_recv_dma(csp_spi_t *ptSpiBase, void *pbyRecv, uint16_t hwSize, csp_dma_t *ptDmaBase,uint8_t byDmaCh)
+csi_error_t csi_spi_recv_dma(csp_spi_t *ptSpiBase, void *pbyRecv, uint16_t hwSize ,uint8_t byDmaCh)
 {
+	if(hwSize > 0xfff)
+		return CSI_ERROR;
 	csp_spi_set_rxdma(ptSpiBase, SPI_RDMA_EN, SPI_RDMA_FIFO_NSPACE);
-	csi_dma_ch_start(ptDmaBase, byDmaCh, (void *)&(ptSpiBase->DR),(void *)pbyRecv, hwSize);
+	csi_dma_ch_start(DMA, byDmaCh, (void *)&(ptSpiBase->DR),(void *)pbyRecv, hwSize, 1);
+	
+	return CSI_OK;
 }

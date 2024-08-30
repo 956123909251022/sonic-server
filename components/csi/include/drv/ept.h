@@ -45,9 +45,6 @@ struct csi_ept_config {
 	uint8_t     byCaptureLdbret;
 	uint8_t     byCaptureLdcret;
 	uint8_t     byCaptureLddret;
-	uint8_t     byBurst;
-    uint8_t     byCgsrc;
-	uint8_t     byCgflt;
 	uint32_t	wFreq;				 //TIMER PWM OUTPUT frequency 
 	uint32_t    wInt;
 };
@@ -62,9 +59,6 @@ struct csi_ept_pwmconfig {
 	uint8_t		byDutyCycle;		 //TIMER PWM OUTPUT duty cycle	
 	uint32_t	wFreq;				 //TIMER PWM OUTPUT frequency 
 	uint32_t    wInt;
-	uint8_t     byBurst;
-    uint8_t     byCgsrc;
-	uint8_t     byCgflt;
 };
 
 typedef struct csi_ept_captureconfig  csi_ept_captureconfig_t;
@@ -84,9 +78,6 @@ struct csi_ept_captureconfig {
 	uint8_t     byCaptureLdcret;
 	uint8_t     byCaptureLddret;
 	uint32_t    wInt;
-	uint8_t     byBurst;
-    uint8_t     byCgsrc;
-	uint8_t     byCgflt;
 };
 
 typedef struct csi_ept_pwmchannel_config      csi_ept_pwmchannel_config_t;
@@ -774,6 +765,17 @@ void csi_ept_gload_config(csp_ept_t *ptEptBase,csi_ept_Global_load_control_confi
  \return CSI_OK /CSI_ERROR
 */
 csi_error_t  csi_ept_wave_init(csp_ept_t *ptEptBase, csi_ept_pwmconfig_t *pteptPwmCfg);
+
+/** \brief enable/disable ept burst 
+ * 
+ *  \param[in] ptEptBase: pointer of ept register structure
+ *  \param[in] byCgsrc:cgr src 
+ *  \param[in] byCgflt:cfg flt
+ *  \param[in] bEnable: ENABLE/DISABLE
+ *  \return error code \ref csi_error_t
+ */
+csi_error_t csi_ept_burst_enable(csp_ept_t *ptEptBase,uint8_t byCgsrc,uint8_t byCgflt, bool bEnable);
+
  /**
  \brief  DeadZoneTime configuration loading 
  \param  ptEptBase    	ept handle to operate 
@@ -903,7 +905,7 @@ void csi_ept_debug_enable(csp_ept_t *ptEptBase, bool bEnable);
   \param[in]   ptEptBase       EPT handle to operate
   \param[in]   eEbi		       refer to csp_ept_emint_e
 */
-void csi_ept_emergency_int_enable(csp_ept_t *ptEptBase, csp_ept_emint_e eEbi);
+void csi_ept_emergency_int_enable(csp_ept_t *ptEptBase, csp_ept_emint_e eEm);
 /** \brief ept  input  config  
  *  \param[in] ptEptBase: pointer of ept register structure
  *  \param[in] eInt:     refer to to csp_ept_int_e

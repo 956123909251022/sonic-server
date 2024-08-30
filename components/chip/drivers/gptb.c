@@ -1,5 +1,11 @@
 /***********************************************************************//** 
-
+ * \file  gptb.c
+ * \brief  Enhanced purpose timer driver
+ * \copyright Copyright (C) 2015-2020 @ APTCHIP
+ * <table>
+ * <tr><th> Date  <th>Version  <th>Author  <th>Description
+ * <tr><td> 2022-1-17 <td>V0.0 <td>ljy     <td>initial
+ * </table>
  * *********************************************************************
 */
 #include "sys_clk.h"
@@ -17,6 +23,7 @@ uint32_t gTick2;
 //to maximize the  speed
  uint32_t gGptb0Prd;
  uint32_t gGptb1Prd;
+uint32_t wGptb_Cmp_Buff[4] = {0};
 // uint32_t gGptb2Prd;
 // uint32_t gGptb3Prd;
 // uint32_t gGptb4Prd;
@@ -97,43 +104,59 @@ uint32_t gTick2;
 __attribute__((weak)) void gptb0_irqhandler_pro(csp_gptb_t *ptGptbBase)
   {  	
 	if(((csp_gptb_get_emmisr(ptGptbBase) & B_EM_INT_CPUF))==B_EM_INT_CPUF)
-	    { 
-		  nop;//udelay(10);		  
-		  ptGptbBase -> EMHLCLR |=B_EM_INT_CPUF;
-		  csp_gptb_clr_emint(ptGptbBase,B_EM_INT_CPUF);	
-	     }
+	{ 
+	  nop;//udelay(10);		  
+	  ptGptbBase -> EMHLCLR |=B_EM_INT_CPUF;
+	  csp_gptb_clr_emint(ptGptbBase,B_EM_INT_CPUF);	
+	 }
 	  
 	if(((csp_gptb_get_emmisr(ptGptbBase) & B_EM_INT_EP3))==B_EM_INT_EP3)
-	    { 
-		  nop;udelay(10);
-		  csp_gptb_clr_emHdlck(ptGptbBase, B_EP3);
-		  csp_gptb_clr_emint(ptGptbBase,B_EM_INT_EP3);	
-	     }
+	{ 
+	  nop;udelay(10);
+	  csp_gptb_clr_emHdlck(ptGptbBase, B_EP3);
+	  csp_gptb_clr_emint(ptGptbBase,B_EM_INT_EP3);	
+	 }
 	if(((csp_gptb_get_misr(ptGptbBase) & GPTB_INT_TRGEV0))==GPTB_INT_TRGEV0)
-		{
-		
-		   csp_gptb_clr_int(ptGptbBase, GPTB_INT_TRGEV0);
-		}	
+	{
+	   csp_gptb_clr_int(ptGptbBase, GPTB_INT_TRGEV0);
+	}	
 	if(((csp_gptb_get_misr(ptGptbBase) & GPTB_INT_TRGEV1))==GPTB_INT_TRGEV1)
-		{
-	
-		   csp_gptb_clr_int(ptGptbBase, GPTB_INT_TRGEV1);
-		}	
+	{
+	   csp_gptb_clr_int(ptGptbBase, GPTB_INT_TRGEV1);
+	}	
+	if(((csp_gptb_get_misr(ptGptbBase) & GPTB_INT_CAPLD0))==GPTB_INT_CAPLD0)
+	{
+	  wGptb_Cmp_Buff[0]=csp_gptb_get_cmpa(ptGptbBase);
+	  csp_gptb_clr_int(ptGptbBase, GPTB_INT_CAPLD0);	
+	}
 	if(((csp_gptb_get_misr(ptGptbBase) & GPTB_INT_CAPLD1))==GPTB_INT_CAPLD1)
-		{	
-	
-		  csi_gpio_port_write(GPIOA0, (0x01ul << 2), 1);//gpio_port high
-		  csp_gptb_clr_int(ptGptbBase, GPTB_INT_CAPLD1);
-		  csi_gpio_port_write(GPIOA0,(0x01ul << 2), 0);//gpio_port low		
-		}
-
+	{
+	  wGptb_Cmp_Buff[0]=csp_gptb_get_cmpa(ptGptbBase);
+	  wGptb_Cmp_Buff[1]=csp_gptb_get_cmpb(ptGptbBase);
+	  csp_gptb_clr_int(ptGptbBase, GPTB_INT_CAPLD1);	
+	}
+	if(((csp_gptb_get_misr(ptGptbBase) & GPTB_INT_CAPLD2))==GPTB_INT_CAPLD2)
+	{
+	  wGptb_Cmp_Buff[0]=csp_gptb_get_cmpa(ptGptbBase);
+	  wGptb_Cmp_Buff[1]=csp_gptb_get_cmpb(ptGptbBase);	
+	  wGptb_Cmp_Buff[2]=csp_gptb_get_cmpaa(ptGptbBase);
+	  csp_gptb_clr_int(ptGptbBase, GPTB_INT_CAPLD2);	
+	}
+	if(((csp_gptb_get_misr(ptGptbBase) & GPTB_INT_CAPLD3))==GPTB_INT_CAPLD3)
+	{
+	  wGptb_Cmp_Buff[0]=csp_gptb_get_cmpa(ptGptbBase);
+	  wGptb_Cmp_Buff[1]=csp_gptb_get_cmpb(ptGptbBase);	
+	  wGptb_Cmp_Buff[2]=csp_gptb_get_cmpaa(ptGptbBase);
+	  wGptb_Cmp_Buff[3]=csp_gptb_get_cmpba(ptGptbBase);	
+	  csp_gptb_clr_int(ptGptbBase, GPTB_INT_CAPLD3);	
+	}
 	if(((csp_gptb_get_misr(ptGptbBase) & GPTB_INT_PEND))==GPTB_INT_PEND)
-		{
-		   csi_gpio_port_set_high(GPIOA0, (0x01ul << 0));			
-            nop;
-           csi_gpio_port_set_low (GPIOA0, (0x01ul << 0));
-		   csp_gptb_clr_int(ptGptbBase, GPTB_INT_PEND);
-		}
+	{
+	   csi_gpio_port_set_high(GPIOA0, (0x01ul << 0));			
+		nop;
+	   csi_gpio_port_set_low (GPIOA0, (0x01ul << 0));
+	   csp_gptb_clr_int(ptGptbBase, GPTB_INT_PEND);
+	}
 	if(((csp_gptb_get_misr(ptGptbBase) & GPTB_INT_CBU))==GPTB_INT_CBU)
 	{	
 		gTick2++;if(gTick2>=5){	
@@ -157,12 +180,12 @@ __attribute__((weak)) void gptb0_irqhandler_pro(csp_gptb_t *ptGptbBase)
 
 __attribute__((weak)) void gptb1_irqhandler_pro(csp_gptb_t *ptGptbBase)
   {  	
-	  if(((csp_gptb_get_misr(ptGptbBase) & GPTB_INT_CAPLD1))==GPTB_INT_CAPLD1)
-		{		
+	if(((csp_gptb_get_misr(ptGptbBase) & GPTB_INT_CAPLD1))==GPTB_INT_CAPLD1)
+	{		
 //		  csi_pin_set_high(PA0);
-		  csp_gptb_clr_int(ptGptbBase, GPTB_INT_CAPLD1);
+	  csp_gptb_clr_int(ptGptbBase, GPTB_INT_CAPLD1);
 //		  csi_pin_set_low(PA0); 		
-		} 
+	} 
   }
 /** \brief capture configuration
  * 
@@ -192,17 +215,14 @@ csi_error_t csi_gptb_capture_init(csp_gptb_t *ptGptbBase, csi_gptb_captureconfig
 	wCrVal=(wCrVal & ~(GPTB_STOPWRAP_MSK))|((ptgptbPwmCfg->byCaptureStopWrap&0x03)<<GPTB_STOPWRAP_POS);
 	wCrVal=(wCrVal & ~(GPTB_CMPA_RST_MSK))|((ptgptbPwmCfg->byCaptureLdaret&0x01)  <<GPTB_CMPA_RST_POS);
 	wCrVal=(wCrVal & ~(GPTB_CMPB_RST_MSK))|((ptgptbPwmCfg->byCaptureLdbret&0x01)  <<GPTB_CMPB_RST_POS);
+	
+	wCrVal=(wCrVal & ~(GPTB_CMPAA_RST_MSK))|((ptgptbPwmCfg->byCaptureLdaaret&0x01)  <<GPTB_CMPAA_RST_POS);
+	wCrVal=(wCrVal & ~(GPTB_CMPBA_RST_MSK))|((ptgptbPwmCfg->byCaptureLdbaret&0x01)  <<GPTB_CMPBA_RST_POS);
 
 	wCrVal|=GPTB_CAPLD_EN;//CAPMODE_SEL
 	wCrVal|=GPTB_CAPREARM;
 	wPrdrLoad=0xFFFF;
 
-	if(ptgptbPwmCfg->byBurst)
-	{    wCrVal|=GPTB_BURST;
-	     wCrVal|=GPTB_FLT_INIT;
-		wCrVal=(wCrVal & ~(GPTB_CGSRC_MSK))|((ptgptbPwmCfg->byCgsrc&0x03)<<GPTB_CGSRC_POS);
-		wCrVal=(wCrVal & ~(GPTB_CGFLT_MSK))|((ptgptbPwmCfg->byCgflt&0x07)<<GPTB_CGFLT_POS);
-	}
     csp_gptb_clken(ptGptbBase);                                         // clkEN
 	csp_gptb_set_cr(ptGptbBase, wCrVal);								// set bt work mode
 	csp_gptb_set_pscr(ptGptbBase, (uint16_t)wClkDiv - 1);				// clk div
@@ -277,6 +297,21 @@ csi_error_t  csi_gptb_wave_init(csp_gptb_t *ptGptbBase, csi_gptb_pwmconfig_t *pt
 	gGptb0Prd=wPrdrLoad;
 	
 	return CSI_OK;	
+}
+
+/** \brief enable/disable gptb burst 
+ * 
+ *  \param[in] ptGptbBase: pointer of gptb register structure
+ *  \param[in] byCgsrc:cgr src 
+ *  \param[in] byCgflt:cfg flt
+ *  \param[in] bEnable: ENABLE/DISABLE
+ *  \return error code \ref csi_error_t
+ */
+csi_error_t csi_gptb_burst_enable(csp_gptb_t *ptGptbBase,uint8_t byCgsrc,uint8_t byCgflt, bool bEnable)
+{
+	csp_gptb_set_burst(ptGptbBase,byCgsrc,bEnable);	
+	csp_gptb_flt_init(ptGptbBase,byCgflt,bEnable);
+	return CSI_OK;
 }
 
 /** \brief Channel CMPLDR configuration
@@ -460,7 +495,7 @@ csi_error_t csi_gptb_emergency_cfg(csp_gptb_t *ptGptbBase, csi_gptb_emergency_co
   uint32_t wEmecr;
 
     wEmsrc2=csp_gptb_get_src2(ptGptbBase);
-	wEmsrc2=(wEmsrc2 & (~GPTB_EMSRC2_FLT_PACE0_MSK) & (~GPTB_EMSRC2_FLT_PACE1_MSK) ) | (tCfg -> byFltpace1 << GPTB_EMSRC2_FLT_PACE1_POS) | (tCfg ->byFltpace0  << GPTB_EMSRC2_FLT_PACE0_POS);
+	wEmsrc2=(wEmsrc2 & (~GPTB_EMSRC2_FLT_PACE0_MSK)) | (tCfg ->byFltpace0  << GPTB_EMSRC2_FLT_PACE0_POS);
 	wEmsrc2=(wEmsrc2 &~0xff0000) |  tCfg ->byOrl1 <<16;
 	wEmsrc2=(wEmsrc2 &~0xff)     |  tCfg ->byOrl0 ;
 	csp_gptb_set_src2(ptGptbBase,wEmsrc2);
@@ -741,9 +776,9 @@ void csi_gptb_debug_enable(csp_gptb_t *ptGptbBase, bool bEnable)
  *  \param[in] eEbi: refer to csp_gptb_emint_e
  *  \return none
  */
-void csi_gptb_emergency_int_enable(csp_gptb_t *ptGptbBase, csp_gptb_emint_e eEbi)
+void csi_gptb_emergency_int_enable(csp_gptb_t *ptGptbBase, csp_gptb_emint_e eEm)
 {   csi_irq_enable((uint32_t *)ptGptbBase);	
-    csp_gptb_Emergency_emimcr(ptGptbBase,eEbi);
+    csp_gptb_Emergency_emimcr(ptGptbBase,eEm);
 }
 
 /** \brief enable/disable gptb out trigger 
@@ -941,8 +976,8 @@ csi_error_t csi_gptb_set_evcntinit(csp_gptb_t *ptGptbBase, uint8_t byCntChx, uin
 /** \brief  gptb configuration Loading
  * 
  *  \param[in] ptGptbBase: pointer of gptb register structure
- *  \param[in] tCfg: refer to csi_gptb_feglk_config_t
- *  \return none
+ *  \param[in] Global: refer to csi_gptb_feglk_config_t
+ *  \return error code \ref csi_error_t
 */
 csi_error_t csi_gptb_reglk_config(csp_gptb_t *ptGptbBase,csi_gptb_feglk_config_t *Global)
 {   uint32_t w_GLK;	

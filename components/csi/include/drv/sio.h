@@ -1,6 +1,6 @@
 /***********************************************************************//** 
- * \file  sio.c
- * \brief  csi sio driver
+ * \file  sio.h
+ * \brief  head file of csi sio
  * \copyright Copyright (C) 2015-2020 @ APTCHIP
  * <table>
  * <tr><th> Date  <th>Version  <th>Author  <th>Description

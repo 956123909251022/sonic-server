@@ -35,11 +35,8 @@ struct csi_gpta_config {
 	uint8_t     byCaptureStopWrap;
 	uint8_t     byCaptureLdaret;
 	uint8_t     byCaptureLdbret;
-	uint8_t     byCaptureLdcret;
-	uint8_t     byCaptureLddret;
-	uint8_t     byBurst;
-    uint8_t     byCgsrc;
-	uint8_t     byCgflt;
+//	uint8_t     byCaptureLdaaret;
+//	uint8_t     byCaptureLdbaret;
 	uint32_t	wFreq;				 //TIMER PWM OUTPUT frequency 
 	uint32_t    wInt;
 };
@@ -55,9 +52,6 @@ struct csi_gpta_pwmconfig {
 	uint8_t		byDutyCycle;		 //TIMER PWM OUTPUT duty cycle	
 	uint32_t	wFreq;				 //TIMER PWM OUTPUT frequency 
 	uint32_t    wInt;
-	uint8_t     byBurst;
-    uint8_t     byCgsrc;
-	uint8_t     byCgflt;
 	uint8_t     byCks;
 };
 typedef struct csi_gpta_captureconfig  csi_gpta_captureconfig_t;
@@ -74,12 +68,9 @@ struct csi_gpta_captureconfig {
 	uint8_t     byCaptureStopWrap;
 	uint8_t     byCaptureLdaret;
 	uint8_t     byCaptureLdbret;
-//	uint8_t     byCaptureLdcret;
-//	uint8_t     byCaptureLddret;
+	uint8_t     byCaptureLdaaret;
+	uint8_t     byCaptureLdbaret;
 	uint32_t    wInt;
-	uint8_t     byBurst;
-    uint8_t     byCgsrc;
-	uint8_t     byCgflt;
 };
 
 typedef struct csi_gpta_pwmchannel_config      csi_gpta_pwmchannel_config_t;
@@ -282,8 +273,8 @@ typedef enum{
 	GPTA_INTSRC_TRGEV3 = 0x8,
 	GPTA_INTSRC_CAPLD0 = 0x1 << 4,
 	GPTA_INTSRC_CAPLD1 = 0x1 << 5,
-//	GPTA_INTSRC_CAPLD2 = 0x1 << 6,
-//	GPTA_INTSRC_CAPLD3 = 0x1 << 7,
+	GPTA_INTSRC_CAPLD2 = 0x1 << 6,
+	GPTA_INTSRC_CAPLD3 = 0x1 << 7,
 	GPTA_INTSRC_CAU = 0x1 << 8,
 	GPTA_INTSRC_CAD = 0x1 << 9,
 	GPTA_INTSRC_CBU = 0x1 << 10,
@@ -319,6 +310,16 @@ csi_error_t csi_gpta_capture_init(csp_gpta_t *ptGptaBase, csi_gpta_captureconfig
  */
 csi_error_t  csi_gpta_wave_init(csp_gpta_t *ptGptaBase, csi_gpta_pwmconfig_t *ptGptaPwmCfg);
 
+
+/** \brief enable/disable gpta burst 
+ * 
+ *  \param[in] ptGptaBase: pointer of gpta register structure
+ *  \param[in] byCgsrc:cgr src 
+ *  \param[in] byCgflt:cfg flt
+ *  \param[in] bEnable: ENABLE/DISABLE
+ *  \return error code \ref csi_error_t
+ */
+csi_error_t csi_gpta_burst_enable(csp_gpta_t *ptGptaBase,uint8_t byCgsrc,uint8_t byCgflt, bool bEnable);
 /** \brief Channel CMPLDR configuration
  * 
  *  \param[in] ptGptaBase: pointer of ept register structure

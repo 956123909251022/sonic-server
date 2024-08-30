@@ -18,29 +18,29 @@ name: demo
 version: v1.0.0
 description: 我的第一个方案工程
 tag: ""
-keywords: ~
+keywords: 
 author:
   name: ""
 license: ""
 type: solution
 depends:
-  - apt32f110x_demo: v1.0.3
-  - sdk_110x: v1.0.3
+  - apt32f110x_demo: v1.0.4
+  - sdk_110x: v1.0.4
 build_config:
   include:
     - include
     - ./
-  internal_include: ~
-  cflag: -Og  -g
-  cxxflag: -Og  -g
+  internal_include: 
+  cflag: -Og  -g  -Wall  -ffunction-sections
+  cxxflag: -Og  -g  -Wall  -ffunction-sections
   asmflag: -Wa,--gdwarf2
-  define: ~
-  libs: ~
-  libpath: ~
+  define: 
+  libs: 
+  libpath: 
 source_file:
   - src/*.c
 depends_forward:
-  - apt32f110x_demo: v1.0.3
-  - sdk_110x: v1.0.3
-install: ~
-homepage: ~
+  - apt32f110x_demo: v1.0.4
+  - sdk_110x: v1.0.4
+install: 
+homepage: 

@@ -3,15 +3,16 @@
  * \brief  csi lcd driver
  * \copyright Copyright (C) 2015-2021 @ APTCHIP
  * <table>
- * <tr><th> Date  <th>Version  <th>Author  <th>Description
- * <tr><td> 2021-12-03 <td>V0.0  <td>LQ    <td>initial
- * <tr><td> 2021-12-25 <td>V0.0  <td>ZJY   <td>initial
+ * <tr><th> Date  <th>Version	<th>Author  <th>Description
+ * <tr><td> 2021-12-03 <td>V0.0 <td>LQ      <td>initial
+ * <tr><td> 2021-12-25 <td>V0.0 <td>ZJY     <td>initial
  * </table>
  * *********************************************************************
 */
 #include <sys_clk.h>
 #include <drv/lcd.h>
 #include <drv/irq.h>
+#include "board_config.h"
 #include "iostring.h"
 
 /* Private macro------------------------------------------------------*/
@@ -47,7 +48,8 @@ __attribute__((weak)) void lcd_irqhandler(csp_lcd_t *ptLcdBase)
 csi_error_t csi_lcd_init(csp_lcd_t *ptLcdBase, csi_lcd_config_t *ptLcdCFg)
 {
 	uint8_t byDuty = 4;
-	uint16_t hwFreq, hwCpre = 1;
+	uint32_t wFreq = ISOSC_VALUE;
+	uint16_t hwCpre = 1;
 	volatile uint32_t wDelay = 0x7ffff;
 	
 	csi_clk_enable((uint32_t *)ptLcdBase);			//lcd clk enable
@@ -80,16 +82,51 @@ csi_error_t csi_lcd_init(csp_lcd_t *ptLcdBase, csi_lcd_config_t *ptLcdCFg)
 	}
 	
 	if(ptLcdCFg->byClkSrc == LCD_CLKSRC_ISOSC)		//get lcd clk source
-		hwFreq = ISOSC_VALUE;
+		wFreq = ISOSC_VALUE;
 	else
-		hwFreq = 32768;
+	{
+		switch(csp_rtc_get_clksrc(RTC))
+		{
+			case 0:									
+				wFreq = ISOSC_VALUE;
+				break;
+			case 1:
+				switch(csp_get_imosc_fre(SYSCON))
+				{
+//					case 0:
+//						wFreq = IMOSC_5M_VALUE >> 2;
+//						break;
+//					case 1:
+//						wFreq = IMOSC_4M_VALUE >> 2;
+//						break;
+//					case 2:
+//						wFreq = IMOSC_2M_VALUE >> 2;
+//						break;
+					case 3:
+						wFreq = IMOSC_131K_VALUE >> 2;
+						break;
+					default:
+						return CSI_ERROR;			//imosc = 2/4/5MHz, lcd  don't support	
+				}
+				break;
+			case 2:
+				wFreq = ESOSC_VALUE;				
+				break;
+			case 3:
+				if(EMOSC_VALUE > 1000000)			//lcd clk <= 1MHz
+					return CSI_ERROR;
+				else
+					wFreq = EMOSC_VALUE >> 2;
+				break;
+		}
+	}
 	
-	hwCpre = (hwFreq >> 3)/byDuty/ptLcdCFg->byFreq;
+	hwCpre = (wFreq >> 3)/byDuty/ptLcdCFg->byFreq;
 	if(hwCpre)
 		hwCpre = hwCpre -1;
 	
-	g_hwFckDiv = (hwFreq >> 3) / (hwCpre +1);		//backup FckDiv for Blink config
-	csp_lcd_set_cdr(ptLcdBase, 2, hwCpre);				//lcdclk = hwFreq/2^(2+1)/(hwCpre+1)); Fframe = lcdclk/byDuty
+	g_hwFckDiv = (wFreq >> 3) / (hwCpre +1);		//backup FckDiv for Blink config
+	csp_lcd_set_cdr(ptLcdBase, 2, hwCpre);				//lcdclk = wFreq/2^(2+1)/(hwCpre+1)); Fframe = lcdclk/byDuty
 	
 	//lcd driver network, power contorl,
 	switch(ptLcdCFg->byDrvNet)

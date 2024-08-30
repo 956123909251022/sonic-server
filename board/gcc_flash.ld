@@ -25,13 +25,15 @@ MEMORY
 {
 	ROM(RX)   : ORIGIN = 0x00000000,  LENGTH = 64K
 	RAM(RWX)  : ORIGIN = 0x20000000,  LENGTH = 8K
+	RAM1(RWX) : ORIGIN = 0x20002000,  LENGTH = 256
 }
-__kernel_stack = ORIGIN(RAM) + LENGTH(RAM) -8 ;		/* stack top*/
+__kernel_stack = ORIGIN(RAM) + LENGTH(RAM) - 8 ;	/* stack top */
 
 REGION_ALIAS("REGION_TEXT",    ROM);				/* Assign alias names to memory regions */
 REGION_ALIAS("REGION_RODATA",  ROM);
 REGION_ALIAS("REGION_DATA",    RAM);
 REGION_ALIAS("REGION_BSS",     RAM);
+REGION_ALIAS("REGION_LP",     RAM1);
 
 ENTRY(__start)							/* Entrance address */
 
@@ -67,8 +69,8 @@ SECTIONS {
 
     .bss :
     {
-         . = ALIGN(0x4) ;
-         _bss_start = . ;
+		. = ALIGN(0x4) ;
+		_bss_start = . ;
 		*(.sbss)
 		*(.sbss.*)
 		*(.scommon)
@@ -80,4 +82,20 @@ SECTIONS {
 		_end = . ;
 		end = . ;
     } >REGION_BSS AT > REGION_BSS
+	
+	.user_heap :						/*user heap section */ 
+	{
+		. = ALIGN(0x4) ;
+		__heap_start = .;
+		. += __heap_size;
+		. = ALIGN(0x4) ;
+		__heap_end = .;
+	} > REGION_BSS AT > REGION_BSS 
+	
+	.user_sram1 0x20002000:				/*user sram1 section */ 
+	{
+		. = ALIGN(0x4) ;
+		*(user_sram1)
+		*(.user_sram1.*)
+	} > REGION_LP AT > REGION_LP
 }

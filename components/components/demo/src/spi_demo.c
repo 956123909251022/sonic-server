@@ -195,6 +195,52 @@ void spi_master_send_receive_demo(void)
 	}	
 }
 
+/** \brief spi master send/receive a bunch of data; polling(sync,no interrupt)mode
+ *  \brief spi 主机收发一串数据，收发使用轮询
+ *  \param[in] none
+ *  \return none
+ */
+void spi_master_send_receive_fast_demo(void)
+{
+	uint8_t bySendData[16] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
+	uint8_t byReceData[16] = {0};
+	uint8_t byIndex = 0;
+	csi_spi_config_t t_SpiConfig;  //spi初始化参数配置结构体
+	
+	for(byIndex = 0;byIndex < 16; byIndex++)
+	{
+		bySendData[byIndex]=byIndex+1;
+	}
+	
+	//端口配置
+	csi_pin_set_mux(PA07, PA07_OUTPUT);                     //PA07 as output
+	csi_pin_output_mode(PA07, GPIO_PUSH_PULL);              //PA07 push pull mode
+	csi_spi_nss_high(PA07);									//PA07 NSS init high												    
+	csi_pin_set_mux(PA08,PA08_SPI0_SCK);					//PA08 = SPI0_SCK
+	csi_pin_set_mux(PA09,PA09_SPI0_MISO);					//PA09 = SPI0_MISO
+	csi_pin_set_mux(PA06,PA06_SPI0_MOSI);					//PA06 = SPI0_MOSI
+	
+	t_SpiConfig.bySpiMode = SPI_MASTER;						 //作为主机
+	t_SpiConfig.bySpiPolarityPhase = SPI_FORMAT_CPOL0_CPHA1; //clk空闲电平为0，相位为在第二个边沿采集数据
+	t_SpiConfig.bySpiFrameLen = SPI_FRAME_LEN_8;             //帧数据长度为8bit
+	t_SpiConfig.wSpiBaud = 2000000; 						 //通讯速率2兆			
+	t_SpiConfig.byInt= SPI_INTSRC_NONE; 					 //初始配置无中断
+	t_SpiConfig.byTxRxMode = SPI_TX_RX_MODE_POLL;            //收发使用轮询模式
+	csi_spi_init(SPI0,&t_SpiConfig);				
+
+	my_printf("the spi master send receive demo!\n");
+	mdelay(500);
+	while(1)
+	{
+		csi_spi_nss_low(PA07);
+		csi_spi_send_receive_fast(SPI0, bySendData,byReceData,16);
+		//csi_spi_send_fast(SPI0, bySendData,16);
+		csi_spi_nss_high(PA07);
+		
+		mdelay(100);
+	}	
+}
+
 /** \brief spi slave send/receive a bunch of data; interrupt(async) mode
  *  \brief spi 从机收发一串数据，收发使用中断
  *  \param[in] none
@@ -456,7 +502,7 @@ int16_t spi_w25q16jvsiq_write_read_demo(void)
     t_SpiConfig.byTxRxMode =  SPI_TX_RX_MODE_POLL;           //收发使用轮询方式 
 	csi_spi_init(SPI0,&t_SpiConfig);							
 
-	my_printf("the spi w25q16 test!\n");
+	my_printf("the spi w25q16 test!\r\n");
 	
 	while(1)
 	{
@@ -466,10 +512,10 @@ int16_t spi_w25q16jvsiq_write_read_demo(void)
 		{
 		
 			//iRet = spi_flash_read_status();		//read status reg
-			my_printf("\nflash chip id right:0x%x",iRet);
+			my_printf("\r\nflash chip id right:0x%x",iRet);
 			
 			spi_flash_read_bytes((uint8_t *)byRdBuf, 0x1000, 16);
-			my_printf("\nbefore sector erase read data is:" );
+			my_printf("\r\nbefore sector erase read data is:" );
 			for(byIndex=0;byIndex<16;byIndex++)
 			{
 				my_printf("  0x%x",byRdBuf[byIndex]);
@@ -478,21 +524,21 @@ int16_t spi_w25q16jvsiq_write_read_demo(void)
 			spi_flash_sector_erase(0x1000);			//erase sector 1; start addr = 0x1000
 
 			spi_flash_read_bytes((uint8_t *)byRdBuf, 0x1000, 16);	//read data = 0xff
-			my_printf("\nafter sector erase read data is:" );
+			my_printf("\r\nafter sector erase read data is:" );
 			for(byIndex=0;byIndex<16;byIndex++)
 			{
 				my_printf("  0x%x",byRdBuf[byIndex]);
 			}
 		
 			spi_flash_write_bytes(byWrBuf,0x1000,16);				//write 16 bytes
-			my_printf("\nwill write data is:" );
+			my_printf("\r\nwill write data is:" );
 			for(byIndex=0;byIndex<16;byIndex++)
 			{
 				my_printf("  0x%x",byWrBuf[byIndex]);
 			} 
 			
 			spi_flash_read_bytes((uint8_t *)byRdBuf, 0x1000, 16);	//read 16 bytes, read bytes = write bytes
-			my_printf("\nread back data is:" );
+			my_printf("\r\nread back data is:" );
 			for(byIndex=0;byIndex<16;byIndex++)
 			{
 				my_printf("  0x%x",byRdBuf[byIndex]);
@@ -502,7 +548,7 @@ int16_t spi_w25q16jvsiq_write_read_demo(void)
 		}
 		else
 		{
-			my_printf("\nflash chip id error:0x%x",iRet);
+			my_printf("\r\nflash chip id error:0x%x",iRet);
 		}
 	}
 	return iRet;
@@ -540,11 +586,7 @@ void spi_etcb_dma_send(void)
 	//etcb para config
 	tEtbConfig.byChType = ETB_ONE_TRG_ONE_DMA;			//单个源触发单个目标，DMA方式
 	tEtbConfig.bySrcIp 	= ETB_SPI0_TXSRC;				//SPI0 TXSRC作为触发源
-	tEtbConfig.bySrcIp1 = 0xff;						
-	tEtbConfig.bySrcIp2 = 0xff;
 	tEtbConfig.byDstIp 	= ETB_DMA_CH0;					//ETB DMA0通道0作为目标实际
-	tEtbConfig.byDstIp1 = 0xff;
-	tEtbConfig.byDstIp2 = 0xff;
 	tEtbConfig.byTrgMode = ETB_HARDWARE_TRG;			//通道触发模式采样硬件触发
 	
 	//端口配置
@@ -573,7 +615,7 @@ void spi_etcb_dma_send(void)
 	csi_spi_init(SPI0,&t_SpiConfig);					//初始化并启动spi
 	
 	csi_spi_nss_low(PA07);
-	csi_spi_send_dma(SPI0,(void *)bySdData,100,DMA, 0);  //使能dma通道，等待对应dma请求并传输
+	csi_spi_send_dma(SPI0,(void *)bySdData,100, 0);  //使能dma通道，等待对应dma请求并传输
 	csp_dma_t *ptDmaChBase = (csp_dma_t *)DMA_REG_BASE(DMA, 0);
 	while(csp_dma_get_curr_htc(ptDmaChBase));//等待直到dma传输完成
 	while(csp_spi_get_sr(SPI0) & SPI_BSY );		//wait for transmition finish
@@ -583,7 +625,7 @@ void spi_etcb_dma_send(void)
 	while(1)
 	{
 		csi_spi_nss_low(PA07);
-		csi_spi_send_dma(SPI0,(void *)bySdData,100,DMA, 0);
+		csi_spi_send_dma(SPI0,(void *)bySdData,100, 0);
 		while(csp_dma_get_curr_htc(ptDmaChBase));//等待直到dma传输完成
 		while(csp_spi_get_sr(SPI0) & SPI_BSY );	 //wait for transmition finish
 		csi_spi_nss_high(PA07);
@@ -642,21 +684,13 @@ void spi_etcb_dma_send_receive(void)
 	//send etcb para config
 	tEtbConfig.byChType = ETB_ONE_TRG_ONE_DMA;			//单个源触发单个目标，DMA方式
 	tEtbConfig.bySrcIp 	= ETB_SPI0_TXSRC;				//SPI0 TXSRC作为触发源
-	tEtbConfig.bySrcIp1 = 0xff;						
-	tEtbConfig.bySrcIp2 = 0xff;
 	tEtbConfig.byDstIp 	= ETB_DMA_CH0;					//ETB DMA通道0作为目标实际
-	tEtbConfig.byDstIp1 = 0xff;
-	tEtbConfig.byDstIp2 = 0xff;
 	tEtbConfig.byTrgMode = ETB_HARDWARE_TRG;			//通道触发模式采样软件触发
 	
 	//receive etcb para config
 	tEtbConfig1.byChType = ETB_ONE_TRG_ONE_DMA;			//单个源触发单个目标，DMA方式
 	tEtbConfig1.bySrcIp 	= ETB_SPI0_RXSRC;				//SPI0 RXSRC作为触发源
-	tEtbConfig1.bySrcIp1 = 0xff;						
-	tEtbConfig1.bySrcIp2 = 0xff;
 	tEtbConfig1.byDstIp 	= ETB_DMA_CH1;					//ETB DMA通道1作为目标实际
-	tEtbConfig1.byDstIp1 = 0xff;
-	tEtbConfig1.byDstIp2 = 0xff;
 	tEtbConfig1.byTrgMode = ETB_HARDWARE_TRG;			//通道触发模式采样软件触发
 	
 	//端口配置
@@ -688,8 +722,8 @@ void spi_etcb_dma_send_receive(void)
 	
 	
 	csi_spi_nss_low(PA07);
-	csi_spi_recv_dma(SPI0,(void *)byDesBuf,104,DMA, byChnl1);
-	csi_spi_send_dma(SPI0,(void *)bySrcBuf,104,DMA, byChnl);
+	csi_spi_recv_dma(SPI0,(void *)byDesBuf,104, byChnl1);
+	csi_spi_send_dma(SPI0,(void *)bySrcBuf,104, byChnl);
 
 	csp_dma_t *ptDmaChBase_01 = (csp_dma_t *)DMA_REG_BASE(DMA, 1);
 	csp_dma_t *ptDmaChBase_00 = (csp_dma_t *)DMA_REG_BASE(DMA, 0);
@@ -703,8 +737,8 @@ void spi_etcb_dma_send_receive(void)
 	while(1)
 	{
 		csi_spi_nss_low(PA07);
-		csi_spi_recv_dma(SPI0,(void *)byDesBuf,104,DMA, 1);
-		csi_spi_send_dma(SPI0,(void *)bySrcBuf,104,DMA, 0);
+		csi_spi_recv_dma(SPI0,(void *)byDesBuf,104, 1);
+		csi_spi_send_dma(SPI0,(void *)bySrcBuf,104, 0);
 		while(csp_dma_get_curr_htc(ptDmaChBase_00));			//等待直到dma发送完成
 		while(csp_dma_get_curr_htc(ptDmaChBase_01));			//等待直到dma接收完成
 		while( (SPI0->SR & SPI_BSY) );							//等到spi传输完成

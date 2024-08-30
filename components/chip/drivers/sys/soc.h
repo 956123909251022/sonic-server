@@ -32,10 +32,6 @@ extern "C" {
 #define ESOSC_VALUE             32768U
 #endif
 
-#ifndef EMOSC_VALUE
-#define EMOSC_VALUE             16000000U
-#endif
-
 #ifndef EMOSC_32K_VALUE
 #define EMOSC_32K_VALUE			32768U
 #endif
@@ -685,7 +681,7 @@ typedef enum {
 	PA113_INPUT				=  1U,		//input
 	PA113_OUTPUT			=  2U,		//output
 	PA113_OUTPUT_MONI		=  3U,		//output with monitor
-	PA113_LCD_SEG31			=  4U,			//PA1.13
+	PA113_LCD_SEG31			=  4U,		//PA1.13
 	PA113_VLC1				=  4U,			
     PA113_GPTB1_CHAX        =  5U,
     PA113_CNTA_REM      	=  6U,
@@ -693,6 +689,11 @@ typedef enum {
 	PA113_LED_C0M9			=  8U,
 	PA113_I2C0_SDA			=  9U,
 	PA113_TKEY_CH22       	=  10U,
+	
+	PIN_GPD					=  0U,
+	PIN_INPUT				=  1U,		//input
+	PIN_OUTPUT				=  2U,		//output
+	PIN_OUTPUT_MONI			=  3U,		//output with monitor
 	
 	IOMAP    			    =  11U
 } pin_func_e;
@@ -703,13 +704,21 @@ typedef enum{
 	SWD_GRP2
 }swd_grp_e;
 
+//devices information, Bass Addr/Irq Num/Pclk Num
+typedef struct {
+	uint16_t hwRegBase;					//base addr		
+    uint8_t byIrqNum;					//irq num
+	uint8_t byModule;					//pclk in pcer bit num
+} csi_devmap_t;
+
 #define PFLASHBASE			0x00000000
 #define PFLASHSIZE			0x00010000
 #define PFLASHPAGE			256
 #define PFLASHLIMIT			(PFLASHBASE + PFLASHSIZE) 
 #define USEROPTION_ADDR		0x000800C0
 #define DFLASHBASE			0x10000000
-#define DFLASHSIZE			0x00001000
+#define DFLASHSIZE			0x00000800
+#define DFLASHPAGE			64
 #define DFLASHLIMIT 		(DFLASHBASE + DFLASHSIZE) 
 
 #ifdef REMAP

@@ -345,4 +345,70 @@ static csp_error_t apt_ifc_wr_nword(csp_ifc_t * ptIfcBase, uint8_t bFlashType, u
 	}
 	return tRet;
 }
-
+/** \brief Page erase to Flash.
+ * 
+ *  \param[in] ptIfcBase：pointer of ifc register structure
+ *  \param[in] wPgStrAddr：start page start address
+ *  \param[in] byPageNum: number of page to erase
+ *  \return error code
+ */
+csi_error_t csi_ifc_erase(csp_ifc_t *ptIfcBase, uint32_t wPgStrAddr, uint8_t byPageNum)
+{
+	uint8_t i, byFshType = 0;
+	
+	if(byPageNum == 0)
+		return CSI_ERROR;
+		
+	//return error when address is not page alligned, or addr goes beyond FLASH space
+	if((wPgStrAddr < DFLASHBASE))			
+	{
+		if(wPgStrAddr <= (PFLASHLIMIT - PFLASHPAGE))	//prom
+		{
+			if((wPgStrAddr % PFLASHPAGE) != 0)			//prom page addr
+				return CSI_ERROR;
+			else
+			{
+				if(byPageNum > ((PFLASHLIMIT - wPgStrAddr)/ PFLASHPAGE))
+				{
+					byPageNum = (PFLASHLIMIT - wPgStrAddr)/ PFLASHPAGE;
+				}
+				byFshType = 0x01;
+			}
+		}
+		else
+			return CSI_ERROR;
+	}
+	else
+	{
+		if(wPgStrAddr <= (DFLASHLIMIT - DFLASHPAGE))	//drom
+		{
+			if((wPgStrAddr % DFLASHPAGE) != 0)			//drom page addr
+				return CSI_ERROR;
+			else
+			{
+				if(byPageNum > ((DFLASHLIMIT - wPgStrAddr)/ DFLASHPAGE))
+				{
+					byPageNum = (DFLASHLIMIT - wPgStrAddr)/ DFLASHPAGE;
+				}
+				byFshType = 0x02;
+			}
+		}
+		else
+			return CSI_ERROR;
+	}
+	
+	csp_ifc_clk_enable(ptIfcBase, ENABLE);
+	
+	for(i = 0; i < byPageNum; i++)
+	{
+		apt_ifc_step_sync(ptIfcBase, PAGE_ERASE, wPgStrAddr);
+		
+		if(0x01 == byFshType)
+			wPgStrAddr += PFLASHPAGE;
+		else if(0x02 == byFshType)
+			wPgStrAddr += DFLASHPAGE;
+	}
+	
+	return CSI_OK;
+}
+	

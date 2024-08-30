@@ -48,9 +48,9 @@ __attribute ((weak))int fputc(int ch, FILE *stream)
 {
     (void)stream;
 
-    if (ch == '\n') {
-        csi_uart_putc(console.uart, (uint8_t)'\r');
-    }
+//    if (ch == '\n') {
+//        csi_uart_putc(console.uart, (uint8_t)'\r');
+//    }
 
     csi_uart_putc(console.uart, (uint8_t)ch);
 

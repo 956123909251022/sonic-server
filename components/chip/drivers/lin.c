@@ -3,8 +3,8 @@
  * \brief  csi lin driver
  * \copyright Copyright (C) 2015-2021 @ APTCHIP
  * <table>
- * <tr><th> Date  <th>Version  <th>Author  <th>Description
- * <tr><td> 2021-8-03 <td>V0.0  <td>ZJY   <td>initial
+ * <tr><th> Date  <th>Version	<th>Author  <th>Description
+ * <tr><td> 2021-8-03 <td>V0.0  <td>ZJY   	<td>initial
  * </table>
  * *********************************************************************
 */

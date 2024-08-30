@@ -33,41 +33,37 @@ int gptb_capture_demo(void)
 {
 	int iRet = 0;	
 //------------------------------------------------------------------------------------------------------------------------	
-    volatile uint8_t ch;	
+    volatile uint8_t ch;
+
 	csi_pin_set_mux(PA01,PA01_INPUT);		
-	csi_pin_pull_mode(PA01, GPIO_PULLUP);						//PA01 上拉
+	csi_pin_pull_mode(PA01, GPIO_PULLDOWN);						//PA01 上拉
 	csi_pin_irq_mode(PA01,EXI_GRP1, GPIO_IRQ_FALLING_EDGE);		//PA01 下降沿产生中断	
-	csi_exi_set_evtrg(1, TRGSRC_EXI1, 1);
+	csi_exi_set_evtrg(EXI_TRGOUT1, TRGSRC_EXI1, 1);
 //------------------------------------------------------------------------------------------------------------------------		
 	csi_etb_config_t tEtbConfig;				//ETB 参数配置结构体	
 	tEtbConfig.byChType  = ETB_ONE_TRG_ONE;  	//单个源触发单个目标
 	tEtbConfig.bySrcIp   = ETB_EXI_TRGOUT1 ;  	//...作为触发源
-	tEtbConfig.bySrcIp1  = 0xff;      
-	tEtbConfig.bySrcIp2  = 0xff;
 	tEtbConfig.byDstIp   =  ETB_GPTB0_SYNCIN2;  //GPTB0 同步输入2作为目标事件
-	tEtbConfig.byDstIp1  = 0xff;
-	tEtbConfig.byDstIp2  = 0xff;
 	tEtbConfig.byTrgMode = ETB_HARDWARE_TRG;
 	csi_etb_init();
-	ch = csi_etb_ch_alloc(tEtbConfig.byChType);	//自动获取空闲通道号,ch >= 0 获取成功
-//	if(ch < 0)return -1;						//ch < 0,则获取通道号失败		
+	ch = csi_etb_ch_alloc(tEtbConfig.byChType);	//自动获取空闲通道号,ch >= 0 获取成功						//ch < 0,则获取通道号失败		
 	iRet = csi_etb_ch_config(ch, &tEtbConfig);	
-
 //------------------------------------------------------------------------------------------------------------------------	
 	csi_gptb_captureconfig_t tPwmCfg;								  
-		tPwmCfg.byWorkmod       = GPTB_CAPTURE;                     //WAVE or CAPTURE    //计数或捕获	
-		tPwmCfg.byCountingMode  = GPTB_UPCNT;                       //CNYMD  //计数方向
-		tPwmCfg.byOneshotMode   = GPTB_OP_CONT;                     //OPM    //单次或连续(工作方式)
-		tPwmCfg.byStartSrc      = GPTB_SYNC_START;				    //软件使能同步触发使能控制（RSSR中START控制位）//启动方式
-	    tPwmCfg.byPscld         = GPTB_LDPSCR_ZRO;                  //PSCR(分频)活动寄存器载入控制。活动寄存器在配置条件满足时，从影子寄存器载入更新值	
-		tPwmCfg.byCaptureCapmd  = GPTB_CAPMD_CONT;                  //0:连续捕捉模式    1h：一次性捕捉模式
-		tPwmCfg.byCaptureStopWrap=2-1;                              //Capture模式下，捕获事件计数器周期设置值
-		tPwmCfg.byCaptureLdaret  =0;                                //CMPA捕捉载入后，计数器值计数状态控制位(1h：CMPA触发后，计数器值进行重置;0h：CMPA触发后，计数器值不进行重置)
-		tPwmCfg.byCaptureLdbret  =0;                              
-                             	 
-	    tPwmCfg.wInt 		 =GPTB_INT_CAPLD1;                   //interrupt
-	csi_gptb_capture_init(GPTB0, &tPwmCfg);
+	tPwmCfg.byWorkmod       = GPTB_CAPTURE;                     //WAVE or CAPTURE    //计数或捕获	
+	tPwmCfg.byCountingMode  = GPTB_UPCNT;                       //CNYMD  //计数方向
+	tPwmCfg.byOneshotMode   = GPTB_OP_CONT;                     //OPM    //单次或连续(工作方式)
+	tPwmCfg.byStartSrc      = GPTB_SYNC_START;				    //软件使能同步触发使能控制（RSSR中START控制位）//启动方式
+	tPwmCfg.byPscld         = GPTB_LDPSCR_ZRO;                  //PSCR(分频)活动寄存器载入控制。活动寄存器在配置条件满足时，从影子寄存器载入更新值	
+	tPwmCfg.byCaptureCapmd  = GPTB_CAPMD_CONT;                  //0:连续捕捉模式    1h：一次性捕捉模式
+	tPwmCfg.byCaptureStopWrap=4-1;                              //Capture模式下，捕获事件计数器周期设置值
+	tPwmCfg.byCaptureLdaret  =0;                                //CMPA捕捉载入后，计数器值计数状态控制位(1h：CMPA触发后，计数器值进行重置;0h：CMPA触发后，计数器值不进行重置)
+	tPwmCfg.byCaptureLdbret  =0;    
+	tPwmCfg.byCaptureLdaaret  =0;    
+	tPwmCfg.byCaptureLdbaret  =1;    	
 
+	tPwmCfg.wInt 		 =GPTB_INT_CAPLD3;                   //interrupt
+	csi_gptb_capture_init(GPTB0, &tPwmCfg);	
 //------------------------------------------------------------------------------------------------------------------------
 	csi_gptb_set_sync (GPTB0, GPTB_TRG_SYNCEN2, GPTB_TRG_CONTINU,GPTB_AUTO_REARM_ZRO);
 //------------------------------------------------------------------------------------------------------------------------
@@ -81,12 +77,14 @@ int gptb_capture_demo(void)
 //    csi_gptb_set_sync_filter(GPTB0, &tpFiltercfg);
 //------------------------------------------------------------------------------------------------------------------------
 	csi_gptb_start(GPTB0);//start  timer
+	
 	while(1){		
 		  		      
 		    mdelay(200);                        
 		    
 		    mdelay(200);
 	}	
+	
 	return iRet;
 };
 
@@ -336,9 +334,8 @@ int gptb_pwm_dz_em_demo(void)
 	tGptbEmergencyCfg.byEpxLckmd  = B_EP_HLCK;                   //使能 软/硬 锁
 	tGptbEmergencyCfg.byOsrshdw   = B_IMMEDIATE;                 //锁止端口状态载入方式
     tGptbEmergencyCfg.byFltpace0  = B_EPFLT0_2P;                 //EP0、EP1、EP2和EP3的数字去抖滤波检查周期数
-	tGptbEmergencyCfg.byFltpace1  = B_EPFLT1_2P;                 //EP4、EP5、EP6和EP7的数字去抖滤波检查周期数
 	if(tGptbEmergencyCfg.byEpxInt ==B_ORL0){tGptbEmergencyCfg.byOrl0 = B_ORLx_EP0 |B_ORLx_EP1|B_ORLx_EP2;}
-	if(tGptbEmergencyCfg.byEpxInt ==B_ORL1){tGptbEmergencyCfg.byOrl1 = B_ORLx_EP4 |B_ORLx_EP5|B_ORLx_EP6;}
+	if(tGptbEmergencyCfg.byEpxInt ==B_ORL1){tGptbEmergencyCfg.byOrl1 = B_ORLx_EP0 |B_ORLx_EP1|B_ORLx_EP2;}
 	csi_gptb_emergency_cfg(GPTB0,&tGptbEmergencyCfg);
 	
     csi_gptb_emergency_pinxout(GPTB0,GPTB_EMCOAX,B_EM_OUT_L);    //紧急状态下输出状态设置（注意mos/igbt的驱动电平）

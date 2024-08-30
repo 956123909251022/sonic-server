@@ -1,14 +1,13 @@
-/*
- * Copyright (C) 2017-2020 Alibaba Group Holding Limited
- */
-
-/******************************************************************************
- * @file     timer.h
- * @brief    header file for timer driver
- * @version  V1.0
- * @date     27. Apr 2020
- * @model    timer
- ******************************************************************************/
+/***********************************************************************//** 
+ * \file  bt.h
+ * \brief  head file of csi bt 
+ * \copyright Copyright (C) 2015-2021 @ APTCHIP
+ * <table>
+ * <tr><th> Date  <th>Version  <th>Author  <th>Description
+ * <tr><td> 2021-5-13 <td>V0.0 <td>ZJY     <td>initial
+ * </table>
+ * *********************************************************************
+*/
 
 #ifndef _DRV_BT_H_
 #define _DRV_BT_H_

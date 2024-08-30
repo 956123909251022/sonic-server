@@ -44,3 +44,15 @@ Release Notes
 4.修改uart的偶校验处理BUG
 5.修改dma通道启动函数处理中状态查询BUG
 ======================================================
+
+======================================================
+Version: V1.0.4
+Release Date: 2022.7.15
+
+Release Notes
+1.更新iwdt驱动，关闭时清除CNT，打开后延时清除CNT。
+2.devices下csi_irq/clkmap_t结构体替换为cai_devmap_t。
+3.更新csi_clk_enable/diaable和csi_irq_enable/disable。
+4.更新DMA csi_dma_ch_start函数，高低传输数量可传参。
+5.更新对应SPI、UART、USART的DMA传输函数。
+======================================================

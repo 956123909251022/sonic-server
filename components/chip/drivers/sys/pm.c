@@ -1,5 +1,5 @@
 /***********************************************************************//** 
- * \file  pm_102.c
+ * \file  pm.c
  * \brief  power management
  * \copyright Copyright (C) 2015-2020 @ APTCHIP
  * <table>

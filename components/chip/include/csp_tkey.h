@@ -1,19 +1,13 @@
-/*
-  ******************************************************************************
-  * @file    apt32f102_tkey.h
-  * @author  APT AE Team
-  * @version V1.01
-  * @date    2019/04/05
-  ******************************************************************************
-  *THIS SOFTWARE WHICH IS FOR ILLUSTRATIVE PURPOSES ONLY WHICH PROVIDES 
-  *CUSTOMER WITH CODING INFORMATION REGARDING THEIR PRODUCTS.
-  *APT CHIP SHALL NOT BE HELD RESPONSIBILITY ADN LIABILITY FOR ANY DIRECT, 
-  *INDIRECT DAMAGES WITH RESPECT TO ANY CLAIMS ARISING FROM THE CONTENT OF 
-  *SUCH SOFTWARE AND/OR THE USE MADE BY CUSTOMERS OF THE CODING INFORMATION 
-  *CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.AND APT CHIP RESERVES 
-  *THE RIGHT TO MAKE CHANGES IN THE SOFTWARE WITHOUT NOTIFICATION
-  ******************************************************************************
-  */
+/***********************************************************************//** 
+ * \file  tkey.c
+ * \brief TKEY description and static inline functions at register level 
+ * \copyright Copyright (C) 2015-2022 @ APTCHIP
+ * <table>
+ * <tr><th> Date  <th>Version  <th>Author  <th>Description
+ * <tr><td> 2021-1-4 <td>V0.0  <td>ASM AE Team   <td>initial
+ * </table>
+ * *********************************************************************
+*/  
 
 #ifndef _CSP_TKEY_H
 #define _CSP_TKEY_H

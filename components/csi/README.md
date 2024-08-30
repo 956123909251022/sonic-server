@@ -42,3 +42,12 @@ Release Notes
 2.更新irqn_type_e中的中断命名，改为XXX_IRQ_NUM。
 3.更新uart、usart中start和stop函数，RX/TX可单独使能/关闭
 ======================================================
+
+======================================================
+Version: V1.0.4
+Release Date: 2022.7.15
+
+Release Notes
+1.删除clk.h中csi_clkmap_t。
+2.删除irq.h中csi_irqmap_t。
+======================================================

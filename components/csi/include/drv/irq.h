@@ -15,10 +15,10 @@
 #include <soc.h>
 #include <csi_core.h>
 
-typedef struct {
-	uint32_t wRegBase;
-    uint32_t wIrqNum;
-} csi_irqmap_t;
+//typedef struct {
+//	uint32_t wRegBase;
+//    uint32_t wIrqNum;
+//} csi_irqmap_t;
 
 /**
   \brief       enable irq.

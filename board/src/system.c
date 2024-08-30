@@ -23,14 +23,15 @@
  */
 __attribute__((weak)) void system_init(void)
 {
-	CK_CPU_DISALLNORMALIRQ;
-	
+	//config system clk, close interrupt
+	CK_CPU_DISALLNORMALIRQ;					//disable total interrupt
 	csi_iwdt_close();						//close iwdt
 	csi_sysclk_config();					//sysclk config
-	csi_get_sclk_freq();
-	csi_get_pclk_freq();
-	csi_tick_init();
-	csi_clk_calib();
+	csi_get_sclk_freq();					//get sysclk
+	csi_get_pclk_freq();					//get pclk
+	csi_tick_init();						//init systick(coret)
+	CK_CPU_ENALLNORMALIRQ;					//enable total interrupt
 	
-	CK_CPU_ENALLNORMALIRQ;
+	//user add init
+	
 }

@@ -1,10 +1,10 @@
 /***********************************************************************//** 
  * \file  led.c
- * \brief  CRC driver
+ * \brief  LED driver
  * \copyright Copyright (C) 2015-2020 @ APTCHIP
  * <table>
- * <tr><th> Date  <th>Version  <th>Author  <th>Description
- * <tr><td> 2020-12-8 <td>V0.0  <td>WNN   <td>initial
+ * <tr><th> Date  <th>Version  <th>Author	<th>Description
+ * <tr><td> 2020-12-8 <td>V0.0 <td>WNN   	<td>initial
  * </table>
  * *********************************************************************
 */

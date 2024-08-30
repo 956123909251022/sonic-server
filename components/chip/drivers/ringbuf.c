@@ -1,3 +1,14 @@
+/***********************************************************************//** 
+ * \file  ringbuf.c
+ * \brief  ring buffer driver
+ * \copyright Copyright (C) 2015-2022 @ APTCHIP
+ * <table>
+ * <tr><th> Date  <th>Version  <th>Author	<th>Description
+ * <tr><td> 2020-8-10 <td>V0.0 <td>ZJY   	<td>initial
+ * </table>
+ * *********************************************************************
+*/
+
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>

@@ -78,6 +78,7 @@ int lin_send_recv_test(void);
 //adc demo
 //normal mode(no interrupt)
 int adc_samp_oneshot_demo(void);
+int adc_samp_oneshot_demo2(void);
 int adc_samp_continuous_demo(void);
 //interrupt mode
 int adc_samp_oneshot_int_demo(void);
@@ -132,6 +133,7 @@ extern void spi_master_send_demo(void);
 extern void spi_master_send_int_demo(void);
 extern void spi_slave_receive_int_demo(void);
 extern void spi_master_send_receive_demo(void);
+extern void spi_master_send_receive_fast_demo(void);
 extern void spi_slave_send_receive_int_demo(void);
 extern void spi_etcb_dma_send(void);
 extern void spi_etcb_dma_send_receive(void); 
@@ -177,7 +179,14 @@ int lcd_disp_rtc_snooze_demo(void);
 //led
 csi_error_t led_demo(void);
 
+//ram1 demo
+void ram1_section_demo(void);
+void ram1_pointer_demo(void);
+
 //osc clk check
 void cqc_check_test(void);
+
+//intvref and fvr
+void intvref_fvr_output(void);
 
 #endif

@@ -36,20 +36,11 @@ uint8_t *bypSramAddr = (uint8_t *)0x20002000;
 
 volatile uint8_t byExiFlg = 0x00;
 
-static void delay_nms(unsigned int t)
-{
-	volatile unsigned int i,j ,k=0;
-	j = 25* t;
-	for ( i = 0; i < j; i++ )
-	{
-		k++;
-	}
-}
 /** \brief 进入低功耗模式前的准备动作
  *  \param[in] none
  *  \return error code
  */
-void prepare_lp(void)				  
+static void prepare_lp(void)				  
 {
 	//USER CODE，如记忆管脚状态
 }
@@ -58,20 +49,10 @@ void prepare_lp(void)
  *  \param[in] none
  *  \return error code
  */
-void wkup_lp(void)					   
+static void wkup_lp(void)					   
 {
 	//USER CODE，如恢复管脚状态
 	csi_pin_set_low(PB02);
-}
-
-void delay_ms(unsigned int t)
-{
-	volatile unsigned int i,j ,k=0;
-	j = 25* t;
-	for ( i = 0; i < j; i++ )
-	{
-		k++;
-	}
 }
 
 /** \brief 通过外部PA00/PB00/PA12/PB011(ALV0~3)唤醒shutdown
@@ -99,24 +80,24 @@ void lp_exi_wakeup_shutdown_demo(void)
 	csi_pin_set_mux(PA00,PA00_INPUT);				//PA00 INPUT as WAEKUP source
 	csi_pin_pull_mode(PA00, GPIO_PULLDOWN);
 	
-	csi_pin_set_mux(PA05,PA05_OUTPUT);				//PA05 OUTPUT
+	csi_pin_set_mux(PB02,PB02_OUTPUT);				//PB02 OUTPUT
 	
-	csi_pin_toggle(PA05);
-	mdelay(250);
-	csi_pin_toggle(PA05);
-	mdelay(250);
-	csi_pin_toggle(PA05);
-	mdelay(250);
-	csi_pin_toggle(PA05);
-	mdelay(250);
-	csi_pin_toggle(PA05);
-	mdelay(250);
-	csi_pin_toggle(PA05);
-	mdelay(250);
-	csi_pin_toggle(PA05);
-	mdelay(250);
-	csi_pin_toggle(PA05);
-	mdelay(250);
+	csi_pin_toggle(PB02);
+	mdelay(200);
+	csi_pin_toggle(PB02);
+	mdelay(200);
+	csi_pin_toggle(PB02);
+	mdelay(200);
+	csi_pin_toggle(PB02);
+	mdelay(200);
+	csi_pin_toggle(PB02);
+	mdelay(200);
+	csi_pin_toggle(PB02);
+	mdelay(200);
+	csi_pin_toggle(PB02);
+	mdelay(200);
+	csi_pin_toggle(PB02);
+	mdelay(200);
 
 
 #ifdef CONFIG_USER_PM	
@@ -151,11 +132,11 @@ void lp_exi_wakeup_shutdown_demo(void)
 	
 	while(1) 
 	{
-		csi_pin_set_high(PA05);
+		csi_pin_set_high(PB02);
 		
 		csi_pm_enter_sleep(ePmMode);						//进入睡眠模式
 		mdelay(100);
-		csi_pin_set_low(PA05);
+		csi_pin_set_low(PB02);
 		mdelay(100);
 	}
 
@@ -179,21 +160,21 @@ void lp_rtc_wakeup_snooze_demo(void)
 	csi_pin_set_mux(PA05,PA05_OUTPUT);				//PA05 OUTPUT
 	
 	csi_pin_toggle(PA05);
-	mdelay(250);
+	mdelay(200);
 	csi_pin_toggle(PA05);
-	mdelay(250);
+	mdelay(200);
 	csi_pin_toggle(PA05);
-	mdelay(250);
+	mdelay(200);
 	csi_pin_toggle(PA05);
-	mdelay(250);
+	mdelay(200);
 	csi_pin_toggle(PA05);
-	mdelay(250);
+	mdelay(200);
 	csi_pin_toggle(PA05);
-	mdelay(250);
+	mdelay(200);
 	csi_pin_toggle(PA05);
-	mdelay(250);
+	mdelay(200);
 	csi_pin_toggle(PA05);
-	mdelay(250);
+	mdelay(200);
 
 #ifdef CONFIG_USER_PM	
 	csi_pm_attach_callback(ePmMode, prepare_lp, wkup_lp);	//需要在工程设置compiler tab下加入define CONFIG_USER_PM=1;
@@ -259,21 +240,21 @@ void lp_lpt_wakeup_deepsleep_demo(void)
 	csi_pin_set_mux(PA05,PA05_OUTPUT);				//PA05 OUTPUT
 	
 	csi_pin_toggle(PA05);
-	mdelay(250);
+	mdelay(200);
 	csi_pin_toggle(PA05);
-	mdelay(250);
+	mdelay(200);
 	csi_pin_toggle(PA05);
-	mdelay(250);
+	mdelay(200);
 	csi_pin_toggle(PA05);
-	mdelay(250);
+	mdelay(200);
 	csi_pin_toggle(PA05);
-	mdelay(250);
+	mdelay(200);
 	csi_pin_toggle(PA05);
-	mdelay(250);
+	mdelay(200);
 	csi_pin_toggle(PA05);
-	mdelay(250);
+	mdelay(200);
 	csi_pin_toggle(PA05);
-	mdelay(250);
+	mdelay(200);
 
 #ifdef CONFIG_USER_PM	
 	csi_pm_attach_callback(ePmMode, prepare_lp, wkup_lp);	//需要在工程设置compiler tab下加入define CONFIG_USER_PM=1;
@@ -319,61 +300,74 @@ void lp_lpt_wakeup_deepsleep_demo(void)
 }
 
 /** \brief 各种源唤醒低功耗的示例代码，低功耗的模式=sleep/deepsleep/snooze/shutdown
+ * 		   sleep模式时,tick中断会唤醒cpu，测试时需要注意(可在system_init中注释掉tick初始化)
  * 
  *  \param  none
  *  \return none
  */
 void lp_wakeup_demo(void)
 {
-	csi_pm_mode_e ePmMode = PM_MODE_SNOOZE;		//PM_MODE_SLEEP/PM_MODE_DEEPSLEEP/PM_MODE_SNOOZE/PM_MODE_SHUTDOWN
+	csi_pm_mode_e ePmMode = PM_MODE_SHUTDOWN;			//PM_MODE_SLEEP/PM_MODE_DEEPSLEEP/PM_MODE_SNOOZE/PM_MODE_SHUTDOWN
 	uint16_t hwRstSrc = csi_get_rst_reason();
+	uint8_t byWkIntSrc; 
 	
-	if(hwRstSrc)									//获取并打印复位信息
+	if(hwRstSrc)												//获取并打印复位信息
 	{
 		my_printf("System Reset Source = 0x%x \n", hwRstSrc);
-		csi_clr_rst_reason(hwRstSrc);				//清除复位信息
+		csi_clr_rst_reason(hwRstSrc);							//清除复位信息
+		
+		//shutdown mode
+		if(ePmMode == PM_MODE_SHUTDOWN)
+		{
+			byWkIntSrc = csi_pm_get_wkint();
+			my_printf("WakeInt Source = 0x%x \n", byWkIntSrc);		//打印WkInt信息
+			csi_pm_clr_wkint(byWkIntSrc);							//清除WkInt状态
+		}
 	}
 	
-	csi_pin_set_mux(PB01,PB01_OUTPUT);				//PB01 OUTPUT
+	csi_pin_set_mux(PB02,PB02_OUTPUT);				//PB02 OUTPUT
 	
-	csi_pin_toggle(PB01);
-	mdelay(250);
-	csi_pin_toggle(PB01);
-	mdelay(250);
-	csi_pin_toggle(PB01);
-	mdelay(250);
-	csi_pin_toggle(PB01);
-	mdelay(250);
-	csi_pin_toggle(PB01);
-	mdelay(250);
-	csi_pin_toggle(PB01);
-	mdelay(250);
-	csi_pin_toggle(PB01);
-	mdelay(250);
-	csi_pin_toggle(PB01);
-	mdelay(250);
-
-	csi_pin_set_high(PB02);
+	csi_pin_toggle(PB02);
+	mdelay(200);
+	csi_pin_toggle(PB02);
+	mdelay(200);
+	csi_pin_toggle(PB02);
+	mdelay(200);
+	csi_pin_toggle(PB02);
+	mdelay(200);
+	csi_pin_toggle(PB02);
+	mdelay(200);
+	csi_pin_toggle(PB02);
+	mdelay(200);
+	csi_pin_toggle(PB02);
+	mdelay(200);
+	csi_pin_toggle(PB02);
+	mdelay(200);
 	
 #ifdef CONFIG_USER_PM	
 	csi_pm_attach_callback(ePmMode, prepare_lp, wkup_lp);	//需要在工程设置compiler tab下加入define CONFIG_USER_PM=1;
 #endif
 	
-//	csi_pin_set_mux(PB01,PB01_INPUT);							//PB01 输入							
-//	csi_pin_pull_mode(PB01, GPIO_PULLUP);						//PB01 上拉
-//	csi_pin_irq_mode(PB01,EXI_GRP1, GPIO_IRQ_FALLING_EDGE);		//PB01 下降沿产生中断
-//	csi_pin_irq_enable(PB01, EXI_GRP1, ENABLE);					//PB01 中断使能，选择中断组0	
-//	csi_vic_set_wakeup_irq(EXI1_IRQn);
+	csi_pin_set_mux(PB01,PB01_INPUT);							//PB01 输入							
+	csi_pin_pull_mode(PB01, GPIO_PULLUP);						//PB01 上拉
+	csi_pin_irq_mode(PB01,EXI_GRP1, GPIO_IRQ_FALLING_EDGE);		//PB01 下降沿产生中断
+	csi_pin_irq_enable(PB01, EXI_GRP1, ENABLE);					//PB01 中断使能，选择中断组0	
+	csi_vic_set_wakeup_irq(EXI1_IRQ_NUM);
 	
-	
-//	csi_pm_clk_enable(SP_IDLE_PCLK, DISABLE);
-//	csi_pm_clk_enable(SP_IDLE_HCLK, DISABLE);
+	csi_pm_clk_enable(SP_IDLE_PCLK, DISABLE);					//sleep模式下关闭PCLK
+	csi_pm_clk_enable(SP_IDLE_HCLK, DISABLE);					//sleep模式下关闭HCLK
 //	csi_pm_clk_enable(DP_ISOSC, ENABLE);
 //	csi_pm_clk_enable(DP_IMOSC, ENABLE);
 //	csi_pm_clk_enable(DP_ESOSC, ENABLE);
 //	csi_pm_clk_enable(DP_EMOSC, ENABLE);
 	
-	csi_pm_config_wakeup_source(WKUP_RTC, ENABLE);
+	//shutdown wkup source
+	if(ePmMode == PM_MODE_SHUTDOWN)
+	{
+		csi_pin_set_mux(PA00,PA00_INPUT);						//PA00 INPUT as WAEKUP source(shutdown)
+		csi_pin_pull_mode(PA00, GPIO_PULLDOWN);
+		csi_pm_config_wakeup_source(WKUP_ALV0, ENABLE);			//选择唤醒源WKUP_ALV0，即PA00唤醒，高电平唤醒
+	}
 
 	
 	//LPT WAKEUP DeepSleep/snooze
@@ -392,15 +386,15 @@ void lp_wakeup_demo(void)
 //	csi_pin_set_mux(PA03, PA03_OSC_XI);
 //	csi_pin_set_mux(PA04, PA04_OSC_XO);
 	//RTC WAKEUP DeepSleep/snooze/shutdown
-	{
-		csi_rtc_config_t tRtcConfig;
-		
-		tRtcConfig.byClkSrc = RTC_CLKSRC_ISOSC;  		//选择时钟源
-		tRtcConfig.byFmt = RTC_24FMT;				  	//选择时间模式
-		csi_rtc_init(RTC, &tRtcConfig);				  	//初始化RTC
-		csi_rtc_start_as_timer(RTC, RTC_TIMER_0_5S);	//每1s进一次中断
-		csi_rtc_start(RTC);	
-	}
+//	{
+//		csi_rtc_config_t tRtcConfig;
+//		
+//		tRtcConfig.byClkSrc = RTC_CLKSRC_ISOSC;  		//选择时钟源
+//		tRtcConfig.byFmt = RTC_24FMT;				  	//选择时间模式
+//		csi_rtc_init(RTC, &tRtcConfig);				  	//初始化RTC
+//		csi_rtc_start_as_timer(RTC, RTC_TIMER_0_5S);	//每1s进一次中断
+//		csi_rtc_start(RTC);	
+//	}
 
 	//IWDT WAKEUP DeepSleep/snooze/shutdown
 //	csi_iwdt_init(IWDT_TO_1024);						//初始化看门狗，溢出时间为1000ms(系统复位时间)
@@ -430,14 +424,13 @@ void lp_wakeup_demo(void)
 	
 	while(1) 
 	{
-		csi_pin_set_high(PB01);
+		csi_pin_set_high(PB02);
 		
 		csi_pm_enter_sleep(ePmMode);
 		//csi_iwdt_feed();
 		//mdelay(100);
-		csi_pin_set_low(PB01);
-		mdelay(100);
-		//delay_nms(10000);
+		csi_pin_set_low(PB02);
+		delay_ums(100);
 		//my_printf("Wakeup From Sleep Mode...\n");
 	}
 }
@@ -514,35 +507,35 @@ void lp_shutdown_sram1_demo(void)
 	csi_pin_set_mux(PA05,PA05_OUTPUT);				//PA05 OUTPUT
 	
 	csi_pin_toggle(PA05);							//延时处理4ms
-	mdelay(250);
+	mdelay(200);
 	csi_pin_toggle(PA05);
-	mdelay(250);
+	mdelay(200);
 	csi_pin_toggle(PA05);
-	mdelay(250);
+	mdelay(200);
 	csi_pin_toggle(PA05);
-	mdelay(250);
+	mdelay(200);
 	csi_pin_toggle(PA05);
-	mdelay(250);
+	mdelay(200);
 	csi_pin_toggle(PA05);
-	mdelay(250);
+	mdelay(200);
 	csi_pin_toggle(PA05);
-	mdelay(250);
+	mdelay(200);
 	csi_pin_toggle(PA05);
-	mdelay(250);
+	mdelay(200);
 	csi_pin_toggle(PA05);							
-	mdelay(250);
+	mdelay(200);
 	csi_pin_toggle(PA05);
-	mdelay(250);
+	mdelay(200);
 	csi_pin_toggle(PA05);
-	mdelay(250);
+	mdelay(200);
 	csi_pin_toggle(PA05);
-	mdelay(250);
+	mdelay(200);
 	csi_pin_toggle(PA05);
-	mdelay(250);
+	mdelay(200);
 	csi_pin_toggle(PA05);
-	mdelay(250);
+	mdelay(200);
 	csi_pin_toggle(PA05);
-	mdelay(250);
+	mdelay(200);
 
 
 #ifdef CONFIG_USER_PM	

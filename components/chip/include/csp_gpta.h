@@ -56,6 +56,9 @@
    __IOM uint32_t   REGLK;           //0x00e0                                             
    __IOM uint32_t   REGLK2;          //0x00e4                                             
    __IOM uint32_t   REGPROT;         //0x00e8 
+   __IM uint32_t	RESERVED6[467-3];  
+   __IM uint32_t 	CMPAA;	        //0x082C	cmpa active reg for capture mode
+   __IM uint32_t 	CMPBA;	        //0x0830	cmpb active reg for capture mode
 } csp_gpta_t;
 
 
@@ -150,8 +153,13 @@ typedef enum{
 #define GPTA_CAPLD_POS	(8)
 #define GPTA_CAPLD_MSK	(0x1 << GPTA_CAPLD_POS)
 
-#define GPTA_BURST      (1ul << 9)
-#define GPTA_FLT_INIT   (1ul << 10)
+#define GPTA_BURST_POS      (9)
+#define GPTA_BURST_MSK      (1ul << GPTA_BURST_POS)
+
+#define GPTA_FLT_INIT       (1ul << 10)
+#define GPTA_FLT_INIT_POS      (10)
+#define GPTA_FLT_INIT_MSK      (1ul << GPTA_FLT_INIT_POS)
+
 
 #define GPTA_CGSRC_POS	(11)
 #define GPTA_CGSRC_MSK	(0x3 << GPTA_CGSRC_POS)
@@ -204,10 +212,10 @@ typedef enum{
 #define GPTA_CMPA_RST_MSK	(0x1 << GPTA_CMPA_RST_POS) 	
 #define GPTA_CMPB_RST_POS	(24)
 #define GPTA_CMPB_RST_MSK	(0x1 << GPTA_CMPB_RST_POS) 	
-//#define GPTA_CMPC_RST_POS	(25)
-//#define GPTA_CMPC_RST_MSK	(0x1 << GPTA_CMPC_RST_POS) 	
-//#define GPTA_CMPD_RST_POS	(26)
-//#define GPTA_CMPD_RST_MSK	(0x1 << GPTA_CMPD_RST_POS) 
+#define GPTA_CMPAA_RST_POS	(25)
+#define GPTA_CMPAA_RST_MSK	(0x1 << GPTA_CMPAA_RST_POS) 	
+#define GPTA_CMPBA_RST_POS	(26)
+#define GPTA_CMPBA_RST_MSK	(0x1 << GPTA_CMPBA_RST_POS) 
 
 #define GPTA_CMP_LDRST_POS(n) (23 + (n))
 #define GPTA_CMP_LDRST_MSK(n) (0x1 << GPTA_CMP_LDRST_POS(n))
@@ -552,8 +560,8 @@ typedef enum{
 //	GPTA_INT_TRGEV3 = 0x8,
 	GPTA_INT_CAPLD0 = 0x1 << 4,
 	GPTA_INT_CAPLD1 = 0x1 << 5,
-//	GPTA_INT_CAPLD2 = 0x1 << 6,
-//	GPTA_INT_CAPLD3 = 0x1 << 7,
+	GPTA_INT_CAPLD2 = 0x1 << 6,
+	GPTA_INT_CAPLD3 = 0x1 << 7,
 	GPTA_INT_CAU = 0x1 << 8,
 	GPTA_INT_CAD = 0x1 << 9,
 	GPTA_INT_CBU = 0x1 << 10,
@@ -630,6 +638,24 @@ static inline void csp_gpta_set_stopwrap(csp_gpta_t *ptGptaBase, uint8_t byTime)
 	ptGptaBase -> CR = (ptGptaBase -> CR & ~(GPTA_STOPWRAP_MSK)) | (byTime << GPTA_STOPWRAP_POS);
 }
 
+static inline void csp_gpta_set_burst(csp_gpta_t *ptGptaBase,csp_gpta_cgsrc_e eCgsrc, bool bEnable)
+{
+	ptGptaBase -> CR = (ptGptaBase -> CR & ~(GPTA_BURST_MSK)) | (bEnable << GPTA_BURST_POS);
+	if(bEnable == ENABLE)
+	{
+		ptGptaBase -> CR =(ptGptaBase -> CR & ~(GPTA_CGSRC_MSK))|(eCgsrc<<GPTA_CGSRC_POS);
+	}
+}
+
+static inline void csp_gpta_flt_init(csp_gpta_t *ptGptaBase, csp_gpta_cnflt_e eCgflt,bool bEnable)
+{
+	ptGptaBase -> CR = (ptGptaBase -> CR & ~(GPTA_FLT_INIT_MSK)) | (bEnable << GPTA_FLT_INIT_POS);
+	if(bEnable == ENABLE)
+	{
+		ptGptaBase -> CR=(ptGptaBase -> CR & ~(GPTA_CGFLT_MSK))|(eCgflt<<GPTA_CGFLT_POS);
+	}
+}
+
 static inline void csp_gpta_set_prdr(csp_gpta_t *ptGptaBase, uint32_t bwVal)
 {
 	ptGptaBase -> PRDR = bwVal;
@@ -670,6 +696,10 @@ static inline uint16_t csp_gpta_get_cmpa(csp_gpta_t *ptGptaBase)
 {
 	return (ptGptaBase -> CMPA);
 }
+static inline uint16_t csp_gpta_get_cmpaa(csp_gpta_t *ptGptaBase)
+{
+	return (ptGptaBase -> CMPAA);
+}
 static inline void csp_gpta_set_cmpb(csp_gpta_t *ptGptaBase, uint16_t bwVal)
 {
 	ptGptaBase -> CMPB = bwVal;
@@ -677,6 +707,10 @@ static inline void csp_gpta_set_cmpb(csp_gpta_t *ptGptaBase, uint16_t bwVal)
 static inline uint16_t csp_gpta_get_cmpb(csp_gpta_t *ptGptaBase)
 {
 	return (ptGptaBase -> CMPB);
+}
+static inline uint16_t csp_gpta_get_cmpba(csp_gpta_t *ptGptaBase)
+{
+	return (ptGptaBase -> CMPBA);
 }
 static inline void csp_gpta_set_prd(csp_gpta_t *ptGptaBase, uint16_t bwVal)
 {

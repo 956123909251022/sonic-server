@@ -172,12 +172,21 @@ typedef enum{
 
 
 /// OSTR: EXTernal OSC stable time
-#define EM_LF   	(0x1 << 10)
-#define EM_GM_POS	(11)
-#define EM_GM_MSK	(0x1F << EM_GM_POS)
+#define EM_LF   		(0x01ul << 10)
+#define EM_GM_POS		(11)
+#define EM_GM_MSK		(0x1Ful << EM_GM_POS)
 
-#define ES_GM_POS	(28)
-#define ES_GM_MSK	(0xF << ES_GM_POS)
+#define ES_SMTDIS_POS	(24)
+#define ES_SMTDIS_MSK	(0x01ul << ES_SMTDIS_POS)
+
+#define EM_FLTEN_POS	(25)
+#define EM_FLTEN_MSK	(0x01ul << EM_FLTEN_POS)
+
+#define EM_FLTSEL_POS	(26)
+#define EM_FLTSEL_MSK	(0x03ul << EM_FLTSEL_POS)
+
+#define ES_GM_POS		(28)
+#define ES_GM_MSK		(0x0Ful << ES_GM_POS)
 
 ///LVDCR 
 #define LVDEN_MSK (0xf)
@@ -186,7 +195,7 @@ typedef enum{
 #define LVDINT_POL_POS (0x6)
 #define LVDINT_POL_MSK (0x3 << LVDINT_POL_POS)
 #define LVDINT_DET_POL(r) ((r&0x3) << LVDINT_POL_POS)
-#define LVD_FLAF    (0x1 << 15)
+#define LVD_FLAG    (0x1 << 15)
 
 typedef enum {
 	LVDINT_F = 1,
@@ -665,7 +674,7 @@ static inline void csp_lvd_reset_regs(csp_syscon_t *ptSysconBase)
 
 static inline uint32_t csp_lvd_flag(csp_syscon_t *ptSysconBase)
 {
-	return ((ptSysconBase->LVDCR) & LVD_FLAF);
+	return ((ptSysconBase->LVDCR) & LVD_FLAG);
 }
 
 static inline void csp_syscon_int_enable(csp_syscon_t *ptSysconBase, syscon_int_e eInt, bool bEnable)
@@ -705,7 +714,7 @@ static inline void csp_iwdt_disable(csp_syscon_t *ptSysconBase)
 static inline void csp_iwdt_clr(csp_syscon_t *ptSysconBase)
 {
 	ptSysconBase -> IWDCNT = (ptSysconBase -> IWDCNT & (~IWDT_CLR_MSK)) | IWDT_CLR << IWDT_CLR_POS;
-	while((ptSysconBase->IWDCNT & IWDT_CLR_BUSY) == 1);
+	while((ptSysconBase->IWDCNT & IWDT_CLR_BUSY) == IWDT_CLR_BUSY);
 }
 
 static inline uint32_t csp_iwdt_get_cnt(csp_syscon_t *ptSysconBase)

@@ -207,3 +207,18 @@ void udelay(uint32_t us)
         _10udelay();
     }
 }
+
+/** \brief  delay, imprecise delay timer
+ * 
+ *  \param[in] t: delay timer; unit: 10us systick = 48M
+ *  \return none
+ */ 
+void delay_ums(uint32_t t)
+{
+	volatile uint32_t i,j ,k=0;
+	j = 25* t;
+	for ( i = 0; i < j; i++ )
+	{
+		k++;
+	}
+}

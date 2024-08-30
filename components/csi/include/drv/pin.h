@@ -1,13 +1,13 @@
-/*
- * Copyright (C) 2017-2020 Alibaba Group Holding Limited
- */
-
-/******************************************************************************
- * @file     soc.h
- * @brief    For pin
- * @version  V1.0
- * @date     11. Mar 2020
- ******************************************************************************/
+/***********************************************************************//** 
+ * \file  pin.h
+ * \brief  head file for csi pinctrl
+ * \copyright Copyright (C) 2015-2020 @ APTCHIP
+ * <table>
+ * <tr><th> Date  <th>Version  <th>Author  <th>Description
+ * <tr><td> 2021-5-13 <td>V0.0 <td>ZJY     <td>adapt for 110x 
+ * </table>
+ * *********************************************************************
+*/
 
 #ifndef _DRV_PIN_H_
 #define _DRV_PIN_H_

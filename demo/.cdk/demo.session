@@ -1,8 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Session Name="E:\CODE_APT32F110\tags\apt32f10x\demo\demo.cdkws">
-  <int Value="0" Name="m_selectedTab"/>
-  <wxString Value="E:\CODE_APT32F110\tags\apt32f10x\demo\demo.cdkws" Name="m_workspaceName"/>
-  <TabInfoArray Name="TabInfoArray"/>
+<Session Name="D:\work\APT32F110\code\client\APT_CSI_110x_v1.0.4\apt32f10x\demo\demo.cdkws">
+  <int Value="13" Name="m_selectedTab"/>
+  <wxString Value="D:\work\APT32F110\code\client\APT_CSI_110x_v1.0.4\apt32f10x\demo\demo.cdkws" Name="m_workspaceName"/>
+  <TabInfoArray Name="TabInfoArray">
+    <TabInfo>
+      <wxString Value="D:\work\APT32F110\code\client\APT_CSI_110x_v1.0.4\apt32f10x\demo\src\user_demo.c" Name="FileName"/>
+      <wxString Value="demo" Name="ProjectName"/>
+      <int Value="28" Name="FirstVisibleLine"/>
+      <int Value="29" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="D:\work\APT32F110\code\client\APT_CSI_110x_v1.0.4\apt32f10x\sdk110_v1.0.4\components\components\demo\src\reliability_demo.c" Name="FileName"/>
+      <wxString Value="demo" Name="ProjectName"/>
+      <int Value="49" Name="FirstVisibleLine"/>
+      <int Value="72" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="D:\work\APT32F110\code\client\APT_CSI_110x_v1.0.4\apt32f10x\demo\src\main.c" Name="FileName"/>
+      <wxString Value="demo" Name="ProjectName"/>
+      <int Value="7" Name="FirstVisibleLine"/>
+      <int Value="30" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="D:\work\APT32F110\code\client\APT_CSI_110x_v1.0.4\apt32f10x\sdk110_v1.0.4\components\components\demo\src\led_demo.c" Name="FileName"/>
+      <wxString Value="demo" Name="ProjectName"/>
+      <int Value="94" Name="FirstVisibleLine"/>
+      <int Value="119" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="D:\work\APT32F110\code\client\APT_CSI_110x_v1.0.4\apt32f10x\sdk110_v1.0.4\board\src\board_config.c" Name="FileName"/>
+      <wxString Value="demo" Name="ProjectName"/>
+      <int Value="1" Name="FirstVisibleLine"/>
+      <int Value="1" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="D:\work\APT32F110\code\client\APT_CSI_110x_v1.0.4\apt32f10x\sdk110_v1.0.4\board\include\board_config.h" Name="FileName"/>
+      <wxString Value="demo" Name="ProjectName"/>
+      <int Value="17" Name="FirstVisibleLine"/>
+      <int Value="1" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="D:\work\APT32F110\code\client\APT_CSI_110x_v1.0.4\apt32f10x\sdk110_v1.0.4\components\chip\drivers\sys\tick.c" Name="FileName"/>
+      <wxString Value="demo" Name="ProjectName"/>
+      <int Value="180" Name="FirstVisibleLine"/>
+      <int Value="150" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="D:\work\APT32F110\code\client\APT_CSI_110x_v1.0.4\apt32f10x\sdk110_v1.0.4\components\chip\drivers\sys\startup.S" Name="FileName"/>
+      <wxString Value="demo" Name="ProjectName"/>
+      <int Value="93" Name="FirstVisibleLine"/>
+      <int Value="94" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="D:\work\APT32F110\code\client\APT_CSI_110x_v1.0.4\apt32f10x\sdk110_v1.0.4\components\csi\README.md" Name="FileName"/>
+      <wxString Value="demo" Name="ProjectName"/>
+      <int Value="24" Name="FirstVisibleLine"/>
+      <int Value="0" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="D:\work\APT32F110\code\client\APT_CSI_110x_v1.0.4\apt32f10x\sdk110_v1.0.4\components\components\demo\README.md" Name="FileName"/>
+      <wxString Value="demo" Name="ProjectName"/>
+      <int Value="18" Name="FirstVisibleLine"/>
+      <int Value="0" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="D:\work\APT32F110\code\client\APT_CSI_110x_v1.0.4\apt32f10x\sdk110_v1.0.4\components\console\README.md" Name="FileName"/>
+      <wxString Value="demo" Name="ProjectName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="0" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="D:\work\APT32F110\code\client\APT_CSI_110x_v1.0.4\apt32f10x\sdk110_v1.0.4\components\chip\README.md" Name="FileName"/>
+      <wxString Value="demo" Name="ProjectName"/>
+      <int Value="30" Name="FirstVisibleLine"/>
+      <int Value="0" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="D:\work\APT32F110\code\client\APT_CSI_110x_v1.0.4\apt32f10x\sdk110_v1.0.4\board\README.md" Name="FileName"/>
+      <wxString Value="demo" Name="ProjectName"/>
+      <int Value="15" Name="FirstVisibleLine"/>
+      <int Value="0" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="D:\work\APT32F110\code\client\APT_CSI_110x_v1.0.4\apt32f10x\sdk110_v1.0.4\board\gcc_flash.ld" Name="FileName"/>
+      <wxString Value="demo" Name="ProjectName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="0" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+  </TabInfoArray>
   <SerializedObject Name="m_breakpoints">
     <long Value="0" Name="Count"/>
   </SerializedObject>

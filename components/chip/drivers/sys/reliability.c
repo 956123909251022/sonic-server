@@ -50,7 +50,7 @@ void csi_lvd_disable(void)
  */
 uint32_t csi_lvd_flag(void)
 {
-	return (csp_lvd_flag(SYSCON)&CSI_LVD_FLAF);
+	return csp_lvd_flag(SYSCON);
 }
 
 /** \brief Enable LVR

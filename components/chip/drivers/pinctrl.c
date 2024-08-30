@@ -1,10 +1,10 @@
 /***********************************************************************//** 
- * \file  pinmux.c
+ * \file  pinctrl.c
  * \brief  csi pin driver
  * \copyright Copyright (C) 2015-2020 @ APTCHIP
  * <table>
  * <tr><th> Date  <th>Version  <th>Author  <th>Description
- * <tr><td> 2021-5-13 <td>V0.0 <td>ZJY     <td>adapt for 102x/003
+ * <tr><td> 2021-5-13 <td>V0.0 <td>ZJY     <td>adapt for 110x 
  * </table>
  * *********************************************************************
 */

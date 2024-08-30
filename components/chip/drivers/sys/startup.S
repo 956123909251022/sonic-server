@@ -9,6 +9,7 @@
 //(7)set VBR register
 //(8)enable EE and MMU
 //(9)jump to the main procedure using jsri main
+#include "board_config.h"
 
 .text
 .export vector_table
@@ -107,7 +108,7 @@ __start:
   movi r13, 0
   movi r14, 0
   movi r15, 0
-
+  
 //set VBR
   lrw r2, vector_table				//vector_table -> r2
   mtcr r2, cr<1,0>					//r2 -> cr<1,0>(vbr)
@@ -202,3 +203,17 @@ DummyHandler:
 .data
 .align  10
 .long __start
+
+//heap size
+.equ 	__heap_size, USER_HEAP_SIZE			
+.globl 	__heap_size
+
+//#define HEAPSIZE		0x200			//heap size
+//.global	__heap_start				//heap section
+//.global	__heap_end
+//.section .user_heap,"aw",@nobits
+//.align
+//HEAP_MEM:
+//__heap_start:
+//.space HEAPSIZE
+//__heap_end:

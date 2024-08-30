@@ -185,6 +185,14 @@ void csi_iic_slave_receive_send(csp_i2c_t *ptIicBase);
 void csi_iic_set_slave_buffer(volatile uint8_t *pbyIicRxBuf,uint16_t hwIicRxSize,volatile uint8_t *pbyIicTxBuf,uint16_t hwIicTxSize);
 
 
+/** \brief set iic SPKLEN
+ * 
+ *  \param[in] ptIicBase: pointer of iic register structure
+ *  \param[in] bySpklenCfg: filter set 
+ *  \return none
+ */ 
+void csi_iic_spklen_set(csp_i2c_t *ptIicBase, uint8_t bySpklen);
+
 /** \brief i2c interrupt handle 
  * 
  *  \param[in] ptSioBase: pointer of i2c register structure

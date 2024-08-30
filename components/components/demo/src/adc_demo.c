@@ -29,9 +29,9 @@
 const csi_adc_seq_t tSeqCfg[] =
 {
 	//输入通道		//连续重复采样次数		//平均系数			//触发源选择
-	{ADCIN1,		ADC_CV_COUNT_1,			ADC_AVG_COF_1,		ADCSYNC_NONE},
-	{ADCIN2,		ADC_CV_COUNT_1,			ADC_AVG_COF_1,		ADCSYNC_NONE},
-	{ADCIN3,		ADC_CV_COUNT_1,			ADC_AVG_COF_1,		ADCSYNC_NONE},
+	{ADCIN1,		ADC_CV_COUNT_16,			ADC_AVG_COF_16,		ADCSYNC_NONE},
+	{ADCIN2,		ADC_CV_COUNT_16,			ADC_AVG_COF_16,		ADCSYNC_NONE},
+	{ADCIN3,		ADC_CV_COUNT_16,			ADC_AVG_COF_16,		ADCSYNC_NONE},
 }; 
 
 //采样序列的通道数
@@ -474,6 +474,84 @@ int adc_samp_continuous_int_demo(void)
 #endif
 		
 	}while(0);
+	
+	return iRet;
+}
+
+//lin add----------------------------------------------------------------------------------------------
+
+/** \brief ADC sample,one shot mode, ADC_DATA_DEPTH = 1
+ *  \brief ADC采样，轮询、单次转换模式。ADC通道采样深度为1（每通道采样次数为1）
+ *  \brief 单次转换模式：ADC启动后进行整个序列采样直到结束，中间不能停止；进行下一次序列转换需重新启动
+ *  \brief 与adc_samp_oneshot_demo的区别是参考电压不一样
+ * 
+ *  \param[in] none
+ *  \return error code
+ */
+int adc_samp_oneshot_demo2(void)
+{
+	int iRet = 0;
+	uint8_t i;
+	csi_adc_config_t tAdcConfig;
+	
+	csi_pin_set_mux(PA00, PA00_AVREF);//fvr做参考管脚配置（2.048，4.096）/或者外部输入参考都是打开这句话，最终取决tAdcConfig.byVrefSrc的配置
+	//csi_pin_set_mux(PC00, PC00_AVGND);//负端参考管脚配置，一般我们负端用VSS，所以屏蔽这句话
+	
+	//adc 输入管脚配置
+	//csi_pin_set_mux(PA00, PA00_ADC_AIN0);				//ADC GPIO作为输入通道
+	csi_pin_set_mux(PA01, PA01_ADC_AIN1);
+	csi_pin_set_mux(PA03, PA03_ADC_AIN2);
+	csi_pin_set_mux(PB00, PB00_ADC_AIN3);
+//	csi_pin_set_mux(PB01, PB01_ADC_AIN4);
+//	csi_pin_set_mux(PB02, PB02_ADC_AIN5);
+//	csi_pin_set_mux(PA06, PA06_ADC_AIN6);
+//	csi_pin_set_mux(PA07, PA07_ADC_AIN7);
+//	csi_pin_set_mux(PA08, PA08_ADC_AIN8);
+//	csi_pin_set_mux(PA09, PA09_ADC_AIN9);
+//	csi_pin_set_mux(PA010, PA010_ADC_AIN10);
+//	csi_pin_set_mux(PA011, PA011_ADC_AIN11);
+//	csi_pin_set_mux(PA012, PA012_ADC_AIN12);
+//	csi_pin_set_mux(PA013, PA013_ADC_AIN13);
+//	csi_pin_set_mux(PB03, PB03_ADC_AIN14);
+//	csi_pin_set_mux(PC01, PC01_ADC_AIN15);
+//	csi_pin_set_mux(PB04, PB04_ADC_AIN16);
+//	csi_pin_set_mux(PC00, PC00_ADC_AIN17);
+//	csi_pin_set_mux(PA02, PA02_ADC_AIN18);
+	
+	//adc 参数配置初始化
+	tAdcConfig.byClkDiv = 0x02;							//ADC clk两分频：clk = pclk/2
+	tAdcConfig.bySampHold = 0x06;						//ADC 采样时间： time = 16 + 6 = 22(ADC clk周期)
+	tAdcConfig.byConvMode = ADC_CONV_ONESHOT;			//ADC 转换模式： 单次转换；
+	tAdcConfig.byVrefSrc = ADCVREF_FVR4096_VSS;			//ADC 参考电压： 内部4.096v
+	tAdcConfig.wInt = ADC_INTSRC_NONE;				//ADC 中断配置： 无中断
+	tAdcConfig.ptSeqCfg = (csi_adc_seq_t *)tSeqCfg;		//ADC 采样序列： 具体参考结构体变量 tSeqCfg
+	
+	csi_adc_init(ADC0, &tAdcConfig);							//初始化ADC参数配置	
+	csi_adc_set_seqx(ADC0, tAdcConfig.ptSeqCfg, byChnlNum);		//配置ADC采样序列
+	csi_adc_set_buffer((uint16_t *)g_hwAdcBuf, 1);				//传递ADC采样buffer，ADC采样值存放于此buffer中
+	
+	
+	do
+	{
+		csi_adc_start(ADC0);										//启动ADC
+		
+		//读ADC采样序列，整个采样序列所有通道读到采样buffer 
+		if(csi_adc_read_seqx(ADC0) == CSI_OK)			//采样通道读取完成，ADC value 保持在 buffer中 
+		{
+			for(i = 0; i < byChnlNum; i++)
+				my_printf("ADC channel value of seq%d: %d \n", i,g_hwAdcBuf[i]);
+		}
+		else											//采样通道读取超时(异常)									
+		{
+			my_printf("ADC sample timeout...\n");
+			iRet=1;
+			break;
+		}
+
+		my_printf("\n");
+		mdelay(1000);
+		
+	}while(1);
 	
 	return iRet;
 }

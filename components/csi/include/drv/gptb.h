@@ -1,7 +1,14 @@
 /***********************************************************************//** 
-
+ * \file  gptb.h
+ * \brief  Enhanced timer
+ * \copyright Copyright (C) 2015-2020 @ APTCHIP
+ * <table>
+ * <tr><th> Date  <th>Version  <th>Author	<th>Description
+ * <tr><td> 2022-1-17 <td>V0.0 <td>LJY		<td>initial
+ * </table>
  * *********************************************************************
 */
+
 
 #ifndef _GPTB_H_
 #define _GPTB_H_
@@ -29,9 +36,6 @@ struct csi_gptb_config {
 	uint8_t     byCaptureLdaret;
 	uint8_t     byCaptureLdbret;
 
-	uint8_t     byBurst;
-    uint8_t     byCgsrc;
-	uint8_t     byCgflt;
 	uint32_t	wFreq;				 //TIMER PWM OUTPUT frequency 
 	uint32_t    wInt;
 };
@@ -47,9 +51,6 @@ struct csi_gptb_pwmconfig {
 	uint8_t		byDutyCycle;		 //TIMER PWM OUTPUT duty cycle	
 	uint32_t	wFreq;				 //TIMER PWM OUTPUT frequency 
 	uint32_t    wInt;
-	uint8_t     byBurst;
-    uint8_t     byCgsrc;
-	uint8_t     byCgflt;
 };
 
 typedef struct csi_gptb_captureconfig  csi_gptb_captureconfig_t;
@@ -67,13 +68,11 @@ struct csi_gptb_captureconfig {
 	uint8_t     byCaptureStopWrap;
 	uint8_t     byCaptureLdaret;
 	uint8_t     byCaptureLdbret;
-	uint8_t     byCaptureLdcret;
-	uint8_t     byCaptureLddret;
+	uint8_t     byCaptureLdaaret;
+	uint8_t     byCaptureLdbaret;
 	uint32_t    wInt;
-	uint8_t     byBurst;
-    uint8_t     byCgsrc;
-	uint8_t     byCgflt;
 };
+
 
 typedef struct csi_gptb_pwmchannel_config      csi_gptb_pwmchannel_config_t;
 struct csi_gptb_pwmchannel_config {
@@ -146,7 +145,6 @@ struct csi_gptb_emergency_
     uint8_t	 byEpx;
 	uint8_t  byEpxLckmd;
 	uint8_t  byFltpace0;
-	uint8_t  byFltpace1;
 	uint8_t  byOrl0;
 	uint8_t  byOrl1;
 	uint8_t  byOsrshdw;
@@ -459,14 +457,10 @@ typedef enum{
 	GPTB_INTSRC_EP1 = (0x01ul << 1),
 	GPTB_INTSRC_EP2 = (0x01ul << 2),
 	GPTB_INTSRC_EP3 = (0x01ul << 3),
-//	GPTB_INTSRC_EP4 = (0x01ul << 4),
-//	GPTB_INTSRC_EP5 = (0x01ul << 5),
-//	GPTB_INTSRC_EP6 = (0x01ul << 6),
-//	GPTB_INTSRC_EP7 = (0x01ul << 7),
 	GPTB_INTSRC_CPUF= (0x01ul << 8),
 	GPTB_INTSRC_MEMF= (0x01ul << 9),
 	GPTB_INTSRC_EOMF= (0x01ul << 10)	
-}csi_gptb_emint_e;
+}csi_gptb_epint_e;
 
 /**
  * \enum	csi_gptb_trgsrc_e
@@ -707,7 +701,7 @@ void csi_gptb_debug_enable(csp_gptb_t *ptGptbBase, bool bEnable);
   \param[in]   ptGptbBase       pointer of gptb register structure
   \param[in]   eEbi		       refer to csp_gptb_emint_e
 */
-void csi_gptb_emergency_int_enable(csp_gptb_t *ptGptbBase, csp_gptb_emint_e eEbi);
+void csi_gptb_emergency_int_enable(csp_gptb_t *ptGptbBase, csp_gptb_emint_e eEm);
 
 /** \brief enable/disable gptb out trigger 
  * 
@@ -761,6 +755,16 @@ csi_error_t csi_gptb_continuous_software_waveform(csp_gptb_t *ptGptbBase, csi_gp
  *  \return error code \ref csi_error_t
  */
 csi_error_t csi_gptb_wave_init(csp_gptb_t *ptGptbBase, csi_gptb_pwmconfig_t *ptgptbPwmCfg);
+
+/** \brief enable/disable gptb burst 
+ * 
+ *  \param[in] ptGptbBase: pointer of gptb register structure
+ *  \param[in] byCgsrc:cgr src 
+ *  \param[in] byCgflt:cfg flt
+ *  \param[in] bEnable: ENABLE/DISABLE
+ *  \return error code \ref csi_error_t
+ */
+csi_error_t csi_gptb_burst_enable(csp_gptb_t *ptGptbBase,uint8_t byCgsrc,uint8_t byCgflt, bool bEnable);
 
 
 //csi_error_t csi_gptb_config_init(csp_gptb_t *ptGptbBase, csi_gptb_config_t *ptgptbPwmCfg);

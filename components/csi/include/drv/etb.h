@@ -1,12 +1,12 @@
 /***********************************************************************//** 
- * \file  lpt.c
- * \brief  csi lpt driver
+ * \file  etb.h
+ * \brief  head file of  ETCB(event trigger control block)
  * \copyright Copyright (C) 2015-2020 @ APTCHIP
  * <table>
  * <tr><th> Date  <th>Version  <th>Author  <th>Description
- * <tr><td> 2017-10-27<td>V0.0 <td>Alibaba <td> initial
- * <tr><td> 2021-1-8  <td>V0.1 <td>WNN     <td> SWTRG
- * <tr><td> 2021-5-14 <td>V0.1 <td>ZJY     <td> initial
+ * <tr><td> 2020-10-8 <td>V0.0  <td>WNN   <td>initial
+ * <tr><td> 2021-1-8  <td>V0.1  <td>WNN   <td>SW trigger
+ * <tr><td> 2021-5-14 <td>V0.1  <td>ZJY   <td>initial
  * </table>
  * *********************************************************************
 */

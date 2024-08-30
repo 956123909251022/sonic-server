@@ -70,19 +70,22 @@ int cmp_dfcr_demo(void)
 	tCmpCfg.byPhystsel = CMP_PHYST_POL_DIS;	          //比较器输入迟滞特性极性选择
 	tCmpCfg.byPolarity = CMP_POL_OUT_DIRECT;           //比较器输出极性选择 0:不反向
 	tCmpCfg.byCpoSel = CMP_CPOS_OUT_IN;	              //CMP_OUT管脚上输出信号选择 0h：滤波前信号直接输出 	1h：滤波后信号输出 
-	tCmpCfg.wInt = CMP_INTSRC_NONE;	      		  //中断模式
+	tCmpCfg.wInt = CMP_INTSRC_NONE;	      		      //中断模式
 	csi_cmp_init(CMP0,&tCmpCfg);
 	
-	csi_cmp_dflt_config_t tCmpDfltCfg;
-	tCmpDfltCfg.byDepth1 = CMP_DFCR_DEPTH1_8;         //数字滤波1深度
-	tCmpDfltCfg.byDivn1  = 2;                     //分频系数N
-	tCmpDfltCfg.byDivm1  = 3;	                  //分频系数M
-	tCmpDfltCfg.byDepth2 = CMP_DFCR_DEPTH2_32;        //数字滤波2深度
-	tCmpDfltCfg.byDivn2  = 1;                     //分频系数N
-	tCmpDfltCfg.byDivm2  = 2;	                  //分频系数M
-	csi_cmp_dflt_config(CMP0,&tCmpDfltCfg);
+	csi_cmp_dflt1_config_t tCmpDflt1Cfg;
+	tCmpDflt1Cfg.byDepth1 = CMP_DFCR_DEPTH1_16;         //数字滤波1深度
+	tCmpDflt1Cfg.byDivn1  = 2;                          //分频系数N
+	tCmpDflt1Cfg.byDivm1  = 119;	                    //分频系数M
+	csi_cmp_dflt1_config(CMP0,ENABLE,&tCmpDflt1Cfg);
 	
-	csi_cmp_start(CMP0);	
+	csi_cmp_dflt2_config_t tCmpDflt2Cfg;
+	tCmpDflt2Cfg.byDepth2 = CMP_DFCR_DEPTH2_16;        //数字滤波2深度
+	tCmpDflt2Cfg.byDivn2  = 2;                        //分频系数N
+	tCmpDflt2Cfg.byDivm2  = 119;	                  //分频系数M
+	csi_cmp_dflt2_config(CMP0,DISABLE,&tCmpDflt2Cfg);
+	
+	csi_cmp_start(CMP0);
 	return iRet;	
 }
 
@@ -128,16 +131,12 @@ int cmp_wfcr_demo(void)
 
 	csi_bt_timer_init(BT0, 2000);		//初始化BT0, 定时2000us； BT定时，默认采用PEND中断
 	csi_bt_start(BT0);					//启动定时器  
-	csi_bt_set_evtrg(BT0, 0, BT_TRGSRC_PEND);   
+	csi_bt_set_evtrg(BT0, BT_TRGOUT, BT_TRGSRC_PEND);   
   
 	csi_etb_config_t tEtbConfig;	                 //ETB 参数配置结构体	  	
 	tEtbConfig.byChType = ETB_ONE_TRG_ONE;  		 //单个源触发单个目标
 	tEtbConfig.bySrcIp  = ETB_BT0_TRGOUT ; 
-	tEtbConfig.bySrcIp1 = 0xff;      
-	tEtbConfig.bySrcIp2 = 0xff;
 	tEtbConfig.byDstIp =  ETB_CMP0_SYNCIN;   	     //CMP0 同步输入作为目标事件
-	tEtbConfig.byDstIp1 = 0xff;
-	tEtbConfig.byDstIp2 = 0xff;
 	tEtbConfig.byTrgMode = ETB_HARDWARE_TRG;
    
 	csi_etb_init();

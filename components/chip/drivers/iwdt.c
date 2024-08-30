@@ -71,6 +71,7 @@ void csi_iwdt_open(void)
 {
 	SYSCON -> IWDEDR = EN_IWDT | IWDTE_KEY;
 	while((SYSCON->IWDCR & IWDT_ST) != IWDT_BUSY);
+	delay_ums(5);
 	SYSCON -> IWDCNT = (SYSCON -> IWDCNT & (~IWDT_CLR_MSK)) | IWDT_CLR << IWDT_CLR_POS;
 	while((SYSCON->IWDCNT & IWDT_CLR_BUSY) == IWDT_CLR_BUSY);
 }
@@ -82,9 +83,10 @@ void csi_iwdt_open(void)
  */ 
 void csi_iwdt_close(void)
 {
-	csp_iwdt_disable(SYSCON);
 	SYSCON -> IWDCNT = (SYSCON -> IWDCNT & (~IWDT_CLR_MSK)) | IWDT_CLR << IWDT_CLR_POS;
 	while((SYSCON->IWDCNT & IWDT_CLR_BUSY) == IWDT_CLR_BUSY);
+	csp_iwdt_disable(SYSCON);
+	while((SYSCON->IWDCR & IWDT_ST) == IWDT_BUSY);
 }
 
 /** \brief feed iwdt

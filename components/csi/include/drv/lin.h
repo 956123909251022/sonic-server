@@ -1,14 +1,13 @@
-/*
- * Copyright (C) 2017-2020 Alibaba Group Holding Limited
- */
-
-/******************************************************************************
- * @file     usart.h
- * @brief    header file for usart driver
- * @version  V1.0
- * @date     08. Apr 2020
- * @model    usart
- ******************************************************************************/
+/***********************************************************************//** 
+ * \file  lin.h
+ * \brief  LIN
+ * \copyright Copyright (C) 2015-2021 @ APTCHIP
+ * <table>
+ * <tr><th> Date  <th>Version	<th>Author  <th>Description
+ * <tr><td> 2021-8-03 <td>V0.0  <td>ZJY   	<td>initial
+ * </table>
+ * *********************************************************************
+*/
 
 #ifndef _DRV_LIN_H_
 #define _DRV_LIN_H_

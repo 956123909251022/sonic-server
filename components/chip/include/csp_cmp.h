@@ -302,9 +302,14 @@ static inline void  csp_cmp_evtrg(csp_cmp_t *ptCmpBase , bool bEnable,cmp_eve_se
 	ptCmpBase->CR = (ptCmpBase->CR&~(CMP_SYNCOE_MSK|CMP_EVE_SEL_MSK))|(bEnable<<CMP_SYNCOE)|(eEveSel<<CMP_EVE_SEL);
 }
 
-static inline void  csp_cmp_dflt_enable(csp_cmp_t *ptCmpBase , bool bEnable1,bool bEnable2)
+static inline void  csp_cmp_dflt1_enable(csp_cmp_t *ptCmpBase , bool bEnable)
 {
-	ptCmpBase->CR = (ptCmpBase->CR&~(CMP_DFLT1EN_MSK|CMP_DFLT2EN_MSK))|(bEnable1<<CMP_DFLT1EN)|(bEnable2<<CMP_DFLT2EN);
+	ptCmpBase->CR = (ptCmpBase->CR&~CMP_DFLT1EN_MSK)|(bEnable<<CMP_DFLT1EN);
+}
+
+static inline void  csp_cmp_dflt2_enable(csp_cmp_t *ptCmpBase , bool bEnable)
+{
+	ptCmpBase->CR = (ptCmpBase->CR&~CMP_DFLT2EN_MSK)|(bEnable<<CMP_DFLT2EN);
 }
 
 static inline  void csp_cmp_lpwken_enable(csp_cmp_t *ptCmpBase,bool bEnable)

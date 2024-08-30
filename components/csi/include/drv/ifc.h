@@ -64,6 +64,15 @@ csi_error_t csi_ifc_read(csp_ifc_t *ptIfcBase, uint32_t wAddr, uint32_t *data, u
 */
 csi_error_t csi_ifc_program(csp_ifc_t *ptIfcBase, uint32_t wAddr, uint32_t *pwData, uint32_t wDataNum);
 
+/** 
+  \brief 	   Page erase to Flash.
+  \param[in]   ptIfcBase	pointer of ifc register structure
+  \param[in]   wPgStrAddr	start page start address
+  \param[in]   byPageNum:	number of page to erase
+  \return 	   error code
+*/
+csi_error_t csi_ifc_erase(csp_ifc_t *ptIfcBase, uint32_t wPgStrAddr, uint8_t byPageNum);
+
 /**
   \brief       Get Data Flash information.
   \param[in]   ptIfcBase  pointer of ifc register structure.

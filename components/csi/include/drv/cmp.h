@@ -160,10 +160,16 @@ typedef struct
 	uint8_t byDepth1;
 	uint8_t byDivn1;
 	uint8_t byDivm1;	
+	uint8_t byRev;
+}csi_cmp_dflt1_config_t;
+
+typedef struct
+{	
 	uint8_t byDepth2;
 	uint8_t byDivn2;
-	uint8_t byDivm2;	
-}csi_cmp_dflt_config_t;
+	uint8_t byDivm2;
+	uint8_t byRev;	
+}csi_cmp_dflt2_config_t;
 
 typedef struct
 {
@@ -206,13 +212,23 @@ void csi_cmp_start(csp_cmp_t *ptCmpBase);
  */ 
 void csi_cmp_stop(csp_cmp_t *ptCmpBase);
 
-/**
- *  \brief       cmp dflt config
- *  \param[in]   ptCmpBase:pointer of cmp register structure
- *  \param[in]   ptCmpDfltCfg:pointer of cmp dlft config structure
+/** \brief cmp dflt1 config
+ * 
+ *  \param[in] ptCmpBase: pointer of cmp register structure
+ *  \param[in] bEnable: dflt1 enable or disable
+ *  \param[in] ptCmpDfltCfg: pointer of cmp dlft config structure
  *  \return error code \ref csi_error_t
  */
-csi_error_t csi_cmp_dflt_config(csp_cmp_t *ptCmpBase,csi_cmp_dflt_config_t *ptCmpDfltCfg);
+csi_error_t csi_cmp_dflt1_config(csp_cmp_t *ptCmpBase,bool bEnable,csi_cmp_dflt1_config_t *ptCmpDfltCfg);
+
+/** \brief cmp dflt2 config
+ * 
+ *  \param[in] ptCmpBase: pointer of cmp register structure
+ *  \param[in] bEnable: dflt2 enable or disable
+ *  \param[in] ptCmpDfltCfg: pointer of cmp dlft config structure
+ *  \return error code \ref csi_error_t
+ */
+csi_error_t csi_cmp_dflt2_config(csp_cmp_t *ptCmpBase,bool bEnable,csi_cmp_dflt2_config_t *ptCmpDfltCfg);
 
 /**
  *  \brief       cmp wflt config
