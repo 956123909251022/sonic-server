@@ -72,12 +72,19 @@ typedef enum{
 
 
 ///MR: IFC operation mode
+#define  PF_WAIT_POS (0)
+#define  PF_WAIT_MSK (0x7ul << PF_WAIT_POS)
 #define  PF_WAIT0 (0x0ul) 
 #define  PF_WAIT1 (0x1ul) 
 #define  PF_WAIT2 (0x2ul) 
 #define  PF_WAIT3 (0x3ul) 
+
 #define  DFLASH_PMODE_POS 8
-#define  DFLASH_PMODE (0x1 <<8)
+#define  DFLASH_PMODE_MSK (0x1 <<DFLASH_PMODE_POS)
+#define  DFLASH_PMODE (0x1 <<DFLASH_PMODE_POS)
+
+#define  PF_SPEED_POS (16)
+#define  PF_SPEED_MSK (0x1<<PF_SPEED_POS)
 #define  HIGH_SPEED ((0x1ul)<<16) 
 #define  LOW_SPEED ((0x0ul)<<16) 
 
