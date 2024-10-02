@@ -121,6 +121,9 @@ csi_error_t csi_usart_init(csp_usart_t *ptUsartBase, csi_usart_config_t *ptUsart
 	uint8_t byClkDiv = 1;
 	uint8_t byIdx;
 	
+	if(ptUsartCfg->wBaudRate == 0)						//Baud error
+		return CSI_ERROR;
+	
 	csi_clk_enable(ptUsartBase);						//usart peripheral clk enable
 	csp_usart_clk_en(ptUsartBase);						//usart clk enable
 	csp_usart_soft_rst(ptUsartBase);
@@ -165,10 +168,15 @@ csi_error_t csi_usart_init(csp_usart_t *ptUsartBase, csi_usart_config_t *ptUsart
 		else 
 			byClkDiv = 1;
 
+//		if(csp_usart_get_mode(ptUsartBase) == US_ASYNC)
+//			csp_usart_set_brdiv(ptUsartBase, ptUsartCfg->wBaudRate, (csi_get_pclk_freq() >> 4)/byClkDiv);
+//		else 
+//			csp_usart_set_brdiv(ptUsartBase, ptUsartCfg->wBaudRate, csi_get_pclk_freq()/byClkDiv);
+
 		if(csp_usart_get_mode(ptUsartBase) == US_ASYNC)
-			csp_usart_set_brdiv(ptUsartBase, ptUsartCfg->wBaudRate, (csi_get_pclk_freq() >> 4)/byClkDiv);
-		else 
 			csp_usart_set_brdiv(ptUsartBase, ptUsartCfg->wBaudRate, csi_get_pclk_freq()/byClkDiv);
+		else 
+			csp_usart_set_brdiv(ptUsartBase, ptUsartCfg->wBaudRate, (csi_get_pclk_freq() << 4) /byClkDiv);
 	}
 	
 	if(ptUsartCfg->bClkOutEn == ENABLE)
