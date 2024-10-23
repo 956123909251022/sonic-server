@@ -34,6 +34,7 @@ extern "C" {
 #define CONSOLE_RXD                     PA112
 #define CONSOLE_TXD_FUNC                PA111_UART2_TX
 #define CONSOLE_RXD_FUNC                PA112_UART2_RX
+#define CONSOLE_BAUDRATE               	115200U
 
 /* emosc pin */
 //外部主振荡器管脚
