@@ -45,7 +45,7 @@ __attribute__((weak)) void board_init(void)
 {
     //console config for print
 	console.uart_id = (uint32_t)CONSOLE_IDX;
-    console.baudrate = 115200U;
+    console.baudrate = CONSOLE_BAUDRATE;
     console.tx.pin = CONSOLE_TXD;   
     console.tx.func = CONSOLE_TXD_FUNC;
  
