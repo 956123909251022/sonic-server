@@ -562,8 +562,8 @@ csi_error_t csi_usart_recv_dma(csp_usart_t *ptUsartBase, void *pData, uint8_t by
 {
 	if(hwSize > 0xfff)
 		return CSI_ERROR;
-	csp_usart_set_rxdma(USART0, US_RDMA_EN, US_RDMA_FIFO_NSPACE);
-	csi_dma_ch_start(DMA, byDmaCh, (void *)&(USART0->RHR), (void *)pData, hwSize, 1);
+	csp_usart_set_rxdma(ptUsartBase, US_RDMA_EN, US_RDMA_FIFO_NSPACE);
+	csi_dma_ch_start(DMA, byDmaCh, (void *)&(ptUsartBase->RHR), (void *)pData, hwSize, 1);
 	
 	return CSI_OK;
 }
