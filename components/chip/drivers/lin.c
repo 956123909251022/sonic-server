@@ -54,7 +54,7 @@ static uint8_t apt_lin_get_ndata(csp_lin_t *ptLinBase, uint8_t byDataLen, csi_li
 		case LIN_VER1_2:
 			if(byDataLen < 4)
 				byDataNum = 1;				//Number of data = 2
-			else if(byDataNum < 8)
+			else if(byDataLen < 8)
 				byDataNum = 2;				//Number of data = 4
 			else 
 				byDataNum = 3;				//Number of data = 8

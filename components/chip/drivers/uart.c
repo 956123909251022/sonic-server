@@ -502,8 +502,8 @@ csi_error_t csi_uart_recv_dma(csp_uart_t *ptUartBase, csi_dma_ch_e eDmaCh, void 
 {
 	if(hwSize > 0xfff)
 		return CSI_ERROR;
-	csp_uart_set_rxdma(UART1, UART_RDMA_EN, UART_RDMA_FIFO_NSPACE);
-	csi_dma_ch_start(DMA, eDmaCh, (void *)&(UART1->DATA), (void *)pData, hwSize, 1);
+	csp_uart_set_rxdma(ptUartBase, UART_RDMA_EN, UART_RDMA_FIFO_NSPACE);
+	csi_dma_ch_start(DMA, eDmaCh, (void *)&(ptUartBase->DATA), (void *)pData, hwSize, 1);
 	
 	return CSI_OK;
 }
