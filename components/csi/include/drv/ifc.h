@@ -5,6 +5,7 @@
  * <table>
  * <tr><th> Date  <th>Version  <th>Author  <th>Description
  * <tr><td> 2020-8-18 <td>V0.0  <td>WNN   <td>initial for csi
+ * <tr><td> 2022-8-28 <td>V3.0  <td>WNN    <td> add page erase/PGM unction; bug fix
  * </table>
  * *********************************************************************
 */
@@ -54,24 +55,56 @@ void csi_ifc_dflash_paramode_enable(csp_ifc_t *ptIfcBase, bool bEnable);
 */
 csi_error_t csi_ifc_read(csp_ifc_t *ptIfcBase, uint32_t wAddr, uint32_t *data, uint32_t wDataNum);
 
+/** \brief Program data (<page size)to DFLASH. NOTE!!! Extra ERASE is NOT needed before programming.
+ * 
+ *  \param[in] ptIfcBase：pointer of ifc register structure
+ *  \param[in] wAddr：Data address (SHOULD BE WORD ALLIGNED)
+ *  \param[in] pwData: data  Pointer to a buffer containing the data to be programmed to Flash.
+ *  \param[in] wDataWordNum: Number of data(WORDS) items to program.
+ *  \return error code
+ */
+csi_error_t csi_ifc_dflash_page_program(csp_ifc_t *ptIfcBase, uint32_t wAddr, uint32_t *pwData, uint32_t wDataWordNum);
+
+
+/** \brief Program data (<page size)to PFLASH. NOTE!!! Extra ERASE is NOT needed before programming.
+ * 
+ *  \param[in] ptIfcBase：pointer of ifc register structure
+ *  \param[in] wAddr：Data address (SHOULD BE WORD ALLIGNED)
+ *  \param[in] pwData: data  Pointer to a buffer containing the data to be programmed to Flash.
+ *  \param[in] wDataWordNum: Number of data(WORDS) items to program.
+ *  \return error code
+ */
+csi_error_t csi_ifc_pflash_page_program(csp_ifc_t *ptIfcBase, uint32_t wAddr, uint32_t *pwData, uint32_t wDataWordNum);
+
+/** \brief Program data (<page size)to Flash. NOTE!!! Extra ERASE is NOT needed before programming.
+ * 
+ *  \param[in] ptIfcBase：pointer of ifc register structure
+ *  \param[in] wAddr：Data address (SHOULD BE WORD ALLIGNED)
+ *  \param[in] pwData: data  Pointer to a buffer containing the data to be programmed to Flash.
+ *  \param[in] wDataNum: Number of data(WORDS) items to program.
+ *  \return error code
+ */
+csi_error_t csi_ifc_page_program(csp_ifc_t *ptIfcBase, uint32_t wAddr, uint32_t *pwData, uint32_t wDataNum);
+
+
+
 /**
-  \brief       Program data to Flash.
+  \brief       Program data to Flash. NOTE!!! Extra ERASE is NOT needed before programming.
   \param[in]   ptIfcBase  pointer of ifc register structure.
   \param[in]   wAddr  Data address (SHOULD BE WORD ALLIGNED)
   \param[in]   data  Pointer to a buffer containing the data to be programmed to Flash.
-  \param[in]   wDataNum   Number of data(BYTES) items to program.
+  \param[in]   wDataNum   Number of data(WORDS) items to program.
   \return      error code
 */
 csi_error_t csi_ifc_program(csp_ifc_t *ptIfcBase, uint32_t wAddr, uint32_t *pwData, uint32_t wDataNum);
 
-/** 
-  \brief 	   Page erase to Flash.
-  \param[in]   ptIfcBase	pointer of ifc register structure
-  \param[in]   wPgStrAddr	start page start address
-  \param[in]   byPageNum:	number of page to erase
-  \return 	   error code
-*/
-csi_error_t csi_ifc_erase(csp_ifc_t *ptIfcBase, uint32_t wPgStrAddr, uint8_t byPageNum);
+/** \brief erase one page(DFLASH or PFLASH). NOTE!!! Extra ERASE is NOT needed before programming.
+ * 
+ *  \param[in] ptIfcBase：pointer of ifc register structure
+ *  \param[in] wPageStAddr: Page start address
+ *  \return ifc_status_t
+ */
+csi_error_t csi_ifc_page_erase(csp_ifc_t *ptIfcBase, uint32_t wPageStAddr);
 
 /**
   \brief       Get Data Flash information.
@@ -85,6 +118,27 @@ void csi_ifc_info(csp_ifc_t *ptIfcBase,csi_ifc_info_t *ifc_info);
   \return ifc_status_t
  */
 csi_ifc_status_t csi_ifc_get_status(csp_ifc_t *ptIfcBase);
+
+
+/** \brief SWD IO remap
+ *  \param[in] 
+ * bGrp
+ *                SWD               pin number
+ * bGrp = 2    PA0.6(CLK)             2
+ *             PA0.7(DIO)             3
+ * bGrp = 1    PA0.0(DIO)             19
+ *             PA0.1(CLK)             20
+ * bGrp = 0    PA0.5(CLK)             10
+ *             PA0.12(DIO)            11
+ */
+csi_error_t csi_ifc_swd_remap(csp_ifc_t * ptIfcBase, uint8_t bGrp);
+
+/** \brief Change user option
+ *  \param ptIfcBase pointer of ifc register structure.
+ *  \param wData data that to be written into USER OPTION area
+ *  \return csi_error_t
+ */
+csi_error_t csi_ifc_wr_useroption(csp_ifc_t *ptIfcBase, uint32_t wData);
 
 
 extern volatile uint32_t g_wPageStAddr;

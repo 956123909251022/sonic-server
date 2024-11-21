@@ -111,9 +111,9 @@ csi_error_t csi_sysclk_config(void)
 	if (wTargetSclk >= 16000000) {
 		IFC->CEDR = IFC_CLKEN;
 		if (wTargetSclk >= 24000000)
-			IFC->MR = IFC->MR & (~PF_SPEED_MSK) & (~PF_WAIT_MSK) | HIGH_SPEED | PF_WAIT2;
+			IFC->MR = (IFC->MR & (~PF_SPEED_MSK) & (~PF_WAIT_MSK)) | HIGH_SPEED | PF_WAIT2;
 		else 
-			IFC->MR = IFC->MR & (~PF_SPEED_MSK) & (~PF_WAIT_MSK) | HIGH_SPEED | PF_WAIT1;
+			IFC->MR = (IFC->MR & (~PF_SPEED_MSK) & (~PF_WAIT_MSK) )| HIGH_SPEED | PF_WAIT1;
 		csp_set_sdiv(SYSCON, tClkConfig.eSdiv);
 		csp_set_clksrc(SYSCON, eSrc);
 	}
@@ -121,7 +121,7 @@ csi_error_t csi_sysclk_config(void)
 		csp_set_sdiv(SYSCON, tClkConfig.eSdiv);
 		csp_set_clksrc(SYSCON, eSrc);
 		IFC->CEDR = IFC_CLKEN;
-		IFC->MR = IFC->MR & (~PF_SPEED_MSK) & (~PF_WAIT_MSK) |LOW_SPEED | PF_WAIT0;
+		IFC->MR = ((IFC->MR & (~PF_SPEED_MSK)) & (~PF_WAIT_MSK)) |LOW_SPEED | PF_WAIT0;
 	}
 	
 	
