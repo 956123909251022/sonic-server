@@ -471,6 +471,7 @@ static csp_error_t apt_ifc_wr_nword(csp_ifc_t * ptIfcBase, uint8_t bFlashType, u
 			if (*(uint32_t *)(wPageStAddr+4*i) != wBuff[i]){
 				tRet = CSP_FAIL;
 				g_bFlashCheckPass = 0;
+				g_bFlashPgmDne = 1;
 				return tRet;
 			}
 		}
@@ -480,84 +481,7 @@ static csp_error_t apt_ifc_wr_nword(csp_ifc_t * ptIfcBase, uint8_t bFlashType, u
 	return tRet;
 }
 
-/** \brief SWD IO remap
- *  \param[in] 
- * bGrp
- *                SWD               pin number
- * bGrp = 2    PA0.6(CLK)             2
- *             PA0.7(DIO)             3
- * bGrp = 1    PA0.0(DIO)             27
- *             PA0.1(CLK)             28
- * bGrp = 0    PA0.5(CLK)             14
- *             PA0.12(DIO)            15
- */
-csi_error_t csi_ifc_swd_remap(csp_ifc_t * ptIfcBase, uint8_t bGrp)
-{
-        uint32_t i, wBuff[DFLASH_PAGE_SZ];
-        uint32_t wAddr, wData, wPageStAddr;
-        csp_error_t tRet;
-        
-        while(!g_bFlashPgmDne);
-        g_bFlashPgmDne = 0;
-        
-        tRet = CSP_SUCCESS;
 
-        switch (bGrp)
-        {
-                case 0:
-                        wData = 0xd;
-                        break;
-                case 1:
-                        wData = 0xaa;
-                        break;
-                case 2:
-                        wData = 0x55;
-                        break;
-                default:
-                        return CSP_FAIL;
-                        break;
-        }
-        
-        wAddr = SWD_ADDR;
-        wPageStAddr = wAddr & 0xffffffc0;
-        wAddr = wAddr >> 2 & 0xf;
-        
-        csp_ifc_clk_enable(ptIfcBase, ENABLE);
-        ///step1
-        apt_ifc_step_sync(ptIfcBase, PAGE_LAT_CLR|HIDM1, 0);
-        ///step2
-        for(i=0;i< DFLASH_PAGE_SZ;i++) {
-      if( i == wAddr )
-        wBuff[i] = wData ;
-      else {
-        wBuff[i] = *(uint32_t *)(wPageStAddr+4*i);
-      }
-    }
-        for(i=0;i<DFLASH_PAGE_SZ;i++) {
-        *(uint32_t *)(wPageStAddr+4*i) = wBuff[i];
-    }
-        ///step3
-        apt_ifc_step_sync(ptIfcBase, PRE_PGM|HIDM1, 0);
-        ///step4
-        apt_ifc_step_sync(ptIfcBase, SWDREMAP_ENABLE|HIDM1, 0);
-        ///step5
-        apt_ifc_step_sync(ptIfcBase, SWDREMAP_ERASE|HIDM1, 0);
-        ///step6
-        apt_ifc_step_sync(ptIfcBase, SWDREMAP_ENABLE|HIDM1, 0);
-        
-        ///whole page check
-        g_bFlashCheckPass = 1;
-        for (i=0; i<DFLASH_PAGE_SZ; i++)
-        {
-                if (*(uint32_t *)(wPageStAddr+4*i) !=  wBuff[i]) {
-                        tRet = CSP_FAIL;
-                        g_bFlashCheckPass = 0;
-						return tRet;
-                }
-        }
-        g_bFlashPgmDne = 1;
-        return tRet;
-}
 
 /** \brief Change user option
  *  \param ptIfcBase pointer of ifc register structure.
