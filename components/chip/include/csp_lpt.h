@@ -409,7 +409,10 @@ static inline void csp_lpt_trg_enable(csp_lpt_t *ptLptBase,bool bEnable)
 	ptLptBase->EVTRG = (ptLptBase->EVTRG & ~LPT_TRG0OE_MSK) | (bEnable << LPT_TRG0OE_POS);
 }
 
-
+static inline void csp_lpt_evswf_en(csp_lpt_t *ptLptBase)
+{
+	ptLptBase->EVSWF = 0x01;
+}
 
 static inline void csp_lpt_set_start_im_enable(csp_lpt_t *ptLptBase, bool bEnable)
 {
