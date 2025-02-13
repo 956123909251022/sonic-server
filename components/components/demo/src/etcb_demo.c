@@ -37,7 +37,8 @@ int etcb_one_trg_one_demo0(void)
 	
 	csi_pin_set_mux(PA01,PA01_INPUT);		
 	csi_pin_pull_mode(PA01, GPIO_PULLUP);						//PA01 上拉
-	csi_pin_irq_mode(PA01,EXI_GRP1, GPIO_IRQ_FALLING_EDGE);		//PA01 下降沿产生中断	
+	csi_pin_irq_mode(PA01,EXI_GRP1, GPIO_IRQ_FALLING_EDGE);		//PA01 下降沿产生中断
+	csi_pin_irq_enable(PA01, ENABLE);							//使能GPIO中断	
 	csi_exi_set_evtrg(EXI_TRGOUT1, TRGSRC_EXI1, 1);
 	
 	csi_bt_start_sync(BT0, 10);
@@ -324,7 +325,10 @@ int etcb_more_trg_one_demo(void)
 	
 	csi_pin_irq_mode(PA00,EXI_GRP0, GPIO_IRQ_RISING_EDGE);		//PA00 上升沿产生中断	
 	csi_pin_irq_mode(PA01,EXI_GRP1, GPIO_IRQ_FALLING_EDGE);		//PA01 下降沿产生中断		
-	csi_pin_irq_mode(PA03,EXI_GRP3, GPIO_IRQ_FALLING_EDGE);		//PA03 下降沿产生中断	
+	csi_pin_irq_mode(PA03,EXI_GRP3, GPIO_IRQ_FALLING_EDGE);		//PA03 下降沿产生中断
+	csi_pin_irq_enable(PA00, ENABLE);							//PA00	中断使能
+	csi_pin_irq_enable(PA01, ENABLE);							//PA01	中断使能
+	csi_pin_irq_enable(PA03, ENABLE);							//PA03	中断使能
 	
 	csi_exi_set_evtrg(EXI_TRGOUT1, TRGSRC_EXI0, 4);                       //PA00 4次上升沿触发目标事件     
 	csi_exi_set_evtrg(EXI_TRGOUT2, TRGSRC_EXI1, 1);
@@ -372,7 +376,10 @@ int etcb_mix_demo(void)
 	
 	csi_pin_irq_mode(PA00,EXI_GRP0, GPIO_IRQ_RISING_EDGE);		//PA00 上升沿产生中断	
 	csi_pin_irq_mode(PA01,EXI_GRP1, GPIO_IRQ_FALLING_EDGE);		//PA01 下降沿产生中断		
-	csi_pin_irq_mode(PA03,EXI_GRP3, GPIO_IRQ_FALLING_EDGE);		//PA03 下降沿产生中断	
+	csi_pin_irq_mode(PA03,EXI_GRP3, GPIO_IRQ_FALLING_EDGE);		//PA03 下降沿产生中断
+	csi_pin_irq_enable(PA00, ENABLE);							//PA00	中断使能
+	csi_pin_irq_enable(PA01, ENABLE);							//PA01	中断使能
+	csi_pin_irq_enable(PA03, ENABLE);							//PA03	中断使能
 	
 	csi_exi_set_evtrg(EXI_TRGOUT1, TRGSRC_EXI0, 4);                       //PA00 4次上升沿触发目标事件     
 	csi_exi_set_evtrg(EXI_TRGOUT2, TRGSRC_EXI1, 1);
