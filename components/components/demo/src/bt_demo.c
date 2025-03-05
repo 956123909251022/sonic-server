@@ -128,7 +128,8 @@ int bt_sync_trg_count_demo(void)
 	csi_exi_set_evtrg(EXI_TRGOUT4, TRGSRC_EXI18, 0);					//EXI18(PB01) 触发EXI_TRGOUT4(PB01用EXI18触发输出)
 	
 	csi_bt_timer_init(BT0,20);											//BT定时
-	csi_bt_set_sync(BT0, BT_TRG_SYNCIN1, BT_TRG_CONTINU, DISABLE);	//外部触发bt计数(SYNCIN1)
+	csi_bt_set_sync(BT0, BT_TRG_SYNCIN1, BT_TRG_CONTINU, DISABLE);		//外部触发bt计数(SYNCIN1)
+	csi_bt_start(BT0);													//启动定时器
 	
 	tEtbConfig.byChType = ETB_ONE_TRG_ONE;  		//单个源触发单个目标
 	tEtbConfig.bySrcIp  = ETB_EXI_TRGOUT4;  	    //EXI_TRGOUT4作为触发源
