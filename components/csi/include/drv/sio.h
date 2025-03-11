@@ -377,14 +377,14 @@ int32_t csi_sio_receive(csp_sio_t *ptSioBase, uint32_t *pwRecv, uint16_t hwLen);
   \param[in] none
   \return the status of sio receive 
  */ 
-csi_sio_state_e csi_sio_get_recv_status(void);
+//csi_sio_state_e csi_sio_get_recv_status(void);
 
 /** 
   \brief clr the status of sio receive 
   \param[in] none
   \return none
  */ 
-void csi_sio_clr_recv_status(void);
+//void csi_sio_clr_recv_status(void);
 
 /** 
   \brief get the status of sio receive 

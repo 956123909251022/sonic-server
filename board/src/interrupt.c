@@ -301,7 +301,6 @@ void lpt_int_handler(void)
 #if	LPT_INT_HANDLE_EN
     // ISR content ...
 	lpt_irqhandler(LPT);
-	
 #endif
 }
 void led_int_handler(void) 

@@ -52,10 +52,15 @@ __attribute__((weak)) void sio_irqhandler(csp_sio_t *ptSioBase)
 			else
 			{
 				*(g_tSioTran.pwData + g_tSioTran.hwTranLen) = csp_sio_get_rxbuf(ptSioBase);	//receive data
-				if(g_tSioTran.hwTranLen < g_tSioTran.hwSize)
-					g_tSioTran.hwTranLen ++;
-				else
+				g_tSioTran.hwTranLen ++;
+				if(g_tSioTran.hwTranLen >= g_tSioTran.hwSize)
+				{
 					g_tSioTran.byRxStat = SIO_STATE_FULL;			//receive buf full, g_tSioTran.hwTranLen = receive data len = receive buf len
+				}
+//				if(g_tSioTran.hwTranLen < g_tSioTran.hwSize)
+//					g_tSioTran.hwTranLen ++;
+//				else
+//					g_tSioTran.byRxStat = SIO_STATE_FULL;			//receive buf full, g_tSioTran.hwTranLen = receive data len = receive buf len
 			}
 			break;
 		case SIO_TIMEOUT:
@@ -255,7 +260,16 @@ int32_t csi_sio_send(csp_sio_t *ptSioBase, const uint32_t *pwData, uint16_t hwSi
 			csp_sio_clr_isr(ptSioBase, SIO_TXDNE);
 			return i;
 		case SIO_TX_MODE_INT:
-			return CSI_UNSUPPORTED;										//sio send interrupt mode, unsupport
+			if(SIO_STATE_SEND == g_tSioTran.byTxStat)
+			{
+				return CSI_ERROR;
+			}
+			g_tSioTran.pwData 	 = (uint32_t *)pwData;
+			g_tSioTran.hwSize 	 = hwSize;
+			g_tSioTran.hwTranLen = 0;
+			g_tSioTran.byTxStat  = SIO_STATE_SEND;
+			csp_sio_int_enable(SIO0,SIO_INTSRC_TXBUFEMPT, ENABLE);
+			return CSI_OK;	
 		default:
 			return CSI_UNSUPPORTED;
 	}

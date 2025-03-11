@@ -301,12 +301,10 @@ bool csi_lpt_is_running(csp_lpt_t *ptLptBase)
 void csi_lpt_pwm_para_updata(csp_lpt_t *ptLptBase, uint16_t hwCmp, uint16_t hwPrdr, csi_lpt_updata_e eModeUpdata)
 {
 	
-	csp_lpt_data_update(ptLptBase, hwCmp, hwPrdr);
 	if(eModeUpdata == LPT_UPDATA_IM)
-	{
-		csp_lpt_set_prdr(ptLptBase, hwPrdr);
-		csp_lpt_set_cmp(ptLptBase, hwCmp);
-	}
+		ptLptBase->CR &= ~(LPT_CMPLD_MSK | LPT_PRDLD_MSK);
+		
+	csp_lpt_data_update(ptLptBase, hwPrdr, hwCmp);
 }
 
 /** \brief restart lpt sync 
@@ -613,4 +611,15 @@ csi_error_t csi_lpt_set_sync(csp_lpt_t *ptLptBase, csi_lpt_trgin_e eTrgin, csi_l
 void csi_lpt_swsync_enable(csp_lpt_t *ptLptBase, bool bEnable)
 {
 	csp_lpt_swsync_enable(ptLptBase, bEnable);
+}
+/** \brief lpt software generates a trigger event
+ * 
+ *  \param[in] ptLptBase:pointer of lpt register structure
+ *  \return none
+ */
+void csi_lpt_soft_evtrg(csp_lpt_t *ptLptBase)
+{
+	csi_clk_enable(ptLptBase);										
+	csp_lpt_trg_enable(ptLptBase, ENABLE);
+	csp_lpt_evswf_en(ptLptBase);
 }
