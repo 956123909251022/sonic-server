@@ -52,7 +52,7 @@ static void prepare_lp(void)
 static void wkup_lp(void)					   
 {
 	//USER CODE，如恢复管脚状态
-	csi_pin_set_low(PB02);
+	//csi_pin_set_low(PB02);
 }
 
 /** \brief 通过外部PA00/PB00/PA12/PB011(ALV0~3)唤醒shutdown
@@ -325,7 +325,7 @@ void lp_wakeup_demo(void)
 		}
 	}
 	
-	csi_pin_set_mux(PB02,PB02_OUTPUT);				//PB02 OUTPUT
+	//csi_pin_set_mux(PB02,PB02_OUTPUT);				//PB02 OUTPUT
 	
 	csi_pin_toggle(PB02);
 	mdelay(200);
@@ -348,19 +348,6 @@ void lp_wakeup_demo(void)
 	csi_pm_attach_callback(ePmMode, prepare_lp, wkup_lp);	//需要在工程设置compiler tab下加入define CONFIG_USER_PM=1;
 #endif
 	
-	csi_pin_set_mux(PB01,PB01_INPUT);							//PB01 输入							
-	csi_pin_pull_mode(PB01, GPIO_PULLUP);						//PB01 上拉
-	csi_pin_irq_mode(PB01,EXI_GRP1, GPIO_IRQ_FALLING_EDGE);		//PB01 下降沿产生中断
-	csi_pin_irq_enable(PB01, EXI_GRP1, ENABLE);					//PB01 中断使能，选择中断组0	
-	csi_vic_set_wakeup_irq(EXI1_IRQ_NUM);
-	
-	csi_pm_clk_enable(SP_IDLE_PCLK, DISABLE);					//sleep模式下关闭PCLK
-	csi_pm_clk_enable(SP_IDLE_HCLK, DISABLE);					//sleep模式下关闭HCLK
-//	csi_pm_clk_enable(DP_ISOSC, ENABLE);
-//	csi_pm_clk_enable(DP_IMOSC, ENABLE);
-//	csi_pm_clk_enable(DP_ESOSC, ENABLE);
-//	csi_pm_clk_enable(DP_EMOSC, ENABLE);
-	
 	//shutdown wkup source
 	if(ePmMode == PM_MODE_SHUTDOWN)
 	{
@@ -368,6 +355,24 @@ void lp_wakeup_demo(void)
 		csi_pin_pull_mode(PA00, GPIO_PULLDOWN);
 		csi_pm_config_wakeup_source(WKUP_ALV0, ENABLE);			//选择唤醒源WKUP_ALV0，即PA00唤醒，高电平唤醒
 	}
+	else
+	{
+		csi_pin_set_mux(PB01,PB01_INPUT);							//PB01 输入							
+		csi_pin_pull_mode(PB01, GPIO_PULLUP);						//PB01 上拉
+		csi_pin_irq_mode(PB01,EXI_GRP1, GPIO_IRQ_FALLING_EDGE);		//PB01 下降沿产生中断，选择中断组1
+		csi_pin_irq_enable(PB01, ENABLE);							//PB01 中断使能
+		csi_pin_vic_irq_enable(EXI_GRP1, ENABLE);
+		csi_vic_set_wakeup_irq(EXI1_IRQ_NUM);	
+	}
+	
+	csi_pm_clk_enable(SP_IDLE_PCLK, DISABLE);					//sleep模式下关闭PCLK
+	csi_pm_clk_enable(SP_IDLE_HCLK, DISABLE);					//sleep模式下关闭HCLK
+	csi_pm_clk_enable(DP_ISOSC, DISABLE);
+	csi_pm_clk_enable(DP_IMOSC, DISABLE);
+//	csi_pm_clk_enable(DP_ESOSC, ENABLE);
+//	csi_pm_clk_enable(DP_EMOSC, ENABLE);
+	
+
 
 	
 	//LPT WAKEUP DeepSleep/snooze
@@ -430,7 +435,8 @@ void lp_wakeup_demo(void)
 		//csi_iwdt_feed();
 		//mdelay(100);
 		csi_pin_set_low(PB02);
-		delay_ums(100);
+		mdelay(100);
+		//delay_ums(100);
 		//my_printf("Wakeup From Sleep Mode...\n");
 	}
 }

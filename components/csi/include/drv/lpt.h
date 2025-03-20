@@ -261,6 +261,13 @@ csi_error_t csi_lpt_set_fre(csp_lpt_t *ptLptBase, csi_lpt_clksrc_e eClk, uint16_
  */
 void csi_lpt_swsync_enable(csp_lpt_t *ptLptBase, bool bEnable);
 
+/** \brief lpt software generates a trigger event
+ * 
+ *  \param[in] ptLptBase:pointer of lpt register structure
+ *  \return none
+ */
+void csi_lpt_soft_evtrg(csp_lpt_t *ptLptBase);
+
 #ifdef __cplusplus
 }
 #endif
