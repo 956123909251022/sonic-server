@@ -50,7 +50,7 @@ void csi_ifc_dflash_paramode_enable(csp_ifc_t *ptIfcBase, bool bEnable);
   \param[in]   ptIfcBase  pointer of ifc register structure.
   \param[in]   wAddr  Data address（(SHOULD BE WORD ALLIGNED)）
   \param[out]  data  Pointer to a buffer storing the data read from Flash.
-  \param[in]   wDataNum   Number of data（bytes）to read.
+  \param[in]   wDataNum   Number of data（WORDs）to read.
   \return      error code
 */
 csi_error_t csi_ifc_read(csp_ifc_t *ptIfcBase, uint32_t wAddr, uint32_t *data, uint32_t wDataNum);
@@ -120,18 +120,6 @@ void csi_ifc_info(csp_ifc_t *ptIfcBase,csi_ifc_info_t *ifc_info);
 csi_ifc_status_t csi_ifc_get_status(csp_ifc_t *ptIfcBase);
 
 
-/** \brief SWD IO remap
- *  \param[in] 
- * bGrp
- *                SWD               pin number
- * bGrp = 2    PA0.6(CLK)             2
- *             PA0.7(DIO)             3
- * bGrp = 1    PA0.0(DIO)             19
- *             PA0.1(CLK)             20
- * bGrp = 0    PA0.5(CLK)             10
- *             PA0.12(DIO)            11
- */
-csi_error_t csi_ifc_swd_remap(csp_ifc_t * ptIfcBase, uint8_t bGrp);
 
 /** \brief Change user option
  *  \param ptIfcBase pointer of ifc register structure.
