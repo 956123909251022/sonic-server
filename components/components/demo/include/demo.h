@@ -153,6 +153,7 @@ extern int ept_pwm_dz_demo();
 extern int ept_pwm_dz_em_demo();
 
 //gpta demo
+extern int gpta_timer_demo();
 extern int gpta_capture_demo();
 extern int gpta_pwm_demo();
 //ept demo

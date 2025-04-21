@@ -20,6 +20,21 @@
 /* Private macro-----------------------------------------------------------*/
 /* Private variablesr------------------------------------------------------*/
 
+/** \brief gpta timer
+ * 
+ *  \param[in] none
+ *  \return error code
+ */
+int gpta_timer_demo(void)
+{
+	int iRet = 0;
+	
+	csi_gpta_timer_init(GPTA0, 10000);		//初始化GPTA0, 定时10000us； GPTA定时，默认采用向上计数，PEND中断
+	
+	csi_gpta_start(GPTA0);                  //启动定时器
+
+	return iRet;	
+}
 
 /** \brief GPTA捕获示例代码
  *   		- 捕获2次产生一次捕获中断
