@@ -756,6 +756,22 @@ csi_error_t csi_gptb_continuous_software_waveform(csp_gptb_t *ptGptbBase, csi_gp
  */
 csi_error_t csi_gptb_wave_init(csp_gptb_t *ptGptbBase, csi_gptb_pwmconfig_t *ptgptbPwmCfg);
 
+/** \brief initialize gptb data structure
+ * 
+ *  \param[in] ptGptbBase: pointer of gptb register structure
+ *  \param[in] wTimeOut: the timeout for gptb, unit: us, 20us < wTimeOut < 3S
+ *  \return error code \ref csi_error_t
+ */ 
+csi_error_t csi_gptb_timer_init(csp_gptb_t *ptGptbBase, uint32_t wTimeOut);
+
+/** \brief set gptb count mode
+ * 
+ *  \param[in] ptGptbBase: pointer of gptb register structure
+ *  \param[in] eCntMode: gptb count mode, one pulse/continuous
+ *  \return none
+ */ 
+void csi_gptb_count_mode(csp_gptb_t *ptGptbBase, csi_gptb_opmd_e eCntMode);
+
 /** \brief enable/disable gptb burst 
  * 
  *  \param[in] ptGptbBase: pointer of gptb register structure
