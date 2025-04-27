@@ -21,6 +21,22 @@
 /* Private macro-----------------------------------------------------------*/
 /* Private variablesr------------------------------------------------------*/
 
+/** \brief gpta timer
+ * 
+ *  \param[in] none
+ *  \return error code
+ */
+int gptb_timer_demo(void)
+{
+	int iRet = 0;
+	
+	csi_gptb_timer_init(GPTB0, 10000);		//初始化GPTB0, 定时10000us； GPTB定时，默认采用向上计数，PEND中断
+	
+	csi_gptb_start(GPTB0);                  //启动定时器
+
+	return iRet;	
+}
+
 /** \brief GPTB捕获示例代码
  *   		- 捕获2次产生一次捕获中断
  *     		- 由PA01触发外部事件1，经过ETCB  触发sync2 捕获
