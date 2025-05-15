@@ -439,7 +439,7 @@ void csi_gpta_set_stop_st(csp_gpta_t *ptGptaBase, csp_gpta_stpst_e eSt);
  *  \param[in] ptGptaBase  :  pointer of gpta register structure
  *  \return counter period (reg data)
  */
-uint16_t csi_gpta_get_prdr(csp_gpta_t *ptGptaBase);
+uint32_t csi_gpta_get_prdr(csp_gpta_t *ptGptaBase);
 
 /** \brief change gpta output dutycycle. 
  * 
