@@ -2,14 +2,14 @@ name: apt32f110x_demo
 version: v1.0.4
 description: demo to provide reference code
 tag: ""
-keywords: ~
+keywords: 
 author:
   name: ""
 license: ""
-homepage: ~
+homepage: 
 type: common
-depends: ~
-yoc_version: ~
+depends: 
+yoc_version: 
 hw_info:
   cpu_id: ""
   cpu_name: ""
@@ -21,15 +21,15 @@ hw_info:
 build_config:
   include:
     - include
-  internal_include: ~
+  internal_include: 
   cflag: -Og  -g3
   cxxflag: -Og  -g3
   asmflag: -Wa,--gdwarf2
-  define: ~
-  libs: ~
-  libpath: ~
+  define: 
+  libs: 
+  libpath: 
 source_file:
   - src/*.c
-def_config: ~
-install: ~
-depends_forward: ~
+def_config: 
+install: 
+depends_forward: 

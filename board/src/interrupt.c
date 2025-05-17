@@ -23,6 +23,7 @@
 #include "csp.h"
 #include "ifc.h"
 #include "iic.h"
+#include "tkey.h"
 
 /* externs function--------------------------------------------------------*/
 extern void bt_irqhandler(csp_bt_t *ptBtBase);
@@ -67,7 +68,9 @@ void coret_int_handler(void)
 #if	CORET_INT_HANDLE_EN
     // ISR content ...
 	tick_irqhandler();		//system coret 
-	
+	#if	defined(IS_CHIP_1101) || defined(IS_CHIP_1103)
+		csi_tkey_process();
+	#endif
 #endif
 }
 
@@ -292,7 +295,7 @@ void tkey_int_handler(void)
 #if	TKEY_INT_HANDLE_EN
 	#if	defined(IS_CHIP_1101) || defined(IS_CHIP_1103)
 	 // ISR content ...
-	 
+	 csi_tkey_int_process(); 
 	#endif
 #endif
 }

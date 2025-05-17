@@ -24,152 +24,294 @@
 */
 typedef volatile struct
 {
+   __IOM uint32_t   TCH_IDR;               /* Control Register */
    __IOM uint32_t   TCH_CCR;               /* Control Register */
    __IOM uint32_t   TCH_CON0;               /* Control Register */
    __IOM uint32_t   TCH_CON1;               /* Control Register */
-   __IOM uint32_t   TCH_SCCR;               /* Hardmacro control    */
-   __IOM uint32_t   TCH_SENPRD;            /* Sensing target value */
-   __IOM uint32_t   TCH_VALBUF;            /* Reference value capture value*/
-   __IOM uint32_t   TCH_SENCNT;            /* Sensing counter value*/
-   __IOM uint32_t   TCH_TCHCNT;            /* Reference counter value*/
-   __IOM uint32_t   TCH_THR;                /* Match Status           */
-   __IOM uint32_t   Reserved0;				
-   __IOM uint32_t   TCH_RISR;               /* Interrupt Enable       */
-   __IOM uint32_t   TCH_IER;               /* Interrupt Clear        */
+   __IOM uint32_t   TCH_RSSR;               /* Hardmacro control    */
+   __IOM uint32_t   TCH_THR;            /* Sensing target value */
+   __IOM uint32_t   TCH_SCVAL;            /* Sensing counter value*/
+   __IOM uint32_t   TCH_TKST;            /* Reference counter value*/
+   __IOM uint32_t   TCH_CHINF;                /* Match Status           */
+   __IOM uint32_t   TCH_RISR;				
+   __IOM uint32_t   TCH_MISR;               /* Interrupt Enable       */
+   __IOM uint32_t   TCH_IMCR;               /* Interrupt Clear        */
    __IOM uint32_t   TCH_ICR;            /* Sensing target value */
-   __IOM uint32_t   TCH_RWSR;            /* Reference value capture value*/
-   __IOM uint32_t   TCH_OVW_THR;            /* Sensing counter value*/
-   __IOM uint32_t   TCH_OVF;            /* Reference counter value*/
-   __IOM uint32_t   TCH_OVT;                /* Match Status           */
-   __IOM uint32_t   TCH_SYNCR;               /* Interrupt Enable       */
-   __IOM uint32_t   TCH_EVTRG;               /* Interrupt Clear        */
+   __IOM uint32_t   TCH_EVTRG;            /* Sensing target value */
    __IOM uint32_t   TCH_EVPS;            /* Sensing target value */
-   __IOM uint32_t   TCH_EVSWF;            /* Reference value capture value*/
-   __IOM uint32_t   Reserved1[1003];
-   __IOM uint32_t   TCH_CHVAL[18];          /* Reference value capture value */
-   __IOM uint32_t   TCH_SEQCON[18];         /* SEQ Hardmacro control  */
+   __IOM uint32_t   TCH_EVSWF;            /* Sensing target value */
+   __IOM uint32_t   Reserved0[1008];
+   __IOM uint32_t   TCH_DAT[32];          /* Reference value capture value */
+   __IOM uint32_t   Reserved1[992];
+   __IOM uint32_t   TCH_SEQxCON[32];         /* SEQ Hardmacro control  */
 }csp_tkey_t; 
-/**
-  * @brief  tkey mode register
-  */
+/*********************************************************************** 
+ @brief  tkey clock control register                
+***********************************************************************/ 
 typedef enum
 {
-    TK_HM_DIS = 0<<0,
-	TK_HM_EN = 1<<0,
-}TKEY_HMEN_TypeDef;
-/**
-  * @brief  tkey mode register
-  */
-typedef enum
-{
-    TK_SINGLE = 0<<1,
-	TK_SEQ = 1<<1,
-}TKEY_MODE_TypeDef;
-/**
-  * @brief  tkey ckspr register
-  */
-typedef enum
-{
-    TK_CKSPR_DIS = 0<<9,
-	TK_CKSPR_EN = 1<<9,
-}TKEY_CKSPR_TypeDef;
-/**
-  * @brief  tkey CKRND register
-  */
-typedef enum
-{
-    TK_CKRND_DIS = 0<<10,
-	TK_CKRND_EN = 1<<10,
-}TKEY_CKRND_TypeDef;
-/**
-  * @brief  tkey CKFEQ register
-  */
-typedef enum
-{
-    TK_CKFEQ_LOW = 0<<11,
-	TK_CKREQ_HIGH = 1<<11,
-}TKEY_CKFEQ_TypeDef;
+    TK_CLK_EN = 1<<0,
+	TK_CLK_DIS = 0<<0,
+}TK_CLK_TypeDef;
 
-/**
-  * @brief  tkey RSSEL register
-  */
+/*********************************************************************** 
+ @brief  tkey dch clock select               
+***********************************************************************/ 
 typedef enum
 {
-    TK_RSSEL_OVW = 0<<12,
-	TK_RSSEL_OverTHR = 1<<12,
-}TKEY_RSSEL_TypeDef;
-/**
-  * @brief  tkey IDLEP register
-  */
+    TK_DCHCKSEL_REFCLK  = 0<<3,
+	TK_DCHCKSEL_PCLK = 1<<3,
+}TK_DCHCKSEL_TypeDef;
+
+/*********************************************************************** 
+ @brief  tkey dch DIV               
+***********************************************************************/ 
 typedef enum
 {
-    TK_IDLEP_DIS = 0<<14,
-	TK_IDLEP_EN = 1<<14,
-}TKEY_IDLEP_TypeDef;
+    TK_DCHCKDIV_2 = 0<<8,
+	TK_DCHCKDIV_4 = 1<<8,
+	TK_DCHCKDIV_6 = 2<<8,
+	TK_DCHCKDIV_8 = 3<<8,
+}TK_DCHCKDIV_TypeDef;
 
-/**
-  * @brief  tkey DSR register
-  */
+/*********************************************************************** 
+ @brief  tkey TRIM EN/DIS             
+***********************************************************************/ 
 typedef enum
 {
-    TK_DSR_Z = 0<<16,
-	TK_DSR_LOW = 1<<16,
-	TK_DSR_HIGH = 2<<16,
-}TKEY_DSR_TypeDef;
-
-/**
-  * @brief  tkey TSCANSTB register
-  */
+    TK_ALDTRIM_EN  = 1<<15,
+	TK_ALDTRIM_DIS = 0<<15,
+}TK_ALDTRIM_TypeDef;
+/*********************************************************************** 
+ @brief  tkey trim select              
+***********************************************************************/ 
 typedef enum
 {
-    TK_STB_1 = 0<<20,
-	TK_STB_2 = 1<<20,
-	TK_STB_3 = 2<<20,
-	TK_STB_4 = 3<<20,
-}TKEY_TSSTB_TypeDef;
+    TK_TRMTARSEL_TRIM  = 0<<16,
+	TK_TRMTARSEL_FSEL = 1<<16,
+}TK_TRMTARSEL_TypeDef;
 
-/**
-  * @brief  tkey OTHRCN register
-  */
+/***********************************************************************
+ @brief  tkey haed EN/DIS
+***********************************************************************/
 typedef enum
 {
-    TK_DCKDIV_0 = 0<<12,
-	TK_DCKDIV_2 = 1<<12,
-	TK_DCKDIV_4 = 2<<12,
-	TK_DCKDIV_8 = 3<<12,
-}TKEY_DCKDIV_TypeDef;
-#define     TK_PSEL_FVR  0
-#define 	TK_PSEL_AVDD 1
-#define 	TK_FVR_2048V 0
-#define		TK_FVR_4096V 1
-#define 	TK_EC_1V 	 0
-#define		TK_EC_2V 	 1
-#define		TK_EC_3V 	 2
-#define		TK_EC_3_6V   3
+    TK_HM_EN = 1<<0,
+	TK_HM_DIS = 0<<0,
+}TK_HMEN_TypeDef;
+
+/***********************************************************************
+ @brief  tkey scan mode
+***********************************************************************/
+typedef enum
+{
+    TK_MODE_SINGLE  = 0<<1,
+	TK_MODE_SEQ = 1<<1,
+}TK_MODE_TypeDef;
+
+/***********************************************************************
+ @brief  tkey ec level
+***********************************************************************/
+typedef enum
+{
+    TK_ECLVL_1V = 0<<7,
+	TK_ECLVL_2V = 1<<7,
+	TK_ECLVL_3V = 2<<7,
+	TK_ECLVL_3V6 = 3<<7,
+}TK_ECLVL_TypeDef;
+
+/***********************************************************************
+ @brief  tkey scan timeout
+***********************************************************************/
+typedef enum
+{
+    TK_SCTIMLMT_5ms = 0<<9,
+	TK_SCTIMLMT_10ms = 1<<9,
+	TK_SCTIMLMT_50ms = 2<<9,
+	TK_SCTIMLMT_100ms = 3<<9,
+}TK_SCTIMLMT_TypeDef;
+
+/***********************************************************************
+ @brief  tkey scan timeout EN/DIS
+***********************************************************************/
+typedef enum
+{
+    TK_SCTLIM_EN = 0<<11,
+	TK_SCTLIM_DIS = 1<<11,
+}TK_SCTLIM_TypeDef;
+
+/***********************************************************************
+ @brief  tkey scan intervals
+***********************************************************************/
+typedef enum
+{
+    TK_INTVTIM_None = 0<<12,
+	TK_INTVTIM_16ms = 1<<12,
+	TK_INTVTIM_32ms = 2<<12,
+	TK_INTVTIM_64ms = 3<<12,
+	TK_INTVTIM_128ms = 4<<12,
+	TK_INTVTIM_186ms = 5<<12,
+}TK_INTVTIM_TypeDef;
+
+/***********************************************************************
+ @brief  tkey power source
+***********************************************************************/
+typedef enum
+{
+    TK_PWRSRC_FVR = 0<<15,
+	TK_PWRSRC_AVDD = 1<<15,
+}TK_PWRSRC_TypeDef;
+
+/***********************************************************************
+ @brief  tkey internal resistance switch
+***********************************************************************/
+typedef enum
+{
+    TK_INTREN_EN = 1<<16,
+	TK_INTREN_DIS = 0<<16,
+}TK_INTREN_TypeDef;
+
+/***********************************************************************
+ @brief  tkey edge detection stability conditions
+***********************************************************************/
+typedef enum
+{
+    TK_STBLCNT_4 = 0<<17,
+	TK_STBLCNT_8 = 1<<17,
+	TK_STBLCNT_12 = 2<<17,
+	TK_STBLCNT_16 = 3<<17,
+}TK_STBLCNT_TypeDef;
+
+/***********************************************************************
+ @brief  tkey continue counting after scan counter overflow EN/DIS
+***********************************************************************/
+typedef enum
+{
+    TK_CYCSCNT_EN = 1<<19,
+	TK_CYCSCNT_DIS = 0<<19,
+}TK_CYCSCNT_TypeDef;
+
+/***********************************************************************
+ @brief  tkey deepsleep EN/DIS
+***********************************************************************/
+typedef enum
+{
+    TK_STPATDSL_EN = 0<<20,
+	TK_STPATDSL_DIS = 1<<20,
+}TK_STPATDSL_TypeDef;
+
+/***********************************************************************
+ @brief  tkey not activated TCH as the current scan channel Status
+***********************************************************************/  
+typedef enum
+{
+    TK_DST_Z = 0<<0,
+	TK_DST_HIGH = 1<<0,
+	TK_DST_LOW = 2<<0,
+}TK_DST_TypeDef;
+
+/***********************************************************************
+ @brief  tkey Single line debug data EN/DIS
+***********************************************************************/  
+typedef enum
+{
+    TK_DBGSDO_EN = 1<<4,
+	TK_DBGSDO_DIS = 0<<4,
+}TK_DBGSDO_TypeDef;
+
+/***********************************************************************
+ @brief  tkey Single line debug data bit number
+***********************************************************************/  
+typedef enum
+{
+    TK_DBGDLEN_16bit = 0<<5,
+	TK_DBGDLEN_24bit = 1<<5,
+}TK_DBGDLEN_TypeDef;
+
+/***********************************************************************
+ @brief  tkey Single line debug clock div
+***********************************************************************/  
+typedef enum
+{
+    TK_DBGDOCKDIV_2 = 0<<6,
+	TK_DBGDOCKDIV_4 = 1<<6,
+	TK_DBGDOCKDIV_8 = 2<<6,
+	TK_DBGDOCKDIV_16 = 3<<6,
+}TK_DBGDOCKDIV_TypeDef;
+
+/***********************************************************************
+ @brief  tkey Phase shift repeat sequence cycle control
+***********************************************************************/  
+typedef enum
+{
+    TK_PHS_SHFT_SEQ_0 = 0<<20,
+	TK_PHS_SHFT_SEQ_2 = 1<<20,
+	TK_PHS_SHFT_SEQ_3 = 2<<20,
+	TK_PHS_SHFT_SEQ_4 = 3<<20,
+	TK_PHS_SHFT_SEQ_5 = 4<<20,
+	TK_PHS_SHFT_SEQ_6 = 5<<20,
+	TK_PHS_SHFT_SEQ_7 = 6<<20,
+	TK_PHS_SHFT_SEQ_8 = 7<<20,
+}TK_PHS_SHFT_SEQ_TypeDef;
+
+/***********************************************************************
+ @brief  tkey scan deviation threshold setting
+***********************************************************************/
+typedef enum
+{
+    TK_THRSEL_CMP_BIT_23_4 = 0<<0,
+	TK_THRSEL_CMP_BIT_23_5 = 1<<0,
+	TK_THRSEL_CMP_BIT_23_6 = 2<<0,
+	TK_THRSEL_CMP_BIT_23_7 = 3<<0,
+	TK_THRSEL_CMP_BIT_23_8 = 4<<0,
+	TK_THRSEL_CMP_BIT_23_9 = 5<<0,
+	TK_THRSEL_CMP_BIT_23_10 = 6<<0,
+	TK_THRSEL_CMP_BIT_23_11 = 7<<0,
+}TK_THRSEL_TypeDef;
+
+/***********************************************************************
+ @brief  tkey scan deviation threshold EN/DIS
+***********************************************************************/
+typedef enum
+{
+	TK_THR_EN = 1<<8,
+	TK_THR_DIS = 0<<8,
+}TK_THREN_TypeDef;
+
+/***********************************************************************
+ @brief  tkey fuction define
+***********************************************************************/
+#define TK_START 0X1
+#define TK_STOP 0X0
+#define TK_SRR (0X5<<12)
+#define TK_PCKDIV(n) ((n&0xf)<<4)
+#define TK_TRIMCONFIG0(n) ((n&0x1f)<<17)
+#define TK_TRIMCONFIG1(n) ((n&0x1f)<<22)
+#define TK_TRIMCONFIG2(n) ((n&0x1f)<<27)
+#define TK_SHFT_STEP(n) ((n&0xff)<<24)
+#define TCH_EN(val)   (0x01<<val)
+#define TK_SEQLEN(n) (((n-1)&0x1f)<<2)
 
 
-//****************************************************************
-#define TK_CLK_EN 	(TKEY->CLKEN|=0X01)
-#define TK_CLK_DIS 	(TKEY->CLKEN&=0XFFE)
-#define TK_SCANTIME_DIS (0<<12)
-#define TK_SCANTIME_1ms (1<<12)
-#define TK_SCANTIME_1_5ms (2<<12)
-#define TK_SCANTIME_2ms (3<<12)
-#define TK_SCANTIME_3ms (4<<12)
-#define TK_SCANTIME_5ms (5<<12)
-#define TK_SCANTIME_10ms (6<<12)
-#define TK_SCANTIME_100ms (7<<12)
-  
-#define TKEY_TCHEN(val) (val)     /**< TKEY CH Enable         */
-#define TKEY_ICON(val)  (((val) & 0x0Ful) << 8)  
-#define TKEY_START      (0x01ul << 0) 
+/***********************************************************************
+ @brief  tkey status and int define
+***********************************************************************/
+#define TK_BUSY 	(0X1<<12)
+#define TK_SEQ_DNE	(0x01ul << 0)
+#define TK_CH_DNE	(0x01ul << 1)
+#define TK_CH_ERR	(0x01ul << 2)
+#define TK_TIMOVF	(0x01ul << 3)
+#define TK_REFOVF	(0x01ul << 4)
+#define TK_THROVR	(0x01ul << 5)
+#define TK_FVR_2048V 0
+#define	TK_FVR_4096V 1
+#define TK_FVR_NONE  2
 
-#define TKEY_SINDNE      (0x01ul << 0)
-#define TKEY_DNE      (0x01ul << 1)
-#define TKEY_THR      (0x01ul << 2)
-#define TKEY_FLW      (0x01ul << 3)
-#define TKEY_OVW      (0x01ul << 4)
-#define TKEY_TIME      (0x01ul << 5)
+	
+
+
+
+
 
 
 
