@@ -35,8 +35,9 @@ int ept_capture_demo(void)
 	volatile uint8_t ch;	
 	csi_pin_set_mux(PA01,PA01_INPUT);		
 	csi_pin_pull_mode(PA01, GPIO_PULLUP);						//PA01 上拉
-	csi_pin_irq_mode(PA01,EXI_GRP1, GPIO_IRQ_FALLING_EDGE);		//PA01 下降沿产生中断	
-	csi_exi_set_evtrg(EXI_TRGOUT1, TRGSRC_EXI1, 1);
+	csi_pin_irq_mode(PA01,EXI_GRP1, GPIO_IRQ_FALLING_EDGE);		//PA01 下降沿产生中断
+	csi_pin_irq_enable(PA01, ENABLE);							//使能GPIO中断	
+	csi_exi_set_evtrg(EXI_TRGOUT1, TRGSRC_EXI1, 1);	
 //------------------------------------------------------------------------------------------------------------------------	
 //	csi_pin_set_mux(PA13, PA13_EPT_CHAX);						//PIN17
 //	csi_pin_set_mux(PA14, PA14_EPT_CHBX);						//PIN18

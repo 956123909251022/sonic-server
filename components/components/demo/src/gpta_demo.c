@@ -50,9 +50,11 @@ int gpta_capture_demo(void)
     volatile uint8_t ch;
 
 	csi_pin_set_mux(PA01,PA01_INPUT);		
-	csi_pin_pull_mode(PA01, GPIO_PULLDOWN);						//PA01 上拉
-	csi_pin_irq_mode(PA01,EXI_GRP1, GPIO_IRQ_FALLING_EDGE);		//PA01 下降沿产生中断	
-	csi_exi_set_evtrg(EXI_TRGOUT1, TRGSRC_EXI1, 1);
+	csi_pin_pull_mode(PA01, GPIO_PULLUP);						//PA01 上拉
+	csi_pin_irq_mode(PA01,EXI_GRP1, GPIO_IRQ_FALLING_EDGE);		//PA01 下降沿产生中断
+	csi_pin_irq_enable(PA01, ENABLE);							//使能GPIO中断	
+	csi_exi_set_evtrg(EXI_TRGOUT1, TRGSRC_EXI1, 1);	
+	
 //------------------------------------------------------------------------------------------------------------------------		
 	csi_etb_config_t tEtbConfig;				//ETB 参数配置结构体	
 	tEtbConfig.byChType  = ETB_ONE_TRG_ONE;  	//单个源触发单个目标
