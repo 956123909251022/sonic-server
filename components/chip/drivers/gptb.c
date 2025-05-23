@@ -299,6 +299,63 @@ csi_error_t  csi_gptb_wave_init(csp_gptb_t *ptGptbBase, csi_gptb_pwmconfig_t *pt
 	return CSI_OK;	
 }
 
+
+/** \brief initialize gpta data structure
+ * 
+ *  \param[in] ptGptaBase: pointer of gpta register structure
+ *  \param[in] wTimeOut: the timeout for gpta, unit: us, 20us < wTimeOut < 3S
+ *  \return error code \ref csi_error_t
+ */ 
+csi_error_t csi_gptb_timer_init(csp_gptb_t *ptGptbBase, uint32_t wTimeOut)
+{
+    uint32_t wClkDiv;
+	uint32_t wCrVal;
+	uint32_t wPrdrLoad; 
+	
+	if(wTimeOut == 0 ){return CSI_ERROR;}
+		
+	csi_clk_enable((uint32_t *)ptGptbBase);								// clk enable
+	
+	csp_gptb_clken(ptGptbBase);
+	csp_gptb_wr_key(ptGptbBase);                                           //Unlocking
+	csp_gptb_reset(ptGptbBase);											// reset 
+	
+	
+	wClkDiv = (long long)csi_get_pclk_freq() * wTimeOut / 1000000 / 60000;		//gpta clk div value
+	if(wClkDiv == 0)
+		wClkDiv  = 1;
+	wPrdrLoad = (long long)csi_get_pclk_freq() * wTimeOut / 1000000 / wClkDiv;	//gpta prdr load value
+	if(wPrdrLoad > 0xffff)
+	{
+		wClkDiv += 1;
+		wPrdrLoad = (long long)csi_get_pclk_freq() * wTimeOut / 1000000 / wClkDiv ;	//gpta prdr load value
+	}
+	wCrVal =GPTB_UPCNT | (GPTB_SYNC_START<<GPTB_STARTSRC_POS) | (GPTB_WAVE<<GPTB_MODE_POS);
+	wCrVal=(wCrVal & ~(GPTB_PSCLD_MSK))   |((GPTB_LDPSCR_ZRO&0x03)   <<GPTB_PSCLD_POS);	
+
+    csp_gptb_clken(ptGptbBase);                                         // clkEN
+	csp_gptb_set_cr(ptGptbBase, wCrVal);								// set gpta work mode
+	csi_gptb_count_mode(ptGptbBase, GPTB_OP_CONT);                      // gpta count mode
+	csp_gptb_set_pscr(ptGptbBase, (uint16_t)wClkDiv - 1);				// clk div
+	csp_gptb_set_prdr(ptGptbBase, (uint16_t)wPrdrLoad);				    // prdr load value
+
+	csp_gptb_int_enable(ptGptbBase, GPTB_INT_PEND, true);		        //enable interrupt
+	csi_irq_enable((uint32_t *)ptGptbBase);							    //enable  irq
+	
+	return CSI_OK;					
+}
+
+/** \brief set gpta count mode
+ * 
+ *  \param[in] ptGptaBase: pointer of gpta register structure
+ *  \param[in] eCntMode: gpta count mode, one pulse/continuous
+ *  \return none
+ */ 
+void csi_gptb_count_mode(csp_gptb_t *ptGptbBase, csi_gptb_opmd_e eCntMode)
+{
+	csp_gptb_set_opmd(ptGptbBase, eCntMode);
+}
+
 /** \brief enable/disable gptb burst 
  * 
  *  \param[in] ptGptbBase: pointer of gptb register structure
