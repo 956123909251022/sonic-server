@@ -89,20 +89,23 @@ build_config:
   include:
     - include
     - drivers/sys
-  internal_include: ~
+  internal_include: 
   cflag: -Og  -g3 -Wno-unused-function
   cxxflag: -Og  -g3 -Wno-unused-function
   asmflag: ""
   define:
     - NO_MORE_DEFINE
-  libs: ~
-  libpath: ~
+  libs:
+    - _110Tkey_F_1_00.a
+  libpath:
+    - drivers
 # source_file:                             # <可选项> 指定参与编译的源代码文件，支持通配符，采用相对路径
 #   - src/*.c                              # 例：组件 src 目录下所有的扩展名为 c 的源代码文件
 source_file:
   - drivers/*.c
   - drivers/sys/*.c
   - drivers/sys/*.S
+  - lib_110Tkey_C_1_00.a
 ## 第五部分：配置信息
 # def_config:                              # 组件的可配置项
 #   CONFIG_DEBUG: y
@@ -119,16 +122,16 @@ install:
       - include/*.h
 author:
   name: ""
-depends: ~
-defconfig: ~
+depends: 
+defconfig: 
 link_config:
-  path: ~
-  library: ~
-hidden: ~
-homepage: ~
-soc_config: ~
-def_config: ~
-depends_forward: ~
+  path: 
+  library: 
+hidden: 
+homepage: 
+soc_config: 
+def_config: 
+depends_forward: 
 ## 第七部分：导出部分
 # export:
 #   - dest: "<SOLUTION_PATH>/generated/data" # 安装的目的路径 dest是相当路径

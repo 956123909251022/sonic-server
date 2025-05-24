@@ -58,17 +58,17 @@ extern volatile uint32_t dwKey_Map;
  @brief  Tkey extern functions                  
 ***********************************************************************/ 
 extern void tkey_sampling_prog(void);
-extern void	tkey_keymap_prog(void);
-extern void	tkey_baseline_tracking(void);
-extern void	tkey_result_prog(void);
-extern void	tkey_trigger_auto_adjust(void);
+extern void tkey_keymap_prog(void);
+extern void tkey_baseline_tracking(void);
+extern void tkey_result_prog(void);
+extern void tkey_trigger_auto_adjust(void);
 extern void tkey_error_detect(void);
 extern void tkey_baseline_prog(void);
 extern void csi_tkey_init(void);
 extern void csi_tkey_main_prog(void);
 extern void csi_tkey_process(void); 
 extern void csi_tkey_int_process(void); 
-
+extern void csi_tkey_parameter_init(void);
 
 #ifdef __cplusplus
 }

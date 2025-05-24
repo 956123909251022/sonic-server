@@ -193,5 +193,7 @@ void cqc_check_test(void);
 
 //intvref and fvr
 void intvref_fvr_output(void);
+// tkey demo
+extern void tkey_demo(void);
 
 #endif
