@@ -656,9 +656,9 @@ static inline void csp_gpta_flt_init(csp_gpta_t *ptGptaBase, csp_gpta_cnflt_e eC
 	}
 }
 
-static inline void csp_gpta_set_prdr(csp_gpta_t *ptGptaBase, uint32_t bwVal)
+static inline void csp_gpta_set_prdr(csp_gpta_t *ptGptaBase, uint32_t wVal)
 {
-	ptGptaBase -> PRDR = bwVal;
+	ptGptaBase -> PRDR = wVal;
 }
 
 static inline void csp_gpta_set_start_src(csp_gpta_t *ptGptaBase, csp_gpta_startsrc_e eVal)
@@ -688,35 +688,32 @@ static inline void csp_gpta_set_auto_rearm(csp_gpta_t *ptGptaBase,  csp_gpta_are
 }
 
 
-static inline void csp_gpta_set_cmpa(csp_gpta_t *ptGptaBase, uint16_t bwVal)
+static inline void csp_gpta_set_cmpa(csp_gpta_t *ptGptaBase, uint32_t wVal)
 {
-	ptGptaBase -> CMPA = bwVal;
+	ptGptaBase -> CMPA = wVal;
 }
-static inline uint16_t csp_gpta_get_cmpa(csp_gpta_t *ptGptaBase)
+static inline uint32_t csp_gpta_get_cmpa(csp_gpta_t *ptGptaBase)
 {
 	return (ptGptaBase -> CMPA);
 }
-static inline uint16_t csp_gpta_get_cmpaa(csp_gpta_t *ptGptaBase)
+static inline uint32_t csp_gpta_get_cmpaa(csp_gpta_t *ptGptaBase)
 {
 	return (ptGptaBase -> CMPAA);
 }
-static inline void csp_gpta_set_cmpb(csp_gpta_t *ptGptaBase, uint16_t bwVal)
+static inline void csp_gpta_set_cmpb(csp_gpta_t *ptGptaBase, uint32_t wVal)
 {
-	ptGptaBase -> CMPB = bwVal;
+	ptGptaBase -> CMPB = wVal;
 }
-static inline uint16_t csp_gpta_get_cmpb(csp_gpta_t *ptGptaBase)
+static inline uint32_t csp_gpta_get_cmpb(csp_gpta_t *ptGptaBase)
 {
 	return (ptGptaBase -> CMPB);
 }
-static inline uint16_t csp_gpta_get_cmpba(csp_gpta_t *ptGptaBase)
+static inline uint32_t csp_gpta_get_cmpba(csp_gpta_t *ptGptaBase)
 {
 	return (ptGptaBase -> CMPBA);
 }
-static inline void csp_gpta_set_prd(csp_gpta_t *ptGptaBase, uint16_t bwVal)
-{
-	ptGptaBase -> PRDR = bwVal;
-}
-static inline uint16_t csp_gpta_get_prd(csp_gpta_t *ptGptaBase)
+
+static inline uint32_t csp_gpta_get_prd(csp_gpta_t *ptGptaBase)
 {
 	return (ptGptaBase -> PRDR);
 }
@@ -729,22 +726,22 @@ static inline uint16_t csp_gpta_get_phsr(csp_gpta_t *ptGptaBase)
 	return (ptGptaBase -> PHSR);
 }
 
-static inline void csp_gpta_set_aqcr1(csp_gpta_t *ptGptaBase, uint32_t bwVal)
+static inline void csp_gpta_set_aqcr1(csp_gpta_t *ptGptaBase, uint32_t wVal)
 {
-	ptGptaBase -> AQCRA = bwVal;
+	ptGptaBase -> AQCRA = wVal;
 }
-static inline void csp_gpta_set_aqcr2(csp_gpta_t *ptGptaBase, uint32_t bwVal)
+static inline void csp_gpta_set_aqcr2(csp_gpta_t *ptGptaBase, uint32_t wVal)
 {
-	ptGptaBase -> AQCRB = bwVal;
+	ptGptaBase -> AQCRB = wVal;
 }
 
-static inline void csp_gpta_set_gldcr(csp_gpta_t *ptGptaBase, uint32_t byCh)
+static inline void csp_gpta_set_gldcr(csp_gpta_t *ptGptaBase, uint32_t wCh)
 {
-	ptGptaBase -> GLDCR   =  byCh ;
+	ptGptaBase -> GLDCR   =  wCh ;
 }
-static inline void csp_gpta_set_gldcr2(csp_gpta_t *ptGptaBase, uint32_t byCh)
+static inline void csp_gpta_set_gldcr2(csp_gpta_t *ptGptaBase, uint32_t wCh)
 {   ptGptaBase -> REGPROT = GPTA_REGPROT;
-	ptGptaBase -> GLDCR2   |=  byCh ;
+	ptGptaBase -> GLDCR2   |=  wCh ;
 }
 
 static inline void csp_gpta_start(csp_gpta_t *ptGptaBase)
@@ -757,9 +754,9 @@ static inline void csp_gpta_stop(csp_gpta_t *ptGptaBase)
 	ptGptaBase->RSSR &= ~EPT_START ;
 }
 
-static inline uint16_t csp_gpta_get_prdr(csp_gpta_t *ptGptaBase)
+static inline uint32_t csp_gpta_get_prdr(csp_gpta_t *ptGptaBase)
 {
-	return (ptGptaBase -> PRDR & 0xffff);
+	return (ptGptaBase -> PRDR & 0xffffff);
 }
 
 static inline void csp_gpta_sync_enable(csp_gpta_t *ptGptaBase, uint8_t byCh, bool bEnable)
@@ -799,13 +796,13 @@ static inline void csp_gpta_set_trgsrc01(csp_gpta_t *ptGptaBase, uint8_t byCh, c
 	ptGptaBase -> EVTRG = (ptGptaBase -> EVTRG & (~GPTA_SEL_MSK_TRG(byCh))) | (eSrc << GPTA_SEL_POS_TRG(byCh));
 }
 
-static inline void csp_gpta_set_trgftcr(csp_gpta_t *ptGptaBase, uint32_t byPrd)
+static inline void csp_gpta_set_trgftcr(csp_gpta_t *ptGptaBase, uint32_t wPrd)
 {
-	ptGptaBase ->  TRGFTCR = byPrd;
+	ptGptaBase ->  TRGFTCR = wPrd;
 }
-static inline void csp_gpta_set_trgftwr(csp_gpta_t *ptGptaBase, uint32_t byPrd)
+static inline void csp_gpta_set_trgftwr(csp_gpta_t *ptGptaBase, uint32_t wPrd)
 {
-	ptGptaBase ->  TRGFTWR = byPrd;
+	ptGptaBase ->  TRGFTWR = wPrd;
 }
 
 static inline void csp_gpta_set_trgprd(csp_gpta_t *ptGptaBase, uint8_t byCh, uint8_t byPrd)
@@ -835,19 +832,19 @@ static inline uint32_t csp_gpta_get_misr(csp_gpta_t *ptGptaBase)
 {
 	return (ptGptaBase -> MISR);
 }
-static inline void csp_gpta_clr_int(csp_gpta_t *ptGptaBase, csp_gpta_int_e byInt)
+static inline void csp_gpta_clr_int(csp_gpta_t *ptGptaBase, csp_gpta_int_e eInt)
 {
-	ptGptaBase -> ICR = byInt;
+	ptGptaBase -> ICR = eInt;
 }
 
-static inline void csp_gpta_set_feglk(csp_gpta_t *ptGptaBase, uint32_t byCh)
+static inline void csp_gpta_set_feglk(csp_gpta_t *ptGptaBase, uint32_t wCh)
 {
-	ptGptaBase -> REGLK = byCh;
+	ptGptaBase -> REGLK = wCh;
 }
 
-static inline void csp_gpta_set_feglk2(csp_gpta_t *ptGptaBase, uint32_t byCh)
+static inline void csp_gpta_set_feglk2(csp_gpta_t *ptGptaBase, uint32_t wCh)
 {
-	ptGptaBase -> REGLK2 = byCh;
+	ptGptaBase -> REGLK2 = wCh;
 }
 
 ///function declaratioN
