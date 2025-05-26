@@ -265,7 +265,7 @@ static inline void csp_uart_disable(csp_uart_t *ptUartBase)
 }
 static inline void csp_uart_set_parity(csp_uart_t *ptUartBase, uart_parity_e eParity)
 {
-	ptUartBase->CTRL |= (eParity << UART_PARITY_POS);
+	ptUartBase->CTRL = (ptUartBase->CTRL & ~UART_PARITY_MSK) | (eParity << UART_PARITY_POS);
 }
 static inline void csp_uart_set_fifo(csp_uart_t *ptUartBase, uart_fifo_bit_e eFiBit, bool bEnable)
 {
