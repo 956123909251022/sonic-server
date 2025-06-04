@@ -173,7 +173,7 @@ csi_error_t csi_uart_init(csp_uart_t *ptUartBase, csi_uart_config_t *ptUartCfg)
 	//databits = 8/stopbits = 1; fixed, can not be configured 
 	csp_uart_set_parity(ptUartBase, eParity);						//parity
 	csp_uart_set_fifo(ptUartBase, UART_RXFIFO_1_8, ENABLE);			//set /fx fifo = 1_2/fifo enable
-	csp_uart_set_rtor(ptUartBase, 5000);							//set receive timeout 
+	csp_uart_set_rtor(ptUartBase, 100);								//set receive timeout 
 	
 	
 	if(ptUartCfg->wInt)
