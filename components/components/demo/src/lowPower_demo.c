@@ -307,7 +307,7 @@ void lp_lpt_wakeup_deepsleep_demo(void)
  */
 void lp_wakeup_demo(void)
 {
-	csi_pm_mode_e ePmMode = PM_MODE_SHUTDOWN;			//PM_MODE_SLEEP/PM_MODE_DEEPSLEEP/PM_MODE_SNOOZE/PM_MODE_SHUTDOWN
+	csi_pm_mode_e ePmMode = PM_MODE_DEEPSLEEP;			//PM_MODE_SLEEP/PM_MODE_DEEPSLEEP/PM_MODE_SNOOZE/PM_MODE_SHUTDOWN
 	uint16_t hwRstSrc = csi_get_rst_reason();
 	uint8_t byWkIntSrc; 
 	
@@ -325,7 +325,7 @@ void lp_wakeup_demo(void)
 		}
 	}
 	
-	//csi_pin_set_mux(PB02,PB02_OUTPUT);				//PB02 OUTPUT
+	csi_pin_set_mux(PB02,PB02_OUTPUT);				//PB02 OUTPUT
 	
 	csi_pin_toggle(PB02);
 	mdelay(200);
@@ -361,8 +361,8 @@ void lp_wakeup_demo(void)
 		csi_pin_pull_mode(PB01, GPIO_PULLUP);						//PB01 上拉
 		csi_pin_irq_mode(PB01,EXI_GRP1, GPIO_IRQ_FALLING_EDGE);		//PB01 下降沿产生中断，选择中断组1
 		csi_pin_irq_enable(PB01, ENABLE);							//PB01 中断使能
-		csi_pin_vic_irq_enable(EXI_GRP1, ENABLE);
-		csi_vic_set_wakeup_irq(EXI1_IRQ_NUM);	
+		csi_pin_vic_irq_enable(EXI_GRP1, ENABLE);					//VIC 中断使能
+		csi_vic_set_wakeup_irq(EXI1_IRQ_NUM);						//EXI 唤醒配置					
 	}
 	
 	csi_pm_clk_enable(SP_IDLE_PCLK, DISABLE);					//sleep模式下关闭PCLK
