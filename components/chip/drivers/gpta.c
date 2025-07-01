@@ -9,6 +9,7 @@
  * *********************************************************************
 */
 #include "sys_clk.h"
+#include "csp.h"
 #include "drv/common.h"
 #include "drv/gpta.h"
 #include "csp_gpta.h"
@@ -135,7 +136,7 @@ csi_error_t csi_gpta_capture_init(csp_gpta_t *ptGptaBase, csi_gpta_captureconfig
 	uint32_t wClkDiv=0;
 	uint32_t wCrVal;
 	uint32_t wPrdrLoad; 
-			
+		
 	csi_clk_enable((uint32_t *)ptGptaBase);								 // clk enable	
 	csp_gpta_clken(ptGptaBase);
 	csp_gpta_wr_key(ptGptaBase);                                           //Unlocking
@@ -157,7 +158,14 @@ csi_error_t csi_gpta_capture_init(csp_gpta_t *ptGptaBase, csi_gpta_captureconfig
 	
 	wCrVal|=GPTA_CAPLD_EN;
 	wCrVal|=GPTA_CAPREARM;
-	wPrdrLoad=0xFFFFFF;
+	if(ptGptaBase == (csp_gpta_t *) GPTA0)
+	{
+		wPrdrLoad = GPTA_24BIT_MAX;
+	}
+	else
+	{
+		wPrdrLoad = GPTA_16BIT_MAX;
+	}
 
     csp_gpta_clken(ptGptaBase);                                             // clkEN
 	csp_gpta_set_cr(ptGptaBase, wCrVal);									// set bt work mode
@@ -196,16 +204,31 @@ csi_error_t  csi_gpta_wave_init(csp_gpta_t *ptGptaBase, csi_gpta_pwmconfig_t *pt
 	csp_gpta_wr_key(ptGptaBase);                                           //Unlocking
 	csp_gpta_reset(ptGptaBase);											// reset 
 	
-	
-	if(ptGptaPwmCfg->byCountingMode==GPTA_UPDNCNT){
-		    wClkDiv = (csi_get_pclk_freq()  / ptGptaPwmCfg->wFreq /2 / 8000000);		// clk div value
-			if(wClkDiv == 0)wClkDiv = 1;	
-			wPrdrLoad  = (csi_get_pclk_freq()/ptGptaPwmCfg->wFreq /2 /wClkDiv);	    //prdr load value
-		
-	}else{
-			wClkDiv = (csi_get_pclk_freq() / ptGptaPwmCfg->wFreq / 8000000);		// clk div value
-			if(wClkDiv == 0)wClkDiv = 1;	
-			wPrdrLoad  = (csi_get_pclk_freq()/ptGptaPwmCfg->wFreq/wClkDiv);	    //prdr load value
+	if(ptGptaBase == (csp_gpta_t *) GPTA0)
+	{
+		if(ptGptaPwmCfg->byCountingMode==GPTA_UPDNCNT){
+				wClkDiv = (csi_get_pclk_freq()  / ptGptaPwmCfg->wFreq /2 / 8000000);		// clk div value
+				if(wClkDiv == 0)wClkDiv = 1;	
+				wPrdrLoad  = (csi_get_pclk_freq()/ptGptaPwmCfg->wFreq /2 /wClkDiv);	    //prdr load value
+			
+		}else{
+				wClkDiv = (csi_get_pclk_freq() / ptGptaPwmCfg->wFreq / 8000000);		// clk div value
+				if(wClkDiv == 0)wClkDiv = 1;	
+				wPrdrLoad  = (csi_get_pclk_freq()/ptGptaPwmCfg->wFreq/wClkDiv);	    //prdr load value
+		}
+	}
+	else
+	{
+		if(ptGptaPwmCfg->byCountingMode==GPTA_UPDNCNT){
+				wClkDiv = (csi_get_pclk_freq()  / ptGptaPwmCfg->wFreq /2 / 30000);		// clk div value
+				if(wClkDiv == 0)wClkDiv = 1;	
+				wPrdrLoad  = (csi_get_pclk_freq()/ptGptaPwmCfg->wFreq /2 /wClkDiv);	    //prdr load value
+			
+		}else{
+				wClkDiv = (csi_get_pclk_freq() / ptGptaPwmCfg->wFreq / 30000);		// clk div value
+				if(wClkDiv == 0)wClkDiv = 1;	
+				wPrdrLoad  = (csi_get_pclk_freq()/ptGptaPwmCfg->wFreq/wClkDiv);	    //prdr load value
+		}		
 	}
 		
 	wCrVal =ptGptaPwmCfg->byCountingMode | (ptGptaPwmCfg->byStartSrc<<GPTA_STARTSRC_POS) |
@@ -245,7 +268,8 @@ csi_error_t csi_gpta_timer_init(csp_gpta_t *ptGptaBase, uint32_t wTimeOut)
 {
     uint32_t wClkDiv;
 	uint32_t wCrVal;
-	uint32_t wPrdrLoad; 
+	uint32_t wPrdrLoad,wPrdrLoadMax; 
+
 	
 	if(wTimeOut == 0 ){return CSI_ERROR;}
 		
@@ -255,12 +279,20 @@ csi_error_t csi_gpta_timer_init(csp_gpta_t *ptGptaBase, uint32_t wTimeOut)
 	csp_gpta_wr_key(ptGptaBase);                                           //Unlocking
 	csp_gpta_reset(ptGptaBase);											// reset 
 	
-	
-	wClkDiv = (long long)csi_get_pclk_freq() * wTimeOut / 1000000 / 16000000;		//gpta clk div value
+	if(ptGptaBase == (csp_gpta_t *) GPTA0)
+	{
+		wClkDiv = (long long)csi_get_pclk_freq() * wTimeOut / 1000000 / 16000000;		//gpta clk div value
+		wPrdrLoadMax = GPTA_24BIT_MAX;
+	}
+	else
+	{
+		wClkDiv = (long long)csi_get_pclk_freq() * wTimeOut / 1000000 / 60000;		//gpta clk div value	
+		wPrdrLoadMax = GPTA_16BIT_MAX;
+	}
 	if(wClkDiv == 0)
 		wClkDiv  = 1;
 	wPrdrLoad = (long long)csi_get_pclk_freq() * wTimeOut / 1000000 / wClkDiv;	//gpta prdr load value
-	if(wPrdrLoad > 0xffffff)
+	if(wPrdrLoad > wPrdrLoadMax)
 	{
 		wClkDiv += 1;
 		wPrdrLoad = (long long)csi_get_pclk_freq() * wTimeOut / 1000000 / wClkDiv ;	//gpta prdr load value
