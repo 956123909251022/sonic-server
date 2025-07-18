@@ -306,7 +306,7 @@ int uart_recv_int_demo(void)
 	
 	tUartConfig.byParity = UART_PARITY_ODD;		//校验位，奇校验
 	tUartConfig.wBaudRate = 115200;				//波特率，115200
-	tUartConfig.wInt = UART_INTSRC_RXFIFO;	//串口接收中断打开，使用RXFIFO中断(默认推荐使用)
+	tUartConfig.wInt = UART_INTSRC_RXFIFO;		//串口接收中断打开，使用RXFIFO中断(默认推荐使用)
 	tUartConfig.byTxMode = UART_TX_MODE_POLL;	//发送模式：轮询模式
 	tUartConfig.byRxMode = UART_RX_MODE_INT_FIX;//接收模式：中断指定接收模式
 	
@@ -362,7 +362,7 @@ int uart_recv_dynamic_demo(void)
 	//串口参数配置
 	tUartConfig.byParity = UART_PARITY_ODD;		//校验位，奇校验
 	tUartConfig.wBaudRate = 115200;				//波特率，115200
-	tUartConfig.wInt = UART_INTSRC_RXFIFO | UART_INTSRC_RXBRK;	//串口接收中断打开，使用RXFIFO中断(默认推荐使用)
+	tUartConfig.wInt = UART_INTSRC_RXFIFO ;		//串口接收中断打开，使用RXFIFO中断(默认推荐使用)
 	tUartConfig.byTxMode = UART_TX_MODE_POLL;	//发送模式：轮询模式
 	tUartConfig.byRxMode = UART_RX_MODE_INT_DYN;//接收模式：中断动态接收模式
 	
