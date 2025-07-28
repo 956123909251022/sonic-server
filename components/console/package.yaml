@@ -11,7 +11,7 @@ yoc_version:
   - v7.2
   - v7.3
 depends:
-  - apt_csi: v1.0.4
+  - apt_csi: v2.0.0
 build_config:
   include:
     - include
