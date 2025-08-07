@@ -343,7 +343,7 @@ void bt1_int_handler(void)
 
 void lcd_int_handler(void) 
 {
-#if	BT1_INT_HANDLE_EN
+#if	LCD_INT_HANDLE_EN
 	#if	defined(IS_CHIP_1103) || defined(IS_CHIP_1104)
 		// ISR content ...
 		lcd_irqhandler(LCD);
