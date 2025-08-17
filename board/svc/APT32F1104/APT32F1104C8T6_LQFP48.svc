@@ -22,7 +22,7 @@
       <GenCodeFuncName>APT32F1104LQFP48PinInitFunc</GenCodeFuncName>
       <Pins>
         <Pin pinNum="1" group="PA0" displayName="1">
-          <PinFunctions select="">
+          <PinFunctions select="Undefined">
             <Func>GPD</Func>
             <Func>LCD_COM0</Func>
             <Func>GPTB0_CHB</Func>
@@ -32,11 +32,11 @@
             <Func>ADC_AN6</Func>
             <Func>PA0.6</Func>
           </PinFunctions>
-          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Pullup Comment="" displayName="Pullup">pullup</Pullup>
           <Direction Comment="" displayName="Direction">output</Direction>
         </Pin>
         <Pin pinNum="2" group="PA0" displayName="2">
-          <PinFunctions select="">
+          <PinFunctions select="PA0.7">
             <Func>GPD</Func>
             <Func>LCD_COM1</Func>
             <Func>LPT_INOUT</Func>
@@ -46,7 +46,7 @@
             <Func>ADC_AIN7</Func>
             <Func>PA0.7</Func>
           </PinFunctions>
-          <Pullup Comment="" displayName="Pullup">pull none</Pullup>
+          <Pullup Comment="" displayName="Pullup">pullup</Pullup>
           <Direction Comment="" displayName="Direction">output</Direction>
         </Pin>
         <Pin pinNum="3" group="PA0" displayName="3">
