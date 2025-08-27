@@ -7,15 +7,12 @@ hw_info:
   ld_script: ""
   flash_program: ""
 def_config:
-  CONFIG_ARCH_INTERRUPTSTACK: 1024
-  CONFIG_DEBUG_MODE: 1
   CONFIG_KERNEL_NONE: 1
-  CONFIG_SUPPORT_TSPEND: 1
   CONFIG_XIP: 1
   DBG_PRINT2PC: 1
   IS_CHIP_1104: 1
 name: demo
-version: v1.0.0
+version: v2.0.0
 description: 我的第一个方案工程
 tag: ""
 keywords: 
@@ -24,8 +21,8 @@ author:
 license: ""
 type: solution
 depends:
-  - apt32f110x_demo: v1.0.4
-  - sdk_110x: v1.0.4
+  - apt32f110x_demo: v2.0.0
+  - sdk_110x: v2.0.0
 build_config:
   include:
     - include
@@ -40,7 +37,7 @@ build_config:
 source_file:
   - src/*.c
 depends_forward:
-  - apt32f110x_demo: v1.0.4
-  - sdk_110x: v1.0.4
+  - apt32f110x_demo: v2.0.0
+  - sdk_110x: v2.0.0
 install: 
 homepage: 

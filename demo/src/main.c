@@ -20,7 +20,9 @@
 /* externs function--------------------------------------------------------*/
 extern void system_init(void);
 extern void board_init(void);
+extern void PinConfigInit(void);
 extern void user_demo(void);
+
 
 /* externs variablesr------------------------------------------------------*/
 
@@ -28,11 +30,9 @@ extern void user_demo(void);
 
 int main()
 {
-    system_init();
-	board_init();
-	
-	csi_pin_set_mux(PA06, PA06_OUTPUT);		//PA06 output
-	csi_pin_set_high(PA06);					//PA06 output high;
+    system_init();							//系统时钟、TICK等配置							
+	board_init();							
+	PinConfigInit();						//GPIO可视化配置的IO初始化代码
 	
 	my_printf("Hello World~~~~~~~\n");		//print message
 	
