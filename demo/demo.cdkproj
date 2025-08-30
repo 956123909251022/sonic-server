@@ -17,6 +17,7 @@
     <FlashOperate>84</FlashOperate>
   </MonitorProgress>
   <VirtualDirectory Name="package"/>
+  <PackPathes>$(ProjectPath)/../board|$(ProjectPath)/../components|$(ProjectPath)/../demo|</PackPathes>
   <BuildConfigs>
     <BuildConfig Name="BuildSet">
       <Target>
@@ -234,5 +235,4 @@
     <debugLayout/>
     <memoryTabColSizeExpressions>100:8;100:8;100:8;100:8;</memoryTabColSizeExpressions>
   </DebugSessions>
-  <PackPathes>$(ProjectPath)/../board|$(ProjectPath)/../components|$(ProjectPath)/../demo|</PackPathes>
 </Project>
