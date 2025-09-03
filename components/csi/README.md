@@ -4,7 +4,7 @@ cpu core头文件，csi api接口头文件。
 # Release Notes
 
 ======================================================
-Version: V2.0.0
+Version: V1.1.0
 Release Date: 2022.9.8
 
 Release Notes

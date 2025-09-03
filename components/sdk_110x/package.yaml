@@ -1,5 +1,5 @@
 name: sdk_110x
-version: v2.0.0
+version: V1.1.0
 description: sdk for apt32f110x
 tag: ""
 keywords: 
@@ -9,10 +9,10 @@ license: ""
 homepage: 
 type: sdk
 depends:
-  - apt32f110x_chip: v2.0.0
-  - apt32f110x_evb: v2.0.0
+  - apt32f110x_chip: V1.1.0
+  - apt32f110x_evb: V1.1.0
   - apt_console: v1.0.2
-  - apt_csi: v2.0.0
+  - apt_csi: V1.1.0
 hw_info:
   cpu_id: ""
   cpu_name: ""
@@ -34,7 +34,7 @@ source_file:
 def_config: 
 install: 
 depends_forward:
-  - apt32f110x_chip: v2.0.0
-  - apt32f110x_evb: v2.0.0
+  - apt32f110x_chip: V1.1.0
+  - apt32f110x_evb: V1.1.0
   - apt_console: v1.0.2
-  - apt_csi: v2.0.0
+  - apt_csi: V1.1.0
