@@ -79,7 +79,6 @@ void bt_init(void)
 
 void tkey_demo(void)
 {
-	SYSCON->CLCR = 0xa5a09500; //B4
 	csi_pin_set_mux(PA011,PA011_OUTPUT);//LED
 	//bt_init(); //用于蜂鸣器驱动
 	usart_init();			
