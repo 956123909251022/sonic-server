@@ -18,11 +18,9 @@ void csi_tkey_parameter_init(void)
 /****************************************************
 //TK basic parameters
 *****************************************************/
-	dwTkeyIoEnable=TCH_EN(0)|TCH_EN(1)|TCH_EN(2)|TCH_EN(3)|TCH_EN(4)|TCH_EN(5)|TCH_EN(6)|TCH_EN(7)|TCH_EN(9)|                 //TCH_EN(10)swdio  tch8 tx
+	dwTkeyIoEnable=TCH_EN(0)|TCH_EN(1)|TCH_EN(2)|TCH_EN(3)|TCH_EN(4)|TCH_EN(5)|TCH_EN(6)|TCH_EN(7)|                 //TCH_EN(10)swdio  tch8 tx
                                  TCH_EN(11)|TCH_EN(12)|TCH_EN(14)|TCH_EN(15)|TCH_EN(16)|TCH_EN(17)|TCH_EN(18)|TCH_EN(19)|TCH_EN(20)|                 //TCH_EN(13)swclk                
-                                 TCH_EN(21)|TCH_EN(22)|TCH_EN(23)|TCH_EN(25)|TCH_EN(26)|TCH_EN(27)|TCH_EN(28)|TCH_EN(29)|TCH_EN(30)|                //TCH_EN(24)fvr        
-                                 TCH_EN(31);
-
+                                 TCH_EN(21)|TCH_EN(22)|TCH_EN(23)|TCH_EN(25)|TCH_EN(26)|TCH_EN(27)|TCH_EN(28);               //TCH_EN(24)fvr  
 	byTkeyGlobalSens=3;								//TK Global Tkey Sensitivity,0=invalid;
 	byTkeyGlobalTrigger=50;							//TK Global Tkey Trigger,0=invalid;
 	byTkeyGlobalIcon=4;								//TK Global Tkey Icon,0=invalid;
