@@ -10,6 +10,7 @@
 /* include ----------------------------------------------------------------*/
 #include "demo.h"
 #include "pin.h"
+#include "led.h"
 #include "tkey.h"
 #include <string.h>
 #include <csi_drv.h>
