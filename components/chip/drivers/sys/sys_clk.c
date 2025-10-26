@@ -19,6 +19,8 @@
 //extern system_clk_config_t g_tSystemClkConfig[];
 
 
+static uint32_t wTmLoad = 0,wClkDivn = 0;
+
 ///to match the real div to reg setting
 const uint32_t g_wHclkDiv[] = {
 	1, 1, 2, 3, 4, 5, 6, 8, 12, 16, 24, 32, 36, 64, 128, 256
@@ -367,4 +369,77 @@ uint32_t soc_get_rtc_freq(void)
 	}
 	
 	return wFre;
+}
+
+/** \brief       timer set load times out
+ *  \param[in]   wTimeOut: the timeout, unit: us, 20us < wTimeOut < 3S
+ *  \param[in]   byBitMode: TIMER_16BIT_MODE  or TIMER_24BIT_MODE
+ *  \return      none
+*/
+void apt_timer_set_load_value(uint32_t wTimesOut,uint8_t byBitMode)
+{
+	uint32_t wDivisor,wPrdrLoadMax; 
+	
+	if(byBitMode == TIMER_16BIT_MODE) 
+	{
+		wDivisor     = TIMER_16BIT_DIVISOR;
+		wPrdrLoadMax = TIMER_16BIT_MAX;
+	}
+	else
+	{
+		wDivisor     = TIMER_24BIT_DIVISOR;
+		wPrdrLoadMax = TIMER_24BIT_MAX;		
+	}
+	if((csi_get_pclk_freq() % 1000000) == 0)
+	{
+		wClkDivn = csi_get_pclk_freq() / 1000000 * wTimesOut / wDivisor;		//timer clk div value
+		if(wClkDivn == 0)
+			wClkDivn  = 1;
+		wTmLoad = csi_get_pclk_freq() / 1000000 * wTimesOut / wClkDivn;	//timer prdr load value
+		if(wTmLoad > wPrdrLoadMax)
+		{
+			wClkDivn += 1;
+			wTmLoad = csi_get_pclk_freq() / 1000000 * wTimesOut / wClkDivn ;	//timer prdr load value
+		}			
+	}
+	else if((csi_get_pclk_freq() % 4000) <= 2000)                               //最大5556000 
+	{
+		wClkDivn = csi_get_pclk_freq() / 4000 * wTimesOut / 250 / wDivisor;		//timer clk div value
+		if(wClkDivn == 0)
+			wClkDivn  = 1;
+		wTmLoad = csi_get_pclk_freq() / 4000 * wTimesOut / 250 / wClkDivn;	//timer prdr load value
+		if(wTmLoad > wPrdrLoadMax)
+		{
+			wClkDivn += 1;
+			wTmLoad = csi_get_pclk_freq() / 4000 * wTimesOut / 250 / wClkDivn ;	//timer prdr load value
+		}				
+	}
+	else
+	{
+		wClkDivn = csi_get_pclk_freq() / 1000 * wTimesOut / 1000 / wDivisor;		//timer clk div value
+		if(wClkDivn == 0)
+			wClkDivn  = 1;
+		wTmLoad = csi_get_pclk_freq() / 1000 * wTimesOut / 1000 / wClkDivn;	//timer prdr load value
+		if(wTmLoad > wPrdrLoadMax)
+		{
+			wClkDivn += 1;
+			wTmLoad = csi_get_pclk_freq() / 1000 * wTimesOut / 1000 / wClkDivn ;	//timer prdr load value
+		}
+	}
+}
+
+/** \brief       get timer prdr load value
+ *  \return      load prdr value 
+*/
+uint32_t apt_timer_get_prdrload_value(void)
+{
+	return wTmLoad;
+}
+
+/** \brief       get timer clk div
+ *  \return      clk div 
+*/
+uint32_t apt_timer_get_clkdiv_value(void)
+{
+	return wClkDivn;
 }

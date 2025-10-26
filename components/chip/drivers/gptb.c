@@ -321,15 +321,10 @@ csi_error_t csi_gptb_timer_init(csp_gptb_t *ptGptbBase, uint32_t wTimeOut)
 	csp_gptb_reset(ptGptbBase);											// reset 
 	
 	
-	wClkDiv = (long long)csi_get_pclk_freq() * wTimeOut / 1000000 / 60000;		//gpta clk div value
-	if(wClkDiv == 0)
-		wClkDiv  = 1;
-	wPrdrLoad = (long long)csi_get_pclk_freq() * wTimeOut / 1000000 / wClkDiv;	//gpta prdr load value
-	if(wPrdrLoad > 0xffff)
-	{
-		wClkDiv += 1;
-		wPrdrLoad = (long long)csi_get_pclk_freq() * wTimeOut / 1000000 / wClkDiv ;	//gpta prdr load value
-	}
+	apt_timer_set_load_value(wTimeOut,TIMER_16BIT_MODE);
+	wPrdrLoad = apt_timer_get_prdrload_value();
+	wClkDiv = apt_timer_get_clkdiv_value();
+	
 	wCrVal =GPTB_UPCNT | (GPTB_SYNC_START<<GPTB_STARTSRC_POS) | (GPTB_WAVE<<GPTB_MODE_POS);
 	wCrVal=(wCrVal & ~(GPTB_PSCLD_MSK))   |((GPTB_LDPSCR_ZRO&0x03)   <<GPTB_PSCLD_POS);	
 

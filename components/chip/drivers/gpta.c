@@ -160,11 +160,11 @@ csi_error_t csi_gpta_capture_init(csp_gpta_t *ptGptaBase, csi_gpta_captureconfig
 	wCrVal|=GPTA_CAPREARM;
 	if(ptGptaBase == (csp_gpta_t *) GPTA0)
 	{
-		wPrdrLoad = GPTA_24BIT_MAX;
+		wPrdrLoad = TIMER_24BIT_MAX;
 	}
 	else
 	{
-		wPrdrLoad = GPTA_16BIT_MAX;
+		wPrdrLoad = TIMER_16BIT_MAX;
 	}
 
     csp_gpta_clken(ptGptaBase);                                             // clkEN
@@ -268,7 +268,7 @@ csi_error_t csi_gpta_timer_init(csp_gpta_t *ptGptaBase, uint32_t wTimeOut)
 {
     uint32_t wClkDiv;
 	uint32_t wCrVal;
-	uint32_t wPrdrLoad,wPrdrLoadMax; 
+	uint32_t wPrdrLoad; 
 
 	
 	if(wTimeOut == 0 ){return CSI_ERROR;}
@@ -281,22 +281,15 @@ csi_error_t csi_gpta_timer_init(csp_gpta_t *ptGptaBase, uint32_t wTimeOut)
 	
 	if(ptGptaBase == (csp_gpta_t *) GPTA0)
 	{
-		wClkDiv = (long long)csi_get_pclk_freq() * wTimeOut / 1000000 / 16000000;		//gpta clk div value
-		wPrdrLoadMax = GPTA_24BIT_MAX;
+		apt_timer_set_load_value(wTimeOut,TIMER_24BIT_MODE);
 	}
 	else
 	{
-		wClkDiv = (long long)csi_get_pclk_freq() * wTimeOut / 1000000 / 60000;		//gpta clk div value	
-		wPrdrLoadMax = GPTA_16BIT_MAX;
+		apt_timer_set_load_value(wTimeOut,TIMER_16BIT_MODE);
 	}
-	if(wClkDiv == 0)
-		wClkDiv  = 1;
-	wPrdrLoad = (long long)csi_get_pclk_freq() * wTimeOut / 1000000 / wClkDiv;	//gpta prdr load value
-	if(wPrdrLoad > wPrdrLoadMax)
-	{
-		wClkDiv += 1;
-		wPrdrLoad = (long long)csi_get_pclk_freq() * wTimeOut / 1000000 / wClkDiv ;	//gpta prdr load value
-	}
+	wPrdrLoad = apt_timer_get_prdrload_value();
+	wClkDiv = apt_timer_get_clkdiv_value();
+
 	wCrVal =GPTA_UPCNT | (GPTA_SYNC_START<<GPTA_STARTSRC_POS) | (GPTA_WAVE<<GPTA_MODE_POS);
 	wCrVal=(wCrVal & ~(GPTA_PSCLD_MSK))   |((GPTA_LDPSCR_ZRO&0x03)   <<GPTA_PSCLD_POS);	
 

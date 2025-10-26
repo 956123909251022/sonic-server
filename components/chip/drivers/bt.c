@@ -75,15 +75,9 @@ csi_error_t csi_bt_timer_init(csp_bt_t *ptBtBase, uint32_t wTimeOut)
 	csi_clk_enable(ptBtBase);													//bt clk enable
 	csp_bt_soft_rst(ptBtBase);													//reset bt
 	
-	wClkDiv = (long long)csi_get_pclk_freq() * wTimeOut / 1000000 / 60000;		//bt clk div value
-	if(wClkDiv == 0)
-		wClkDiv  = 1;
-	wTmLoad = (long long)csi_get_pclk_freq() * wTimeOut / 1000000 / wClkDiv;	//bt prdr load value
-	if(wTmLoad > 0xffff)
-	{
-		wClkDiv += 1;
-		wTmLoad = (long long)csi_get_pclk_freq() * wTimeOut / 1000000 / wClkDiv ;	//bt prdr load value
-	}
+	apt_timer_set_load_value(wTimeOut,TIMER_16BIT_MODE);
+	wTmLoad = apt_timer_get_prdrload_value();
+	wClkDiv = apt_timer_get_clkdiv_value();
 		
 	csp_bt_set_cr(ptBtBase, (BT_IMMEDIATE << BT_SHDW_POS) | (BT_CONTINUOUS << BT_OPM_POS) |		//bt work mode
 			(BT_PCLKDIV << BT_EXTCKM_POS) | (BT_CNTRLD_EN << BT_CNTRLD_POS) | BT_CLK_EN);
@@ -453,18 +447,12 @@ void csi_bt_start_sync(csp_bt_t *ptBtBase, uint32_t wTimeOut)
 	uint32_t wClkDiv;
 	
 	csi_clk_enable((uint32_t *)ptBtBase);									//bt clk enable
-	csp_bt_soft_rst(ptBtBase);												//reset bt
+	csp_bt_soft_rst(ptBtBase);                                              //reset bt
+
+	apt_timer_set_load_value(wTimeOut,TIMER_16BIT_MODE);
+	wTmLoad = apt_timer_get_prdrload_value();
+	wClkDiv = apt_timer_get_clkdiv_value();
 	
-	wClkDiv = (long long)csi_get_pclk_freq() * wTimeOut / 1000000 / 60000;	//bt clk div value
-	if(wClkDiv == 0)
-		wClkDiv  = 1;
-	wTmLoad = (long long)csi_get_pclk_freq() * wTimeOut / wClkDiv /1000000;	//bt prdr load value
-	if(wTmLoad > 0xffff)
-	{
-		wClkDiv += 1;
-		wTmLoad = (long long)csi_get_pclk_freq() * wTimeOut / wClkDiv / 1000000;	//bt prdr load value
-	
-	}
 	csp_bt_set_cr(ptBtBase, (BT_IMMEDIATE << BT_SHDW_POS) | (BT_CONTINUOUS << BT_OPM_POS) |		//bt work mode
 			(BT_PCLKDIV << BT_EXTCKM_POS) | (BT_CNTRLD_EN << BT_CNTRLD_POS) | BT_CLK_EN );
 	csp_bt_set_pscr(ptBtBase, (uint16_t)wClkDiv - 1);						//bt clk div	

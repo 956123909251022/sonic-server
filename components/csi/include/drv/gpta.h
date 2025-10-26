@@ -19,9 +19,6 @@
 extern "C" {
 #endif
 
-#define GPTA_16BIT_MAX         0xffff
-#define GPTA_24BIT_MAX         0xffffff
-
 extern uint32_t gGpta0Prd;
 extern uint32_t gGpta1Prd;
 typedef struct csi_gpta_config    csi_gpta_config_t;

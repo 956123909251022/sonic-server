@@ -32,6 +32,25 @@
  *  \param[in] wTimeOut:the timeout for cnta; pclk = 48000000hz，1-21845 us
  *  \return error code \ref csi_error_t
  */ 
+static uint32_t apt_cnta_get_load_value(uint32_t wTimesOut,uint8_t byClkDivn)
+{
+	uint32_t wTempLoad = 1;
+	
+	if((csi_get_pclk_freq() % 1000000) == 0)
+	{
+		wTempLoad  =  csi_get_pclk_freq() / 1000000  * wTimesOut / 2 / (0x01 << byClkDivn); 		
+	}
+	else if((csi_get_pclk_freq() % 4000) <= 2000)                          //最大5556000 
+	{
+		wTempLoad  =  csi_get_pclk_freq() / 4000  * wTimesOut / 500 / (0x01 << byClkDivn); 
+	}
+	else
+	{
+		wTempLoad  =  csi_get_pclk_freq() / 1000  * wTimesOut / 2000 / (0x01 << byClkDivn); 
+	}
+	return wTempLoad;
+} 
+ 
 csi_error_t csi_cnta_timer_init(csp_cnta_t *ptCntaBase,uint32_t wTimeOut)
 {
 	uint8_t byClkDiv,byIndex;
@@ -40,7 +59,7 @@ csi_error_t csi_cnta_timer_init(csp_cnta_t *ptCntaBase,uint32_t wTimeOut)
 	for(byIndex=0;byIndex<4;byIndex++)
 	{
 		byClkDiv = byIndex;
-		wTempLoad  =  (long long)csi_get_pclk_freq() * wTimeOut / 2000000 / (0x01 << byClkDiv); // (timeout_us /2 / 1000000) = (byDivTemp / pclk) * (tmp_load)
+		wTempLoad  =  apt_cnta_get_load_value(wTimeOut,byClkDiv);
 		if(wTempLoad <= 0xffff)
 		{
 			if( (wTempLoad==0xfffe) || (wTempLoad==0xffff))

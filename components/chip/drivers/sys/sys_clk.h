@@ -19,6 +19,14 @@
 #include "csp_syscon.h"
 #include "csp_hwdiv.h"
 
+#define TIMER_16BIT_MODE              1
+#define TIMER_24BIT_MODE              2
+
+#define TIMER_16BIT_MAX               0xffff
+#define TIMER_24BIT_MAX               0xffffff
+
+#define TIMER_16BIT_DIVISOR           60000UL
+#define TIMER_24BIT_DIVISOR           16000000UL
 
 typedef enum {
     SRC_IMOSC = 0,
@@ -211,6 +219,23 @@ void soc_clk_enable(int32_t module);
   \return      none
 */
 void soc_clk_disable(int32_t module);
+
+/** \brief       timer set load times out
+ *  \param[in]   wTimeOut: the timeout, unit: us, 20us < wTimeOut < 3S
+ *  \param[in]   byBitMode: TIMER_16BIT_MODE  or TIMER_24BIT_MODE
+ *  \return      none
+*/
+void apt_timer_set_load_value(uint32_t wTimesOut,uint8_t byBitMode);
+
+/** \brief       get timer prdr load value
+ *  \return      load prdr value 
+*/
+uint32_t apt_timer_get_prdrload_value(void);
+
+/** \brief       get timer clk div
+ *  \return      clk div 
+*/
+uint32_t apt_timer_get_clkdiv_value(void);
 
 
 
