@@ -42,7 +42,7 @@ volatile uint8_t byExiFlg = 0x00;
  */
 static void prepare_lp(void)				  
 {
-	//USER CODE，如记忆管脚状态
+	//USER CODE，记忆进入低功耗需要动作的状态
 }
 
 /** \brief 退出低功耗模式后恢复动作
@@ -51,8 +51,7 @@ static void prepare_lp(void)
  */
 static void wkup_lp(void)					   
 {
-	//USER CODE，如恢复管脚状态
-	//csi_pin_set_low(PB02);
+	//USER CODE，唤醒后需要恢复的状态
 }
 
 /** \brief 通过外部PA00/PB00/PA12/PB011(ALV0~3)唤醒shutdown
