@@ -11,6 +11,10 @@
 //(9)jump to the main procedure using jsri main
 #include "board_config.h"
 
+//.section .por, "ax"
+//.align 2
+//.long __start  
+
 .text
 .export vector_table
 //.import VecTable
