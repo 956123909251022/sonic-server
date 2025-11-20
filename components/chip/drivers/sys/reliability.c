@@ -85,10 +85,10 @@ uint32_t csi_get_lvdlevel(void)
 	switch ((SYSCON->LVDCR & LVD_LV_MSK) >> 8)
 	{
 		case (0):
-			ret = 24;
+			ret = 21;
 			break;
 		case (1):
-			ret = 21;
+			ret = 24;
 			break;
 		case (2):
 			ret = 27;
