@@ -47,10 +47,10 @@
    __IOM uint32_t	CMPLDR;	    //0x003C	Cmp reg load control
    __IOM  uint32_t	CNT;      	//0x0040	Counter reg
    __IOM uint32_t	AQLDR; 		//0x0044	AQ reg load control
-   __IOM uint32_t	AQCRA;      //0x0048	Action qualify of ch-A
-   __IOM uint32_t	AQCRB;    	//0x004C	Action qualify of ch-B
-   __IOM uint32_t	AQCRC; 		//0x0050	Action qualify of ch-C
-   __IOM uint32_t	AQCRD;  	//0x0054	Action qualify of ch-D
+   __IOM uint32_t	AQCR1;      //0x0048	Action qualify of ch-A
+   __IOM uint32_t	AQCR2;    	//0x004C	Action qualify of ch-B
+   __IOM uint32_t	AQCR3; 		//0x0050	Action qualify of ch-C
+   __IOM uint32_t	AQCR4;  	//0x0054	Action qualify of ch-D
    __IOM uint32_t	AQTSCR;   	//0x0058	T event selection
    __IOM uint32_t	AQOSF; 		//0x005C	AQ output one-shot software forcing
    __IOM uint32_t	AQCSF;      //0x0060	AQ output conti-software forcing
@@ -1124,19 +1124,19 @@ static inline uint16_t csp_ept_get_cmpd(csp_ept_t *ptEptBase)
 }
 static inline void csp_ept_set_aqcr1(csp_ept_t *ptEptBase, uint32_t bwVal)
 {
-	ptEptBase -> AQCRA = bwVal;
+	ptEptBase -> AQCR1 = bwVal;
 }
 static inline void csp_ept_set_aqcr2(csp_ept_t *ptEptBase, uint32_t bwVal)
 {
-	ptEptBase -> AQCRB = bwVal;
+	ptEptBase -> AQCR2 = bwVal;
 }
 static inline void csp_ept_set_aqcr3(csp_ept_t *ptEptBase, uint32_t bwVal)
 {
-	ptEptBase -> AQCRC = bwVal;
+	ptEptBase -> AQCR3 = bwVal;
 }
 static inline void csp_ept_set_aqcr4(csp_ept_t *ptEptBase, uint32_t bwVal)
 {
-	ptEptBase -> AQCRD = bwVal;
+	ptEptBase -> AQCR4 = bwVal;
 }
 
 static inline void csp_ept_set_aqtscr(csp_ept_t *ptEptBase, csp_ept_t_e bwVal,csp_ept_ep_e bwEP)
