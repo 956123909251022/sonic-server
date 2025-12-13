@@ -339,12 +339,12 @@ static inline uint8_t csp_cmp_get_out1(csp_cmp_t *ptCmpBase)
 
 static inline void  csp_cmp_dfcr1(csp_cmp_t *ptCmpBase , dfcr1_depth_e eDepth,uint8_t byDivn,uint8_t byDivm)
 {
-	ptCmpBase->DFCR1 = (ptCmpBase->DFCR1&~(CMP_DFCR1_DEPTH_MSK|CMP_DFCR1_DIVN_POS|CMP_DFCR1_DIVM_POS))|(eDepth<<CMP_DFCR1_DEPTH_POS)|(byDivn<<CMP_DFCR1_DIVN_POS)|(byDivm<<CMP_DFCR1_DIVM_POS);
+	ptCmpBase->DFCR1 = (ptCmpBase->DFCR1&~(CMP_DFCR1_DEPTH_MSK|CMP_DFCR1_DIVN_MSK|CMP_DFCR1_DIVM_MSK))|(eDepth<<CMP_DFCR1_DEPTH_POS)|(byDivn<<CMP_DFCR1_DIVN_POS)|(byDivm<<CMP_DFCR1_DIVM_POS);
 }
 
 static inline void  csp_cmp_dfcr2(csp_cmp_t *ptCmpBase , dfcr2_depth_e eDepth,uint8_t byDivn,uint8_t byDivm)
 {
-	ptCmpBase->DFCR2 = (ptCmpBase->DFCR2&~(CMP_DFCR2_DEPTH_MSK|CMP_DFCR2_DIVN_POS|CMP_DFCR2_DIVM_POS))|(eDepth<<CMP_DFCR2_DEPTH_POS)|(byDivn<<CMP_DFCR2_DIVN_POS)|(byDivm<<CMP_DFCR2_DIVM_POS);
+	ptCmpBase->DFCR2 = (ptCmpBase->DFCR2&~(CMP_DFCR2_DEPTH_MSK|CMP_DFCR2_DIVN_MSK|CMP_DFCR2_DIVM_MSK))|(eDepth<<CMP_DFCR2_DEPTH_POS)|(byDivn<<CMP_DFCR2_DIVN_POS)|(byDivm<<CMP_DFCR2_DIVM_POS);
 }
 
 static inline void  csp_cmp_wfcr(csp_cmp_t *ptCmpBase, uint16_t hwWcnt,uint8_t byClkDiv,uint8_t byDcnt)
