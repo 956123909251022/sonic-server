@@ -161,7 +161,8 @@ typedef enum{
 
 
 
-
+#define GPTB_PHSEN_POS		(7)
+#define GPTB_PHSEN_MSK		(0x1 << GPTB_PHSEN_POS)
 #define GPTB_INIT_AS_PHSEN	(0x0 << 7)
 #define GPTB_INIT_DFLT		(0x1 << 7)
 
@@ -1283,6 +1284,11 @@ static inline void csp_gptb_capld_enable(csp_gptb_t *ptGptbBase, bool bEnable)
 static inline void csp_gptb_prdld_mod(csp_gptb_t *ptGptbBase, csp_gptb_ldprdr_e Val)
 {
 	ptGptbBase -> CR = (ptGptbBase->CR & ~(GPTB_PRDLD_MSK)) | (Val << GPTB_PRDLD_POS);
+}
+
+static inline void csp_gptb_phsen_enable(csp_gptb_t *ptGptbBase, bool bEnable)
+{
+	ptGptbBase -> CR = (ptGptbBase->CR & ~(GPTB_PHSEN_MSK)) | (bEnable << GPTB_PHSEN_POS);
 }
 
 static inline void csp_gptb_set_aqcra(csp_gptb_t *ptGptbBase, uint32_t bwVal)

@@ -681,11 +681,6 @@ static inline void csp_gpta_capld_enable(csp_gpta_t *ptGptaBase, bool bEnable)
 	ptGptaBase -> CR = (ptGptaBase->CR & ~(GPTA_CAPLD_MSK)) | (bEnable << GPTA_CAPLD_POS);
 }
 
-static inline void csp_gpta_phsen_enable(csp_gpta_t *ptGptaBase, bool bEnable)
-{
-	ptGptaBase -> CR = (ptGptaBase->CR & ~(GPTA_PHSEN_MSK)) | (bEnable << GPTA_PHSEN_POS);
-}
-
 static inline void csp_gpta_set_auto_rearm(csp_gpta_t *ptGptaBase,  csp_gpta_arearm_e eHWMode)
 {   
 	//ptGptaBase -> REGPROT = GPTA_REGPROT;
@@ -722,9 +717,9 @@ static inline uint32_t csp_gpta_get_prd(csp_gpta_t *ptGptaBase)
 {
 	return (ptGptaBase -> PRDR);
 }
-static inline void csp_gpta_set_phsr(csp_gpta_t *ptGptaBase, uint32_t wVal)
+static inline void csp_gpta_set_phsr(csp_gpta_t *ptGptaBase, uint16_t bwVal)
 {
-	ptGptaBase -> PHSR = wVal;
+	ptGptaBase -> PHSR = bwVal;
 }
 static inline uint16_t csp_gpta_get_phsr(csp_gpta_t *ptGptaBase)
 {
