@@ -170,6 +170,7 @@ void tkey_demo(void)
 	delay_ums(3000);
 	while(1)
 	{
+		//csi_tkey_main_prog();
 		tk_led();
 		if(dwKey_Map!=0)
 		{
@@ -178,7 +179,7 @@ void tkey_demo(void)
 				dwKey_Map_bk=dwKey_Map;
 				csi_pin_set_low(PB01);
 				csi_gptb_start(GPTB0);//start  timer
-				delay_ums(300);
+				//delay_ums(300);
 			}
 			
 		}else

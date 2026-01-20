@@ -38,8 +38,8 @@ typedef struct
     __IOM uint32_t CMPLDR;          //0x003c    Compare Data Load Control Register                                         
     __IOM uint32_t CNT;             //0x0040    Counter Register                                          
     __IOM uint32_t AQLDR;           //0x0044	Action Qualifier Load Control Register                                             
-    __IOM uint32_t AQCRA;           //0x0048    Action Qualifier Control Register A                                         
-    __IOM uint32_t AQCRB;           //0x004c    Action Qualifier Control Register B                                         
+    __IOM uint32_t AQCR1;           //0x0048    Action Qualifier Control Register 1                                         
+    __IOM uint32_t AQCR2;           //0x004c    Action Qualifier Control Register 2                                         
     __IOM uint32_t RESERVED2[3];
     __IOM uint32_t AQOSF;           //0x005c    Action Qualifier One Shot Force Register                                         
     __IOM uint32_t AQCSF;           //0x0060    Action Qualifier Continuous Force Register                                         
@@ -161,7 +161,8 @@ typedef enum{
 
 
 
-
+#define GPTB_PHSEN_POS		(7)
+#define GPTB_PHSEN_MSK		(0x1 << GPTB_PHSEN_POS)
 #define GPTB_INIT_AS_PHSEN	(0x0 << 7)
 #define GPTB_INIT_DFLT		(0x1 << 7)
 
@@ -1285,13 +1286,18 @@ static inline void csp_gptb_prdld_mod(csp_gptb_t *ptGptbBase, csp_gptb_ldprdr_e 
 	ptGptbBase -> CR = (ptGptbBase->CR & ~(GPTB_PRDLD_MSK)) | (Val << GPTB_PRDLD_POS);
 }
 
+static inline void csp_gptb_phsen_enable(csp_gptb_t *ptGptbBase, bool bEnable)
+{
+	ptGptbBase -> CR = (ptGptbBase->CR & ~(GPTB_PHSEN_MSK)) | (bEnable << GPTB_PHSEN_POS);
+}
+
 static inline void csp_gptb_set_aqcra(csp_gptb_t *ptGptbBase, uint32_t bwVal)
 {
-	ptGptbBase -> AQCRA = bwVal;
+	ptGptbBase -> AQCR1 = bwVal;
 }
 static inline void csp_gptb_set_aqcrb(csp_gptb_t *ptGptbBase, uint32_t bwVal)
 {
-	ptGptbBase -> AQCRB = bwVal;
+	ptGptbBase -> AQCR2 = bwVal;
 }
 static inline uint32_t csp_gptb_get_dbldr(csp_gptb_t *ptGptbBase)
 {

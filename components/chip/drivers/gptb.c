@@ -731,6 +731,19 @@ uint16_t csi_gptb_get_prdr(csp_gptb_t *ptGptbBase)
 	return csp_gptb_get_prdr(ptGptbBase);
 }
 
+/** \brief set gptb phsr  
+ * 
+ *  \param[in] ptGptbBase ：pointer of gptb register structure
+ *  \param[in] hwPhsr  :    phsr value
+*   \param[in] bEnable :    ENABLE/DISABLE
+ *  \return none
+ */
+void csi_gptb_set_phsr(csp_gptb_t *ptGptbBase, uint16_t hwPhsr,bool bEnable)
+{
+	csp_gptb_set_phsr(ptGptbBase, hwPhsr);
+	csp_gptb_phsen_enable(ptGptbBase, bEnable);
+}
+
 /** \brief change gptb output dutycycle. 
  * 
  *  \param[in] ptGptbBase :    pointer of gptb register structure
