@@ -157,7 +157,51 @@ void tk_led(void)
  * ③ Library Path后面输入路径：drivers
  * 然后在sdk_110x->apt32f110x_chip->drivers->tkey_parameter.c里配置相关的参数，配置说明请参考csi使用文档的相关章节
  */
+/*
+ * 库版本说明
+ * lib_110tkey_F_X_XX：跳频版本，Touch使用中断处理，占用更多的SRAM及程序空间，抗干扰能力最强
+ * lib_110tkey_C_X_XX：默认版本，Touch使用中断处理，SRAM及程序占用空间更小，速度更快，抗干扰性能稍低
+ * lib_110tkey_MC_X_XX：主循环版本，使用Touch需要调用tkey_main_prog();函数，扫描时间更长，完全不占用中断，按键越多扫描时间越长，按键速度也会越慢
+ * lib_110tkey_DMA_X_XX：TOUCH->DMA版本，使用DMA模块传递touch采样数据，不使用touch中断，速度最快，占用最多的SRAM，使用此版本后不再允许配置DMA3
+*/
 
+
+/* *******************    库的使用说明      ****************************
+①F_X_XX 和 C_X_XX版本：
+
+	需要在coret_int_handler中断里调用csi_tkey_basecnt_process()函数，在tkey_int_handler中断里调用csi_tkey_int_process()函数，如下所示：
+	void coret_int_handler(void) 
+	{
+	#if	CORET_INT_HANDLE_EN
+		// ISR content ...
+		tick_irqhandler();		//system coret 
+		#if	defined(IS_CHIP_1101) || defined(IS_CHIP_1103)
+			csi_tkey_basecnt_process();
+		#endif
+	#endif
+	}
+	
+	void tkey_int_handler(void) 
+	{
+	#if	TKEY_INT_HANDLE_EN
+		#if	defined(IS_CHIP_1101) || defined(IS_CHIP_1103)
+		// ISR content ...
+		csi_tkey_int_process();
+		#endif
+	#endif
+	}
+②DMA_X_XX版本：
+    只需要在coret_int_handler中断里调用csi_tkey_basecnt_process()函数，tkey_int_handler中断里不需要调用相关函数。
+ 
+③MC_X_XX版本：
+
+   只需要在主循环调用csi_tkey_main_prog();定时器中断和TKEY中断函数里不需要调用任何函数
+
+ 
+所有版本的使用除了调用函数的地方不一样和需要调用的函数不一样，其他处理机制都是一样的。
+
+
+*/
 void tkey_demo(void)
 {
 	csi_pin_set_mux(PB01,PB01_OUTPUT);//LED
@@ -170,7 +214,7 @@ void tkey_demo(void)
 	delay_ums(3000);
 	while(1)
 	{
-		//csi_tkey_main_prog();
+		//csi_tkey_main_prog();//只有MC_X_XX版本才需要该函数。
 		tk_led();
 		if(dwKey_Map!=0)
 		{
@@ -179,7 +223,6 @@ void tkey_demo(void)
 				dwKey_Map_bk=dwKey_Map;
 				csi_pin_set_low(PB01);
 				csi_gptb_start(GPTB0);//start  timer
-				//delay_ums(300);
 			}
 			
 		}else
@@ -206,6 +249,7 @@ void tkey_demo(void)
 	}
 }
 
-
-
-
+	
+	
+	
+	
