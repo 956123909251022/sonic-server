@@ -723,9 +723,9 @@ static inline uint32_t csp_gpta_get_prd(csp_gpta_t *ptGptaBase)
 {
 	return (ptGptaBase -> PRDR);
 }
-static inline void csp_gpta_set_phsr(csp_gpta_t *ptGptaBase, uint16_t bwVal)
+static inline void csp_gpta_set_phsr(csp_gpta_t *ptGptaBase, uint32_t wVal)
 {
-	ptGptaBase -> PHSR = bwVal;
+	ptGptaBase -> PHSR = wVal;
 }
 static inline uint16_t csp_gpta_get_phsr(csp_gpta_t *ptGptaBase)
 {
