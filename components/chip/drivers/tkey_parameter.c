@@ -9,7 +9,7 @@
  * *********************************************************************
 */ 
 
-#include "csp_tkey.h"
+//#include "csp_tkey.h"
 #include <drv/tkey.h>
 
 void csi_tkey_parameter_init(void)
@@ -22,7 +22,7 @@ void csi_tkey_parameter_init(void)
                                  TCH_EN(11)|TCH_EN(12)|TCH_EN(14)|TCH_EN(15)|TCH_EN(16)|TCH_EN(17)|TCH_EN(18)|TCH_EN(19)|TCH_EN(20)|                 //TCH_EN(13)swclk                
                                  TCH_EN(21)|TCH_EN(22)|TCH_EN(23)|TCH_EN(25)|TCH_EN(26)|TCH_EN(27)|TCH_EN(28);               //TCH_EN(24)fvr  
 	byTkeyGlobalSens=3;								//TK Global Tkey Sensitivity,0=invalid;
-	byTkeyGlobalTrigger=50;							//TK Global Tkey Trigger,0=invalid;
+	hwTkeyGlobalTrigger=50;							//TK Global Tkey Trigger,0=invalid;
 	byTkeyGlobalIcon=4;								//TK Global Tkey Icon,0=invalid;
 	byPressDebounce=3;								//Press debounce 1~10
 	byReleaseDebounce=3;							//Release debounce 1~10
@@ -44,3 +44,4 @@ void csi_tkey_parameter_init(void)
 	hwTkeyEcLevel=TK_ECLVL_1V;						//C0 voltage sel:TK_ECLVL_1V/TK_ECLVL_2V/TK_ECLVL_3V/TK_ECLVL_3V6
 	hwTkeyFvrLevel=TK_FVR_NONE;						//FVR level:TK_FVR_2048V/TK_FVR_4096V/TK_FVR_NONE
 }
+

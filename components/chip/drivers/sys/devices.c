@@ -69,9 +69,9 @@ csp_led_t 		*LED      	= (csp_led_t *)(APB_LED_BASE);
 csp_lcd_t 		*LCD      	= (csp_lcd_t *)(APB_LCD_BASE);
 #endif
 
-#if	defined(IS_CHIP_1101) || defined(IS_CHIP_1103)
-csp_tkey_t 		*TKEY      	= (csp_tkey_t *)(APB_TKEY_BASE);
-#endif
+//#if	defined(IS_CHIP_1101) || defined(IS_CHIP_1103)
+//csp_tkey_t 		*TKEY      	= (csp_tkey_t *)(APB_TKEY_BASE);
+//#endif
 
 csp_lin_t 		*LIN0   	= (csp_lin_t *)(APB_USART0_BASE);
 

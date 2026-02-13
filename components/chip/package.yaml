@@ -96,7 +96,7 @@ build_config:
   define:
     - NO_MORE_DEFINE
   libs:
-    - _110Tkey_F_1_00.a
+    - _110Tkey_DMA_1_02.a
   libpath:
     - drivers
 # source_file:                             # <可选项> 指定参与编译的源代码文件，支持通配符，采用相对路径
@@ -106,6 +106,10 @@ source_file:
   - drivers/sys/*.c
   - drivers/sys/*.S
   - lib_110Tkey_C_1_00.a
+  - drivers/lib_110Tkey_C_1_02.a
+  - drivers/lib_110Tkey_DMA_1_02.a
+  - drivers/lib_110Tkey_F_1_02.a
+  - drivers/lib_110Tkey_MC_1_02.a
 ## 第五部分：配置信息
 # def_config:                              # 组件的可配置项
 #   CONFIG_DEBUG: y
