@@ -229,7 +229,9 @@
     <watchExpressions/>
     <memoryExpressions>;;;</memoryExpressions>
     <statistics>;;32;;MHZ;</statistics>
-    <peripheralTabs/>
+    <peripheralTabs>
+      <Tab disFormat="Hex">GPTA0</Tab>
+    </peripheralTabs>
     <WatchDisplayFormat>1</WatchDisplayFormat>
     <LocalDisplayFormat>1</LocalDisplayFormat>
     <debugLayout/>
