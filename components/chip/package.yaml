@@ -1,6 +1,6 @@
 ## 第一部分： 基础信息
 name: apt32f110x_chip
-version: V1.1.0
+version: V2.0.0
 description: apt32f110 chip CSI driver SDK.
 type: chip
 tag: 核心模块
