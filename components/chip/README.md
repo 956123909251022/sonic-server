@@ -3,7 +3,7 @@
 # Release Notes
 
 ======================================================
-Version: V2.0.0
+Version: V1.2.0
 Release Date: 2022.10.21
 
 Release Notes
