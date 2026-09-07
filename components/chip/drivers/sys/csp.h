@@ -38,7 +38,7 @@
 #include "csp_wwdt.h"
 #include "core_802.h"
 #include <csi_core.h>
-//#include "csp_tkey.h"
+#include "csp_tkey.h"
 #include "csp_lcd.h"
 #include "csp_led.h"
 
@@ -71,7 +71,7 @@ extern csp_cmp_t 		*CMP0, *CMP1;
 extern csp_dma_t 		*DMA;
 extern csp_led_t 		*LED;
 extern csp_lcd_t 		*LCD;
-//extern csp_tkey_t 		*TKEY;
+extern csp_tkey_t 		*TKEY;
 
 extern csp_wdt_t		*WDT;
 extern csp_lin_t		*LIN0;
