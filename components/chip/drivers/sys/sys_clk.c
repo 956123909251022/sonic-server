@@ -40,16 +40,16 @@ static uint32_t apt_get_hclk(void)
  *  \param[in] none.
  *  \return csi_error_t.
  */ 
-csi_error_t csi_sysclk_config(void)
+csi_error_t csi_sysclk_config(csi_clk_config_t tClkCfg)
 {	csi_error_t ret = CSI_OK;
 	uint8_t byFreqIdx = 0;
 	uint32_t wFreq,wTargetSclk;
 	cclk_src_e eSrc;
 	uint8_t byFlashLp = 0;
-	wFreq = tClkConfig.wFreq;
+	wFreq = tClkCfg.wFreq;
 	
-	wTargetSclk = wFreq/g_wHclkDiv[tClkConfig.eSdiv];
-	eSrc = tClkConfig.eClkSrc;
+	wTargetSclk = wFreq/g_wHclkDiv[tClkCfg.eSdiv];
+	eSrc = tClkCfg.eClkSrc;
 	
 	switch (eSrc)
 	{
@@ -116,11 +116,11 @@ csi_error_t csi_sysclk_config(void)
 			IFC->MR = (IFC->MR & (~PF_SPEED_MSK) & (~PF_WAIT_MSK)) | HIGH_SPEED | PF_WAIT2;
 		else 
 			IFC->MR = (IFC->MR & (~PF_SPEED_MSK) & (~PF_WAIT_MSK) )| HIGH_SPEED | PF_WAIT1;
-		csp_set_sdiv(SYSCON, tClkConfig.eSdiv);
+		csp_set_sdiv(SYSCON, tClkCfg.eSdiv);
 		csp_set_clksrc(SYSCON, eSrc);
 	}
 	else {
-		csp_set_sdiv(SYSCON, tClkConfig.eSdiv);
+		csp_set_sdiv(SYSCON, tClkCfg.eSdiv);
 		csp_set_clksrc(SYSCON, eSrc);
 		IFC->CEDR = IFC_CLKEN;
 		IFC->MR = ((IFC->MR & (~PF_SPEED_MSK)) & (~PF_WAIT_MSK)) |LOW_SPEED | PF_WAIT0;
@@ -129,11 +129,11 @@ csi_error_t csi_sysclk_config(void)
 	
 	csp_eflash_lpmd_enable(SYSCON, (bool)byFlashLp);
 	
-	csp_set_pdiv(SYSCON, tClkConfig.ePdiv);
+	csp_set_pdiv(SYSCON, tClkCfg.ePdiv);
 	
 	//update wSclk and wPclk in tClkConfig
 	tClkConfig.wSclk = wTargetSclk;
-	tClkConfig.wPclk = tClkConfig.wSclk/(0x1<<tClkConfig.ePdiv);
+	tClkConfig.wPclk = tClkConfig.wSclk/(0x1<<tClkCfg.ePdiv);
 	return ret;
 }
 

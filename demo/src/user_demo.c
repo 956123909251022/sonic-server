@@ -1,6 +1,6 @@
 
 /*============================================================================
- * Name        : main.c
+ * Name        : user_demo.c
  * Author      : $(username)
  * Version     : 0.0.0
  * Copyright   : Your copyright notice
@@ -114,7 +114,7 @@ void user_demo(void)
 	
 /// ***************************************************
 ///  ADC相关的示例代码
-/// ***************************************************
+///// ***************************************************
 //	adc_samp_oneshot_demo();
 //	adc_samp_continuous_demo();
 //	adc_samp_oneshot_int_demo();
@@ -207,6 +207,13 @@ void user_demo(void)
 //	cmp_base_demo();
 //	cmp_dfcr_demo();
 //	cmp_wfcr_demo();
+
+/// ***************************************************
+/// TKEY相关示例代码
+/// 代码适用于APT110x TOUCH EV BOARD
+/// APT1103和APT1101 支持TOUCH
+/// ***************************************************
+//	tkey_demo();
 
 }
 

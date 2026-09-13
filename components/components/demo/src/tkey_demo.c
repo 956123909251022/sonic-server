@@ -123,7 +123,7 @@ void gptb0_init(void)
 }
 void tk_led(void)
 {
-	uint8_t i,byTk_data;
+	uint8_t i,byTk_data = 0;
 	uint32_t wTemp = dwKey_Map;
 
 	if(wTemp == 0) {
