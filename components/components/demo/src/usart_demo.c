@@ -55,6 +55,7 @@ int usart_send_dma_demo(void)
 	tUsartCfg.byParity		= USART_PARITY_EVEN;		//偶校验
 	tUsartCfg.bClkOutEn		= DISABLE;					//禁止USARTCLK输出；同步模式时，USARTCLK可以给另外设备上的USART提供clk，作为同步输入时钟使用
 	tUsartCfg.wBaudRate 	= 115200;					//波特率：115200
+	tUsartCfg.hwRecvTo		= 88;						//USART接收超时时间，单位：bit位周期，8个bytes(11bit*8=88, 115200波特率时=139us)
 	tUsartCfg.wInt			= USART_INTSRC_NONE;		//使用TXFIFO中断（默认推荐）
 	tUsartCfg.byTxMode		= USART_TX_MODE_POLL;		//发送模式：轮询/中断模式
 	tUsartCfg.byRxMode		= USART_RX_MODE_POLL;		//接收模式：轮询模式
@@ -113,6 +114,7 @@ int usart_recv_dma_demo(void)
 	tUsartCfg.byParity		= USART_PARITY_EVEN;		//偶校验
 	tUsartCfg.bClkOutEn		= DISABLE;					//禁止USARTCLK输出；同步模式时，USARTCLK可以给另外设备上的USART提供clk，作为同步输入时钟使用
 	tUsartCfg.wBaudRate 	= 115200;					//波特率：115200
+	tUsartCfg.hwRecvTo		= 88;						//USART接收超时时间，单位：bit位周期，8个bytes(11bit*8=88, 115200波特率时=139us)
 	tUsartCfg.wInt			= USART_INTSRC_NONE;		//使用TXFIFO中断（默认推荐）
 	tUsartCfg.byTxMode		= USART_TX_MODE_POLL;		//发送模式：轮询/中断模式
 	tUsartCfg.byRxMode		= USART_RX_MODE_POLL;		//接收模式：轮询模式
@@ -166,6 +168,7 @@ int usart_char_demo(void)
 	tUsartCfg.byParity		= USART_PARITY_EVEN;		//偶校验
 	tUsartCfg.bClkOutEn		= DISABLE;					//禁止USARTCLK输出；同步模式时，USARTCLK可以给另外设备上的USART提供clk，作为同步输入时钟使用
 	tUsartCfg.wBaudRate 	= 115200;					//波特率：115200
+	tUsartCfg.hwRecvTo		= 88;						//USART接收超时时间，单位：bit位周期，8个bytes(11bit*8=88, 115200波特率时=139us)
 	tUsartCfg.wInt			= USART_INTSRC_NONE;		//使用TXFIFO中断（默认推荐）
 	tUsartCfg.byTxMode		= USART_TX_MODE_POLL;		//发送模式：轮询/中断模式
 	tUsartCfg.byRxMode		= USART_RX_MODE_POLL;		//接收模式：轮询模式
@@ -209,6 +212,7 @@ int usart_send_demo(void)
 	tUsartCfg.byParity		= USART_PARITY_EVEN;		//偶校验
 	tUsartCfg.bClkOutEn		= DISABLE;					//禁止USARTCLK输出；同步模式时，USARTCLK可以给另外设备上的USART提供clk，作为同步输入时钟使用
 	tUsartCfg.wBaudRate 	= 115200;					//波特率：115200
+	tUsartCfg.hwRecvTo		= 88;						//USART接收超时时间，单位：bit位周期，8个bytes(11bit*8=88, 115200波特率时=139us)
 	tUsartCfg.wInt			= USART_INTSRC_NONE;		//不使用中断
 	tUsartCfg.byTxMode		= USART_TX_MODE_POLL;		//发送模式：轮询/中断模式
 	tUsartCfg.byRxMode		= USART_RX_MODE_POLL;		//接收模式：轮询模式
@@ -253,6 +257,7 @@ int usart_send_int_demo(void)
 	tUsartCfg.byParity		= USART_PARITY_EVEN;		//偶校验
 	tUsartCfg.bClkOutEn		= DISABLE;					//禁止USARTCLK输出；同步模式时，USARTCLK可以给另外设备上的USART提供clk，作为同步输入时钟使用
 	tUsartCfg.wBaudRate 	= 115200;					//波特率：115200
+	tUsartCfg.hwRecvTo		= 88;						//USART接收超时时间，单位：bit位周期，8个bytes(11bit*8=88, 115200波特率时=139us)
 	tUsartCfg.wInt			= USART_INTSRC_TXRIS;		//使用TXFIFO中断（默认推荐）
 	tUsartCfg.byTxMode		= USART_TX_MODE_INT;		//发送模式：轮询/中断模式
 	tUsartCfg.byRxMode		= USART_RX_MODE_POLL;		//接收模式：轮询模式
@@ -318,6 +323,7 @@ int usart_recv_dynamic_demo(void)
 	tUsartCfg.byParity		= USART_PARITY_EVEN;		//偶校验
 	tUsartCfg.bClkOutEn		= DISABLE;					//禁止USARTCLK输出；同步模式时，USARTCLK可以给另外设备上的USART提供clk，作为同步输入时钟使用
 	tUsartCfg.wBaudRate 	= 115200;					//波特率：115200
+	tUsartCfg.hwRecvTo		= 88;						//USART接收超时时间，单位：bit位周期，8个bytes(11bit*8=88, 115200波特率时=139us)
 	tUsartCfg.wInt			= USART_INTSRC_RXRIS;		//使用中断,使用FXFIFO中断（默认推荐）
 	tUsartCfg.byTxMode		= USART_TX_MODE_POLL;		//发送模式：轮询模式
 	tUsartCfg.byRxMode		= USART_RX_MODE_INT_DYN;	//接收模式：中断动态接收模式
@@ -371,6 +377,7 @@ int usart_recv_int_demo(void)
 	tUsartCfg.byParity		= USART_PARITY_EVEN;		//偶校验
 	tUsartCfg.bClkOutEn		= DISABLE;					//禁止USARTCLK输出；同步模式时，USARTCLK可以给另外设备上的USART提供clk，作为同步输入时钟使用
 	tUsartCfg.wBaudRate 	= 115200;					//波特率：115200
+	tUsartCfg.hwRecvTo		= 88;						//USART接收超时时间，单位：bit位周期，8个bytes(11bit*8=88, 115200波特率时=139us)
 	tUsartCfg.wInt			= USART_INTSRC_RXRIS;		//使用FXFIFO中断（默认推荐）
 	tUsartCfg.byTxMode		= USART_TX_MODE_POLL;		//发送模式：轮询/中断模式
 	tUsartCfg.byRxMode		= USART_RX_MODE_INT_FIX;	//接收模式：中断定长接收模式
@@ -428,6 +435,7 @@ int usart_recv_demo(void)
 	tUsartCfg.byParity		= USART_PARITY_EVEN;		//偶校验
 	tUsartCfg.bClkOutEn		= DISABLE;					//禁止USARTCLK输出；同步模式时，USARTCLK可以给另外设备上的USART提供clk，作为同步输入时钟使用
 	tUsartCfg.wBaudRate 	= 115200;					//波特率：115200
+	tUsartCfg.hwRecvTo		= 88;						//USART接收超时时间，单位：bit位周期，8个bytes(11bit*8=88, 115200波特率时=139us)
 	tUsartCfg.wInt			= USART_INTSRC_NONE; 		//不/使用中断
 	tUsartCfg.byTxMode		= USART_TX_MODE_POLL;		//发送模式：轮询模式
 	tUsartCfg.byRxMode		= USART_RX_MODE_POLL;		//接收模式：轮询模式
