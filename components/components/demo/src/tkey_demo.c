@@ -206,6 +206,7 @@ void tkey_demo(void)
 {
 	csi_pin_set_mux(PB01,PB01_OUTPUT);//LED
 	gptb0_init();				//蜂鸣器
+	csi_gptb_stop(GPTB0);//stop  timer
 #ifdef	_serialplot_debug_en
 	uart_init();
 #endif
@@ -222,7 +223,7 @@ void tkey_demo(void)
 			{
 				dwKey_Map_bk=dwKey_Map;
 				csi_pin_set_low(PB01);
-				csi_gptb_start(GPTB0);//start  timer
+				///csi_gptb_start(GPTB0);//start  timer
 			}
 			
 		}else
