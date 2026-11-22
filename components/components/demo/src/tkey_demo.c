@@ -62,6 +62,7 @@ void uart_init(void)
 void led_init(void)
 {
 	csi_led_config_t ptLedCfg;
+	
 	csi_pin_set_mux(PA013, PA013_LED_S7);
 	csi_pin_set_mux(PA012, PA012_LED_S6);
 	csi_pin_set_mux(PA011, PA011_LED_S5);
@@ -71,13 +72,15 @@ void led_init(void)
 	csi_pin_set_mux(PA07, PA07_LED_S1);
 	csi_pin_set_mux(PA06, PA06_LED_S0);
 	csi_pin_set_mux(PA16, PA16_LED_COM0);
+	csi_pin_drive(PA16, GPIO_DRIVE_LV1);
 	csi_pin_set_mux(PB05, PB05_LED_COM1);
+	csi_pin_drive(PB05, GPIO_DRIVE_LV1);
 	
 	ptLedCfg.byClk = LED_PCLK_DIV8;
 	ptLedCfg.hwComMask = 0x3;
 	ptLedCfg.byBrt = LED_100;
-	ptLedCfg.byOnTime = 0x7f;
-	ptLedCfg.byBreakTime = 50;
+	ptLedCfg.byOnTime = 120;
+	ptLedCfg.byBreakTime = 100;
 	ptLedCfg.byInt = LED_INTSRC_NONE;
 	
 	csi_led_init(LED, &ptLedCfg);		
@@ -98,9 +101,9 @@ void gptb0_init(void)
 	tPwmCfg.byOneshotMode    = GPTB_OP_CONT;                    //OPM    //单次或连续(工作方式)
 	tPwmCfg.byStartSrc       = GPTB_SYNC_START;					//软件使能同步触发使能控制（RSSR中START控制位）//启动方式
 	tPwmCfg.byPscld          = GPTB_LDPSCR_ZRO;                 //PSCR(分频)活动寄存器载入控制。活动寄存器在配置条件满足时，从影子寄存器载入更新值		
-	tPwmCfg.byDutyCycle 	 = 50;								//pwm ouput duty cycle//PWM初始值			
+	tPwmCfg.byDutyCycle 	 = 10;								//pwm ouput duty cycle//PWM初始值			
 	tPwmCfg.wFreq 			 = 3000;							//pwm ouput frequency	
-	tPwmCfg.wInt 		 = GPTB_INTSRC_CBU;                    //interrupt
+	tPwmCfg.wInt 		 = GPTB_INTSRC_NONE;                    //interrupt
 	csi_gptb_wave_init(GPTB0, &tPwmCfg);
 	csi_gptb_pwmchannel_config_t  channel;
 	channel.byActionZro    =   B_LO;
@@ -213,6 +216,8 @@ void tkey_demo(void)
 	led_init();					//LED数码管
 	csi_tkey_init();
 	delay_ums(3000);
+	csi_gptb_stop(GPTB0);
+	csi_gptb_start(GPTB0);
 	while(1)
 	{
 		//csi_tkey_main_prog();//只有MC_X_XX版本才需要该函数。
@@ -253,4 +258,9 @@ void tkey_demo(void)
 	
 	
 	
-	
+void gptb0_irqhandler_pro(csp_gptb_t *ptGptbBase)
+{
+	if(((csp_gptb_get_misr(ptGptbBase) & GPTB_INT_CBU))==GPTB_INT_CBU) {
+	    csp_gptb_clr_int(ptGptbBase, GPTB_INT_CBU);	   	
+	}	
+}	

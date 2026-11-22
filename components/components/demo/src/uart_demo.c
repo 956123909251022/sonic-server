@@ -44,6 +44,7 @@ int uart_send_dma_demo(void)
 	
 	tUartConfig.byParity = UART_PARITY_ODD;		//校验位，奇校验
 	tUartConfig.wBaudRate = 115200;				//波特率，115200
+	tUartConfig.hwRecvTo = 88;					//UART接收超时时间，单位：bit位周期，8个bytes(11bit*8=88, 115200波特率时=764us)
 	tUartConfig.wInt = UART_INTSRC_NONE;		//UART中断关闭，轮询(同步)方式
 	tUartConfig.byTxMode = UART_TX_MODE_POLL;	//发送 轮询模式
 	tUartConfig.byRxMode = UART_RX_MODE_POLL;	//接收 轮询模式
@@ -89,6 +90,7 @@ int uart_recv_dma_demo(void)
 	
 	tUartConfig.byParity = UART_PARITY_ODD;		//校验位，奇校验
 	tUartConfig.wBaudRate = 115200;				//波特率，115200
+	tUartConfig.hwRecvTo = 88;					//UART接收超时时间，单位：bit位周期，8个bytes(11bit*8=88, 115200波特率时=764us)
 	tUartConfig.wInt = UART_INTSRC_NONE;		//UART中断关闭，轮询(同步)方式
 	tUartConfig.byTxMode = UART_TX_MODE_POLL;	//发送 轮询模式
 	tUartConfig.byRxMode = UART_RX_MODE_POLL;	//接收 轮询模式
@@ -132,6 +134,7 @@ int uart_char_demo(void)
 	
 	tUartConfig.byParity = UART_PARITY_ODD;		//校验位，奇校验
 	tUartConfig.wBaudRate = 115200;				//波特率，115200
+	tUartConfig.hwRecvTo = 88;					//UART接收超时时间，单位：bit位周期，8个bytes(11bit*8=88, 115200波特率时=764us)
 	tUartConfig.wInt = UART_INTSRC_NONE;		//无中断
 	tUartConfig.byTxMode = UART_TX_MODE_POLL;	//发送 轮询模式
 	tUartConfig.byRxMode = UART_RX_MODE_POLL;	//接收 轮询模式
@@ -170,6 +173,7 @@ int uart_send_demo(void)
 	
 	tUartConfig.byParity = UART_PARITY_ODD;		//校验位，奇校验
 	tUartConfig.wBaudRate = 115200;				//波特率，115200
+	tUartConfig.hwRecvTo = 88;					//UART接收超时时间，单位：bit位周期，8个bytes(11bit*8=88, 115200波特率时=764us)
 	tUartConfig.wInt = UART_INTSRC_NONE;		//UART中断关闭，轮询(同步)方式
 	tUartConfig.byTxMode = UART_TX_MODE_POLL;	//发送 轮询模式
 	tUartConfig.byRxMode = UART_RX_MODE_POLL;	//接收 轮询模式
@@ -210,7 +214,8 @@ int uart_send_int_demo(void)
 	
 	tUartConfig.byParity = UART_PARITY_ODD;		//校验位，奇校验
 	tUartConfig.wBaudRate = 115200;				//波特率，115200
-	tUartConfig.wInt = UART_INTSRC_TXDONE ;	//UART发送中断使能，采用(发送完成)TXDONE中断
+	tUartConfig.hwRecvTo = 88;					//UART接收超时时间，单位：bit位周期，8个bytes(11bit*8=88, 115200波特率时=764us)
+	tUartConfig.wInt = UART_INTSRC_TXDONE ;		//UART发送中断使能，采用(发送完成)TXDONE中断
 	tUartConfig.byTxMode = UART_TX_MODE_INT;	//发送模式：中断模式
 	tUartConfig.byRxMode = UART_RX_MODE_POLL;	//接收模式：轮询模式
 	
@@ -263,8 +268,8 @@ int uart_receive_demo(void)
 	
 	tUartConfig.byParity = UART_PARITY_ODD;		//校验位，奇校验
 	tUartConfig.wBaudRate = 115200;				//波特率，115200
+	tUartConfig.hwRecvTo = 88;					//UART接收超时时间，单位：bit位周期，8个bytes(11bit*8=88, 115200波特率时=764us)
 	tUartConfig.wInt = UART_INTSRC_NONE;		//串口中断关闭
-	
 	tUartConfig.byTxMode = UART_TX_MODE_POLL;	//发送 轮询模式
 	tUartConfig.byRxMode = UART_RX_MODE_POLL;	//接收 轮询模式
 	
@@ -306,6 +311,7 @@ int uart_recv_int_demo(void)
 	
 	tUartConfig.byParity = UART_PARITY_ODD;		//校验位，奇校验
 	tUartConfig.wBaudRate = 115200;				//波特率，115200
+	tUartConfig.hwRecvTo = 88;					//UART接收超时时间，单位：bit位周期，8个bytes(11bit*8=88, 115200波特率时=764us)
 	tUartConfig.wInt = UART_INTSRC_RXFIFO;		//串口接收中断打开，使用RXFIFO中断(默认推荐使用)
 	tUartConfig.byTxMode = UART_TX_MODE_POLL;	//发送模式：轮询模式
 	tUartConfig.byRxMode = UART_RX_MODE_INT_FIX;//接收模式：中断指定接收模式
@@ -362,6 +368,7 @@ int uart_recv_dynamic_demo(void)
 	//串口参数配置
 	tUartConfig.byParity = UART_PARITY_ODD;		//校验位，奇校验
 	tUartConfig.wBaudRate = 115200;				//波特率，115200
+	tUartConfig.hwRecvTo = 88;					//UART接收超时时间，单位：bit位周期，8个bytes(11bit*8=88, 115200波特率时=764us)
 	tUartConfig.wInt = UART_INTSRC_RXFIFO ;		//串口接收中断打开，使用RXFIFO中断(默认推荐使用)
 	tUartConfig.byTxMode = UART_TX_MODE_POLL;	//发送模式：轮询模式
 	tUartConfig.byRxMode = UART_RX_MODE_INT_DYN;//接收模式：中断动态接收模式
@@ -406,7 +413,8 @@ int uart_recv_dynamic_int_demo(void)
 	//串口参数配置
 	tUartConfig.byParity = UART_PARITY_ODD;							//校验位，奇校验
 	tUartConfig.wBaudRate = 115200;									//波特率，115200
-	tUartConfig.wInt = UART_INTSRC_RXFIFO | UART_INTSRC_TXDONE;	//串口接收/发送中断打开，使用RXFIFO/TXDONE中断(默认推荐使用)
+	tUartConfig.hwRecvTo = 88;										//UART接收超时时间，单位：bit位周期，8个bytes(11bit*8=88, 115200波特率时=764us)
+	tUartConfig.wInt = UART_INTSRC_RXFIFO | UART_INTSRC_TXDONE;		//串口接收/发送中断打开，使用RXFIFO/TXDONE中断(默认推荐使用)
 	tUartConfig.byTxMode = UART_TX_MODE_INT;						//发送模式：中断发送
 	tUartConfig.byRxMode = UART_RX_MODE_INT_DYN;					//接收模式：中断动态接收模式
 	

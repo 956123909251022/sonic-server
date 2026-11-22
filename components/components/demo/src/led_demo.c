@@ -74,6 +74,18 @@ void io_config(uint8_t byGrp)
 		csi_pin_set_mux(PB011, PB011_LED_COM7);
 		csi_pin_set_mux(PA19, PA19_LED_COM8);
 		csi_pin_set_mux(PA113, PA113_LED_C0M9);
+		
+		//开启COM口强驱
+		csi_pin_drive(PA16, GPIO_DRIVE_LV1);
+		csi_pin_drive(PB05, GPIO_DRIVE_LV1);
+		csi_pin_drive(PA17, GPIO_DRIVE_LV1);
+		csi_pin_drive(PB06, GPIO_DRIVE_LV1);
+		csi_pin_drive(PB07, GPIO_DRIVE_LV1);
+		csi_pin_drive(PA18, GPIO_DRIVE_LV1);
+		csi_pin_drive(PB08, GPIO_DRIVE_LV1);
+		csi_pin_drive(PA111, GPIO_DRIVE_LV1);
+		csi_pin_drive(PA112, GPIO_DRIVE_LV1);
+		csi_pin_drive(PA113, GPIO_DRIVE_LV1);
 		return;
 		break;
 		
@@ -96,6 +108,18 @@ void io_config(uint8_t byGrp)
 	csi_pin_set_mux(PA111, PA111_LED_C0M7);
 	csi_pin_set_mux(PA112, PA112_LED_C0M8);
 	csi_pin_set_mux(PA113, PA113_LED_C0M9);
+	
+	//开启COM口强驱
+	csi_pin_drive(PA16, GPIO_DRIVE_LV1);
+	csi_pin_drive(PB05, GPIO_DRIVE_LV1);
+	csi_pin_drive(PA17, GPIO_DRIVE_LV1);
+	csi_pin_drive(PB06, GPIO_DRIVE_LV1);
+	csi_pin_drive(PB07, GPIO_DRIVE_LV1);
+	csi_pin_drive(PA18, GPIO_DRIVE_LV1);
+	csi_pin_drive(PB08, GPIO_DRIVE_LV1);
+	csi_pin_drive(PA111, GPIO_DRIVE_LV1);
+	csi_pin_drive(PA112, GPIO_DRIVE_LV1);
+	csi_pin_drive(PA113, GPIO_DRIVE_LV1);
 }
 
 /**
@@ -113,7 +137,7 @@ csi_error_t led_demo(void)
 	ptLedCfg.byClk = LED_PCLK_DIV8;
 	ptLedCfg.hwComMask = 0x3ff;
 	ptLedCfg.byBrt = LED_100;
-	ptLedCfg.byOnTime = 0x7f;
+	ptLedCfg.byOnTime = 120;	//只有当值为8的整数倍时，才会获得和预设值一致的准确时间
 	ptLedCfg.byBreakTime = 50;
 	ptLedCfg.byInt = LED_INTSRC_NONE;
 	

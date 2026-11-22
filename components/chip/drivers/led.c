@@ -23,7 +23,7 @@
  */ 
 __attribute ((weak))void led_irqhandler(csp_led_t *ptLedBase)
 {
-	csp_led_clr_int(ptLedBase, LED_INT_ICEND|LED_INT_IPEND);
+	csp_led_clr_int(ptLedBase, LED_INTSRC_ICEND|LED_INTSRC_IPEND);
 }
 /** \brief   led init & configuration: clk, brightness, COM mask
  * 

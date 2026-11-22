@@ -161,6 +161,7 @@ typedef enum{
 typedef struct {
 	uint32_t            wBaudRate;			//baud rate	
 	uint32_t            wInt;				//interrupt
+	uint16_t			hwRecvTo;			//receive timeout
 	uint8_t				byParity;           //parity type 
 	uint8_t				byDatabit;			//data bits
 	uint8_t				byStopbit;			//stop bits
